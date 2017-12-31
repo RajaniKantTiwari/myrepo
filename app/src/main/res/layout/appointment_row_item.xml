@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    style="@style/wrap_wrap">
+<com.app.community.widget.CustomTextView
+    android:id="@+id/tvAppointment"
+    style="@style/textview_title_wrap"
+    android:padding="@dimen/margin_4"
+    android:paddingStart="@dimen/margin_10"
+    android:paddingEnd="@dimen/margin_10"
+    android:background="@drawable/stroke_green"
+    app:customFont="@string/font_regular"
+    android:textColor="@color/darker_black"
+    android:text="gfghhghggghg"/>
+</LinearLayout>
+</layout>

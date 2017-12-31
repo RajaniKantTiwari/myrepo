@@ -6,23 +6,19 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.app.community.R;
-import com.app.community.databinding.ActivityConfirmOrderBinding;
 import com.app.community.databinding.ActivityDoctorDetailBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.dashboardinside.AppointMentResponse;
-import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.dashboard.DashboardInsideActivity;
 import com.app.community.ui.dashboard.home.adapter.AppointmentAdapter;
 
 import java.util.ArrayList;
 
-
 /**
- * Created by atul on 22/09/17.
- * To inject activity reference.
+ * Created by rajnikant on 31/12/17.
  */
 
-public class DoctorDetailsActivity extends DashboardInsideActivity {
+public class DoctorCheckoutActivity extends DashboardInsideActivity {
 
     private ActivityDoctorDetailBinding mBinding;
     private AppointmentAdapter mAdapter;
