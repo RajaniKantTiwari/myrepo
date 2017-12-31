@@ -47,6 +47,8 @@
 
 
     <dimen name="textSize_header">20sp</dimen>
+    <dimen name="textSize_header_small">20sp</dimen>
+
     <dimen name="textSize_title">16sp</dimen>
     <dimen name="textSize_description">13sp</dimen>
     <dimen name="textSize_description_small">11sp</dimen>

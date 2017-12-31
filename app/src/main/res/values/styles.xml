@@ -123,6 +123,10 @@
         <item name="android:textColor">@color/dark_black</item>
     </style>
 
+    <style name="textview_header_small_match" parent="match_wrap">
+        <item name="android:textSize">@dimen/textSize_header_small</item>
+        <item name="android:textColor">@color/dark_black</item>
+    </style>
     <style name="textview_title_match" parent="match_wrap">
         <item name="android:textSize">@dimen/textSize_title</item>
         <item name="android:textColor">@color/dark_black</item>
@@ -138,7 +142,10 @@
         <item name="android:textSize">@dimen/textSize_header</item>
         <item name="android:textColor">@color/dark_black</item>
     </style>
-
+    <style name="textview_header_small_wrap" parent="wrap_wrap">
+        <item name="android:textSize">@dimen/textSize_header_small</item>
+        <item name="android:textColor">@color/dark_black</item>
+    </style>
     <style name="textview_title_wrap" parent="wrap_wrap">
         <item name="android:textSize">@dimen/textSize_title</item>
         <item name="android:textColor">@color/dark_black</item>
@@ -151,6 +158,10 @@
 
 
     <style name="textview_description_small_wrap" parent="wrap_wrap">
+        <item name="android:textSize">@dimen/textSize_description_small</item>
+        <item name="android:textColor">@color/dark_black</item>
+    </style>
+    <style name="textview_description_small_match" parent="match_wrap">
         <item name="android:textSize">@dimen/textSize_description_small</item>
         <item name="android:textColor">@color/dark_black</item>
     </style>
