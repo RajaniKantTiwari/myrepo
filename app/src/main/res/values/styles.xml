@@ -170,6 +170,10 @@
         <item name="android:textSize">@dimen/textSize_description_smaller</item>
         <item name="android:textColor">@color/dark_black</item>
     </style>
+    <style name="textview_description_smaller_match" parent="match_wrap">
+        <item name="android:textSize">@dimen/textSize_description_smaller</item>
+        <item name="android:textColor">@color/dark_black</item>
+    </style>
 
     <style name="layout_hori_wrap_1">
         <item name="android:layout_width">0dp</item>

@@ -91,55 +91,70 @@
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
+                        android:buttonTint="@color/color_blue"
                         android:checked="true"
-                        android:text="@string/pick_on_the_way"
-                        android:textColor="@color/dark_black"
-                        android:textAllCaps="true"
-                        android:textSize="@dimen/textSize_description"
                         android:paddingStart="@dimen/margin_8"
-                        android:buttonTint="@color/color_blue"/>
+                        android:text="@string/pick_on_the_way"
+                        android:textAllCaps="true"
+                        android:textColor="@color/dark_black"
+                        android:textSize="@dimen/textSize_description"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
+                <RelativeLayout style="@style/match_wrap"
+                    android:layout_marginTop="@dimen/margin_13">
+
+                    <com.app.community.widget.CustomTextView
+                        style="@style/wrap_wrap"
+                        android:padding="@dimen/margin_5"
+                        android:layout_marginStart="@dimen/margin_5"
+                        android:gravity="center"
+                        android:text="@string/delivery_at"
+                        android:textAllCaps="true"
+                        android:textColor="@color/color_blue"
+                        android:textSize="@dimen/textSize_description"
+                        app:customFont="@string/font_bold" />
+
+                    <com.app.community.widget.CustomTextView
+                        style="@style/wrap_wrap"
+                        android:padding="@dimen/margin_5"
+                        android:layout_marginEnd="@dimen/margin_8"
+                        android:layout_alignParentEnd="true"
+                        android:gravity="center"
+                        android:text="@string/edit_address"
+                        android:textAllCaps="true"
+                        android:textColor="@color/reddish"
+                        android:textSize="@dimen/textSize_description"
+                        app:customFont="@string/font_bold" />
+                </RelativeLayout>
+
                 <com.app.community.widget.CustomTextView
-                    style="@style/wrap_wrap"
+                    style="@style/match_wrap"
+                    android:layout_marginEnd="@dimen/margin_10"
                     android:layout_marginStart="@dimen/margin_10"
-                    android:layout_marginTop="@dimen/margin_18"
-                    android:layout_marginBottom="@dimen/margin_5"
-                    android:gravity="center"
-                    android:text="@string/delivery_at"
-                    android:textAllCaps="true"
-                    android:textColor="@color/color_blue"
+                    android:background="@drawable/grey_corner_bg"
+                    android:padding="@dimen/margin_10"
+                    android:textColor="@color/dark_black"
                     android:textSize="@dimen/textSize_description"
                     app:customFont="@string/font_bold" />
 
                 <com.app.community.widget.CustomTextView
                     style="@style/match_wrap"
-                    android:layout_marginStart="@dimen/margin_10"
-                    android:layout_marginEnd="@dimen/margin_10"
-                    android:padding="@dimen/margin_10"
-                    android:textColor="@color/dark_black"
-                    android:textSize="@dimen/textSize_description"
-                    app:customFont="@string/font_bold"
-                    android:background="@drawable/grey_corner_bg" />
-
-                <com.app.community.widget.CustomTextView
-                    style="@style/match_wrap"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/margin_20"
                     android:layout_marginBottom="@dimen/margin_60"
-                    android:layout_marginStart="@dimen/margin_50"
                     android:layout_marginEnd="@dimen/margin_50"
+                    android:layout_marginStart="@dimen/margin_50"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:background="@drawable/blue_round_btnbg"
+                    android:elevation="@dimen/margin_5"
+                    android:gravity="center_horizontal"
+                    android:paddingBottom="@dimen/margin_12"
+                    android:paddingTop="@dimen/margin_12"
                     android:text="@string/proced_to_pay"
                     android:textAllCaps="true"
-                    android:gravity="center_horizontal"
-                    android:elevation="@dimen/margin_5"
-                    android:paddingTop="@dimen/margin_12"
-                    android:paddingBottom="@dimen/margin_12"
                     android:textColor="@color/white"
                     android:textSize="@dimen/textSize_button_medium"
-                    app:customFont="@string/font_bold"
-                    android:background="@drawable/blue_round_btnbg" />
+                    app:customFont="@string/font_bold" />
             </LinearLayout>
 
         </LinearLayout>

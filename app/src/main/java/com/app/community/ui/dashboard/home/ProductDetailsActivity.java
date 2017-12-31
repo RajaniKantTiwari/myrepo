@@ -8,11 +8,17 @@ import android.view.View;
 
 import com.app.community.R;
 import com.app.community.databinding.ActivityProductDetailBinding;
+import com.app.community.network.request.dashboard.ProductRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.SimpleDividerItemDecoration;
 import com.app.community.ui.base.BaseActivity;
+import com.app.community.ui.dashboard.DashboardInsideActivity;
+import com.app.community.ui.dashboard.DashboardInsidePresenter;
 import com.app.community.ui.dashboard.home.adapter.ReviewAdapter;
 import com.app.community.ui.dashboard.home.adapter.StoreAdapter;
+import com.app.community.ui.presenter.AuthenticationPresenter;
+
+import javax.inject.Inject;
 
 
 /**
@@ -20,12 +26,13 @@ import com.app.community.ui.dashboard.home.adapter.StoreAdapter;
  * To inject activity reference.
  */
 
-public class ProductDetailsActivity extends BaseActivity {
+public class ProductDetailsActivity extends DashboardInsideActivity {
 
     private ActivityProductDetailBinding mBinding;
     private StoreAdapter mPhotoAdapter;
     private ReviewAdapter mReviewAdapter;
-
+    @Inject
+    DashboardInsidePresenter presenter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +44,6 @@ public class ProductDetailsActivity extends BaseActivity {
         LinearLayoutManager photoManager=new LinearLayoutManager(this);
         photoManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mBinding.photoRecycler.setLayoutManager(photoManager);
-
         LinearLayoutManager reviewManager=new LinearLayoutManager(this);
         mBinding.rvReview.setLayoutManager(reviewManager);
         mBinding.rvReview.addItemDecoration(new SimpleDividerItemDecoration(getResources()));
@@ -45,7 +51,8 @@ public class ProductDetailsActivity extends BaseActivity {
 
     @Override
     public void attachView() {
-
+        getActivityComponent().inject(this);
+        presenter.attachView(this);
     }
 
     @Override
@@ -59,6 +66,7 @@ public class ProductDetailsActivity extends BaseActivity {
         mBinding.photoRecycler.setAdapter(mPhotoAdapter);
         mReviewAdapter=new ReviewAdapter(this);
         mBinding.rvReview.setAdapter(mReviewAdapter);
+        presenter.getProductDetails(this,new ProductRequest(3,8));
     }
 
     @Override

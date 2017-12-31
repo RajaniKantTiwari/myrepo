@@ -20,6 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.app.community.injector.scope.PerActivity;
 import com.app.community.network.Repository;
+import com.app.community.ui.dashboard.DashboardInsidePresenter;
 import com.app.community.ui.dashboard.DashboardPresenter;
 
 import dagger.Module;
@@ -41,6 +42,11 @@ public class DashboardModule {
     DashboardPresenter provideDashboardPresenter(Repository repository) {
         return new DashboardPresenter(repository);
     }
-
+    //to get DashboardPresenter Object
+    @Provides
+    @PerActivity
+    DashboardInsidePresenter provideDashboardInsidePresenter(Repository repository) {
+        return new DashboardInsidePresenter(repository);
+    }
 
 }

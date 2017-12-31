@@ -4,7 +4,6 @@
         <LinearLayout
             style="@style/match_wrap"
             android:orientation="vertical"
-            android:layout_marginTop="@dimen/margin_25"
             android:background="@color/white">
             <com.app.community.widget.CustomTextView
                 style="@style/match_wrap"
@@ -12,11 +11,15 @@
                 android:gravity="center_horizontal"
                 android:textColor="@color/darker_blackish"
                 app:customFont="@string/font_bold"
-                android:textSize="@dimen/textSize_20" />
+                android:textSize="@dimen/textSize_20"
+                android:layout_marginTop="@dimen/margin_25" />
+            <LinearLayout
+                style="@style/layout_ver_match_1">
             <ImageView
-                style="@style/layout_ver_match_1"
+                style="@style/wrap_wrap"
                 android:src="@drawable/confirm"
                 />
+            </LinearLayout>
             <LinearLayout
                 style="@style/layout_ver_match_1"
                 android:orientation="vertical">

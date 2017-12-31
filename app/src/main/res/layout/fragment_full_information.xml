@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        style="@style/match_wrap"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <com.app.community.widget.CustomTextView
+            android:id="@+id/header"
+            style="@style/textview_header_match"
+            android:layout_marginTop="@dimen/margin_25"
+            android:gravity="center_horizontal"
+            android:text="@string/full_information"
+            android:textAllCaps="true"
+            android:textColor="@color/darker_blackish" />
+
+        <ImageView
+            android:id="@+id/ivProductImage"
+            style="@style/wrap_wrap"
+            android:layout_below="@+id/header"
+            android:src="@drawable/abc" />
+
+        <ImageView
+            android:id="@+id/layoutLine"
+            style="@style/view_layout"
+            android:layout_below="@+id/ivProductImage" />
+
+        <LinearLayout
+            style="@style/match_wrap"
+            android:layout_below="@+id/layoutLine"
+            android:layout_margin="@dimen/margin_10"
+            android:orientation="vertical">
+
+            <LinearLayout style="@style/match_wrap">
+
+                <com.app.community.widget.CustomTextView
+                    style="@style/textview_header_small_wrap"
+                    android:text="12.00/"
+                    android:textColor="@color/color_blue"
+                    app:customFont="@string/font_bold" />
+
+                <com.app.community.widget.CustomTextView
+                    style="@style/textview_description_wrap"
+                    android:text="500gram"
+                    android:textColor="@color/color_blue"
+                    app:customFont="@string/font_bold" />
+            </LinearLayout>
+
+            <com.app.community.widget.CustomTextView
+                style="@style/textview_title_match"
+                android:layout_marginTop="@dimen/margin_2"
+                android:text="fAL1P1vO"
+                app:customFont="@string/font_bold" />
+
+            <com.app.community.widget.CustomTextView
+                style="@style/textview_description_smaller_match"
+                android:text="falapeños are a pod type of !apsicum annuum. The growing period is 70–80 days. When mature, the plant stands 70–90 cm (28–35 in) tall. Typically, a plant produces 25 to 35 pods. (uring a growing period, a plant will be picked multiple times. As the growing season ends, the peppers turn red, as seen in Sriracha sauce. falapeños thrive in a number of soil types and temperatures, though they prefer warmer climates, provided they have adequate water."
+                app:customFont="@string/font_bold" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            style="@style/match_wrap"
+            android:layout_height="@dimen/margin_50"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white_e2e2e2">
+
+            <LinearLayout
+                style="@style/wrap_wrap"
+                android:layout_marginStart="@dimen/margin_10"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    style="@style/wrap_wrap"
+                    android:src="@drawable/add" />
+
+                <com.app.community.widget.CustomTextView
+                    style="@style/textview_header_small_wrap"
+                    android:text="1"
+                    android:textColor="@color/color_blue"
+                    app:customFont="@string/font_bold" />
+
+                <ImageView
+                    style="@style/wrap_wrap"
+                    android:src="@drawable/sub" />
+            </LinearLayout>
+
+            <com.app.community.widget.CustomTextView
+                style="@style/textview_description_smaller_wrap"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginEnd="@dimen/margin_20"
+                android:background="@drawable/blue_round_btnbg"
+                android:elevation="@dimen/margin_5"
+                android:gravity="center_horizontal"
+                android:paddingBottom="@dimen/margin_5"
+                android:paddingEnd="@dimen/margin_30"
+                android:paddingStart="@dimen/margin_30"
+                android:paddingTop="@dimen/margin_5"
+                android:text="@string/add_to_cart"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                app:customFont="@string/font_bold" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+</layout>

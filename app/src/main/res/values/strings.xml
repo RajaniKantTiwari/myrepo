@@ -372,6 +372,9 @@
     <string name="estimated_delivery_time">Est Delivery Time</string>
     <string name="back_to_home">Back to home</string>
     <string name="raise_an_issue">Raise an issue</string>
+    <string name="edit_address">Edit Address</string>
+    <string name="full_information">Full Information</string>
+    <string name="add_to_cart">Add to Card</string>
 
 
     <string-array name="state_array">

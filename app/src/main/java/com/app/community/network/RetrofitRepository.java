@@ -2,8 +2,10 @@ package com.app.community.network;
 
 import com.app.community.network.request.LoginRequest;
 import com.app.community.network.request.VerifyMobileRequest;
+import com.app.community.network.request.dashboard.ProductRequest;
 import com.app.community.network.response.LoginResponse;
 import com.app.community.network.response.VerifyMobileResponse;
+import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
 import com.app.community.network.response.dashboard.meeting.ProductResponseData;
 
 import io.reactivex.Observable;
@@ -34,5 +36,10 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<ProductResponseData> getMerchantList() {
         return apiService.getMerchantList();
+    }
+
+    @Override
+    public Observable<ProductDetailsData> getProductDetail(ProductRequest productRequest) {
+        return apiService.getProductDetail(productRequest);
     }
 }
