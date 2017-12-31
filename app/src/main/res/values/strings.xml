@@ -16,8 +16,10 @@
 
 <!-- end -->
 
-    <string name="font_default">Quicksand-Regular.otf</string>
+    <string name="font_default">Quicksand-Bold.otf</string>
     <string name="font_bold">Quicksand-Bold.otf</string>
+    <string name="font_semi_bold">Quicksand-Bold.otf</string>
+
     <string name="font_bold_italic">Quicksand-BoldItalic.otf</string>
     <string name="font_italic">Quicksand-Italic.otf</string>
     <string name="font_light">Quicksand-Light.otf</string>
@@ -375,6 +377,10 @@
     <string name="edit_address">Edit Address</string>
     <string name="full_information">Full Information</string>
     <string name="add_to_cart">Add to Card</string>
+    <string name="checkout_now">Checkout Now</string>
+    <string name="book">Book</string>
+    <string name="book_appointment">Book Appointment</string>
+    <string name="available">Available</string>
 
 
     <string-array name="state_array">

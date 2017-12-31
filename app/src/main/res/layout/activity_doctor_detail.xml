@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        style="@style/match_match"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <ScrollView style="@style/match_match">
+
+            <LinearLayout
+                style="@style/match_wrap"
+                android:layout_above="@+id/tvAppointment"
+                android:orientation="vertical">
+
+                <LinearLayout style="@style/match_wrap">
+
+                    <LinearLayout
+                        style="@style/layout_hori_match_1"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            style="@style/match_wrap"
+                            android:layout_marginBottom="@dimen/margin_7"
+                            android:background="@color/white_e2e2e2"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/margin_15">
+                            <com.app.community.widget.CustomTextView
+                                style="@style/textview_header_small_wrap"
+                                android:textColor="@color/color_dark_sky" />
+                            <com.app.community.widget.CustomTextView
+                                style="@style/textview_title_wrap"
+                                android:textColor="@color/color_dark_sky" />
+                        </LinearLayout>
+                        <com.app.community.widget.CustomTextView
+                            style="@style/textview_title_wrap"
+                            android:layout_margin="@dimen/margin_10"
+                            android:textColor="@color/color_dark_sky" />
+                        <com.app.community.widget.CustomTextView
+                            style="@style/textview_header_small_wrap"
+                            android:layout_marginStart="@dimen/margin_10"
+                            android:textColor="@color/progressColor" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/layout_hori_wrap_1">
+
+                        <ImageView
+                            android:id="@+id/ivProductImage"
+                            style="@style/wrap_wrap"
+                            android:src="@drawable/abc" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <com.app.community.widget.CustomTextView
+                    style="@style/textview_header_small_wrap"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:text="@string/detail"
+                    android:textColor="@color/color_dark_sky"
+                    app:customFont="@string/font_bold" />
+
+                <com.app.community.widget.CustomTextView
+                    style="@style/textview_description_wrap"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:text="@string/lorem_ipsum" />
+
+                <com.app.community.widget.CustomTextView
+                    style="@style/textview_title_match"
+                    android:layout_marginBottom="@dimen/margin_15"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_25"
+                    android:text="@string/available"
+                    android:textColor="@color/color_dark_sky"
+                    app:customFont="@string/font_bold" />
+
+                <RelativeLayout
+                    style="@style/match_wrap"
+                    android:background="@color/white_e2e2e2"
+                    android:padding="@dimen/margin_5"
+                    android:paddingEnd="@dimen/margin_10"
+                    android:paddingStart="@dimen/margin_10">
+
+                    <ImageView
+                        android:id="@+id/ivPrevious"
+                        style="@style/wrap_wrap"
+                        android:src="@drawable/ic_arrow" />
+
+                    <com.app.community.widget.CustomTextView
+                        style="@style/textview_description_small_wrap"
+                        android:layout_centerInParent="true"
+                        android:text="Today" />
+
+                    <ImageView
+                        android:id="@+id/ivNext"
+                        style="@style/wrap_wrap"
+                        android:layout_alignParentEnd="true"
+                        android:src="@drawable/ic_arrow" />
+                </RelativeLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvAppointmentTime"
+                    style="@style/match_wrap" />
+            </LinearLayout>
+        </ScrollView>
+
+        <com.app.community.widget.CustomTextView
+            android:id="@+id/tvAppointment"
+            style="@style/textview_header_match"
+            android:layout_alignParentBottom="true"
+            android:background="@color/progressColor"
+            android:elevation="@dimen/margin_5"
+            android:gravity="center"
+            android:padding="@dimen/margin_10"
+            android:text="@string/book_appointment"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            app:customFont="@string/font_bold" />
+    </RelativeLayout>
+
+
+</layout>

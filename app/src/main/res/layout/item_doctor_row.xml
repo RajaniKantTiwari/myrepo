@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<LinearLayout
+    style="@style/match_wrap"
+    android:layout_marginStart="@dimen/margin_15"
+    android:layout_marginEnd="@dimen/margin_15"
+    android:layout_marginTop="@dimen/margin_5">
+    <android.support.v7.widget.CardView
+        style="@style/match_wrap"
+        android:elevation="@dimen/margin_5"
+        app:cardCornerRadius="@dimen/margin_4">
+
+        <RelativeLayout
+            style="@style/match_wrap"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/ivProductImage"
+                android:layout_width="@dimen/margin_80"
+                android:layout_height="@dimen/margin_80"
+                android:padding="@dimen/margin_5"
+                android:src="@drawable/mother_dairy" />
+
+            <RelativeLayout
+                android:id="@+id/layoutDetails"
+                style="@style/match_wrap"
+                android:layout_toEndOf="@+id/ivProductImage"
+                android:gravity="center_vertical"
+                android:padding="@dimen/margin_5">
+
+
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvProductName"
+                    style="@style/textview_title_wrap"
+                    android:text="U. JoKn DoH"
+                    app:customFont="@string/font_bold" />
+
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvLocation"
+                    style="@style/textview_description_small_wrap"
+                    android:layout_below="@+id/tvProductName"
+                    android:layout_marginTop="@dimen/margin_3"
+                    android:text="U. JoKn DoH"
+                    app:customFont="@string/font_bold"/>
+
+
+                    <com.app.community.widget.CustomTextView
+                        android:id="@+id/tvProductType"
+                        style="@style/textview_description_wrap"
+                        android:layout_below="@+id/tvLocation"
+                        android:text="Bhartiy"
+                        android:layout_marginBottom="@dimen/margin_15"
+                        android:layout_marginTop="@dimen/margin_3"
+                        />
+
+
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvStar"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:layout_marginBottom="@dimen/margin_15"
+                    style="@style/textview_title_wrap"
+                    android:layout_alignParentEnd="true"
+                    android:drawableStart="@drawable/star"
+                    android:gravity="center_vertical"
+                    android:text="5.2"
+                    android:textColor="@color/dark_yellow"
+                    app:customFont="@string/font_bold"/>
+
+
+                <com.app.community.widget.CustomTextView
+                    style="@style/textview_title_wrap"
+                    android:layout_below="@+id/tvStar"
+                    android:layout_marginEnd="@dimen/margin_5"
+                    android:layout_toStartOf="@+id/tvView"
+                    android:background="@drawable/blue_round_btnbg"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/margin_3"
+                    android:paddingEnd="@dimen/margin_15"
+                    android:paddingStart="@dimen/margin_15"
+                    android:paddingTop="@dimen/margin_3"
+                    android:text="@string/book"
+                    android:textColor="@color/white"
+                    app:customFont="@string/font_bold" />
+
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvView"
+                    style="@style/textview_title_wrap"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/tvStar"
+                    android:background="@drawable/dark_round_btnbg"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/margin_3"
+                    android:paddingEnd="@dimen/margin_15"
+                    android:paddingStart="@dimen/margin_15"
+                    android:paddingTop="@dimen/margin_3"
+                    android:text="@string/view"
+                    android:textColor="@color/white"
+                    app:customFont="@string/font_bold" />
+
+
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvClose"
+                    style="@style/textview_description_small_wrap"
+                    android:layout_below="@+id/tvProductType"
+                    android:background="@drawable/light_green_bg"
+                    android:padding="@dimen/margin_5"
+                    android:paddingStart="@dimen/margin_10"
+                    android:paddingEnd="@dimen/margin_10"
+                    android:text="open at 8:30"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textSize_description_smaller"
+                    app:customFont="@string/font_bold" />
+
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
+</layout>

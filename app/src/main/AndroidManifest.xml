@@ -27,7 +27,8 @@
 
         <activity
             android:name=".ui.dashboard.DashBoardActivity"/>
-
+        <activity
+            android:name=".ui.dashboard.home.DoctorDetailsActivity"/>
 
         <meta-data
             android:name="com.google.android.gms.version"
