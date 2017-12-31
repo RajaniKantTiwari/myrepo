@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer"
+        style="@style/match_match">
+
+        <RelativeLayout
+           style="@style/match_match"
+            android:background="@android:color/white">
+
+            <include
+                android:id="@+id/toolBar"
+                layout="@layout/toolbar_layout" />
+
+            <FrameLayout
+                android:id="@+id/container"
+                android:layout_below="@+id/toolBar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/bottomLayout"
+                />
+
+            <include
+                android:id="@+id/bottomLayout"
+                layout="@layout/bottom_nav_bar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_65"
+                android:layout_alignParentBottom="true"/>
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/listButton"
+                style="@style/wrap_wrap"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/margin_35"
+                android:layout_marginEnd="@dimen/margin_10"
+                android:src="@drawable/ic_filter"
+                app:backgroundTint="@color/white"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="@dimen/margin_270"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:clickable="true">
+
+            <include android:id="@+id/layoutDrawer"
+                layout="@layout/layout_drawer"/>
+
+        </LinearLayout>
+    </android.support.v4.widget.DrawerLayout>
+</layout>

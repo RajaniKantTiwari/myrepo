@@ -1,0 +1,260 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="match_match">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="match_wrap" parent="match_match">
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="wrap_match" parent="match_match">
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="wrap_wrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="CustomAlertDialogTheme" parent="AppTheme">
+        <item name="android:windowTitleStyle">@style/CustomAlertDialogTitle</item>
+    </style>
+    <style name="CustomAlertDialogTitle">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="view_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/margin_2</item>
+        <item name="android:background">@color/light_grey_color</item>
+    </style>
+
+    <style name="view_layout_white">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/margin_2</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="view_layout_nav_bar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/margin_2</item>
+        <item name="android:layout_marginTop">@dimen/margin_5_minus</item>
+        <item name="android:background">@color/colorNavAccentSelected</item>
+    </style>
+
+    <style name="view_layout_vertical">
+        <item name="android:layout_width">@dimen/margin_2</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/light_grey_color</item>
+    </style>
+    <style name="otp_back">
+        <item name="android:layout_width">@dimen/margin_40</item>
+        <item name="android:layout_height">@dimen/margin_40</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/dark_black</item>
+        <item name="android:textSize">@dimen/textSize_15</item>
+        <item name="android:maxLength">1</item>
+        <item name="android:inputType">number</item>
+        <item name="android:imeOptions">actionNext</item>
+
+    </style>
+
+    <style name="linear_layout_match" parent="linear_layout">
+        <item name="android:layout_height">match_parent</item>
+    </style>
+    <style name="linear_layout_wrap" parent="linear_layout">
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="linear_layout">
+        <item name="android:layout_width">@dimen/margin_0</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="transDialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:indeterminateTint">@color/colorPrimary</item>
+    </style>
+    <style name="edit_text_style" parent="match_wrap">
+        <item name="android:maxLines">1</item>
+        <item name="android:background">@null</item>
+    </style>
+
+    <style name="toolbar" parent="match_wrap">
+        <item name="android:layout_height">@dimen/margin_56</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="layout_bottom_image" parent="wrap_wrap">
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:layout_marginBottom">@dimen/margin_10</item>
+    </style>
+    <style name="headerText" parent="wrap_wrap">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/textSize_15</item>
+    </style>
+    <style name="image_40" >
+        <item name="android:layout_height">@dimen/margin_40</item>
+        <item name="android:layout_width">@dimen/margin_40</item>
+    </style>
+    <style name="image_70_80" >
+        <item name="android:layout_width">@dimen/margin_70</item>
+        <item name="android:layout_height">@dimen/margin_80</item>
+    </style>
+
+    <style name="textview_header_match" parent="match_wrap">
+        <item name="android:textSize">@dimen/textSize_header</item>
+        <item name="android:textColor">@color/dark_black</item>
+    </style>
+
+    <style name="textview_title_match" parent="match_wrap">
+        <item name="android:textSize">@dimen/textSize_title</item>
+        <item name="android:textColor">@color/dark_black</item>
+    </style>
+
+    <style name="textview_description_match" parent="match_wrap">
+        <item name="android:textSize">@dimen/textSize_description</item>
+        <item name="android:textColor">@color/dark_black</item>
+    </style>
+
+
+    <style name="textview_header_wrap" parent="wrap_wrap">
+        <item name="android:textSize">@dimen/textSize_header</item>
+        <item name="android:textColor">@color/dark_black</item>
+    </style>
+
+    <style name="textview_title_wrap" parent="wrap_wrap">
+        <item name="android:textSize">@dimen/textSize_title</item>
+        <item name="android:textColor">@color/dark_black</item>
+    </style>
+
+    <style name="textview_description_wrap" parent="wrap_wrap">
+        <item name="android:textSize">@dimen/textSize_description</item>
+        <item name="android:textColor">@color/dark_black</item>
+    </style>
+
+
+    <style name="textview_description_small_wrap" parent="wrap_wrap">
+        <item name="android:textSize">@dimen/textSize_description_small</item>
+        <item name="android:textColor">@color/dark_black</item>
+    </style>
+
+    <style name="textview_description_smaller_wrap" parent="wrap_wrap">
+        <item name="android:textSize">@dimen/textSize_description_smaller</item>
+        <item name="android:textColor">@color/dark_black</item>
+    </style>
+
+    <style name="layout_hori_wrap_1">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="layout_hori_wrap_2">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">2</item>
+    </style>
+
+    <style name="layout_hori_wrap_3">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">3</item>
+    </style>
+
+    <style name="layout_hori_wrap_4">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">4</item>
+    </style>
+
+    <style name="layout_hori_match_1">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+    <style name="layout_hori_match_2">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">2</item>
+    </style>
+    <style name="layout_hori_match_3">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">3</item>
+    </style>
+    <style name="layout_hori_match_4">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">4</item>
+    </style>
+
+
+    <style name="layout_ver_match_1">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+    <style name="layout_ver_match_2">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">2</item>
+    </style>
+    <style name="layout_ver_match_3">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">3</item>
+    </style>
+    <style name="layout_ver_match_4">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">4</item>
+    </style>
+    <style name="edit_text_style_header" parent="match_wrap">
+        <item name="android:maxLines">1</item>
+        <item name="android:background">@null</item>
+        <item name="android:textSize">@dimen/textSize_header</item>
+
+    </style>
+
+    <style name="edit_text_style_title" parent="match_wrap">
+        <item name="android:maxLines">1</item>
+        <item name="android:background">@null</item>
+        <item name="android:textSize">@dimen/textSize_title</item>
+    </style>
+    <style name="edit_text_style_description" parent="match_wrap">
+        <item name="android:maxLines">1</item>
+        <item name="android:background">@null</item>
+        <item name="android:textSize">@dimen/textSize_description</item>
+
+    </style>
+    <style name="edit_text_style_descriptionSmall" parent="match_wrap">
+        <item name="android:maxLines">1</item>
+        <item name="android:background">@null</item>
+        <item name="android:textSize">@dimen/textSize_description_small</item>
+    </style>
+
+    <style name="edit_text_style_descriptionSmaller" parent="match_wrap">
+        <item name="android:maxLines">1</item>
+        <item name="android:background">@null</item>
+        <item name="android:textSize">@dimen/textSize_description_smaller</item>
+    </style>
+    <dimen name="margin_35">35dp</dimen>
+    <dimen name="margin_8_minus">-8dp</dimen>
+</resources>

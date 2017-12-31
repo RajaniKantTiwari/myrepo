@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/match_wrap"
+        android:padding="@dimen/margin_7">
+
+        <com.app.community.widget.CustomTextView
+            android:id="@+id/tvProductName"
+            style="@style/wrap_wrap"
+            android:textColor="@color/dark_black"
+            android:textSize="@dimen/textSize_description"
+            android:layout_marginStart="@dimen/margin_10"
+            app:customFont="@string/font_bold"
+            android:maxLines="1"
+            android:text="Green Chilly " />
+        <com.app.community.widget.CustomTextView
+            android:id="@+id/tvProductPrice"
+            style="@style/match_wrap"
+            android:layout_toEndOf="@+id/tvProductName"
+            android:gravity="end"
+            android:maxLines="1"
+            android:minWidth="@dimen/margin_100"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/dark_black"
+            android:textSize="@dimen/textSize_description"
+            android:layout_marginEnd="@dimen/margin_25"
+            app:customFont="@string/font_bold"
+            android:text="525"/>
+    </RelativeLayout>
+</layout>

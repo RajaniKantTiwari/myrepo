@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE resources [
+    <!ENTITY appname "App Name">
+    <!ENTITY author "MrGreen">
+    ]>
+<resources>
+
+    <!-- App String -->
+    <string name="app_name">&appname;</string>
+
+
+    <string name="server_error">Server Error</string>
+    <!-- setting Map Key Here-->
+    <!--<string name="google_api_key">AIzaSyARxWYiJxPPGiVAzsO-v4aA_Shfjzckjwg</string>-->
+    <string name="google_api_key">AIzaSyDWNa4ZMLduib0GGSgYeIv_-FTp6v6bxrI</string>
+
+<!-- end -->
+
+    <string name="font_default">Quicksand-Regular.otf</string>
+    <string name="font_bold">Quicksand-Bold.otf</string>
+    <string name="font_bold_italic">Quicksand-BoldItalic.otf</string>
+    <string name="font_italic">Quicksand-Italic.otf</string>
+    <string name="font_light">Quicksand-Light.otf</string>
+    <string name="font_light_italic">Quicksand-LightItalic.otf</string>
+    <string name="font_regular">Quicksand-Regular.otf</string>
+    <string name="font_dash">Quicksand_Dash.otf</string>
+    <string name="font_book_regular">quicksand-book-regular.otf</string>
+
+
+
+    <string name="profile">Profile</string>
+    <string name="storage_permission">Write storage permission required to set profile and document images. Please select OK and provide Storage permission.</string>
+
+
+    <string name="onboarding_heading_1">Search for books</string>
+    <string name="onboarding_description_1">Look for your books by Title, Author,\n and even ISBN.</string>
+    <string name="onboarding_heading_2">Buy used Books</string>
+    <string name="onboarding_description_2">Get the books you need at a\n better price.</string>
+    <string name="onboarding_heading_3">Sell your books</string>
+    <string name="onboarding_description_3">Don\'t need old books? Add a listing \n and start getting offers.</string>
+    <string name="onboarding_heading_4">Earn from used books</string>
+    <string name="onboarding_description_4">Track your earnings and turn last \n semester\'s books into this \n semester\'s cash.</string>
+    <string name="journal">Journal</string>
+    <string name="ebooks">Ebooks</string>
+    <string name="feed">Feed</string>
+    <string name="meetings">Meetings</string>
+
+
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+
+    <!--  Main Strings -->
+    <string name="actionSearch"> SEARCH </string>
+    <string name="actionLanguage"> LANGUAGE </string>
+
+    <string name="actionHome"> HOME </string>
+    <string name="actionCategory"> CATEGORY </string>
+    <string name="actionCategories"> CATEGORIES </string>
+    <string name="actionShop"> SHOP </string>
+    <string name="actionCart"> MY CART </string>
+    <string name="actionOrders"> MY ORDERS </string>
+    <string name="actionAccount"> MY ACCOUNT </string>
+    <string name="actionAddresses"> MY ADDRESSES </string>
+    <string name="actionFavourites"> MY FAVORITES </string>
+    <string name="actionSettings"> SETTINGS </string>
+    <string name="actionNews"> NEWS </string>
+    <string name="actionIntro"> INTRO </string>
+    <string name="actionAbout"> ABOUT </string>
+    <string name="actionContactUs"> CONTACT US </string>
+    <string name="actionLogin"> LOGIN </string>
+    <string name="actionLogout"> LOGOUT </string>
+
+    <string name="homeStyle1"> HOME STYLE 1 </string>
+    <string name="homeStyle2"> HOME STYLE 2 </string>
+    <string name="homeStyle3"> HOME STYLE 3 </string>
+    <string name="homeStyle4"> HOME STYLE 4 </string>
+    <string name="homeStyle5"> HOME STYLE 5 </string>
+    <string name="categoryStyle1"> CATEGORY STYLE 1 </string>
+    <string name="categoryStyle2"> CATEGORY STYLE 2 </string>
+    <string name="categoryStyle3"> CATEGORY STYLE 3 </string>
+    <string name="categoryStyle4"> CATEGORY STYLE 4 </string>
+    <string name="categoryStyle5"> CATEGORY STYLE 5 </string>
+    <string name="categoryStyle6"> CATEGORY STYLE 6 </string>
+
+    <string name="Newest"> NEWEST </string>
+    <string name="topSeller"> TOP SELLER </string>
+    <string name="superDeals"> SUPER DEALS </string>
+    <string name="mostLiked"> MOST LIKED </string>
+
+    <string name="all"> All </string>
+    <string name="newest"> Newest </string>
+    <string name="top_seller"> Top Seller </string>
+    <string name="super_deals"> Deals </string>
+    <string name="most_liked"> Most Liked </string>
+    <string name="recentlyViewed"> Recently Viewed </string>
+
+    <string name="news_all"> All News </string>
+    <string name="news_categories"> News Categories </string>
+    <string name="news_description"> News Description </string>
+
+
+    <!--  Other Strings -->
+    <string name="ok"> OK </string>
+    <string name="and"> and </string>
+    <string name="NEW"> NEW </string>
+    <string name="OFF"> OFF </string>
+    <string name="save"> Save </string>
+    <string name="send"> Send </string>
+    <string name="next"> Next </string>
+    <string name="skip"> Skip </string>
+    <string name="title"> Title </string>
+    <string name="start"> Start </string>
+    <string name="retry"> Retry </string>
+    <string name="apply"> Apply </string>
+    <string name="search"> Search </string>
+    <string name="clear"> Clear </string>
+    <string name="login"> Login </string>
+    <string name="signup"> Signup </string>
+    <string name="cancel"> Cancel </string>
+    <string name="welcome"> Welcome </string>
+    <string name="explore"> Explore </string>
+    <string name="checkout"> Checkout </string>
+    <string name="register"> Register </string>
+    <string name="drawerOpen"> DrawerOpen </string>
+    <string name="drawerClose"> DrawerClose </string>
+
+    <string name="view"> View </string>
+    <string name="date"> Date </string>
+    <string name="cart"> Cart </string>
+    <string name="product"> Product </string>
+    <string name="products"> Products </string>
+    <string name="category"> Category </string>
+    <string name="categories"> Categories </string>
+    <string name="final_price"> Final Price </string>
+    <string name="total_price"> Total Price </string>
+    <string name="product_price"> Product Price </string>
+    <string name="checkout_price"> Checkout Price </string>
+    <string name="product_title"> Product Title </string>
+    <string name="view_product"> View Product </string>
+    <string name="quantity"> Quantity </string>
+    <string name="description"> Description </string>
+    <string name="attributes"> Attributes </string>
+    <string name="attribute_name"> Attribute Name </string>
+    <string name="product_description"> Product Description </string>
+
+    <string name="login_with"> Login with </string>
+    <string name="likes"> Likes </string>
+    <string name="in_stock"> In Stock </string>
+    <string name="outOfStock"> Out of Stock </string>
+    <string name="addToCart"> Add to Cart </string>
+    <string name="removeProduct"> Remove Product </string>
+    <string name="removeFromCart"> Remove from Cart </string>
+    <string name="save_address"> Save Address </string>
+    <string name="save_changes"> Save Changes </string>
+    <string name="reset_filters"> Reset Filters </string>
+    <string name="order_now"> Order Now </string>
+    <string name="continue_shopping"> Continue Shopping </string>
+    <string name="proceed_checkout"> Proceed Checkout </string>
+
+    <string name="order"> Order </string>
+    <string name="order_id"> Order ID </string>
+    <string name="order_status"> Order Status </string>
+    <string name="order_date"> Order Date </string>
+    <string name="order_address"> Order Address </string>
+    <string name="order_details"> Order Details </string>
+    <string name="order_confirmed"> Order Confirmed </string>
+    <string name="order_notes"> Order Notes </string>
+    <string name="order_comments"> Order Comments </string>
+    <string name="no_of_products"> No. of Products </string>
+
+    <string name="tax"> Tax </string>
+    <string name="shipping"> Shipping </string>
+    <string name="discount"> Discount </string>
+    <string name="subtotal"> Subtotal </string>
+    <string name="total"> Total </string>
+    <string name="coupon"> Coupon </string>
+    <string name="coupon_code"> Coupon Code </string>
+    <string name="coupon_amount"> Coupon Amount </string>
+    <string name="coupon_type"> Coupon Type </string>
+    <string name="sample_coupons"> Sample Coupon Codes </string>
+    <string name="payment_method"> Payment Method </string>
+    <string name="payment_details"> Payment Details </string>
+    <string name="card_number"> Card Number </string>
+    <string name="expiry_month"> Expiry Month </string>
+    <string name="expiry_year"> Expiry Year </string>
+    <string name="card_expiry"> Card Expiry </string>
+    <string name="card_cvv"> Card CVV </string>
+    <string name="payPal"> PayPal </string>
+    <string name="billing_address"> Billing Address </string>
+    <string name="shipping_address"> Shipping Address </string>
+    <string name="shipping_method"> Shipping Method </string>
+
+
+    <!--  Form Strings -->
+    <string name="full_name"> Full Name </string>
+    <string name="first_name"> First Name </string>
+    <string name="last_name"> Last Name </string>
+    <string name="email"> Email </string>
+    <string name="email_address"> Email Address </string>
+    <string name="dob"> Date of Birth </string>
+    <string name="gender"> Gender </string>
+    <string name="male"> Male </string>
+    <string name="female"> Female </string>
+    <string name="fax"> Fax </string>
+    <string name="mobile"> Mobile </string>
+    <string name="contact_no"> Contact No </string>
+    <string name="address"> Address </string>
+    <string name="country"> Country </string>
+    <string name="zone"> Zone </string>
+    <string name="state"> State </string>
+    <string name="city"> City </string>
+    <string name="post_code"> Post Code </string>
+    <string name="suburb"> Suburb </string>
+    <string name="password"> Password </string>
+    <string name="confirm_password"> Confirm Password </string>
+    <string name="new_password"> New Password </string>
+    <string name="current_password"> Current Password </string>
+    <string name="change_password"> Change Password </string>
+    <string name="update_password"> Update Password </string>
+    <string name="new_address"> New Address </string>
+    <string name="update_address"> Update Address </string>
+    <string name="subscribe_newsletter"> Subscribe Newsletter </string>
+
+
+    <!--  Messages Strings -->
+    <string name="thank_you"> Thank You </string>
+    <string name="add_coupon"> Add Coupon? </string>
+    <string name="your_message"> Your Message </string>
+    <string name="empty_cart"> Your Cart is Empty </string>
+    <string name="record_not_found"> No Record Found </string>
+    <string name="item_added_to_cart"> Item Added to Cart </string>
+    <string name="item_removed_from_cart"> Removed from Cart </string>
+    <string name="something_went_wrong"> Something went Wrong! </string>
+    <string name="added_to_favourites"> Added to Favourites </string>
+    <string name="removed_from_favourites"> Removed from Favourites </string>
+    <string name="login_or_signup"> Login &amp; Register </string>
+    <string name="login_or_create_account"> Please Login or create Account </string>
+    <string name="thank_you_for_shopping"> Thank You for shopping with us! </string>
+    <string name="coupon_removes_other_coupons"> This coupon may remove all other coupons! </string>
+
+    <string name="forgot_your_password"> Forgot Your Password? </string>
+    <string name="forgot_password"> I\'ve forgotten my password? </string>
+    <string name="already_have_account"> Already have an account? </string>
+    <string name="search_product_by_name"> Type Something to Search </string>
+    <string name="default_shipping"> Default Shipping Address </string>
+    <string name="select_payment_method"> Select Payment Method </string>
+
+    <string name="processing"> Processing... </string>
+    <string name="please_wait"> Please Wait... </string>
+    <string name="invalid_address"> Invalid Address </string>
+    <string name="no_internet"> Internet Connection is not Available </string>
+
+
+    <!--  Errors Message Strings -->
+    <string name="enter_name"> Enter Your Name </string>
+    <string name="enter_city"> Enter Your City </string>
+    <string name="enter_address"> Enter Your Address </string>
+    <string name="enter_message"> Enter Your Message </string>
+    <string name="select_zone"> Select Your Zone </string>
+    <string name="select_country"> Select Your Country </string>
+    <string name="invalid_first_name"> Invalid First Name </string>
+    <string name="invalid_last_name"> Invalid Last Name </string>
+    <string name="invalid_email"> Invalid Email Address </string>
+    <string name="invalid_password"> Invalid Password </string>
+    <string name="invalid_contact"> Invalid Contact No. </string>
+    <string name="invalid_post_code"> Invalid Postal Code </string>
+    <string name="invalid_credit_card"> Invalid Credit Card Number </string>
+    <string name="invalid_card_cvv"> Invalid Card CVV </string>
+    <string name="expired_card"> Card has been Expired </string>
+    <string name="select_card_expiry"> Select your Card Expiry Date </string>
+    <string name="unexpected_response"> Unexpected Server Response </string>
+    <string name="cannot_get_payment_methods"> Error Getting Payment Methods </string>
+    <string name="cannot_initialize_braintree"> Error initializing Braintree Fragment </string>
+
+
+    <!--  App Intro Slides Strings -->
+    <string name="slide_1_title"> Home Page </string>
+    <string name="slide_2_title"> Category Page </string>
+    <string name="slide_3_title"> Shop Page </string>
+    <string name="slide_4_title"> Cart Page </string>
+    <string name="slide_5_title"> Order Page </string>
+    <string name="slide_1_desc"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt </string>
+    <string name="slide_2_desc"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt </string>
+    <string name="slide_3_desc"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt </string>
+    <string name="slide_4_desc"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt </string>
+    <string name="slide_5_desc"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt </string>
+
+
+    <!--  App Settings Strings -->
+    <string name="select_language"> Select Language </string>
+    <string name="official_web"> Official Website </string>
+    <string name="privacy_policy"> Privacy Policy </string>
+    <string name="refund_policy"> Refund Policy </string>
+    <string name="service_terms"> Terms of Service </string>
+
+    <string name="push_notification"> Push Notifications </string>
+    <string name="local_notification"> Local Notifications </string>
+    <string name="cart_button_toggle"> Cart Button on Card </string>
+
+
+    <string name="app_terms_services">
+        Creating an account means you\'re okay with our
+    </string>
+
+
+    <string-array name="sortBy_array">
+        <item> Newest </item>
+        <item> A - Z </item>
+        <item> Z - A </item>
+        <item> Price : High - Low </item>
+        <item> Price : Low - High </item>
+        <item> Top Seller </item>
+        <item> Special Deals </item>
+        <item> Most Liked </item>
+    </string-array>
+
+
+    <string name="lorem_ipsum">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </string>
+    <string name="select_manually">Select it manually</string>
+    <string name="welcome_to_app_name">Welcome to &appname;</string>
+    <string name="lets_first_check_that">Let\'s first check that we deliver\n to your address</string>
+    <string name="select_your_location">Select your location</string>
+    <string name="confirm">Confirm</string>
+    <string name="use_my_current_location">Use My Current Location</string>
+    <string name="name">Name</string>
+    <string name="get_otp">Get Otp</string>
+    <string name="signup_for_account">Signup for an account</string>
+    <string name="mobileNumber">Mobile Number</string>
+    <string name="please_enter_mobile_number">Please enter mobile number</string>
+    <string name="please_enter_name">Please enter your name</string>
+    <string name="verify_account">Verify Account</string>
+    <string name="please_enter_verification_code">Please enter the verification code we \nsent to your email address</string>
+    <string name="resend_otp">Resend OTP</string>
+    <string name="change_number">Change Number</string>
+    <string name="choose_your_location">Choose Your Location</string>
+    <string name="title_location_permission">GPS Settings</string>
+    <string name="text_location_permission">Please Enable GPS Settings</string>
+    <string name="gps_enable_for_show_location">Permission Granted, Now you can access location data.</string>
+    <string name="gps_permittion_denied">Permission Denied, You cannot access location data.</string>
+    <string name="dialog_title">Are you sure for this Location</string>
+    <string name="dot">*</string>
+    <string name="otp_has_been_send">Otp has been send</string>
+    <string name="average_time_to_deliver">Avg Time to Deliver</string>
+    <string name="min_order">Min Order</string>
+    <string name="payment_option">Payment Option</string>
+    <string name="detail">Details</string>
+    <string name="openning_hour">Openning Hour</string>
+    <string name="sunday">Sunday</string>
+    <string name="photos">Photos</string>
+    <string name="est_delivery_time">Est Delivery Time</string>
+    <string name="delivery">Delivery</string>
+    <string name="pick_on_the_way">Pick On The Way</string>
+    <string name="delivery_at">Delivery At</string>
+    <string name="proced_to_pay">Proced To Pay</string>
+    <string name="google_service_not_present">Google Service not Present</string>
+    <string name="current_location">Current Location</string>
+    <string name="please_select_location_for_product">Select Location for Getting Product</string>
+    <string name="contact">Contact</string>
+    <string name="your_order_is_is_confirmed">Your Order is Confirmed</string>
+
+
+    <string-array name="state_array">
+        <item> Select State </item>
+        <item> Hariyana</item>
+        <item> UP</item>
+        <item> Delhi NCR</item>
+
+    </string-array>
+
+
+    <string-array name="city_array">
+        <item> Select City </item>
+        <item> Delhi</item>
+        <item> Gurgaon</item>
+
+    </string-array>
+
+
+    <!--end-->
+</resources>

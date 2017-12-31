@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        style="@style/match_match"
+        android:layout_marginTop="@dimen/margin_25">
+        <ImageView
+            style="@style/wrap_wrap"
+            android:src="@drawable/welcome_screen"
+            android:layout_marginTop="@dimen/margin_40"
+            android:layout_marginBottom="@dimen/margin_140"/>
+        <LinearLayout
+            style="@style/match_wrap"
+            android:orientation="vertical">
+            <com.app.community.widget.CustomTextView
+                style="@style/match_wrap"
+                android:text="@string/your_order_is_is_confirmed"
+                android:gravity="center_horizontal"
+                android:textColor="@color/darker_blackish"
+                app:customFont="@string/font_bold"
+                android:textSize="@dimen/textSize_20" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/match_wrap"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true">
+            <com.app.community.widget.CustomTextView
+                style="@style/match_wrap"
+                android:text="@string/choose_your_location"
+                android:textSize="@dimen/textSize_20"
+                android:textAllCaps="true"
+                android:gravity="center"
+                app:customFont="@string/font_bold"
+                android:textColor="@color/darker_blackish"
+                />
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvCurrentLocation"
+                style="@style/wrap_wrap"
+                android:text="@string/use_my_current_location"
+                android:textSize="@dimen/textSize_14"
+                android:gravity="center"
+                app:customFont="@string/font_bold"
+                android:elevation="@dimen/margin_5"
+                android:layout_marginTop="@dimen/margin_20"
+                android:paddingTop="@dimen/margin_12"
+                android:paddingBottom="@dimen/margin_12"
+                android:paddingStart="@dimen/margin_17"
+                android:paddingEnd="@dimen/margin_15"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@android:color/white"
+                android:drawablePadding="@dimen/margin_10"
+                android:drawableStart="@drawable/ic_location_white"
+                android:textAllCaps="true"
+                android:background="@drawable/blue_round_btnbg"/>
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvManually"
+                style="@style/match_wrap"
+                android:text="@string/select_manually"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/textSize_13"
+                app:customFont="@string/font_bold"
+                android:textColor="@color/color_blue"
+                android:padding="@dimen/margin_10"
+                android:layout_marginTop="@dimen/margin_5"
+                android:layout_marginBottom="@dimen/margin_25"/>
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

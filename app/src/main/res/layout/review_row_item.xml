@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/match_wrap"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_10">
+
+        <LinearLayout style="@style/wrap_wrap">
+
+            <ImageView style="@style/image_40" />
+
+            <RelativeLayout
+                style="@style/wrap_wrap"
+                android:layout_marginStart="@dimen/margin_10">
+
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/reviewer_name"
+                    style="@style/wrap_wrap"
+                    android:textSize="@dimen/textSize_15"
+                    app:customFont="@string/font_bold" />
+
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/post_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/reviewer_name"
+                    android:text="9:34 pm"
+                    android:textSize="@dimen/textSize_12"
+                    app:customFont="@string/font_bold" />
+
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/post_date"
+                    style="@style/wrap_wrap"
+                    android:layout_below="@+id/reviewer_name"
+                    android:layout_marginStart="20dp"
+                    android:layout_toRightOf="@+id/post_time"
+                    android:text="22 may, 2017"
+                    android:textSize="@dimen/textSize_12"
+                    app:customFont="@string/font_bold"
+                    />
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/post_time"
+                    android:max="5"
+                    android:progressTint="@color/rating"
+                    android:rating="3.5" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <com.app.community.widget.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+            android:textSize="@dimen/textSize_12"
+            app:customFont="@string/font_bold" />
+    </LinearLayout>
+</layout>

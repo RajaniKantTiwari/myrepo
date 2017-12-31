@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/match_match"
+        android:background="@color/white"
+        android:fillViewport="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/match_wrap"
+            android:orientation="vertical">
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/textView2"
+                style="@style/match_wrap"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:layout_marginTop="@dimen/margin_20"
+                android:gravity="center"
+                android:text="@string/checkout"
+                android:textColor="@color/dark_black"
+                android:textSize="@dimen/textSize_header" />
+
+            <android.support.v7.widget.CardView
+                style="@style/match_wrap"
+                android:layout_margin="@dimen/margin_10"
+                android:elevation="@dimen/margin_5">
+
+                <LinearLayout
+                    style="@style/match_wrap"
+                    android:layout_marginBottom="@dimen/margin_5"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rvCartItem"
+                        style="@style/match_wrap"
+                        android:minHeight="@dimen/margin_100"
+                        android:padding="@dimen/margin_5" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+
+            <LinearLayout
+                style="@style/match_wrap"
+                android:orientation="vertical">
+
+                <com.app.community.widget.CustomTextView
+                    style="@style/match_wrap"
+                    android:layout_marginBottom="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:gravity="center"
+                    android:text="@string/est_delivery_time"
+                    android:textAllCaps="true"
+                    android:textColor="@color/color_blue"
+                    android:textSize="@dimen/textSize_description"
+                    app:customFont="@string/font_bold" />
+
+
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvTime"
+                    style="@style/match_wrap"
+                    android:layout_marginBottom="@dimen/margin_35"
+                    android:gravity="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/color_blue"
+                    android:textSize="@dimen/textSize_header"
+                    app:customFont="@string/font_bold" />
+
+
+                <com.app.community.widget.CustomTextView
+                    style="@style/wrap_wrap"
+                    android:layout_margin="@dimen/margin_10"
+                    android:gravity="center"
+                    android:text="@string/delivery"
+                    android:textAllCaps="true"
+                    android:textColor="@color/color_blue"
+                    android:textSize="@dimen/textSize_description"
+                    app:customFont="@string/font_bold" />
+
+                <LinearLayout
+                    style="@style/match_wrap"
+                    android:layout_marginEnd="@dimen/margin_10"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:background="@drawable/grey_corner_bg"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/margin_5">
+
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:checked="true"
+                        android:text="@string/pick_on_the_way"
+                        android:textColor="@color/dark_black"
+                        android:textAllCaps="true"
+                        android:textSize="@dimen/textSize_description"
+                        android:paddingStart="@dimen/margin_8"
+                        android:buttonTint="@color/color_blue"/>
+                </LinearLayout>
+
+                <com.app.community.widget.CustomTextView
+                    style="@style/wrap_wrap"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_18"
+                    android:layout_marginBottom="@dimen/margin_5"
+                    android:gravity="center"
+                    android:text="@string/delivery_at"
+                    android:textAllCaps="true"
+                    android:textColor="@color/color_blue"
+                    android:textSize="@dimen/textSize_description"
+                    app:customFont="@string/font_bold" />
+
+                <com.app.community.widget.CustomTextView
+                    style="@style/match_wrap"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:layout_marginEnd="@dimen/margin_10"
+                    android:padding="@dimen/margin_10"
+                    android:textColor="@color/dark_black"
+                    android:textSize="@dimen/textSize_description"
+                    app:customFont="@string/font_bold"
+                    android:background="@drawable/grey_corner_bg" />
+
+                <com.app.community.widget.CustomTextView
+                    style="@style/match_wrap"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:layout_marginBottom="@dimen/margin_60"
+                    android:layout_marginStart="@dimen/margin_50"
+                    android:layout_marginEnd="@dimen/margin_50"
+                    android:text="@string/proced_to_pay"
+                    android:textAllCaps="true"
+                    android:gravity="center_horizontal"
+                    android:elevation="@dimen/margin_5"
+                    android:paddingTop="@dimen/margin_12"
+                    android:paddingBottom="@dimen/margin_12"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textSize_button_medium"
+                    app:customFont="@string/font_bold"
+                    android:background="@drawable/blue_round_btnbg" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</layout>

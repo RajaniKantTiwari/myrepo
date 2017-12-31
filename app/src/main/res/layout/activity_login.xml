@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <ScrollView style="@style/match_match"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@android:color/white">
+
+        <LinearLayout
+            style="@style/match_wrap"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_15">
+
+            <ImageView
+                style="@style/wrap_wrap"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/app_icon" />
+
+            <com.app.community.widget.CustomTextView
+                style="@style/wrap_wrap"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/margin_70"
+                android:text="@string/login"
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/textSize_25"
+                app:customFont="@string/font_bold"
+                android:textAllCaps="true"/>
+            <com.app.community.widget.CustomTextView
+                style="@style/wrap_wrap"
+                android:text="@string/name"
+                android:textColor="@color/grey_color"
+                android:textSize="@dimen/textSize_15"
+                app:customFont="@string/font_regular"
+                android:textAllCaps="true"/>
+
+            <com.app.community.widget.CustomEditText
+                android:id="@+id/edName"
+                style="@style/edit_text_style"
+                android:layout_marginTop="@dimen/margin_15"
+                android:paddingBottom="@dimen/margin_5"
+                android:paddingTop="@dimen/margin_5"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/textSize_18"
+                app:customFont="@string/font_bold" />
+
+            <ImageView style="@style/view_layout" />
+
+            <com.app.community.widget.CustomTextView
+                android:layout_marginTop="@dimen/margin_30"
+                style="@style/wrap_wrap"
+                android:text="@string/mobileNumber"
+                android:textColor="@color/grey_color"
+                android:textSize="@dimen/textSize_15"
+                android:maxLines="1"
+                app:customFont="@string/font_book_regular"
+                android:textAllCaps="true"/>
+
+            <com.app.community.widget.CustomEditText
+                android:id="@+id/edMobileNumber"
+                style="@style/edit_text_style"
+                android:layout_marginTop="@dimen/margin_15"
+                android:paddingBottom="@dimen/margin_5"
+                android:paddingTop="@dimen/margin_5"
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/textSize_18"
+                app:customFont="@string/font_bold"
+                android:inputType="number"/>
+
+            <ImageView style="@style/view_layout" />
+
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvGetOtp"
+                android:layout_width="@dimen/margin_200"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_40"
+                android:background="@drawable/light_black_bg"
+                android:elevation="@dimen/margin_5"
+                android:gravity="center_horizontal"
+                android:padding="@dimen/margin_12"
+                android:text="@string/get_otp"
+                android:textAllCaps="true"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/textSize_18"
+                app:customFont="@string/font_bold" />
+            <com.app.community.widget.CustomTextView
+                style="@style/wrap_wrap"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/margin_20"
+                android:textAllCaps="true"
+                android:layout_marginTop="@dimen/margin_15"
+                android:text="@string/signup_for_account"
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/textSize_12"
+                app:customFont="@string/font_regular" />
+        </LinearLayout>
+    </ScrollView>
+</layout>

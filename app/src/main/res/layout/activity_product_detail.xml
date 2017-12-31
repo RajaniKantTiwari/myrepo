@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_match"
+    android:fillViewport="true">
+    <LinearLayout
+        style="@style/match_match"
+        android:orientation="vertical">
+        <RelativeLayout style="@style/match_wrap">
+            <RelativeLayout
+                android:id="@+id/header_lay"
+                style="@style/match_wrap">
+                <ImageView
+                    style="@style/match_wrap"
+                    android:background="@color/colorPrimary"
+                    android:minHeight="@dimen/margin_150" />
+
+                <LinearLayout
+                    android:id="@+id/info_lay"
+                    style="@style/wrap_wrap"
+                    android:layout_marginStart="@dimen/margin_20"
+                    android:layout_marginTop="@dimen/margin_70"
+                    android:orientation="vertical">
+                    <com.app.community.widget.CustomTextView
+                        android:id="@+id/tvShopName"
+                        style="@style/wrap_wrap"
+                        android:text="Shop Name"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/textSize_19"
+                        app:customFont="@string/font_bold" />
+
+                    <com.app.community.widget.CustomTextView
+                        style="@style/wrap_wrap"
+                        android:layout_marginBottom="@dimen/margin_5"
+                        android:layout_marginTop="@dimen/margin_5"
+                        android:text="Shop Address"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/textSize_12"
+                        app:customFont="@string/font_bold" />
+
+                    <LinearLayout
+                        android:id="@+id/imglay"
+                        style="@style/wrap_wrap"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minHeight="@dimen/margin_65"
+                            android:minWidth="@dimen/margin_70" />
+
+                        <com.app.community.widget.CustomTextView
+                            style="@style/wrap_wrap"
+                            android:layout_marginStart="@dimen/margin_5"
+                            android:layout_marginTop="@dimen/margin_5"
+                            android:drawablePadding="@dimen/margin_5"
+                            android:drawableStart="@drawable/ic_location"
+                            android:gravity="center_vertical"
+                            android:text="1 Km"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/textSize_12"
+                            app:customFont="@string/font_bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    style="@style/wrap_wrap"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/margin_20"
+                    android:layout_marginTop="@dimen/margin_70"
+                    android:layout_toEndOf="@+id/info_lay"
+                    android:gravity="end"
+                    android:orientation="vertical">
+
+
+                    <com.app.community.widget.CustomTextView
+                        style="@style/wrap_wrap"
+                        android:layout_marginBottom="@dimen/margin_5"
+                        android:layout_marginTop="@dimen/margin_5"
+                        android:gravity="start"
+                        android:text="54 Reviews"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/textSize_12"
+                        app:customFont="@string/font_bold" />
+
+                    <LinearLayout
+                        style="@style/wrap_wrap"
+                        android:gravity="end|center_vertical"
+                        android:orientation="horizontal">
+
+                        <com.app.community.widget.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_5"
+                            android:layout_marginTop="@dimen/margin_5"
+                            android:text="4.2"
+                            android:textColor="@color/dark_yellow"
+                            android:textSize="@dimen/textSize_12"
+                            app:customFont="@string/font_bold" />
+
+                        <RatingBar
+                            style="@style/Widget.AppCompat.RatingBar.Small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:max="5"
+                            android:progressTint="@color/rating"
+                            android:rating="4.3" />
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/info_layb"
+                style="@style/match_wrap"
+                android:layout_below="@+id/header_lay"
+                android:layout_marginTop="@dimen/margin_10">
+
+                <LinearLayout
+                    style="@style/linear_layout_wrap"
+                    android:orientation="vertical"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp">
+
+                    <com.app.community.widget.CustomTextView
+                        style="@style/wrap_wrap"
+                        android:text="@string/average_time_to_deliver"
+                        android:textAllCaps="true"
+                        android:textSize="@dimen/textSize_10"
+                        app:customFont="@string/font_bold" />
+
+                    <com.app.community.widget.CustomTextView
+                        style="@style/wrap_wrap"
+                        android:text="30 min."
+                        android:textSize="@dimen/textSize_8"
+                        app:customFont="@string/font_bold" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    style="@style/linear_layout_wrap"
+                    android:orientation="vertical"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp">
+
+                    <com.app.community.widget.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/min_order"
+                        android:textAllCaps="true"
+                        android:textSize="@dimen/textSize_10"
+                        app:customFont="@string/font_bold" />
+
+                    <com.app.community.widget.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1300"
+                        android:textColor="@color/color_blue"
+                        android:textSize="@dimen/textSize_8"
+                        android:textStyle="bold"
+                        app:customFont="@string/font_bold" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    style="@style/linear_layout_wrap"
+                    android:orientation="vertical"
+                    android:padding="@dimen/margin_5">
+
+                    <com.app.community.widget.CustomTextView
+                        style="@style/wrap_wrap"
+                        android:text="@string/payment_option"
+                        android:textAllCaps="true"
+                        android:textSize="@dimen/textSize_10"
+                        app:customFont="@string/font_bold" />
+
+                    <com.app.community.widget.CustomTextView
+                        style="@style/wrap_wrap"
+                        android:text="30 min."
+                        android:textSize="@dimen/textSize_8"
+                        app:customFont="@string/font_bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/div_a"
+                style="@style/view_layout"
+                android:layout_below="@+id/info_layb"
+                android:layout_marginTop="@dimen/margin_15" />
+
+
+            <LinearLayout
+                android:id="@+id/detail_lay"
+                style="@style/match_wrap"
+                android:layout_below="@+id/div_a"
+                android:gravity="start"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_15">
+
+                <com.app.community.widget.CustomTextView
+                    style="@style/wrap_wrap"
+                    android:text="@string/detail"
+                    android:textAllCaps="true"
+                    android:textColor="@color/dark_black"
+                    android:textSize="@dimen/textSize_15"
+                    app:customFont="@string/font_bold" />
+
+                <com.app.community.widget.CustomTextView
+                    style="@style/wrap_wrap"
+                    android:text="Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+                    android:textSize="@dimen/textSize_12"
+                    app:customFont="@string/font_bold" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/div_b"
+                style="@style/view_layout"
+                android:layout_below="@+id/detail_lay"
+                android:layout_marginTop="@dimen/margin_15" />
+
+            <LinearLayout
+                android:id="@+id/time_lay"
+                style="@style/match_wrap"
+                android:layout_below="@+id/div_b"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_10">
+
+
+                <com.app.community.widget.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/openning_hour"
+                    android:textAllCaps="true"
+                    android:textColor="@color/dark_black"
+                    android:textSize="@dimen/textSize_15"
+                    app:customFont="@string/font_bold" />
+
+                <LinearLayout
+                    style="@style/wrap_wrap"
+                    android:orientation="horizontal">
+
+
+                    <LinearLayout
+                        style="@style/wrap_wrap"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="@dimen/margin_5">
+
+                        <com.app.community.widget.CustomTextView
+                            style="@style/wrap_wrap"
+                            android:text="Mon to Sat"
+                            android:textColor="@color/color_blue"
+                            android:textSize="@dimen/textSize_10"
+                            app:customFont="@string/font_bold" />
+
+
+                        <com.app.community.widget.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="9 am to 9 pm"
+                            android:textSize="@dimen/textSize_12"
+                            app:customFont="@string/font_bold" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        style="@style/wrap_wrap"
+                        android:layout_marginStart="@dimen/margin_20"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="@dimen/margin_5">
+
+
+                        <com.app.community.widget.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sunday"
+                            android:textColor="@color/color_blue"
+                            android:textSize="@dimen/textSize_12"
+                            app:customFont="@string/font_bold" />
+
+
+                        <com.app.community.widget.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="9 am to 9 pm"
+                            android:textSize="@dimen/textSize_12"
+                            app:customFont="@string/font_bold" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:id="@+id/div_c"
+                style="@style/view_layout"
+                android:layout_below="@+id/time_lay"
+                android:layout_marginTop="15dp" />
+            <LinearLayout
+                android:id="@+id/photo_lay"
+                style="@style/match_wrap"
+                android:layout_below="@+id/div_c"
+                android:gravity="start"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_10">
+                <com.app.community.widget.CustomTextView
+                    style="@style/wrap_wrap"
+                    android:text="@string/photos"
+                    android:textAllCaps="true"
+                    android:textColor="@color/dark_black"
+                    android:textSize="@dimen/textSize_15"
+                    app:customFont="@string/font_bold" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/photoRecycler"
+                    style="@style/match_wrap"
+                    android:padding="@dimen/margin_10" />
+
+            </LinearLayout>
+            <View
+                android:id="@+id/div_d"
+                style="@style/view_layout"
+                android:layout_below="@+id/photo_lay"
+                android:layout_marginTop="@dimen/margin_15" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvReview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/div_d"
+                android:padding="@dimen/margin_10" />
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>
+</layout>
