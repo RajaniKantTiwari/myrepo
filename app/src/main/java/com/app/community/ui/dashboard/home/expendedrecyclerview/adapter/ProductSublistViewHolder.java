@@ -6,6 +6,7 @@ import android.widget.TextView;
 import com.app.community.R;
 import com.app.community.databinding.ListItemSubproductBinding;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.holder.ChildViewHolder;
+import com.app.community.utils.CommonUtils;
 
 
 public class ProductSublistViewHolder extends ChildViewHolder {

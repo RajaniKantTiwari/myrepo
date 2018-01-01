@@ -46,17 +46,29 @@
     <dimen name="textSize_20">20sp</dimen>
 
 
+    <dimen name="textSize_header_large">23sp</dimen>
+
     <dimen name="textSize_header">20sp</dimen>
-    <dimen name="textSize_header_small">20sp</dimen>
+    <dimen name="textSize_header_small">18sp</dimen>
 
     <dimen name="textSize_title">16sp</dimen>
-    <dimen name="textSize_description">13sp</dimen>
+    <dimen name="textSize_description_ex_large">14sp</dimen>
+    <dimen name="textSize_description_large">13sp</dimen>
+    <dimen name="textSize_description">12sp</dimen>
     <dimen name="textSize_description_small">11sp</dimen>
     <dimen name="textSize_description_smaller">9sp</dimen>
+    <dimen name="edit_textSize_larger">15sp</dimen>
+    <dimen name="edit_textSize_large">14sp</dimen>
+    <dimen name="edit_textSize_medium">13sp</dimen>
+    <dimen name="edit_textSize_small">12sp</dimen>
+    <dimen name="edit_textSize_smaller">11sp</dimen>
 
-    <dimen name="textSize_button_small">12sp</dimen>
-    <dimen name="textSize_button_medium">15sp</dimen>
-    <dimen name="textSize_button_large">18sp</dimen>
+
+    <dimen name="button_very_small">9sp</dimen>
+    <dimen name="button_smaller">10sp</dimen>
+    <dimen name="button_small">11sp</dimen>
+    <dimen name="button_medium">12sp</dimen>
+    <dimen name="button_large">13sp</dimen>
 
 
     <dimen name="default_padding">4dp</dimen>
@@ -92,6 +104,8 @@
     <dimen name="margin_31">31dp</dimen>
     <dimen name="margin_90">90dp</dimen>
     <dimen name="stroke_green_radius">5dp</dimen>
+    <dimen name="dialog_margin">13dp</dimen>
+    <dimen name="dialog_radius">6dp</dimen>
 
 
 </resources>

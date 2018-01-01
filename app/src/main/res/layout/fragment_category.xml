@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/layoutCategory"
+        style="@style/match_match"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/match_wrap"
+            android:layout_height="@dimen/margin_80"
+            android:padding="@dimen/margin_5">
+
+            <ImageView
+                android:id="@+id/ivPolitics"
+                style="@style/layout_hori_wrap_1"
+                android:padding="@dimen/margin_5"
+                android:src="@drawable/ambulance" />
+
+            <ImageView
+                android:id="@+id/ivHealth"
+                style="@style/layout_hori_wrap_1"
+                android:padding="@dimen/margin_5"
+                android:src="@drawable/ambulance" />
+
+            <ImageView
+                android:id="@+id/ivBusiness"
+                style="@style/layout_hori_wrap_1"
+                android:padding="@dimen/margin_5"
+                android:src="@drawable/ambulance" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/match_wrap"
+            android:layout_height="@dimen/margin_80"
+            android:padding="@dimen/margin_5">
+
+            <ImageView
+                android:id="@+id/ivSports"
+                style="@style/layout_hori_wrap_1"
+                android:padding="@dimen/margin_5"
+                android:src="@drawable/ambulance" />
+
+            <ImageView
+                android:id="@+id/ivTravels"
+                style="@style/layout_hori_wrap_1"
+                android:padding="@dimen/margin_5"
+                android:src="@drawable/ambulance" />
+
+            <ImageView
+                android:id="@+id/ivTechnology"
+                style="@style/layout_hori_wrap_1"
+                android:padding="@dimen/margin_5"
+                android:src="@drawable/ambulance" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

@@ -40,7 +40,7 @@
 
     <style name="view_layout_white">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/margin_2</item>
+        <item name="android:layout_height">@dimen/margin_1</item>
         <item name="android:background">@color/white</item>
     </style>
 
@@ -57,11 +57,11 @@
         <item name="android:background">@color/light_grey_color</item>
     </style>
     <style name="otp_back">
-        <item name="android:layout_width">@dimen/margin_40</item>
-        <item name="android:layout_height">@dimen/margin_40</item>
+        <item name="android:layout_width">@dimen/margin_45</item>
+        <item name="android:layout_height">@dimen/margin_45</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/dark_black</item>
-        <item name="android:textSize">@dimen/textSize_15</item>
+        <item name="android:textSize">@dimen/textSize_13</item>
         <item name="android:maxLength">1</item>
         <item name="android:inputType">number</item>
         <item name="android:imeOptions">actionNext</item>
@@ -96,6 +96,24 @@
         <item name="android:background">@null</item>
     </style>
 
+    <style name="edit_text_style_large" parent="match_wrap">
+        <item name="android:maxLines">1</item>
+        <item name="android:background">@null</item>
+        <item name="android:textSize">@dimen/edit_textSize_large</item>
+        <item name="android:textColor">@color/light_black</item>
+    </style>
+    <style name="edit_text_style_medium" parent="match_wrap">
+        <item name="android:maxLines">1</item>
+        <item name="android:background">@null</item>
+        <item name="android:textSize">@dimen/edit_textSize_medium</item>
+        <item name="android:textColor">@color/light_black</item>
+    </style>
+    <style name="edit_text_style_small" parent="match_wrap">
+        <item name="android:maxLines">1</item>
+        <item name="android:background">@null</item>
+        <item name="android:textSize">@dimen/edit_textSize_small</item>
+        <item name="android:textColor">@color/light_black</item>
+    </style>
     <style name="toolbar" parent="match_wrap">
         <item name="android:layout_height">@dimen/margin_56</item>
         <item name="android:layout_width">match_parent</item>
@@ -117,6 +135,15 @@
         <item name="android:layout_width">@dimen/margin_70</item>
         <item name="android:layout_height">@dimen/margin_80</item>
     </style>
+    <style name="textview_header_large_match" parent="match_wrap">
+        <item name="android:textSize">@dimen/textSize_header_large</item>
+        <item name="android:textColor">@color/dark_black</item>
+    </style>
+
+    <style name="textview_header_large_wrap" parent="wrap_wrap">
+        <item name="android:textSize">@dimen/textSize_header_large</item>
+        <item name="android:textColor">@color/dark_black</item>
+    </style>
 
     <style name="textview_header_match" parent="match_wrap">
         <item name="android:textSize">@dimen/textSize_header</item>
@@ -129,6 +156,20 @@
     </style>
     <style name="textview_title_match" parent="match_wrap">
         <item name="android:textSize">@dimen/textSize_title</item>
+        <item name="android:textColor">@color/dark_black</item>
+    </style>
+
+    <style name="textview_description_ex_large_match" parent="match_wrap">
+        <item name="android:textSize">@dimen/textSize_description_ex_large</item>
+        <item name="android:textColor">@color/dark_black</item>
+    </style>
+    <style name="textview_description_ex_large_wrap" parent="wrap_wrap">
+        <item name="android:textSize">@dimen/textSize_description_ex_large</item>
+        <item name="android:textColor">@color/dark_black</item>
+    </style>
+
+    <style name="textview_description_large_match" parent="match_wrap">
+        <item name="android:textSize">@dimen/textSize_description_large</item>
         <item name="android:textColor">@color/dark_black</item>
     </style>
 
@@ -270,6 +311,53 @@
         <item name="android:background">@null</item>
         <item name="android:textSize">@dimen/textSize_description_smaller</item>
     </style>
+
+    <style name="customTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@color/tab_sel_clr</item>
+        <item name="tabSelectedTextColor">@color/tab_sel_txt_clr</item>
+        <item name="tabIndicatorHeight">@dimen/margin_3</item>
+        <item name="tabPaddingStart">-1dp</item>
+        <item name="tabPaddingEnd">-1dp</item>
+    </style>
+    <style name="dialogStyle" parent="Base.Theme.AppCompat.Dialog">
+        <item name="android:windowMinWidthMajor">97%</item>
+        <item name="android:windowMinWidthMinor">97%</item>
+    </style>
+
+
+    <style name="button_large_match" parent="match_wrap">
+        <item name="android:textSize">@dimen/button_large</item>
+    </style>
+
+    <style name="button_medium_match" parent="match_wrap">
+        <item name="android:textSize">@dimen/button_medium</item>
+    </style>
+
+    <style name="button_small_match" parent="match_wrap">
+        <item name="android:textSize">@dimen/button_small</item>
+    </style>
+
+    <style name="button_smaller_match" parent="match_wrap">
+        <item name="android:textSize">@dimen/button_smaller</item>
+    </style>
+
+    <style name="button_large_wrap" parent="wrap_wrap">
+        <item name="android:textSize">@dimen/button_large</item>
+    </style>
+
+    <style name="button_medium_wrap" parent="wrap_wrap">
+        <item name="android:textSize">@dimen/button_medium</item>
+    </style>
+
+    <style name="button_small_wrap" parent="wrap_wrap">
+        <item name="android:textSize">@dimen/button_small</item>
+    </style>
+
+    <style name="button_smaller_wrap" parent="wrap_wrap">
+        <item name="android:textSize">@dimen/button_smaller</item>
+    </style>
+
     <dimen name="margin_35">35dp</dimen>
     <dimen name="margin_8_minus">-8dp</dimen>
+    <dimen name="margin_45">45dp</dimen>
 </resources>

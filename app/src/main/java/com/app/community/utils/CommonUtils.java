@@ -7,15 +7,20 @@ import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Toast;
 
 import com.app.community.BuildConfig;
 import com.app.community.R;
 import com.app.community.ui.WelcomeScreenActivity;
 import com.app.community.ui.base.BaseActivity;
+import com.app.community.ui.dialogfragment.ContactDialogFragment;
 import com.app.community.ui.dialogfragment.CustomDialogFragment;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -58,6 +63,15 @@ public class CommonUtils {
         // Show Alert CustomDialogFragment
         alertdFragment.show(fm, "");
     }
+    public static void showContactDialog(AppCompatActivity activity, Bundle bundle,ContactDialogFragment.ContactDialogListener listener) {
+        FragmentManager fm = activity.getSupportFragmentManager();
+        ContactDialogFragment alertdFragment = new ContactDialogFragment();
+        alertdFragment.addListener(listener);
+        alertdFragment.setArguments(bundle);
+        // Show Alert CustomDialogFragment
+        alertdFragment.show(fm, "");
+    }
+
 
     public static boolean isNotNull(Object object) {
         return object!=null;
@@ -115,5 +129,16 @@ public class CommonUtils {
         SimpleDateFormat formatter = new SimpleDateFormat("hh:mm aaa");
 
         return formatter.format(new Date(time));
+    }
+    public static int getColor(Context context, int color) {
+        return ContextCompat.getColor(context, color);
+    }
+
+    public static void clicked(View view){
+        final Animation animation = new AlphaAnimation(1.0f, 0.7f);
+        animation.setDuration(500);
+
+        animation.setFillAfter(true);
+        view.startAnimation(animation);
     }
 }

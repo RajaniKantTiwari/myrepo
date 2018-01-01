@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        style="@style/match_match"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/match_wrap"
+            android:layout_height="@dimen/margin_50">
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvRecent"
+                style="@style/layout_hori_match_1"
+                android:gravity="center"
+                android:text="@string/recent"
+                android:textAllCaps="true"
+                android:textColor="@color/color_dark_sky"
+                android:textSize="@dimen/textSize_title"
+                app:customFont="@string/font_semi_bold" />
+
+            <ImageView style="@style/view_layout_vertical" />
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvCategory"
+                style="@style/layout_hori_match_1"
+                android:gravity="center"
+                android:text="@string/category"
+                android:textAllCaps="true"
+                android:textColor="@color/darker_black"
+                android:textSize="@dimen/textSize_title"
+                app:customFont="@string/font_semi_bold" />
+        </LinearLayout>
+
+        <ImageView style="@style/view_layout" />
+        <FrameLayout
+            android:id="@+id/container"
+            style="@style/match_match"/>
+
+    </LinearLayout>
+</layout>

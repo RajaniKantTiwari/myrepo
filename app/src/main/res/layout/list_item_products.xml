@@ -9,13 +9,12 @@
 
         <com.app.community.widget.CustomTextView
             android:id="@+id/tvProductName"
-            style="@style/textview_title_match"
+            style="@style/textview_description_match"
             android:layout_marginEnd="@dimen/margin_5"
             android:layout_marginStart="@dimen/margin_16"
             android:layout_toStartOf="@+id/ivArrow"
             android:layout_centerVertical="true"
-            android:textColor="@color/white"
-            app:customFont="@string/font_bold" />
+            android:textColor="@color/white"/>
 
         <ImageView
             android:id="@+id/ivArrow"

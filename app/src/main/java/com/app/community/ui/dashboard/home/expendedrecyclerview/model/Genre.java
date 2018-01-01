@@ -1,5 +1,7 @@
 package com.app.community.ui.dashboard.home.expendedrecyclerview.model;
 
+import com.app.community.utils.CommonUtils;
+
 import java.util.List;
 
 public class Genre extends ExpandableGroup<Artist> {
@@ -14,8 +16,11 @@ public class Genre extends ExpandableGroup<Artist> {
 
   public Genre(String title, List<Artist> items) {
     super(title, items);
-    this.title=title+items.size();
-
+    if(CommonUtils.isNotNull(items)){
+      this.title=title+items.size();
+    }else {
+      this.title=title;
+    }
   }
 
 

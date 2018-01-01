@@ -11,24 +11,19 @@
         android:padding="@dimen/margin_10">
 
         <com.app.community.widget.CustomTextView
-            style="@style/wrap_wrap"
-            android:layout_gravity="center_horizontal"
+            style="@style/textview_description_large_match"
             android:drawableTop="@drawable/app_icon"
             android:gravity="center_horizontal"
             android:text="@string/verify_account"
             android:textAllCaps="true"
-            android:textColor="@color/dark_black"
-            android:textSize="@dimen/textSize_22"
             app:customFont="@string/font_bold" />
 
         <com.app.community.widget.CustomTextView
-            style="@style/wrap_wrap"
+            style="@style/textview_description_small_match"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/margin_50"
             android:gravity="center_horizontal"
             android:text="@string/please_enter_verification_code"
-            android:textColor="@color/darker_black"
-            android:textSize="@dimen/textSize_13"
             app:customFont="@string/font_bold" />
 
         <LinearLayout
@@ -43,8 +38,6 @@
                     android:id="@+id/edFirst"
                     style="@style/otp_back"
                     android:background="@drawable/otp_bg"
-                    app:customFont="@string/font_bold"
-                    android:hint="@string/dot"
                     android:cursorVisible="true"/>
             </LinearLayout>
 
@@ -54,8 +47,7 @@
                     android:id="@+id/edSecond"
                     style="@style/otp_back"
                     android:background="@drawable/otp_bg"
-                    android:hint="@string/dot"
-                    app:customFont="@string/font_bold" />
+                    />
             </LinearLayout>
 
             <LinearLayout style="@style/linear_layout_wrap">
@@ -63,9 +55,7 @@
                 <com.app.community.widget.CustomEditText
                     android:id="@+id/edThird"
                     style="@style/otp_back"
-                    android:background="@drawable/otp_bg"
-                    android:hint="@string/dot"
-                    app:customFont="@string/font_bold" />
+                    android:background="@drawable/otp_bg" />
             </LinearLayout>
 
             <LinearLayout style="@style/linear_layout_wrap">
@@ -73,9 +63,8 @@
                 <com.app.community.widget.CustomEditText
                     android:id="@+id/edFourth"
                     style="@style/otp_back"
-                    android:hint="@string/dot"
                     android:background="@drawable/otp_bg"
-                    app:customFont="@string/font_bold" />
+                    />
             </LinearLayout>
 
         </LinearLayout>
@@ -91,25 +80,19 @@
 
             <com.app.community.widget.CustomTextView
                 android:id="@+id/tvResend"
-                style="@style/wrap_wrap"
+                style="@style/textview_description_small_wrap"
                 android:layout_alignParentLeft="true"
                 android:text="@string/resend_otp"
-                android:paddingTop="@dimen/margin_5"
-                android:paddingBottom="@dimen/margin_5"
-                android:textColor="@color/darker_black"
-                android:textSize="@dimen/textSize_15"
+                android:padding="@dimen/margin_8"
                 app:customFont="@string/font_bold"/>
 
             <com.app.community.widget.CustomTextView
                 android:id="@+id/tvChange"
-                style="@style/wrap_wrap"
-                app:customFont="@string/font_bold"
+                style="@style/textview_description_small_wrap"
                 android:layout_alignParentRight="true"
                 android:text="@string/change_number"
-                android:paddingTop="@dimen/margin_5"
-                android:paddingBottom="@dimen/margin_5"
-                android:textColor="@color/darker_black"
-                android:textSize="@dimen/textSize_15" />
+                android:padding="@dimen/margin_8"
+                />
         </RelativeLayout>
     </LinearLayout>
 </ScrollView>

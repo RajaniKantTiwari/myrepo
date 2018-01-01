@@ -1,12 +1,19 @@
 package com.app.community.ui.dashboard.home.fragment;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
 import com.app.community.R;
@@ -17,6 +24,7 @@ import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.ProductDetailsActivity;
 import com.app.community.ui.dashboard.home.adapter.ProductAdapter;
 import com.app.community.ui.dashboard.home.event.ProductEvent;
+import com.app.community.ui.dialogfragment.ContactDialogFragment;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
@@ -30,25 +38,27 @@ import java.util.ArrayList;
  * Created by Amul on 27/12/17.
  */
 
-public class ProductListFragment extends DashboardFragment {
+public class ProductListFragment extends DashboardFragment implements ContactDialogFragment.ContactDialogListener {
+    private static final int REQUEST_CALL = 1;
     private FragmentLocationListBinding mBinding;
     private ProductAdapter mAdapter;
     private ArrayList<ProductResponse> productList;
+    private Intent callIntent;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         EventBus.getDefault().register(this);
-        mBinding= DataBindingUtil.inflate(inflater, R.layout.fragment_location_list,container,false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_location_list, container, false);
         initializeAdapter();
         return mBinding.getRoot();
     }
 
     private void initializeAdapter() {
-        mAdapter=new ProductAdapter(getBaseActivity());
-        LinearLayoutManager layoutManager=new LinearLayoutManager(getBaseActivity());
-        mBinding.rvMeetingEvents.setLayoutManager(layoutManager);
-        mBinding.rvMeetingEvents.setAdapter(mAdapter);
+        mAdapter = new ProductAdapter(getBaseActivity());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getBaseActivity());
+        mBinding.rvProduct.setLayoutManager(layoutManager);
+        mBinding.rvProduct.setAdapter(mAdapter);
     }
 
     @Override
@@ -65,12 +75,31 @@ public class ProductListFragment extends DashboardFragment {
                     ExplicitIntent.getsInstance().navigateTo(getBaseActivity(), ProductDetailsActivity.class);
                 }
             }
+
+            @Override
+            public void onContactClick(int adapterPosition) {
+                openDialog(adapterPosition);
+            }
+
+            @Override
+            public void onMessageClick(int adapterPosition) {
+                openDialog(adapterPosition);
+            }
         });
     }
 
+    private void openDialog(int adapterPosition) {
+        if (CommonUtils.isNotNull(productList) && productList.size() > adapterPosition) {
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(GeneralConstant.PRODUCT_INFO,productList.get(adapterPosition));
+            CommonUtils.showContactDialog(getBaseActivity(), bundle, this);
+        }
+    }
+
+
     @Override
     public String getFragmentName() {
-        return null;
+        return ProductListFragment.class.getSimpleName();
     }
 
     @Override
@@ -96,13 +125,55 @@ public class ProductListFragment extends DashboardFragment {
 
     @Subscribe
     public void onMessageEvent(ProductEvent event) {
-        if(event.getListMap()== GeneralConstant.LIST_PRODUCT){
-          mBinding.layoutList.setVisibility(View.VISIBLE);
-            productList=event.getProductList();
-          mAdapter.setLocationList(event.getProductList());
-        }else if(event.getListMap()== GeneralConstant.MAP_PRODUCT){
+        if (event.getListMap() == GeneralConstant.LIST_PRODUCT) {
+            mBinding.layoutList.setVisibility(View.VISIBLE);
+            productList = event.getProductList();
+            mAdapter.setLocationList(event.getProductList());
+        } else if (event.getListMap() == GeneralConstant.MAP_PRODUCT) {
             mBinding.layoutList.setVisibility(View.GONE);
 
+        }
+    }
+
+    @Override
+    public void contact(String phoneNumber) {
+        callIntent = new Intent(Intent.ACTION_CALL);
+        callIntent.setData(Uri.parse("tel:"+phoneNumber));
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getBaseActivity(),new String[]{Manifest.permission.CALL_PHONE},REQUEST_CALL);
+            return;
+        } else
+            startActivity(callIntent);
+    }
+
+
+    @Override
+    public void message(String message) {
+            try {
+                Uri uri = Uri.parse("smsto:"+message);
+                // No permisison needed
+                Intent smsIntent = new Intent(Intent.ACTION_SENDTO, uri);
+                // Set the message to be sent
+                //smsIntent.putExtra("sms_body", "SMS application launched from stackandroid.com example");
+                startActivity(smsIntent);
+            } catch (Exception e) {
+                getBaseActivity().showToast(getResources().getString(R.string.message_failed));
+
+                e.printStackTrace();
+            }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case REQUEST_CALL: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    startActivity(callIntent);
+                } else {
+                    getBaseActivity().showToast(getResources().getString(R.string.permition_denied));
+                }
+            }
         }
     }
 }

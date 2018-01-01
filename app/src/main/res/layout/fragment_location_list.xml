@@ -5,11 +5,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     style="@style/match_match"
-    android:background="@color/white_e2e2e2"
+    android:background="@color/white_light"
     android:paddingTop="@dimen/margin_10">
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvMeetingEvents"
+        android:id="@+id/rvProduct"
     style="@style/match_match"/>
-
 </LinearLayout>
 </layout>

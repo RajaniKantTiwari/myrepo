@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        style="@style/match_match"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <com.app.community.widget.CustomTextView
+            android:id="@+id/tvHeader"
+            style="@style/textview_header_match"
+            android:layout_marginBottom="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin_20"
+            android:gravity="center"
+            android:text="@string/checkout"
+            android:textColor="@color/dark_black"
+            app:customFont="@string/font_regular" />
+
+        <ScrollView
+            style="@style/match_match"
+            android:layout_above="@+id/tvAppointment"
+            android:layout_below="@+id/tvHeader">
+
+            <LinearLayout
+                style="@style/match_wrap"
+
+                android:orientation="vertical">
+
+                <LinearLayout style="@style/match_wrap">
+
+                    <LinearLayout
+                        style="@style/layout_hori_match_1"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            style="@style/match_wrap"
+                            android:layout_marginBottom="@dimen/margin_7"
+                            android:background="@color/white_e2e2e2"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/margin_15">
+
+                            <com.app.community.widget.CustomTextView
+                                style="@style/textview_header_small_wrap"
+                                android:textColor="@color/color_dark_sky" />
+
+                            <com.app.community.widget.CustomTextView
+                                style="@style/textview_title_wrap"
+                                android:textColor="@color/color_dark_sky" />
+                        </LinearLayout>
+
+                        <com.app.community.widget.CustomTextView
+                            style="@style/textview_title_wrap"
+                            android:layout_margin="@dimen/margin_10"
+                            android:textColor="@color/color_dark_sky" />
+
+                        <com.app.community.widget.CustomTextView
+                            style="@style/textview_header_small_wrap"
+                            android:layout_marginStart="@dimen/margin_10"
+                            android:textColor="@color/progressColor" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/layout_hori_wrap_1">
+
+                        <ImageView
+                            android:id="@+id/ivProductImage"
+                            style="@style/wrap_wrap"
+                            android:src="@drawable/abc" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout style="@style/match_wrap"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:layout_marginBottom="@dimen/margin_30">
+                    <android.support.v4.widget.Space
+                        style="@style/layout_hori_match_1" />
+                    <com.app.community.widget.CustomTextView
+                        style="@style/textview_header_large_wrap"
+                        android:text="24 Dec 2017"
+                        android:textColor="@color/green_color"
+                        app:customFont="@string/font_bold" />
+                    <android.support.v4.widget.Space
+                        style="@style/layout_hori_match_1" />
+                    <com.app.community.widget.CustomTextView
+                        style="@style/textview_header_large_wrap"
+                        android:text="2 pm to 3 pm"
+                        android:textColor="@color/white"
+                        app:customFont="@string/font_bold"
+                        android:background="@drawable/green_bg"
+                        android:padding="@dimen/margin_10"
+                        android:paddingStart="@dimen/margin_15"
+                        android:paddingEnd="@dimen/margin_15"
+                        />
+                    <android.support.v4.widget.Space
+                        style="@style/layout_hori_match_1" />
+                </LinearLayout>
+                <com.app.community.widget.CustomTextView
+                    style="@style/textview_title_wrap"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:text="@string/payable_amount"
+                    app:customFont="@string/font_bold" />
+                <com.app.community.widget.CustomTextView
+                    style="@style/textview_header_wrap"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:text="500 per hour"
+                    android:textColor="@color/green_color"
+                    app:customFont="@string/font_bold" />
+
+                <com.app.community.widget.CustomTextView
+                    style="@style/textview_header_small_wrap"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:text="@string/payment_option"
+                    app:customFont="@string/font_bold" />
+
+                <LinearLayout
+                    style="@style/match_wrap"
+                    android:layout_marginEnd="@dimen/margin_10"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:background="@drawable/grey_corner_bg"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/margin_5">
+
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/color_blue"
+                        android:checked="true"
+                        android:paddingStart="@dimen/margin_8"
+                        android:text="@string/cash_on_delivery"
+                        android:textAllCaps="true"
+                        android:textColor="@color/dark_black"
+                        android:textSize="@dimen/textSize_description"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/match_wrap"
+                    android:layout_marginEnd="@dimen/margin_10"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:background="@drawable/grey_corner_bg"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/margin_5">
+
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/color_blue"
+                        android:checked="true"
+                        android:paddingStart="@dimen/margin_8"
+                        android:text="@string/credit_debit_card"
+                        android:textColor="@color/dark_black"
+                        android:textSize="@dimen/textSize_description"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/match_wrap"
+                    android:layout_marginEnd="@dimen/margin_10"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:background="@drawable/grey_corner_bg"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/margin_5">
+
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/color_blue"
+                        android:paddingStart="@dimen/margin_8"
+                        android:text="@string/paytm"
+                        android:textAllCaps="true"
+                        android:textColor="@color/dark_black"
+                        android:textSize="@dimen/textSize_description"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <com.app.community.widget.CustomTextView
+                    style="@style/match_wrap"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/margin_60"
+                    android:layout_marginEnd="@dimen/margin_50"
+                    android:layout_marginStart="@dimen/margin_50"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:background="@drawable/blue_round_btnbg"
+                    android:elevation="@dimen/margin_5"
+                    android:gravity="center_horizontal"
+                    android:paddingBottom="@dimen/margin_12"
+                    android:paddingTop="@dimen/margin_12"
+                    android:text="@string/proced_to_pay"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/button_medium"
+                    app:customFont="@string/font_bold" />
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+
+
+</layout>

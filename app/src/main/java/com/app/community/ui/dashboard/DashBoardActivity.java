@@ -13,7 +13,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 
@@ -26,15 +25,14 @@ import com.app.community.injector.component.DashboardComponent;
 import com.app.community.injector.module.DashboardModule;
 import com.app.community.navcontroller.BackStackActivity;
 import com.app.community.network.response.BaseResponse;
-import com.app.community.ui.dashboard.home.expendedrecyclerview.adapter.GenreAdapter;
+import com.app.community.ui.dashboard.home.expendedrecyclerview.adapter.DrawerViewAdapter;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.model.Artist;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.model.Genre;
 import com.app.community.ui.dashboard.home.fragment.HomeFragment;
+import com.app.community.ui.dashboard.home.fragment.NewsTabFragment;
 import com.app.community.ui.dashboard.notification.NotificationFragment;
 import com.app.community.ui.dashboard.offer.OfferFragment;
 import com.app.community.ui.dashboard.user.UserFragment;
-import com.app.community.utils.GlideUtils;
-import com.app.community.utils.PreferenceUtil;
 import com.app.community.widget.bottomnavigation.BottomNavigationBar;
 import com.app.community.widget.bottomnavigation.NavigationPage;
 
@@ -65,7 +63,7 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
     private static final int MAIN_TAB_ID = BottomNavigationBar.MENU_BAR_1;
     private Fragment curFragment;
     private int curTabId = MAIN_TAB_ID;
-    private GenreAdapter mDrawerAdapter;
+    private DrawerViewAdapter mDrawerAdapter;
     private List<Genre> listDrawerExpandable;
 
     public interface OnToolbarItemClickedListener {
@@ -168,6 +166,7 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
         switch (tabId) {
             case BottomNavigationBar.MENU_BAR_1:
                 return HomeFragment.newInstance();
+                //return NewsTabFragment.newInstance();
             case BottomNavigationBar.MENU_BAR_2:
                 return OfferFragment.newInstance();
             case BottomNavigationBar.MENU_BAR_3:
@@ -280,7 +279,7 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
             ((DefaultItemAnimator) animator).setSupportsChangeAnimations(false);
         }
         setListItem();
-        mDrawerAdapter = new GenreAdapter(listDrawerExpandable, this);
+        mDrawerAdapter = new DrawerViewAdapter(listDrawerExpandable, this);
         mBinding.layoutDrawer.rvDrawer.setLayoutManager(layoutManager);
         mBinding.layoutDrawer.rvDrawer.setAdapter(mDrawerAdapter);
     }
@@ -296,7 +295,7 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
     private List<Artist> setArtistList(int number) {
         List<Artist> artistList = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            Artist artist = new Artist("Artist" + number + i, false);
+            Artist artist = new Artist("Artistkkjsfjkhskjsdhjjfdshjhdfsjfsdhjhsf" + number + i, false);
             artistList.add(artist);
         }
         return artistList;

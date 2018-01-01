@@ -17,8 +17,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.app.community.R;
+import com.app.community.ui.dashboard.home.fragment.CategoryFragment;
 import com.app.community.ui.dashboard.home.fragment.ProductListFragment;
 import com.app.community.ui.dashboard.home.fragment.ProductMapFragment;
+import com.app.community.ui.dashboard.home.fragment.RecentFragment;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.LogUtils;
 import com.app.community.utils.NetworkUtils;
@@ -30,8 +32,10 @@ import static com.app.community.ui.base.BaseActivity.AnimationType.FADE;
 import static com.app.community.ui.base.BaseActivity.AnimationType.SLIDE;
 import static com.app.community.ui.base.BaseActivity.AnimationType.DEFAULT;
 import static com.app.community.ui.base.BaseActivity.AnimationType.NONE;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.CATEGORY_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_LIST;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_MAP_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.RECENT_FRAGMENT;
 
 
 /**
@@ -49,6 +53,7 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
     private ProgressBar progressBar;
     public static final int MENU_CLICKED = 0;
     public static final int BACK_CLICKED = 1;
+
     //to attach View
     public abstract void attachView();
 
@@ -78,7 +83,7 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
     public abstract void initializeData();
 
     @Override
-    public void onError(String message,int requestCode) {
+    public void onError(String message, int requestCode) {
 //        if (message != null) {
 //            showSnackBar(message);
 //        } else {
@@ -95,12 +100,15 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
         textView.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
         mSnackbar.show();
     }
-    public void showKeyboard(){
-        ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE)).toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+
+    public void showKeyboard() {
+        ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
     }
-    public void hideSoftKeyboard(View view){
-        ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(view.getWindowToken(), 0);
+
+    public void hideSoftKeyboard(View view) {
+        ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -174,7 +182,7 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
      */
     public void showSnakBarFromBottom(String msg) {
         //if (!TextUtils.isEmpty(msg))
-            //CommonUtils.showSnakbarFromBottom(this, msg);
+        //CommonUtils.showSnakbarFromBottom(this, msg);
     }
 
     public void showToast(String msg) {
@@ -187,7 +195,6 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
     public boolean isNotNull(Object obj) {
         return obj != null;
     }
-
 
 
     //check object is null
@@ -231,7 +238,13 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
                 fragment = new ProductMapFragment();
                 break;
             case PRODUCT_LIST:
-                fragment=new ProductListFragment();
+                fragment = new ProductListFragment();
+                break;
+            case RECENT_FRAGMENT:
+                fragment = new RecentFragment();
+                break;
+            case CATEGORY_FRAGMENT:
+                fragment = new CategoryFragment();
                 break;
         }
         return fragment;

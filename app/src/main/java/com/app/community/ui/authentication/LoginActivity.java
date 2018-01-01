@@ -11,6 +11,7 @@ import com.app.community.network.response.LoginResponse;
 import com.app.community.ui.base.MvpView;
 import com.app.community.ui.presenter.AuthenticationPresenter;
 import com.app.community.utils.ApiConstants;
+import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.PreferenceUtil;
@@ -66,6 +67,7 @@ public class LoginActivity extends AuthenticationActivity implements MvpView, Vi
     @Override
     public void onClick(View view) {
         if(view==mBinding.tvGetOtp){
+            CommonUtils.clicked(mBinding.tvGetOtp);
            if(isValid()){
                presenter.getLoginDetail(this,new LoginRequest(mobileNumber));
            }

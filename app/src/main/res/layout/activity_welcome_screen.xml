@@ -12,13 +12,13 @@
             style="@style/match_wrap"
             android:orientation="vertical">
         <com.app.community.widget.CustomTextView
-            style="@style/match_wrap"
+            style="@style/textview_title_match"
             android:text="@string/welcome_to_app_name"
             android:layout_marginTop="@dimen/margin_15"
             android:gravity="center_horizontal"
             android:textColor="@color/darker_blackish"
             app:customFont="@string/font_bold"
-            android:textSize="@dimen/textSize_20" />
+            />
 
         <com.app.community.widget.CustomTextView
             style="@style/match_wrap"
@@ -35,28 +35,24 @@
             android:orientation="vertical"
             android:layout_alignParentBottom="true">
             <com.app.community.widget.CustomTextView
-                style="@style/match_wrap"
+                style="@style/textview_title_match"
                 android:text="@string/choose_your_location"
-                android:textSize="@dimen/textSize_20"
                 android:textAllCaps="true"
                 android:gravity="center"
-                app:customFont="@string/font_bold"
                 android:textColor="@color/darker_blackish"
                 />
         <com.app.community.widget.CustomTextView
             android:id="@+id/tvCurrentLocation"
-            style="@style/wrap_wrap"
+            style="@style/textview_description_match"
             android:text="@string/use_my_current_location"
-            android:textSize="@dimen/textSize_14"
-            android:gravity="center"
             app:customFont="@string/font_bold"
             android:elevation="@dimen/margin_5"
             android:layout_marginTop="@dimen/margin_20"
             android:paddingTop="@dimen/margin_12"
             android:paddingBottom="@dimen/margin_12"
-            android:paddingStart="@dimen/margin_17"
-            android:paddingEnd="@dimen/margin_15"
-            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="@dimen/margin_20"
+            android:paddingStart="@dimen/margin_10"
+            android:layout_marginEnd="@dimen/margin_20"
             android:textColor="@android:color/white"
             android:drawablePadding="@dimen/margin_10"
             android:drawableStart="@drawable/ic_location_white"

@@ -381,6 +381,17 @@
     <string name="book">Book</string>
     <string name="book_appointment">Book Appointment</string>
     <string name="available">Available</string>
+    <string name="payable_amount">Payable amount</string>
+    <string name="cash_on_delivery">Cash On Delivery</string>
+    <string name="credit_debit_card">Credit/Debit Card</string>
+    <string name="paytm">Paytm</string>
+    <string name="order_number">Order No</string>
+    <string name="delivery_address">Delivery Address</string>
+    <string name="recent">Recent</string>
+    <string name="call_us">Call Us</string>
+    <string name="message">Message</string>
+    <string name="permition_denied">Permition Denied</string>
+    <string name="message_failed">SMS faild, please try again later!</string>
 
 
     <string-array name="state_array">

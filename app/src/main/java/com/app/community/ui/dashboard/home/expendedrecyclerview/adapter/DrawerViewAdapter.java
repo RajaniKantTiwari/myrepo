@@ -16,12 +16,15 @@ import com.app.community.ui.dashboard.home.expendedrecyclerview.model.Genre;
 
 import java.util.List;
 
-public class GenreAdapter extends ExpandableRecyclerViewAdapter<ProductViewHolder, ProductSublistViewHolder> {
+public class DrawerViewAdapter extends ExpandableRecyclerViewAdapter<ProductViewHolder, ProductSublistViewHolder> {
 
   private final AppCompatActivity activity;
   private final LayoutInflater mInflator;
-
-  public GenreAdapter(List<? extends ExpandableGroup> groups, AppCompatActivity activity) {
+  private ProductSubHolder listener;
+  public interface ProductSubHolder{
+      void onSubItemClicked();
+  }
+  public DrawerViewAdapter(List<? extends ExpandableGroup> groups, AppCompatActivity activity) {
     super(groups);
     this.activity=activity;
     mInflator=LayoutInflater.from(activity);

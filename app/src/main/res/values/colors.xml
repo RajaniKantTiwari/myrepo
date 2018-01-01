@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#000000</color>
     <color name="light_grey_color">#EFEFEF</color>
     <color name="progressColor">#65C358</color>
     <color name="background">#999999</color>
@@ -12,6 +12,7 @@
     <color name="inactive_tab_color">#EFEFEF</color>
     <color name="color_blue">#03a9f4</color>
     <color name="grey_color">#999999</color>
+
     <color name="hint_color">#676767</color>
     <color name="white_e2e2e2">#e2e2e2</color>
     <color name="light_black">#343434</color>
@@ -25,12 +26,19 @@
     <color name="colorBackgroundNav">#F8F8F8</color>
     <color name="colorNavAccentSelected">#18A3BF</color>
     <color name="white">#ffffff</color>
+    <color name="white_light">#F9F9F9</color>
+
     <color name="rating">#FFEC33</color>
-    <color name="dark_yellow">#FFEC33</color>
+    <color name="dark_yellow">#ffcc00</color>
+    <color name="star_text_color">#ffcc00</color>
+
     <color name="red">#FF0011</color>
     <color name="reddish">#FF3399</color>
 
-
+    <color name="green_color">#65C358</color>
+    <color name="tab_usl_clr">#a4aab3</color>
+    <color name="tab_sel_clr">#1e5a3c</color>
+    <color name="tab_sel_txt_clr">#1e5a3c</color>
 
 
 </resources>
