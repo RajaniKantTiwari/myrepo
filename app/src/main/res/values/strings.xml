@@ -393,6 +393,11 @@
     <string name="permition_denied">Permition Denied</string>
     <string name="message_failed">SMS faild, please try again later!</string>
     <string name="subscribe_now">Subscribe Now</string>
+    <string name="live_order">Live Order</string>
+    <string name="past_order">Past Order</string>
+    <string name="from">From</string>
+    <string name="any_other_feedback">Any Other Feedback (Optional)</string>
+    <string name="submit">Submit</string>
 
 
     <string-array name="state_array">

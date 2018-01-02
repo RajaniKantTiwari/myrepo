@@ -29,6 +29,7 @@ import com.app.community.ui.dashboard.home.expendedrecyclerview.adapter.DrawerVi
 import com.app.community.ui.dashboard.home.expendedrecyclerview.model.Artist;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.model.Genre;
 import com.app.community.ui.dashboard.home.fragment.HomeFragment;
+import com.app.community.ui.dashboard.home.fragment.MyOrderFragment;
 import com.app.community.ui.dashboard.home.fragment.NewsTabFragment;
 import com.app.community.ui.dashboard.notification.NotificationFragment;
 import com.app.community.ui.dashboard.offer.OfferFragment;
@@ -166,7 +167,7 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
         switch (tabId) {
             case BottomNavigationBar.MENU_BAR_1:
                 return HomeFragment.newInstance();
-                //return NewsTabFragment.newInstance();
+                //return MyOrderFragment.newInstance();
             case BottomNavigationBar.MENU_BAR_2:
                 return OfferFragment.newInstance();
             case BottomNavigationBar.MENU_BAR_3:

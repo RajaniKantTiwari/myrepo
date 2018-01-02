@@ -11,6 +11,7 @@ import com.app.community.ui.dashboard.DashBoardActivity;
 import com.app.community.ui.dashboard.home.DoctorCheckoutActivity;
 import com.app.community.ui.dashboard.home.DoctorDetailsActivity;
 import com.app.community.ui.dashboard.home.ProductDetailsActivity;
+import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
 
@@ -30,9 +31,10 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                     //ExplicitIntent.getsInstance().navigateTo(SplashActivity.this, DashBoardActivity.class);
+                CommonUtils.showOrderDialog(SplashActivity.this,null,null);
                 //ExplicitIntent.getsInstance().navigateTo(SplashActivity.this, DoctorCheckoutActivity.class);
-                ExplicitIntent.getsInstance().navigateTo(SplashActivity.this, WelcomeScreenActivity.class);
-                    finish();
+                //ExplicitIntent.getsInstance().navigateTo(SplashActivity.this, WelcomeScreenActivity.class);
+                    //finish();
             }
         }, GeneralConstant.SPLASH_TIME);
     }

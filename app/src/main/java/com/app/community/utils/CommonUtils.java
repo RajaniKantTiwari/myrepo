@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.InsetDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -12,16 +15,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Toast;
 
 import com.app.community.BuildConfig;
 import com.app.community.R;
-import com.app.community.ui.WelcomeScreenActivity;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.dialogfragment.ContactDialogFragment;
 import com.app.community.ui.dialogfragment.CustomDialogFragment;
+import com.app.community.ui.dialogfragment.OrderDialogFragment;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
@@ -66,6 +71,16 @@ public class CommonUtils {
     public static void showContactDialog(AppCompatActivity activity, Bundle bundle,ContactDialogFragment.ContactDialogListener listener) {
         FragmentManager fm = activity.getSupportFragmentManager();
         ContactDialogFragment alertdFragment = new ContactDialogFragment();
+        alertdFragment.addListener(listener);
+        alertdFragment.setArguments(bundle);
+        // Show Alert CustomDialogFragment
+        alertdFragment.show(fm, "");
+    }
+
+
+    public static void showOrderDialog(AppCompatActivity activity, Bundle bundle,OrderDialogFragment.OrderDialogListener listener) {
+        FragmentManager fm = activity.getSupportFragmentManager();
+        OrderDialogFragment alertdFragment = new OrderDialogFragment();
         alertdFragment.addListener(listener);
         alertdFragment.setArguments(bundle);
         // Show Alert CustomDialogFragment
@@ -140,5 +155,18 @@ public class CommonUtils {
 
         animation.setFillAfter(true);
         view.startAnimation(animation);
+    }
+
+    public static void setDialog(Dialog dialog) {
+        dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.setCancelable(true);
+    }
+
+    public static void setPadding(Dialog dialog,Activity activity) {
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        ColorDrawable back = new ColorDrawable(Color.TRANSPARENT);
+        InsetDrawable inset = new InsetDrawable(back, convertDpToPx(10,activity));
+        dialog.getWindow().setBackgroundDrawable(inset);
     }
 }

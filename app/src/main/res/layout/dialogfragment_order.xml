@@ -1,0 +1,63 @@
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+<android.support.v7.widget.CardView
+    style="@style/match_wrap"
+    android:background="@drawable/dialog_bg"
+    app:cardCornerRadius="@dimen/dialog_radius"
+    android:elevation="@dimen/margin_5">
+        <LinearLayout
+            style="@style/match_wrap"
+            android:background="@drawable/white_round_btnbg"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_12">
+            <RatingBar
+                style="?android:attr/ratingBarStyleIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_gravity="center_horizontal"
+                android:max="5"
+                android:progressTint="@color/rating"
+                android:rating="4.3" />
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvName"
+                style="@style/textview_description_large_match"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal" />
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvAddress"
+                style="@style/textview_description_small_match"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal" />
+            <com.app.community.widget.CustomEditText
+                android:id="@+id/ivAddress"
+                style="@style/edit_text_style_medium"
+                android:textColorHint="@color/color_dark_grey"
+                android:hint="@string/any_other_feedback"
+                android:gravity="center_horizontal"
+                android:padding="@dimen/margin_5"/>
+            <ImageView style="@style/view_layout" />
+            <LinearLayout
+                style="@style/match_wrap"
+                android:layout_marginBottom="@dimen/margin_30">
+                <android.support.v4.widget.Space style="@style/layout_hori_wrap_1" />
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvMessage"
+                    style="@style/button_large_wrap"
+                    android:padding="@dimen/margin_4"
+                    android:gravity="center"
+                    android:text="@string/submit"
+                    android:textColor="@color/green_color"
+                    android:textAllCaps="true"
+                    app:customFont="@string/font_bold"/>
+
+            </LinearLayout>
+        </LinearLayout>
+</android.support.v7.widget.CardView>
+    </LinearLayout>
+</layout>

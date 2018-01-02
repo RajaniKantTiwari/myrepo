@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        style="@style/match_match"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/match_wrap"
+            android:layout_height="@dimen/margin_50">
+
+            <LinearLayout
+                android:id="@+id/layoutLiveOrder"
+                style="@style/layout_hori_match_1"
+                android:orientation="vertical">
+
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvLiveOrder"
+                    style="@style/textview_description_ex_large_match"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/live_order"
+                    android:textAllCaps="true"
+                    />
+
+                <ImageView
+                    android:id="@+id/ivLiveOrder"
+                    style="@style/view_layout_black" />
+
+            </LinearLayout>
+
+
+            <ImageView style="@style/view_layout_vertical" />
+
+            <LinearLayout
+                android:id="@+id/layoutPastOrder"
+                style="@style/layout_hori_match_1"
+                android:orientation="vertical">
+
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvPastOrder"
+                    style="@style/textview_description_ex_large_match"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/past_order"
+                    android:textAllCaps="true"
+                    android:textColor="@color/color_dark_grey"
+                    />
+
+                <ImageView
+                    android:id="@+id/ivPastOrder"
+                    style="@style/view_layout_black"
+                    android:visibility="invisible" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/container"
+            style="@style/match_match" />
+
+    </LinearLayout>
+</layout>

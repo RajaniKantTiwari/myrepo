@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        style="@style/match_wrap"
+        android:layout_marginEnd="@dimen/margin_5"
+        android:layout_marginStart="@dimen/margin_5"
+        android:layout_marginBottom="@dimen/margin_14"
+        android:background="@drawable/stroke_grey_bg"
+        android:padding="@dimen/margin_2">
+
+        <android.support.v7.widget.CardView
+            style="@style/match_wrap"
+            android:elevation="@dimen/margin_5"
+            app:cardCornerRadius="@dimen/margin_3">
+
+            <LinearLayout
+                style="@style/match_wrap"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginTop="@dimen/margin_5"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/layoutFirst"
+                    layout="@layout/order_row_layout" />
+
+                <include
+                    android:id="@+id/layoutSecond"
+                    layout="@layout/order_row_layout" />
+
+                <com.app.community.widget.CustomTextView
+                    style="@style/textview_description_match"
+                    android:layout_marginTop="@dimen/margin_4"
+                    android:background="@color/star_text_color"
+                    android:textColor="@color/color_dark_grey" />
+
+                <com.app.community.widget.CustomTextView
+                    style="@style/textview_description_match"
+                    android:gravity="center_horizontal"
+                    android:padding="@dimen/margin_2"
+                    android:text="Mother Diary"
+                    android:textAllCaps="true"
+                    app:customFont="@string/font_regular" />
+
+                <ImageView style="@style/view_layout" />
+
+                <RelativeLayout
+                    style="@style/match_wrap"
+                    android:padding="@dimen/margin_6">
+
+                    <com.app.community.widget.CustomTextView
+                        style="@style/textview_description_wrap"
+                        android:text="Mother Diary"
+                        android:textAllCaps="true" />
+                    <RatingBar
+                        android:id="@+id/ratingBar"
+                        style="@style/Widget.AppCompat.RatingBar.Small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/post_time"
+                        android:max="5"
+                        android:layout_centerHorizontal="true"
+                        android:progressTint="@color/rating"
+                        android:rating="3.5" />
+                    <com.app.community.widget.CustomTextView
+                        style="@style/textview_description_wrap"
+                        android:text="Mother Diary"
+                        android:textAllCaps="true"
+                        android:layout_alignParentEnd="true"/>
+                </RelativeLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+</layout>

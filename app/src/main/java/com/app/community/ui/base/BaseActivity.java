@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 import com.app.community.R;
 import com.app.community.ui.dashboard.home.fragment.CategoryFragment;
+import com.app.community.ui.dashboard.home.fragment.LiveOrderFragment;
+import com.app.community.ui.dashboard.home.fragment.PastOrderFragment;
 import com.app.community.ui.dashboard.home.fragment.ProductListFragment;
 import com.app.community.ui.dashboard.home.fragment.ProductMapFragment;
 import com.app.community.ui.dashboard.home.fragment.RecentFragment;
@@ -33,6 +35,8 @@ import static com.app.community.ui.base.BaseActivity.AnimationType.SLIDE;
 import static com.app.community.ui.base.BaseActivity.AnimationType.DEFAULT;
 import static com.app.community.ui.base.BaseActivity.AnimationType.NONE;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.CATEGORY_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.LIVEORDER_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.PASTORDER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_LIST;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_MAP_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.RECENT_FRAGMENT;
@@ -245,6 +249,12 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
                 break;
             case CATEGORY_FRAGMENT:
                 fragment = new CategoryFragment();
+                break;
+            case LIVEORDER_FRAGMENT:
+                fragment = new LiveOrderFragment();
+                break;
+            case PASTORDER_FRAGMENT:
+                fragment = new PastOrderFragment();
                 break;
         }
         return fragment;
