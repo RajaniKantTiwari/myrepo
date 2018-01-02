@@ -6,6 +6,7 @@
         style="@style/match_wrap"
         android:layout_height="@dimen/margin_35"
         android:layout_marginStart="@dimen/margin_16"
+        android:layout_marginEnd="@dimen/margin_15"
         android:orientation="vertical">
 
         <android.support.v4.widget.Space style="@style/layout_ver_match_1" />
@@ -15,6 +16,7 @@
             style="@style/textview_description_match"
             android:layout_weight="1"
             android:ellipsize="end"
+            android:paddingEnd="@dimen/margin_5"
             android:gravity="bottom"
             android:inputType="text"
             android:maxLines="1"
@@ -22,6 +24,6 @@
             app:customFont="@string/font_regular" />
         <android.support.v4.widget.Space style="@style/layout_ver_match_2" />
 
-        <ImageView style="@style/view_layout_white"/>
+        <ImageView style="@style/view_layout_white_5"/>
     </LinearLayout>
 </layout>

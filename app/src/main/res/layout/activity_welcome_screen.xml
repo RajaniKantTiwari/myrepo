@@ -41,24 +41,28 @@
                 android:gravity="center"
                 android:textColor="@color/darker_blackish"
                 />
+            <LinearLayout
+                style="@style/match_wrap"
+                android:background="@drawable/blue_round_btnbg"
+                android:layout_marginTop="@dimen/margin_20"
+                android:layout_marginStart="@dimen/margin_40"
+                android:layout_marginEnd="@dimen/margin_40"
+                android:paddingTop="@dimen/margin_12"
+                android:paddingBottom="@dimen/margin_12"
+                android:gravity="center"
+                >
         <com.app.community.widget.CustomTextView
             android:id="@+id/tvCurrentLocation"
-            style="@style/textview_description_match"
+            style="@style/textview_description_wrap"
             android:text="@string/use_my_current_location"
             app:customFont="@string/font_bold"
             android:elevation="@dimen/margin_5"
-            android:layout_marginTop="@dimen/margin_20"
-            android:paddingTop="@dimen/margin_12"
-            android:paddingBottom="@dimen/margin_12"
-            android:layout_marginStart="@dimen/margin_20"
             android:paddingStart="@dimen/margin_10"
-            android:layout_marginEnd="@dimen/margin_20"
             android:textColor="@android:color/white"
             android:drawablePadding="@dimen/margin_10"
             android:drawableStart="@drawable/ic_location_white"
-            android:textAllCaps="true"
-            android:background="@drawable/blue_round_btnbg"/>
-
+            android:textAllCaps="true"/>
+            </LinearLayout>
         <com.app.community.widget.CustomTextView
             android:id="@+id/tvManually"
             style="@style/match_wrap"

@@ -295,7 +295,7 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
     private List<Artist> setArtistList(int number) {
         List<Artist> artistList = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            Artist artist = new Artist("Artistkkjsfjkhskjsdhjjfdshjhdfsjfsdhjhsf" + number + i, false);
+            Artist artist = new Artist("Artist" + number + i, false);
             artistList.add(artist);
         }
         return artistList;

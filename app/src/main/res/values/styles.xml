@@ -44,6 +44,12 @@
         <item name="android:background">@color/white</item>
     </style>
 
+    <style name="view_layout_white_5">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/margin_0_5</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
     <style name="view_layout_nav_bar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/margin_2</item>
@@ -169,6 +175,11 @@
     </style>
 
     <style name="textview_description_large_match" parent="match_wrap">
+        <item name="android:textSize">@dimen/textSize_description_large</item>
+        <item name="android:textColor">@color/dark_black</item>
+    </style>
+
+    <style name="textview_description_large_wrap" parent="wrap_wrap">
         <item name="android:textSize">@dimen/textSize_description_large</item>
         <item name="android:textColor">@color/dark_black</item>
     </style>

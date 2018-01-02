@@ -29,10 +29,10 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                    ExplicitIntent.getsInstance().navigateTo(SplashActivity.this, DashBoardActivity.class);
+                    //ExplicitIntent.getsInstance().navigateTo(SplashActivity.this, DashBoardActivity.class);
                 //ExplicitIntent.getsInstance().navigateTo(SplashActivity.this, DoctorCheckoutActivity.class);
-                //ExplicitIntent.getsInstance().navigateTo(SplashActivity.this, WelcomeScreenActivity.class);
-                //    finish();
+                ExplicitIntent.getsInstance().navigateTo(SplashActivity.this, WelcomeScreenActivity.class);
+                    finish();
             }
         }, GeneralConstant.SPLASH_TIME);
     }

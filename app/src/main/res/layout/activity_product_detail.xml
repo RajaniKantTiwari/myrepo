@@ -55,7 +55,7 @@
                             android:layout_marginStart="@dimen/margin_5"
                             android:layout_marginTop="@dimen/margin_5"
                             android:drawablePadding="@dimen/margin_5"
-                            android:drawableStart="@drawable/ic_location"
+                            android:drawableStart="@drawable/location"
                             android:gravity="center_vertical"
                             android:text="1 Km"
                             android:textColor="@color/white"

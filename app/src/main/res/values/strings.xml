@@ -392,6 +392,7 @@
     <string name="message">Message</string>
     <string name="permition_denied">Permition Denied</string>
     <string name="message_failed">SMS faild, please try again later!</string>
+    <string name="subscribe_now">Subscribe Now</string>
 
 
     <string-array name="state_array">
