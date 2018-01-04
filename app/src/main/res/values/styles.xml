@@ -126,6 +126,12 @@
         <item name="android:textSize">@dimen/edit_textSize_small</item>
         <item name="android:textColor">@color/light_black</item>
     </style>
+    <style name="edit_text_style_smaller" parent="match_wrap">
+        <item name="android:maxLines">1</item>
+        <item name="android:background">@null</item>
+        <item name="android:textSize">@dimen/edit_textSize_smaller</item>
+        <item name="android:textColor">@color/light_black</item>
+    </style>
     <style name="toolbar" parent="match_wrap">
         <item name="android:layout_height">@dimen/margin_56</item>
         <item name="android:layout_width">match_parent</item>
@@ -145,6 +151,10 @@
     </style>
     <style name="image_70_80" >
         <item name="android:layout_width">@dimen/margin_70</item>
+        <item name="android:layout_height">@dimen/margin_80</item>
+    </style>
+    <style name="image_90_80" >
+        <item name="android:layout_width">@dimen/margin_90</item>
         <item name="android:layout_height">@dimen/margin_80</item>
     </style>
     <style name="textview_header_large_match" parent="match_wrap">

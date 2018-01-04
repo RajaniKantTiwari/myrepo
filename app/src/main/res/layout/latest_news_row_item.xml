@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        style="@style/match_wrap"
+        android:layout_marginEnd="@dimen/margin_15"
+        android:layout_marginStart="@dimen/margin_15"
+        android:layout_marginTop="@dimen/margin_5"
+        android:background="@drawable/stroke_grey_bg"
+        android:padding="@dimen/margin_2">
+
+        <android.support.v7.widget.CardView
+            style="@style/match_wrap"
+            android:elevation="@dimen/margin_5"
+            app:cardCornerRadius="@dimen/margin_4">
+
+            <LinearLayout
+                style="@style/match_wrap"
+                android:orientation="vertical"
+                >
+
+                <com.app.community.widget.CustomTextView
+                    style="@style/textview_description_small_wrap"
+                    android:background="@color/red"
+                    android:padding="@dimen/margin_5"
+                    android:paddingEnd="@dimen/margin_30"
+                    android:paddingStart="@dimen/margin_20"
+                    android:text="TREND"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white" />
+
+                <LinearLayout
+                    style="@style/match_wrap"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        style="@style/image_70_80"
+                        android:background="@drawable/abc" />
+
+                    <LinearLayout
+                        style="@style/wrap_wrap"
+                        android:orientation="vertical"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="@dimen/margin_10"
+                        android:layout_marginEnd="@dimen/margin_10">
+
+                        <com.app.community.widget.CustomTextView
+                            android:id="@+id/tvHeading"
+                            style="@style/wrap_wrap"
+                            android:text="New Year Celebration"
+                            android:textAllCaps="true"
+                            android:textColor="@color/dark_black"
+                            android:textSize="@dimen/textSize_15"
+                            app:customFont="@string/font_bold" />
+
+                        <com.app.community.widget.CustomTextView
+                            android:id="@+id/tvDetails"
+                            style="@style/wrap_wrap"
+                            android:layout_marginTop="@dimen/margin_4"
+                            android:layout_marginBottom="@dimen/margin_4"
+                            android:text="n publishing and jkhdsfjkhfkdhshfkjhfkjhkjfhkjhfsdkjhkjhfdshjkhfsdjkhkjhfdkjhjkjhfdskjjh graphic design, lorem ipsum is a filler text or greeking commonly used to demonstrate the textual elements of a graphic document or visual presentation."
+                            android:textSize="@dimen/textSize_12"
+                            app:customFont="@string/font_bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+</layout>

@@ -5,9 +5,7 @@
         style="@style/match_match">
         <ImageView
             style="@style/wrap_wrap"
-            android:src="@drawable/welcome_screen"
-            android:layout_marginTop="@dimen/margin_40"
-            android:layout_marginBottom="@dimen/margin_140"/>
+            android:src="@drawable/welcome_screen" />
         <LinearLayout
             style="@style/match_wrap"
             android:orientation="vertical">

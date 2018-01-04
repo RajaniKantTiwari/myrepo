@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_match"
+    android:fillViewport="true">
+    <LinearLayout
+        android:id="@+id/layoutHome"
+        style="@style/match_match"
+        android:orientation="vertical">
+
+    </LinearLayout>
+</ScrollView>
+</layout>

@@ -89,16 +89,14 @@
 
 
                     <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/textview_description_match"
                         android:buttonTint="@color/color_blue"
                         android:checked="true"
                         android:paddingStart="@dimen/margin_8"
                         android:text="@string/pick_on_the_way"
                         android:textAllCaps="true"
-                        android:textColor="@color/dark_black"
-                        android:textSize="@dimen/textSize_description"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        />
                 </LinearLayout>
 
                 <RelativeLayout style="@style/match_wrap"

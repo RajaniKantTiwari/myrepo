@@ -398,6 +398,9 @@
     <string name="from">From</string>
     <string name="any_other_feedback">Any Other Feedback (Optional)</string>
     <string name="submit">Submit</string>
+    <string name="selection_option">Select Option</string>
+    <string name="news">news</string>
+    <string name="what_you_want_to_search_today">What you want to search today?</string>
 
 
     <string-array name="state_array">
