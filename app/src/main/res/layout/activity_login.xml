@@ -21,7 +21,7 @@
                 android:layout_marginBottom="@dimen/margin_70"
                 android:text="@string/login"
                 android:gravity="center"
-                android:textColor="@color/light_black"
+                android:textColor="@color/dark_black_color"
                 android:textAllCaps="true"/>
             <com.app.community.widget.CustomTextView
                 style="@style/textview_description_smaller_match"
@@ -38,8 +38,7 @@
                 android:paddingTop="@dimen/margin_5"
                 android:singleLine="true"
                 android:imeOptions="actionNext"
-                android:textColor="@color/light_black"
-                app:customFont="@string/font_bold" />
+                app:customFont= "@string/font_bold" />
 
             <ImageView style="@style/view_layout" />
 
@@ -87,7 +86,7 @@
                 android:layout_marginTop="@dimen/margin_15"
                 android:padding="@dimen/margin_15"
                 android:text="@string/signup_for_account"
-                android:textColor="@color/light_black"
+                android:textColor="@color/grey_color"
                 />
         </LinearLayout>
     </ScrollView>

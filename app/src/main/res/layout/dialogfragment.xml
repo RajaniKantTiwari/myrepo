@@ -28,7 +28,6 @@
                 android:paddingTop="@dimen/margin_5"
                 android:hint="@string/mobileNumber"
                 android:gravity="center_horizontal"
-                android:textColor="@color/light_black"
                 android:textSize="@dimen/textSize_18"
                 app:customFont="@string/font_bold"
                 android:inputType="number"

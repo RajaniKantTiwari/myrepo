@@ -21,11 +21,11 @@
                 >
 
                 <com.app.community.widget.CustomTextView
-                    style="@style/textview_description_small_wrap"
-                    android:background="@color/red"
+                    style="@style/textview_description_wrap"
+                    android:background="@color/red_color"
                     android:padding="@dimen/margin_5"
                     android:paddingEnd="@dimen/margin_30"
-                    android:paddingStart="@dimen/margin_20"
+                    android:paddingStart="@dimen/margin_30"
                     android:text="TREND"
                     android:textAllCaps="true"
                     android:textColor="@color/white" />
@@ -39,7 +39,7 @@
                         android:background="@drawable/abc" />
 
                     <LinearLayout
-                        style="@style/wrap_wrap"
+                        style="@style/textview_description_wrap"
                         android:orientation="vertical"
                         android:gravity="center_vertical"
                         android:layout_marginStart="@dimen/margin_10"
@@ -56,11 +56,10 @@
 
                         <com.app.community.widget.CustomTextView
                             android:id="@+id/tvDetails"
-                            style="@style/wrap_wrap"
+                            style="@style/textview_description_small_wrap"
                             android:layout_marginTop="@dimen/margin_4"
                             android:layout_marginBottom="@dimen/margin_4"
-                            android:text="n publishing and jkhdsfjkhfkdhshfkjhfkjhkjfhkjhfsdkjhkjhfdshjkhfsdjkhkjhfdkjhjkjhfdskjjh graphic design, lorem ipsum is a filler text or greeking commonly used to demonstrate the textual elements of a graphic document or visual presentation."
-                            android:textSize="@dimen/textSize_12"
+                            android:text="n publishing and graphic design, lorem ipsum is a filler text or greeking commonly used to demonstrate the textual elements of a graphic document or visual presentation."
                             app:customFont="@string/font_bold" />
                     </LinearLayout>
                 </LinearLayout>

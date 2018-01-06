@@ -1,5 +1,6 @@
 package com.app.community.ui.dashboard;
 
+import android.app.ActivityManager;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
 
 
 import com.app.community.CommonApplication;
@@ -28,6 +30,7 @@ import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.adapter.DrawerViewAdapter;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.model.Artist;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.model.Genre;
+import com.app.community.ui.dashboard.home.fragment.FullInformationFragment;
 import com.app.community.ui.dashboard.home.fragment.HelpandSupportFragment;
 import com.app.community.ui.dashboard.home.fragment.HomeFragment;
 import com.app.community.ui.dashboard.home.fragment.MyOrderFragment;
@@ -168,7 +171,7 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
         switch (tabId) {
             case BottomNavigationBar.MENU_BAR_1:
                 //return HomeFragment.newInstance();
-                return HelpandSupportFragment.newInstance();
+                return FullInformationFragment.newInstance();
             case BottomNavigationBar.MENU_BAR_2:
                 return OfferFragment.newInstance();
             case BottomNavigationBar.MENU_BAR_3:

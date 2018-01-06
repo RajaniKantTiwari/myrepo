@@ -2,5 +2,5 @@
     android:shape="oval">
     <stroke
         android:width="@dimen/margin_1_5"
-        android:color="@color/background"/>
+        android:color="@color/back_circle"/>
 </shape>

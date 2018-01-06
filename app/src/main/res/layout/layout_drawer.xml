@@ -3,7 +3,7 @@
 
     <ScrollView
         style="@style/match_match"
-        android:background="@color/dark_black"
+        android:background="@color/dark_black_color"
         android:scrollbars="none">
             <LinearLayout
                 android:layout_width="match_parent"

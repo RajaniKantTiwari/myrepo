@@ -21,14 +21,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.WelcomeScreenActivity"/>
+        <activity android:name=".ui.WelcomeScreenActivity"
+            android:theme="@style/welcome"/>
         <activity android:name=".ui.authentication.LoginActivity"/>
         <activity android:name=".ui.authentication.VerifyAccountActivity"/>
 
-        <activity android:name=".ui.dashboard.home.ProductDetailsActivity"/>
+        <activity android:name=".ui.dashboard.home.ProductDetailsActivity"
+            android:theme="@style/product_description"/>
 
         <activity
-            android:name=".ui.dashboard.DashBoardActivity"/>
+            android:name=".ui.dashboard.DashBoardActivity"
+            android:theme="@style/dashboard"/>
         <activity
             android:name=".ui.dashboard.home.DoctorDetailsActivity"/>
 
@@ -36,7 +39,8 @@
             android:name=".ui.dashboard.home.DoctorCheckoutActivity"/>
 
         <activity
-            android:name=".ui.dashboard.home.WelcomeHomeActivity"/>
+            android:name=".ui.dashboard.home.WelcomeHomeActivity"
+            android:theme="@style/dashboard"/>
 
 
         <meta-data

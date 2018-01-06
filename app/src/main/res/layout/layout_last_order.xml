@@ -21,12 +21,12 @@
                 >
 
                 <com.app.community.widget.CustomTextView
-                    style="@style/textview_description_small_wrap"
-                    android:background="@color/red"
+                    style="@style/textview_description_wrap"
+                    android:background="@color/color_green"
                     android:padding="@dimen/margin_5"
                     android:paddingEnd="@dimen/margin_30"
                     android:paddingStart="@dimen/margin_20"
-                    android:text="@string/news"
+                    android:text="@string/last_order"
                     android:textAllCaps="true"
                     android:textColor="@color/white" />
 
@@ -45,18 +45,18 @@
 
                         <com.app.community.widget.CustomTextView
                             android:id="@+id/tvHeading"
-                            style="@style/wrap_wrap"
+                            style="@style/textview_description_wrap"
                             android:text="GREEN CANENNE"
                             android:textAllCaps="true"
-                            android:textColor="@color/dark_black"
-                            android:textSize="@dimen/textSize_15"
+                            android:textColor="@color/color_dark_black"
                             app:customFont="@string/font_bold" />
 
                         <com.app.community.widget.CustomTextView
                             android:id="@+id/tvDetails"
-                            style="@style/wrap_wrap"
+                            style="@style/textview_description_small_wrap"
+                            android:layout_marginTop="@dimen/margin_5"
                             android:text="500 grams"
-                            android:textSize="@dimen/textSize_12"
+                            android:textColor="@color/light_grey"
                             app:customFont="@string/font_bold" />
                     </LinearLayout>
                     <android.support.v4.widget.Space

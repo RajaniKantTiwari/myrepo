@@ -1,12 +1,29 @@
 <resources>
 
+
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="parentTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <style name="AppTheme" parent="parentTheme">
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="welcome" parent="parentTheme">
+        <item name="colorPrimaryDark">@color/welcomeTitleColor</item>
+    </style>
+
+    <style name="dashboard" parent="parentTheme">
+        <item name="colorPrimaryDark">@color/dashboardTitleColor</item>
+    </style>
+
+    <style name="product_description" parent="parentTheme">
+        <item name="colorPrimaryDark">@color/productTitleColor</item>
+    </style>
+
     <style name="match_match">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
@@ -41,7 +58,7 @@
     <style name="view_layout_black">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/margin_2</item>
-        <item name="android:background">@color/light_black</item>
+        <item name="android:background">@color/black</item>
     </style>
 
     <style name="view_layout_white">
@@ -112,25 +129,25 @@
         <item name="android:maxLines">1</item>
         <item name="android:background">@null</item>
         <item name="android:textSize">@dimen/edit_textSize_large</item>
-        <item name="android:textColor">@color/light_black</item>
+        <item name="android:textColor">@color/black</item>
     </style>
     <style name="edit_text_style_medium" parent="match_wrap">
         <item name="android:maxLines">1</item>
         <item name="android:background">@null</item>
         <item name="android:textSize">@dimen/edit_textSize_medium</item>
-        <item name="android:textColor">@color/light_black</item>
+        <item name="android:textColor">@color/black</item>
     </style>
     <style name="edit_text_style_small" parent="match_wrap">
         <item name="android:maxLines">1</item>
         <item name="android:background">@null</item>
         <item name="android:textSize">@dimen/edit_textSize_small</item>
-        <item name="android:textColor">@color/light_black</item>
+        <item name="android:textColor">@color/black</item>
     </style>
     <style name="edit_text_style_smaller" parent="match_wrap">
         <item name="android:maxLines">1</item>
         <item name="android:background">@null</item>
         <item name="android:textSize">@dimen/edit_textSize_smaller</item>
-        <item name="android:textColor">@color/light_black</item>
+        <item name="android:textColor">@color/black</item>
     </style>
     <style name="toolbar" parent="match_wrap">
         <item name="android:layout_height">@dimen/margin_56</item>
@@ -148,6 +165,15 @@
     <style name="image_40" >
         <item name="android:layout_height">@dimen/margin_40</item>
         <item name="android:layout_width">@dimen/margin_40</item>
+    </style>
+    <style name="image_50" >
+        <item name="android:layout_width">@dimen/margin_50</item>
+        <item name="android:layout_height">@dimen/margin_50</item>
+    </style>
+
+    <style name="image_60" >
+        <item name="android:layout_width">@dimen/margin_60</item>
+        <item name="android:layout_height">@dimen/margin_60</item>
     </style>
     <style name="image_70_80" >
         <item name="android:layout_width">@dimen/margin_70</item>

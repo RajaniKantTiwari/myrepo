@@ -18,8 +18,8 @@
                 style="@style/match_wrap"
                 android:orientation="vertical">
                 <com.app.community.widget.CustomTextView
-                    style="@style/textview_description_small_wrap"
-                    android:background="@color/red"
+                    style="@style/textview_description_wrap"
+                    android:background="@color/yellow_color"
                     android:padding="@dimen/margin_5"
                     android:paddingStart="@dimen/margin_20"
                     android:paddingEnd="@dimen/margin_30"

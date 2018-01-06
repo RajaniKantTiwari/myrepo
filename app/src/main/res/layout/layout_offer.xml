@@ -13,7 +13,7 @@
         <android.support.v7.widget.CardView
             style="@style/match_wrap"
             android:elevation="@dimen/margin_5"
-            app:cardBackgroundColor="@color/color_blue">
+            app:cardBackgroundColor="@color/color_voilet">
             <LinearLayout
                 style="@style/match_wrap"
                 android:layout_margin="@dimen/margin_10">
@@ -36,7 +36,7 @@
                     android:layout_marginEnd="@dimen/margin_5"
                     />
                 <com.app.community.widget.CustomTextView
-                    style="@style/textview_description_small_wrap"
+                    style="@style/textview_description_wrap"
                     android:text="off on"
                     android:textColor="@color/white"
                     android:layout_marginStart="@dimen/margin_5"
@@ -55,12 +55,12 @@
                       android:orientation="vertical">
                       <com.app.community.widget.CustomTextView
                           style="@style/textview_description_wrap"
-                          android:text="www"
+                          android:text="www.b.com"
                           android:textColor="@color/white"
                           />
                       <com.app.community.widget.CustomTextView
-                          style="@style/textview_description_wrap"
-                          android:text="www"
+                          style="@style/textview_description_large_wrap"
+                          android:text="CODE : 50 GK"
                           android:textAllCaps="true"
                           android:textColor="@color/white"
                           />

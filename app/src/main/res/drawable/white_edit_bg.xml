@@ -5,7 +5,7 @@
 
    <stroke
        android:color="@color/white"
-       android:width="@dimen/margin_1_5"></stroke>
+       android:width="@dimen/margin_2"></stroke>
 
 
 

@@ -9,12 +9,14 @@
 
         <com.app.community.widget.CustomTextView
             android:id="@+id/header"
-            style="@style/textview_header_match"
+            style="@style/textview_title_match"
             android:layout_marginTop="@dimen/margin_25"
             android:gravity="center_horizontal"
             android:text="@string/full_information"
             android:textAllCaps="true"
-            android:textColor="@color/darker_blackish" />
+            android:textColor="@color/color_black"
+            app:customFont="@string/font_book_regular"
+            />
 
         <ImageView
             android:id="@+id/ivProductImage"
@@ -31,6 +33,7 @@
             style="@style/match_wrap"
             android:layout_below="@+id/layoutLine"
             android:layout_margin="@dimen/margin_10"
+            android:paddingTop="@dimen/margin_5"
             android:orientation="vertical">
 
             <LinearLayout style="@style/match_wrap">
@@ -38,26 +41,29 @@
                 <com.app.community.widget.CustomTextView
                     style="@style/textview_header_small_wrap"
                     android:text="12.00/"
-                    android:textColor="@color/color_blue"
-                    app:customFont="@string/font_bold" />
+                    android:drawableStart="@drawable/rupee"
+                    android:drawablePadding="@dimen/margin_5"
+                    android:textColor="@color/color_sky_blue" />
 
                 <com.app.community.widget.CustomTextView
-                    style="@style/textview_description_wrap"
+                    style="@style/textview_description_small_wrap"
                     android:text="500gram"
-                    android:textColor="@color/color_blue"
-                    app:customFont="@string/font_bold" />
+                    android:textColor="@color/color_sky_blue" />
             </LinearLayout>
 
             <com.app.community.widget.CustomTextView
-                style="@style/textview_title_match"
+                style="@style/textview_description_match"
                 android:layout_marginTop="@dimen/margin_2"
-                android:text="fAL1P1vO"
-                app:customFont="@string/font_bold" />
+                android:text="JALPENO"
+                android:textColor="@color/color_black"
+                />
 
             <com.app.community.widget.CustomTextView
-                style="@style/textview_description_smaller_match"
+                android:layout_marginTop="@dimen/margin_15"
+                style="@style/textview_description_small_match"
+                android:textColor="@color/color_black"
                 android:text="falapeños are a pod type of !apsicum annuum. The growing period is 70–80 days. When mature, the plant stands 70–90 cm (28–35 in) tall. Typically, a plant produces 25 to 35 pods. (uring a growing period, a plant will be picked multiple times. As the growing season ends, the peppers turn red, as seen in Sriracha sauce. falapeños thrive in a number of soil types and temperatures, though they prefer warmer climates, provided they have adequate water."
-                app:customFont="@string/font_bold" />
+                />
 
         </LinearLayout>
 
@@ -70,7 +76,7 @@
             <LinearLayout
                 style="@style/wrap_wrap"
                 android:layout_marginStart="@dimen/margin_10"
-                android:gravity="center_vertical">
+                android:layout_centerVertical="true">
 
                 <ImageView
                     style="@style/wrap_wrap"
@@ -79,8 +85,11 @@
                 <com.app.community.widget.CustomTextView
                     style="@style/textview_header_small_wrap"
                     android:text="1"
-                    android:textColor="@color/color_blue"
-                    app:customFont="@string/font_bold" />
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:layout_marginEnd="@dimen/margin_10"
+                    android:textColor="@color/color_sky_blue"
+                    />
 
                 <ImageView
                     style="@style/wrap_wrap"
@@ -94,12 +103,12 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginEnd="@dimen/margin_20"
                 android:background="@drawable/blue_round_btnbg"
-                android:elevation="@dimen/margin_5"
+                android:elevation="@dimen/margin_3"
                 android:gravity="center_horizontal"
-                android:paddingBottom="@dimen/margin_5"
+                android:paddingBottom="@dimen/margin_8"
                 android:paddingEnd="@dimen/margin_30"
                 android:paddingStart="@dimen/margin_30"
-                android:paddingTop="@dimen/margin_5"
+                android:paddingTop="@dimen/margin_8"
                 android:text="@string/add_to_cart"
                 android:textAllCaps="true"
                 android:textColor="@color/white"

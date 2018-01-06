@@ -109,6 +109,12 @@
     <dimen name="dialog_margin">13dp</dimen>
     <dimen name="dialog_radius">6dp</dimen>
     <dimen name="margin_250">250dp</dimen>
+    <dimen name="margin_170">170dp</dimen>
+    <dimen name="margin_190">190dp</dimen>
+    <dimen name="margin_3_minus">-3dp</dimen>
+    <dimen name="margin_230">230dp</dimen>
+    <dimen name="margin_210">210dp</dimen>
+    <dimen name="margin_240">240dp</dimen>
 
 
 </resources>

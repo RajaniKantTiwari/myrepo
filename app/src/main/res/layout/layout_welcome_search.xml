@@ -30,15 +30,14 @@
 
             <com.app.community.widget.CustomEditText
                 android:id="@+id/edSearch"
-                style="@style/edit_text_style_smaller"
-                android:padding="@dimen/margin_6"
+                style="@style/edit_text_style_medium"
+                android:padding="@dimen/margin_9"
                 android:layout_marginStart="@dimen/margin_30"
                 android:layout_marginEnd="@dimen/margin_30"
                 android:textColor="@color/white"
                 android:hint="@string/search"
                 android:textColorHint="@color/white"
                 android:layout_marginTop="@dimen/margin_15"
-                android:textSize="@dimen/textSize_12"
                 app:customFont="@string/font_bold"
                 android:background="@drawable/white_edit_bg"
                 android:drawableEnd="@drawable/search_small"

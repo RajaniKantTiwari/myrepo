@@ -7,7 +7,7 @@
     android:gravity="center">
     <com.app.community.widget.CustomTextView
         style="@style/wrap_wrap"
-        android:textColor="@color/color_dark_blue"
+        android:textColor="@color/blue"
         android:text="@string/app_name"
         android:drawableTop="@drawable/app_icon"
         android:textSize="@dimen/textSize_28"

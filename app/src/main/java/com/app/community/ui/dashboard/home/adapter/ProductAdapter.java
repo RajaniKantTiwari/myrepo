@@ -56,6 +56,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.Location
            GlideUtils.loadImage(activity,response.getLogo(),holder.imageView,null,0);
            holder.tvProductName.setText(response.getName());
            holder.tvLocation.setText(response.getAddress());
+           if(position%2==0){
+              holder.tvDiscount.setBackgroundColor(CommonUtils.getColor(activity,R.color.greyish_color));
+              holder.tvDiscount.setText("");
+           }else{
+               holder.tvDiscount.setBackgroundColor(CommonUtils.getColor(activity,R.color.light_green));
+           }
 
        }
 
@@ -77,6 +83,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.Location
         private final CustomTextView tvLocation;
         private final CustomTextView tvContact;
         private final CustomTextView tvView;
+        private final CustomTextView tvDiscount;
 
         public LocationViewHolder(ItemProductRowBinding itemView) {
             super(itemView.getRoot());
@@ -85,6 +92,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.Location
             tvLocation=itemView.tvLocation;
             tvContact=itemView.tvContact;
             tvView=itemView.tvView;
+            tvDiscount=itemView.tvDiscount;
             imageView.setOnClickListener(this);
             tvContact.setOnClickListener(this);
             tvView.setOnClickListener(this);

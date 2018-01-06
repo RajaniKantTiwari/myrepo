@@ -1,5 +1,6 @@
 package com.app.community.ui.dashboard.home.expendedrecyclerview.holder;
 
+import android.support.v7.app.AppCompatActivity;
 import android.view.animation.RotateAnimation;
 
 import com.app.community.databinding.ListItemProductsBinding;
@@ -13,8 +14,8 @@ import static com.app.community.utils.GeneralConstant.ANIMATION_TO_DEGREE;
 public class ProductViewHolder extends GroupViewHolder {
 
   private ListItemProductsBinding mBinding;
-  public ProductViewHolder(ListItemProductsBinding mBinding) {
-    super(mBinding.getRoot());
+  public ProductViewHolder(ListItemProductsBinding mBinding, AppCompatActivity activity) {
+    super(mBinding,activity);
     this.mBinding=mBinding;
   }
 

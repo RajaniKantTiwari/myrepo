@@ -33,7 +33,7 @@ public class DrawerViewAdapter extends ExpandableRecyclerViewAdapter<ProductView
   @Override
   public ProductViewHolder onCreateGroupViewHolder(ViewGroup parent, int viewType) {
     ListItemProductsBinding mBinding =DataBindingUtil.inflate(mInflator,R.layout.list_item_products, parent, false);
-    return new ProductViewHolder(mBinding);
+    return new ProductViewHolder(mBinding,activity);
   }
 
   @Override
