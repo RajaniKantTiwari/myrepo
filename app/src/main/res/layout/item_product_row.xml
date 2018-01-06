@@ -54,7 +54,7 @@
 
                 <LinearLayout
                     android:id="@+id/layoutProductType"
-                    style="@style/match_wrap"
+                    style="@style/wrap_wrap"
                     android:layout_below="@+id/tvLocation"
                     android:layout_marginBottom="@dimen/margin_15"
                     android:layout_marginTop="@dimen/margin_3">

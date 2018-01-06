@@ -75,8 +75,8 @@ public class MyOrderFragment extends DashboardFragment {
     private void pastOrder() {
         mBinding.tvLiveOrder.setTextColor(CommonUtils.getColor(getContext(),R.color.dark_black));
         mBinding.tvPastOrder.setTextColor(CommonUtils.getColor(getContext(),R.color.color_dark_grey));
-        mBinding.ivLiveOrder.setVisibility(View.VISIBLE);
-        mBinding.ivPastOrder.setVisibility(View.INVISIBLE);
+        mBinding.ivPastOrder.setBackgroundColor(CommonUtils.getColor(getBaseActivity(),R.color.dark_black_color));
+        mBinding.ivLiveOrder.setBackgroundColor(CommonUtils.getColor(getBaseActivity(),R.color.ver_bg_color));
         event.setLivePastOrder(GeneralConstant.PASTORDER);
         EventBus.getDefault().post(event);
 
@@ -85,8 +85,10 @@ public class MyOrderFragment extends DashboardFragment {
     private void liveOrder() {
         mBinding.tvLiveOrder.setTextColor(CommonUtils.getColor(getContext(),R.color.color_dark_grey));
         mBinding.tvPastOrder.setTextColor(CommonUtils.getColor(getContext(),R.color.dark_black));
-        mBinding.ivLiveOrder.setVisibility(View.INVISIBLE);
-        mBinding.ivPastOrder.setVisibility(View.VISIBLE);
+        mBinding.ivLiveOrder.setBackgroundColor(CommonUtils.getColor(getBaseActivity(),R.color.dark_black_color));
+        mBinding.ivPastOrder.setBackgroundColor(CommonUtils.getColor(getBaseActivity(),R.color.ver_bg_color));
+        //mBinding.ivLiveOrder.setVisibility(View.INVISIBLE);
+        //mBinding.ivPastOrder.setVisibility(View.VISIBLE);
         event.setLivePastOrder(GeneralConstant.LIVEORDER);
         EventBus.getDefault().post(event);
     }
