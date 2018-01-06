@@ -19,29 +19,33 @@
                         <LinearLayout
                             style="@style/match_wrap"
                             android:layout_marginBottom="@dimen/margin_7"
-                            android:background="@color/white_e2e2e2"
-                            android:gravity="center"
+                            android:background="@color/background_doctor"
                             android:orientation="vertical"
-                            android:padding="@dimen/margin_15">
-
+                            android:paddingTop="@dimen/margin_15"
+                            android:paddingStart="@dimen/margin_20"
+                            android:paddingBottom="@dimen/margin_15">
                             <com.app.community.widget.CustomTextView
-                                style="@style/textview_header_small_wrap"
-                                android:textColor="@color/color_dark_sky" />
-
+                                style="@style/textview_header_wrap"
+                                android:text="Dr. Mahima"
+                                android:textColor="@color/dark_sky_blue" />
                             <com.app.community.widget.CustomTextView
+                                android:layout_marginTop="@dimen/margin_5"
                                 style="@style/textview_title_wrap"
-                                android:textColor="@color/color_dark_sky" />
+                                android:text="Root Canal Specialist"
+                                android:textColor="@color/dark_sky_blue" />
                         </LinearLayout>
-
                         <com.app.community.widget.CustomTextView
                             style="@style/textview_title_wrap"
                             android:layout_margin="@dimen/margin_10"
-                            android:textColor="@color/color_dark_sky" />
-
+                            android:text="MBBS,BBS"
+                            android:textColor="@color/dark_sky_blue" />
                         <com.app.community.widget.CustomTextView
-                            style="@style/textview_header_small_wrap"
+                            style="@style/textview_header_wrap"
+                            android:text="500 per hour"
+                            android:drawablePadding="@dimen/margin_5"
+                            android:drawableStart="@drawable/rupee_green"
                             android:layout_marginStart="@dimen/margin_10"
-                            android:textColor="@color/progressColor" />
+                            android:textColor="@color/doctor_charge_color" />
                     </LinearLayout>
 
                     <LinearLayout style="@style/layout_hori_wrap_1">
@@ -49,7 +53,8 @@
                         <ImageView
                             android:id="@+id/ivProductImage"
                             style="@style/wrap_wrap"
-                            android:src="@drawable/abc" />
+                            android:layout_height="@dimen/margin_200"
+                            android:src="@drawable/doctor" />
                     </LinearLayout>
                 </LinearLayout>
                 <com.app.community.widget.CustomTextView
@@ -57,9 +62,9 @@
                     android:text="Booked"
                     android:textColor="@color/white"
                     android:gravity="center"
+                    android:textAllCaps="true"
                     android:padding="@dimen/margin_10"
-                    android:background="@color/green_color"
-                    app:customFont="@string/font_bold" />
+                    android:background="@color/doctor_charge_color"/>
                 <LinearLayout style="@style/match_wrap"
                     android:layout_marginTop="@dimen/margin_10"
                     android:layout_marginBottom="@dimen/margin_30">
@@ -68,19 +73,19 @@
                     <com.app.community.widget.CustomTextView
                         style="@style/textview_header_large_wrap"
                         android:text="24 Dec 2017"
-                        android:textColor="@color/green_color"
-                        app:customFont="@string/font_bold" />
+                        android:textColor="@color/doctor_charge_color"
+                        app:customFont="@string/font_regular"/>
                     <android.support.v4.widget.Space
                         style="@style/layout_hori_match_1" />
                     <com.app.community.widget.CustomTextView
                         style="@style/textview_header_large_wrap"
                         android:text="2 pm to 3 pm"
                         android:textColor="@color/white"
-                        app:customFont="@string/font_bold"
                         android:background="@drawable/green_bg"
                         android:padding="@dimen/margin_10"
                         android:paddingStart="@dimen/margin_15"
                         android:paddingEnd="@dimen/margin_15"
+                        app:customFont="@string/font_regular"
                         />
                     <android.support.v4.widget.Space
                         style="@style/layout_hori_match_1" />
@@ -90,8 +95,10 @@
                     style="@style/textview_header_small_match"
                     android:layout_marginStart="@dimen/margin_10"
                     android:layout_marginTop="@dimen/margin_30"
-                    android:text="YOUR APPOUvTt1vT US COvHURt1D"
-                    android:textColor="@color/green_color"
+                    android:layout_gravity="center"
+                    android:text="Your Appointment is confirmed"
+                    android:textAllCaps="true"
+                    android:textColor="@color/doctor_charge_color"
                     app:customFont="@string/font_bold" />
 
                 <com.app.community.widget.CustomTextView
@@ -99,10 +106,11 @@
                     android:text="Please don't be late"
                     android:layout_marginTop="@dimen/margin_30"
                     android:gravity="center"
-                    app:customFont="@string/font_bold" />
+                    android:textColor="@color/color_black"
+                    />
 
                 <com.app.community.widget.CustomTextView
-                    style="@style/textview_header_small_match"
+                    style="@style/textview_title_match"
                     android:text="Please don't be late"
                     android:layout_marginTop="@dimen/margin_10"
                     android:gravity="center"
@@ -110,7 +118,7 @@
                     app:customFont="@string/font_bold" />
 
                 <com.app.community.widget.CustomTextView
-                    style="@style/match_wrap"
+                    style="@style/textview_description_large_match"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginEnd="@dimen/margin_50"
                     android:layout_marginStart="@dimen/margin_50"
@@ -122,16 +130,13 @@
                     android:paddingTop="@dimen/margin_12"
                     android:text="@string/back_to_home"
                     android:textAllCaps="true"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/button_medium"
-                    app:customFont="@string/font_bold" />
+                    android:textColor="@color/white"/>
                 <com.app.community.widget.CustomTextView
-                    style="@style/textview_description_small_match"
+                    style="@style/textview_description_large_wrap"
                     android:padding="@dimen/margin_10"
                     android:text="@string/raise_an_issue"
-                    android:gravity="center"
-                    app:customFont="@string/font_bold"
-                    android:textColor="@color/reddish"
+                    android:layout_gravity="center"
+                    android:textColor="@color/redish_dark"
                     android:layout_marginBottom="@dimen/margin_60"
                     />
             </LinearLayout>

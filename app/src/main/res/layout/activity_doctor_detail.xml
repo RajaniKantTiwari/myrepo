@@ -25,9 +25,9 @@
                             style="@style/match_wrap"
                             android:layout_marginBottom="@dimen/margin_7"
                             android:background="@color/background_doctor"
-                            android:gravity="center"
                             android:orientation="vertical"
                             android:paddingTop="@dimen/margin_15"
+                            android:paddingStart="@dimen/margin_20"
                             android:paddingBottom="@dimen/margin_15">
                             <com.app.community.widget.CustomTextView
                                 style="@style/textview_header_wrap"
@@ -112,6 +112,7 @@
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rvAppointmentTime"
                     style="@style/match_wrap"
+                    android:layout_marginStart="@dimen/margin_10"
                     />
             </LinearLayout>
         </ScrollView>

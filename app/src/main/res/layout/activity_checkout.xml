@@ -14,8 +14,7 @@
             android:layout_marginTop="@dimen/margin_20"
             android:gravity="center"
             android:text="@string/checkout"
-            android:textColor="@color/dark_black"
-            app:customFont="@string/font_regular" />
+            android:textColor="@color/color_black"/>
 
         <ScrollView
             style="@style/match_match"
@@ -37,29 +36,26 @@
                         <LinearLayout
                             style="@style/match_wrap"
                             android:layout_marginBottom="@dimen/margin_7"
-                            android:background="@color/white_e2e2e2"
-                            android:gravity="center"
+                            android:background="@color/background_doctor"
                             android:orientation="vertical"
-                            android:padding="@dimen/margin_15">
-
+                            android:paddingTop="@dimen/margin_15"
+                            android:paddingStart="@dimen/margin_20"
+                            android:paddingBottom="@dimen/margin_15">
                             <com.app.community.widget.CustomTextView
-                                style="@style/textview_header_small_wrap"
-                                android:textColor="@color/color_dark_sky" />
-
+                                style="@style/textview_header_wrap"
+                                android:text="Dr. Mahima"
+                                android:textColor="@color/dark_sky_blue" />
                             <com.app.community.widget.CustomTextView
+                                android:layout_marginTop="@dimen/margin_5"
                                 style="@style/textview_title_wrap"
-                                android:textColor="@color/color_dark_sky" />
+                                android:text="Root Canal Specialist"
+                                android:textColor="@color/dark_sky_blue" />
                         </LinearLayout>
-
                         <com.app.community.widget.CustomTextView
                             style="@style/textview_title_wrap"
                             android:layout_margin="@dimen/margin_10"
-                            android:textColor="@color/color_dark_sky" />
-
-                        <com.app.community.widget.CustomTextView
-                            style="@style/textview_header_small_wrap"
-                            android:layout_marginStart="@dimen/margin_10"
-                            android:textColor="@color/progressColor" />
+                            android:text="MBBS,BBS"
+                            android:textColor="@color/dark_sky_blue" />
                     </LinearLayout>
 
                     <LinearLayout style="@style/layout_hori_wrap_1">
@@ -67,7 +63,8 @@
                         <ImageView
                             android:id="@+id/ivProductImage"
                             style="@style/wrap_wrap"
-                            android:src="@drawable/abc" />
+                            android:layout_height="@dimen/margin_200"
+                            android:src="@drawable/doctor" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -79,8 +76,8 @@
                     <com.app.community.widget.CustomTextView
                         style="@style/textview_header_large_wrap"
                         android:text="24 Dec 2017"
-                        android:textColor="@color/green_color"
-                        app:customFont="@string/font_bold" />
+                        android:textColor="@color/doctor_charge_color"
+                        app:customFont="@string/font_regular" />
                     <android.support.v4.widget.Space
                         style="@style/layout_hori_match_1" />
                     <com.app.community.widget.CustomTextView
@@ -100,20 +97,22 @@
                     style="@style/textview_title_wrap"
                     android:layout_marginStart="@dimen/margin_10"
                     android:text="@string/payable_amount"
-                    app:customFont="@string/font_bold" />
+                    />
                 <com.app.community.widget.CustomTextView
                     style="@style/textview_header_wrap"
                     android:layout_marginStart="@dimen/margin_10"
                     android:text="500 per hour"
-                    android:textColor="@color/green_color"
-                    app:customFont="@string/font_bold" />
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:drawablePadding="@dimen/margin_5"
+                    android:textColor="@color/doctor_charge_color"
+                    app:customFont="@string/font_bold"
+                    android:drawableStart="@drawable/rupee_green"/>
 
                 <com.app.community.widget.CustomTextView
                     style="@style/textview_header_small_wrap"
                     android:layout_marginStart="@dimen/margin_10"
                     android:layout_marginTop="@dimen/margin_10"
-                    android:text="@string/payment_option"
-                    app:customFont="@string/font_bold" />
+                    android:text="@string/payment_option"/>
 
                 <LinearLayout
                     style="@style/match_wrap"
@@ -128,12 +127,12 @@
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:buttonTint="@color/color_blue"
+                        android:buttonTint="@color/color_sky_blue"
                         android:checked="true"
                         android:paddingStart="@dimen/margin_8"
                         android:text="@string/cash_on_delivery"
                         android:textAllCaps="true"
-                        android:textColor="@color/dark_black"
+                        android:textColor="@color/color_black"
                         android:textSize="@dimen/textSize_description"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -151,11 +150,10 @@
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:buttonTint="@color/color_blue"
-                        android:checked="true"
+                        android:buttonTint="@color/radio_unchecked"
                         android:paddingStart="@dimen/margin_8"
                         android:text="@string/credit_debit_card"
-                        android:textColor="@color/dark_black"
+                        android:textColor="@color/color_black"
                         android:textSize="@dimen/textSize_description"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -173,11 +171,11 @@
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:buttonTint="@color/color_blue"
+                        android:buttonTint="@color/radio_unchecked"
                         android:paddingStart="@dimen/margin_8"
                         android:text="@string/paytm"
                         android:textAllCaps="true"
-                        android:textColor="@color/dark_black"
+                        android:textColor="@color/color_black"
                         android:textSize="@dimen/textSize_description"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -197,8 +195,7 @@
                     android:text="@string/proced_to_pay"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/button_medium"
-                    app:customFont="@string/font_bold" />
+                    android:textSize="@dimen/button_medium" />
             </LinearLayout>
         </ScrollView>
     </RelativeLayout>
