@@ -24,25 +24,33 @@
                         <LinearLayout
                             style="@style/match_wrap"
                             android:layout_marginBottom="@dimen/margin_7"
-                            android:background="@color/white_e2e2e2"
+                            android:background="@color/background_doctor"
                             android:gravity="center"
                             android:orientation="vertical"
-                            android:padding="@dimen/margin_15">
+                            android:paddingTop="@dimen/margin_15"
+                            android:paddingBottom="@dimen/margin_15">
                             <com.app.community.widget.CustomTextView
-                                style="@style/textview_header_small_wrap"
-                                android:textColor="@color/color_dark_sky" />
+                                style="@style/textview_header_wrap"
+                                android:text="Dr. Mahima"
+                                android:textColor="@color/dark_sky_blue" />
                             <com.app.community.widget.CustomTextView
+                                android:layout_marginTop="@dimen/margin_5"
                                 style="@style/textview_title_wrap"
-                                android:textColor="@color/color_dark_sky" />
+                                android:text="Root Canal Specialist"
+                                android:textColor="@color/dark_sky_blue" />
                         </LinearLayout>
                         <com.app.community.widget.CustomTextView
                             style="@style/textview_title_wrap"
                             android:layout_margin="@dimen/margin_10"
-                            android:textColor="@color/color_dark_sky" />
+                            android:text="MBBS,BBS"
+                            android:textColor="@color/dark_sky_blue" />
                         <com.app.community.widget.CustomTextView
-                            style="@style/textview_header_small_wrap"
+                            style="@style/textview_header_wrap"
+                            android:text="500 per hour"
+                            android:drawablePadding="@dimen/margin_5"
+                            android:drawableStart="@drawable/rupee_green"
                             android:layout_marginStart="@dimen/margin_10"
-                            android:textColor="@color/progressColor" />
+                            android:textColor="@color/doctor_charge_color" />
                     </LinearLayout>
 
                     <LinearLayout style="@style/layout_hori_wrap_1">
@@ -50,20 +58,22 @@
                         <ImageView
                             android:id="@+id/ivProductImage"
                             style="@style/wrap_wrap"
-                            android:src="@drawable/abc" />
+                            android:layout_height="@dimen/margin_200"
+                            android:src="@drawable/doctor" />
                     </LinearLayout>
                 </LinearLayout>
 
                 <com.app.community.widget.CustomTextView
-                    style="@style/textview_header_small_wrap"
+                    android:layout_marginTop="@dimen/margin_20"
+                    style="@style/textview_title_wrap"
                     android:layout_marginStart="@dimen/margin_10"
                     android:text="@string/detail"
-                    android:textColor="@color/color_dark_sky"
-                    app:customFont="@string/font_bold" />
+                    android:textColor="@color/dark_sky_blue" />
 
                 <com.app.community.widget.CustomTextView
                     style="@style/textview_description_wrap"
                     android:layout_marginStart="@dimen/margin_10"
+                    android:textColor="@color/black_cart"
                     android:text="@string/lorem_ipsum" />
 
                 <com.app.community.widget.CustomTextView
@@ -72,8 +82,7 @@
                     android:layout_marginStart="@dimen/margin_10"
                     android:layout_marginTop="@dimen/margin_25"
                     android:text="@string/available"
-                    android:textColor="@color/color_dark_sky"
-                    app:customFont="@string/font_bold" />
+                    android:textColor="@color/dark_sky_blue"/>
 
                 <RelativeLayout
                     style="@style/match_wrap"
@@ -85,38 +94,39 @@
                     <ImageView
                         android:id="@+id/ivPrevious"
                         style="@style/wrap_wrap"
-                        android:src="@drawable/ic_arrow" />
+                        android:src="@drawable/left_arrow" />
 
                     <com.app.community.widget.CustomTextView
-                        style="@style/textview_description_small_wrap"
+                        style="@style/textview_description_wrap"
                         android:layout_centerInParent="true"
+                        android:textColor="@color/black_cart"
                         android:text="Today" />
 
                     <ImageView
                         android:id="@+id/ivNext"
                         style="@style/wrap_wrap"
                         android:layout_alignParentEnd="true"
-                        android:src="@drawable/ic_arrow" />
+                        android:src="@drawable/right_arrow" />
                 </RelativeLayout>
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rvAppointmentTime"
-                    style="@style/match_wrap" />
+                    style="@style/match_wrap"
+                    />
             </LinearLayout>
         </ScrollView>
 
         <com.app.community.widget.CustomTextView
             android:id="@+id/tvAppointment"
-            style="@style/textview_header_match"
+            style="@style/textview_title_match"
             android:layout_alignParentBottom="true"
-            android:background="@color/progressColor"
+            android:background="@color/doctor_charge_color"
             android:elevation="@dimen/margin_5"
             android:gravity="center"
             android:padding="@dimen/margin_10"
             android:text="@string/book_appointment"
             android:textAllCaps="true"
-            android:textColor="@color/white"
-            app:customFont="@string/font_bold" />
+            android:textColor="@color/white"/>
     </RelativeLayout>
 
 

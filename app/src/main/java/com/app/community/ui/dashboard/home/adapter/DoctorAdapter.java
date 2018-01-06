@@ -60,7 +60,7 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.LocationVi
 
     @Override
     public int getItemCount() {
-        return productList !=null?productList.size():0;
+        return productList !=null?productList.size():5;
     }
 
     public void setLocationList(ArrayList<ProductResponse> productList) {

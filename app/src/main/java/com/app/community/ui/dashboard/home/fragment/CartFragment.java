@@ -3,15 +3,14 @@ package com.app.community.ui.dashboard.home.fragment;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.app.community.R;
-import com.app.community.databinding.FragmentChartBinding;
-import com.app.community.databinding.FragmentFullInformationBinding;
+import com.app.community.databinding.FragmentCartBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.adapter.CartAdapter;
@@ -21,12 +20,12 @@ import com.app.community.ui.dashboard.home.adapter.CartAdapter;
  */
 
 public class CartFragment extends DashboardFragment {
-    private FragmentChartBinding mBinding;
+    private FragmentCartBinding mBinding;
     private CartAdapter mAdapter;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding=DataBindingUtil.inflate(inflater, R.layout.fragment_chart,container,false);
+        mBinding=DataBindingUtil.inflate(inflater, R.layout.fragment_cart,container,false);
         initializeAdapter();
         return mBinding.getRoot();
     }
@@ -66,5 +65,9 @@ public class CartFragment extends DashboardFragment {
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
 
+    }
+
+    public static Fragment newInstance() {
+        return new CartFragment();
     }
 }

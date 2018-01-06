@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
+<ScrollView
+    style="@style/match_match">
     <LinearLayout
         style="@style/match_match"
         android:background="@color/white"
         android:orientation="vertical">
 
         <com.app.community.widget.CustomTextView
-            style="@style/textview_description_match"
+            style="@style/textview_title_match"
             android:layout_marginTop="@dimen/margin_25"
             android:gravity="center_horizontal"
             android:text="DAINIK JAGRAN"
             android:textAllCaps="true"
-            android:textColor="@color/darker_blackish"
+            android:textColor="@color/color_black"
             app:customFont="@string/font_regular" />
 
         <LinearLayout
@@ -22,21 +23,21 @@
             android:gravity="center">
 
             <com.app.community.widget.CustomTextView
-                style="@style/textview_title_wrap"
+                style="@style/textview_header_large_wrap"
                 android:text="1200/"
-                android:textColor="@color/star_text_color" />
+                android:drawableStart="@drawable/rupee_orange"
+                android:textColor="@color/rs_text_color" />
 
             <com.app.community.widget.CustomTextView
-                style="@style/textview_description_small_wrap"
-                android:text="1200/"
-                android:textColor="@color/star_text_color" />
+                style="@style/textview_description_wrap"
+                android:text="year"
+                android:textColor="@color/rs_text_color" />
         </LinearLayout>
 
             <ImageView
+                android:id="@+id/ivLetter"
                 style="@style/wrap_wrap"
-                android:src="@drawable/confirm"
-                android:layout_marginTop="@dimen/margin_25"
-                android:layout_marginBottom="@dimen/margin_25"
+                android:src="@drawable/letterbox"
                 android:layout_marginStart="@dimen/margin_5"
                 android:layout_marginEnd="@dimen/margin_5"
                 android:layout_gravity="center_horizontal"/>
@@ -45,6 +46,7 @@
                 style="@style/textview_title_wrap"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/margin_20"
+                android:layout_marginBottom="@dimen/margin_30"
                 android:background="@drawable/blue_round_btnbg"
                 android:elevation="@dimen/margin_5"
                 android:gravity="center_horizontal"
@@ -59,5 +61,5 @@
 
     </LinearLayout>
 
-
+</ScrollView>
 </layout>

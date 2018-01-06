@@ -13,13 +13,13 @@
 
             <com.app.community.widget.CustomTextView
                 android:id="@+id/textView2"
-                style="@style/match_wrap"
+                style="@style/textview_header_match"
                 android:layout_marginBottom="@dimen/margin_10"
                 android:layout_marginTop="@dimen/margin_20"
                 android:gravity="center"
                 android:text="@string/checkout"
-                android:textColor="@color/dark_black"
-                android:textSize="@dimen/textSize_header" />
+                android:textColor="@color/color_black"
+                android:textAllCaps="true"/>
 
             <android.support.v7.widget.CardView
                 style="@style/match_wrap"
@@ -37,7 +37,8 @@
                         android:id="@+id/rvCartItem"
                         style="@style/match_wrap"
                         android:minHeight="@dimen/margin_100"
-                        android:padding="@dimen/margin_5" />
+                        android:paddingStart="@dimen/margin_5"
+                        android:paddingEnd="@dimen/margin_5"/>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
@@ -47,37 +48,36 @@
                 android:orientation="vertical">
 
                 <com.app.community.widget.CustomTextView
-                    style="@style/match_wrap"
+                    style="@style/textview_description_ex_large_match"
                     android:layout_marginBottom="@dimen/margin_10"
                     android:layout_marginTop="@dimen/margin_10"
                     android:gravity="center"
                     android:text="@string/est_delivery_time"
                     android:textAllCaps="true"
-                    android:textColor="@color/color_blue"
+                    android:textColor="@color/color_sky_blue"
                     android:textSize="@dimen/textSize_description"
-                    app:customFont="@string/font_bold" />
+                    />
 
 
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvTime"
-                    style="@style/match_wrap"
+                    style="@style/textview_title_match"
                     android:layout_marginBottom="@dimen/margin_35"
                     android:gravity="center"
+                    android:text="30 Min"
                     android:textAllCaps="true"
-                    android:textColor="@color/color_blue"
+                    android:textColor="@color/color_sky_blue"
                     android:textSize="@dimen/textSize_header"
                     app:customFont="@string/font_bold" />
 
 
                 <com.app.community.widget.CustomTextView
-                    style="@style/wrap_wrap"
+                    style="@style/textview_description_ex_large_wrap"
                     android:layout_margin="@dimen/margin_10"
                     android:gravity="center"
                     android:text="@string/delivery"
                     android:textAllCaps="true"
-                    android:textColor="@color/color_blue"
-                    android:textSize="@dimen/textSize_description"
-                    app:customFont="@string/font_bold" />
+                    android:textColor="@color/color_sky_blue" />
 
                 <LinearLayout
                     style="@style/match_wrap"
@@ -90,7 +90,7 @@
 
                     <RadioButton
                         style="@style/textview_description_match"
-                        android:buttonTint="@color/color_blue"
+                        android:buttonTint="@color/color_sky_blue"
                         android:checked="true"
                         android:paddingStart="@dimen/margin_8"
                         android:text="@string/pick_on_the_way"
@@ -103,38 +103,36 @@
                     android:layout_marginTop="@dimen/margin_13">
 
                     <com.app.community.widget.CustomTextView
-                        style="@style/wrap_wrap"
+                        style="@style/textview_description_ex_large_wrap"
                         android:padding="@dimen/margin_5"
                         android:layout_marginStart="@dimen/margin_5"
                         android:gravity="center"
                         android:text="@string/delivery_at"
                         android:textAllCaps="true"
-                        android:textColor="@color/color_blue"
-                        android:textSize="@dimen/textSize_description"
-                        app:customFont="@string/font_bold" />
+                        android:textColor="@color/color_sky_blue"/>
 
                     <com.app.community.widget.CustomTextView
-                        style="@style/wrap_wrap"
+                        style="@style/textview_description_ex_large_wrap"
                         android:padding="@dimen/margin_5"
                         android:layout_marginEnd="@dimen/margin_8"
                         android:layout_alignParentEnd="true"
                         android:gravity="center"
                         android:text="@string/edit_address"
                         android:textAllCaps="true"
-                        android:textColor="@color/reddish"
-                        android:textSize="@dimen/textSize_description"
-                        app:customFont="@string/font_bold" />
+                        android:textColor="@color/redish_color"/>
                 </RelativeLayout>
 
                 <com.app.community.widget.CustomTextView
-                    style="@style/match_wrap"
+                    style="@style/textview_description_match"
                     android:layout_marginEnd="@dimen/margin_10"
                     android:layout_marginStart="@dimen/margin_10"
                     android:background="@drawable/grey_corner_bg"
                     android:padding="@dimen/margin_10"
-                    android:textColor="@color/dark_black"
-                    android:textSize="@dimen/textSize_description"
-                    app:customFont="@string/font_bold" />
+                    android:textColor="@color/color_black"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    android:text="vasant Vihar Gali No 8"
+                    android:textSize="@dimen/textSize_description" />
 
                 <com.app.community.widget.CustomTextView
                     style="@style/match_wrap"

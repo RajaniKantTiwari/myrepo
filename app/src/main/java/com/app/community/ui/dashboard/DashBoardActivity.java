@@ -30,6 +30,10 @@ import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.adapter.DrawerViewAdapter;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.model.Artist;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.model.Genre;
+import com.app.community.ui.dashboard.home.fragment.CartFragment;
+import com.app.community.ui.dashboard.home.fragment.CheckoutFragment;
+import com.app.community.ui.dashboard.home.fragment.DainikJagranFragment;
+import com.app.community.ui.dashboard.home.fragment.DoctorListFragment;
 import com.app.community.ui.dashboard.home.fragment.FullInformationFragment;
 import com.app.community.ui.dashboard.home.fragment.HelpandSupportFragment;
 import com.app.community.ui.dashboard.home.fragment.HomeFragment;
@@ -171,7 +175,7 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
         switch (tabId) {
             case BottomNavigationBar.MENU_BAR_1:
                 //return HomeFragment.newInstance();
-                return FullInformationFragment.newInstance();
+                return DoctorListFragment.newInstance();
             case BottomNavigationBar.MENU_BAR_2:
                 return OfferFragment.newInstance();
             case BottomNavigationBar.MENU_BAR_3:

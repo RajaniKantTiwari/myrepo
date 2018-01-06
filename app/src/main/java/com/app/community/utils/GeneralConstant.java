@@ -18,7 +18,7 @@ import static com.app.community.utils.GeneralConstant.FRAGMENTS.RECENT_FRAGMENT;
 
 public interface GeneralConstant {
     int PERMISSIONS_REQUEST_LOCATION = 99;
-    long SPLASH_TIME=3000;
+    long SPLASH_TIME=100;
     String TITLE = "title";
     String USER_NAME = "user_name";
     String VISIBLE = "visible";

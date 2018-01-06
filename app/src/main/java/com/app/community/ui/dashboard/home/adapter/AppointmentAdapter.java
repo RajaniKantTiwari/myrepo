@@ -47,7 +47,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
 
     @Override
     public int getItemCount() {
-        return appointmentList!=null?appointmentList.size():0;
+        return appointmentList!=null?appointmentList.size():5;
     }
 
     public void setList(ArrayList<AppointMentResponse> appointmentList) {

@@ -7,5 +7,5 @@
         android:radius="@dimen/stroke_green_radius"></corners>
     <stroke
         android:width="@dimen/margin_1"
-        android:color="@color/progressColor"/>
+        android:color="@color/doctor_charge_color"/>
 </shape>

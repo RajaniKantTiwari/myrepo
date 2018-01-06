@@ -6,7 +6,8 @@
 <ImageView
     android:id="@+id/ivProductImage"
     android:layout_width="@dimen/margin_70"
-    android:layout_height="@dimen/margin_70" />
+    android:layout_height="@dimen/margin_70"
+    android:src="@drawable/green_chilli"/>
         <LinearLayout
             style="@style/layout_hori_match_2"
             android:orientation="vertical"
@@ -14,7 +15,7 @@
             <com.app.community.widget.CustomTextView
                 android:id="@+id/tvProductName"
                 style="@style/wrap_wrap"
-                android:textColor="@color/dark_black"
+                android:textColor="@color/color_black_cart"
                 android:textSize="@dimen/textSize_description"
                 app:customFont="@string/font_bold"
                 android:maxLines="1"
@@ -23,6 +24,7 @@
                 android:id="@+id/tvProQuantity"
                 style="@style/textview_description_smaller_wrap"
                 android:maxLines="1"
+                android:textColor="@color/light_grey"
                 app:customFont="@string/font_bold"
                 android:text="500 grm"/>
             <com.app.community.widget.CustomTextView
@@ -30,7 +32,7 @@
                 style="@style/textview_description_wrap"
                 android:maxLines="1"
                 app:customFont="@string/font_bold"
-                android:textColor="@color/color_blue"
+                android:textColor="@color/color_sky_blue"
                 android:text="Rs 10"/>
         </LinearLayout>
     <LinearLayout
@@ -43,7 +45,9 @@
         <com.app.community.widget.CustomTextView
             android:id="@+id/tvQuantity"
             style="@style/textview_description_wrap"
-            android:textColor="@color/dark_black"
+            android:textColor="@color/color_black_cart"
+            android:layout_marginStart="@dimen/margin_10"
+            android:layout_marginEnd="@dimen/margin_10"
             android:textSize="@dimen/textSize_description"
             app:customFont="@string/font_bold"
             android:text="1" />

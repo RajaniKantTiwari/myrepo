@@ -3,6 +3,8 @@ package com.app.community.ui.dashboard.home;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.app.community.R;
@@ -33,6 +35,16 @@ public class DoctorDetailsActivity extends DashboardInsideActivity {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_doctor_detail);
         appointmentList=new ArrayList<>();
+        initializeAdapter();
+    }
+
+    private void initializeAdapter() {
+        mAdapter=new AppointmentAdapter(this);
+        setList();
+        mAdapter.setList(appointmentList);
+        GridLayoutManager layoutManager=new GridLayoutManager(this,3);
+        mBinding.rvAppointmentTime.setLayoutManager(layoutManager);
+        mBinding.rvAppointmentTime.setAdapter(mAdapter);
     }
 
 
@@ -48,9 +60,7 @@ public class DoctorDetailsActivity extends DashboardInsideActivity {
 
     @Override
     public void initializeData() {
-        mAdapter=new AppointmentAdapter(this);
-        setList();
-        mAdapter.setList(appointmentList);
+
     }
 
     private void setList() {

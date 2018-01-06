@@ -363,7 +363,7 @@
     <string name="delivery">Delivery</string>
     <string name="pick_on_the_way">Pick On The Way</string>
     <string name="delivery_at">Delivery At</string>
-    <string name="proced_to_pay">Proced To Pay</string>
+    <string name="proced_to_pay">Proceed To Pay</string>
     <string name="google_service_not_present">Google Service not Present</string>
     <string name="current_location">Current Location</string>
     <string name="please_select_location_for_product">Select Location for Getting Product</string>

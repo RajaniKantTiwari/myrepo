@@ -34,7 +34,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="@dimen/margin_35"
                 android:layout_marginEnd="@dimen/margin_10"
-                android:src="@drawable/ic_filter"
+                android:src="@drawable/back"
                 app:backgroundTint="@color/white"/>
         </RelativeLayout>
         <LinearLayout

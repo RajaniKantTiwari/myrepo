@@ -5,5 +5,5 @@
 
     <corners
         android:radius="@dimen/stroke_green_radius"></corners>
-    <solid android:color="@color/progressColor"/>
+    <solid android:color="@color/doctor_charge_color"/>
 </shape>

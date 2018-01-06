@@ -9,11 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.community.R;
-import com.app.community.databinding.FragmentChartBinding;
 import com.app.community.databinding.FragmentHelpandsupportBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
-import com.app.community.ui.dashboard.home.adapter.CartAdapter;
 import com.app.community.ui.dashboard.home.adapter.HelpSupportAdapter;
 
 /**
