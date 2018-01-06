@@ -13,7 +13,7 @@
             style="@style/textview_description_wrap"
             android:text="@string/from"
             android:textAllCaps="true"
-            android:textColor="@color/color_dark_grey" />
+            android:textColor="@color/gr_color" />
 
         <android.support.v4.widget.Space style="@style/layout_hori_wrap_1" />
 
@@ -21,7 +21,7 @@
             style="@style/textview_description_wrap"
             android:text="@string/total"
             android:textAllCaps="true"
-            android:textColor="@color/color_dark_grey" />
+            android:textColor="@color/gr_color" />
     </LinearLayout>
 
     <LinearLayout
@@ -32,6 +32,7 @@
 
         <com.app.community.widget.CustomTextView
             style="@style/textview_description_small_wrap"
+            android:textColor="@color/dark_black_color"
             android:text="Mother Diary"
             android:textAllCaps="true" />
 
@@ -39,6 +40,8 @@
 
         <com.app.community.widget.CustomTextView
             style="@style/textview_description_small_wrap"
+            android:textColor="@color/dark_black_color"
+
             android:text="627"
             android:textAllCaps="true" />
     </LinearLayout>

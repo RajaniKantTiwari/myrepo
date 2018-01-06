@@ -21,25 +21,30 @@
                 android:layout_marginLeft="5dp"
                 android:layout_gravity="center_horizontal"
                 android:max="5"
-                android:progressTint="@color/rating"
+                android:progressTint="@color/star_text_color"
                 android:rating="4.3" />
             <com.app.community.widget.CustomTextView
                 android:id="@+id/tvName"
-                style="@style/textview_description_large_match"
+                style="@style/textview_header_small_match"
                 android:layout_gravity="center"
+                android:text="Mother Diary"
+                android:padding="@dimen/margin_4"
                 android:gravity="center_horizontal" />
 
             <com.app.community.widget.CustomTextView
                 android:id="@+id/tvAddress"
-                style="@style/textview_description_small_match"
+                style="@style/textview_title_match"
+                android:textColor="@color/color_black"
                 android:layout_gravity="center"
-                android:gravity="center_horizontal" />
-            <com.app.community.widget.CustomEditText
-                android:id="@+id/ivAddress"
-                style="@style/edit_text_style_medium"
-                android:textColorHint="@color/color_dark_grey"
-                android:hint="@string/any_other_feedback"
+                android:text="jhsdjjhds"
                 android:gravity="center_horizontal"
+                app:customFont="@string/font_regular"/>
+            <com.app.community.widget.CustomEditText
+                android:layout_marginTop="@dimen/margin_15"
+                android:id="@+id/ivAddress"
+                style="@style/edit_text_style_larger"
+                android:textColorHint="@color/background"
+                android:hint="@string/any_other_feedback"
                 android:padding="@dimen/margin_5"/>
             <ImageView style="@style/view_layout" />
             <LinearLayout
@@ -49,10 +54,10 @@
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvMessage"
                     style="@style/button_large_wrap"
-                    android:padding="@dimen/margin_4"
+                    android:padding="@dimen/margin_6"
                     android:gravity="center"
                     android:text="@string/submit"
-                    android:textColor="@color/green_color"
+                    android:textColor="@color/color_green_cart"
                     android:textAllCaps="true"
                     app:customFont="@string/font_bold"/>
 

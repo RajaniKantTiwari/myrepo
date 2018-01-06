@@ -39,13 +39,6 @@
                             android:layout_margin="@dimen/margin_10"
                             android:text="MBBS,BBS"
                             android:textColor="@color/dark_sky_blue" />
-                        <com.app.community.widget.CustomTextView
-                            style="@style/textview_header_wrap"
-                            android:text="500 per hour"
-                            android:drawablePadding="@dimen/margin_5"
-                            android:drawableStart="@drawable/rupee_green"
-                            android:layout_marginStart="@dimen/margin_10"
-                            android:textColor="@color/doctor_charge_color" />
                     </LinearLayout>
 
                     <LinearLayout style="@style/layout_hori_wrap_1">
@@ -93,9 +86,8 @@
 
                 <com.app.community.widget.CustomTextView
                     style="@style/textview_header_small_match"
-                    android:layout_marginStart="@dimen/margin_10"
                     android:layout_marginTop="@dimen/margin_30"
-                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:text="Your Appointment is confirmed"
                     android:textAllCaps="true"
                     android:textColor="@color/doctor_charge_color"

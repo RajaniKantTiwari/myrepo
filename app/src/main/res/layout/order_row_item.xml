@@ -30,15 +30,17 @@
                     layout="@layout/order_row_layout" />
 
                 <com.app.community.widget.CustomTextView
+
                     style="@style/textview_description_match"
-                    android:layout_marginTop="@dimen/margin_4"
+                    android:layout_marginTop="@dimen/margin_10"
                     android:background="@color/star_text_color"
-                    android:textColor="@color/color_dark_grey" />
+                    android:textColor="@color/yelloish" />
 
                 <com.app.community.widget.CustomTextView
                     style="@style/textview_description_match"
                     android:gravity="center_horizontal"
                     android:padding="@dimen/margin_2"
+                    android:textColor="@color/dark_black_color"
                     android:text="Mother Diary"
                     android:textAllCaps="true"
                     app:customFont="@string/font_regular" />
@@ -51,6 +53,7 @@
 
                     <com.app.community.widget.CustomTextView
                         style="@style/textview_description_wrap"
+                        android:textColor="@color/doctor_charge_color"
                         android:text="Mother Diary"
                         android:textAllCaps="true" />
                     <RatingBar
@@ -61,10 +64,11 @@
                         android:layout_below="@+id/post_time"
                         android:max="5"
                         android:layout_centerHorizontal="true"
-                        android:progressTint="@color/rating"
+                        android:progressTint="@color/star_text_color"
                         android:rating="3.5" />
                     <com.app.community.widget.CustomTextView
                         style="@style/textview_description_wrap"
+                        android:textColor="@color/doctor_charge_color"
                         android:text="Mother Diary"
                         android:textAllCaps="true"
                         android:layout_alignParentEnd="true"/>

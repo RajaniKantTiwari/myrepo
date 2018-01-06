@@ -1,6 +1,5 @@
 package com.app.community.ui.dashboard;
 
-import android.app.ActivityManager;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,8 +15,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
-
 
 import com.app.community.CommonApplication;
 import com.app.community.R;
@@ -30,16 +27,7 @@ import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.adapter.DrawerViewAdapter;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.model.Artist;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.model.Genre;
-import com.app.community.ui.dashboard.home.fragment.AppointmentConfirmedFragment;
-import com.app.community.ui.dashboard.home.fragment.CartFragment;
-import com.app.community.ui.dashboard.home.fragment.CheckoutFragment;
-import com.app.community.ui.dashboard.home.fragment.DainikJagranFragment;
-import com.app.community.ui.dashboard.home.fragment.DoctorListFragment;
-import com.app.community.ui.dashboard.home.fragment.FullInformationFragment;
-import com.app.community.ui.dashboard.home.fragment.HelpandSupportFragment;
 import com.app.community.ui.dashboard.home.fragment.HomeFragment;
-import com.app.community.ui.dashboard.home.fragment.MyOrderFragment;
-import com.app.community.ui.dashboard.home.fragment.NewsTabFragment;
 import com.app.community.ui.dashboard.notification.NotificationFragment;
 import com.app.community.ui.dashboard.offer.OfferFragment;
 import com.app.community.ui.dashboard.user.UserFragment;
@@ -175,8 +163,8 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
     private Fragment rootTabFragment(int tabId) {
         switch (tabId) {
             case BottomNavigationBar.MENU_BAR_1:
-                //return HomeFragment.newInstance();
-                return AppointmentConfirmedFragment.newInstance();
+                return HomeFragment.newInstance();
+                //return NewsFragment.newInstance();
             case BottomNavigationBar.MENU_BAR_2:
                 return OfferFragment.newInstance();
             case BottomNavigationBar.MENU_BAR_3:

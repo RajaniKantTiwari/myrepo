@@ -58,8 +58,14 @@
     <style name="view_layout_black">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/margin_2</item>
-        <item name="android:background">@color/black</item>
+        <item name="android:background">@color/dark_black_color</item>
     </style>
+    <style name="view_layout_brown">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/margin_2</item>
+        <item name="android:background">@color/ver_bg_color</item>
+    </style>
+
 
     <style name="view_layout_white">
         <item name="android:layout_width">match_parent</item>
@@ -83,7 +89,7 @@
     <style name="view_layout_vertical">
         <item name="android:layout_width">@dimen/margin_2</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:background">@color/light_grey_color</item>
+        <item name="android:background">@color/ver_bg_color</item>
     </style>
     <style name="otp_back">
         <item name="android:layout_width">@dimen/margin_45</item>
@@ -124,7 +130,12 @@
         <item name="android:maxLines">1</item>
         <item name="android:background">@null</item>
     </style>
-
+    <style name="edit_text_style_larger" parent="match_wrap">
+        <item name="android:maxLines">1</item>
+        <item name="android:background">@null</item>
+        <item name="android:textSize">@dimen/edit_textSize_larger</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
     <style name="edit_text_style_large" parent="match_wrap">
         <item name="android:maxLines">1</item>
         <item name="android:background">@null</item>

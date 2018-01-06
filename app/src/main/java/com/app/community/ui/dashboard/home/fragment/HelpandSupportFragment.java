@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.app.community.R;
 import com.app.community.databinding.FragmentHelpandsupportBinding;
 import com.app.community.network.response.BaseResponse;
+import com.app.community.ui.SimpleDividerItemDecoration;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.adapter.HelpSupportAdapter;
 
@@ -37,6 +38,7 @@ public class HelpandSupportFragment extends DashboardFragment {
         LinearLayoutManager layoutManager=new LinearLayoutManager(getBaseActivity());
         mAdapter=new HelpSupportAdapter(getBaseActivity());
         mBinding.rvChoice.setLayoutManager(layoutManager);
+        mBinding.rvChoice.addItemDecoration(new SimpleDividerItemDecoration(getResources()));
         mBinding.rvChoice.setAdapter(mAdapter);
     }
 

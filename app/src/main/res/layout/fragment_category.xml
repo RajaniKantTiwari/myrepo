@@ -16,7 +16,7 @@
                 android:id="@+id/ivPolitics"
                 style="@style/layout_hori_wrap_1"
                 android:padding="@dimen/margin_5"
-                android:src="@drawable/ambulance" />
+                android:src="@drawable/politics" />
 
             <ImageView
                 android:id="@+id/ivHealth"

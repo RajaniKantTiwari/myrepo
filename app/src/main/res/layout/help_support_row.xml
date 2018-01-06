@@ -5,7 +5,7 @@
     style="@style/match_wrap">
     <RadioButton
         style="@style/textview_description_match"
-        android:buttonTint="@color/grey_color"
+        android:buttonTint="@color/radio_unchecked"
         android:checked="true"
         android:paddingStart="@dimen/margin_8"
         android:text="@string/pick_on_the_way"

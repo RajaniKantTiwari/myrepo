@@ -15,21 +15,25 @@
                 android:id="@+id/textView2"
                 style="@style/wrap_wrap"
                 android:layout_gravity="center"
-                android:src="@drawable/abc"/>
+                android:background="@drawable/order_detail"/>
             <RelativeLayout
                 style="@style/match_wrap"
                 android:layout_marginStart="@dimen/margin_20"
-                android:layout_marginEnd="@dimen/margin_20">
+                android:layout_marginEnd="@dimen/margin_20"
+                android:layout_marginTop="@dimen/margin_15">
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvLayout"
                     style="@style/textview_title_wrap"
                     android:text="@string/order_date"
-                    android:textColor="@color/grey_color"
+                    android:textColor="@color/gr_color"
+                    android:textAllCaps="true"
                     app:customFont="@string/font_regular" />
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvDate"
                     style="@style/textview_description_wrap"
                     android:layout_marginTop="@dimen/margin_5"
+                    android:textColor="@color/dark_black_color"
+                    android:textAllCaps="true"
                     android:layout_below="@+id/tvLayout"
                     android:text="@string/order_date"
                     />
@@ -38,13 +42,14 @@
                     style="@style/textview_title_wrap"
                     android:text="@string/order_number"
                     android:layout_alignParentEnd="true"
-                    android:textColor="@color/grey_color"
+                    android:textColor="@color/gr_color"
                     app:customFont="@string/font_regular" />
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvOrderNo"
                     android:layout_alignParentEnd="true"
                     style="@style/textview_description_wrap"
                     android:layout_marginTop="@dimen/margin_5"
+                    android:textColor="@color/dark_black_color"
                     android:layout_below="@+id/tvLayout"
                     android:text="@string/order_date"
                     />
@@ -75,13 +80,14 @@
                 android:layout_marginStart="@dimen/margin_20"
                 android:layout_marginTop="@dimen/margin_20"
                 app:customFont="@string/font_regular"
-                android:textColor="@color/grey_color"
+                android:textColor="@color/gr_color"
                 android:text="@string/delivery_address"
                 android:textAllCaps="true"/>
             <com.app.community.widget.CustomTextView
                 style="@style/textview_description_wrap"
                 android:layout_marginEnd="@dimen/margin_10"
                 android:layout_marginStart="@dimen/margin_20"
+                android:textColor="@color/dark_black_color"
                 />
         </LinearLayout>
 
