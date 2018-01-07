@@ -3,6 +3,8 @@ package com.app.community.ui.authentication;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.View;
+
+import com.app.community.CommonApplication;
 import com.app.community.R;
 import com.app.community.databinding.ActivityLoginBinding;
 import com.app.community.network.request.LoginRequest;
@@ -62,6 +64,7 @@ public class LoginActivity extends AuthenticationActivity implements MvpView, Vi
                 }
             }
         }
+
     }
 
     @Override

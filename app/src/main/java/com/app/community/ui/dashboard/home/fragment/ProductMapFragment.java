@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -40,6 +41,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import io.nlopez.smartlocation.OnLocationUpdatedListener;
+import io.nlopez.smartlocation.SmartLocation;
+
 import static com.app.community.utils.GeneralConstant.PERMISSIONS_REQUEST_LOCATION;
 
 
@@ -72,11 +76,16 @@ public class ProductMapFragment extends DashboardFragment implements OnMapReadyC
     }
 
     private void getCurrentLocation() {
-        // create class object
-        gpsTracker = new GPSTracker(getBaseActivity());
-        if (ActivityCompat.checkSelfPermission(getBaseActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(getBaseActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            gpsTracker.requestPermission(getBaseActivity());
+        if (ActivityCompat.checkSelfPermission(getBaseActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSIONS_REQUEST_LOCATION);
+        } else {
+            SmartLocation.with(getBaseActivity()).location()
+                    .start(new OnLocationUpdatedListener() {
+                        @Override
+                        public void onLocationUpdated(Location location) {
+                            moveCamera(new LatLng(location.getLatitude(), location.getLongitude()));
+                        }
+                    });
         }
     }
 
@@ -85,7 +94,6 @@ public class ProductMapFragment extends DashboardFragment implements OnMapReadyC
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-
                 marker.showInfoWindow();
                 return false;
             }
@@ -115,33 +123,27 @@ public class ProductMapFragment extends DashboardFragment implements OnMapReadyC
         if (CommonUtils.isNull(googleMap))
             return;
         mMap = googleMap;
-        currentLocation();
+        mMap.getUiSettings().setZoomControlsEnabled(true);
         //Set Custom InfoWindow Adapter
         MarkerInfoWindowAdapter adapter = new MarkerInfoWindowAdapter(getBaseActivity(), mMarkersHashMap);
         mMap.setInfoWindowAdapter(adapter);
+        checkPermition();
     }
 
-    private void currentLocation() {
-        if (CommonUtils.isNotNull(gpsTracker.getLatitude()) && CommonUtils.isNotNull(gpsTracker.getLongitude())) {
-            LatLng latLng = new LatLng(gpsTracker.getLatitude(), gpsTracker.getLongitude());
-            ProductResponse response=new ProductResponse();
-            response.setLat(gpsTracker.getLatitude());
-            response.setLng(gpsTracker.getLongitude());
-            addMarker(response);
-            moveCamera(latLng);
+    private void checkPermition() {
+        if (ActivityCompat.checkSelfPermission(getBaseActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
+
+        } else {
+            mMap.setMyLocationEnabled(true);
         }
     }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
             case PERMISSIONS_REQUEST_LOCATION:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    getBaseActivity().showToast("Permition Granted ProductMapFragment");
-                    gpsTracker.getLocation();
-                    currentLocation();
-                } else {
-                    getBaseActivity().showToast(getResources().getString(R.string.gps_permittion_denied));
+                    checkPermition();
+                    getCurrentLocation();
                 }
                 break;
         }
@@ -186,14 +188,16 @@ public class ProductMapFragment extends DashboardFragment implements OnMapReadyC
     }
 
     private void moveCamera(LatLng latLng) {
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(latLng)
-                .bearing(GeneralConstant.BEARING)
-                .tilt(GeneralConstant.TILT)
-                .zoom(GeneralConstant.MAX_ZOOM)
-                .build();
-        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        if(CommonUtils.isNotNull(mMap)){
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+            CameraPosition cameraPosition = new CameraPosition.Builder()
+                    .target(latLng)
+                    .bearing(GeneralConstant.BEARING)
+                    .tilt(GeneralConstant.TILT)
+                    .zoom(GeneralConstant.MAX_ZOOM)
+                    .build();
+            mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        }
     }
 
     @Override

@@ -18,7 +18,6 @@ import com.app.community.ui.dashboard.home.event.ProductEvent;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 
-
 import org.greenrobot.eventbus.EventBus;
 
 import javax.inject.Inject;
@@ -43,19 +42,19 @@ public class HomeFragment extends DashboardFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
         addFragment();
-        //ExplicitIntent.getsInstance().navigateTo(getBaseActivity(),MainActivity.class);
         return mBinding.getRoot();
     }
 
     private void addFragment() {
+        mBinding.listButton.setVisibility(View.VISIBLE);
         event = new ProductEvent();
         event.setListMap(GeneralConstant.LIST_PRODUCT);
         getBaseActivity().pushChildFragment(getChildFragmentManager(), GeneralConstant.FRAGMENTS.PRODUCT_MAP_FRAGMENT,
                 null, R.id.container, true, false, BaseActivity.AnimationType.NONE);
         getBaseActivity().pushChildFragment(getChildFragmentManager(), GeneralConstant.FRAGMENTS.PRODUCT_LIST,
                 null, R.id.container, true, false, BaseActivity.AnimationType.NONE);
-
     }
+
 
     @Override
     public void initializeData() {
@@ -105,7 +104,6 @@ public class HomeFragment extends DashboardFragment {
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
-
         if (CommonUtils.isNotNull(response)) {
             if (response instanceof ProductResponseData) {
                 ProductResponseData meetingEventResponseData = (ProductResponseData) response;

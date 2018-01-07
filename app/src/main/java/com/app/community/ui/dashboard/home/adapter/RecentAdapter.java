@@ -9,11 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.app.community.R;
-import com.app.community.databinding.ItemProductRowBinding;
 import com.app.community.databinding.ItemRecentRowBinding;
 import com.app.community.network.response.dashboard.meeting.ProductResponse;
 import com.app.community.utils.CommonUtils;
-import com.app.community.utils.GlideUtils;
 import com.app.community.widget.CustomTextView;
 
 import java.util.ArrayList;
@@ -26,18 +24,16 @@ public class RecentAdapter extends RecyclerView.Adapter<RecentAdapter.LocationVi
     private final LayoutInflater mInflator;
     private final AppCompatActivity activity;
     private ArrayList<ProductResponse> productList;
-    private ProductClickListener itemClickListener;
+    private RecentClickListener itemClickListener;
 
-    public void setOnItemClick(ProductClickListener itemClickListener) {
-        this.itemClickListener = itemClickListener;
-    }
-    public interface ProductClickListener{
+    public interface RecentClickListener {
         void onItemClick(int adapterPosition);
     }
 
-    public RecentAdapter(AppCompatActivity activity){
+    public RecentAdapter(AppCompatActivity activity,RecentClickListener itemClickListener){
         this.activity=activity;
         mInflator=LayoutInflater.from(activity);
+        this.itemClickListener=itemClickListener;
     }
 
     @Override
@@ -69,23 +65,25 @@ public class RecentAdapter extends RecyclerView.Adapter<RecentAdapter.LocationVi
     }
 
     class LocationViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        private final ImageView imageView;
+        private ItemRecentRowBinding itemView;
+        private final ImageView ivProductImage;
         private final CustomTextView tvProductName;
         private final CustomTextView tvLocation;
 
         public LocationViewHolder(ItemRecentRowBinding itemView) {
             super(itemView.getRoot());
-            imageView=itemView.ivProductImage;
+            this.itemView=itemView;
+            ivProductImage=itemView.ivProductImage;
             tvProductName=itemView.tvProductName;
             tvLocation=itemView.tvLocation;
-            imageView.setOnClickListener(this);
+            itemView.layoutRecent.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            /*if (CommonUtils.isNotNull(itemClickListener) && CommonUtils.isNotNull(productList) && productList.size() > getAdapterPosition()) {
+            if (CommonUtils.isNotNull(itemClickListener)&&view==itemView.layoutRecent) {
                 itemClickListener.onItemClick(getAdapterPosition());
-            }*/
+            }
         }
     }
 }

@@ -15,6 +15,7 @@ import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.adapter.ProductAdapter;
 import com.app.community.ui.dashboard.home.adapter.RecentAdapter;
+import com.app.community.ui.dashboard.home.event.FragmentEvent;
 import com.app.community.ui.dashboard.home.event.NewsEvent;
 import com.app.community.ui.dashboard.home.event.ProductEvent;
 import com.app.community.utils.GeneralConstant;
@@ -26,7 +27,7 @@ import org.greenrobot.eventbus.Subscribe;
  * Created by rajnikant on 31/12/17.
  */
 
-public class RecentFragment extends DashboardFragment {
+public class RecentFragment extends DashboardFragment implements RecentAdapter.RecentClickListener {
     private FragmentLocationListBinding mBinding;
     private RecentAdapter mAdapter;
     @Nullable
@@ -38,7 +39,7 @@ public class RecentFragment extends DashboardFragment {
         return mBinding.getRoot();
     }
     private void initializeAdapter() {
-        mAdapter=new RecentAdapter(getBaseActivity());
+        mAdapter=new RecentAdapter(getBaseActivity(),this);
         LinearLayoutManager layoutManager=new LinearLayoutManager(getBaseActivity());
         mBinding.rvProduct.setLayoutManager(layoutManager);
         mBinding.rvProduct.setAdapter(mAdapter);
@@ -86,5 +87,11 @@ public class RecentFragment extends DashboardFragment {
             mBinding.layoutList.setVisibility(View.GONE);
 
         }
+    }
+
+    @Override
+    public void onItemClick(int adapterPosition) {
+        FragmentEvent event=new FragmentEvent(GeneralConstant.FRAGMENTS.NEWS_FRAGMENT,false,true);
+        EventBus.getDefault().post(event);
     }
 }

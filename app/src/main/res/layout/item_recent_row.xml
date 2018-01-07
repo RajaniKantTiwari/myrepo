@@ -10,6 +10,7 @@
     </data>
 
     <LinearLayout
+        android:id="@+id/layoutRecent"
         style="@style/match_wrap"
         android:layout_marginEnd="@dimen/margin_5"
         android:layout_marginStart="@dimen/margin_5"

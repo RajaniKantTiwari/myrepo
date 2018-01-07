@@ -22,7 +22,12 @@ import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.DashboardInsidePresenter;
 import com.app.community.ui.dashboard.home.adapter.HelpPlaceAdapter;
 import com.app.community.ui.dashboard.home.adapter.LatestNewsAdapter;
+import com.app.community.ui.dashboard.home.event.FragmentEvent;
+import com.app.community.ui.dashboard.home.fragment.HomeFragment;
 import com.app.community.utils.AddWelcomeChildView;
+import com.app.community.utils.GeneralConstant;
+
+import org.greenrobot.eventbus.EventBus;
 
 import javax.inject.Inject;
 
@@ -99,10 +104,15 @@ public class WelcomeHomeFragment extends DashboardFragment {
     @Override
     public void onClick(View view) {
        if(view==mNewsViewBinding.layoutNews){
-
+           addFragment(GeneralConstant.FRAGMENTS.NEWS_TAB_FRAGMENT);
        }else if(view==mLastOrderBinding.layoutLastOrder){
-
+           addFragment(GeneralConstant.FRAGMENTS.HOME_FRAGMENT);
        }
+    }
+
+    private void addFragment(int fragmentId) {
+        FragmentEvent event=new FragmentEvent(fragmentId,false,true);
+        EventBus.getDefault().post(event);
     }
 
     @Override

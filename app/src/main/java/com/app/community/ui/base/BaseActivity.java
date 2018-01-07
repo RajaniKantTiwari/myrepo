@@ -17,8 +17,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.app.community.R;
+import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.fragment.CategoryFragment;
+import com.app.community.ui.dashboard.home.fragment.HomeFragment;
 import com.app.community.ui.dashboard.home.fragment.LiveOrderFragment;
+import com.app.community.ui.dashboard.home.fragment.NewsFragment;
+import com.app.community.ui.dashboard.home.fragment.NewsTabFragment;
 import com.app.community.ui.dashboard.home.fragment.PastOrderFragment;
 import com.app.community.ui.dashboard.home.fragment.ProductListFragment;
 import com.app.community.ui.dashboard.home.fragment.ProductMapFragment;
@@ -35,11 +39,15 @@ import static com.app.community.ui.base.BaseActivity.AnimationType.SLIDE;
 import static com.app.community.ui.base.BaseActivity.AnimationType.DEFAULT;
 import static com.app.community.ui.base.BaseActivity.AnimationType.NONE;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.CATEGORY_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.HOME_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.LIVEORDER_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.NEWS_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.NEWS_TAB_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.PASTORDER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_LIST;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_MAP_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.RECENT_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.WELCOME_HOME_FRAGMENT;
 
 
 /**
@@ -255,6 +263,18 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
                 break;
             case PASTORDER_FRAGMENT:
                 fragment = new PastOrderFragment();
+                break;
+            case WELCOME_HOME_FRAGMENT:
+                fragment=new WelcomeHomeFragment();
+                break;
+            case NEWS_TAB_FRAGMENT:
+                fragment=new NewsTabFragment();
+                break;
+            case HOME_FRAGMENT:
+                fragment=new HomeFragment();
+                break;
+            case NEWS_FRAGMENT:
+                fragment=new NewsFragment();
                 break;
         }
         return fragment;

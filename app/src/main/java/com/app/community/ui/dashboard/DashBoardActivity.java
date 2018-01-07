@@ -24,12 +24,11 @@ import com.app.community.injector.component.DashboardComponent;
 import com.app.community.injector.module.DashboardModule;
 import com.app.community.navcontroller.BackStackActivity;
 import com.app.community.network.response.BaseResponse;
-import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
+import com.app.community.ui.dashboard.home.BaseHomeFragment;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.adapter.DrawerViewAdapter;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.model.Artist;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.model.Genre;
-import com.app.community.ui.dashboard.home.fragment.HomeFragment;
-import com.app.community.ui.dashboard.home.fragment.MyOrderFragment;
+import com.app.community.ui.dashboard.notification.NotificationFragment;
 import com.app.community.ui.dashboard.offer.OfferFragment;
 import com.app.community.ui.dashboard.user.UserFragment;
 import com.app.community.widget.bottomnavigation.BottomNavigationBar;
@@ -205,14 +204,11 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
     private Fragment rootTabFragment(int tabId) {
         switch (tabId) {
             case BottomNavigationBar.MENU_BAR_1:
-                //return HomeFragment.newInstance();
-                //return NewsFragment.newInstance();
-                return WelcomeHomeFragment.newInstance();
+                return BaseHomeFragment.newInstance();
             case BottomNavigationBar.MENU_BAR_2:
                 return OfferFragment.newInstance();
             case BottomNavigationBar.MENU_BAR_3:
-                //return NotificationFragment.newInstance();
-            return MyOrderFragment.newInstance();
+                return NotificationFragment.newInstance();
             case BottomNavigationBar.MENU_BAR_4:
                 return UserFragment.newInstance();
             default:

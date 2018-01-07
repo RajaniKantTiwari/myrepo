@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         style="@style/match_match">
-        <ImageView
-            style="@style/wrap_wrap"
-            android:src="@drawable/welcome_screen" />
         <LinearLayout
             style="@style/match_wrap"
             android:orientation="vertical">
@@ -27,7 +24,11 @@
             android:textSize="@dimen/textSize_13"
             android:textColor="@color/color_dark_grey"/>
         </LinearLayout>
-
+        <ImageView
+            style="@style/wrap_wrap"
+            android:src="@drawable/welcome_screen"
+            android:layout_marginTop="@dimen/margin_20_minus"
+            android:layout_marginBottom="@dimen/margin_20_minus"/>
         <LinearLayout
             style="@style/match_wrap"
             android:orientation="vertical"
@@ -73,5 +74,5 @@
             android:layout_marginTop="@dimen/margin_5"
             android:layout_marginBottom="@dimen/margin_25"/>
         </LinearLayout>
-    </RelativeLayout>
+    </LinearLayout>
 </layout>

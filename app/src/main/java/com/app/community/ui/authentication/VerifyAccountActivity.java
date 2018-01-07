@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 
+import com.app.community.CommonApplication;
 import com.app.community.R;
 import com.app.community.databinding.ActivityVerifyAccountBinding;
 import com.app.community.network.request.LoginRequest;
@@ -100,6 +101,9 @@ public class VerifyAccountActivity extends AuthenticationActivity implements Tex
         } else if (requestCode == 2) {
             getOtp(response);
         }
+        if(CommonApplication.isDebug){
+            ExplicitIntent.getsInstance().navigateTo(this, DashBoardActivity.class);
+        }
     }
 
     private void getOtp(BaseResponse response) {
@@ -116,9 +120,7 @@ public class VerifyAccountActivity extends AuthenticationActivity implements Tex
         }
     }
 
-    private void gotoNext(BaseResponse response) {
-        ExplicitIntent.getsInstance().navigateTo(this, DashBoardActivity.class);
-        try {
+    private void gotoNext(BaseResponse response) {try {
             if (isNotNull(response)) {
                 if (response instanceof VerifyMobileResponse) {
                     VerifyMobileResponse verifyMobileResponse = (VerifyMobileResponse) response;
