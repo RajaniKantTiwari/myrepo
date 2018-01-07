@@ -71,7 +71,14 @@ public class BottomNavigationBar implements View.OnClickListener {
         this.mLLBar3.setOnClickListener(this);
         this.mLLBar4.setOnClickListener(this);
     }
-
+public void setIcon(List<NavigationPage> pages){
+    this.mNavigationPageList = pages;
+    // setting the icons
+    this.mImageViewBar1.setImageDrawable(mNavigationPageList.get(0).getIcon());
+    this.mImageViewBar2.setImageDrawable(mNavigationPageList.get(1).getIcon());
+    this.mImageViewBar3.setImageDrawable(mNavigationPageList.get(2).getIcon());
+    this.mImageViewBar4.setImageDrawable(mNavigationPageList.get(3).getIcon());
+}
     @Override
     public void onClick(View view) {
 

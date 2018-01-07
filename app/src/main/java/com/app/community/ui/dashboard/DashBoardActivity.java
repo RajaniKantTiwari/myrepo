@@ -64,6 +64,7 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
     private int curTabId = MAIN_TAB_ID;
     private DrawerViewAdapter mDrawerAdapter;
     private List<Genre> listDrawerExpandable;
+    private ArrayList<NavigationPage> navigationPages;
 
     public interface OnToolbarItemClickedListener {
         void onClicked(int id);
@@ -116,6 +117,7 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
 
     @Override
     public void onTabSelected(int position) {
+        changeIcon(position);
         if (curFragment != null) {
             pushFragmentToBackStack(curTabId, curFragment);
         }
@@ -125,6 +127,45 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
             fragment = rootTabFragment(curTabId);
         }
         replaceFragment(fragment);
+    }
+
+    private void changeIcon(int position) {
+        for(int i=0;i<navigationPages.size();i++){
+            NavigationPage navigation = navigationPages.get(i);
+            switch (i){
+                case 0:
+                    if(i==position){
+                        navigation.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_home));
+                    }else{
+                        navigation.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_home_light));
+                    }
+
+                    break;
+                case 1:
+                    if(i==position){
+                        navigation.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_gift));
+                    }else{
+                        navigation.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_gift_light));
+                    }
+                    break;
+                case 2:
+                    if(i==position){
+                        navigation.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_notification));
+                    }else{
+                        navigation.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_notification_light));
+                    }
+                    break;
+                case 3:
+                    if(i==position){
+                        navigation.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_user));
+                    }else{
+                        navigation.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_user_light));
+                    }
+                    break;
+            }
+            navigationPages.set(i,navigation);
+        }
+        mBottomNav.setIcon(navigationPages);
     }
 
 
@@ -181,11 +222,11 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
 
     private void initTabs() {
         NavigationPage page1 = new NavigationPage("", ContextCompat.getDrawable(this, R.drawable.ic_home), rootTabFragment(BottomNavigationBar.MENU_BAR_1));
-        NavigationPage page2 = new NavigationPage("", ContextCompat.getDrawable(this, R.drawable.ic_gift), rootTabFragment(BottomNavigationBar.MENU_BAR_2));
-        NavigationPage page3 = new NavigationPage("", ContextCompat.getDrawable(this, R.drawable.ic_notification), rootTabFragment(BottomNavigationBar.MENU_BAR_3));
-        NavigationPage page4 = new NavigationPage("", ContextCompat.getDrawable(this, R.drawable.ic_user), rootTabFragment(BottomNavigationBar.MENU_BAR_4));
+        NavigationPage page2 = new NavigationPage("", ContextCompat.getDrawable(this, R.drawable.ic_gift_light), rootTabFragment(BottomNavigationBar.MENU_BAR_2));
+        NavigationPage page3 = new NavigationPage("", ContextCompat.getDrawable(this, R.drawable.ic_notification_light), rootTabFragment(BottomNavigationBar.MENU_BAR_3));
+        NavigationPage page4 = new NavigationPage("", ContextCompat.getDrawable(this, R.drawable.ic_user_light), rootTabFragment(BottomNavigationBar.MENU_BAR_4));
 
-        List<NavigationPage> navigationPages = new ArrayList<>();
+        navigationPages = new ArrayList<>();
         navigationPages.add(page1);
         navigationPages.add(page2);
         navigationPages.add(page3);

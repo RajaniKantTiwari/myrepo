@@ -26,6 +26,10 @@ public class NavigationPage {
         return title;
     }
 
+    public void setIcon(Drawable icon) {
+        this.icon = icon;
+    }
+
     public Drawable getIcon() {
         return icon;
     }
