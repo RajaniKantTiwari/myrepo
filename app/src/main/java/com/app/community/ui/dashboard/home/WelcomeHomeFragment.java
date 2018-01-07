@@ -3,12 +3,14 @@ package com.app.community.ui.dashboard.home;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.app.community.R;
-import com.app.community.databinding.ActivityWelcomehomeBinding;
+import com.app.community.databinding.FragmentWelcomehomeBinding;
 import com.app.community.databinding.LayoutImpPlaceBinding;
 import com.app.community.databinding.LayoutLastOrderBinding;
 import com.app.community.databinding.LayoutLatestNewsBinding;
@@ -16,7 +18,7 @@ import com.app.community.databinding.LayoutNewsBinding;
 import com.app.community.databinding.LayoutOfferBinding;
 import com.app.community.databinding.LayoutWelcomeSearchBinding;
 import com.app.community.network.response.BaseResponse;
-import com.app.community.ui.dashboard.DashboardInsideActivity;
+import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.DashboardInsidePresenter;
 import com.app.community.ui.dashboard.home.adapter.HelpPlaceAdapter;
 import com.app.community.ui.dashboard.home.adapter.LatestNewsAdapter;
@@ -30,14 +32,13 @@ import javax.inject.Inject;
  * To inject activity reference.
  */
 
-public class WelcomeHomeActivity extends DashboardInsideActivity {
+public class WelcomeHomeFragment extends DashboardFragment {
 
-    private ActivityWelcomehomeBinding mBinding;
+    private FragmentWelcomehomeBinding mBinding;
     private HelpPlaceAdapter mImpPlaceAdapter;
     private LatestNewsAdapter mLatestNewsAdapter;
     @Inject
     DashboardInsidePresenter presenter;
-    private LayoutInflater mInflator;
     private LayoutWelcomeSearchBinding mWelcomeBinding;
     private LayoutNewsBinding mNewsViewBinding;
     private LayoutOfferBinding mOfferBinding;
@@ -45,29 +46,29 @@ public class WelcomeHomeActivity extends DashboardInsideActivity {
     private LayoutImpPlaceBinding mImportantPlaceBinding;
     private LayoutLatestNewsBinding mLatestBinding;
 
+    @Nullable
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mBinding=DataBindingUtil.setContentView(this,R.layout.activity_welcomehome);
-        mInflator=LayoutInflater.from(this);
-        mWelcomeBinding=AddWelcomeChildView.addWelcomeSearchView(mInflator,mBinding);
-        mNewsViewBinding=AddWelcomeChildView.addNewsView(mInflator,mBinding);
-        mOfferBinding=AddWelcomeChildView.addOfferView(mInflator,mBinding);
-        mLastOrderBinding=AddWelcomeChildView.addLastOrderView(mInflator,mBinding);
-        mImportantPlaceBinding=AddWelcomeChildView.addImportantPlace(mInflator,mBinding);
-        mLatestBinding=AddWelcomeChildView.addLatestNewsView(mInflator,mBinding);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        mBinding=DataBindingUtil.inflate(inflater,R.layout.fragment_welcomehome,container,false);
+        mWelcomeBinding=AddWelcomeChildView.addWelcomeSearchView(inflater,mBinding);
+        mNewsViewBinding=AddWelcomeChildView.addNewsView(inflater,mBinding);
+        mOfferBinding=AddWelcomeChildView.addOfferView(inflater,mBinding);
+        mLastOrderBinding=AddWelcomeChildView.addLastOrderView(inflater,mBinding);
+        mImportantPlaceBinding=AddWelcomeChildView.addImportantPlace(inflater,mBinding);
+        mLatestBinding=AddWelcomeChildView.addLatestNewsView(inflater,mBinding);
         initializeView();
+        return mBinding.getRoot();
     }
 
     private void initializeView() {
-        LinearLayoutManager placeManager=new LinearLayoutManager(this);
+        LinearLayoutManager placeManager=new LinearLayoutManager(getContext());
         placeManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mImportantPlaceBinding.rvImportantPlace.setLayoutManager(placeManager);
-        mImpPlaceAdapter=new HelpPlaceAdapter(this);
+        mImpPlaceAdapter=new HelpPlaceAdapter(getBaseActivity());
         mImportantPlaceBinding.rvImportantPlace.setAdapter(mImpPlaceAdapter);
-        LinearLayoutManager latestNewsManager=new LinearLayoutManager(this);
+        LinearLayoutManager latestNewsManager=new LinearLayoutManager(getBaseActivity());
         mLatestBinding.rvLatestNews.setLayoutManager(latestNewsManager);
-        mLatestNewsAdapter=new LatestNewsAdapter(this);
+        mLatestNewsAdapter=new LatestNewsAdapter(getBaseActivity());
         mLatestBinding.rvLatestNews.setAdapter(mLatestNewsAdapter);
     }
 
@@ -81,7 +82,13 @@ public class WelcomeHomeActivity extends DashboardInsideActivity {
 
     @Override
     public void setListener() {
+        mNewsViewBinding.layoutNews.setOnClickListener(this);
+        mLastOrderBinding.layoutLastOrder.setOnClickListener(this);
+    }
 
+    @Override
+    public String getFragmentName() {
+        return WelcomeHomeFragment.class.getSimpleName();
     }
 
     @Override
@@ -91,7 +98,11 @@ public class WelcomeHomeActivity extends DashboardInsideActivity {
 
     @Override
     public void onClick(View view) {
+       if(view==mNewsViewBinding.layoutNews){
 
+       }else if(view==mLastOrderBinding.layoutLastOrder){
+
+       }
     }
 
     @Override
@@ -100,4 +111,7 @@ public class WelcomeHomeActivity extends DashboardInsideActivity {
     }
 
 
+    public static Fragment newInstance() {
+        return new WelcomeHomeFragment();
+    }
 }

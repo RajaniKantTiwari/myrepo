@@ -5,18 +5,24 @@
     android:orientation="vertical"
     style="@style/match_match">
     <RelativeLayout
-        style="@style/match_wrap">
+        style="@style/match_wrap"
+        android:layout_height="@dimen/margin_180">
         <ImageView
-            style="@style/match_wrap"
-            android:src="@drawable/order_detail"/>
+            style="@style/match_match"
+            android:background="@drawable/order_detail"/>
         <ImageView
             style="@style/wrap_wrap"
             android:src="@drawable/like"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/margin_15"
+            android:layout_marginBottom="@dimen/margin_10"
+            android:layout_alignParentBottom="true"
             />
     </RelativeLayout>
 
     <LinearLayout
         style="@style/match_wrap"
+        android:layout_marginTop="@dimen/margin_17"
         android:layout_marginStart="@dimen/margin_7"
         android:layout_marginEnd="@dimen/margin_7"
         android:orientation="vertical">

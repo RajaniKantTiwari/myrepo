@@ -3,21 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
-        style="@style/match_wrap"
-        android:layout_marginEnd="@dimen/margin_15"
-        android:layout_marginStart="@dimen/margin_15"
-        android:layout_marginTop="@dimen/margin_5"
-        android:background="@drawable/stroke_grey_bg"
-        android:padding="@dimen/margin_2">
+        style="@style/match_wrap">
 
         <android.support.v7.widget.CardView
             style="@style/match_wrap"
             android:elevation="@dimen/margin_5"
-            app:cardCornerRadius="@dimen/margin_4">
+            app:cardCornerRadius="@dimen/margin_4"
+            android:layout_marginTop="@dimen/margin_8"
+            >
 
             <LinearLayout
                 style="@style/match_wrap"
                 android:orientation="vertical"
+                android:background="@drawable/stroke_grey_bg"
                 >
 
                 <com.app.community.widget.CustomTextView
@@ -35,24 +33,21 @@
                     android:gravity="center_vertical">
 
                     <ImageView
-                        style="@style/image_70_80"
-                        android:background="@drawable/abc" />
+                        style="@style/image_90_80"
+                        android:background="@drawable/abc"
+                        android:layout_margin="@dimen/margin_10"/>
 
                     <LinearLayout
                         style="@style/textview_description_wrap"
                         android:orientation="vertical"
                         android:gravity="center_vertical"
-                        android:layout_marginStart="@dimen/margin_10"
-                        android:layout_marginEnd="@dimen/margin_10">
+                        android:layout_margin="@dimen/margin_10">
 
                         <com.app.community.widget.CustomTextView
                             android:id="@+id/tvHeading"
-                            style="@style/wrap_wrap"
+                            style="@style/textview_title_match"
                             android:text="New Year Celebration"
-                            android:textAllCaps="true"
-                            android:textColor="@color/dark_black"
-                            android:textSize="@dimen/textSize_15"
-                            app:customFont="@string/font_bold" />
+                            android:textAllCaps="true"/>
 
                         <com.app.community.widget.CustomTextView
                             android:id="@+id/tvDetails"

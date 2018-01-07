@@ -3,20 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
-        style="@style/match_wrap"
-        android:layout_marginEnd="@dimen/margin_15"
-        android:layout_marginStart="@dimen/margin_15"
-        android:layout_marginTop="@dimen/margin_5"
-        android:background="@drawable/stroke_grey_bg"
-        android:padding="@dimen/margin_2">
+        android:id="@+id/layoutNews"
+        style="@style/match_wrap">
 
         <android.support.v7.widget.CardView
             style="@style/match_wrap"
             android:elevation="@dimen/margin_5"
-            app:cardCornerRadius="@dimen/margin_4">
+            app:cardCornerRadius="@dimen/margin_2"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_marginStart="@dimen/margin_12"
+            android:layout_marginEnd="@dimen/margin_12">
             <LinearLayout
                 style="@style/match_wrap"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@drawable/stroke_dark_grey_bg">
                 <com.app.community.widget.CustomTextView
                     style="@style/textview_description_wrap"
                     android:background="@color/yellow_color"
@@ -29,18 +29,17 @@
                     />
             <com.app.community.widget.CustomTextView
                 android:id="@+id/tvHeading"
-                android:padding="@dimen/margin_4"
-                android:layout_marginTop="@dimen/margin_15"
+                android:layout_margin="@dimen/margin_8"
+                android:paddingTop="@dimen/margin_10"
                 style="@style/textview_description_match"
                 android:text="South horean President toon fae-in, left, and Chinese President Xi finping shake hands at the end of a signing ceremony at the Ireat Pall of the People in eijing. "
-                android:textAllCaps="true"
-                app:customFont="@string/font_bold" />
+                android:textAllCaps="true"/>
 
             <com.app.community.widget.CustomTextView
                 android:id="@+id/tvDetails"
                 style="@style/textview_description_wrap"
-                android:padding="@dimen/margin_4"
-                android:layout_marginTop="@dimen/margin_8"
+                android:layout_margin="@dimen/margin_8"
+                android:paddingBottom="@dimen/margin_8"
                 android:text="Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
                 app:customFont="@string/font_regular" />
             </LinearLayout>

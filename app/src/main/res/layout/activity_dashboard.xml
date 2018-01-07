@@ -32,9 +32,9 @@
                 android:id="@+id/listButton"
                 style="@style/wrap_wrap"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="@dimen/margin_35"
-                android:layout_marginEnd="@dimen/margin_10"
-                android:src="@drawable/back"
+                android:layout_marginTop="@dimen/margin_30"
+                android:layout_marginEnd="@dimen/margin_5"
+                android:src="@drawable/shopping"
                 app:backgroundTint="@color/white"/>
         </RelativeLayout>
         <LinearLayout

@@ -2,8 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout style="@style/match_wrap">
-
+    <RelativeLayout
+        android:id="@+id/layoutWelcome"
+        style="@style/match_wrap">
         <ImageView
             style="@style/match_wrap"
             android:background="@drawable/abc" />
@@ -15,14 +16,14 @@
             android:gravity="center_horizontal">
 
             <com.app.community.widget.CustomTextView
-                style="@style/textview_title_wrap"
+                style="@style/textview_header_small_wrap"
                 android:text="@string/welcome"
                 android:textAllCaps="true"
                 android:textColor="@color/white" />
 
             <com.app.community.widget.CustomTextView
                 android:id="@+id/tvHeading"
-                style="@style/textview_description_wrap"
+                style="@style/textview_description_large_wrap"
                 android:text="@string/what_you_want_to_search_today"
                 android:textColor="@color/white"
                 app:customFont="@string/font_bold"
@@ -31,9 +32,8 @@
             <com.app.community.widget.CustomEditText
                 android:id="@+id/edSearch"
                 style="@style/edit_text_style_medium"
-                android:padding="@dimen/margin_9"
-                android:layout_marginStart="@dimen/margin_30"
-                android:layout_marginEnd="@dimen/margin_30"
+                android:padding="@dimen/margin_4"
+                android:layout_width="@dimen/margin_270"
                 android:textColor="@color/white"
                 android:hint="@string/search"
                 android:textColorHint="@color/white"

@@ -3,11 +3,13 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/match_match"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    >
     <LinearLayout
         android:id="@+id/layoutHome"
         style="@style/match_match"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:focusable="true">
 
     </LinearLayout>
 </ScrollView>

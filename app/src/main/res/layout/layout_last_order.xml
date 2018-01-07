@@ -3,22 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
-        style="@style/match_wrap"
-        android:layout_marginEnd="@dimen/margin_15"
-        android:layout_marginStart="@dimen/margin_15"
-        android:layout_marginTop="@dimen/margin_5"
-        android:background="@drawable/stroke_grey_bg"
-        android:padding="@dimen/margin_2">
+        android:id="@+id/layoutLastOrder"
+        style="@style/match_wrap">
 
         <android.support.v7.widget.CardView
             style="@style/match_wrap"
             android:elevation="@dimen/margin_5"
-            app:cardCornerRadius="@dimen/margin_4">
+            app:cardCornerRadius="@dimen/margin_2"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_marginStart="@dimen/margin_12"
+            android:layout_marginEnd="@dimen/margin_12">
 
             <LinearLayout
                 style="@style/match_wrap"
                 android:orientation="vertical"
-                >
+                android:background="@drawable/stroke_dark_grey_bg">
 
                 <com.app.community.widget.CustomTextView
                     style="@style/textview_description_wrap"
@@ -36,7 +35,9 @@
 
                     <ImageView
                         style="@style/image_70_80"
-                        android:src="@drawable/green_chilli" />
+                        android:src="@drawable/green_chilli"
+                        android:background="@drawable/stroke_grey"
+                        android:layout_margin="@dimen/margin_5"/>
 
                     <LinearLayout
                         style="@style/wrap_wrap"
@@ -48,15 +49,14 @@
                             style="@style/textview_description_wrap"
                             android:text="GREEN CANENNE"
                             android:textAllCaps="true"
-                            android:textColor="@color/color_dark_black"
-                            app:customFont="@string/font_bold" />
+                            android:textColor="@color/color_black"/>
 
                         <com.app.community.widget.CustomTextView
                             android:id="@+id/tvDetails"
                             style="@style/textview_description_small_wrap"
                             android:layout_marginTop="@dimen/margin_5"
                             android:text="500 grams"
-                            android:textColor="@color/light_grey"
+                            android:textColor="@color/color_black"
                             app:customFont="@string/font_bold" />
                     </LinearLayout>
                     <android.support.v4.widget.Space
@@ -65,7 +65,7 @@
                         style="@style/Widget.AppCompat.RatingBar.Small"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/margin_5"
+                        android:layout_marginEnd="@dimen/margin_22"
                         android:layout_marginLeft="5dp"
                         android:max="5"
                         android:progressTint="@color/star_text_color"

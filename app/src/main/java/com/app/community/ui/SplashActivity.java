@@ -8,11 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.app.community.R;
 import com.app.community.ui.dashboard.DashBoardActivity;
-import com.app.community.ui.dashboard.home.DoctorCheckoutActivity;
-import com.app.community.ui.dashboard.home.DoctorDetailsActivity;
-import com.app.community.ui.dashboard.home.ProductDetailsActivity;
-import com.app.community.ui.dashboard.home.WelcomeHomeActivity;
-import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
 
