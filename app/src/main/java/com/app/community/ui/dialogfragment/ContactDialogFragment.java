@@ -1,18 +1,12 @@
 package com.app.community.ui.dialogfragment;
 
-import android.app.ActionBar;
 import android.app.Dialog;
 import android.databinding.DataBindingUtil;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.InsetDrawable;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 
 import com.app.community.R;
 import com.app.community.databinding.DialogfragmentContactBinding;
