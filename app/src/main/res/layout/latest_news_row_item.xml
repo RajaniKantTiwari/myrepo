@@ -10,6 +10,8 @@
             android:elevation="@dimen/margin_5"
             app:cardCornerRadius="@dimen/margin_4"
             android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginStart="@dimen/margin_12"
+            android:layout_marginEnd="@dimen/margin_12"
             >
 
             <LinearLayout

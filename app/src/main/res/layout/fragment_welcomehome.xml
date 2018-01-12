@@ -9,7 +9,8 @@
         style="@style/match_match"
         android:orientation="vertical"
         android:focusable="true"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:paddingBottom="@dimen/margin_15">
 
     </LinearLayout>
 </ScrollView>

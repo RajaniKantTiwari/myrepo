@@ -56,7 +56,7 @@ public class RecentAdapter extends RecyclerView.Adapter<RecentAdapter.LocationVi
 
     @Override
     public int getItemCount() {
-        return productList !=null?productList.size():5;
+        return productList !=null?productList.size():15;
     }
 
     public void setLocationList(ArrayList<ProductResponse> productList) {

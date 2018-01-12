@@ -22,8 +22,8 @@ import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.DashboardInsidePresenter;
 import com.app.community.ui.dashboard.home.adapter.HelpPlaceAdapter;
 import com.app.community.ui.dashboard.home.adapter.LatestNewsAdapter;
+import com.app.community.ui.dashboard.home.adapter.NewsAdapter;
 import com.app.community.ui.dashboard.home.event.FragmentEvent;
-import com.app.community.ui.dashboard.home.fragment.HomeFragment;
 import com.app.community.utils.AddWelcomeChildView;
 import com.app.community.utils.GeneralConstant;
 
@@ -37,7 +37,7 @@ import javax.inject.Inject;
  * To inject activity reference.
  */
 
-public class WelcomeHomeFragment extends DashboardFragment {
+public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapter.NewsListener {
 
     private FragmentWelcomehomeBinding mBinding;
     private HelpPlaceAdapter mImpPlaceAdapter;
@@ -50,6 +50,7 @@ public class WelcomeHomeFragment extends DashboardFragment {
     private LayoutLastOrderBinding mLastOrderBinding;
     private LayoutImpPlaceBinding mImportantPlaceBinding;
     private LayoutLatestNewsBinding mLatestBinding;
+    private NewsAdapter mNewsAdapter;
 
     @Nullable
     @Override
@@ -75,6 +76,12 @@ public class WelcomeHomeFragment extends DashboardFragment {
         mLatestBinding.rvLatestNews.setLayoutManager(latestNewsManager);
         mLatestNewsAdapter=new LatestNewsAdapter(getBaseActivity());
         mLatestBinding.rvLatestNews.setAdapter(mLatestNewsAdapter);
+
+
+        LinearLayoutManager newsManager=new LinearLayoutManager(getBaseActivity());
+        mNewsViewBinding.rvNews.setLayoutManager(newsManager);
+        mNewsAdapter=new NewsAdapter(getBaseActivity(),this);
+        mNewsViewBinding.rvNews.setAdapter(mNewsAdapter);
     }
 
 
@@ -87,7 +94,6 @@ public class WelcomeHomeFragment extends DashboardFragment {
 
     @Override
     public void setListener() {
-        mNewsViewBinding.layoutNews.setOnClickListener(this);
         mLastOrderBinding.layoutLastOrder.setOnClickListener(this);
     }
 
@@ -103,9 +109,7 @@ public class WelcomeHomeFragment extends DashboardFragment {
 
     @Override
     public void onClick(View view) {
-       if(view==mNewsViewBinding.layoutNews){
-           addFragment(GeneralConstant.FRAGMENTS.NEWS_TAB_FRAGMENT);
-       }else if(view==mLastOrderBinding.layoutLastOrder){
+      if(view==mLastOrderBinding.layoutLastOrder){
            addFragment(GeneralConstant.FRAGMENTS.HOME_FRAGMENT);
        }
     }
@@ -123,5 +127,10 @@ public class WelcomeHomeFragment extends DashboardFragment {
 
     public static Fragment newInstance() {
         return new WelcomeHomeFragment();
+    }
+
+    @Override
+    public void itemClick(int adapterPosition) {
+        addFragment(GeneralConstant.FRAGMENTS.NEWS_TAB_FRAGMENT);
     }
 }
