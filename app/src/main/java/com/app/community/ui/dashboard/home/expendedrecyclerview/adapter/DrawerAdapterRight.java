@@ -18,7 +18,7 @@ import com.app.community.ui.dashboard.home.expendedrecyclerview.model.Genre;
 
 import java.util.List;
 
-public class DrawerViewAdapter extends ExpandableRecyclerViewAdapter<ProductViewHolder, ProductSublistViewHolder> {
+public class DrawerAdapterRight extends ExpandableRecyclerViewAdapter<ProductViewHolder, ProductSublistViewHolder> {
 
   private final AppCompatActivity activity;
   private final LayoutInflater mInflator;
@@ -26,7 +26,7 @@ public class DrawerViewAdapter extends ExpandableRecyclerViewAdapter<ProductView
   public interface ProductSubHolder{
       void onSubItemClicked();
   }
-  public DrawerViewAdapter(List<? extends ExpandableGroup> groups, AppCompatActivity activity) {
+  public DrawerAdapterRight(List<? extends ExpandableGroup> groups, AppCompatActivity activity) {
     super(groups);
     this.activity=activity;
     mInflator=LayoutInflater.from(activity);

@@ -25,7 +25,8 @@ import com.app.community.injector.module.DashboardModule;
 import com.app.community.navcontroller.BackStackActivity;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.dashboard.home.BaseHomeFragment;
-import com.app.community.ui.dashboard.home.expendedrecyclerview.adapter.DrawerViewAdapter;
+import com.app.community.ui.dashboard.home.adapter.DrawerAdapterLeft;
+import com.app.community.ui.dashboard.home.expendedrecyclerview.adapter.DrawerAdapterRight;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.model.Artist;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.model.Genre;
 import com.app.community.ui.dashboard.notification.NotificationFragment;
@@ -49,7 +50,7 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
     private OnToolbarItemClickedListener onClickedListener;
 
     //Sliding drawer
-    ActionBarDrawerToggle mDrawerToggle;
+    private ActionBarDrawerToggle mDrawerToggleRight;
 
     //Bottom bar
     // helper class for handling UI and click events of bottom-nav-bar
@@ -61,9 +62,11 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
     private static final int MAIN_TAB_ID = BottomNavigationBar.MENU_BAR_1;
     private Fragment curFragment;
     private int curTabId = MAIN_TAB_ID;
-    private DrawerViewAdapter mDrawerAdapter;
+    private DrawerAdapterRight mDrawerAdapterRight;
     private List<Genre> listDrawerExpandable;
     private ArrayList<NavigationPage> navigationPages;
+    private ActionBarDrawerToggle mDrawerToggleLeft;
+    private DrawerAdapterLeft mDrawerAdapterLeft;
 
     public interface OnToolbarItemClickedListener {
         void onClicked(int id);
@@ -77,7 +80,9 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
         initTabs();
         initDashboardComponent();
         attachView();
-        setupDrawerToggle();
+        setupDrawerToggleRight();
+        setupDrawerToggleLeft();
+
     }
 
     private void initDashboardComponent() {
@@ -279,20 +284,24 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
     public void setListener() {
         mBinding.toolBar.ivMenu.setOnClickListener(this);
         mBinding.toolBar.ivDrawer.setOnClickListener(this);
+        mBinding.listButton.setOnClickListener(this);
+
     }
 
 
     @Override
     public void onClick(View view) {
         if (mBinding.toolBar.ivDrawer == view) {
-            openDrawer();
+            openDrawerLeft();
+        }else if(view==mBinding.listButton){
+            openDrawerRight();
         }
     }
 
 
-    void setupDrawerToggle() {
+    void setupDrawerToggleRight() {
 
-        mDrawerToggle = new ActionBarDrawerToggle(this, mBinding.drawer, null, R.string.app_name, R.string.app_name) {
+        mDrawerToggleRight = new ActionBarDrawerToggle(this, mBinding.drawer, null, R.string.app_name, R.string.app_name) {
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
@@ -304,23 +313,56 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
             }
         };
         //This is necessary to change the icon of the Drawer Toggle upon state change.
-        mDrawerToggle.syncState();
-        mBinding.drawer.addDrawerListener(mDrawerToggle);
+        mDrawerToggleRight.syncState();
+        mBinding.drawer.addDrawerListener(mDrawerToggleRight);
 
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
          // RecyclerView has some built in animations to it, using the DefaultItemAnimator.
         // Specifically when you call notifyItemChanged() it does a fade animation for the changing
         // of the data in the ViewHolder. If you would like to disable this you can use the following:
-        RecyclerView.ItemAnimator animator = mBinding.layoutDrawer.rvDrawer.getItemAnimator();
+        RecyclerView.ItemAnimator animator = mBinding.layoutDrawerRight.rvDrawer.getItemAnimator();
         if (animator instanceof DefaultItemAnimator) {
             ((DefaultItemAnimator) animator).setSupportsChangeAnimations(false);
         }
         setListItem();
-        mDrawerAdapter = new DrawerViewAdapter(listDrawerExpandable, this);
-        mBinding.layoutDrawer.rvDrawer.setLayoutManager(layoutManager);
-        mBinding.layoutDrawer.rvDrawer.setAdapter(mDrawerAdapter);
+        mDrawerAdapterRight = new DrawerAdapterRight(listDrawerExpandable, this);
+        mBinding.layoutDrawerRight.rvDrawer.setLayoutManager(layoutManager);
+        mBinding.layoutDrawerRight.rvDrawer.setAdapter(mDrawerAdapterRight);
     }
+
+
+    void setupDrawerToggleLeft() {
+
+        mDrawerToggleLeft = new ActionBarDrawerToggle(this, mBinding.drawer, null, R.string.app_name, R.string.app_name) {
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+            }
+        };
+        //This is necessary to change the icon of the Drawer Toggle upon state change.
+        mDrawerToggleLeft.syncState();
+        mBinding.drawer.addDrawerListener(mDrawerToggleLeft);
+
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        // RecyclerView has some built in animations to it, using the DefaultItemAnimator.
+        // Specifically when you call notifyItemChanged() it does a fade animation for the changing
+        // of the data in the ViewHolder. If you would like to disable this you can use the following:
+        RecyclerView.ItemAnimator animator = mBinding.layoutDrawerLeft.rvDrawer.getItemAnimator();
+        if (animator instanceof DefaultItemAnimator) {
+            ((DefaultItemAnimator) animator).setSupportsChangeAnimations(false);
+        }
+        mDrawerAdapterLeft = new DrawerAdapterLeft(this);
+        mBinding.layoutDrawerLeft.rvDrawer.setLayoutManager(layoutManager);
+        mBinding.layoutDrawerLeft.rvDrawer.setAdapter(mDrawerAdapterLeft);
+    }
+
 
     private void setListItem() {
         for (int i = 0; i < 12; i++) {
@@ -342,7 +384,13 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
         return artistList;
     }
 
-    private void openDrawer() {
+    private void openDrawerLeft() {
+        if (!mBinding.drawer.isDrawerOpen(Gravity.LEFT)) {
+            mBinding.drawer.openDrawer(Gravity.LEFT);
+        }
+    }
+
+    private void openDrawerRight() {
         if (!mBinding.drawer.isDrawerOpen(Gravity.RIGHT)) {
             mBinding.drawer.openDrawer(Gravity.RIGHT);
         }
@@ -354,7 +402,7 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
         }
     }
 
-    @Override
+   /* @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         mDrawerAdapter.onSaveInstanceState(outState);
@@ -364,6 +412,6 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         mDrawerAdapter.onRestoreInstanceState(savedInstanceState);
-    }
+    }*/
 
 }
