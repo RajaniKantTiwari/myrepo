@@ -47,5 +47,15 @@
                 layout="@layout/layout_drawer"/>
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="@dimen/margin_270"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:clickable="true">
+
+            <include android:id="@+id/layoutDrawerLeft"
+                layout="@layout/layout_drawer"/>
+
+        </LinearLayout>
     </android.support.v4.widget.DrawerLayout>
 </layout>

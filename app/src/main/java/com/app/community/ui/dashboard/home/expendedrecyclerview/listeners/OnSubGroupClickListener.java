@@ -7,5 +7,5 @@ public interface OnSubGroupClickListener {
    * RecyclerView of a GroupViewHolder)
    * @return false if click expanded group, true if click collapsed group,subGroupPos gives value of cliking subGeoup
    */
-  boolean onSubGroupClick(int groupPos,int subGroupPos);
+  void onSubGroupClick(int groupPos,int subGroupPos);
 }

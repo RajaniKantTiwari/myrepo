@@ -55,9 +55,9 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
     // helper class for handling UI and click events of bottom-nav-bar
     private BottomNavigationBar mBottomNav;
     // list of Navigation pages to be shown
-    private List<NavigationPage> mNavigationPageList = new ArrayList<>();
+    //private List<NavigationPage> mNavigationPageList = new ArrayList<>();
 
-    private static final String STATE_CURRENT_TAB_ID = "current_tab_id";
+    //private static final String STATE_CURRENT_TAB_ID = "current_tab_id";
     private static final int MAIN_TAB_ID = BottomNavigationBar.MENU_BAR_1;
     private Fragment curFragment;
     private int curTabId = MAIN_TAB_ID;
@@ -245,7 +245,7 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
         if (pages.size() != 4) {
             throw new RuntimeException("List of NavigationPage must contain 4 members.");
         } else {
-            mNavigationPageList = pages;
+           // mNavigationPageList = pages;
             mBottomNav = new BottomNavigationBar(this, pages, this);
 //            if (savedInstanceState == null) {
             showFragment(rootTabFragment(MAIN_TAB_ID));
@@ -309,7 +309,7 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
 
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-// RecyclerView has some built in animations to it, using the DefaultItemAnimator.
+         // RecyclerView has some built in animations to it, using the DefaultItemAnimator.
         // Specifically when you call notifyItemChanged() it does a fade animation for the changing
         // of the data in the ViewHolder. If you would like to disable this you can use the following:
         RecyclerView.ItemAnimator animator = mBinding.layoutDrawer.rvDrawer.getItemAnimator();
@@ -323,7 +323,7 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
     }
 
     private void setListItem() {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 12; i++) {
             Genre genre = new Genre("Title" + i, setArtistList(i));
             listDrawerExpandable.add(genre);
 
@@ -332,6 +332,9 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
 
     private List<Artist> setArtistList(int number) {
         List<Artist> artistList = new ArrayList<>();
+        if(number%3==0){
+            return artistList;
+        }
         for (int i = 0; i < 5; i++) {
             Artist artist = new Artist("Artist" + number + i, false);
             artistList.add(artist);

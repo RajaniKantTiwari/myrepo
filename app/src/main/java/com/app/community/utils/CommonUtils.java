@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.InsetDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -151,10 +152,18 @@ public class CommonUtils {
 
     public static void clicked(View view){
         final Animation animation = new AlphaAnimation(1.0f, 0.7f);
-        animation.setDuration(500);
-
+        animation.setDuration(200);
         animation.setFillAfter(true);
         view.startAnimation(animation);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                final Animation animation = new AlphaAnimation(0.7f, 1.0f);
+                animation.setDuration(200);
+                animation.setFillAfter(true);
+                view.startAnimation(animation);
+            }
+        },200);
     }
 
     public static void setDialog(Dialog dialog) {

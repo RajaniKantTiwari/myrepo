@@ -13,6 +13,7 @@ import com.app.community.ui.dashboard.home.expendedrecyclerview.holder.GroupView
 import com.app.community.ui.dashboard.home.expendedrecyclerview.listeners.ExpandCollapseListener;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.listeners.GroupExpandCollapseListener;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.listeners.OnGroupClickListener;
+import com.app.community.ui.dashboard.home.expendedrecyclerview.listeners.OnSubGroupClickListener;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.model.ExpandableGroup;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.model.ExpandableList;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.model.ExpandableListPosition;
@@ -20,7 +21,7 @@ import com.app.community.ui.dashboard.home.expendedrecyclerview.model.Expandable
 import java.util.List;
 
 public abstract class ExpandableRecyclerViewAdapter<GVH extends GroupViewHolder, CVH extends ChildViewHolder>
-    extends RecyclerView.Adapter implements ExpandCollapseListener, OnGroupClickListener {
+    extends RecyclerView.Adapter implements ExpandCollapseListener, OnGroupClickListener,OnSubGroupClickListener {
 
   private static final String EXPAND_STATE_MAP = "expandable_recyclerview_adapter_expand_state_map";
 
@@ -28,6 +29,8 @@ public abstract class ExpandableRecyclerViewAdapter<GVH extends GroupViewHolder,
   private ExpandCollapseController expandCollapseController;
 
   private OnGroupClickListener groupClickListener;
+  private OnSubGroupClickListener subGroupClickListener;
+
   private GroupExpandCollapseListener expandCollapseListener;
 
   public ExpandableRecyclerViewAdapter(List<? extends ExpandableGroup> groups) {
@@ -56,6 +59,7 @@ public abstract class ExpandableRecyclerViewAdapter<GVH extends GroupViewHolder,
         return gvh;
       case ExpandableListPosition.CHILD:
         CVH cvh = onCreateChildViewHolder(parent, viewType);
+        cvh.onSubGroupClick(this);
         return cvh;
       default:
         throw new IllegalArgumentException("viewType is not valid");
@@ -173,6 +177,15 @@ public abstract class ExpandableRecyclerViewAdapter<GVH extends GroupViewHolder,
     }
     return expandCollapseController.toggleGroup(flatPos);
   }
+
+
+  @Override
+  public void onSubGroupClick(int groupPos,int subGroupPos) {
+    if (subGroupClickListener != null) {
+      subGroupClickListener.onSubGroupClick(groupPos,subGroupPos);
+    }
+  }
+
 
   /**
    * @param flatPos The flat list position of the group

@@ -46,6 +46,7 @@ public class HomeFragment extends DashboardFragment {
     }
 
     private void addFragment() {
+        mBinding.listButton.setTag(R.drawable.ic_location);
         mBinding.listButton.setVisibility(View.VISIBLE);
         event = new ProductEvent();
         event.setListMap(GeneralConstant.LIST_PRODUCT);
@@ -85,21 +86,28 @@ public class HomeFragment extends DashboardFragment {
 
     @Override
     public void onClick(View view) {
-       if (view == mBinding.listButton) {
+        if (view == mBinding.listButton) {
+            if ((int) mBinding.listButton.getTag() == R.drawable.ic_location) {
+                mBinding.listButton.setImageResource(R.drawable.ic_list);
+                mBinding.listButton.setTag(R.drawable.ic_list);
+            } else {
+                mBinding.listButton.setImageResource(R.drawable.ic_location);
+                mBinding.listButton.setTag(R.drawable.ic_location);
+            }
+            CommonUtils.clicked(mBinding.listButton);
             listMapConversion();
         }
     }
 
 
     private void listMapConversion() {
-        if (event.getListMap()==GeneralConstant.LIST_PRODUCT) {
+        if (event.getListMap() == GeneralConstant.LIST_PRODUCT) {
             event.setListMap(GeneralConstant.MAP_PRODUCT);
         } else {
             event.setListMap(GeneralConstant.LIST_PRODUCT);
         }
         EventBus.getDefault().post(event);
     }
-
 
 
     @Override
@@ -109,7 +117,7 @@ public class HomeFragment extends DashboardFragment {
                 ProductResponseData meetingEventResponseData = (ProductResponseData) response;
                 if (CommonUtils.isNotNull(meetingEventResponseData)) {
                     event.setProductList(meetingEventResponseData.getInfo());
-                   EventBus.getDefault().post(event);
+                    EventBus.getDefault().post(event);
                 }
             }
         }

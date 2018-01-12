@@ -10,7 +10,7 @@
             android:layout_gravity="bottom|end"
             android:layout_marginBottom="@dimen/margin_25"
             android:layout_marginEnd="@dimen/margin_15"
-            android:src="@drawable/ic_list"
+            android:src="@drawable/ic_location"
             app:backgroundTint="@color/white"
             android:visibility="gone"/>
     </FrameLayout>

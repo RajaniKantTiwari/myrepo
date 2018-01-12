@@ -51,7 +51,7 @@ public class WelcomeScreenActivity extends BaseActivity implements CustomDialogF
     }
 
     public void setListener() {
-        mBinding.tvCurrentLocation.setOnClickListener(this);
+        mBinding.layoutLocation.setOnClickListener(this);
         mBinding.tvManually.setOnClickListener(this);
     }
 
@@ -82,9 +82,11 @@ public class WelcomeScreenActivity extends BaseActivity implements CustomDialogF
 
     @Override
     public void onClick(View view) {
-        if (view == mBinding.tvCurrentLocation) {
+        if (view == mBinding.layoutLocation) {
+            CommonUtils.clicked(mBinding.layoutLocation);
             getCurrentLocation();
         }else if(view==mBinding.tvManually){
+            CommonUtils.clicked(mBinding.tvManually);
             address();
         }
     }

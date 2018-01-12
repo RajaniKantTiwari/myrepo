@@ -24,11 +24,11 @@ public abstract class GroupViewHolder extends RecyclerView.ViewHolder {
 
   public GroupViewHolder(ListItemProductsBinding mBinding, AppCompatActivity activity) {
     super(mBinding.getRoot());
-    mBinding.layoutView.setOnClickListener(new OnClickListener() {
+    mBinding.layoutProduct.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View view) {
         if (listener != null) {
-          mBinding.layoutView.setBackgroundColor(CommonUtils.getColor(activity, R.color.tab_selected));
+          mBinding.layoutProduct.setBackgroundColor(CommonUtils.getColor(activity, R.color.color_black));
           listener.onGroupClick(getAdapterPosition());
         }
       }

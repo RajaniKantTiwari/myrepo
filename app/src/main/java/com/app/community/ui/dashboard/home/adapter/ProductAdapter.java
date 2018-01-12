@@ -106,8 +106,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.Location
                 if(view==imageView||view==tvProductName||view==tvLocation){
                     itemClickListener.onItemClick(getAdapterPosition());
                 }else if(view==tvContact){
+                    CommonUtils.clicked(tvContact);
                     itemClickListener.onContactClick(getAdapterPosition());
                 }else if(view==tvView){
+                    CommonUtils.clicked(tvView);
                     itemClickListener.onMessageClick(getAdapterPosition());
                 }
             }

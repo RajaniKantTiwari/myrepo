@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.community.R;
-import com.app.community.databinding.FragmentConfirmBinding;
+import com.app.community.databinding.FragmentNewsBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
 
@@ -18,7 +18,7 @@ import com.app.community.ui.dashboard.DashboardFragment;
  */
 
 public class NewsFragment extends DashboardFragment {
-    private FragmentConfirmBinding mBinding;
+    private FragmentNewsBinding mBinding;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

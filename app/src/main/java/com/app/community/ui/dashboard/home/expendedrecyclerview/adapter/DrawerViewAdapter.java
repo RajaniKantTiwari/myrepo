@@ -3,7 +3,9 @@ package com.app.community.ui.dashboard.home.expendedrecyclerview.adapter;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
 import com.app.community.R;
@@ -43,16 +45,26 @@ public class DrawerViewAdapter extends ExpandableRecyclerViewAdapter<ProductView
   }
 
   @Override
-  public void onBindChildViewHolder(ProductSublistViewHolder holder, int flatPosition,
-                                    ExpandableGroup group, int childIndex) {
+  public void onBindChildViewHolder(ProductSublistViewHolder holder, int flatPosition,ExpandableGroup group, int childIndex) {
     final Artist artist = ((Genre) group).getItems().get(childIndex);
     holder.setArtistName(artist.getName());
+    holder.layoutChild.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Toast.makeText(activity,"Layout"+(flatPosition-childIndex)+" "+childIndex,Toast.LENGTH_SHORT).show();
+      }
+    });
+    holder.tvSubProductName.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Toast.makeText(activity,"TextView"+(flatPosition-childIndex)+" "+childIndex,Toast.LENGTH_SHORT).show();
+      }
+    });
   }
 
   @Override
   public void onBindGroupViewHolder(ProductViewHolder holder, int flatPosition,
                                     ExpandableGroup group) {
-
     holder.setGenreTitle(group);
   }
 }

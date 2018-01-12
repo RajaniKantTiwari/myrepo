@@ -4,6 +4,7 @@ package com.app.community.network;
 
 import com.app.community.network.request.LoginRequest;
 import com.app.community.network.request.VerifyMobileRequest;
+import com.app.community.network.request.cart.CartRequest;
 import com.app.community.network.request.dashboard.ProductRequest;
 import com.app.community.network.response.LoginResponse;
 import com.app.community.network.response.VerifyMobileResponse;
@@ -33,5 +34,12 @@ public interface ApiService {
     @POST("product/getproductdetails")
     Observable<ProductDetailsData> getProductDetail(@Body ProductRequest request);
 
+    @POST("cart/addcart")
+    Observable<ProductDetailsData> addToCart(@Body CartRequest request);
 
+    @POST("cart/deletecart")
+    Observable<ProductDetailsData> deleteCart();
+
+    @POST("cart/viewcart")
+    Observable<ProductDetailsData> viewCart(@Body CartRequest request);
 }

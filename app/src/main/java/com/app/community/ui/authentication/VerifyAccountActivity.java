@@ -85,8 +85,10 @@ public class VerifyAccountActivity extends AuthenticationActivity implements Tex
     @Override
     public void onClick(View view) {
         if (view == mBinding.tvResend) {
+            CommonUtils.clicked(mBinding.tvResend);
             presenter.getLoginDetail(this,new LoginRequest(mobileNumber));
         } else if (view == mBinding.tvChange) {
+            //CommonUtils.clicked(mBinding.tvChange);
             Bundle bundle=new Bundle();
             bundle.putString(GeneralConstant.TITLE,getResources().getString(R.string.please_enter_mobile_number));
             bundle.putBoolean(GeneralConstant.VISIBLE,true);

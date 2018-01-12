@@ -25,10 +25,13 @@
             android:textColor="@color/color_dark_grey"/>
         </LinearLayout>
         <ImageView
-            style="@style/wrap_wrap"
+            style="@style/match_match"
+            android:layout_weight="1"
             android:src="@drawable/welcome_screen"
-            android:layout_marginTop="@dimen/margin_20_minus"
-            android:layout_marginBottom="@dimen/margin_20_minus"/>
+            android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginStart="@dimen/margin_10"
+            android:layout_marginEnd="@dimen/margin_10"
+            android:layout_marginBottom="@dimen/margin_20"/>
         <LinearLayout
             style="@style/match_wrap"
             android:orientation="vertical"
@@ -41,6 +44,7 @@
                 android:textColor="@color/darker_blackish"
                 />
             <LinearLayout
+                android:id="@+id/layoutLocation"
                 style="@style/match_wrap"
                 android:background="@drawable/blue_round_btnbg"
                 android:layout_marginTop="@dimen/margin_20"

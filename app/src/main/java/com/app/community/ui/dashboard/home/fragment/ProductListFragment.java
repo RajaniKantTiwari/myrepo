@@ -156,7 +156,6 @@ public class ProductListFragment extends DashboardFragment implements ContactDia
                 startActivity(smsIntent);
             } catch (Exception e) {
                 getBaseActivity().showToast(getResources().getString(R.string.message_failed));
-
                 e.printStackTrace();
             }
     }
