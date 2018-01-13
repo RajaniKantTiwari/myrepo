@@ -32,12 +32,13 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 
+import static com.app.community.utils.GeneralConstant.REQUEST_CALL;
+
 /**
  * Created by Amul on 27/12/17.
  */
 
 public class ProductListFragment extends DashboardFragment implements ContactDialogFragment.ContactDialogListener {
-    private static final int REQUEST_CALL = 1;
     private FragmentLocationListBinding mBinding;
     private ProductAdapter mAdapter;
     private ArrayList<ProductResponse> productList;

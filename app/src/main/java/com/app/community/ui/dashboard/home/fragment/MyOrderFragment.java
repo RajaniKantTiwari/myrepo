@@ -12,11 +12,14 @@ import com.app.community.databinding.FragmentMyOrderBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.dashboard.DashboardFragment;
+import com.app.community.ui.dashboard.home.ConfirmOrderFragment;
 import com.app.community.ui.dashboard.home.event.MyOrderEvent;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 
 import org.greenrobot.eventbus.EventBus;
+
+import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 
 /**
  * Created by rajnikant on 31/12/17.
@@ -25,8 +28,12 @@ import org.greenrobot.eventbus.EventBus;
 public class MyOrderFragment extends DashboardFragment {
     private FragmentMyOrderBinding mBinding;
     private MyOrderEvent event;
-    public static MyOrderFragment newInstance(){
-        return new MyOrderFragment();
+    public static MyOrderFragment newInstance(int instance){
+        Bundle args = new Bundle();
+        args.putInt(ARGS_INSTANCE, instance);
+        MyOrderFragment fragment = new MyOrderFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Nullable

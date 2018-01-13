@@ -17,14 +17,19 @@ import com.app.community.databinding.LatestNewsRowItemBinding;
 public class LatestNewsAdapter extends RecyclerView.Adapter<LatestNewsAdapter.LatestNewsHolder> {
     private final LayoutInflater mInflater;
     private LatestNewsRowItemBinding mBinding;
+    private LatestNewsListener listener;
+    public interface LatestNewsListener{
 
-    public LatestNewsAdapter(AppCompatActivity activity){
+        void onItemClick(int adapterPosition);
+    }
+    public LatestNewsAdapter(AppCompatActivity activity,LatestNewsListener listener){
         mInflater=LayoutInflater.from(activity);
+        this.listener=listener;
     }
     @Override
     public LatestNewsHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mBinding=DataBindingUtil.inflate(mInflater, R.layout.latest_news_row_item, parent, false);
-        return new LatestNewsHolder(mBinding.getRoot());
+        return new LatestNewsHolder(mBinding);
     }
 
     @Override
@@ -34,11 +39,19 @@ public class LatestNewsAdapter extends RecyclerView.Adapter<LatestNewsAdapter.La
 
     @Override
     public int getItemCount() {
-        return 5;
+        return 15;
     }
-    class LatestNewsHolder extends RecyclerView.ViewHolder{
-       public LatestNewsHolder(View itemView) {
-           super(itemView);
+    class LatestNewsHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+       public LatestNewsHolder(LatestNewsRowItemBinding itemView) {
+           super(itemView.getRoot());
+           itemView.cvTrend.setOnClickListener(this);
        }
-   }
+
+        @Override
+        public void onClick(View view) {
+            if(listener!=null){
+                listener.onItemClick(getAdapterPosition());
+            }
+        }
+    }
 }

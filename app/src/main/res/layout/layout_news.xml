@@ -6,7 +6,7 @@
         style="@style/match_wrap">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvNews"
-            style="@style/match_match"/>
+            style="@style/match_wrap"/>
     </LinearLayout>
 
 </layout>

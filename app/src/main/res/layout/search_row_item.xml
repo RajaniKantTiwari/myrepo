@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/layoutNews"
+        style="@style/match_wrap">
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvSearchItem"
+                style="@style/textview_description_match"
+                android:layout_margin="@dimen/margin_8"
+                android:text="Lorem Ipsum has been the industry's Lorem Ipsum."
+                app:customFont="@string/font_regular" />
+            </LinearLayout>
+</layout>

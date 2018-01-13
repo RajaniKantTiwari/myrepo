@@ -30,6 +30,8 @@ public class DoctorCheckoutActivity extends DashboardInsideActivity {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_checkout);
         appointmentList=new ArrayList<>();
+        initializeData();
+        setListener();
     }
 
 
@@ -38,12 +40,10 @@ public class DoctorCheckoutActivity extends DashboardInsideActivity {
 
     }
 
-    @Override
     public void setListener() {
 
     }
 
-    @Override
     public void initializeData() {
         mAdapter=new AppointmentAdapter(this);
         setList();

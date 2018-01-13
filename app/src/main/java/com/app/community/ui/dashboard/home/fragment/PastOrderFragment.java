@@ -52,7 +52,7 @@ public class PastOrderFragment extends DashboardFragment {
 
     @Override
     public String getFragmentName() {
-        return null;
+        return PastOrderFragment.class.getSimpleName();
     }
 
     @Override

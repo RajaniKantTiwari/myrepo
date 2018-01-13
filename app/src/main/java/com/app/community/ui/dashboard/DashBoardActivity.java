@@ -37,6 +37,7 @@ import com.app.community.ui.dashboard.home.adapter.DrawerAdapterLeft;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.adapter.DrawerAdapterRight;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.model.Artist;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.model.Genre;
+import com.app.community.ui.dashboard.home.fragment.HomeFragment;
 import com.app.community.ui.dashboard.home.fragment.NewsFragment;
 import com.app.community.ui.dashboard.home.fragment.NewsTabFragment;
 import com.app.community.ui.dashboard.notification.NotificationFragment;
@@ -103,7 +104,8 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         setupDrawerToggleRight();
         setupDrawerToggleLeft();
         navigationControl(savedInstanceState);
-
+        initializeData();
+        setListener();
     }
 
     private void navigationControl(Bundle savedInstanceState) {
@@ -355,16 +357,14 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         getActivityComponent().inject(this);
     }
 
-    @Override
     public void initializeData() {
 
     }
 
-    @Override
     public void setListener() {
         mBinding.toolBar.ivMenu.setOnClickListener(this);
         mBinding.toolBar.ivDrawer.setOnClickListener(this);
-        mBinding.listButton.setOnClickListener(this);
+        mBinding.toolBar.ivRightDrawer.setOnClickListener(this);
 
     }
 
@@ -373,7 +373,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     public void onClick(View view) {
         if (mBinding.toolBar.ivDrawer == view) {
             openDrawerLeft();
-        }else if(view==mBinding.listButton){
+        }else if(view==mBinding.toolBar.ivRightDrawer){
             openDrawerRight();
         }
     }
@@ -522,7 +522,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
             case NOTIFICATION:
                 return NewsFragment.newInstance(0);
             case USER:
-                return NewsFragment.newInstance(0);
+                return HomeFragment.newInstance(0);
         }
         throw new IllegalStateException("Need to send an index that we know");
     }

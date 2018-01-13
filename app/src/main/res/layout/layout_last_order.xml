@@ -61,6 +61,13 @@
                     </LinearLayout>
                     <android.support.v4.widget.Space
                         style="@style/layout_hori_wrap_1"/>
+                    <LinearLayout
+                        android:id="@+id/layoutRating"
+                        style="@style/wrap_wrap"
+                        android:paddingTop="@dimen/margin_10"
+                        android:paddingBottom="@dimen/margin_10"
+                        android:gravity="center_vertical"
+                        >
                     <RatingBar
                         style="@style/Widget.AppCompat.RatingBar.Small"
                         android:layout_width="wrap_content"
@@ -70,6 +77,7 @@
                         android:max="5"
                         android:progressTint="@color/star_text_color"
                         android:rating="4.3" />
+                    </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>

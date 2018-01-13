@@ -39,6 +39,8 @@ public interface GeneralConstant {
     float MAX_ZOOM = 17;
     float TILT = 90;
     float BEARING = 45;
+    int REQUEST_CALL = 1;
+
     int PAGE_SIZE = 10;
 
     int ANIMATION_FROM_DEGREES = 0;

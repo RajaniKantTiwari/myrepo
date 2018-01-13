@@ -26,6 +26,7 @@ import com.app.community.BuildConfig;
 import com.app.community.R;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.dialogfragment.ContactDialogFragment;
+import com.app.community.ui.dialogfragment.ContactImpPlaceDialogFragment;
 import com.app.community.ui.dialogfragment.CustomDialogFragment;
 import com.app.community.ui.dialogfragment.OrderDialogFragment;
 import com.google.android.gms.common.ConnectionResult;
@@ -87,7 +88,14 @@ public class CommonUtils {
         // Show Alert CustomDialogFragment
         alertdFragment.show(fm, "");
     }
-
+    public static void showContactImpDialog(AppCompatActivity activity, Bundle bundle,ContactImpPlaceDialogFragment.ContactDialogListener listener) {
+        FragmentManager fm = activity.getSupportFragmentManager();
+        ContactImpPlaceDialogFragment alertdFragment = new ContactImpPlaceDialogFragment();
+        alertdFragment.addListener(listener);
+        alertdFragment.setArguments(bundle);
+        // Show Alert CustomDialogFragment
+        alertdFragment.show(fm, "");
+    }
 
     public static boolean isNotNull(Object object) {
         return object!=null;

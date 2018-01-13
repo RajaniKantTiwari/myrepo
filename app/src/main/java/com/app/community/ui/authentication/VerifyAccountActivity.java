@@ -46,6 +46,8 @@ public class VerifyAccountActivity extends AuthenticationActivity implements Tex
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_verify_account);
         showKeyboard();
+        initializeData();
+        setListener();
     }
 
     @Override
@@ -54,7 +56,6 @@ public class VerifyAccountActivity extends AuthenticationActivity implements Tex
         presenter.attachView(this);
     }
 
-    @Override
     public void setListener() {
         mBinding.edFirst.addTextChangedListener(this);
         mBinding.edSecond.addTextChangedListener(this);
@@ -70,7 +71,6 @@ public class VerifyAccountActivity extends AuthenticationActivity implements Tex
 
     }
 
-    @Override
     public void initializeData() {
         Intent intent = getIntent();
         if (isNotNull(intent)) {

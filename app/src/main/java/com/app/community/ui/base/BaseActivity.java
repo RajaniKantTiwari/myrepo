@@ -13,7 +13,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.app.community.R;
@@ -35,10 +34,10 @@ import com.app.community.utils.NetworkUtils;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import static com.app.community.ui.base.BaseActivity.AnimationType.FADE;
-import static com.app.community.ui.base.BaseActivity.AnimationType.SLIDE;
 import static com.app.community.ui.base.BaseActivity.AnimationType.DEFAULT;
+import static com.app.community.ui.base.BaseActivity.AnimationType.FADE;
 import static com.app.community.ui.base.BaseActivity.AnimationType.NONE;
+import static com.app.community.ui.base.BaseActivity.AnimationType.SLIDE;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.CATEGORY_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.CONFIRM_ORDER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.HOME_FRAGMENT;
@@ -64,37 +63,10 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
     private Snackbar mSnackbar;
     private boolean mAlive;
     private Dialog mLoadingDialog;
-    private ProgressBar progressBar;
-    public static final int MENU_CLICKED = 0;
-    public static final int BACK_CLICKED = 1;
 
     //to attach View
     public abstract void attachView();
 
-
-  /*  @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mActivityComponent = DaggerActivityComponent.builder().activityModule(new ActivityModule(this))
-                .applicationComponent(((NosApplication) getApplication()).getApplicationComponent())
-                .build();
-        //attachView();
-    }
-
-    public ActivityComponent getBaseActivityComponent() {
-        return mActivityComponent;
-    }*/
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        initializeData();
-        setListener();
-    }
-
-    public abstract void setListener();
-
-    public abstract void initializeData();
 
     @Override
     public void onError(String message, int requestCode) {
@@ -161,7 +133,7 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
             if (mLoadingDialog == null) {
                 mLoadingDialog = new Dialog(this, R.style.transDialog);
                 mLoadingDialog.setContentView(R.layout.view_progress_dialog);
-                progressBar = mLoadingDialog.findViewById(R.id.progress_bar);
+                mLoadingDialog.findViewById(R.id.progress_bar);
             }
             //progressBar.setIndeterminateTintList(ColorStateList.valueOf(ContextCompat.getColor(this, id)));
 
@@ -348,7 +320,6 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
         int FADE = 1;
         int DEFAULT = 2;
         int NONE = 3;
-
     }
 
 

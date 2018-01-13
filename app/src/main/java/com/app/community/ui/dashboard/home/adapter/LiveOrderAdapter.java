@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.community.R;
-import com.app.community.databinding.CartRowItemBinding;
 import com.app.community.databinding.OrderRowItemBinding;
 
 /**

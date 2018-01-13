@@ -30,14 +30,21 @@
             <ImageView
                 android:id="@+id/ivMenu"
                 style="@style/wrap_wrap"
-                android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/margin_40"
                 android:background="@android:color/transparent"
                 android:contentDescription="@null"
                 android:padding="@dimen/margin_12"
+                android:layout_toStartOf="@+id/ivRightDrawer"
                 android:src="@drawable/ic_search_white"
                  />
+            <ImageView
+                android:id="@+id/ivRightDrawer"
+                style="@style/wrap_wrap"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:background="@android:color/transparent"
+                android:padding="@dimen/margin_12"
+                android:src="@drawable/hamberg_icon"/>
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 </layout>

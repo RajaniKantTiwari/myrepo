@@ -1,8 +1,14 @@
 package com.app.community.ui.dashboard.home;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -23,16 +29,22 @@ import com.app.community.ui.dashboard.DashboardInsidePresenter;
 import com.app.community.ui.dashboard.home.adapter.HelpPlaceAdapter;
 import com.app.community.ui.dashboard.home.adapter.LatestNewsAdapter;
 import com.app.community.ui.dashboard.home.adapter.NewsAdapter;
-import com.app.community.ui.dashboard.home.event.FragmentEvent;
+import com.app.community.ui.dashboard.home.event.SearchProductEvent;
+import com.app.community.ui.dashboard.home.fragment.HomeFragment;
+import com.app.community.ui.dashboard.home.fragment.MyOrderFragment;
 import com.app.community.ui.dashboard.home.fragment.NewsFragment;
+import com.app.community.ui.dialogfragment.ContactImpPlaceDialogFragment;
 import com.app.community.utils.AddWelcomeChildView;
-import com.app.community.utils.GeneralConstant;
+import com.app.community.utils.CommonUtils;
+import com.app.community.utils.ExplicitIntent;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import javax.inject.Inject;
 
 import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
+import static com.app.community.utils.GeneralConstant.REQUEST_CALL;
 
 
 /**
@@ -40,7 +52,7 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
  * To inject activity reference.
  */
 
-public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapter.NewsListener {
+public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapter.NewsListener,LatestNewsAdapter.LatestNewsListener,HelpPlaceAdapter.HelpListener,ContactImpPlaceDialogFragment.ContactDialogListener {
 
     private FragmentWelcomehomeBinding mBinding;
     private HelpPlaceAdapter mImpPlaceAdapter;
@@ -54,11 +66,15 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
     private LayoutImpPlaceBinding mImportantPlaceBinding;
     private LayoutLatestNewsBinding mLatestBinding;
     private NewsAdapter mNewsAdapter;
+    private Intent callIntent;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding=DataBindingUtil.inflate(inflater,R.layout.fragment_welcomehome,container,false);
+        if(!EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().register(this);
+        }
         mWelcomeBinding=AddWelcomeChildView.addWelcomeSearchView(inflater,mBinding);
         mNewsViewBinding=AddWelcomeChildView.addNewsView(inflater,mBinding);
         mOfferBinding=AddWelcomeChildView.addOfferView(inflater,mBinding);
@@ -73,11 +89,11 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
         LinearLayoutManager placeManager=new LinearLayoutManager(getContext());
         placeManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mImportantPlaceBinding.rvImportantPlace.setLayoutManager(placeManager);
-        mImpPlaceAdapter=new HelpPlaceAdapter(getBaseActivity());
+        mImpPlaceAdapter=new HelpPlaceAdapter(getBaseActivity(),this);
         mImportantPlaceBinding.rvImportantPlace.setAdapter(mImpPlaceAdapter);
         LinearLayoutManager latestNewsManager=new LinearLayoutManager(getBaseActivity());
         mLatestBinding.rvLatestNews.setLayoutManager(latestNewsManager);
-        mLatestNewsAdapter=new LatestNewsAdapter(getBaseActivity());
+        mLatestNewsAdapter=new LatestNewsAdapter(getBaseActivity(),this);
         mLatestBinding.rvLatestNews.setAdapter(mLatestNewsAdapter);
 
 
@@ -97,7 +113,9 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
 
     @Override
     public void setListener() {
+        mWelcomeBinding.tvSearch.setOnClickListener(this);
         mLastOrderBinding.layoutLastOrder.setOnClickListener(this);
+        mLastOrderBinding.layoutRating.setOnClickListener(this);
     }
 
     @Override
@@ -113,14 +131,14 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
     @Override
     public void onClick(View view) {
       if(view==mLastOrderBinding.layoutLastOrder){
-           addFragment(GeneralConstant.FRAGMENTS.CONFIRM_ORDER_FRAGMENT);
-       }
+          mFragmentNavigation.pushFragment(ConfirmOrderFragment.newInstance(mInt+1));
+       }else if(view==mWelcomeBinding.tvSearch){
+          ExplicitIntent.getsInstance().navigateTo(getActivity(), SearchActivity.class);
+      }else if(view==mLastOrderBinding.layoutRating){
+          mFragmentNavigation.pushFragment(MyOrderFragment.newInstance(mInt+1));
+      }
     }
 
-    private void addFragment(int fragmentId) {
-        FragmentEvent event=new FragmentEvent(fragmentId,false,true);
-        EventBus.getDefault().post(event);
-    }
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
@@ -141,6 +159,69 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
         if (mFragmentNavigation != null) {
             mFragmentNavigation.pushFragment(NewsFragment.newInstance(mInt+1));
         }
-        //addFragment(GeneralConstant.FRAGMENTS.NEWS_FRAGMENT);
+    }
+
+    @Override
+    public void onItemClick(int adapterPosition) {
+        mFragmentNavigation.pushFragment(NewsFragment.newInstance(mInt+1));
+    }
+
+    @Override
+    public void itemHelpClicked(int adapterPosition) {
+        Bundle bundle = new Bundle();
+        //bundle.putParcelable(GeneralConstant.PRODUCT_INFO,productList.get(adapterPosition));
+        CommonUtils.showContactImpDialog(getBaseActivity(), bundle, this);
+    }
+
+    @Override
+    public void contact(String phoneNumber) {
+        callIntent = new Intent(Intent.ACTION_CALL);
+        callIntent.setData(Uri.parse("tel:"+phoneNumber));
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getBaseActivity(),new String[]{Manifest.permission.CALL_PHONE},REQUEST_CALL);
+            return;
+        } else
+            startActivity(callIntent);
+    }
+
+
+    @Override
+    public void message(String message) {
+        try {
+            Uri uri = Uri.parse("smsto:"+message);
+            // No permisison needed
+            Intent smsIntent = new Intent(Intent.ACTION_SENDTO, uri);
+            // Set the message to be sent
+            //smsIntent.putExtra("sms_body", "SMS application launched from stackandroid.com example");
+            startActivity(smsIntent);
+        } catch (Exception e) {
+            getBaseActivity().showToast(getResources().getString(R.string.message_failed));
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case REQUEST_CALL: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    startActivity(callIntent);
+                } else {
+                    getBaseActivity().showToast(getResources().getString(R.string.permition_denied));
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void onSearchProduct(SearchProductEvent event){
+        mFragmentNavigation.pushFragment(HomeFragment.newInstance(mInt+1));
     }
 }

@@ -38,6 +38,8 @@ public class ProductDetailsActivity extends DashboardInsideActivity {
         super.onCreate(savedInstanceState);
         mBinding=DataBindingUtil.setContentView(this,R.layout.activity_product_detail);
         initializeView();
+        initializeData();
+        setListener();
     }
 
     private void initializeView() {
@@ -55,12 +57,10 @@ public class ProductDetailsActivity extends DashboardInsideActivity {
         presenter.attachView(this);
     }
 
-    @Override
     public void setListener() {
 
     }
 
-    @Override
     public void initializeData() {
         mPhotoAdapter =new StoreAdapter(this);
         mBinding.photoRecycler.setAdapter(mPhotoAdapter);

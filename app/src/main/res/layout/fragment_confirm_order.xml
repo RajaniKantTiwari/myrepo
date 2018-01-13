@@ -60,6 +60,7 @@
                     />
                 </LinearLayout>
                 <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvHome"
                     style="@style/textview_title_wrap"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/margin_20"
@@ -75,6 +76,7 @@
                     android:background="@drawable/blue_round_btnbg" />
 
                 <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvRaiseAnIssue"
                     style="@style/textview_description_wrap"
                     android:padding="@dimen/margin_13"
                     android:text="@string/raise_an_issue"

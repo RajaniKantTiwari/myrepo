@@ -14,6 +14,7 @@ import com.app.community.network.response.dashboard.meeting.ProductResponseData;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.DashboardPresenter;
+import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.event.ProductEvent;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
@@ -21,6 +22,8 @@ import com.app.community.utils.GeneralConstant;
 import org.greenrobot.eventbus.EventBus;
 
 import javax.inject.Inject;
+
+import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 
 /**
  * Created by Amul on 13/11/17.
@@ -32,8 +35,12 @@ public class HomeFragment extends DashboardFragment {
     private ProductEvent event;
     FragmentHomeBinding mBinding;
 
-    public static HomeFragment newInstance() {
-        return new HomeFragment();
+    public static HomeFragment newInstance(int instance) {
+        Bundle args = new Bundle();
+        args.putInt(ARGS_INSTANCE, instance);
+        HomeFragment fragment = new HomeFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
 

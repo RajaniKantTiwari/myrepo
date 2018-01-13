@@ -4,15 +4,12 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.app.community.R;
-import com.app.community.databinding.ActivityConfirmOrderBinding;
 import com.app.community.databinding.ActivityDoctorDetailBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.dashboardinside.AppointMentResponse;
-import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.dashboard.DashboardInsideActivity;
 import com.app.community.ui.dashboard.home.adapter.AppointmentAdapter;
 
@@ -53,15 +50,6 @@ public class DoctorDetailsActivity extends DashboardInsideActivity {
 
     }
 
-    @Override
-    public void setListener() {
-
-    }
-
-    @Override
-    public void initializeData() {
-
-    }
 
     private void setList() {
         for(int i=0;i<10;i++){

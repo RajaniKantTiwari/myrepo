@@ -13,7 +13,10 @@ import com.app.community.databinding.FragmentHelpandsupportBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.SimpleDividerItemDecoration;
 import com.app.community.ui.dashboard.DashboardFragment;
+import com.app.community.ui.dashboard.home.ConfirmOrderFragment;
 import com.app.community.ui.dashboard.home.adapter.HelpSupportAdapter;
+
+import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 
 /**
  * Created by rajnikant on 31/12/17.
@@ -22,9 +25,7 @@ import com.app.community.ui.dashboard.home.adapter.HelpSupportAdapter;
 public class HelpandSupportFragment extends DashboardFragment {
     private FragmentHelpandsupportBinding mBinding;
     private HelpSupportAdapter mAdapter;
-    public static HelpandSupportFragment newInstance(){
-        return new HelpandSupportFragment();
-    }
+
 
     @Nullable
     @Override
@@ -70,5 +71,12 @@ public class HelpandSupportFragment extends DashboardFragment {
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
 
+    }
+    public static HelpandSupportFragment newInstance(int instance){
+        Bundle args = new Bundle();
+        args.putInt(ARGS_INSTANCE, instance);
+        HelpandSupportFragment fragment = new HelpandSupportFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 }

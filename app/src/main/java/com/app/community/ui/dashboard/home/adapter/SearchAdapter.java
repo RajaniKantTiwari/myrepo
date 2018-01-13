@@ -8,29 +8,30 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.community.R;
-import com.app.community.databinding.HelpPlaceRowBinding;
-import com.app.community.databinding.HelpSupportRowBinding;
+import com.app.community.databinding.OrderRowItemBinding;
+import com.app.community.databinding.SearchRowItemBinding;
 import com.app.community.utils.CommonUtils;
 
 /**
  * Created by ashok on 25/12/17.
  */
 
-public class HelpPlaceAdapter extends RecyclerView.Adapter<HelpPlaceAdapter.CartHolder> {
+public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.CartHolder> {
     private final LayoutInflater mInflater;
-    private HelpPlaceRowBinding mBinding;
-    private HelpListener listener;
-    public interface HelpListener{
+    private SearchRowItemBinding mBinding;
+    private SearchListener searchListener;
+    public interface SearchListener{
 
-        void itemHelpClicked(int adapterPosition);
+        void itemClicked(int adapterPosition);
     }
-    public HelpPlaceAdapter(AppCompatActivity activity,HelpListener listener){
-        this.listener=listener;
+
+    public SearchAdapter(AppCompatActivity activity,SearchListener searchListener){
         mInflater=LayoutInflater.from(activity);
+        this.searchListener=searchListener;
     }
     @Override
     public CartHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        mBinding=DataBindingUtil.inflate(mInflater, R.layout.help_place_row, parent, false);
+        mBinding=DataBindingUtil.inflate(mInflater, R.layout.search_row_item, parent, false);
         return new CartHolder(mBinding);
     }
 
@@ -44,17 +45,16 @@ public class HelpPlaceAdapter extends RecyclerView.Adapter<HelpPlaceAdapter.Cart
         return 5;
     }
     class CartHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-
-        public CartHolder(HelpPlaceRowBinding itemView) {
+       public CartHolder(SearchRowItemBinding itemView) {
            super(itemView.getRoot());
-           itemView.ivPlace.setOnClickListener(this);
+           itemView.tvSearchItem.setOnClickListener(this);
        }
 
         @Override
         public void onClick(View view) {
-            if(CommonUtils.isNotNull(listener)){
-                listener.itemHelpClicked(getAdapterPosition());
-            }
+          if(CommonUtils.isNotNull(searchListener)) {
+              searchListener.itemClicked(getAdapterPosition());
+          }
         }
     }
 }

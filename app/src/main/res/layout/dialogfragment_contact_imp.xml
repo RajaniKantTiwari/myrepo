@@ -1,0 +1,66 @@
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+<android.support.v7.widget.CardView
+    style="@style/match_wrap"
+    android:background="@drawable/dialog_bg"
+    app:cardCornerRadius="@dimen/dialog_radius"
+    android:elevation="@dimen/margin_5">
+        <LinearLayout
+            style="@style/match_wrap"
+            android:background="@drawable/white_round_btnbg"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_12">
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/ivName"
+                style="@style/textview_description_large_match"
+                android:layout_gravity="center"
+                android:text="Police Station"
+                android:gravity="center_horizontal" />
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/ivAddress"
+                style="@style/textview_description_smaller_match"
+                android:layout_gravity="center"
+                android:text="Sector 49, Gurgaon"
+                android:gravity="center_horizontal" />
+            <LinearLayout
+                style="@style/match_wrap"
+                android:layout_marginTop="@dimen/margin_25">
+                <android.support.v4.widget.Space
+                    style="@style/layout_hori_wrap_1" />
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvCall"
+                    style="@style/textview_description_smaller_wrap"
+                    android:text="@string/call_us"
+                    android:textAllCaps="true"
+                    android:gravity="center"
+                    android:drawableStart="@drawable/phone"
+                    android:drawablePadding="@dimen/margin_10"
+                    android:padding="@dimen/margin_5"
+                    />
+                <android.support.v4.widget.Space
+                    style="@style/layout_hori_wrap_2" />
+                <ImageView style="@style/view_layout_vertical" />
+                <android.support.v4.widget.Space
+                    style="@style/layout_hori_wrap_2" />
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvMessage"
+                    style="@style/textview_description_smaller_wrap"
+                    android:text="@string/view"
+                    android:gravity="center"
+                    android:textAllCaps="true"
+                    android:drawablePadding="@dimen/margin_10"
+                    android:padding="@dimen/margin_5"
+                    />
+                <android.support.v4.widget.Space
+                    style="@style/layout_hori_wrap_1" />
+            </LinearLayout>
+        </LinearLayout>
+</android.support.v7.widget.CardView>
+    </LinearLayout>
+</layout>

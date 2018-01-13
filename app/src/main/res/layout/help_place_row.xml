@@ -4,6 +4,7 @@
     android:orientation="vertical"
     style="@style/wrap_wrap">
     <ImageView
+        android:id="@+id/ivPlace"
         style="@style/image_90_80"
         android:src="@drawable/ambulance"/>
 </LinearLayout>

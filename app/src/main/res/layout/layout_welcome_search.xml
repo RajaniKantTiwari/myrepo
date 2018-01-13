@@ -29,8 +29,8 @@
                 app:customFont="@string/font_bold"
                 android:layout_marginTop="@dimen/margin_3"/>
 
-            <com.app.community.widget.CustomEditText
-                android:id="@+id/edSearch"
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvSearch"
                 style="@style/edit_text_style_medium"
                 android:padding="@dimen/margin_4"
                 android:layout_width="@dimen/margin_270"
