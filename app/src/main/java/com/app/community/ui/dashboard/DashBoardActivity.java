@@ -314,7 +314,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         navigationPages.add(page3);
         navigationPages.add(page4);
 
-       // setupBottomBarHolderActivity(navigationPages);
+        setupBottomBarHolderActivity(navigationPages);
 
     }
 
@@ -324,7 +324,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
      *
      * @param
      */
-   /* public void setupBottomBarHolderActivity(List<NavigationPage> pages) {
+    public void setupBottomBarHolderActivity(List<NavigationPage> pages) {
 
         // throw error if pages does not have 4 elements
         if (pages.size() != 4) {
@@ -333,12 +333,12 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
            // mNavigationPageList = pages;
             mBottomNav = new BottomNavigationBar(this, pages, this);
 //            if (savedInstanceState == null) {
-            showFragment(rootTabFragment(MAIN_TAB_ID));
+            //showFragment(rootTabFragment(MAIN_TAB_ID));
 //            }
             mBottomNav.selectItem(MAIN_TAB_ID);
         }
 
-    }*/
+    }
 
     /*public void setClickedListener(OnToolbarItemClickedListener onClickedListener) {
         this.onClickedListener = onClickedListener;
