@@ -110,7 +110,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
     @Override
     public void onClick(View view) {
       if(view==mLastOrderBinding.layoutLastOrder){
-           addFragment(GeneralConstant.FRAGMENTS.HOME_FRAGMENT);
+           addFragment(GeneralConstant.FRAGMENTS.CONFIRM_ORDER_FRAGMENT);
        }
     }
 

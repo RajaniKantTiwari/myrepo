@@ -6,6 +6,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.CATEGORY_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.CONFIRM_ORDER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.HOME_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.LIVEORDER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.NEWS_FRAGMENT;
@@ -49,7 +50,7 @@ public interface GeneralConstant {
 
     @IntDef({PRODUCT_MAP_FRAGMENT, PRODUCT_LIST, RECENT_FRAGMENT, CATEGORY_FRAGMENT,
             LIVEORDER_FRAGMENT, PASTORDER_FRAGMENT, WELCOME_HOME_FRAGMENT, NEWS_TAB_FRAGMENT
-            , HOME_FRAGMENT, NEWS_FRAGMENT})
+            , HOME_FRAGMENT, NEWS_FRAGMENT,CONFIRM_ORDER_FRAGMENT})
     @Retention(RetentionPolicy.SOURCE)
     @interface FRAGMENTS {
         int PRODUCT_MAP_FRAGMENT = 1;
@@ -62,5 +63,6 @@ public interface GeneralConstant {
         int NEWS_TAB_FRAGMENT = 8;
         int HOME_FRAGMENT = 9;
         int NEWS_FRAGMENT = 10;
+        int CONFIRM_ORDER_FRAGMENT = 11;
     }
 }
