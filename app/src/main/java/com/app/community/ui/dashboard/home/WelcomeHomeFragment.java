@@ -24,12 +24,15 @@ import com.app.community.ui.dashboard.home.adapter.HelpPlaceAdapter;
 import com.app.community.ui.dashboard.home.adapter.LatestNewsAdapter;
 import com.app.community.ui.dashboard.home.adapter.NewsAdapter;
 import com.app.community.ui.dashboard.home.event.FragmentEvent;
+import com.app.community.ui.dashboard.home.fragment.NewsFragment;
 import com.app.community.utils.AddWelcomeChildView;
 import com.app.community.utils.GeneralConstant;
 
 import org.greenrobot.eventbus.EventBus;
 
 import javax.inject.Inject;
+
+import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 
 
 /**
@@ -125,12 +128,19 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
     }
 
 
-    public static Fragment newInstance() {
-        return new WelcomeHomeFragment();
+    public static Fragment newInstance(int instance) {
+        Bundle args = new Bundle();
+        args.putInt(ARGS_INSTANCE, instance);
+        WelcomeHomeFragment fragment = new WelcomeHomeFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
     public void itemClick(int adapterPosition) {
-        addFragment(GeneralConstant.FRAGMENTS.NEWS_FRAGMENT);
+        if (mFragmentNavigation != null) {
+            mFragmentNavigation.pushFragment(NewsFragment.newInstance(mInt+1));
+        }
+        //addFragment(GeneralConstant.FRAGMENTS.NEWS_FRAGMENT);
     }
 }

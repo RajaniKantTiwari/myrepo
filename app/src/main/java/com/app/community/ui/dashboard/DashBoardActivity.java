@@ -14,6 +14,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.app.community.CommonApplication;
@@ -31,10 +32,13 @@ import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.base.BaseFragment;
 import com.app.community.ui.dashboard.home.BaseHomeFragment;
+import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.adapter.DrawerAdapterLeft;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.adapter.DrawerAdapterRight;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.model.Artist;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.model.Genre;
+import com.app.community.ui.dashboard.home.fragment.NewsFragment;
+import com.app.community.ui.dashboard.home.fragment.NewsTabFragment;
 import com.app.community.ui.dashboard.notification.NotificationFragment;
 import com.app.community.ui.dashboard.offer.OfferFragment;
 import com.app.community.ui.dashboard.user.UserFragment;
@@ -49,10 +53,10 @@ import javax.inject.Inject;
 public class DashBoardActivity extends BaseActivity implements BottomNavigationBar.BottomNavigationMenuClickListener, BaseFragment.FragmentNavigation, FragNavController.TransactionListener, FragNavController.RootFragmentListener {
 
     //Better convention to properly name the indices what they are in your app
-    private final int HOME = BottomNavigationBar.MENU_BAR_1;
-    private final int OFFER = BottomNavigationBar.MENU_BAR_2;
-    private final int NOTIFICATION = BottomNavigationBar.MENU_BAR_3;
-    private final int USER = BottomNavigationBar.MENU_BAR_4;
+    private final int HOME = FragNavController.TAB1;
+    private final int OFFER = FragNavController.TAB2;
+    private final int NOTIFICATION = FragNavController.TAB3;
+    private final int USER = FragNavController.TAB4;
     private FragNavController mNavController;
 
     private ActivityDashboardBinding mBinding;
@@ -132,24 +136,31 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         return mDashboardComponent;
     }
 
-    public void showFragment(@NonNull Fragment fragment) {
+  /*  public void showFragment(@NonNull Fragment fragment) {
         showFragment(fragment, true);
-    }
+    }*/
 
 
-    public void showFragment(@NonNull Fragment fragment, boolean addToBackStack) {
+   /* public void showFragment(@NonNull Fragment fragment, boolean addToBackStack) {
         if (curFragment != null && addToBackStack) {
             pushFragmentToBackStack(curTabId, curFragment);
         }
         replaceFragment(fragment);
-    }
+    }*/
 
-    @Override
+   /* @Override
     public void onBackPressed() {
         Pair<Integer, Fragment> pair = popFragmentFromBackStack();
         if (pair != null) {
             backTo(pair.first, pair.second);
         } else {
+            super.onBackPressed();
+        }
+    }*/
+
+    @Override
+    public void onBackPressed() {
+        if (!mNavController.popFragment()) {
             super.onBackPressed();
         }
     }
@@ -175,6 +186,20 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         curTabId = position;
         switch (position){
             case HOME:
+                mNavController.switchTab(HOME);
+                mNavController.clearStack();
+                break;
+            case OFFER:
+                mNavController.switchTab(OFFER);
+                mNavController.clearStack();
+                break;
+            case NOTIFICATION:
+                mNavController.switchTab(NOTIFICATION);
+                mNavController.clearStack();
+                break;
+            case USER:
+                mNavController.switchTab(USER);
+                mNavController.clearStack();
                 break;
         }
         /*if (curFragment != null) {
@@ -289,7 +314,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         navigationPages.add(page3);
         navigationPages.add(page4);
 
-        setupBottomBarHolderActivity(navigationPages);
+       // setupBottomBarHolderActivity(navigationPages);
 
     }
 
@@ -297,9 +322,9 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     /**
      * initializes the BottomBarHolderActivity with sent list of Navigation pages
      *
-     * @param pages
+     * @param
      */
-    public void setupBottomBarHolderActivity(List<NavigationPage> pages) {
+   /* public void setupBottomBarHolderActivity(List<NavigationPage> pages) {
 
         // throw error if pages does not have 4 elements
         if (pages.size() != 4) {
@@ -313,11 +338,11 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
             mBottomNav.selectItem(MAIN_TAB_ID);
         }
 
-    }
+    }*/
 
-    public void setClickedListener(OnToolbarItemClickedListener onClickedListener) {
+    /*public void setClickedListener(OnToolbarItemClickedListener onClickedListener) {
         this.onClickedListener = onClickedListener;
-    }
+    }*/
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
@@ -470,25 +495,64 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     }*/
 
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (mNavController != null) {
+            mNavController.onSaveInstanceState(outState);
+        }
+    }
+
 //control for tab navigation
     @Override
     public void pushFragment(Fragment fragment) {
-
+        if (mNavController != null) {
+            mNavController.pushFragment(fragment);
+        }
     }
+
 
     @Override
     public Fragment getRootFragment(int index) {
-        return null;
+        switch (index) {
+            case HOME:
+                return WelcomeHomeFragment.newInstance(0);
+            case OFFER:
+                return NewsFragment.newInstance(0);
+            case NOTIFICATION:
+                return NewsFragment.newInstance(0);
+            case USER:
+                return NewsFragment.newInstance(0);
+        }
+        throw new IllegalStateException("Need to send an index that we know");
     }
 
     @Override
-    public void onTabTransaction(@Nullable Fragment fragment, int index) {
-
+    public void onTabTransaction(Fragment fragment, int index) {
+        // If we have a backstack, show the back button
+        if (getSupportActionBar() != null && mNavController != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(!mNavController.isRootFragment());
+        }
     }
 
     @Override
     public void onFragmentTransaction(Fragment fragment, FragNavController.TransactionType transactionType) {
-
+        //do fragmentty stuff. Maybe change title, I'm not going to tell you how to live your life
+        // If we have a backstack, show the back button
+        if (getSupportActionBar() != null && mNavController != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(!mNavController.isRootFragment());
+        }
     }
    //end
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                mNavController.popFragment();
+                break;
+        }
+        return true;
+    }
 }

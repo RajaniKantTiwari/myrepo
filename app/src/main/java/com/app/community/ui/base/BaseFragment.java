@@ -15,7 +15,7 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 
 public abstract class BaseFragment extends Fragment implements MvpView,View.OnClickListener {
     private BaseActivity mActivity;
-    private FragmentNavigation mFragmentNavigation;
+    public FragmentNavigation mFragmentNavigation;
     public int mInt;
 
     public abstract void initializeData();

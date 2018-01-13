@@ -13,16 +13,19 @@ import com.app.community.databinding.FragmentNewsBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
 
+import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
+
 /**
  * Created by rajnikant on 31/12/17.
  */
 
 public class NewsFragment extends DashboardFragment {
     private FragmentNewsBinding mBinding;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding=DataBindingUtil.inflate(inflater, R.layout.fragment_news,container,false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_news, container, false);
         return mBinding.getRoot();
     }
 
@@ -33,7 +36,6 @@ public class NewsFragment extends DashboardFragment {
 
     @Override
     public void setListener() {
-
     }
 
     @Override
@@ -56,7 +58,11 @@ public class NewsFragment extends DashboardFragment {
 
     }
 
-    public static Fragment newInstance() {
-        return new NewsFragment();
+    public static Fragment newInstance(int instance) {
+        Bundle args = new Bundle();
+        args.putInt(ARGS_INSTANCE, instance);
+        NewsFragment fragment = new NewsFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 }
