@@ -131,6 +131,6 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
 
     @Override
     public void itemClick(int adapterPosition) {
-        addFragment(GeneralConstant.FRAGMENTS.NEWS_TAB_FRAGMENT);
+        addFragment(GeneralConstant.FRAGMENTS.NEWS_FRAGMENT);
     }
 }
