@@ -17,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.app.community.R;
+import com.app.community.ui.dashboard.home.ConfirmOrderFragment;
 import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.fragment.CategoryFragment;
 import com.app.community.ui.dashboard.home.fragment.HomeFragment;
@@ -39,6 +40,7 @@ import static com.app.community.ui.base.BaseActivity.AnimationType.SLIDE;
 import static com.app.community.ui.base.BaseActivity.AnimationType.DEFAULT;
 import static com.app.community.ui.base.BaseActivity.AnimationType.NONE;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.CATEGORY_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.CONFIRM_ORDER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.HOME_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.LIVEORDER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.NEWS_FRAGMENT;
@@ -275,6 +277,9 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
                 break;
             case NEWS_FRAGMENT:
                 fragment=new NewsFragment();
+                break;
+            case CONFIRM_ORDER_FRAGMENT:
+                fragment=new ConfirmOrderFragment();
                 break;
         }
         return fragment;
