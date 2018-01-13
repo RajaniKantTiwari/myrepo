@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
+import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
+
 
 /**
  * Created by ashok on 06/11/17.
@@ -13,6 +15,8 @@ import android.view.View;
 
 public abstract class BaseFragment extends Fragment implements MvpView,View.OnClickListener {
     private BaseActivity mActivity;
+    private FragmentNavigation mFragmentNavigation;
+    public int mInt;
 
     public abstract void initializeData();
 
@@ -38,6 +42,18 @@ public abstract class BaseFragment extends Fragment implements MvpView,View.OnCl
             BaseActivity activity = (BaseActivity) context;
             this.mActivity = activity;
             activity.onFragmentAttached();
+        }
+        if (context instanceof FragmentNavigation) {
+            mFragmentNavigation = (FragmentNavigation) context;
+        }
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle args = getArguments();
+        if (args != null) {
+            mInt = args.getInt(ARGS_INSTANCE);
         }
     }
 
@@ -95,5 +111,9 @@ public abstract class BaseFragment extends Fragment implements MvpView,View.OnCl
         void onFragmentAttached();
 
         void onFragmentDetached(String tag);
+    }
+
+    public interface FragmentNavigation {
+        void pushFragment(Fragment fragment);
     }
 }

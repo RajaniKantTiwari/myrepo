@@ -19,11 +19,17 @@ import android.view.View;
 import com.app.community.CommonApplication;
 import com.app.community.R;
 import com.app.community.databinding.ActivityDashboardBinding;
+import com.app.community.fragnav.FragNavController;
+import com.app.community.fragnav.FragNavSwitchController;
+import com.app.community.fragnav.FragNavTransactionOptions;
+import com.app.community.fragnav.tabhistory.FragNavTabHistoryController;
 import com.app.community.injector.component.DaggerDashboardComponent;
 import com.app.community.injector.component.DashboardComponent;
 import com.app.community.injector.module.DashboardModule;
 import com.app.community.navcontroller.BackStackActivity;
 import com.app.community.network.response.BaseResponse;
+import com.app.community.ui.base.BaseActivity;
+import com.app.community.ui.base.BaseFragment;
 import com.app.community.ui.dashboard.home.BaseHomeFragment;
 import com.app.community.ui.dashboard.home.adapter.DrawerAdapterLeft;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.adapter.DrawerAdapterRight;
@@ -40,7 +46,15 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class DashBoardActivity extends BackStackActivity implements BottomNavigationBar.BottomNavigationMenuClickListener {
+public class DashBoardActivity extends BaseActivity implements BottomNavigationBar.BottomNavigationMenuClickListener, BaseFragment.FragmentNavigation, FragNavController.TransactionListener, FragNavController.RootFragmentListener {
+
+    //Better convention to properly name the indices what they are in your app
+    private final int HOME = BottomNavigationBar.MENU_BAR_1;
+    private final int OFFER = BottomNavigationBar.MENU_BAR_2;
+    private final int NOTIFICATION = BottomNavigationBar.MENU_BAR_3;
+    private final int USER = BottomNavigationBar.MENU_BAR_4;
+    private FragNavController mNavController;
+
     private ActivityDashboardBinding mBinding;
 
     public DashboardComponent mDashboardComponent;
@@ -68,6 +82,8 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
     private ActionBarDrawerToggle mDrawerToggleLeft;
     private DrawerAdapterLeft mDrawerAdapterLeft;
 
+
+
     public interface OnToolbarItemClickedListener {
         void onClicked(int id);
     }
@@ -82,7 +98,26 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
         attachView();
         setupDrawerToggleRight();
         setupDrawerToggleLeft();
+        navigationControl(savedInstanceState);
 
+    }
+
+    private void navigationControl(Bundle savedInstanceState) {
+        boolean initial = savedInstanceState == null;
+        if(initial){
+            mBottomNav.selectItem(HOME);
+        }
+        mNavController = FragNavController.newBuilder(savedInstanceState, getSupportFragmentManager(), R.id.container)
+                .transactionListener(this)
+                .rootFragmentListener(this, 4)
+                .popStrategy(FragNavTabHistoryController.UNIQUE_TAB_HISTORY)
+                .switchController(new FragNavSwitchController() {
+                    @Override
+                    public void switchTab(int index, FragNavTransactionOptions transactionOptions) {
+                        mBottomNav.selectItem(index);
+                    }
+                })
+                .build();
     }
 
     private void initDashboardComponent() {
@@ -119,7 +154,7 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
         }
     }
 
-    @Override
+   /* @Override
     public void onTabSelected(int position) {
         changeIcon(position);
         if (curFragment != null) {
@@ -131,6 +166,26 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
             fragment = rootTabFragment(curTabId);
         }
         replaceFragment(fragment);
+    }*/
+
+
+    @Override
+    public void onTabSelected(int position) {
+        changeIcon(position);
+        curTabId = position;
+        switch (position){
+            case HOME:
+                break;
+        }
+        /*if (curFragment != null) {
+            pushFragmentToBackStack(curTabId, curFragment);
+        }
+        curTabId = position;
+        Fragment fragment = popFragmentFromBackStack(curTabId);
+        if (fragment == null) {
+            fragment = rootTabFragment(curTabId);
+        }
+        replaceFragment(fragment);*/
     }
 
     private void changeIcon(int position) {
@@ -414,4 +469,26 @@ public class DashBoardActivity extends BackStackActivity implements BottomNaviga
         mDrawerAdapter.onRestoreInstanceState(savedInstanceState);
     }*/
 
+
+//control for tab navigation
+    @Override
+    public void pushFragment(Fragment fragment) {
+
+    }
+
+    @Override
+    public Fragment getRootFragment(int index) {
+        return null;
+    }
+
+    @Override
+    public void onTabTransaction(@Nullable Fragment fragment, int index) {
+
+    }
+
+    @Override
+    public void onFragmentTransaction(Fragment fragment, FragNavController.TransactionType transactionType) {
+
+    }
+   //end
 }

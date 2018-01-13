@@ -21,6 +21,9 @@ import static com.app.community.utils.GeneralConstant.FRAGMENTS.WELCOME_HOME_FRA
  */
 
 public interface GeneralConstant {
+
+    String ARGS_INSTANCE = "com.app.constants";
+
     int PERMISSIONS_REQUEST_LOCATION = 99;
     long SPLASH_TIME = 100;
     String TITLE = "title";
