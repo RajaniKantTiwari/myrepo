@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -52,7 +53,8 @@ import static com.app.community.utils.GeneralConstant.REQUEST_CALL;
  * To inject activity reference.
  */
 
-public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapter.NewsListener,LatestNewsAdapter.LatestNewsListener,HelpPlaceAdapter.HelpListener,ContactImpPlaceDialogFragment.ContactDialogListener {
+public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapter.NewsListener,LatestNewsAdapter.LatestNewsListener,HelpPlaceAdapter.HelpListener,
+        ContactImpPlaceDialogFragment.ContactDialogListener {
 
     private FragmentWelcomehomeBinding mBinding;
     private HelpPlaceAdapter mImpPlaceAdapter;
@@ -186,8 +188,9 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
 
 
     @Override
-    public void message(String message) {
-        try {
+    public void view(String message) {
+        mFragmentNavigation.pushFragment(ProductDetailsFragment.newInstance(mInt+1));
+       /* try {
             Uri uri = Uri.parse("smsto:"+message);
             // No permisison needed
             Intent smsIntent = new Intent(Intent.ACTION_SENDTO, uri);
@@ -197,7 +200,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
         } catch (Exception e) {
             getBaseActivity().showToast(getResources().getString(R.string.message_failed));
             e.printStackTrace();
-        }
+        }*/
     }
 
     @Override
@@ -222,6 +225,12 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
 
     @Subscribe
     public void onSearchProduct(SearchProductEvent event){
-        mFragmentNavigation.pushFragment(HomeFragment.newInstance(mInt+1));
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mFragmentNavigation.pushFragment(HomeFragment.newInstance(mInt+1));
+            }
+        },200);
+
     }
 }

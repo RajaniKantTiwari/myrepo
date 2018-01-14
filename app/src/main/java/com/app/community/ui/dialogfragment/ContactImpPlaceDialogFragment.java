@@ -23,7 +23,7 @@ public class ContactImpPlaceDialogFragment extends DialogFragment implements Vie
 
     public interface ContactDialogListener {
         void contact(String phoneNumber);
-        void message(String message);
+        void view(String message);
     }
     public void addListener(ContactDialogListener listener) {
         this.listener = listener;
@@ -72,7 +72,7 @@ public class ContactImpPlaceDialogFragment extends DialogFragment implements Vie
             listener.contact(mobileNumber);
         } else if (view == mBinding.tvMessage) {
             dialog.cancel();
-            listener.message(mobileNumber);
+            listener.view(mobileNumber);
         }
     }
 }

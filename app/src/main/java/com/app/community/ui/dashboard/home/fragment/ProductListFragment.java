@@ -19,7 +19,7 @@ import com.app.community.databinding.FragmentLocationListBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.meeting.ProductResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
-import com.app.community.ui.dashboard.home.ProductDetailsActivity;
+import com.app.community.ui.dashboard.home.ProductDetailsFragment;
 import com.app.community.ui.dashboard.home.adapter.ProductAdapter;
 import com.app.community.ui.dashboard.home.event.ProductEvent;
 import com.app.community.ui.dialogfragment.ContactDialogFragment;
@@ -71,7 +71,7 @@ public class ProductListFragment extends DashboardFragment implements ContactDia
             @Override
             public void onItemClick(int adapterPosition) {
                 if (CommonUtils.isNotNull(productList) && productList.size() > adapterPosition) {
-                    ExplicitIntent.getsInstance().navigateTo(getBaseActivity(), ProductDetailsActivity.class);
+                    ExplicitIntent.getsInstance().navigateTo(getBaseActivity(), ProductDetailsFragment.class);
                 }
             }
 

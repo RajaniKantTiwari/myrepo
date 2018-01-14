@@ -99,13 +99,6 @@ public abstract class BaseFragment extends Fragment implements MvpView,View.OnCl
     public BaseActivity getBaseActivity() {
         return mActivity;
     }
-
-    /*public ActivityComponent getBaseActivityComponent() {
-        if (mActivity != null) {
-            return mActivity.getBaseActivityComponent();
-        }
-        return null;
-    }*/
     public interface Callback {
 
         void onFragmentAttached();
@@ -115,5 +108,6 @@ public abstract class BaseFragment extends Fragment implements MvpView,View.OnCl
 
     public interface FragmentNavigation {
         void pushFragment(Fragment fragment);
+        void popFragment();
     }
 }

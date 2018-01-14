@@ -28,7 +28,9 @@ public abstract class DashboardFragment extends BaseFragment {
         return null;
     }
 
-
+    public DashBoardActivity getDashboardActivity(){
+        return mActivity;
+    }
     public DashboardPresenter getPresenter() {
         return mActivity.mPresenter;
     }

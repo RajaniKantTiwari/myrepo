@@ -61,13 +61,9 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     private FragNavController mNavController;
 
     private ActivityDashboardBinding mBinding;
-
     public DashboardComponent mDashboardComponent;
     @Inject
     public DashboardPresenter mPresenter;
-
-    private OnToolbarItemClickedListener onClickedListener;
-
     //Sliding drawer
     private ActionBarDrawerToggle mDrawerToggleRight;
 
@@ -138,49 +134,12 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         return mDashboardComponent;
     }
 
-  /*  public void showFragment(@NonNull Fragment fragment) {
-        showFragment(fragment, true);
-    }*/
-
-
-   /* public void showFragment(@NonNull Fragment fragment, boolean addToBackStack) {
-        if (curFragment != null && addToBackStack) {
-            pushFragmentToBackStack(curTabId, curFragment);
-        }
-        replaceFragment(fragment);
-    }*/
-
-   /* @Override
-    public void onBackPressed() {
-        Pair<Integer, Fragment> pair = popFragmentFromBackStack();
-        if (pair != null) {
-            backTo(pair.first, pair.second);
-        } else {
-            super.onBackPressed();
-        }
-    }*/
-
     @Override
     public void onBackPressed() {
         if (!mNavController.popFragment()) {
             super.onBackPressed();
         }
     }
-
-   /* @Override
-    public void onTabSelected(int position) {
-        changeIcon(position);
-        if (curFragment != null) {
-            pushFragmentToBackStack(curTabId, curFragment);
-        }
-        curTabId = position;
-        Fragment fragment = popFragmentFromBackStack(curTabId);
-        if (fragment == null) {
-            fragment = rootTabFragment(curTabId);
-        }
-        replaceFragment(fragment);
-    }*/
-
 
     @Override
     public void onTabSelected(int position) {
@@ -193,26 +152,14 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
                 break;
             case OFFER:
                 mNavController.switchTab(OFFER);
-                mNavController.clearStack();
                 break;
             case NOTIFICATION:
                 mNavController.switchTab(NOTIFICATION);
-                mNavController.clearStack();
                 break;
             case USER:
                 mNavController.switchTab(USER);
-                mNavController.clearStack();
                 break;
         }
-        /*if (curFragment != null) {
-            pushFragmentToBackStack(curTabId, curFragment);
-        }
-        curTabId = position;
-        Fragment fragment = popFragmentFromBackStack(curTabId);
-        if (fragment == null) {
-            fragment = rootTabFragment(curTabId);
-        }
-        replaceFragment(fragment);*/
     }
 
     private void changeIcon(int position) {
@@ -253,30 +200,6 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         }
         mBottomNav.setIcon(navigationPages);
     }
-
-
-    private void backTo(int tabId, @NonNull Fragment fragment) {
-        if (tabId != curTabId) {
-            curTabId = tabId;
-            mBottomNav.selectItem(curTabId);
-        }
-        replaceFragment(fragment);
-        getSupportFragmentManager().executePendingTransactions();
-    }
-
-   /* private void backToRoot() {
-        if (isRootTabFragment(curFragment, curTabId)) {
-            return;
-        }
-        resetBackStackToRoot(curTabId);
-        Fragment rootFragment = popFragmentFromBackStack(curTabId);
-        assert rootFragment != null;
-        backTo(curTabId, rootFragment);
-    }
-
-    private boolean isRootTabFragment(@NonNull Fragment fragment, int tabId) {
-        return fragment.getClass() == rootTabFragment(tabId).getClass();
-    }*/
 
     private void replaceFragment(@NonNull Fragment fragment) {
         FragmentManager fm = getSupportFragmentManager();
@@ -342,9 +265,6 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
 
     }
 
-    /*public void setClickedListener(OnToolbarItemClickedListener onClickedListener) {
-        this.onClickedListener = onClickedListener;
-    }*/
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
@@ -482,18 +402,6 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         }
     }
 
-   /* @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        mDrawerAdapter.onSaveInstanceState(outState);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        mDrawerAdapter.onRestoreInstanceState(savedInstanceState);
-    }*/
-
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -508,6 +416,13 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     public void pushFragment(Fragment fragment) {
         if (mNavController != null) {
             mNavController.pushFragment(fragment);
+        }
+    }
+
+    @Override
+    public void popFragment() {
+        if (mNavController != null) {
+            mNavController.popFragment();
         }
     }
 
@@ -554,5 +469,8 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
                 break;
         }
         return true;
+    }
+    public void setTile(String title){
+
     }
 }

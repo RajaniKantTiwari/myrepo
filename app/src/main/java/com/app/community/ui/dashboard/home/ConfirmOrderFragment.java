@@ -49,12 +49,13 @@ public class ConfirmOrderFragment extends BaseFragment {
     @Override
     public void setListener() {
         mBinding.tvRaiseAnIssue.setOnClickListener(this);
+        mBinding.tvHome.setOnClickListener(this);
 
     }
 
    @Override
    public String getFragmentName() {
-      return null;
+      return ConfirmOrderFragment.class.getSimpleName();
    }
 
    @Override
@@ -65,6 +66,8 @@ public class ConfirmOrderFragment extends BaseFragment {
     public void onClick(View view) {
       if(view==mBinding.tvRaiseAnIssue){
           mFragmentNavigation.pushFragment(HelpandSupportFragment.newInstance(mInt+1));
+      }else if(view==mBinding.tvHome){
+          mFragmentNavigation.popFragment();
       }
     }
 

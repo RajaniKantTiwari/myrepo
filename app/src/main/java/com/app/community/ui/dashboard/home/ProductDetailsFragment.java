@@ -3,22 +3,25 @@ package com.app.community.ui.dashboard.home;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.app.community.R;
-import com.app.community.databinding.ActivityProductDetailBinding;
+import com.app.community.databinding.FragmentProductDetailBinding;
 import com.app.community.network.request.dashboard.ProductRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.SimpleDividerItemDecoration;
-import com.app.community.ui.base.BaseActivity;
-import com.app.community.ui.dashboard.DashboardInsideActivity;
+import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.DashboardInsidePresenter;
 import com.app.community.ui.dashboard.home.adapter.ReviewAdapter;
 import com.app.community.ui.dashboard.home.adapter.StoreAdapter;
-import com.app.community.ui.presenter.AuthenticationPresenter;
 
 import javax.inject.Inject;
+
+import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 
 
 /**
@@ -26,27 +29,27 @@ import javax.inject.Inject;
  * To inject activity reference.
  */
 
-public class ProductDetailsActivity extends DashboardInsideActivity {
+public class ProductDetailsFragment extends DashboardFragment {
 
-    private ActivityProductDetailBinding mBinding;
+    private FragmentProductDetailBinding mBinding;
     private StoreAdapter mPhotoAdapter;
     private ReviewAdapter mReviewAdapter;
     @Inject
     DashboardInsidePresenter presenter;
+
+    @Nullable
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mBinding=DataBindingUtil.setContentView(this,R.layout.activity_product_detail);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        mBinding= DataBindingUtil.inflate(inflater,R.layout.fragment_product_detail,container,false);
         initializeView();
-        initializeData();
-        setListener();
+        return mBinding.getRoot();
     }
 
     private void initializeView() {
-        LinearLayoutManager photoManager=new LinearLayoutManager(this);
+        LinearLayoutManager photoManager=new LinearLayoutManager(getDashboardActivity());
         photoManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mBinding.photoRecycler.setLayoutManager(photoManager);
-        LinearLayoutManager reviewManager=new LinearLayoutManager(this);
+        LinearLayoutManager reviewManager=new LinearLayoutManager(getDashboardActivity());
         mBinding.rvReview.setLayoutManager(reviewManager);
         mBinding.rvReview.addItemDecoration(new SimpleDividerItemDecoration(getResources()));
     }
@@ -61,12 +64,17 @@ public class ProductDetailsActivity extends DashboardInsideActivity {
 
     }
 
+    @Override
+    public String getFragmentName() {
+        return ProductDetailsFragment.class.getSimpleName();
+    }
+
     public void initializeData() {
-        mPhotoAdapter =new StoreAdapter(this);
+        mPhotoAdapter =new StoreAdapter(getDashboardActivity());
         mBinding.photoRecycler.setAdapter(mPhotoAdapter);
-        mReviewAdapter=new ReviewAdapter(this);
+        mReviewAdapter=new ReviewAdapter(getDashboardActivity());
         mBinding.rvReview.setAdapter(mReviewAdapter);
-        presenter.getProductDetails(this,new ProductRequest(3,8));
+        presenter.getProductDetails(getDashboardActivity(),new ProductRequest(3,8));
     }
 
     @Override
@@ -77,5 +85,13 @@ public class ProductDetailsActivity extends DashboardInsideActivity {
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
 
+    }
+
+    public static Fragment newInstance(int instance) {
+        Bundle args = new Bundle();
+        args.putInt(ARGS_INSTANCE, instance);
+        ProductDetailsFragment fragment = new ProductDetailsFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 }

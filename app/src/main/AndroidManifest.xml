@@ -26,7 +26,7 @@
         <activity android:name=".ui.authentication.LoginActivity"/>
         <activity android:name=".ui.authentication.VerifyAccountActivity"/>
 
-        <activity android:name=".ui.dashboard.home.ProductDetailsActivity"
+        <activity android:name=".ui.dashboard.home.ProductDetailsFragment"
             android:theme="@style/product_description"/>
 
         <activity
