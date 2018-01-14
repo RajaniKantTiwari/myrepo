@@ -13,8 +13,9 @@ import com.app.community.databinding.FragmentHelpandsupportBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.SimpleDividerItemDecoration;
 import com.app.community.ui.dashboard.DashboardFragment;
-import com.app.community.ui.dashboard.home.ConfirmOrderFragment;
 import com.app.community.ui.dashboard.home.adapter.HelpSupportAdapter;
+import com.app.community.ui.dialogfragment.OrderDialogFragment;
+import com.app.community.utils.CommonUtils;
 
 import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 
@@ -22,7 +23,7 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
  * Created by rajnikant on 31/12/17.
  */
 
-public class HelpandSupportFragment extends DashboardFragment {
+public class HelpAndSupportFragment extends DashboardFragment implements HelpSupportAdapter.HelpSupportListener,OrderDialogFragment.OrderDialogListener {
     private FragmentHelpandsupportBinding mBinding;
     private HelpSupportAdapter mAdapter;
 
@@ -37,7 +38,7 @@ public class HelpandSupportFragment extends DashboardFragment {
 
     private void initializeAdapter() {
         LinearLayoutManager layoutManager=new LinearLayoutManager(getBaseActivity());
-        mAdapter=new HelpSupportAdapter(getBaseActivity());
+        mAdapter=new HelpSupportAdapter(getBaseActivity(),this);
         mBinding.rvChoice.setLayoutManager(layoutManager);
         mBinding.rvChoice.addItemDecoration(new SimpleDividerItemDecoration(getResources()));
         mBinding.rvChoice.setAdapter(mAdapter);
@@ -55,7 +56,7 @@ public class HelpandSupportFragment extends DashboardFragment {
 
     @Override
     public String getFragmentName() {
-        return HelpandSupportFragment.class.getSimpleName();
+        return HelpAndSupportFragment.class.getSimpleName();
     }
 
     @Override
@@ -72,11 +73,23 @@ public class HelpandSupportFragment extends DashboardFragment {
     public void onSuccess(BaseResponse response, int requestCode) {
 
     }
-    public static HelpandSupportFragment newInstance(int instance){
+    public static HelpAndSupportFragment newInstance(int instance){
         Bundle args = new Bundle();
         args.putInt(ARGS_INSTANCE, instance);
-        HelpandSupportFragment fragment = new HelpandSupportFragment();
+        HelpAndSupportFragment fragment = new HelpAndSupportFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void itemClicked(int adapterPosition, boolean isChecked) {
+        if(isChecked){
+            CommonUtils.showOrderDialog(getDashboardActivity(),null,this);
+        }
+    }
+
+    @Override
+    public void submit(String submit) {
+
     }
 }

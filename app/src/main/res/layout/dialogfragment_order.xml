@@ -41,7 +41,7 @@
                 app:customFont="@string/font_regular"/>
             <com.app.community.widget.CustomEditText
                 android:layout_marginTop="@dimen/margin_15"
-                android:id="@+id/ivAddress"
+                android:id="@+id/edFeedBack"
                 style="@style/edit_text_style_larger"
                 android:textColorHint="@color/background"
                 android:hint="@string/any_other_feedback"
@@ -52,7 +52,7 @@
                 android:layout_marginBottom="@dimen/margin_30">
                 <android.support.v4.widget.Space style="@style/layout_hori_wrap_1" />
                 <com.app.community.widget.CustomTextView
-                    android:id="@+id/tvMessage"
+                    android:id="@+id/tvSubmit"
                     style="@style/button_large_wrap"
                     android:padding="@dimen/margin_6"
                     android:gravity="center"

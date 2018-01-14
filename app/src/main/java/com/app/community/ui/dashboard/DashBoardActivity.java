@@ -74,9 +74,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     //private List<NavigationPage> mNavigationPageList = new ArrayList<>();
 
     //private static final String STATE_CURRENT_TAB_ID = "current_tab_id";
-    private static final int MAIN_TAB_ID = BottomNavigationBar.MENU_BAR_1;
-    private Fragment curFragment;
-    private int curTabId = MAIN_TAB_ID;
+    private static final int MAIN_TAB_ID = FragNavController.TAB1;
     private DrawerAdapterRight mDrawerAdapterRight;
     private List<Genre> listDrawerExpandable;
     private ArrayList<NavigationPage> navigationPages;
@@ -144,11 +142,10 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     @Override
     public void onTabSelected(int position) {
         changeIcon(position);
-        curTabId = position;
         switch (position){
             case HOME:
                 mNavController.switchTab(HOME);
-                mNavController.clearStack();
+                //mNavController.clearStack();
                 break;
             case OFFER:
                 mNavController.switchTab(OFFER);
@@ -201,37 +198,12 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         mBottomNav.setIcon(navigationPages);
     }
 
-    private void replaceFragment(@NonNull Fragment fragment) {
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction tr = fm.beginTransaction();
-        tr.replace(R.id.container, fragment);
-        tr.commitAllowingStateLoss();
-        curFragment = fragment;
-    }
-
-
-    @NonNull
-    private Fragment rootTabFragment(int tabId) {
-        switch (tabId) {
-            case BottomNavigationBar.MENU_BAR_1:
-                return BaseHomeFragment.newInstance();
-            case BottomNavigationBar.MENU_BAR_2:
-                return OfferFragment.newInstance();
-            case BottomNavigationBar.MENU_BAR_3:
-                return NotificationFragment.newInstance();
-            case BottomNavigationBar.MENU_BAR_4:
-                return UserFragment.newInstance();
-            default:
-                throw new IllegalArgumentException();
-        }
-    }
-
 
     private void initTabs() {
-        NavigationPage page1 = new NavigationPage("", ContextCompat.getDrawable(this, R.drawable.ic_home), rootTabFragment(BottomNavigationBar.MENU_BAR_1));
-        NavigationPage page2 = new NavigationPage("", ContextCompat.getDrawable(this, R.drawable.ic_gift_light), rootTabFragment(BottomNavigationBar.MENU_BAR_2));
-        NavigationPage page3 = new NavigationPage("", ContextCompat.getDrawable(this, R.drawable.ic_notification_light), rootTabFragment(BottomNavigationBar.MENU_BAR_3));
-        NavigationPage page4 = new NavigationPage("", ContextCompat.getDrawable(this, R.drawable.ic_user_light), rootTabFragment(BottomNavigationBar.MENU_BAR_4));
+        NavigationPage page1 = new NavigationPage("", ContextCompat.getDrawable(this, R.drawable.ic_home), getRootFragment(HOME));
+        NavigationPage page2 = new NavigationPage("", ContextCompat.getDrawable(this, R.drawable.ic_gift_light), getRootFragment(OFFER));
+        NavigationPage page3 = new NavigationPage("", ContextCompat.getDrawable(this, R.drawable.ic_notification_light), getRootFragment(NOTIFICATION));
+        NavigationPage page4 = new NavigationPage("", ContextCompat.getDrawable(this, R.drawable.ic_user_light), getRootFragment(USER));
 
         navigationPages = new ArrayList<>();
         navigationPages.add(page1);
@@ -433,11 +405,11 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
             case HOME:
                 return WelcomeHomeFragment.newInstance(0);
             case OFFER:
-                return NewsFragment.newInstance(0);
+                return OfferFragment.newInstance(0);
             case NOTIFICATION:
-                return NewsFragment.newInstance(0);
+                return NotificationFragment.newInstance(0);
             case USER:
-                return HomeFragment.newInstance(0);
+                return UserFragment.newInstance(0);
         }
         throw new IllegalStateException("Need to send an index that we know");
     }
@@ -471,6 +443,6 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         return true;
     }
     public void setTile(String title){
-
+      mBinding.toolBar.tvHeading.setText(title);
     }
 }

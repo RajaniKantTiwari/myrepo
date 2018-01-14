@@ -4,9 +4,9 @@
     android:orientation="vertical"
     style="@style/match_wrap">
     <RadioButton
+        android:id="@+id/radioHelp"
         style="@style/textview_description_match"
         android:buttonTint="@color/radio_unchecked"
-        android:checked="true"
         android:paddingStart="@dimen/margin_8"
         android:text="@string/pick_on_the_way"
         android:textStyle="bold"

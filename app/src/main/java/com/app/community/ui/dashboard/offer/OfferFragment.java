@@ -3,6 +3,7 @@ package com.app.community.ui.dashboard.offer;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +13,12 @@ import com.app.community.R;
 import com.app.community.databinding.FragmentOfferBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
+import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.presenter.AuthenticationPresenter;
 
 import javax.inject.Inject;
+
+import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 
 /**
  * Created by ashok on 13/11/17.
@@ -27,8 +31,12 @@ public class OfferFragment extends DashboardFragment {
     private FragmentOfferBinding mBinding;
 
 
-    public static OfferFragment newInstance(){
-        return new OfferFragment();
+    public static Fragment newInstance(int instance){
+        Bundle args = new Bundle();
+        args.putInt(ARGS_INSTANCE, instance);
+        OfferFragment fragment = new OfferFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
     @Nullable
     @Override

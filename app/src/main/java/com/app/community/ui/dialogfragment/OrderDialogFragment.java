@@ -18,12 +18,10 @@ public class OrderDialogFragment extends DialogFragment implements View.OnClickL
     private Dialog dialog;
     private DialogfragmentOrderBinding mBinding;
     private OrderDialogListener listener;
-    private String mobileNumber;
     private ProductResponse productInfo;
 
     public interface OrderDialogListener {
-        void contact(String phoneNumber);
-        void message(String message);
+        void submit(String submit);
     }
     public void addListener(OrderDialogListener listener) {
         this.listener = listener;
@@ -52,23 +50,20 @@ public class OrderDialogFragment extends DialogFragment implements View.OnClickL
          productInfo=bundle.getParcelable(GeneralConstant.PRODUCT_INFO);
          if(CommonUtils.isNotNull(productInfo)){
              mBinding.tvName.setText(productInfo.getName());
-             mBinding.ivAddress.setText(productInfo.getAddress());
-             mobileNumber=productInfo.getPhoneno();
-
          }
         }
     }
 
     public void setListener() {
-        mBinding.tvMessage.setOnClickListener(this);
+        mBinding.tvSubmit.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        if (view == mBinding.tvMessage) {
+        if (view == mBinding.tvSubmit) {
             dialog.cancel();
             if(CommonUtils.isNotNull(listener)){
-                listener.message(mobileNumber);
+                listener.submit(mBinding.edFeedBack.getText().toString());
             }
         }
     }

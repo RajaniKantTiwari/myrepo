@@ -109,8 +109,10 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
 
     @Override
     public void attachView() {
-        getActivityComponent().inject(this);
-        presenter.attachView(this);
+        if(CommonUtils.isNotNull(getActivityComponent())){
+            getActivityComponent().inject(this);
+            presenter.attachView(this);
+        }
     }
 
     @Override
@@ -171,7 +173,6 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
     @Override
     public void itemHelpClicked(int adapterPosition) {
         Bundle bundle = new Bundle();
-        //bundle.putParcelable(GeneralConstant.PRODUCT_INFO,productList.get(adapterPosition));
         CommonUtils.showContactImpDialog(getBaseActivity(), bundle, this);
     }
 
@@ -190,17 +191,6 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
     @Override
     public void view(String message) {
         mFragmentNavigation.pushFragment(ProductDetailsFragment.newInstance(mInt+1));
-       /* try {
-            Uri uri = Uri.parse("smsto:"+message);
-            // No permisison needed
-            Intent smsIntent = new Intent(Intent.ACTION_SENDTO, uri);
-            // Set the message to be sent
-            //smsIntent.putExtra("sms_body", "SMS application launched from stackandroid.com example");
-            startActivity(smsIntent);
-        } catch (Exception e) {
-            getBaseActivity().showToast(getResources().getString(R.string.message_failed));
-            e.printStackTrace();
-        }*/
     }
 
     @Override
@@ -230,7 +220,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
             public void run() {
                 mFragmentNavigation.pushFragment(HomeFragment.newInstance(mInt+1));
             }
-        },200);
+        },100);
 
     }
 }

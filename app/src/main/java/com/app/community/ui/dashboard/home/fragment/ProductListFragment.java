@@ -71,7 +71,8 @@ public class ProductListFragment extends DashboardFragment implements ContactDia
             @Override
             public void onItemClick(int adapterPosition) {
                 if (CommonUtils.isNotNull(productList) && productList.size() > adapterPosition) {
-                    ExplicitIntent.getsInstance().navigateTo(getBaseActivity(), ProductDetailsFragment.class);
+                    mFragmentNavigation.pushFragment(ProductDetailsFragment.newInstance(mInt+1));
+                    //ExplicitIntent.getsInstance().navigateTo(getBaseActivity(), ProductDetailsFragment.class);
                 }
             }
 

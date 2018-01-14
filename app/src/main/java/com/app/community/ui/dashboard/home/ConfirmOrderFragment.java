@@ -9,11 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.community.R;
-import com.app.community.databinding.FragmentConfirmBinding;
 import com.app.community.databinding.FragmentConfirmOrderBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.base.BaseFragment;
-import com.app.community.ui.dashboard.home.fragment.HelpandSupportFragment;
+import com.app.community.ui.dashboard.home.fragment.HelpAndSupportFragment;
+import com.app.community.utils.CommonUtils;
 
 import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 
@@ -25,23 +25,17 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 
 public class ConfirmOrderFragment extends BaseFragment {
 
- private FragmentConfirmOrderBinding mBinding;
+    private FragmentConfirmOrderBinding mBinding;
 
-    /*@Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-          mBinding=DataBindingUtil.setContentView(this,R.layout.activity_confirm_order);
 
-    }*/
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_confirm_order, container, false);
+        return mBinding.getRoot();
+    }
 
-   @Nullable
-   @Override
-   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-      mBinding=DataBindingUtil.inflate(inflater,R.layout.fragment_confirm_order,container,false);
-      return mBinding.getRoot();
-   }
-
-   @Override
+    @Override
     public void attachView() {
 
     }
@@ -53,22 +47,24 @@ public class ConfirmOrderFragment extends BaseFragment {
 
     }
 
-   @Override
-   public String getFragmentName() {
-      return ConfirmOrderFragment.class.getSimpleName();
-   }
+    @Override
+    public String getFragmentName() {
+        return ConfirmOrderFragment.class.getSimpleName();
+    }
 
-   @Override
+    @Override
     public void initializeData() {
     }
 
     @Override
     public void onClick(View view) {
-      if(view==mBinding.tvRaiseAnIssue){
-          mFragmentNavigation.pushFragment(HelpandSupportFragment.newInstance(mInt+1));
-      }else if(view==mBinding.tvHome){
-          mFragmentNavigation.popFragment();
-      }
+        if (view == mBinding.tvRaiseAnIssue) {
+            CommonUtils.clicked(mBinding.tvRaiseAnIssue);
+            mFragmentNavigation.pushFragment(HelpAndSupportFragment.newInstance(mInt + 1));
+        } else if (view == mBinding.tvHome) {
+            CommonUtils.clicked(mBinding.tvHome);
+            mFragmentNavigation.popFragment();
+        }
     }
 
     @Override

@@ -25,10 +25,6 @@
             android:theme="@style/welcome"/>
         <activity android:name=".ui.authentication.LoginActivity"/>
         <activity android:name=".ui.authentication.VerifyAccountActivity"/>
-
-        <activity android:name=".ui.dashboard.home.ProductDetailsFragment"
-            android:theme="@style/product_description"/>
-
         <activity
             android:name=".ui.dashboard.DashBoardActivity"
             android:theme="@style/dashboard"
