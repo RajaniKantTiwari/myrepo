@@ -12,7 +12,7 @@ import com.app.community.R;
 import com.app.community.databinding.FragmentConfirmOrderBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.base.BaseFragment;
-import com.app.community.ui.dashboard.home.fragment.HelpAndSupportFragment;
+import com.app.community.ui.dashboard.home.fragment.HelpsAndSupportFragment;
 import com.app.community.utils.CommonUtils;
 
 import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
@@ -60,7 +60,7 @@ public class ConfirmOrderFragment extends BaseFragment {
     public void onClick(View view) {
         if (view == mBinding.tvRaiseAnIssue) {
             CommonUtils.clicked(mBinding.tvRaiseAnIssue);
-            mFragmentNavigation.pushFragment(HelpAndSupportFragment.newInstance(mInt + 1));
+            mFragmentNavigation.pushFragment(HelpsAndSupportFragment.newInstance(mInt + 1));
         } else if (view == mBinding.tvHome) {
             CommonUtils.clicked(mBinding.tvHome);
             mFragmentNavigation.popFragment();

@@ -31,6 +31,7 @@ import com.app.community.ui.dashboard.home.adapter.HelpPlaceAdapter;
 import com.app.community.ui.dashboard.home.adapter.LatestNewsAdapter;
 import com.app.community.ui.dashboard.home.adapter.NewsAdapter;
 import com.app.community.ui.dashboard.home.event.SearchProductEvent;
+import com.app.community.ui.dashboard.home.fragment.HelpsAndSupportFragment;
 import com.app.community.ui.dashboard.home.fragment.HomeFragment;
 import com.app.community.ui.dashboard.home.fragment.MyOrderFragment;
 import com.app.community.ui.dashboard.home.fragment.NewsFragment;

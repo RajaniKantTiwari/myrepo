@@ -3,13 +3,14 @@ package com.app.community.ui.dashboard.home.fragment;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.community.R;
-import com.app.community.databinding.FragmentHelpandsupportBinding;
+import com.app.community.databinding.FragmentHelpsupportBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.SimpleDividerItemDecoration;
 import com.app.community.ui.dashboard.DashboardFragment;
@@ -23,15 +24,14 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
  * Created by rajnikant on 31/12/17.
  */
 
-public class HelpAndSupportFragment extends DashboardFragment implements HelpSupportAdapter.HelpSupportListener,OrderDialogFragment.OrderDialogListener {
-    private FragmentHelpandsupportBinding mBinding;
+public class HelpsAndSupportFragment extends DashboardFragment implements HelpSupportAdapter.HelpSupportListener,OrderDialogFragment.OrderDialogListener {
+    private FragmentHelpsupportBinding mBinding;
     private HelpSupportAdapter mAdapter;
-
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding=DataBindingUtil.inflate(inflater, R.layout.fragment_helpandsupport,container,false);
+        mBinding=DataBindingUtil.inflate(inflater, R.layout.fragment_helpsupport,container,false);
         initializeAdapter();
         return mBinding.getRoot();
     }
@@ -56,7 +56,7 @@ public class HelpAndSupportFragment extends DashboardFragment implements HelpSup
 
     @Override
     public String getFragmentName() {
-        return HelpAndSupportFragment.class.getSimpleName();
+        return HelpsAndSupportFragment.class.getSimpleName();
     }
 
     @Override
@@ -73,10 +73,10 @@ public class HelpAndSupportFragment extends DashboardFragment implements HelpSup
     public void onSuccess(BaseResponse response, int requestCode) {
 
     }
-    public static HelpAndSupportFragment newInstance(int instance){
+    public static Fragment newInstance(int instance){
         Bundle args = new Bundle();
         args.putInt(ARGS_INSTANCE, instance);
-        HelpAndSupportFragment fragment = new HelpAndSupportFragment();
+        HelpsAndSupportFragment fragment = new HelpsAndSupportFragment();
         fragment.setArguments(args);
         return fragment;
     }

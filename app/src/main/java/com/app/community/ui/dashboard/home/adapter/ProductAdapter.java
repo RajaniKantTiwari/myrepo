@@ -35,7 +35,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.Location
         void onItemClick(int adapterPosition);
         void onContactClick(int adapterPosition);
 
-        void onMessageClick(int adapterPosition);
+        void onViewClick(int adapterPosition);
     }
 
     public ProductAdapter(AppCompatActivity activity){
@@ -110,7 +110,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.Location
                     itemClickListener.onContactClick(getAdapterPosition());
                 }else if(view==tvView){
                     CommonUtils.clicked(tvView);
-                    itemClickListener.onMessageClick(getAdapterPosition());
+                    itemClickListener.onViewClick(getAdapterPosition());
                 }
             }
         }

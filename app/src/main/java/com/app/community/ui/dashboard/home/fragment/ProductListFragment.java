@@ -82,8 +82,8 @@ public class ProductListFragment extends DashboardFragment implements ContactDia
             }
 
             @Override
-            public void onMessageClick(int adapterPosition) {
-                openDialog(adapterPosition);
+            public void onViewClick(int adapterPosition) {
+                mFragmentNavigation.pushFragment(ProductDetailsFragment.newInstance(mInt+1));
             }
         });
     }
