@@ -159,14 +159,14 @@ public class CommonUtils {
     }
 
     public static void clicked(View view){
-        final Animation animation = new AlphaAnimation(1.0f, 0.7f);
+        final Animation animation = new AlphaAnimation(1.0f, 0.6f);
         animation.setDuration(200);
         animation.setFillAfter(true);
         view.startAnimation(animation);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                final Animation animation = new AlphaAnimation(0.7f, 1.0f);
+                final Animation animation = new AlphaAnimation(0.6f, 1.0f);
                 animation.setDuration(200);
                 animation.setFillAfter(true);
                 view.startAnimation(animation);

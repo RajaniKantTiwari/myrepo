@@ -32,10 +32,12 @@ public class LoginActivity extends AuthenticationActivity implements MvpView, Vi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_login);
+        setListener();
     }
 
     public void setListener() {
         mBinding.tvGetOtp.setOnClickListener(this);
+        mBinding.tvSignupForAccount.setOnClickListener(this);
     }
 
     public void initializeData() {
@@ -58,6 +60,7 @@ public class LoginActivity extends AuthenticationActivity implements MvpView, Vi
                     if(type.equals(ApiConstants.SUCCESS)){
                         PreferenceUtil.setUserName(userName);
                         Bundle bundle=new Bundle();
+                        bundle.putString(GeneralConstant.USER_NAME,userName);
                         bundle.putString(GeneralConstant.MOBILE_NUMBER,mobileNumber);
                         ExplicitIntent.getsInstance().navigateTo(this,VerifyAccountActivity.class,bundle);
                     }
@@ -72,8 +75,10 @@ public class LoginActivity extends AuthenticationActivity implements MvpView, Vi
         if(view==mBinding.tvGetOtp){
             CommonUtils.clicked(mBinding.tvGetOtp);
            if(isValid()){
-               presenter.getLoginDetail(this,new LoginRequest(mobileNumber));
+               presenter.getLoginDetail(this,new LoginRequest(userName,mobileNumber));
            }
+        }else if(view==mBinding.tvSignupForAccount){
+            CommonUtils.clicked(mBinding.tvSignupForAccount);
         }
     }
 

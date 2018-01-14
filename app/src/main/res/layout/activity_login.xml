@@ -78,6 +78,7 @@
                 android:textSize="@dimen/textSize_13"
                 app:customFont="@string/font_bold" />
             <com.app.community.widget.CustomTextView
+                android:id="@+id/tvSignupForAccount"
                 style="@style/textview_description_large_match"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="@dimen/margin_20"

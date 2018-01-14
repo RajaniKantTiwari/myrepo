@@ -47,16 +47,12 @@ public class WelcomeScreenActivity extends BaseActivity implements CustomDialogF
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_welcome_screen);
-
+        setListener();
     }
 
     public void setListener() {
         mBinding.layoutLocation.setOnClickListener(this);
         mBinding.tvManually.setOnClickListener(this);
-    }
-
-    public void initializeData() {
-
     }
 
 

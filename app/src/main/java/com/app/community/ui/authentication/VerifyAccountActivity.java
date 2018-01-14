@@ -40,6 +40,7 @@ public class VerifyAccountActivity extends AuthenticationActivity implements Tex
     @Inject
     AuthenticationPresenter presenter;
     private String mobileNumber;
+    private String userName;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,7 +66,6 @@ public class VerifyAccountActivity extends AuthenticationActivity implements Tex
         mBinding.edSecond.setOnKeyListener(this);
         mBinding.edThird.setOnKeyListener(this);
         mBinding.edFourth.setOnKeyListener(this);
-
         mBinding.tvResend.setOnClickListener(this);
         mBinding.tvChange.setOnClickListener(this);
 
@@ -77,6 +77,9 @@ public class VerifyAccountActivity extends AuthenticationActivity implements Tex
             Bundle bundle = intent.getExtras();
             if (isNotNull(bundle)) {
                 mobileNumber = bundle.getString(GeneralConstant.MOBILE_NUMBER);
+                userName = bundle.getString(GeneralConstant.USER_NAME);
+
+
             }
         }
 
@@ -86,7 +89,7 @@ public class VerifyAccountActivity extends AuthenticationActivity implements Tex
     public void onClick(View view) {
         if (view == mBinding.tvResend) {
             CommonUtils.clicked(mBinding.tvResend);
-            presenter.getLoginDetail(this,new LoginRequest(mobileNumber));
+            presenter.getLoginDetail(this,new LoginRequest(userName,mobileNumber));
         } else if (view == mBinding.tvChange) {
             //CommonUtils.clicked(mBinding.tvChange);
             Bundle bundle=new Bundle();
@@ -210,7 +213,8 @@ public class VerifyAccountActivity extends AuthenticationActivity implements Tex
     @Override
     public void ok(String str) {
         mobileNumber=str;
-        presenter.getLoginDetail(this,new LoginRequest(mobileNumber));
+        presenter.getLoginDetail(this,new LoginRequest(userName,mobileNumber));
+        hideKeyboard();
     }
 
     @Override
