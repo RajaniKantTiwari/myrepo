@@ -35,6 +35,7 @@ import com.app.community.ui.dashboard.home.fragment.HelpsAndSupportFragment;
 import com.app.community.ui.dashboard.home.fragment.HomeFragment;
 import com.app.community.ui.dashboard.home.fragment.MyOrderFragment;
 import com.app.community.ui.dashboard.home.fragment.NewsFragment;
+import com.app.community.ui.dashboard.home.fragment.NewsMainFragment;
 import com.app.community.ui.dialogfragment.ContactImpPlaceDialogFragment;
 import com.app.community.utils.AddWelcomeChildView;
 import com.app.community.utils.CommonUtils;
@@ -162,7 +163,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
     @Override
     public void itemClick(int adapterPosition) {
         if (mFragmentNavigation != null) {
-            mFragmentNavigation.pushFragment(NewsFragment.newInstance(mInt+1));
+            mFragmentNavigation.pushFragment(NewsMainFragment.newInstance(mInt+1));
         }
     }
 
