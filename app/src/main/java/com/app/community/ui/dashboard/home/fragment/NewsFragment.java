@@ -12,6 +12,9 @@ import com.app.community.R;
 import com.app.community.databinding.FragmentNewsBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
+import com.app.community.ui.dashboard.home.adapter.VerticlePagerAdapter;
+import com.app.community.utils.SimpleGestureFilter;
+import com.app.community.utils.VerticalViewPager;
 
 import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 
@@ -19,7 +22,7 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
  * Created by rajnikant on 31/12/17.
  */
 
-public class NewsFragment extends DashboardFragment {
+public class NewsFragment extends DashboardFragment implements SimpleGestureFilter.SimpleGestureListener {
     private FragmentNewsBinding mBinding;
 
     @Nullable
@@ -31,7 +34,7 @@ public class NewsFragment extends DashboardFragment {
 
     @Override
     public void initializeData() {
-
+        mBinding.ivPager.setAdapter(new VerticlePagerAdapter(getContext()));
     }
 
     @Override
@@ -40,7 +43,7 @@ public class NewsFragment extends DashboardFragment {
 
     @Override
     public String getFragmentName() {
-        return null;
+        return NewsFragment.class.getSimpleName();
     }
 
     @Override
@@ -64,5 +67,15 @@ public class NewsFragment extends DashboardFragment {
         NewsFragment fragment = new NewsFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onSwipe(int direction) {
+
+    }
+
+    @Override
+    public void onDoubleTap() {
+
     }
 }

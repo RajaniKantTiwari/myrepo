@@ -1,55 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-<LinearLayout
-    android:orientation="vertical"
-    style="@style/match_match">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
     <RelativeLayout
-        style="@style/match_wrap"
-        android:layout_height="@dimen/margin_180">
-        <ImageView
+        style="@style/match_match"
+        android:background="@color/white">
+        <com.app.community.utils.VerticalViewPager
             style="@style/match_match"
-            android:background="@drawable/order_detail"/>
-        <ImageView
-            style="@style/wrap_wrap"
-            android:src="@drawable/like"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="@dimen/margin_15"
-            android:layout_marginBottom="@dimen/margin_10"
-            android:layout_alignParentBottom="true"
-            />
+            android:id="@+id/ivPager"/>
     </RelativeLayout>
-
-    <LinearLayout
-        style="@style/match_wrap"
-        android:layout_marginTop="@dimen/margin_17"
-        android:layout_marginStart="@dimen/margin_7"
-        android:layout_marginEnd="@dimen/margin_7"
-        android:orientation="vertical">
-        <com.app.community.widget.CustomTextView
-            style="@style/textview_description_large_match"
-            android:textColor="@color/color_black"
-            android:text="South horean President toon fae-in, left, and Chinese President Xi finping shake hands at the end of a signing ceremony at the Ireat Pall of the People in eijing."
-            />
-        <com.app.community.widget.CustomTextView
-            style="@style/textview_description_large_match"
-            android:text="22 may 2017"
-            android:textColor="@color/deep_sky_blue"
-            app:customFont="@string/font_regular"
-            android:layout_marginTop="@dimen/margin_10"
-            android:layout_marginBottom="@dimen/margin_15"
-            />
-    </LinearLayout>
-    <ImageView
-        style="@style/view_layout" />
-    <com.app.community.widget.CustomTextView
-        style="@style/textview_description_match"
-        android:textColor="@color/color_black"
-        android:text="@string/lorem_ipsum"
-        app:customFont="@string/font_regular"
-        android:layout_marginStart="@dimen/margin_7"
-        android:layout_marginEnd="@dimen/margin_7"
-        android:layout_marginTop="@dimen/margin_10"
-        />
-</LinearLayout>
 </layout>

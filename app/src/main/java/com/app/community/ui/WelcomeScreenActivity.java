@@ -115,6 +115,7 @@ public class WelcomeScreenActivity extends BaseActivity implements CustomDialogF
         bundle.putString(GeneralConstant.TITLE,getResources().getString(R.string.dialog_title));
         CommonUtils.showDialog(this,bundle,this);*/
         ExplicitIntent.getsInstance().navigateTo(this, LoginActivity.class);
+        finish();
     }
 
 
@@ -147,6 +148,7 @@ public class WelcomeScreenActivity extends BaseActivity implements CustomDialogF
                     bundle.putString(GeneralConstant.TITLE,getResources().getString(R.string.dialog_title));
                     CommonUtils.showDialog(this,bundle,this);*/
                     ExplicitIntent.getsInstance().navigateTo(this, LoginActivity.class);
+                    finish();
                 }catch (Exception ex){
 
                 }
@@ -165,6 +167,7 @@ public class WelcomeScreenActivity extends BaseActivity implements CustomDialogF
     @Override
     public void ok(String string) {
         ExplicitIntent.getsInstance().navigateTo(this, LoginActivity.class);
+        finish();
     }
 
     @Override

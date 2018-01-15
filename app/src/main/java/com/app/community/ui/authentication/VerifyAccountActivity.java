@@ -125,15 +125,18 @@ public class VerifyAccountActivity extends AuthenticationActivity implements Tex
         }
     }
 
-    private void gotoNext(BaseResponse response) {try {
+    private void gotoNext(BaseResponse response) {
+        try {
             if (isNotNull(response)) {
                 if (response instanceof VerifyMobileResponse) {
                     VerifyMobileResponse verifyMobileResponse = (VerifyMobileResponse) response;
                     if (isNotNull(verifyMobileResponse)) {
                         String status = verifyMobileResponse.getStatus();
                         if (status.equals(ApiConstants.SUCCESS)) {
+                            hideKeyboard();
                             showToast("Success");
                         } else {
+                            hideKeyboard();
                             showToast(getResources().getString(R.string.server_error));
                         }
                     }
@@ -146,6 +149,7 @@ public class VerifyAccountActivity extends AuthenticationActivity implements Tex
 
     @Override
     public void onError(String message, int requestCode) {
+        hideKeyboard();
         showToast("Error");
     }
 
