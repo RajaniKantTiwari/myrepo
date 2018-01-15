@@ -76,9 +76,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding=DataBindingUtil.inflate(inflater,R.layout.fragment_welcomehome,container,false);
-        if(!EventBus.getDefault().isRegistered(this)){
-            EventBus.getDefault().register(this);
-        }
+        CommonUtils.register(this);
         mWelcomeBinding=AddWelcomeChildView.addWelcomeSearchView(inflater,mBinding);
         mNewsViewBinding=AddWelcomeChildView.addNewsView(inflater,mBinding);
         mOfferBinding=AddWelcomeChildView.addOfferView(inflater,mBinding);
@@ -163,7 +161,12 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
     @Override
     public void itemClick(int adapterPosition) {
         if (mFragmentNavigation != null) {
-            mFragmentNavigation.pushFragment(NewsMainFragment.newInstance(mInt+1));
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mFragmentNavigation.pushFragment(NewsMainFragment.newInstance(mInt+1));
+                }
+            },100);
         }
     }
 

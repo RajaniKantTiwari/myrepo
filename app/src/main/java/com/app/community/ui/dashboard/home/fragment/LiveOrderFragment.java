@@ -17,6 +17,7 @@ import com.app.community.ui.dashboard.home.adapter.LiveOrderAdapter;
 import com.app.community.ui.dashboard.home.adapter.ProductAdapter;
 import com.app.community.ui.dashboard.home.event.MyOrderEvent;
 import com.app.community.ui.dashboard.home.event.NewsEvent;
+import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 
 import org.greenrobot.eventbus.EventBus;
@@ -33,7 +34,7 @@ public class LiveOrderFragment extends DashboardFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding=DataBindingUtil.inflate(inflater, R.layout.fragment_order,container,false);
-        EventBus.getDefault().register(this);
+        CommonUtils.register(this);
         initializeAdapter();
         return mBinding.getRoot();
     }

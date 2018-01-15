@@ -18,6 +18,7 @@ import com.app.community.ui.dashboard.home.adapter.RecentAdapter;
 import com.app.community.ui.dashboard.home.event.FragmentEvent;
 import com.app.community.ui.dashboard.home.event.NewsEvent;
 import com.app.community.ui.dashboard.home.event.ProductEvent;
+import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 
 import org.greenrobot.eventbus.EventBus;
@@ -34,7 +35,7 @@ public class RecentFragment extends DashboardFragment implements RecentAdapter.R
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding=DataBindingUtil.inflate(inflater, R.layout.fragment_location_list,container,false);
-        EventBus.getDefault().register(this);
+        CommonUtils.register(this);
         initializeAdapter();
         return mBinding.getRoot();
     }

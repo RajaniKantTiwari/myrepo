@@ -47,7 +47,7 @@ public class ProductListFragment extends DashboardFragment implements ContactDia
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        EventBus.getDefault().register(this);
+        CommonUtils.register(this);
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_location_list, container, false);
         initializeAdapter();
         return mBinding.getRoot();

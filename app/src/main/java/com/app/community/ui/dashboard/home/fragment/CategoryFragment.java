@@ -13,6 +13,7 @@ import com.app.community.databinding.FragmentFullInformationBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.event.NewsEvent;
+import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 
 import org.greenrobot.eventbus.EventBus;
@@ -28,7 +29,8 @@ public class CategoryFragment extends DashboardFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding=DataBindingUtil.inflate(inflater, R.layout.fragment_category,container,false);
-        EventBus.getDefault().register(this);
+        CommonUtils.register(this);
+
         return mBinding.getRoot();
     }
 

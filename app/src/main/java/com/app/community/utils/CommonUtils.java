@@ -10,6 +10,7 @@ import android.graphics.drawable.InsetDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -25,12 +26,15 @@ import android.widget.Toast;
 import com.app.community.BuildConfig;
 import com.app.community.R;
 import com.app.community.ui.base.BaseActivity;
+import com.app.community.ui.dashboard.home.fragment.ProductMapFragment;
 import com.app.community.ui.dialogfragment.ContactDialogFragment;
 import com.app.community.ui.dialogfragment.ContactImpPlaceDialogFragment;
 import com.app.community.ui.dialogfragment.CustomDialogFragment;
 import com.app.community.ui.dialogfragment.OrderDialogFragment;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -185,5 +189,11 @@ public class CommonUtils {
         ColorDrawable back = new ColorDrawable(Color.TRANSPARENT);
         InsetDrawable inset = new InsetDrawable(back, convertDpToPx(10,activity));
         dialog.getWindow().setBackgroundDrawable(inset);
+    }
+
+    public static void register(Fragment fragment) {
+        if(!EventBus.getDefault().isRegistered(fragment)){
+            EventBus.getDefault().register(fragment);
+        }
     }
 }

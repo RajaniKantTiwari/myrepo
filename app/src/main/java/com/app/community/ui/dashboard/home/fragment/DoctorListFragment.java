@@ -38,7 +38,7 @@ public class DoctorListFragment extends DashboardFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        EventBus.getDefault().register(this);
+        CommonUtils.register(this);
         mBinding= DataBindingUtil.inflate(inflater, R.layout.fragment_doctor_list,container,false);
         initializeAdapter();
         return mBinding.getRoot();

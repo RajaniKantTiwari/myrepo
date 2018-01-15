@@ -15,6 +15,7 @@ import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.base.BaseFragment;
 import com.app.community.ui.dashboard.home.adapter.CartAdapter;
 import com.app.community.ui.dashboard.home.event.FragmentEvent;
+import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 
 import org.greenrobot.eventbus.EventBus;
@@ -32,7 +33,7 @@ public class BaseHomeFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding=DataBindingUtil.inflate(inflater, R.layout.fragment_home,container,false);
-        EventBus.getDefault().register(this);
+        CommonUtils.register(this);
         getBaseActivity().pushChildFragment(getChildFragmentManager(), GeneralConstant.FRAGMENTS.WELCOME_HOME_FRAGMENT,
                 null, R.id.container, true, true, BaseActivity.AnimationType.NONE);
         return mBinding.getRoot();
