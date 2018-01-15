@@ -71,9 +71,6 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     // helper class for handling UI and click events of bottom-nav-bar
     private BottomNavigationBar mBottomNav;
     // list of Navigation pages to be shown
-    //private List<NavigationPage> mNavigationPageList = new ArrayList<>();
-
-    //private static final String STATE_CURRENT_TAB_ID = "current_tab_id";
     private static final int MAIN_TAB_ID = FragNavController.TAB1;
     private DrawerAdapterRight mDrawerAdapterRight;
     private List<Genre> listDrawerExpandable;
@@ -90,6 +87,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        hideKeyboard();
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_dashboard);
         listDrawerExpandable = new ArrayList<>();
         initTabs();
