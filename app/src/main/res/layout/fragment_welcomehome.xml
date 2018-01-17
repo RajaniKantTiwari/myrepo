@@ -5,9 +5,13 @@
         style="@style/match_match"
         android:background="@color/white"
         android:focusable="true"
-        android:id="@+id/layoutHo"
         android:orientation="vertical">
-
+    <LinearLayout
+        android:id="@+id/layoutFirst"
+        style="@style/match_wrap"
+        android:background="@color/white"
+        android:focusable="true"
+        android:orientation="vertical"/>
         <ScrollView
             android:id="@+id/scrollView"
             style="@style/match_match"

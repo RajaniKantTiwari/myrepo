@@ -182,7 +182,7 @@ public class CommonUtils {
             public void run() {
                 view.setEnabled(true);
             }
-        },200);
+        },3000);
     }
 
     public static void setDialog(Dialog dialog) {

@@ -16,6 +16,7 @@ import com.app.community.utils.ApiConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
+import com.app.community.utils.LogUtils;
 import com.app.community.utils.PreferenceUtil;
 
 import javax.inject.Inject;
@@ -73,6 +74,7 @@ public class LoginActivity extends AuthenticationActivity implements MvpView, Vi
     @Override
     public void onClick(View view) {
         if(view==mBinding.tvGetOtp){
+            LogUtils.LOGE(TAG,"GetOtp");
             CommonUtils.clicked(mBinding.tvGetOtp);
            if(isValid()){
                presenter.getLoginDetail(this,new LoginRequest(userName,mobileNumber));
