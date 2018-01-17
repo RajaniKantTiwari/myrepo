@@ -20,13 +20,13 @@ public class AddWelcomeChildView {
 
     public static LayoutWelcomeSearchBinding addWelcomeSearchView(LayoutInflater inflater, FragmentWelcomehomeBinding mBinding) {
         LayoutWelcomeSearchBinding binding=DataBindingUtil.inflate(inflater,R.layout.layout_welcome_search,null,false);
-        mBinding.layoutHome.addView(binding.getRoot());
+        mBinding.layoutHo.addView(binding.getRoot());
         return binding;
     }
 
     public static LayoutNewsBinding addNewsView(LayoutInflater inflater,FragmentWelcomehomeBinding mBinding) {
         LayoutNewsBinding binding=DataBindingUtil.inflate(inflater,R.layout.layout_news,null,false);
-        mBinding.layoutHome.addView(binding.getRoot());
+        mBinding.layoutHo.addView(binding.getRoot());
         return binding;
     }
 

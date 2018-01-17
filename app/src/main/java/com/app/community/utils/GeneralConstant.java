@@ -26,7 +26,7 @@ public interface GeneralConstant {
     String ARGS_INSTANCE = "com.app.constants";
 
     int PERMISSIONS_REQUEST_LOCATION = 99;
-    long SPLASH_TIME = 100;
+    long SPLASH_TIME = 800;
     String TITLE = "title";
     String USER_NAME = "user_name";
     String VISIBLE = "visible";

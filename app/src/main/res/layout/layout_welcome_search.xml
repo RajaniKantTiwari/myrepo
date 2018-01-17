@@ -7,6 +7,7 @@
         style="@style/match_wrap">
         <ImageView
             style="@style/match_wrap"
+            android:layout_height="@dimen/margin_120"
             android:background="@drawable/abc" />
 
         <LinearLayout

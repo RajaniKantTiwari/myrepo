@@ -163,6 +163,7 @@ public class CommonUtils {
     }
 
     public static void clicked(View view){
+        view.setEnabled(false);
         final Animation animation = new AlphaAnimation(1.0f, 0.6f);
         animation.setDuration(200);
         animation.setFillAfter(true);
@@ -174,6 +175,12 @@ public class CommonUtils {
                 animation.setDuration(200);
                 animation.setFillAfter(true);
                 view.startAnimation(animation);
+            }
+        },200);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                view.setEnabled(true);
             }
         },200);
     }

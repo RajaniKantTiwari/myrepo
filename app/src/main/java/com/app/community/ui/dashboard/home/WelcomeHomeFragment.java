@@ -78,10 +78,10 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
         mBinding=DataBindingUtil.inflate(inflater,R.layout.fragment_welcomehome,container,false);
         CommonUtils.register(this);
         mWelcomeBinding=AddWelcomeChildView.addWelcomeSearchView(inflater,mBinding);
+        mImportantPlaceBinding=AddWelcomeChildView.addImportantPlace(inflater,mBinding);
         mNewsViewBinding=AddWelcomeChildView.addNewsView(inflater,mBinding);
         mOfferBinding=AddWelcomeChildView.addOfferView(inflater,mBinding);
         mLastOrderBinding=AddWelcomeChildView.addLastOrderView(inflater,mBinding);
-        mImportantPlaceBinding=AddWelcomeChildView.addImportantPlace(inflater,mBinding);
         mLatestBinding=AddWelcomeChildView.addLatestNewsView(inflater,mBinding);
         initializeView();
         return mBinding.getRoot();

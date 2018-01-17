@@ -42,7 +42,7 @@ public class WelcomeScreenActivity extends BaseActivity implements CustomDialogF
     private ActivityWelcomeScreenBinding mBinding;
 
     private GPSTracker gpsTracker;
-
+    private boolean isClickedOnAddress;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,7 +83,10 @@ public class WelcomeScreenActivity extends BaseActivity implements CustomDialogF
             getCurrentLocation();
         }else if(view==mBinding.tvManually){
             CommonUtils.clicked(mBinding.tvManually);
-            address();
+            if(!isClickedOnAddress){
+                isClickedOnAddress=true;
+                address();
+            }
         }
     }
     private void address() {
@@ -137,6 +140,7 @@ public class WelcomeScreenActivity extends BaseActivity implements CustomDialogF
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
+            isClickedOnAddress=false;
             if (resultCode == RESULT_OK) {
                 try {
                     // retrive the data by using getPlace() method.
