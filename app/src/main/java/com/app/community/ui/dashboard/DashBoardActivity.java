@@ -87,8 +87,9 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        hideKeyboard();
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_dashboard);
+        hideSoftKeyboard(mBinding.getRoot());
+
         listDrawerExpandable = new ArrayList<>();
         initTabs();
         initDashboardComponent();

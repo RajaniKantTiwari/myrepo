@@ -33,11 +33,11 @@ public class PreferenceUtil {
     public static void setLongitude(double longitude) {
         Hawk.put(PreferenceConstants.USER_LONGITUDE, longitude);
     }
-    public static void getLatitude() {
-        Hawk.get(PreferenceConstants.USER_LATITUDE, 0);
+    public static double getLatitude() {
+       return Hawk.get(PreferenceConstants.USER_LATITUDE, 0.0);
     }
 
-    public static void getLongitude() {
-        Hawk.get(PreferenceConstants.USER_LONGITUDE, 0);
+    public static double getLongitude() {
+       return Hawk.get(PreferenceConstants.USER_LONGITUDE, 0.0);
     }
 }

@@ -10,17 +10,15 @@ import android.widget.TextView;
 
 
 import com.app.community.R;
+import com.app.community.fragnav.FragNavController;
+import com.roughike.bottombar.BottomBar;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class BottomNavigationBar implements View.OnClickListener {
+public class BottomNavigationBar extends BottomBar implements View.OnClickListener {
 
-    public static final int MENU_BAR_1 = 0;
-    public static final int MENU_BAR_2 = 1;
-    public static final int MENU_BAR_3 = 2;
-    public static final int MENU_BAR_4 = 3;
     public int CURRENT_TAB;
 
     private List<NavigationPage> mNavigationPageList = new ArrayList<>();
@@ -34,7 +32,7 @@ public class BottomNavigationBar implements View.OnClickListener {
     private AppCompatImageView mImageViewBar1, mImageViewBar2, mImageViewBar3, mImageViewBar4;
 
     public BottomNavigationBar(Context mContext, List<NavigationPage> pages, BottomNavigationMenuClickListener listener) {
-
+        super(mContext);
         // initialize variables
         this.mContext = mContext;
         this.mActivity = (AppCompatActivity) mContext;
@@ -87,20 +85,20 @@ public void setIcon(List<NavigationPage> pages){
 
         // triggering click listeners
         if (view.getId() == R.id.linearLayoutBar1) {
-            setView(MENU_BAR_1);
-            mListener.onTabSelected(MENU_BAR_1);
+            setView(FragNavController.TAB1);
+            mListener.onTabSelected(FragNavController.TAB1);
             return;
         } else if (view.getId() == R.id.linearLayoutBar2) {
-            setView(MENU_BAR_2);
-            mListener.onTabSelected(MENU_BAR_2);
+            setView(FragNavController.TAB2);
+            mListener.onTabSelected(FragNavController.TAB2);
             return;
         } else if (view.getId() == R.id.linearLayoutBar3) {
-            setView(MENU_BAR_3);
-            mListener.onTabSelected(MENU_BAR_3);
+            setView(FragNavController.TAB3);
+            mListener.onTabSelected(FragNavController.TAB3);
             return;
         } else if (view.getId() == R.id.linearLayoutBar4) {
-            setView(MENU_BAR_4);
-            mListener.onTabSelected(MENU_BAR_4);
+            setView(FragNavController.TAB4);
+            mListener.onTabSelected(FragNavController.TAB4);
             return;
         } else {
             return;
@@ -156,22 +154,22 @@ public void setIcon(List<NavigationPage> pages){
 
 
         switch (index) {
-            case MENU_BAR_1:
+            case FragNavController.TAB1:
                 this.mViewBar1.setVisibility(View.VISIBLE);
                 setSelectedItem(mLLBar1);
                 break;
 
-            case MENU_BAR_2:
+            case FragNavController.TAB2:
                 this.mViewBar2.setVisibility(View.VISIBLE);
                 setSelectedItem(mLLBar2);
                 break;
 
-            case MENU_BAR_3:
+            case FragNavController.TAB3:
                 this.mViewBar3.setVisibility(View.VISIBLE);
                 setSelectedItem(mLLBar3);
                 break;
 
-            case MENU_BAR_4:
+            case FragNavController.TAB4:
                 this.mViewBar4.setVisibility(View.VISIBLE);
                 setSelectedItem(mLLBar4);
                 break;

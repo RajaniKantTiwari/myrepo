@@ -7,6 +7,15 @@ package com.app.community.network.request;
 public class LoginRequest {
     private String name;
     private String mobile;
+    private double lat;
+    private double lng;
+
+    public LoginRequest(String name, String mobile, double lat, double lng) {
+        this.name = name;
+        this.mobile = mobile;
+        this.lat = lat;
+        this.lng = lng;
+    }
 
     public String getName() {
         return name;
@@ -14,11 +23,6 @@ public class LoginRequest {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public LoginRequest(String name,String mobile) {
-        this.mobile=mobile;
-        this.name=name;
     }
 
     public String getMobile() {

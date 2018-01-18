@@ -28,7 +28,7 @@
         <activity
             android:name=".ui.dashboard.DashBoardActivity"
             android:theme="@style/dashboard"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"/>
         <activity
             android:name=".ui.dashboard.home.DoctorDetailsActivity"/>
 

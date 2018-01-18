@@ -89,7 +89,8 @@ public class VerifyAccountActivity extends AuthenticationActivity implements Tex
     public void onClick(View view) {
         if (view == mBinding.tvResend) {
             CommonUtils.clicked(mBinding.tvResend);
-            presenter.getLoginDetail(this,new LoginRequest(userName,mobileNumber));
+            presenter.getLoginDetail(this,new LoginRequest(userName,mobileNumber,
+                    PreferenceUtil.getLatitude(),PreferenceUtil.getLongitude()));
         } else if (view == mBinding.tvChange) {
             //CommonUtils.clicked(mBinding.tvChange);
             Bundle bundle=new Bundle();
@@ -102,6 +103,7 @@ public class VerifyAccountActivity extends AuthenticationActivity implements Tex
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
         if (requestCode == 1) {
+            hideSoftKeyboard(mBinding.getRoot());
             gotoNext(response);
         } else if (requestCode == 2) {
             getOtp(response);
@@ -149,7 +151,6 @@ public class VerifyAccountActivity extends AuthenticationActivity implements Tex
 
     @Override
     public void onError(String message, int requestCode) {
-        hideKeyboard();
         showToast("Error");
     }
 
@@ -217,7 +218,8 @@ public class VerifyAccountActivity extends AuthenticationActivity implements Tex
     @Override
     public void ok(String str) {
         mobileNumber=str;
-        presenter.getLoginDetail(this,new LoginRequest(userName,mobileNumber));
+        presenter.getLoginDetail(this,new LoginRequest(userName,mobileNumber,
+                PreferenceUtil.getLatitude(),PreferenceUtil.getLongitude()));
         hideKeyboard();
     }
 

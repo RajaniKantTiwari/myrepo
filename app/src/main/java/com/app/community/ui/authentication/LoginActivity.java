@@ -74,10 +74,12 @@ public class LoginActivity extends AuthenticationActivity implements MvpView, Vi
     @Override
     public void onClick(View view) {
         if(view==mBinding.tvGetOtp){
-            LogUtils.LOGE(TAG,"GetOtp");
             CommonUtils.clicked(mBinding.tvGetOtp);
            if(isValid()){
-               presenter.getLoginDetail(this,new LoginRequest(userName,mobileNumber));
+               if(isNetworkConnected()){
+                   presenter.getLoginDetail(this,new LoginRequest(userName,mobileNumber,
+                           PreferenceUtil.getLatitude(),PreferenceUtil.getLongitude()));
+               }
            }
         }else if(view==mBinding.tvSignupForAccount){
             CommonUtils.clicked(mBinding.tvSignupForAccount);

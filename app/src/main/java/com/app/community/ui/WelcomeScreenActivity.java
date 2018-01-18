@@ -80,12 +80,16 @@ public class WelcomeScreenActivity extends BaseActivity implements CustomDialogF
     public void onClick(View view) {
         if (view == mBinding.layoutLocation) {
             CommonUtils.clicked(mBinding.layoutLocation);
-            getCurrentLocation();
+            if(isNetworkConnected()){
+                getCurrentLocation();
+            }
         }else if(view==mBinding.tvManually){
             CommonUtils.clicked(mBinding.tvManually);
-            if(!isClickedOnAddress){
-                isClickedOnAddress=true;
-                address();
+            if(isNetworkConnected()) {
+                if (!isClickedOnAddress) {
+                    isClickedOnAddress = true;
+                    address();
+                }
             }
         }
     }

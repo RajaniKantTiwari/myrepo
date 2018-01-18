@@ -42,6 +42,7 @@
                 app:customFont="@string/font_bold"
                 android:background="@drawable/white_edit_bg"
                 android:drawableEnd="@drawable/search_small"
+                android:visibility="gone"
                 />
         </LinearLayout>
     </RelativeLayout>
