@@ -158,5 +158,4 @@ dependencies {
     //to get exact location
     compile 'io.nlopez.smartlocation:library:3.3.3'
     compile 'com.roughike:bottom-bar:2.3.1'
-
 }

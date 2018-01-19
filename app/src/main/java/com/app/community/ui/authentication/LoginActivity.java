@@ -4,28 +4,26 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.View;
 
-import com.app.community.CommonApplication;
 import com.app.community.R;
 import com.app.community.databinding.ActivityLoginBinding;
 import com.app.community.network.request.LoginRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.LoginResponse;
 import com.app.community.ui.base.MvpView;
-import com.app.community.ui.presenter.AuthenticationPresenter;
+import com.app.community.ui.presenter.CommonPresenter;
 import com.app.community.utils.ApiConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
-import com.app.community.utils.LogUtils;
-import com.app.community.utils.PreferenceUtil;
+import com.app.community.utils.UserPreference;
 
 import javax.inject.Inject;
 
-public class LoginActivity extends AuthenticationActivity implements MvpView, View.OnClickListener {
+public class LoginActivity extends CommonActivity implements MvpView, View.OnClickListener {
     private static final String TAG = LoginActivity.class.getSimpleName();
     ActivityLoginBinding mBinding;
     @Inject
-    AuthenticationPresenter presenter;
+    CommonPresenter presenter;
     private String mobileNumber;
     private String userName;
 
@@ -59,7 +57,7 @@ public class LoginActivity extends AuthenticationActivity implements MvpView, Vi
                 if(isNotNull(loginResponse)){
                     String type=loginResponse.getType();
                     if(type.equals(ApiConstants.SUCCESS)){
-                        PreferenceUtil.setUserName(userName);
+                        UserPreference.setUserName(userName);
                         Bundle bundle=new Bundle();
                         bundle.putString(GeneralConstant.USER_NAME,userName);
                         bundle.putString(GeneralConstant.MOBILE_NUMBER,mobileNumber);
@@ -78,7 +76,7 @@ public class LoginActivity extends AuthenticationActivity implements MvpView, Vi
            if(isValid()){
                if(isNetworkConnected()){
                    presenter.getLoginDetail(this,new LoginRequest(userName,mobileNumber,
-                           PreferenceUtil.getLatitude(),PreferenceUtil.getLongitude()));
+                           UserPreference.getLatitude(), UserPreference.getLongitude()));
                }
            }
         }else if(view==mBinding.tvSignupForAccount){

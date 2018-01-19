@@ -7,6 +7,8 @@ import com.app.community.injector.scope.PerApplication;
 import com.app.community.network.Repository;
 import com.app.community.network.RetrofitRepository;
 import com.app.community.utils.ApiConstants;
+import com.app.community.utils.PreferenceConstants;
+import com.app.community.utils.UserPreference;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -18,6 +20,7 @@ import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import com.orhanobut.hawk.Hawk;
 
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -50,11 +53,11 @@ public class NetworkModule {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         httpClient.addInterceptor(chain -> {
             Request original = chain.request();
-            //String accessToken = Hawk.get(PreferenceConstants.TOKEN);
-            String accessToken ="eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJycnJyQGdtYWlsLmNvbSIsImF1ZGllbmNlIjoiSU9TIiwiU1RBVFVTIjoiQUNUSVZFIiwicGFzcyI6IiQyYSQxMCRmWVB3emtIVGl1RFVla2h1VmJqbjYud2lpY2htcXNLWExUckswNXFycmszc1I4MWN0eEo5RyIsImNyZWF0ZWQiOjE1MDk2MDQ3MjkyNzAsImV4cCI6MTUxMDIwOTUyOSwiU0lOR0xFX1VTRVJfTE9HSU4iOjgxN30.CO3NngRfIE2ivyYQXKZpcbqdQlFz2wMStVDOEmE0zCx4rDLjOrlwWQaPNUZgcUxeEAZzqY6EsjHowmqwTMZ5vA";
+            //String accessToken = UserPreference.getToken();
+            String accessToken ="NNiuaxxbisaDDajofrwTVL49R33tRDAV";
             if(accessToken!=null){
                 Request.Builder requestBuilder = original.newBuilder()
-                        .header(ApiConstants.AUTHORIZATION, accessToken)
+                        .header(ApiConstants.AUTHORIZATION, "Bearer "+accessToken)
                         .method(original.method(), original.body());
                 Request request = requestBuilder.build();
                 return chain.proceed(request);

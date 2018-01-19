@@ -14,7 +14,6 @@ import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.adapter.VerticlePagerAdapter;
 import com.app.community.utils.SimpleGestureFilter;
-import com.app.community.utils.VerticalViewPager;
 
 import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 
@@ -22,7 +21,8 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
  * Created by rajnikant on 31/12/17.
  */
 
-public class NewsFragment extends DashboardFragment {
+public class NewsFragment extends DashboardFragment  {
+    private static boolean swipable;
     private FragmentNewsBinding mBinding;
 
     @Nullable
@@ -61,7 +61,8 @@ public class NewsFragment extends DashboardFragment {
 
     }
 
-    public static Fragment newInstance(int instance) {
+    public static Fragment newInstance(int instance, boolean isSwipe) {
+        swipable=isSwipe;
         Bundle args = new Bundle();
         args.putInt(ARGS_INSTANCE, instance);
         NewsFragment fragment = new NewsFragment();

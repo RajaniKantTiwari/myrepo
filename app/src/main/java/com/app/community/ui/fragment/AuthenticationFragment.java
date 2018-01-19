@@ -2,8 +2,8 @@ package com.app.community.ui.fragment;
 
 import android.content.Context;
 
-import com.app.community.injector.component.AuthenticationComponent;
-import com.app.community.ui.authentication.AuthenticationActivity;
+import com.app.community.injector.component.CommonComponent;
+import com.app.community.ui.authentication.CommonActivity;
 import com.app.community.ui.base.BaseFragment;
 
 
@@ -12,20 +12,20 @@ import com.app.community.ui.base.BaseFragment;
  */
 
 public abstract class AuthenticationFragment extends BaseFragment {
-    private AuthenticationActivity mActivity;
+    private CommonActivity mActivity;
 
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof AuthenticationActivity) {
-            AuthenticationActivity activity = (AuthenticationActivity) context;
+        if (context instanceof CommonActivity) {
+            CommonActivity activity = (CommonActivity) context;
             this.mActivity = activity;
             activity.onFragmentAttached();
         }
     }
 
-    public AuthenticationComponent getActivityComponent() {
+    public CommonComponent getActivityComponent() {
         if (mActivity != null) {
             return mActivity.getActivityComponent();
         }

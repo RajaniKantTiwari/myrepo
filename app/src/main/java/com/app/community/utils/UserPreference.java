@@ -6,8 +6,8 @@ import com.orhanobut.hawk.Hawk;
  * Created by arvind on 01/11/17.
  */
 
-public class PreferenceUtil {
-    public PreferenceUtil() {
+public class UserPreference {
+    public UserPreference() {
     }
 
     public static void setToken(String token) {
@@ -23,7 +23,7 @@ public class PreferenceUtil {
         Hawk.put(PreferenceConstants.USER_NAME, userName);
     }
     public static void getUserName() {
-        Hawk.get(PreferenceConstants.USER_NAME, PreferenceConstants.DEFAULT);
+        Hawk.get(PreferenceConstants.USER_NAME, null);
     }
 
     public static void setLatitude(double latitude) {
@@ -39,5 +39,12 @@ public class PreferenceUtil {
 
     public static double getLongitude() {
        return Hawk.get(PreferenceConstants.USER_LONGITUDE, 0.0);
+    }
+
+    public static void setUserId(int userId) {
+        Hawk.put(PreferenceConstants.USER_ID, userId);
+    }
+    public static int getUserId() {
+       return Hawk.get(PreferenceConstants.USER_ID,0);
     }
 }

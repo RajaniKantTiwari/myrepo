@@ -52,6 +52,8 @@ public interface GeneralConstant {
     int PASTORDER = 2;
     String PRODUCT_INFO = "product_info";
     long DELAYTIME = 70;
+    String RESPONSE = "response";
+    long API_SERVICE = 500;
 
 
     @IntDef({PRODUCT_MAP_FRAGMENT, PRODUCT_LIST, RECENT_FRAGMENT, CATEGORY_FRAGMENT,

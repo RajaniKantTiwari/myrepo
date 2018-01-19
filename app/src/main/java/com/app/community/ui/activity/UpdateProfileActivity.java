@@ -9,7 +9,7 @@ import android.view.View;
 import com.app.community.R;
 import com.app.community.databinding.ActivityUpdateProfileBinding;
 import com.app.community.network.response.BaseResponse;
-import com.app.community.ui.authentication.AuthenticationActivity;
+import com.app.community.ui.authentication.CommonActivity;
 import com.app.community.ui.base.MvpView;
 import com.app.community.utils.GlideUtils;
 import com.app.community.utils.ImagePickerUtils;
@@ -19,7 +19,7 @@ import com.app.community.utils.LogUtils;
  * Created by arvind on 06/11/17.
  */
 
-public class UpdateProfileActivity extends AuthenticationActivity implements MvpView, View.OnClickListener, ImagePickerUtils.OnImagePickerListener {
+public class UpdateProfileActivity extends CommonActivity implements MvpView, View.OnClickListener, ImagePickerUtils.OnImagePickerListener {
 
     ActivityUpdateProfileBinding mBinding;
     private static String TAG = UpdateProfileActivity.class.getSimpleName();

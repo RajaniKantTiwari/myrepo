@@ -12,15 +12,20 @@ import android.os.Parcelable;
 
 public class ProductResponse implements Parcelable,Observable {
     private int id;
+    private String image;
     private String name;
     private String address;
     private String city;
+    private String opentime;
+    private String closetime;
+    private String logo;
+    private String category;
+    private String distance;
     private int pincode;
     private String phoneno;
     private double latitude;
     private double longitude;
-    private String logo;
-    private String rating;
+    private double rating;
     private boolean status;
     private String created_at;
 
@@ -37,12 +42,59 @@ public class ProductResponse implements Parcelable,Observable {
         latitude = in.readDouble();
         longitude = in.readDouble();
         city=in.readString();
+
+        image=in.readString();
+        opentime=in.readString();
+        closetime=in.readString();
+        category=in.readString();
+        distance=in.readString();
+
         pincode=in.readInt();
         phoneno=in.readString();
         logo=in.readString();
-        rating=in.readString();
+        rating=in.readDouble();
         created_at=in.readString();
 
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getOpentime() {
+        return opentime;
+    }
+
+    public void setOpentime(String opentime) {
+        this.opentime = opentime;
+    }
+
+    public String getClosetime() {
+        return closetime;
+    }
+
+    public void setClosetime(String closetime) {
+        this.closetime = closetime;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getDistance() {
+        return distance;
+    }
+
+    public void setDistance(String distance) {
+        this.distance = distance;
     }
 
     @Bindable
@@ -102,11 +154,11 @@ public class ProductResponse implements Parcelable,Observable {
         this.logo = logo;
     }
     @Bindable
-    public String getRating() {
+    public double getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
     @Bindable
@@ -191,7 +243,17 @@ public class ProductResponse implements Parcelable,Observable {
         dest.writeString(address);
         dest.writeDouble(latitude);
         dest.writeDouble(longitude);
-
+        dest.writeString(city);
+        dest.writeString(image);
+        dest.writeString(opentime);
+        dest.writeString(closetime);
+        dest.writeString(category);
+        dest.writeString(distance);
+        dest.writeInt(pincode);
+        dest.writeString(phoneno);
+        dest.writeString(logo);
+        dest.writeDouble(rating);
+        dest.writeString(created_at);
     }
 
     @Override

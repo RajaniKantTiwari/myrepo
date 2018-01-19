@@ -13,8 +13,7 @@ import com.app.community.R;
 import com.app.community.databinding.FragmentNotificationBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
-import com.app.community.ui.dashboard.offer.OfferFragment;
-import com.app.community.ui.presenter.AuthenticationPresenter;
+import com.app.community.ui.presenter.CommonPresenter;
 
 import javax.inject.Inject;
 
@@ -27,7 +26,7 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 public class NotificationFragment extends DashboardFragment {
 
     @Inject
-    AuthenticationPresenter presenter;
+    CommonPresenter presenter;
     private FragmentNotificationBinding mBinding;
 
 

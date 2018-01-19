@@ -11,13 +11,16 @@ import android.view.ViewGroup;
 
 import com.app.community.R;
 import com.app.community.databinding.FragmentProductDetailBinding;
-import com.app.community.network.request.dashboard.ProductRequest;
+import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.response.BaseResponse;
+import com.app.community.network.response.dashboard.meeting.ProductResponse;
 import com.app.community.ui.SimpleDividerItemDecoration;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.DashboardInsidePresenter;
 import com.app.community.ui.dashboard.home.adapter.ReviewAdapter;
 import com.app.community.ui.dashboard.home.adapter.StoreAdapter;
+import com.app.community.utils.CommonUtils;
+import com.app.community.utils.GeneralConstant;
 
 import javax.inject.Inject;
 
@@ -34,6 +37,7 @@ public class ProductDetailsFragment extends DashboardFragment {
     private FragmentProductDetailBinding mBinding;
     private StoreAdapter mPhotoAdapter;
     private ReviewAdapter mReviewAdapter;
+    private ProductResponse productResponse;
     @Inject
     DashboardInsidePresenter presenter;
 
@@ -70,11 +74,18 @@ public class ProductDetailsFragment extends DashboardFragment {
     }
 
     public void initializeData() {
+        Bundle bundle=getArguments();
+        if(CommonUtils.isNotNull(bundle)){
+            productResponse=bundle.getParcelable(GeneralConstant.RESPONSE);
+        }
         mPhotoAdapter =new StoreAdapter(getDashboardActivity());
         mBinding.photoRecycler.setAdapter(mPhotoAdapter);
         mReviewAdapter=new ReviewAdapter(getDashboardActivity());
         mBinding.rvReview.setAdapter(mReviewAdapter);
-        presenter.getProductDetails(getDashboardActivity(),new ProductRequest(3,8));
+        if(CommonUtils.isNotNull(productResponse)){
+            presenter.getMerchantDetails(getDashboardActivity(),new MerchantRequest(productResponse.getId()));
+        }
+
     }
 
     @Override
@@ -87,9 +98,10 @@ public class ProductDetailsFragment extends DashboardFragment {
 
     }
 
-    public static Fragment newInstance(int instance) {
+    public static Fragment newInstance(int instance, ProductResponse productResponse) {
         Bundle args = new Bundle();
         args.putInt(ARGS_INSTANCE, instance);
+        args.putParcelable(GeneralConstant.RESPONSE,productResponse);
         ProductDetailsFragment fragment = new ProductDetailsFragment();
         fragment.setArguments(args);
         return fragment;

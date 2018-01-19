@@ -18,7 +18,6 @@ import com.app.community.utils.GeneralConstant;
  */
 
 public class SplashActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,10 +25,10 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                    ExplicitIntent.getsInstance().navigateTo(SplashActivity.this, DashBoardActivity.class);
+                //    ExplicitIntent.getsInstance().navigateTo(SplashActivity.this, DashBoardActivity.class);
                // CommonUtils.showOrderDialog(SplashActivity.this,null,null);
                 //ExplicitIntent.getsInstance().navigateTo(SplashActivity.this, DoctorCheckoutActivity.class);
-                //ExplicitIntent.getsInstance().navigateTo(SplashActivity.this, WelcomeScreenActivity.class);
+                ExplicitIntent.getsInstance().navigateTo(SplashActivity.this, WelcomeScreenActivity.class);
                     finish();
             }
         }, GeneralConstant.SPLASH_TIME);

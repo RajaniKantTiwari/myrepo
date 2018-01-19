@@ -407,6 +407,7 @@
     <string name="start_shopping">Start Shopping</string>
     <string name="go">Go</string>
     <string name="network_not_connected">Network Not Connected</string>
+    <string name="closed_now">Closed Now</string>
 
 
     <string-array name="state_array">

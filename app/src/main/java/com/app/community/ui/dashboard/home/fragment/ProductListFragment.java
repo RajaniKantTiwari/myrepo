@@ -24,7 +24,6 @@ import com.app.community.ui.dashboard.home.adapter.ProductAdapter;
 import com.app.community.ui.dashboard.home.event.ProductEvent;
 import com.app.community.ui.dialogfragment.ContactDialogFragment;
 import com.app.community.utils.CommonUtils;
-import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
 
 import org.greenrobot.eventbus.EventBus;
@@ -71,7 +70,7 @@ public class ProductListFragment extends DashboardFragment implements ContactDia
             @Override
             public void onItemClick(int adapterPosition) {
                 if (CommonUtils.isNotNull(productList) && productList.size() > adapterPosition) {
-                    mFragmentNavigation.pushFragment(ProductDetailsFragment.newInstance(mInt+1));
+                    mFragmentNavigation.pushFragment(ProductDetailsFragment.newInstance(mInt+1,productList.get(adapterPosition)));
                     //ExplicitIntent.getsInstance().navigateTo(getBaseActivity(), ProductDetailsFragment.class);
                 }
             }
@@ -83,7 +82,7 @@ public class ProductListFragment extends DashboardFragment implements ContactDia
 
             @Override
             public void onViewClick(int adapterPosition) {
-                mFragmentNavigation.pushFragment(ProductDetailsFragment.newInstance(mInt+1));
+                mFragmentNavigation.pushFragment(ProductDetailsFragment.newInstance(mInt+1, productList.get(adapterPosition)));
             }
         });
     }

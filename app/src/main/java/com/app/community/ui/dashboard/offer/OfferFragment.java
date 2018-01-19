@@ -13,8 +13,7 @@ import com.app.community.R;
 import com.app.community.databinding.FragmentOfferBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
-import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
-import com.app.community.ui.presenter.AuthenticationPresenter;
+import com.app.community.ui.presenter.CommonPresenter;
 
 import javax.inject.Inject;
 
@@ -27,7 +26,7 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 public class OfferFragment extends DashboardFragment {
 
     @Inject
-    AuthenticationPresenter presenter;
+    CommonPresenter presenter;
     private FragmentOfferBinding mBinding;
 
 

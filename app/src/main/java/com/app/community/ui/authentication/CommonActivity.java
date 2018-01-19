@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.app.community.CommonApplication;
-import com.app.community.injector.component.AuthenticationComponent;
-import com.app.community.injector.component.DaggerAuthenticationComponent;
-import com.app.community.injector.module.AuthenticationModule;
+import com.app.community.injector.component.CommonComponent;
+import com.app.community.injector.component.DaggerCommonComponent;
+import com.app.community.injector.module.CommonModule;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.base.BaseFragment;
 import com.app.community.ui.base.MvpView;
@@ -18,19 +18,19 @@ import com.app.community.ui.base.MvpView;
 /*
 Parent Activity of Authorization to give functionality to all Activity
 */
-public abstract class AuthenticationActivity extends BaseActivity implements MvpView,BaseFragment.Callback{
-    private AuthenticationComponent mActivityComponent;
+public abstract class CommonActivity extends BaseActivity implements MvpView,BaseFragment.Callback{
+    private CommonComponent mActivityComponent;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mActivityComponent= DaggerAuthenticationComponent.builder().
-                authenticationModule(new AuthenticationModule(this)).
+        mActivityComponent= DaggerCommonComponent.builder().
+                commonModule(new CommonModule(this)).
                 applicationComponent(((CommonApplication) getApplication()).
                         getApplicationComponent()).build();
         attachView();
     }
 
-    public AuthenticationComponent getActivityComponent() {
+    public CommonComponent getActivityComponent() {
         return mActivityComponent;
     }
 }

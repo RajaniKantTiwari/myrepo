@@ -4,26 +4,22 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.app.community.R;
 import com.app.community.databinding.ActivityWelcomeScreenBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.authentication.LoginActivity;
-import com.app.community.ui.authentication.VerifyAccountActivity;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.dialogfragment.CustomDialogFragment;
 import com.app.community.ui.location.GPSTracker;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
-import com.app.community.utils.GeneralConstant;
-import com.app.community.utils.PreferenceUtil;
+import com.app.community.utils.UserPreference;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.common.api.Status;
@@ -47,6 +43,7 @@ public class WelcomeScreenActivity extends BaseActivity implements CustomDialogF
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_welcome_screen);
+        UserPreference.setToken(null);
         setListener();
     }
 
@@ -116,8 +113,8 @@ public class WelcomeScreenActivity extends BaseActivity implements CustomDialogF
     }
 
     private void getLatLong() {
-        PreferenceUtil.setLatitude(gpsTracker.getLatitude());
-        PreferenceUtil.setLongitude(gpsTracker.getLongitude());
+        UserPreference.setLatitude(gpsTracker.getLatitude());
+        UserPreference.setLongitude(gpsTracker.getLongitude());
         /*Bundle bundle=new Bundle();
         bundle.putString(GeneralConstant.TITLE,getResources().getString(R.string.dialog_title));
         CommonUtils.showDialog(this,bundle,this);*/
@@ -150,8 +147,8 @@ public class WelcomeScreenActivity extends BaseActivity implements CustomDialogF
                     // retrive the data by using getPlace() method.
                     Place place = PlaceAutocomplete.getPlace(this, data);
                     LatLng latLng = place.getLatLng();
-                    PreferenceUtil.setLatitude(latLng.latitude);
-                    PreferenceUtil.setLongitude(latLng.longitude);
+                    UserPreference.setLatitude(latLng.latitude);
+                    UserPreference.setLongitude(latLng.longitude);
                     /*Bundle bundle=new Bundle();
                     bundle.putString(GeneralConstant.TITLE,getResources().getString(R.string.dialog_title));
                     CommonUtils.showDialog(this,bundle,this);*/

@@ -62,15 +62,15 @@
                         android:id="@+id/tvProductType"
                         style="@style/textview_description_smaller_wrap"
                         android:textColor="@color/color_black"
-                        android:text="Bh"
                         />
 
                     <com.app.community.widget.CustomTextView
                         android:id="@+id/tvdistance"
                         style="@style/textview_description_smaller_wrap"
                         android:layout_marginStart="@dimen/margin_5"
-                        android:text="Bh"
+                        android:drawablePadding="@dimen/margin_5"
                         android:textColor="@color/color_black"
+                        android:drawableStart="@drawable/location_img"
                         />
                 </LinearLayout>
 
@@ -83,7 +83,6 @@
                     android:layout_alignParentEnd="true"
                     android:drawableStart="@drawable/star"
                     android:gravity="center_vertical"
-                    android:text="5.2"
                     android:textColor="@color/star_text_color"
                     />
 
@@ -125,18 +124,18 @@
                     style="@style/textview_description_smaller_wrap"
                     android:layout_below="@+id/layoutProductType"
                     android:layout_marginEnd="@dimen/margin_5"
-                    android:background="@drawable/light_black_bg_3"
-                    android:textColor="@color/color_black"
+                    android:background="@drawable/red_bg_4"
+                    android:textColor="@color/white"
                     android:padding="@dimen/margin_5"
-                    android:text="open at 8:30"
+                    android:text="@string/closed_now"
                     />
 
                 <com.app.community.widget.CustomTextView
-                    android:id="@+id/open"
+                    android:id="@+id/tvOpen"
                     style="@style/textview_description_smaller_wrap"
                     android:layout_below="@+id/layoutProductType"
                     android:layout_toEndOf="@+id/tvClose"
-                    android:background="@drawable/red_bg_4"
+                    android:background="@drawable/light_black_bg_3"
                     android:padding="@dimen/margin_5"
                     android:text="open at 8:30"
                     android:textColor="@color/white"

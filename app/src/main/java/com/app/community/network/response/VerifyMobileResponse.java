@@ -7,6 +7,15 @@ package com.app.community.network.response;
 public class VerifyMobileResponse extends BaseResponse{
     private int id;
     private long mobile;
+    private String authkey;
+
+    public String getAuthkey() {
+        return authkey;
+    }
+
+    public void setAuthkey(String authkey) {
+        this.authkey = authkey;
+    }
 
     public int getId() {
         return id;

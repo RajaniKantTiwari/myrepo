@@ -9,12 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.community.R;
-import com.app.community.databinding.FragmentOfferBinding;
 import com.app.community.databinding.FragmentUserBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
-import com.app.community.ui.dashboard.notification.NotificationFragment;
-import com.app.community.ui.presenter.AuthenticationPresenter;
+import com.app.community.ui.presenter.CommonPresenter;
 
 import javax.inject.Inject;
 
@@ -27,7 +25,7 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 public class UserFragment extends DashboardFragment {
 
     @Inject
-    AuthenticationPresenter presenter;
+    CommonPresenter presenter;
     private FragmentUserBinding mBinding;
 
 

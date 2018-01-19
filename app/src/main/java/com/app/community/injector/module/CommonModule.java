@@ -20,7 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.app.community.injector.scope.PerActivity;
 import com.app.community.network.Repository;
-import com.app.community.ui.presenter.AuthenticationPresenter;
+import com.app.community.ui.presenter.CommonPresenter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -30,11 +30,11 @@ import dagger.Provides;
  */
 
 @Module
-public class AuthenticationModule {
+public class CommonModule {
 
     private AppCompatActivity mActivity;
 
-    public AuthenticationModule(AppCompatActivity activity) {
+    public CommonModule(AppCompatActivity activity) {
         this.mActivity = activity;
     }
 
@@ -42,7 +42,7 @@ public class AuthenticationModule {
     //to get presenter object
     @Provides
     @PerActivity
-    AuthenticationPresenter provideProfilePresenter(Repository repository) {
-        return new AuthenticationPresenter(repository);
+    CommonPresenter provideProfilePresenter(Repository repository) {
+        return new CommonPresenter(repository);
     }
 }

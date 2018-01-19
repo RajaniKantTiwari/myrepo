@@ -24,7 +24,6 @@ import com.app.community.databinding.LayoutLatestNewsBinding;
 import com.app.community.databinding.LayoutNewsBinding;
 import com.app.community.databinding.LayoutOfferBinding;
 import com.app.community.databinding.LayoutWelcomeSearchBinding;
-import com.app.community.event.AddNewsMainFragmentEvent;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.DashboardInsidePresenter;
@@ -32,17 +31,14 @@ import com.app.community.ui.dashboard.home.adapter.HelpPlaceAdapter;
 import com.app.community.ui.dashboard.home.adapter.LatestNewsAdapter;
 import com.app.community.ui.dashboard.home.adapter.NewsAdapter;
 import com.app.community.ui.dashboard.home.event.SearchProductEvent;
-import com.app.community.ui.dashboard.home.fragment.HelpsAndSupportFragment;
 import com.app.community.ui.dashboard.home.fragment.HomeFragment;
 import com.app.community.ui.dashboard.home.fragment.MyOrderFragment;
 import com.app.community.ui.dashboard.home.fragment.NewsFragment;
-import com.app.community.ui.dashboard.home.fragment.NewsMainFragment;
 import com.app.community.ui.dialogfragment.ContactImpPlaceDialogFragment;
 import com.app.community.utils.AddWelcomeChildView;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
-import com.app.community.utils.PreferenceUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -168,7 +164,8 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
                 @Override
                 public void run() {
                    // mFragmentNavigation.pushFragment(ConfirmOrderFragment.newInstance(mInt+1));
-                    mFragmentNavigation.pushFragment(NewsMainFragment.newInstance(mInt+1));
+
+                    mFragmentNavigation.pushFragment(NewsFragment.newInstance(mInt+1,true));
                 }
             }, GeneralConstant.DELAYTIME);
         }
@@ -176,7 +173,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
 
     @Override
     public void onItemClick(int adapterPosition) {
-        mFragmentNavigation.pushFragment(NewsFragment.newInstance(mInt+1));
+        mFragmentNavigation.pushFragment(NewsFragment.newInstance(mInt+1, false));
     }
 
     @Override
@@ -199,7 +196,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
 
     @Override
     public void view(String message) {
-        mFragmentNavigation.pushFragment(ProductDetailsFragment.newInstance(mInt+1));
+        mFragmentNavigation.pushFragment(ProductDetailsFragment.newInstance(mInt+1,null));
     }
 
     @Override

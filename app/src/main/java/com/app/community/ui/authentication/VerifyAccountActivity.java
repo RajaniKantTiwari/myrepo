@@ -21,12 +21,12 @@ import com.app.community.network.response.LoginResponse;
 import com.app.community.network.response.VerifyMobileResponse;
 import com.app.community.ui.dashboard.DashBoardActivity;
 import com.app.community.ui.dialogfragment.CustomDialogFragment;
-import com.app.community.ui.presenter.AuthenticationPresenter;
+import com.app.community.ui.presenter.CommonPresenter;
 import com.app.community.utils.ApiConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
-import com.app.community.utils.PreferenceUtil;
+import com.app.community.utils.UserPreference;
 
 import javax.inject.Inject;
 
@@ -34,11 +34,11 @@ import javax.inject.Inject;
  * Created by on 23/12/17.
  */
 
-public class VerifyAccountActivity extends AuthenticationActivity implements TextWatcher, View.OnKeyListener,CustomDialogFragment.CustomDialogListener {
+public class VerifyAccountActivity extends CommonActivity implements TextWatcher, View.OnKeyListener,CustomDialogFragment.CustomDialogListener {
     private ActivityVerifyAccountBinding mBinding;
     StringBuilder otpNumber = new StringBuilder();
     @Inject
-    AuthenticationPresenter presenter;
+    CommonPresenter presenter;
     private String mobileNumber;
     private String userName;
 
@@ -90,7 +90,7 @@ public class VerifyAccountActivity extends AuthenticationActivity implements Tex
         if (view == mBinding.tvResend) {
             CommonUtils.clicked(mBinding.tvResend);
             presenter.getLoginDetail(this,new LoginRequest(userName,mobileNumber,
-                    PreferenceUtil.getLatitude(),PreferenceUtil.getLongitude()));
+                    UserPreference.getLatitude(), UserPreference.getLongitude()));
         } else if (view == mBinding.tvChange) {
             //CommonUtils.clicked(mBinding.tvChange);
             Bundle bundle=new Bundle();
@@ -136,6 +136,8 @@ public class VerifyAccountActivity extends AuthenticationActivity implements Tex
                         String status = verifyMobileResponse.getStatus();
                         if (status.equals(ApiConstants.SUCCESS)) {
                             hideKeyboard();
+                            UserPreference.setUserId(verifyMobileResponse.getId());
+                            UserPreference.setToken(verifyMobileResponse.getAuthkey());
                             showToast("Success");
                         } else {
                             hideKeyboard();
@@ -219,7 +221,7 @@ public class VerifyAccountActivity extends AuthenticationActivity implements Tex
     public void ok(String str) {
         mobileNumber=str;
         presenter.getLoginDetail(this,new LoginRequest(userName,mobileNumber,
-                PreferenceUtil.getLatitude(),PreferenceUtil.getLongitude()));
+                UserPreference.getLatitude(), UserPreference.getLongitude()));
         hideKeyboard();
     }
 

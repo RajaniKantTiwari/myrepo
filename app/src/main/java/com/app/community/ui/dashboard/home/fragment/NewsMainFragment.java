@@ -13,7 +13,6 @@ import com.app.community.databinding.FragmentMainNewsBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.adapter.NewsPagerAdapter;
-import com.app.community.utils.PreferenceUtil;
 
 import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 
