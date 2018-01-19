@@ -41,22 +41,22 @@ android {
     productFlavors {
         dev {
             signingConfig signingConfigs.config
-            applicationId 'com.nos'
+            applicationId 'com.app.community'
             dimension "environment"
             buildConfigField "String", "BASE_URL", "\"http://thephantomgrid.com/rest/web/v1/\""
         }
         qa {
             signingConfig signingConfigs.config
-            applicationId 'com.nos'
+            applicationId 'com.app.community'
             dimension "environment"
         }
         production {
             signingConfig signingConfigs.config
-            applicationId 'com.nos'
+            applicationId 'com.app.community'
             dimension "environment"
         }
         staging {
-            applicationId 'com.nos'
+            applicationId 'com.app.community'
             signingConfig signingConfigs.config
             dimension "environment"
         }
@@ -91,9 +91,6 @@ ext {
 }
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     //Google Support libs
     implementation "com.android.support:design:${supportLibrary}"

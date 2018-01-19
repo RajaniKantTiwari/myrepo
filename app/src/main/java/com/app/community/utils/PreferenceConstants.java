@@ -10,4 +10,5 @@ public interface PreferenceConstants {
     String DEFAULT = "";
     String USER_LATITUDE = "user_latitude";
     String USER_LONGITUDE = "user_longitude";
+    String NEWS_CONNECTED = "news_connected";
 }

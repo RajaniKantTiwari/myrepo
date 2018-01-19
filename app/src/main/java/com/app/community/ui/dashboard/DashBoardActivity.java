@@ -2,13 +2,9 @@ package com.app.community.ui.dashboard;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.util.Pair;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,6 +16,7 @@ import android.view.View;
 import com.app.community.CommonApplication;
 import com.app.community.R;
 import com.app.community.databinding.ActivityDashboardBinding;
+import com.app.community.event.AddNewsMainFragmentEvent;
 import com.app.community.fragnav.FragNavController;
 import com.app.community.fragnav.FragNavSwitchController;
 import com.app.community.fragnav.FragNavTransactionOptions;
@@ -27,24 +24,23 @@ import com.app.community.fragnav.tabhistory.FragNavTabHistoryController;
 import com.app.community.injector.component.DaggerDashboardComponent;
 import com.app.community.injector.component.DashboardComponent;
 import com.app.community.injector.module.DashboardModule;
-import com.app.community.navcontroller.BackStackActivity;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.base.BaseFragment;
-import com.app.community.ui.dashboard.home.BaseHomeFragment;
+import com.app.community.ui.dashboard.home.SearchActivity;
 import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.adapter.DrawerAdapterLeft;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.adapter.DrawerAdapterRight;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.model.Artist;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.model.Genre;
-import com.app.community.ui.dashboard.home.fragment.HomeFragment;
-import com.app.community.ui.dashboard.home.fragment.NewsFragment;
-import com.app.community.ui.dashboard.home.fragment.NewsTabFragment;
 import com.app.community.ui.dashboard.notification.NotificationFragment;
 import com.app.community.ui.dashboard.offer.OfferFragment;
 import com.app.community.ui.dashboard.user.UserFragment;
+import com.app.community.utils.ExplicitIntent;
 import com.app.community.widget.bottomnavigation.BottomNavigationBar;
 import com.app.community.widget.bottomnavigation.NavigationPage;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -253,7 +249,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     }
 
     public void setListener() {
-        mBinding.toolBar.ivMenu.setOnClickListener(this);
+        mBinding.toolBar.ivSearch.setOnClickListener(this);
         mBinding.toolBar.ivDrawer.setOnClickListener(this);
         mBinding.toolBar.ivRightDrawer.setOnClickListener(this);
 
@@ -266,6 +262,8 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
             openDrawerLeft();
         }else if(view==mBinding.toolBar.ivRightDrawer){
             openDrawerRight();
+        }else if(view==mBinding.toolBar.ivSearch){
+            ExplicitIntent.getsInstance().navigateTo(this, SearchActivity.class);
         }
     }
 

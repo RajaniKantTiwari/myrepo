@@ -22,7 +22,7 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
  * Created by rajnikant on 31/12/17.
  */
 
-public class NewsFragment extends DashboardFragment implements SimpleGestureFilter.SimpleGestureListener {
+public class NewsFragment extends DashboardFragment {
     private FragmentNewsBinding mBinding;
 
     @Nullable
@@ -69,13 +69,4 @@ public class NewsFragment extends DashboardFragment implements SimpleGestureFilt
         return fragment;
     }
 
-    @Override
-    public void onSwipe(int direction) {
-
-    }
-
-    @Override
-    public void onDoubleTap() {
-
-    }
 }

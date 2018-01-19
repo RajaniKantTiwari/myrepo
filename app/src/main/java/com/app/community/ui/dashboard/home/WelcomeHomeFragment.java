@@ -24,6 +24,7 @@ import com.app.community.databinding.LayoutLatestNewsBinding;
 import com.app.community.databinding.LayoutNewsBinding;
 import com.app.community.databinding.LayoutOfferBinding;
 import com.app.community.databinding.LayoutWelcomeSearchBinding;
+import com.app.community.event.AddNewsMainFragmentEvent;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.DashboardInsidePresenter;
@@ -40,6 +41,8 @@ import com.app.community.ui.dialogfragment.ContactImpPlaceDialogFragment;
 import com.app.community.utils.AddWelcomeChildView;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
+import com.app.community.utils.GeneralConstant;
+import com.app.community.utils.PreferenceUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -164,9 +167,10 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                   // mFragmentNavigation.pushFragment(ConfirmOrderFragment.newInstance(mInt+1));
                     mFragmentNavigation.pushFragment(NewsMainFragment.newInstance(mInt+1));
                 }
-            },100);
+            }, GeneralConstant.DELAYTIME);
         }
     }
 
@@ -225,7 +229,8 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
             public void run() {
                 mFragmentNavigation.pushFragment(HomeFragment.newInstance(mInt+1));
             }
-        },100);
+        },GeneralConstant.DELAYTIME);
 
     }
+
 }

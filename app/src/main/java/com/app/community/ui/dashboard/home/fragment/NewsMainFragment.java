@@ -10,12 +10,10 @@ import android.view.ViewGroup;
 
 import com.app.community.R;
 import com.app.community.databinding.FragmentMainNewsBinding;
-import com.app.community.databinding.FragmentNewsBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.adapter.NewsPagerAdapter;
-import com.app.community.ui.dashboard.home.adapter.VerticlePagerAdapter;
-import com.app.community.utils.SimpleGestureFilter;
+import com.app.community.utils.PreferenceUtil;
 
 import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 
@@ -23,8 +21,9 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
  * Created by rajnikant on 31/12/17.
  */
 
-public class NewsMainFragment extends DashboardFragment implements SimpleGestureFilter.SimpleGestureListener {
+public class NewsMainFragment extends DashboardFragment {
     private FragmentMainNewsBinding mBinding;
+    private NewsPagerAdapter pagerAdapter;
 
     @Nullable
     @Override
@@ -35,7 +34,9 @@ public class NewsMainFragment extends DashboardFragment implements SimpleGesture
 
     @Override
     public void initializeData() {
-        mBinding.viewPager.setAdapter(new NewsPagerAdapter(getDashboardActivity().getSupportFragmentManager()));
+        getDashboardActivity().showToast("NewsMainFragment called");
+        pagerAdapter=new NewsPagerAdapter(getDashboardActivity().getSupportFragmentManager());
+        mBinding.viewPager.setAdapter(pagerAdapter);
         mBinding.viewPager.setCurrentItem(1);
     }
 
@@ -63,21 +64,13 @@ public class NewsMainFragment extends DashboardFragment implements SimpleGesture
 
     }
 
+
+
     public static Fragment newInstance(int instance) {
         Bundle args = new Bundle();
         args.putInt(ARGS_INSTANCE, instance);
         NewsMainFragment fragment = new NewsMainFragment();
         fragment.setArguments(args);
         return fragment;
-    }
-
-    @Override
-    public void onSwipe(int direction) {
-
-    }
-
-    @Override
-    public void onDoubleTap() {
-
     }
 }

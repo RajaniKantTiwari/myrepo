@@ -80,10 +80,10 @@
 
                 <ImageView
                     style="@style/wrap_wrap"
-                    android:src="@drawable/add" />
+                    android:src="@drawable/add_black" />
 
                 <com.app.community.widget.CustomTextView
-                    style="@style/textview_header_small_wrap"
+                    style="@style/textview_title_wrap"
                     android:text="1"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/margin_10"
@@ -93,7 +93,7 @@
 
                 <ImageView
                     style="@style/wrap_wrap"
-                    android:src="@drawable/sub" />
+                    android:src="@drawable/sub_black" />
             </LinearLayout>
 
             <com.app.community.widget.CustomTextView

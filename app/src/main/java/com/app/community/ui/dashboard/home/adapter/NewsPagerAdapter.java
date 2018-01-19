@@ -12,7 +12,6 @@ import com.app.community.ui.dashboard.home.fragment.NewsFragment;
  */
 
 public class NewsPagerAdapter extends FragmentPagerAdapter {
-
         public NewsPagerAdapter(FragmentManager fm) {
             super(fm);
         }

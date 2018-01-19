@@ -51,6 +51,7 @@ public interface GeneralConstant {
     int LIVEORDER = 1;
     int PASTORDER = 2;
     String PRODUCT_INFO = "product_info";
+    long DELAYTIME = 70;
 
 
     @IntDef({PRODUCT_MAP_FRAGMENT, PRODUCT_LIST, RECENT_FRAGMENT, CATEGORY_FRAGMENT,
