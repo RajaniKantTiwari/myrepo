@@ -15,6 +15,7 @@ import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.feed.MerchantResponse;
 import com.app.community.network.response.dashboard.feed.MerchantResponseData;
+import com.app.community.network.response.dashboard.feed.StoreImages;
 import com.app.community.ui.SimpleDividerItemDecoration;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.DashboardInsidePresenter;
@@ -22,6 +23,7 @@ import com.app.community.ui.dashboard.home.adapter.ReviewAdapter;
 import com.app.community.ui.dashboard.home.adapter.StoreAdapter;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
+import com.app.community.utils.GlideUtils;
 
 import java.util.ArrayList;
 
@@ -106,11 +108,24 @@ public class ProductDetailsFragment extends DashboardFragment {
                     com.app.community.network.response.dashboard.feed.MerchantResponse merchantResponse = infoList.get(0);
                     if (CommonUtils.isNotNull(merchantResponse)) {
                          mBinding.setMerchantResponse(merchantResponse);
+                         setImage(merchantResponse);
                     }
                 }
             }
         }
 
+    }
+
+    private void setImage(MerchantResponse merchantResponse) {
+        if(CommonUtils.isNotNull(merchantResponse.getRating())){
+            mBinding.ratingBar.setRating(CommonUtils.setRating(merchantResponse.getRating()));
+        }
+        GlideUtils.loadImage(getDashboardActivity(),merchantResponse.getLogo(),mBinding.imageLogo,null,0);
+        GlideUtils.loadImage(getDashboardActivity(),merchantResponse.getBanner_image(),mBinding.storeImage,null,0);
+        ArrayList<StoreImages> imageList=merchantResponse.getStoreimages();
+        if(CommonUtils.isNotNull(imageList)){
+            mPhotoAdapter.setImageList(imageList);
+        }
     }
 
     public static Fragment newInstance(int instance, MerchantResponse productResponse) {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
+        <import type="com.app.community.utils.CommonUtils"/>
         <variable
             name="merchantResponse"
             type="com.app.community.network.response.dashboard.feed.MerchantResponse"/>
@@ -60,6 +61,7 @@
                         android:orientation="horizontal">
 
                         <ImageView
+                            android:id="@+id/imageLogo"
                             style="@style/image_60"
                             android:src="@drawable/lacoste"
                             android:background="@color/white"/>
@@ -70,7 +72,7 @@
                             android:drawablePadding="@dimen/margin_5"
                             android:drawableStart="@drawable/location_pin"
                             android:gravity="center_vertical"
-                            android:text="@={merchantResponse.distance}"
+                            android:text="@{CommonUtils.twoDecimalPlaceString(merchantResponse.distance)}"
                             android:textColor="@color/white"
                             android:textSize="@dimen/textSize_12"
                             app:customFont="@string/font_bold" />
@@ -108,12 +110,13 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/margin_5"
                             android:layout_marginTop="@dimen/margin_5"
-                            android:text="4.2"
+                            android:text="@{CommonUtils.oneDecimalPlaceString(merchantResponse.rating)}"
                             android:textColor="@color/rating_text_color"
                             android:textSize="@dimen/textSize_12"
                             app:customFont="@string/font_bold" />
 
                         <RatingBar
+                            android:id="@+id/ratingBar"
                             style="@style/Widget.AppCompat.RatingBar.Small"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -303,8 +306,8 @@
 
                         <com.app.community.widget.CustomTextView
                             style="@style/textview_description_small_wrap"
-                            android:text="@={merchantResponse.opentime}"
-                             />
+                            android:text="@{CommonUtils.getStartEndDate(merchantResponse.opentime,merchantResponse.closetime)}"
+                            />
                     </LinearLayout>
 
 
@@ -322,7 +325,8 @@
 
                         <com.app.community.widget.CustomTextView
                             style="@style/textview_description_small_wrap"
-                            android:text="9 am to 9 pm"/>
+                            android:text="@{CommonUtils.getStartEndDate(merchantResponse.opentime,merchantResponse.closetime)}"
+                            />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

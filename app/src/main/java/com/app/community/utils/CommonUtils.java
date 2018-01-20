@@ -272,4 +272,9 @@ public class CommonUtils {
         }
         return null;
     }
+
+    public static float setRating(String rating) {
+        String str = String.format("%.2f", Double.parseDouble(rating));
+        return Float.parseFloat(str);
+    }
 }

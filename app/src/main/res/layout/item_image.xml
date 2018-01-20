@@ -5,6 +5,7 @@
     style="@style/wrap_wrap"
     android:padding="@dimen/margin_5">
 <ImageView
+    android:id="@+id/ivStoreImage"
     style="@style/image_70_80"
     android:src="@drawable/app_icon"/>
 </LinearLayout>

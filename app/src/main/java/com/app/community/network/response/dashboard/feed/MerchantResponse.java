@@ -28,6 +28,8 @@ public class MerchantResponse implements Parcelable,Observable {
     private String pincode;
     private String latitude;
     private String longitude;
+    private String banner_image;
+    private String store_descr;
     private String rating;
     private String minorder;
     private String averagetime;
@@ -36,8 +38,6 @@ public class MerchantResponse implements Parcelable,Observable {
     private String to;
     private String background_color;
     private String max_percentage;
-    private String banner_image;
-    private String store_descr;
     private String preferred_payment_options;
     private ArrayList<StoreImages> storeimages;
 

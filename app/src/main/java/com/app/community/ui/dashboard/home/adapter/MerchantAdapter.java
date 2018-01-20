@@ -57,6 +57,7 @@ public class MerchantAdapter extends RecyclerView.Adapter<MerchantAdapter.Mercha
             MerchantResponse response = merchantList.get(position);
             GlideUtils.loadImage(activity, response.getLogo(), holder.imageView, null, 0);
             if (CommonUtils.isNotNull(response)) {
+                holder.setData(response);
                 if (CommonUtils.isNotNull(response.getRating())) {
                     holder.tvStar.setVisibility(View.VISIBLE);
                 } else {
@@ -66,8 +67,11 @@ public class MerchantAdapter extends RecyclerView.Adapter<MerchantAdapter.Mercha
                     holder.tvDiscount.setBackgroundColor(CommonUtils.getColor(activity, R.color.light_green));
                 } else {
                     holder.tvDiscount.setBackgroundColor(CommonUtils.getColor(activity, R.color.greyish_color));
+                }if(CommonUtils.isNotNull(response.getDistance())){
+                    holder.tvdistance.setVisibility(View.VISIBLE);
+                }else {
+                    holder.tvdistance.setVisibility(View.GONE);
                 }
-                holder.setData(response);
             }
 
 
@@ -91,13 +95,16 @@ public class MerchantAdapter extends RecyclerView.Adapter<MerchantAdapter.Mercha
         private final CustomTextView tvStar;
         private final ImageView imageView;
         private final CustomTextView tvDiscount;
-
+        private final CustomTextView tvdistance;
+        private ItemProductRowBinding itemView;
         public MerchantViewHolder(ItemProductRowBinding itemView) {
             super(itemView.getRoot());
+            this.itemView=itemView;
             imageView = itemView.ivProductImage;
             tvContact = itemView.tvContact;
             tvView = itemView.tvView;
             tvStar = itemView.tvStar;
+            tvdistance=itemView.tvdistance;
             tvDiscount = itemView.tvDiscount;
             itemView.ivProductImage.setOnClickListener(this);
             itemView.tvProductName.setOnClickListener(this);
@@ -123,7 +130,7 @@ public class MerchantAdapter extends RecyclerView.Adapter<MerchantAdapter.Mercha
         }
 
         public void setData(MerchantResponse response) {
-            //itemView.setMerchantResponse(response);
+            itemView.setMerchantResponse(response);
         }
     }
 }
