@@ -9,7 +9,7 @@ import android.view.View;
 
 import com.app.community.R;
 import com.app.community.databinding.ProductDialogBinding;
-import com.app.community.network.response.dashboard.meeting.MerchantResponse;
+import com.app.community.network.response.dashboard.feed.MerchantResponse;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 import com.google.android.gms.maps.GoogleMap;
@@ -44,19 +44,18 @@ public class MarkerInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
     {
        ProductDialogBinding mBinding= DataBindingUtil.inflate(mInflator, R.layout.product_dialog,null,false);
         MerchantResponse mettingResponse = mMarkersHashMap.get(marker);
-        mBinding.setMeetEventResponse(mettingResponse);
-        if(CommonUtils.isNotNull(mettingResponse)&&mettingResponse.getId()!=0){
+        mBinding.setMerchantResponse(mettingResponse);
+        if(CommonUtils.isNotNull(mettingResponse)&&!mettingResponse.getId().equalsIgnoreCase("0")){
             mBinding.layoutDate.setVisibility(View.VISIBLE);
             mBinding.tvLocation.setText(mettingResponse.getAddress());
-            mBinding.tvTitle.setText(mettingResponse.getTitle());
         }else{
             try {
                 mBinding.layoutDate.setVisibility(View.GONE);
                 Geocoder geocoder = new Geocoder(mActivity, Locale.getDefault());
                 mBinding.tvTitle.setText(mActivity.getResources().getString(R.string.current_location));
                 // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-                List<Address> addresses = geocoder.getFromLocation(mettingResponse.getLat(),
-                        mettingResponse.getLng(), 1);
+                List<Address> addresses = geocoder.getFromLocation(Double.parseDouble(mettingResponse.getLatitude()),
+                        Double.parseDouble(mettingResponse.getLongitude()), 1);
                 String address = addresses.get(0).getAddressLine(0);
                 if(CommonUtils.isNotNull(address)){
                    if(address.length()> GeneralConstant.ADDRESS_MAX_LENGTH) {

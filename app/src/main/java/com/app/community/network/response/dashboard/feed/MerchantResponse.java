@@ -28,16 +28,62 @@ public class MerchantResponse implements Parcelable,Observable {
     private String pincode;
     private String latitude;
     private String longitude;
-    private String banner_image;
-    private String store_descr;
-    private String preferred_payment_options;
     private String rating;
     private String minorder;
     private String averagetime;
+    private String offer;
+    private String from;
+    private String to;
+    private String background_color;
+    private String max_percentage;
+    private String banner_image;
+    private String store_descr;
+    private String preferred_payment_options;
     private ArrayList<StoreImages> storeimages;
 
     public MerchantResponse() {
     }
+
+    public String getOffer() {
+        return offer;
+    }
+
+    public void setOffer(String offer) {
+        this.offer = offer;
+    }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public String getTo() {
+        return to;
+    }
+
+    public void setTo(String to) {
+        this.to = to;
+    }
+
+    public String getBackground_color() {
+        return background_color;
+    }
+
+    public void setBackground_color(String background_color) {
+        this.background_color = background_color;
+    }
+
+    public String getMax_percentage() {
+        return max_percentage;
+    }
+
+    public void setMax_percentage(String max_percentage) {
+        this.max_percentage = max_percentage;
+    }
+
     @Bindable
     public String getId() {
         return id;
@@ -219,6 +265,11 @@ public class MerchantResponse implements Parcelable,Observable {
         rating = in.readString();
         minorder = in.readString();
         averagetime = in.readString();
+        offer=in.readString();
+        from=in.readString();
+        to=in.readString();
+        background_color=in.readString();
+        max_percentage=in.readString();
         storeimages = in.createTypedArrayList(StoreImages.CREATOR);
     }
 
@@ -241,6 +292,11 @@ public class MerchantResponse implements Parcelable,Observable {
         dest.writeString(store_descr);
         dest.writeString(preferred_payment_options);
         dest.writeString(rating);
+        dest.writeString(offer);
+        dest.writeString(from);
+        dest.writeString(to);
+        dest.writeString(background_color);
+        dest.writeString(max_percentage);
         dest.writeString(minorder);
         dest.writeString(averagetime);
         dest.writeTypedList(storeimages);

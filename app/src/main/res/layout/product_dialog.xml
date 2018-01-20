@@ -2,8 +2,8 @@
 <layout>
     <data>
         <variable
-            name="meetEventResponse"
-            type="com.app.community.network.response.dashboard.meeting.MerchantResponse" />
+            name="merchantResponse"
+            type="com.app.community.network.response.dashboard.feed.MerchantResponse"/>
     </data>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"

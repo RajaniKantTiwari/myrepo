@@ -9,8 +9,7 @@ import com.app.community.network.response.LoginResponse;
 import com.app.community.network.response.VerifyMobileResponse;
 import com.app.community.network.response.dashboard.SearchResponseData;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
-import com.app.community.network.response.dashboard.feed.MerchantDetailsData;
-import com.app.community.network.response.dashboard.meeting.MerchantResponseData;
+import com.app.community.network.response.dashboard.feed.MerchantResponseData;
 
 import io.reactivex.Observable;
 import retrofit2.Retrofit;
@@ -48,7 +47,7 @@ public class RetrofitRepository implements Repository {
     }
 
     @Override
-    public Observable<MerchantDetailsData> getMerchantDetail(MerchantRequest merchantRequest) {
+    public Observable<MerchantResponseData> getMerchantDetail(MerchantRequest merchantRequest) {
         return apiService.getMerchantDetails(merchantRequest);
     }
 

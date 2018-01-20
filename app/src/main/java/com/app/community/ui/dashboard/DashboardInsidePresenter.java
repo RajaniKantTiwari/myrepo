@@ -8,7 +8,7 @@ import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.request.dashboard.ProductRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
-import com.app.community.network.response.dashboard.feed.MerchantDetailsData;
+import com.app.community.network.response.dashboard.feed.MerchantResponseData;
 import com.app.community.ui.base.MvpView;
 import com.app.community.ui.base.Presenter;
 
@@ -52,9 +52,9 @@ public class DashboardInsidePresenter implements Presenter<MvpView> {
 
     public void getMerchantDetails(Activity activity, MerchantRequest merchantRequest) {
         mView.showProgress();
-        mRepository.getMerchantDetail(merchantRequest).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<MerchantDetailsData>(activity) {
+        mRepository.getMerchantDetail(merchantRequest).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<MerchantResponseData>(activity) {
             @Override
-            public void onResponse(MerchantDetailsData response) {
+            public void onResponse(MerchantResponseData response) {
                 mView.hideProgress();
                 mView.onSuccess(response,0);
             }

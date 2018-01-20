@@ -12,8 +12,7 @@ import com.app.community.network.response.LoginResponse;
 import com.app.community.network.response.VerifyMobileResponse;
 import com.app.community.network.response.dashboard.SearchResponseData;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
-import com.app.community.network.response.dashboard.feed.MerchantDetailsData;
-import com.app.community.network.response.dashboard.meeting.MerchantResponseData;
+import com.app.community.network.response.dashboard.feed.MerchantResponseData;
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;
@@ -48,7 +47,7 @@ public interface ApiService {
     Observable<ProductDetailsData> viewCart(@Body CartRequest request);
 
     @POST("merchant/getmerchantdetails")
-    Observable<MerchantDetailsData> getMerchantDetails(@Body MerchantRequest request);
+    Observable<MerchantResponseData> getMerchantDetails(@Body MerchantRequest request);
 
 
     @POST("common/searchbytag")

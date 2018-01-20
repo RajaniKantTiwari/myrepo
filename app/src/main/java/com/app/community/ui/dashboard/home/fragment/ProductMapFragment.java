@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 import com.app.community.R;
 import com.app.community.databinding.FragmentLocationMapBinding;
 import com.app.community.network.response.BaseResponse;
-import com.app.community.network.response.dashboard.meeting.MerchantResponse;
+import com.app.community.network.response.dashboard.feed.MerchantResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.adapter.MarkerInfoWindowAdapter;
 import com.app.community.ui.dashboard.home.event.ProductEvent;
@@ -153,13 +153,13 @@ public class ProductMapFragment extends DashboardFragment implements OnMapReadyC
                 ActivityCompat.checkSelfPermission(getBaseActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        if (CommonUtils.isNotNull(mMap)) {
-            LatLng latLng = new LatLng(response.getLat(), response.getLng());
+        if (CommonUtils.isNotNull(mMap)&&CommonUtils.isNotNull(response)) {
+            LatLng latLng = new LatLng(Double.parseDouble(response.getLatitude()), Double.parseDouble(response.getLongitude()));
             Marker marker = mMap.addMarker(new MarkerOptions()
                     .position(latLng)
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.pushpin)));
             mMarkersHashMap.put(marker, response);
-            if(CommonUtils.isNotNull(response)&&response.getId()==0){
+            if(CommonUtils.isNotNull(response)&&response.getId().equalsIgnoreCase("0")){
                 ShowMarker(marker,response);
                 marker.showInfoWindow();
             }
@@ -171,7 +171,7 @@ public class ProductMapFragment extends DashboardFragment implements OnMapReadyC
             marker.showInfoWindow();
             Geocoder geocoder = new Geocoder(getBaseActivity(), Locale.getDefault());
             // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-            List<Address> addresses = geocoder.getFromLocation(response.getLat(), response.getLng(), 1);
+            List<Address> addresses = geocoder.getFromLocation(Double.parseDouble(response.getLatitude()), Double.parseDouble(response.getLongitude()), 1);
             String address = addresses.get(0).getAddressLine(0);
             if(CommonUtils.isNotNull(address)){
                 if(address.length()>GeneralConstant.MAX_LENGTH) {

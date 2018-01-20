@@ -11,7 +11,7 @@ import android.widget.ImageView;
 
 import com.app.community.R;
 import com.app.community.databinding.ItemProductRowBinding;
-import com.app.community.network.response.dashboard.meeting.MerchantResponse;
+import com.app.community.network.response.dashboard.feed.MerchantResponse;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GlideUtils;
 import com.app.community.widget.CustomTextView;
@@ -65,9 +65,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.Location
             } else {
                 holder.tvdistance.setVisibility(View.INVISIBLE);
             }
-            if (response.getRating()!=0) {
+            if (CommonUtils.isNotNull(response.getRating())&&!response.getRating().equalsIgnoreCase("0")) {
                 holder.tvStar.setVisibility(View.VISIBLE);
-                holder.tvStar.setText(String.format("%.1f", response.getRating()));
+                holder.tvStar.setText(String.format("%.1f", Double.parseDouble(response.getRating())));
             } else {
                 holder.tvStar.setVisibility(View.INVISIBLE);
             }

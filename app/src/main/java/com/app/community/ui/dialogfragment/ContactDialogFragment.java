@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.app.community.R;
 import com.app.community.databinding.DialogfragmentContactBinding;
-import com.app.community.network.response.dashboard.meeting.MerchantResponse;
+import com.app.community.network.response.dashboard.feed.MerchantResponse;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.GlideUtils;
@@ -56,7 +56,7 @@ public class ContactDialogFragment extends DialogFragment implements View.OnClic
              GlideUtils.loadImage(getActivity(),productInfo.getLogo(),mBinding.ivImage,null,0);
              mBinding.ivName.setText(productInfo.getName());
              mBinding.ivAddress.setText(productInfo.getAddress());
-             mobileNumber=productInfo.getPhoneno();
+             //mobileNumber=productInfo.getPhoneno();
 
          }
         }

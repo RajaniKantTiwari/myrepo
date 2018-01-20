@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.app.community.R;
 import com.app.community.databinding.DialogfragmentContactImpBinding;
-import com.app.community.network.response.dashboard.meeting.MerchantResponse;
+import com.app.community.network.response.dashboard.feed.MerchantResponse;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 
@@ -54,7 +54,7 @@ public class ContactImpPlaceDialogFragment extends DialogFragment implements Vie
          if(CommonUtils.isNotNull(productInfo)){
              mBinding.ivName.setText(productInfo.getName());
              mBinding.ivAddress.setText(productInfo.getAddress());
-             mobileNumber=productInfo.getPhoneno();
+             //mobileNumber=productInfo.getPhoneno();
 
          }
         }

@@ -6,7 +6,7 @@ import android.app.Activity;
 import com.app.community.network.DefaultApiObserver;
 import com.app.community.network.Repository;
 import com.app.community.network.response.BaseResponse;
-import com.app.community.network.response.dashboard.meeting.MerchantResponseData;
+import com.app.community.network.response.dashboard.feed.MerchantResponseData;
 import com.app.community.ui.base.MvpView;
 import com.app.community.ui.base.Presenter;
 

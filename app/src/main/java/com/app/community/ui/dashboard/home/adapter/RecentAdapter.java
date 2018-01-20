@@ -10,7 +10,7 @@ import android.widget.ImageView;
 
 import com.app.community.R;
 import com.app.community.databinding.ItemRecentRowBinding;
-import com.app.community.network.response.dashboard.meeting.MerchantResponse;
+import com.app.community.network.response.dashboard.feed.MerchantResponse;
 import com.app.community.utils.CommonUtils;
 import com.app.community.widget.CustomTextView;
 

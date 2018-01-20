@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.app.community.R;
 import com.app.community.databinding.FragmentHomeBinding;
 import com.app.community.network.response.BaseResponse;
-import com.app.community.network.response.dashboard.meeting.MerchantResponseData;
+import com.app.community.network.response.dashboard.feed.MerchantResponseData;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.DashboardPresenter;

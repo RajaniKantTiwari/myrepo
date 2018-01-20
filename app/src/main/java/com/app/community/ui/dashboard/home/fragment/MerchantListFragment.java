@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 import com.app.community.R;
 import com.app.community.databinding.FragmentLocationListBinding;
 import com.app.community.network.response.BaseResponse;
-import com.app.community.network.response.dashboard.meeting.MerchantResponse;
+import com.app.community.network.response.dashboard.feed.MerchantResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.ProductDetailsFragment;
 import com.app.community.ui.dashboard.home.adapter.ProductAdapter;
@@ -37,7 +37,7 @@ import static com.app.community.utils.GeneralConstant.REQUEST_CALL;
  * Created by Amul on 27/12/17.
  */
 
-public class ProductListFragment extends DashboardFragment implements ContactDialogFragment.ContactDialogListener {
+public class MerchantListFragment extends DashboardFragment implements ContactDialogFragment.ContactDialogListener {
     private FragmentLocationListBinding mBinding;
     private ProductAdapter mAdapter;
     private ArrayList<MerchantResponse> productList;
@@ -98,7 +98,7 @@ public class ProductListFragment extends DashboardFragment implements ContactDia
 
     @Override
     public String getFragmentName() {
-        return ProductListFragment.class.getSimpleName();
+        return MerchantListFragment.class.getSimpleName();
     }
 
     @Override

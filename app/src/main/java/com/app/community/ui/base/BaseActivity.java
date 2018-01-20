@@ -24,7 +24,7 @@ import com.app.community.ui.dashboard.home.fragment.LiveOrderFragment;
 import com.app.community.ui.dashboard.home.fragment.NewsFragment;
 import com.app.community.ui.dashboard.home.fragment.NewsTabFragment;
 import com.app.community.ui.dashboard.home.fragment.PastOrderFragment;
-import com.app.community.ui.dashboard.home.fragment.ProductListFragment;
+import com.app.community.ui.dashboard.home.fragment.MerchantListFragment;
 import com.app.community.ui.dashboard.home.fragment.ProductMapFragment;
 import com.app.community.ui.dashboard.home.fragment.RecentFragment;
 import com.app.community.utils.CommonUtils;
@@ -228,7 +228,7 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
                 fragment = new ProductMapFragment();
                 break;
             case PRODUCT_LIST:
-                fragment = new ProductListFragment();
+                fragment = new MerchantListFragment();
                 break;
             case RECENT_FRAGMENT:
                 fragment = new RecentFragment();

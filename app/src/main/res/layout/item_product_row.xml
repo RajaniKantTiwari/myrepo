@@ -2,12 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-
-        <variable
-            name="productResponse"
-            type="com.app.community.network.response.dashboard.meeting.MerchantResponse" />
-    </data>
 <LinearLayout
     style="@style/match_wrap"
     android:layout_marginStart="@dimen/margin_15"

@@ -1,16 +1,15 @@
-package com.app.community.network.response.dashboard.meeting;
-
+package com.app.community.network.response.dashboard.feed;
 
 import com.app.community.network.response.BaseResponse;
 
 import java.util.ArrayList;
 
 /**
- * Created by Amul on 28/12/17.
+ * Created by rajnikant on 19/01/18.
  */
 
 public class MerchantResponseData extends BaseResponse {
-    private ArrayList<MerchantResponse> info;
+   private ArrayList<MerchantResponse> info;
 
     public ArrayList<MerchantResponse> getInfo() {
         return info;
