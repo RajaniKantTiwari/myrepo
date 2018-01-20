@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.app.community.R;
 import com.app.community.databinding.DialogfragmentContactBinding;
-import com.app.community.network.response.dashboard.meeting.ProductResponse;
+import com.app.community.network.response.dashboard.meeting.MerchantResponse;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.GlideUtils;
@@ -20,7 +20,7 @@ public class ContactDialogFragment extends DialogFragment implements View.OnClic
     private DialogfragmentContactBinding mBinding;
     private ContactDialogListener listener;
     private String mobileNumber;
-    private ProductResponse productInfo;
+    private MerchantResponse productInfo;
 
     public interface ContactDialogListener {
         void contact(String phoneNumber);

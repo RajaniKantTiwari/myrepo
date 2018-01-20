@@ -6,7 +6,7 @@
 
         <variable
             name="productResponse"
-            type="com.app.community.network.response.dashboard.meeting.ProductResponse" />
+            type="com.app.community.network.response.dashboard.meeting.MerchantResponse" />
     </data>
 <LinearLayout
     style="@style/match_wrap"

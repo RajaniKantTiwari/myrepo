@@ -9,14 +9,11 @@ import android.view.ViewGroup;
 
 import com.app.community.R;
 import com.app.community.databinding.FragmentHomeBinding;
-import com.app.community.network.request.dashboard.ProductSearchRequest;
 import com.app.community.network.response.BaseResponse;
-import com.app.community.network.response.dashboard.meeting.ProductResponseData;
+import com.app.community.network.response.dashboard.meeting.MerchantResponseData;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.DashboardPresenter;
-import com.app.community.ui.dashboard.home.SearchActivity;
-import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.event.ProductEvent;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
@@ -74,8 +71,7 @@ public class HomeFragment extends DashboardFragment {
         if(CommonUtils.isNotNull(bundle)){
             search=bundle.getString(GeneralConstant.SEARCH_STRING);
         }
-        //getPresenter().getMerchantList(getBaseActivity());
-        presenter.searchProductList(getDashboardActivity(),new ProductSearchRequest(search));
+        getPresenter().getMerchantList(getBaseActivity());
     }
 
     @Override
@@ -129,8 +125,8 @@ public class HomeFragment extends DashboardFragment {
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
         if (CommonUtils.isNotNull(response)) {
-            if (response instanceof ProductResponseData) {
-                ProductResponseData meetingEventResponseData = (ProductResponseData) response;
+            if (response instanceof MerchantResponseData) {
+                MerchantResponseData meetingEventResponseData = (MerchantResponseData) response;
                 if (CommonUtils.isNotNull(meetingEventResponseData)) {
                     event.setProductList(meetingEventResponseData.getInfo());
                     EventBus.getDefault().post(event);

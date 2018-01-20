@@ -3,7 +3,7 @@
     <data>
         <variable
             name="meetEventResponse"
-            type="com.app.community.network.response.dashboard.meeting.ProductResponse" />
+            type="com.app.community.network.response.dashboard.meeting.MerchantResponse" />
     </data>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"

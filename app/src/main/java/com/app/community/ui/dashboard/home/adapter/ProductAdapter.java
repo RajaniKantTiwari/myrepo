@@ -11,7 +11,7 @@ import android.widget.ImageView;
 
 import com.app.community.R;
 import com.app.community.databinding.ItemProductRowBinding;
-import com.app.community.network.response.dashboard.meeting.ProductResponse;
+import com.app.community.network.response.dashboard.meeting.MerchantResponse;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GlideUtils;
 import com.app.community.widget.CustomTextView;
@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.LocationViewHolder> {
     private final LayoutInflater mInflator;
     private final AppCompatActivity activity;
-    private ArrayList<ProductResponse> productList;
+    private ArrayList<MerchantResponse> productList;
     private ProductClickListener itemClickListener;
 
     public void setOnItemClick(ProductClickListener itemClickListener) {
@@ -54,7 +54,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.Location
     @Override
     public void onBindViewHolder(LocationViewHolder holder, int position) {
         if (CommonUtils.isNotNull(productList) && productList.size() > position) {
-            ProductResponse response = productList.get(position);
+            MerchantResponse response = productList.get(position);
             GlideUtils.loadImage(activity, response.getLogo(), holder.imageView, null, 0);
             holder.tvProductName.setText(response.getName());
             holder.tvLocation.setText(response.getAddress());
@@ -99,7 +99,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.Location
         return productList != null ? productList.size() : 0;
     }
 
-    public void setLocationList(ArrayList<ProductResponse> productList) {
+    public void setLocationList(ArrayList<MerchantResponse> productList) {
         this.productList = productList;
         notifyDataSetChanged();
     }

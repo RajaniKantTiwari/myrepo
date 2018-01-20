@@ -10,7 +10,7 @@ import android.os.Parcelable;
  * Created by Amul on 28/12/17.
  */
 
-public class ProductResponse implements Parcelable,Observable {
+public class MerchantResponse implements Parcelable,Observable {
     private int id;
     private String image;
     private String name;
@@ -26,16 +26,19 @@ public class ProductResponse implements Parcelable,Observable {
     private double latitude;
     private double longitude;
     private double rating;
+    private String minorder;
+    private String averagetime;
+    private String offer;
     private boolean status;
     private String created_at;
 
 
     private PropertyChangeRegistry registry = new PropertyChangeRegistry();
-    public ProductResponse(){
+    public MerchantResponse(){
 
     }
 
-    protected ProductResponse(Parcel in) {
+    protected MerchantResponse(Parcel in) {
         id = in.readInt();
         name = in.readString();
         address = in.readString();
@@ -178,15 +181,15 @@ public class ProductResponse implements Parcelable,Observable {
         this.created_at = created_at;
     }
 
-    public static final Creator<ProductResponse> CREATOR = new Creator<ProductResponse>() {
+    public static final Creator<MerchantResponse> CREATOR = new Creator<MerchantResponse>() {
         @Override
-        public ProductResponse createFromParcel(Parcel in) {
-            return new ProductResponse(in);
+        public MerchantResponse createFromParcel(Parcel in) {
+            return new MerchantResponse(in);
         }
 
         @Override
-        public ProductResponse[] newArray(int size) {
-            return new ProductResponse[size];
+        public MerchantResponse[] newArray(int size) {
+            return new MerchantResponse[size];
         }
     };
     @Bindable

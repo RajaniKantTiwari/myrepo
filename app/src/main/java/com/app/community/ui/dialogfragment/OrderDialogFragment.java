@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.app.community.R;
 import com.app.community.databinding.DialogfragmentOrderBinding;
-import com.app.community.network.response.dashboard.meeting.ProductResponse;
+import com.app.community.network.response.dashboard.meeting.MerchantResponse;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 
@@ -18,7 +18,7 @@ public class OrderDialogFragment extends DialogFragment implements View.OnClickL
     private Dialog dialog;
     private DialogfragmentOrderBinding mBinding;
     private OrderDialogListener listener;
-    private ProductResponse productInfo;
+    private MerchantResponse productInfo;
 
     public interface OrderDialogListener {
         void submit(String submit);

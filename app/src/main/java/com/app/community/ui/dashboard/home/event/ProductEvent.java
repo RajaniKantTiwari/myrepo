@@ -1,7 +1,7 @@
 package com.app.community.ui.dashboard.home.event;
 
 
-import com.app.community.network.response.dashboard.meeting.ProductResponse;
+import com.app.community.network.response.dashboard.meeting.MerchantResponse;
 
 import java.util.ArrayList;
 
@@ -15,13 +15,13 @@ public class ProductEvent {
     //use 1 for list 2 for map
     private int listMap;
 
-    private ArrayList<ProductResponse> productList;
+    private ArrayList<MerchantResponse> productList;
 
-    public ArrayList<ProductResponse> getProductList() {
+    public ArrayList<MerchantResponse> getProductList() {
         return productList;
     }
 
-    public void setProductList(ArrayList<ProductResponse> productList) {
+    public void setProductList(ArrayList<MerchantResponse> productList) {
         this.productList = productList;
     }
 

@@ -2,11 +2,60 @@
 <layout>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center">
-<com.app.community.widget.CustomTextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Offer"/>
+    android:layout_height="match_parent">
+<RelativeLayout
+    style="@style/match_wrap"
+    android:layout_height="@dimen/margin_200">
+    <ImageView
+        style="@style/match_match"
+        android:src="@drawable/abc"
+        android:scaleType="centerCrop"/>
+</RelativeLayout>
+<LinearLayout
+    style="@style/match_wrap"
+    android:layout_height="@dimen/margin_25">
+    <com.app.community.widget.CustomTextView
+        android:id="@+id/tvFabDeal"
+        style="@style/textview_description_wrap"
+        android:layout_height="match_parent"
+        android:text="4.5"
+        android:layout_weight="1"
+        android:textColor="@color/star_text_color"
+        android:gravity="center"/>
+    <com.app.community.widget.CustomTextView
+        android:id="@+id/tvFoodDrink"
+        style="@style/textview_description_wrap"
+        android:layout_height="match_parent"
+        android:text="4.5"
+        android:layout_weight="1"
+        android:textColor="@color/star_text_color"
+        android:gravity="center"/>
+    <com.app.community.widget.CustomTextView
+        android:id="@+id/tvSpas"
+        style="@style/textview_description_wrap"
+        android:layout_height="match_parent"
+        android:text="4.5"
+        android:layout_weight="1"
+        android:textColor="@color/star_text_color"
+        android:gravity="center"/>
+    <com.app.community.widget.CustomTextView
+        android:id="@+id/tvSaloon"
+        style="@style/textview_description_wrap"
+        android:layout_height="match_parent"
+        android:text="4.5"
+        android:layout_weight="1"
+        android:textColor="@color/star_text_color"
+        android:gravity="center"/>
+    <com.app.community.widget.CustomTextView
+        android:id="@+id/tvJewellry"
+        style="@style/textview_description_wrap"
+        android:layout_height="match_parent"
+        android:text="4.5"
+        android:layout_weight="1"
+        android:textColor="@color/star_text_color"
+        android:gravity="center"/>
+</LinearLayout>
+    <ImageView
+        style="@style/view_layout_brown" />
 </LinearLayout>
 </layout>

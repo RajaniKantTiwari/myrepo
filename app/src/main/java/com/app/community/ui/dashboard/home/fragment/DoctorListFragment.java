@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import com.app.community.R;
 import com.app.community.databinding.FragmentDoctorListBinding;
 import com.app.community.network.response.BaseResponse;
-import com.app.community.network.response.dashboard.meeting.ProductResponse;
+import com.app.community.network.response.dashboard.meeting.MerchantResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.ProductDetailsFragment;
 import com.app.community.ui.dashboard.home.adapter.DoctorAdapter;
@@ -33,7 +33,7 @@ import java.util.ArrayList;
 public class DoctorListFragment extends DashboardFragment {
     private FragmentDoctorListBinding mBinding;
     private DoctorAdapter mAdapter;
-    private ArrayList<ProductResponse> doctorsList;
+    private ArrayList<MerchantResponse> doctorsList;
 
     @Nullable
     @Override

@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 import com.app.community.R;
 import com.app.community.databinding.FragmentLocationListBinding;
 import com.app.community.network.response.BaseResponse;
-import com.app.community.network.response.dashboard.meeting.ProductResponse;
+import com.app.community.network.response.dashboard.meeting.MerchantResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.ProductDetailsFragment;
 import com.app.community.ui.dashboard.home.adapter.ProductAdapter;
@@ -40,7 +40,7 @@ import static com.app.community.utils.GeneralConstant.REQUEST_CALL;
 public class ProductListFragment extends DashboardFragment implements ContactDialogFragment.ContactDialogListener {
     private FragmentLocationListBinding mBinding;
     private ProductAdapter mAdapter;
-    private ArrayList<ProductResponse> productList;
+    private ArrayList<MerchantResponse> productList;
     private Intent callIntent;
 
     @Nullable

@@ -9,7 +9,6 @@ import com.app.community.network.request.dashboard.ProductRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
 import com.app.community.network.response.dashboard.feed.MerchantDetailsData;
-import com.app.community.network.response.dashboard.meeting.ProductResponseData;
 import com.app.community.ui.base.MvpView;
 import com.app.community.ui.base.Presenter;
 

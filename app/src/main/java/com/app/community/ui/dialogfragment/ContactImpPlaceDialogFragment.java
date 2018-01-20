@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.app.community.R;
 import com.app.community.databinding.DialogfragmentContactImpBinding;
-import com.app.community.network.response.dashboard.meeting.ProductResponse;
+import com.app.community.network.response.dashboard.meeting.MerchantResponse;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 
@@ -19,7 +19,7 @@ public class ContactImpPlaceDialogFragment extends DialogFragment implements Vie
     private DialogfragmentContactImpBinding mBinding;
     private ContactDialogListener listener;
     private String mobileNumber;
-    private ProductResponse productInfo;
+    private MerchantResponse productInfo;
 
     public interface ContactDialogListener {
         void contact(String phoneNumber);

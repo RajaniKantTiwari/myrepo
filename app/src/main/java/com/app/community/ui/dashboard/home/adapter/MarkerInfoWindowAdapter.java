@@ -9,7 +9,7 @@ import android.view.View;
 
 import com.app.community.R;
 import com.app.community.databinding.ProductDialogBinding;
-import com.app.community.network.response.dashboard.meeting.ProductResponse;
+import com.app.community.network.response.dashboard.meeting.MerchantResponse;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 import com.google.android.gms.maps.GoogleMap;
@@ -25,8 +25,8 @@ public class MarkerInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
     private final LayoutInflater mInflator;
     private Activity mActivity;
-    private HashMap<Marker, ProductResponse> mMarkersHashMap;
-    public MarkerInfoWindowAdapter(Activity activity, HashMap<Marker, ProductResponse> mMarkersHashMap)
+    private HashMap<Marker, MerchantResponse> mMarkersHashMap;
+    public MarkerInfoWindowAdapter(Activity activity, HashMap<Marker, MerchantResponse> mMarkersHashMap)
     {
         mActivity = activity;
         this.mMarkersHashMap=mMarkersHashMap;
@@ -43,7 +43,7 @@ public class MarkerInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
     public View getInfoContents(Marker marker)
     {
        ProductDialogBinding mBinding= DataBindingUtil.inflate(mInflator, R.layout.product_dialog,null,false);
-        ProductResponse mettingResponse = mMarkersHashMap.get(marker);
+        MerchantResponse mettingResponse = mMarkersHashMap.get(marker);
         mBinding.setMeetEventResponse(mettingResponse);
         if(CommonUtils.isNotNull(mettingResponse)&&mettingResponse.getId()!=0){
             mBinding.layoutDate.setVisibility(View.VISIBLE);

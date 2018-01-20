@@ -13,7 +13,7 @@ import com.app.community.network.response.VerifyMobileResponse;
 import com.app.community.network.response.dashboard.SearchResponseData;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
 import com.app.community.network.response.dashboard.feed.MerchantDetailsData;
-import com.app.community.network.response.dashboard.meeting.ProductResponseData;
+import com.app.community.network.response.dashboard.meeting.MerchantResponseData;
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;
@@ -32,7 +32,7 @@ public interface ApiService {
     Observable<VerifyMobileResponse> verifyMobileNumber(@Body VerifyMobileRequest request);
 
     @GET("merchant/showmerchant")
-    Observable<ProductResponseData> getMerchantList();
+    Observable<MerchantResponseData> getMerchantList();
 
 
     @POST("product/getproductdetails")

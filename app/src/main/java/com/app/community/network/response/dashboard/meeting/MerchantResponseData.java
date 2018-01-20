@@ -9,14 +9,14 @@ import java.util.ArrayList;
  * Created by Amul on 28/12/17.
  */
 
-public class ProductResponseData extends BaseResponse {
-    private ArrayList<ProductResponse> info;
+public class MerchantResponseData extends BaseResponse {
+    private ArrayList<MerchantResponse> info;
 
-    public ArrayList<ProductResponse> getInfo() {
+    public ArrayList<MerchantResponse> getInfo() {
         return info;
     }
 
-    public void setInfo(ArrayList<ProductResponse> info) {
+    public void setInfo(ArrayList<MerchantResponse> info) {
         this.info = info;
     }
 }

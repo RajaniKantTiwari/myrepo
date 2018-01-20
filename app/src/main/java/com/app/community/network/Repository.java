@@ -10,7 +10,7 @@ import com.app.community.network.response.VerifyMobileResponse;
 import com.app.community.network.response.dashboard.SearchResponseData;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
 import com.app.community.network.response.dashboard.feed.MerchantDetailsData;
-import com.app.community.network.response.dashboard.meeting.ProductResponseData;
+import com.app.community.network.response.dashboard.meeting.MerchantResponseData;
 
 import io.reactivex.Observable;
 
@@ -25,7 +25,7 @@ public interface Repository {
 
     Observable<VerifyMobileResponse> verifyMobileNumber(VerifyMobileRequest verifyMobileRequest);
 
-    Observable<ProductResponseData> getMerchantList();
+    Observable<MerchantResponseData> getMerchantList();
 
     Observable<ProductDetailsData> getProductDetail(ProductRequest productRequest);
 

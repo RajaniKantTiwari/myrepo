@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 import com.app.community.R;
 import com.app.community.databinding.FragmentLocationMapBinding;
 import com.app.community.network.response.BaseResponse;
-import com.app.community.network.response.dashboard.meeting.ProductResponse;
+import com.app.community.network.response.dashboard.meeting.MerchantResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.adapter.MarkerInfoWindowAdapter;
 import com.app.community.ui.dashboard.home.event.ProductEvent;
@@ -33,7 +33,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
@@ -53,7 +52,7 @@ public class ProductMapFragment extends DashboardFragment implements OnMapReadyC
     private FragmentLocationMapBinding mBinder;
     private GPSTracker gpsTracker;
     private SupportMapFragment mapFragment;
-    private HashMap<Marker, ProductResponse> mMarkersHashMap;
+    private HashMap<Marker, MerchantResponse> mMarkersHashMap;
 
 
     @Nullable
@@ -110,9 +109,9 @@ public class ProductMapFragment extends DashboardFragment implements OnMapReadyC
         }
     }
 
-    private void showMarkerList(ArrayList<ProductResponse> meetingEventList) {
+    private void showMarkerList(ArrayList<MerchantResponse> meetingEventList) {
         if (CommonUtils.isNotNull(meetingEventList)) {
-            for (ProductResponse response : meetingEventList) {
+            for (MerchantResponse response : meetingEventList) {
                 addMarker(response);
             }
         }
@@ -149,7 +148,7 @@ public class ProductMapFragment extends DashboardFragment implements OnMapReadyC
         }
     }
 
-    private void addMarker(ProductResponse response) {
+    private void addMarker(MerchantResponse response) {
         if (ActivityCompat.checkSelfPermission(getBaseActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(getBaseActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
@@ -167,7 +166,7 @@ public class ProductMapFragment extends DashboardFragment implements OnMapReadyC
         }
     }
 
-    private void ShowMarker(Marker marker, ProductResponse response) {
+    private void ShowMarker(Marker marker, MerchantResponse response) {
         try {
             marker.showInfoWindow();
             Geocoder geocoder = new Geocoder(getBaseActivity(), Locale.getDefault());

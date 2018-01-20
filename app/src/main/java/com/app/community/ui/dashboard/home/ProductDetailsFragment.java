@@ -14,8 +14,7 @@ import com.app.community.databinding.FragmentProductDetailBinding;
 import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.feed.MerchantDetailsData;
-import com.app.community.network.response.dashboard.feed.MerchantResponse;
-import com.app.community.network.response.dashboard.meeting.ProductResponse;
+import com.app.community.network.response.dashboard.meeting.MerchantResponse;
 import com.app.community.ui.SimpleDividerItemDecoration;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.DashboardInsidePresenter;
@@ -41,7 +40,7 @@ public class ProductDetailsFragment extends DashboardFragment {
     private FragmentProductDetailBinding mBinding;
     private StoreAdapter mPhotoAdapter;
     private ReviewAdapter mReviewAdapter;
-    private ProductResponse productResponse;
+    private MerchantResponse productResponse;
     @Inject
     DashboardInsidePresenter presenter;
 
@@ -102,9 +101,9 @@ public class ProductDetailsFragment extends DashboardFragment {
         if (CommonUtils.isNotNull(response) && response instanceof MerchantDetailsData) {
             MerchantDetailsData data = (MerchantDetailsData) response;
             if (CommonUtils.isNotNull(data)) {
-                ArrayList<MerchantResponse> infoList = data.getInfo();
+                ArrayList<com.app.community.network.response.dashboard.feed.MerchantResponse> infoList = data.getInfo();
                 if (CommonUtils.isNotNull(infoList) && infoList.size() > 0) {
-                    MerchantResponse merchantResponse = infoList.get(0);
+                    com.app.community.network.response.dashboard.feed.MerchantResponse merchantResponse = infoList.get(0);
                     if (CommonUtils.isNotNull(merchantResponse)) {
                          mBinding.setMerchantResponse(merchantResponse);
                     }
@@ -114,7 +113,7 @@ public class ProductDetailsFragment extends DashboardFragment {
 
     }
 
-    public static Fragment newInstance(int instance, ProductResponse productResponse) {
+    public static Fragment newInstance(int instance, MerchantResponse productResponse) {
         Bundle args = new Bundle();
         args.putInt(ARGS_INSTANCE, instance);
         args.putParcelable(GeneralConstant.RESPONSE, productResponse);
