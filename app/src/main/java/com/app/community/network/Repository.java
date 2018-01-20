@@ -3,13 +3,13 @@ package com.app.community.network;
 import com.app.community.network.request.LoginRequest;
 import com.app.community.network.request.VerifyMobileRequest;
 import com.app.community.network.request.dashboard.MerchantRequest;
+import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.request.dashboard.ProductRequest;
-import com.app.community.network.request.dashboard.ProductSearchRequest;
 import com.app.community.network.response.LoginResponse;
 import com.app.community.network.response.VerifyMobileResponse;
-import com.app.community.network.response.dashboard.SearchResponseData;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
 import com.app.community.network.response.dashboard.feed.MerchantResponseData;
+import com.app.community.network.response.dashboard.feed.SearchResponseData;
 
 import io.reactivex.Observable;
 
@@ -24,11 +24,10 @@ public interface Repository {
 
     Observable<VerifyMobileResponse> verifyMobileNumber(VerifyMobileRequest verifyMobileRequest);
 
-    Observable<MerchantResponseData> getMerchantList();
 
     Observable<ProductDetailsData> getProductDetail(ProductRequest productRequest);
 
     Observable<MerchantResponseData> getMerchantDetail(MerchantRequest merchantRequest);
 
-    Observable<SearchResponseData> searchProductList(ProductSearchRequest search);
+    Observable<SearchResponseData> getMerchantListBySearch(MerchantSearchRequest search);
 }

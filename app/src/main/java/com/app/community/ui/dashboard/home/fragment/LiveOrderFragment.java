@@ -9,14 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.community.R;
-import com.app.community.databinding.FragmentConfirmBinding;
 import com.app.community.databinding.FragmentOrderBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.adapter.LiveOrderAdapter;
-import com.app.community.ui.dashboard.home.adapter.ProductAdapter;
 import com.app.community.ui.dashboard.home.event.MyOrderEvent;
-import com.app.community.ui.dashboard.home.event.NewsEvent;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 

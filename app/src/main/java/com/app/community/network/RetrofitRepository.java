@@ -4,12 +4,12 @@ import com.app.community.network.request.LoginRequest;
 import com.app.community.network.request.VerifyMobileRequest;
 import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.request.dashboard.ProductRequest;
-import com.app.community.network.request.dashboard.ProductSearchRequest;
+import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.response.LoginResponse;
 import com.app.community.network.response.VerifyMobileResponse;
-import com.app.community.network.response.dashboard.SearchResponseData;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
 import com.app.community.network.response.dashboard.feed.MerchantResponseData;
+import com.app.community.network.response.dashboard.feed.SearchResponseData;
 
 import io.reactivex.Observable;
 import retrofit2.Retrofit;
@@ -37,11 +37,6 @@ public class RetrofitRepository implements Repository {
     }
 
     @Override
-    public Observable<MerchantResponseData> getMerchantList() {
-        return apiService.getMerchantList();
-    }
-
-    @Override
     public Observable<ProductDetailsData> getProductDetail(ProductRequest productRequest) {
         return apiService.getProductDetail(productRequest);
     }
@@ -52,7 +47,7 @@ public class RetrofitRepository implements Repository {
     }
 
     @Override
-    public Observable<SearchResponseData> searchProductList(ProductSearchRequest search) {
-        return apiService.getProductDetailsBySearch(search);
+    public Observable<SearchResponseData> getMerchantListBySearch(MerchantSearchRequest search) {
+        return apiService.getMerchantListBySearch(search);
     }
 }

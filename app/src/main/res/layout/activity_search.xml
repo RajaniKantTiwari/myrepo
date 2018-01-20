@@ -5,7 +5,8 @@
         android:id="@+id/layoutOrder"
         style="@style/match_match"
         android:background="@color/white_light"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:focusable="true">
 
         <RelativeLayout
             style="@style/match_wrap"
@@ -14,36 +15,55 @@
             <ImageView
                 android:id="@+id/ivBack"
                 style="@style/wrap_match"
-                android:src="@drawable/back"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true"
+                android:src="@drawable/back" />
 
             <com.app.community.widget.CustomEditText
                 android:id="@+id/edSearch"
                 style="@style/textview_description_small_match"
+                android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/margin_10"
                 android:layout_toEndOf="@+id/ivBack"
                 android:layout_toStartOf="@+id/tvGo"
-                android:hint="@string/search_product_by_name"
                 android:background="@null"
-                android:padding="@dimen/margin_7"
-                android:layout_centerVertical="true"/>
+                android:drawableStart="@drawable/search_small"
+                android:hint="@string/search_city_product_service"
+                android:padding="@dimen/margin_7" />
 
             <com.app.community.widget.CustomTextView
                 android:id="@+id/tvGo"
                 style="@style/textview_title_wrap"
                 android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
                 android:gravity="center_vertical"
                 android:paddingEnd="@dimen/margin_10"
                 android:paddingStart="@dimen/margin_10"
                 android:text="@string/go"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"
                 android:textAllCaps="true" />
         </RelativeLayout>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rvSearch"
+        <RelativeLayout
             style="@style/match_match"
-            android:paddingTop="@dimen/margin_16" />
+            android:paddingTop="@dimen/margin_16">
+
+            <include
+                android:id="@+id/defaultSearch"
+                layout="@layout/default_search" />
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvSearch"
+                    style="@style/match_match"
+                    android:visibility="gone" />
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                style="@android:style/Widget.ProgressBar.Small"
+                android:theme="@style/AppTheme.WhiteAccent"
+                android:visibility="gone"/>
+        </RelativeLayout>
     </LinearLayout>
 </layout>

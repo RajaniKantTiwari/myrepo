@@ -11,6 +11,7 @@ import com.app.community.R;
 import com.app.community.databinding.FragmentHomeBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.feed.MerchantResponseData;
+import com.app.community.network.response.dashboard.feed.SearchResponseData;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.DashboardPresenter;
@@ -71,7 +72,7 @@ public class HomeFragment extends DashboardFragment {
         if(CommonUtils.isNotNull(bundle)){
             search=bundle.getString(GeneralConstant.SEARCH_STRING);
         }
-        getPresenter().getMerchantList(getBaseActivity());
+        getPresenter().getMerchantListBySearch(getBaseActivity(),search);
     }
 
     @Override
@@ -125,10 +126,10 @@ public class HomeFragment extends DashboardFragment {
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
         if (CommonUtils.isNotNull(response)) {
-            if (response instanceof MerchantResponseData) {
-                MerchantResponseData meetingEventResponseData = (MerchantResponseData) response;
-                if (CommonUtils.isNotNull(meetingEventResponseData)) {
-                    event.setProductList(meetingEventResponseData.getInfo());
+            if (response instanceof SearchResponseData) {
+                SearchResponseData searchResponseData = (SearchResponseData) response;
+                if (CommonUtils.isNotNull(searchResponseData)) {
+                    event.setProductList(searchResponseData.getData());
                     EventBus.getDefault().post(event);
                 }
             }

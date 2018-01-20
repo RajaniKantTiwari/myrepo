@@ -411,6 +411,12 @@
     <string name="mon_to_sat">Mon to Sat</string>
     <string name="h_mm_a">h:mm a</string>
     <string name="dd_MMM">dd MMM</string>
+    <string name="search_city_product_service">Search City, Product, Service</string>
+    <string name="or">Or</string>
+    <string name="service">Service</string>
+    <string name="open_now">Open Now:</string>
+    <string name="km">&#160;km</string>
+
 
     <string-array name="state_array">
         <item> Select State </item>

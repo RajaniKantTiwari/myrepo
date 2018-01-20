@@ -7,7 +7,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
+    <style name="AppTheme.WhiteAccent">
+        <item name="colorAccent">@color/reddish</item> <!-- Whatever color you want-->
+    </style>
     <style name="AppTheme" parent="parentTheme">
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     </style>

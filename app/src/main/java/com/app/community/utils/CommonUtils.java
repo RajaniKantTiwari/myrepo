@@ -36,8 +36,12 @@ import com.google.android.gms.common.GoogleApiAvailability;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 import static com.app.community.utils.GeneralConstant.TAG;
 
@@ -47,10 +51,12 @@ import static com.app.community.utils.GeneralConstant.TAG;
 
 public class CommonUtils {
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
+
     public static int convertDpToPx(int dp, Context context) {
         return Math.round(dp * (context.getResources().getDisplayMetrics().xdpi / DisplayMetrics.DENSITY_DEFAULT));
 
     }
+
     /**
      * Show toast message for long time
      *
@@ -62,11 +68,13 @@ public class CommonUtils {
             Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
         }
     }
+
     //Check object is null
     public static boolean isNull(Object obj) {
         return obj == null;
     }
-    public static void showDialog(AppCompatActivity activity, Bundle bundle,CustomDialogFragment.CustomDialogListener listener) {
+
+    public static void showDialog(AppCompatActivity activity, Bundle bundle, CustomDialogFragment.CustomDialogListener listener) {
         FragmentManager fm = activity.getSupportFragmentManager();
         CustomDialogFragment alertdFragment = new CustomDialogFragment();
         alertdFragment.DialogListener(listener);
@@ -74,7 +82,8 @@ public class CommonUtils {
         // Show Alert CustomDialogFragment
         alertdFragment.show(fm, "");
     }
-    public static void showContactDialog(AppCompatActivity activity, Bundle bundle,ContactDialogFragment.ContactDialogListener listener) {
+
+    public static void showContactDialog(AppCompatActivity activity, Bundle bundle, ContactDialogFragment.ContactDialogListener listener) {
         FragmentManager fm = activity.getSupportFragmentManager();
         ContactDialogFragment alertdFragment = new ContactDialogFragment();
         alertdFragment.addListener(listener);
@@ -84,7 +93,7 @@ public class CommonUtils {
     }
 
 
-    public static void showOrderDialog(AppCompatActivity activity, Bundle bundle,OrderDialogFragment.OrderDialogListener listener) {
+    public static void showOrderDialog(AppCompatActivity activity, Bundle bundle, OrderDialogFragment.OrderDialogListener listener) {
         FragmentManager fm = activity.getSupportFragmentManager();
         OrderDialogFragment alertdFragment = new OrderDialogFragment();
         alertdFragment.addListener(listener);
@@ -92,7 +101,8 @@ public class CommonUtils {
         // Show Alert CustomDialogFragment
         alertdFragment.show(fm, "");
     }
-    public static void showContactImpDialog(AppCompatActivity activity, Bundle bundle,ContactImpPlaceDialogFragment.ContactDialogListener listener) {
+
+    public static void showContactImpDialog(AppCompatActivity activity, Bundle bundle, ContactImpPlaceDialogFragment.ContactDialogListener listener) {
         FragmentManager fm = activity.getSupportFragmentManager();
         ContactImpPlaceDialogFragment alertdFragment = new ContactImpPlaceDialogFragment();
         alertdFragment.addListener(listener);
@@ -102,9 +112,10 @@ public class CommonUtils {
     }
 
     public static boolean isNotNull(Object object) {
-        return object!=null;
+        return object != null;
     }
-    public static  boolean checkService(BaseActivity activity){
+
+    public static boolean checkService(BaseActivity activity) {
         if (!BuildConfig.DEBUG && CommonUtils.isSimulator()) {
             activity.showToast(activity.getResources().getString(R.string.google_service_not_present));
             return false;
@@ -115,6 +126,7 @@ public class CommonUtils {
         }
         return true;
     }
+
     public static boolean isSimulator() {
         boolean isSimulator = "google_sdk".equals(Build.PRODUCT)
                 || "vbox86p".equals(Build.PRODUCT)
@@ -124,12 +136,13 @@ public class CommonUtils {
 
         return isSimulator;
     }
+
     public static boolean checkGooglePlaySevices(final Activity activity) {
         GoogleApiAvailability googleAPI = GoogleApiAvailability.getInstance();
         int result = googleAPI.isGooglePlayServicesAvailable(activity);
-        if(result != ConnectionResult.SUCCESS) {
-            if(googleAPI.isUserResolvableError(result)) {
-                Dialog dialog=googleAPI.getErrorDialog(activity, result,
+        if (result != ConnectionResult.SUCCESS) {
+            if (googleAPI.isUserResolvableError(result)) {
+                Dialog dialog = googleAPI.getErrorDialog(activity, result,
                         PLAY_SERVICES_RESOLUTION_REQUEST);
                 dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
@@ -143,6 +156,7 @@ public class CommonUtils {
 
         return true;
     }
+
     /**
      * Convert Time from milli to DD/MM/YYYY format
      *
@@ -153,16 +167,18 @@ public class CommonUtils {
         SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM d, yyyy hh:mm aaa");
         return formatter.format(new Date(millis));
     }
+
     public static String convertMilliToTime(long time) {
         SimpleDateFormat formatter = new SimpleDateFormat("hh:mm aaa");
 
         return formatter.format(new Date(time));
     }
+
     public static int getColor(Context context, int color) {
         return ContextCompat.getColor(context, color);
     }
 
-    public static void clicked(View view){
+    public static void clicked(View view) {
         view.setEnabled(false);
         final Animation animation = new AlphaAnimation(1.0f, 0.6f);
         animation.setDuration(200);
@@ -176,13 +192,13 @@ public class CommonUtils {
                 animation.setFillAfter(true);
                 view.startAnimation(animation);
             }
-        },200);
+        }, 200);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 view.setEnabled(true);
             }
-        },3000);
+        }, 3000);
     }
 
     public static void setDialog(Dialog dialog) {
@@ -191,16 +207,69 @@ public class CommonUtils {
         dialog.setCancelable(true);
     }
 
-    public static void setPadding(Dialog dialog,Activity activity) {
+    public static void setPadding(Dialog dialog, Activity activity) {
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         ColorDrawable back = new ColorDrawable(Color.TRANSPARENT);
-        InsetDrawable inset = new InsetDrawable(back, convertDpToPx(10,activity));
+        InsetDrawable inset = new InsetDrawable(back, convertDpToPx(10, activity));
         dialog.getWindow().setBackgroundDrawable(inset);
     }
 
     public static void register(Fragment fragment) {
-        if(!EventBus.getDefault().isRegistered(fragment)){
+        if (!EventBus.getDefault().isRegistered(fragment)) {
             EventBus.getDefault().register(fragment);
         }
+    }
+
+    public static String oneDecimalPlaceString(String str) {
+        if (isNotNull(str) && str.length() > 0) {
+            double value = Double.parseDouble(str);
+            return String.format("%.1f", value);
+        }
+        return null;
+    }
+
+    public static String twoDecimalPlaceString(String str) {
+        if (isNotNull(str) && str.length() > 0) {
+            double value = Double.parseDouble(str);
+            return String.format("%.2f", value);
+        }
+        return null;
+    }
+
+    public static String oneDecimalPlace(double number) {
+        return String.format("%.1f", number);
+    }
+
+    public static String twoDecimalPlace(double number) {
+        return String.format("%.2f", number);
+    }
+
+    public static String getStartEndDate(String startDate,String endDate) {
+        StringBuilder date = new StringBuilder();
+        date.append(changeStringIntoDate(startDate));
+        date.append(" to ");
+        date.append(changeStringIntoDate(endDate));
+        return date.toString();
+    }
+    public static String changeStringIntoDate(String dateTime) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+        Date date = null;
+        try {
+            date = sdf.parse(dateTime);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Calendar cal = Calendar.getInstance();
+        TimeZone timeZone = cal.getTimeZone();
+        DateFormat outputFormat = new SimpleDateFormat("hh:mm a");
+        outputFormat.setTimeZone(timeZone);
+        try {
+            String formattedDate = outputFormat.format(date);
+            return formattedDate;
+        } catch (Exception ex) {
+            ex.toString();
+        }
+        return null;
     }
 }

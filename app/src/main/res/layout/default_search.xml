@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutSearch"
+    android:orientation="vertical"
+    style="@style/match_match">
+    <com.app.community.widget.CustomTextView
+        style="@style/textview_title_match"
+        android:gravity="center"
+        android:text="@string/or"
+        android:textAllCaps="true" />
+
+    <com.app.community.widget.CustomTextView
+        style="@style/textview_title_match"
+        android:layout_marginTop="@dimen/margin_20"
+        android:layout_marginBottom="@dimen/margin_7"
+        android:gravity="center"
+        android:text="@string/product"
+        android:textAllCaps="true" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvProduct"
+        style="@style/match_wrap"
+        android:layout_margin="@dimen/margin_3"
+        />
+
+    <com.app.community.widget.CustomTextView
+        style="@style/textview_title_match"
+        android:layout_marginTop="@dimen/margin_15"
+        android:layout_marginBottom="@dimen/margin_7"
+        android:gravity="center"
+        android:text="@string/service"
+        android:textAllCaps="true" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvService"
+        style="@style/layout_ver_match_1"
+        android:minHeight="@dimen/margin_200"
+        android:layout_margin="@dimen/margin_3"
+        />
+
+</LinearLayout>
+</layout>

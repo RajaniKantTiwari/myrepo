@@ -2,22 +2,18 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-
-        <variable
-            name="searchData"
-            type="com.app.community.network.response.dashboard.feed.MerchantResponse" />
-    </data>
-
     <LinearLayout
-        android:id="@+id/layoutNews"
-        style="@style/match_wrap">
-
+        style="@style/match_wrap"
+        android:background="@drawable/search_item_bg"
+        android:layout_marginStart="@dimen/margin_3"
+        android:layout_marginEnd="@dimen/margin_3"
+        android:layout_marginTop="@dimen/margin_1_5"
+        android:layout_marginBottom="@dimen/margin_1_5">
         <com.app.community.widget.CustomTextView
             android:id="@+id/tvSearchItem"
             style="@style/textview_description_match"
             android:padding="@dimen/margin_8"
-            android:text="@={searchData.name}"
-            app:customFont="@string/font_regular" />
+            android:gravity="center"
+            android:text="Fashion-related products"/>
     </LinearLayout>
 </layout>

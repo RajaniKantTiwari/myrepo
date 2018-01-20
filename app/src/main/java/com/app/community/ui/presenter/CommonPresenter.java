@@ -6,12 +6,11 @@ import com.app.community.network.DefaultApiObserver;
 import com.app.community.network.Repository;
 import com.app.community.network.request.LoginRequest;
 import com.app.community.network.request.VerifyMobileRequest;
-import com.app.community.network.request.dashboard.ProductSearchRequest;
+import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.LoginResponse;
 import com.app.community.network.response.VerifyMobileResponse;
-import com.app.community.network.response.dashboard.SearchResponseData;
-import com.app.community.ui.authentication.VerifyAccountActivity;
+import com.app.community.network.response.dashboard.feed.SearchResponseData;
 import com.app.community.ui.base.MvpView;
 import com.app.community.ui.base.Presenter;
 
@@ -75,8 +74,8 @@ public class CommonPresenter implements Presenter<MvpView> {
         });
     }
 
-    public void searchProductList(Activity activity,ProductSearchRequest productSearchRequest) {
-        mRepository.searchProductList(productSearchRequest).
+    public void getMerchantListBySearch(Activity activity,MerchantSearchRequest productSearchRequest) {
+        mRepository.getMerchantListBySearch(productSearchRequest).
                 subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<SearchResponseData>(activity) {
             @Override

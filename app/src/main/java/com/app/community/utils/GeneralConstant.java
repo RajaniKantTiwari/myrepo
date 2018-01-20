@@ -56,6 +56,8 @@ public interface GeneralConstant {
     long API_SERVICE = 500;
     String TIME_ZONE_UTC = "UTC";
     String SEARCH_STRING = "searchString";
+    int PRODUCT = 1;
+    int SERVICE = 2;
 
 
     @IntDef({PRODUCT_MAP_FRAGMENT, PRODUCT_LIST, RECENT_FRAGMENT, CATEGORY_FRAGMENT,

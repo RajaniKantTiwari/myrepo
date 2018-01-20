@@ -20,7 +20,7 @@ import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.feed.MerchantResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.ProductDetailsFragment;
-import com.app.community.ui.dashboard.home.adapter.ProductAdapter;
+import com.app.community.ui.dashboard.home.adapter.MerchantAdapter;
 import com.app.community.ui.dashboard.home.event.ProductEvent;
 import com.app.community.ui.dialogfragment.ContactDialogFragment;
 import com.app.community.utils.CommonUtils;
@@ -39,7 +39,7 @@ import static com.app.community.utils.GeneralConstant.REQUEST_CALL;
 
 public class MerchantListFragment extends DashboardFragment implements ContactDialogFragment.ContactDialogListener {
     private FragmentLocationListBinding mBinding;
-    private ProductAdapter mAdapter;
+    private MerchantAdapter mAdapter;
     private ArrayList<MerchantResponse> productList;
     private Intent callIntent;
 
@@ -53,7 +53,7 @@ public class MerchantListFragment extends DashboardFragment implements ContactDi
     }
 
     private void initializeAdapter() {
-        mAdapter = new ProductAdapter(getBaseActivity());
+        mAdapter = new MerchantAdapter(getBaseActivity());
         LinearLayoutManager layoutManager = new LinearLayoutManager(getBaseActivity());
         mBinding.rvProduct.setLayoutManager(layoutManager);
         mBinding.rvProduct.setAdapter(mAdapter);
@@ -66,7 +66,7 @@ public class MerchantListFragment extends DashboardFragment implements ContactDi
 
     @Override
     public void setListener() {
-        mAdapter.setOnItemClick(new ProductAdapter.ProductClickListener() {
+        mAdapter.setOnItemClick(new MerchantAdapter.MerchantClickListener() {
             @Override
             public void onItemClick(int adapterPosition) {
                 if (CommonUtils.isNotNull(productList) && productList.size() > adapterPosition) {

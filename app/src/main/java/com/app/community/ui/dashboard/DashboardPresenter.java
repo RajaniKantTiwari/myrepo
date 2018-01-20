@@ -5,8 +5,10 @@ import android.app.Activity;
 
 import com.app.community.network.DefaultApiObserver;
 import com.app.community.network.Repository;
+import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.feed.MerchantResponseData;
+import com.app.community.network.response.dashboard.feed.SearchResponseData;
 import com.app.community.ui.base.MvpView;
 import com.app.community.ui.base.Presenter;
 
@@ -33,11 +35,11 @@ public class DashboardPresenter implements Presenter<MvpView> {
         this.mRepository = repository;
     }
 
-    public void getMerchantList(Activity activity) {
+    public void getMerchantListBySearch(Activity activity, String search) {
         mView.showProgress();
-        mRepository.getMerchantList().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<MerchantResponseData>(activity) {
+        mRepository.getMerchantListBySearch(new MerchantSearchRequest(search)).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<SearchResponseData>(activity) {
             @Override
-            public void onResponse(MerchantResponseData response) {
+            public void onResponse(SearchResponseData response) {
                 mView.hideProgress();
                         mView.onSuccess(response,0);
             }
