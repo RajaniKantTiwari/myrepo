@@ -1,21 +1,72 @@
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ScrollView
+    <LinearLayout
         style="@style/match_match"
-        android:background="@color/dark_sky_blue"
-        android:scrollbars="none">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_below="@+id/tvName"
-                android:layout_marginTop="@dimen/margin_30">
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rvDrawer"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+        android:background="@color/dark_black_color"
+        android:orientation="vertical">
 
+        <RelativeLayout
+            style="@style/match_wrap"
+            android:background="@color/color_drawer_header"
+            android:minHeight="@dimen/margin_120"
+            android:paddingStart="@dimen/margin_20"
+            android:paddingTop="@dimen/margin_30">
+
+            <ImageView
+                android:id="@+id/ivAvatar"
+                style="@style/image_80"
+                android:background="@drawable/bg_circle_white"
+                android:scaleType="fitCenter"
+                android:src="@drawable/avatar" />
+               <ImageView
+                   android:layout_width="@dimen/margin_20"
+                   android:layout_height="@dimen/margin_20"
+                   android:layout_marginStart="@dimen/margin_55"
+                   android:layout_marginTop="@dimen/margin_55"
+                   android:background="@drawable/bg_circle_white"
+                   android:src="@drawable/star"
+                   android:padding="@dimen/margin_7"/>
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvStar"
+                style="@style/textview_description_small_wrap"
+                android:layout_marginTop="@dimen/margin_60"
+                android:layout_marginStart="@dimen/margin_78"
+                android:text="4.5"
+                android:textColor="@color/star_text_color" />
+
+            <LinearLayout
+                style="@style/match_wrap"
+                android:layout_below="@+id/ivAvatar"
+                android:layout_marginTop="@dimen/margin_8"
+                android:layout_marginBottom="@dimen/margin_8"
+                android:orientation="vertical">
+
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvName"
+                    style="@style/textview_description_small_wrap"
+                    android:text="John Doe"
+                    android:textColor="@color/white" />
+
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvMobile"
+                    style="@style/textview_description_small_wrap"
+                    android:text="9999-999-9999"
+                    android:textColor="@color/white" />
+
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvShopName"
+                    style="@style/textview_description_small_wrap"
+                    android:text="abc@gmail.com"
+                    android:textColor="@color/white" />
             </LinearLayout>
-    </ScrollView>
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:padding="@dimen/margin_20"
+            android:id="@+id/rvDrawer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
 </layout>

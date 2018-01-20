@@ -13,6 +13,8 @@ import com.app.community.R;
 import com.app.community.databinding.FragmentProductDetailBinding;
 import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.response.BaseResponse;
+import com.app.community.network.response.dashboard.feed.MerchantDetailsData;
+import com.app.community.network.response.dashboard.feed.MerchantResponse;
 import com.app.community.network.response.dashboard.meeting.ProductResponse;
 import com.app.community.ui.SimpleDividerItemDecoration;
 import com.app.community.ui.dashboard.DashboardFragment;
@@ -21,6 +23,8 @@ import com.app.community.ui.dashboard.home.adapter.ReviewAdapter;
 import com.app.community.ui.dashboard.home.adapter.StoreAdapter;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
+
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -44,16 +48,16 @@ public class ProductDetailsFragment extends DashboardFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding= DataBindingUtil.inflate(inflater,R.layout.fragment_product_detail,container,false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_product_detail, container, false);
         initializeView();
         return mBinding.getRoot();
     }
 
     private void initializeView() {
-        LinearLayoutManager photoManager=new LinearLayoutManager(getDashboardActivity());
+        LinearLayoutManager photoManager = new LinearLayoutManager(getDashboardActivity());
         photoManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mBinding.photoRecycler.setLayoutManager(photoManager);
-        LinearLayoutManager reviewManager=new LinearLayoutManager(getDashboardActivity());
+        LinearLayoutManager reviewManager = new LinearLayoutManager(getDashboardActivity());
         mBinding.rvReview.setLayoutManager(reviewManager);
         mBinding.rvReview.addItemDecoration(new SimpleDividerItemDecoration(getResources()));
     }
@@ -74,16 +78,16 @@ public class ProductDetailsFragment extends DashboardFragment {
     }
 
     public void initializeData() {
-        Bundle bundle=getArguments();
-        if(CommonUtils.isNotNull(bundle)){
-            productResponse=bundle.getParcelable(GeneralConstant.RESPONSE);
+        Bundle bundle = getArguments();
+        if (CommonUtils.isNotNull(bundle)) {
+            productResponse = bundle.getParcelable(GeneralConstant.RESPONSE);
         }
-        mPhotoAdapter =new StoreAdapter(getDashboardActivity());
+        mPhotoAdapter = new StoreAdapter(getDashboardActivity());
         mBinding.photoRecycler.setAdapter(mPhotoAdapter);
-        mReviewAdapter=new ReviewAdapter(getDashboardActivity());
+        mReviewAdapter = new ReviewAdapter(getDashboardActivity());
         mBinding.rvReview.setAdapter(mReviewAdapter);
-        if(CommonUtils.isNotNull(productResponse)){
-            presenter.getMerchantDetails(getDashboardActivity(),new MerchantRequest(productResponse.getId()));
+        if (CommonUtils.isNotNull(productResponse)) {
+            presenter.getMerchantDetails(getDashboardActivity(), new MerchantRequest(productResponse.getId()));
         }
 
     }
@@ -95,13 +99,25 @@ public class ProductDetailsFragment extends DashboardFragment {
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
+        if (CommonUtils.isNotNull(response) && response instanceof MerchantDetailsData) {
+            MerchantDetailsData data = (MerchantDetailsData) response;
+            if (CommonUtils.isNotNull(data)) {
+                ArrayList<MerchantResponse> infoList = data.getInfo();
+                if (CommonUtils.isNotNull(infoList) && infoList.size() > 0) {
+                    MerchantResponse merchantResponse = infoList.get(0);
+                    if (CommonUtils.isNotNull(merchantResponse)) {
+                         mBinding.setMerchantResponse(merchantResponse);
+                    }
+                }
+            }
+        }
 
     }
 
     public static Fragment newInstance(int instance, ProductResponse productResponse) {
         Bundle args = new Bundle();
         args.putInt(ARGS_INSTANCE, instance);
-        args.putParcelable(GeneralConstant.RESPONSE,productResponse);
+        args.putParcelable(GeneralConstant.RESPONSE, productResponse);
         ProductDetailsFragment fragment = new ProductDetailsFragment();
         fragment.setArguments(args);
         return fragment;

@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.app.community.CommonApplication;
 import com.app.community.R;
@@ -47,7 +48,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class DashBoardActivity extends BaseActivity implements BottomNavigationBar.BottomNavigationMenuClickListener, BaseFragment.FragmentNavigation, FragNavController.TransactionListener, FragNavController.RootFragmentListener {
+public class DashBoardActivity extends BaseActivity implements BottomNavigationBar.BottomNavigationMenuClickListener,
+        BaseFragment.FragmentNavigation, FragNavController.TransactionListener, FragNavController.RootFragmentListener,
+        DrawerAdapterLeft.DrawerLeftListener {
 
     //Better convention to properly name the indices what they are in your app
     private final int HOME = FragNavController.TAB1;
@@ -74,6 +77,10 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     private ActionBarDrawerToggle mDrawerToggleLeft;
     private DrawerAdapterLeft mDrawerAdapterLeft;
 
+    @Override
+    public void onLeftDrawerItemClicked(int adapterPosition) {
+        showToast("Clicked "+adapterPosition);
+    }
 
 
     public interface OnToolbarItemClickedListener {
@@ -99,7 +106,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
 
     private void navigationControl(Bundle savedInstanceState) {
         boolean initial = savedInstanceState == null;
-        if(initial){
+        if (initial) {
             mBottomNav.selectItem(HOME);
         }
         mNavController = FragNavController.newBuilder(savedInstanceState, getSupportFragmentManager(), R.id.container)
@@ -137,7 +144,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     @Override
     public void onTabSelected(int position) {
         changeIcon(position);
-        switch (position){
+        switch (position) {
             case HOME:
                 mNavController.switchTab(HOME);
                 //mNavController.clearStack();
@@ -155,40 +162,40 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     }
 
     private void changeIcon(int position) {
-        for(int i=0;i<navigationPages.size();i++){
+        for (int i = 0; i < navigationPages.size(); i++) {
             NavigationPage navigation = navigationPages.get(i);
-            switch (i){
+            switch (i) {
                 case 0:
-                    if(i==position){
+                    if (i == position) {
                         navigation.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_home));
-                    }else{
+                    } else {
                         navigation.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_home_light));
                     }
 
                     break;
                 case 1:
-                    if(i==position){
+                    if (i == position) {
                         navigation.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_gift));
-                    }else{
+                    } else {
                         navigation.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_gift_light));
                     }
                     break;
                 case 2:
-                    if(i==position){
+                    if (i == position) {
                         navigation.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_notification));
-                    }else{
+                    } else {
                         navigation.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_notification_light));
                     }
                     break;
                 case 3:
-                    if(i==position){
+                    if (i == position) {
                         navigation.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_user));
-                    }else{
+                    } else {
                         navigation.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_user_light));
                     }
                     break;
             }
-            navigationPages.set(i,navigation);
+            navigationPages.set(i, navigation);
         }
         mBottomNav.setIcon(navigationPages);
     }
@@ -222,7 +229,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         if (pages.size() != 4) {
             throw new RuntimeException("List of NavigationPage must contain 4 members.");
         } else {
-           // mNavigationPageList = pages;
+            // mNavigationPageList = pages;
             mBottomNav = new BottomNavigationBar(this, pages, this);
 //            if (savedInstanceState == null) {
             //showFragment(rootTabFragment(MAIN_TAB_ID));
@@ -260,9 +267,9 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     public void onClick(View view) {
         if (mBinding.toolBar.ivDrawer == view) {
             openDrawerLeft();
-        }else if(view==mBinding.toolBar.ivRightDrawer){
+        } else if (view == mBinding.toolBar.ivRightDrawer) {
             openDrawerRight();
-        }else if(view==mBinding.toolBar.ivSearch){
+        } else if (view == mBinding.toolBar.ivSearch) {
             ExplicitIntent.getsInstance().navigateTo(this, SearchActivity.class);
         }
     }
@@ -287,7 +294,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
 
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-         // RecyclerView has some built in animations to it, using the DefaultItemAnimator.
+        // RecyclerView has some built in animations to it, using the DefaultItemAnimator.
         // Specifically when you call notifyItemChanged() it does a fade animation for the changing
         // of the data in the ViewHolder. If you would like to disable this you can use the following:
         RecyclerView.ItemAnimator animator = mBinding.layoutDrawerRight.rvDrawer.getItemAnimator();
@@ -327,7 +334,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         if (animator instanceof DefaultItemAnimator) {
             ((DefaultItemAnimator) animator).setSupportsChangeAnimations(false);
         }
-        mDrawerAdapterLeft = new DrawerAdapterLeft(this);
+        mDrawerAdapterLeft = new DrawerAdapterLeft(this,this);
         mBinding.layoutDrawerLeft.rvDrawer.setLayoutManager(layoutManager);
         mBinding.layoutDrawerLeft.rvDrawer.setAdapter(mDrawerAdapterLeft);
     }
@@ -343,7 +350,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
 
     private List<Artist> setArtistList(int number) {
         List<Artist> artistList = new ArrayList<>();
-        if(number%3==0){
+        if (number % 3 == 0) {
             return artistList;
         }
         for (int i = 0; i < 5; i++) {
@@ -380,7 +387,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         }
     }
 
-//control for tab navigation
+    //control for tab navigation
     @Override
     public void pushFragment(Fragment fragment) {
         if (mNavController != null) {
@@ -427,7 +434,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
             getSupportActionBar().setDisplayHomeAsUpEnabled(!mNavController.isRootFragment());
         }
     }
-   //end
+    //end
 
 
     @Override
@@ -439,7 +446,8 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         }
         return true;
     }
-    public void setTile(String title){
-      mBinding.toolBar.tvHeading.setText(title);
+
+    public void setTile(String title) {
+        mBinding.toolBar.tvHeading.setText(title);
     }
 }

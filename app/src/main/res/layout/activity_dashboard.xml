@@ -28,14 +28,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_65"
                 android:layout_alignParentBottom="true"/>
-            <!--<android.support.design.widget.FloatingActionButton
-                android:id="@+id/listButton"
-                style="@style/wrap_wrap"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="@dimen/margin_30"
-                android:layout_marginEnd="@dimen/margin_7"
-                android:src="@drawable/back"
-                app:backgroundTint="@color/white"/>-->
         </RelativeLayout>
         <LinearLayout
             android:layout_width="@dimen/margin_270"
@@ -54,7 +46,7 @@
             android:clickable="true">
 
             <include android:id="@+id/layoutDrawerLeft"
-                layout="@layout/layout_drawer_right"/>
+                layout="@layout/layout_drawer_left"/>
 
         </LinearLayout>
     </android.support.v4.widget.DrawerLayout>

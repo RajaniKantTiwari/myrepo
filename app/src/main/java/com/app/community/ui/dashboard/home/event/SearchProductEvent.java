@@ -5,4 +5,12 @@ package com.app.community.ui.dashboard.home.event;
  */
 
 public class SearchProductEvent {
+    private String searchString;
+    public SearchProductEvent(String searchString){
+       this.searchString=searchString;
+    }
+
+    public String getSearchString() {
+        return searchString;
+    }
 }

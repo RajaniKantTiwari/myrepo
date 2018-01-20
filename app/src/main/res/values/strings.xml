@@ -408,7 +408,9 @@
     <string name="go">Go</string>
     <string name="network_not_connected">Network Not Connected</string>
     <string name="closed_now">Closed Now</string>
-
+    <string name="mon_to_sat">Mon to Sat</string>
+    <string name="h_mm_a">h:mm a</string>
+    <string name="dd_MMM">dd MMM</string>
 
     <string-array name="state_array">
         <item> Select State </item>

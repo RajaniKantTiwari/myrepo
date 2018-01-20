@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.app.community.R;
 import com.app.community.databinding.DrawerLeftRowItemBinding;
-import com.app.community.databinding.ItemImageBinding;
+import com.app.community.utils.CommonUtils;
 
 /**
  * Created by ashok on 25/12/17.
@@ -17,15 +17,22 @@ import com.app.community.databinding.ItemImageBinding;
 
 public class DrawerAdapterLeft extends RecyclerView.Adapter<DrawerAdapterLeft.StoreViewHolder> {
     private final LayoutInflater mInflater;
+    private final AppCompatActivity activity;
     private DrawerLeftRowItemBinding mBinding;
+    private DrawerLeftListener listener;
+    public interface DrawerLeftListener{
 
-    public DrawerAdapterLeft(AppCompatActivity activity){
+        void onLeftDrawerItemClicked(int adapterPosition);
+    }
+    public DrawerAdapterLeft(AppCompatActivity activity,DrawerLeftListener listener){
         mInflater=LayoutInflater.from(activity);
+        this.activity=activity;
+        this.listener=listener;
     }
     @Override
     public StoreViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mBinding=DataBindingUtil.inflate(mInflater, R.layout.drawer_left_row_item, parent, false);
-        return new StoreViewHolder(mBinding.getRoot());
+        return new StoreViewHolder(mBinding);
     }
 
     @Override
@@ -38,9 +45,17 @@ public class DrawerAdapterLeft extends RecyclerView.Adapter<DrawerAdapterLeft.St
         return 7;
     }
 
-    class StoreViewHolder extends RecyclerView.ViewHolder{
-       public StoreViewHolder(View itemView) {
-           super(itemView);
+    class StoreViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+       public StoreViewHolder(DrawerLeftRowItemBinding itemView) {
+           super(itemView.getRoot());
+           itemView.layoutUserItem.setOnClickListener(this);
        }
-   }
+
+        @Override
+        public void onClick(View view) {
+            if(CommonUtils.isNotNull(listener)){
+                listener.onLeftDrawerItemClicked(getAdapterPosition());
+            }
+        }
+    }
 }

@@ -9,11 +9,13 @@ import android.view.ViewGroup;
 
 import com.app.community.R;
 import com.app.community.databinding.FragmentHomeBinding;
+import com.app.community.network.request.dashboard.ProductSearchRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.meeting.ProductResponseData;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.DashboardPresenter;
+import com.app.community.ui.dashboard.home.SearchActivity;
 import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.event.ProductEvent;
 import com.app.community.utils.CommonUtils;
@@ -34,9 +36,11 @@ public class HomeFragment extends DashboardFragment {
     DashboardPresenter presenter;
     private ProductEvent event;
     FragmentHomeBinding mBinding;
+    private String search;
 
-    public static HomeFragment newInstance(int instance) {
+    public static HomeFragment newInstance(int instance,String search) {
         Bundle args = new Bundle();
+        args.putString(GeneralConstant.SEARCH_STRING,search);
         args.putInt(ARGS_INSTANCE, instance);
         HomeFragment fragment = new HomeFragment();
         fragment.setArguments(args);
@@ -66,7 +70,12 @@ public class HomeFragment extends DashboardFragment {
 
     @Override
     public void initializeData() {
-        getPresenter().getMerchantList(getBaseActivity());
+        Bundle bundle=getArguments();
+        if(CommonUtils.isNotNull(bundle)){
+            search=bundle.getString(GeneralConstant.SEARCH_STRING);
+        }
+        //getPresenter().getMerchantList(getBaseActivity());
+        presenter.searchProductList(getDashboardActivity(),new ProductSearchRequest(search));
     }
 
     @Override

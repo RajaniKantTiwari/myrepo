@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="merchantResponse"
+            type="com.app.community.network.response.dashboard.feed.MerchantResponse"/>
+    </data>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/match_match"
@@ -12,10 +17,18 @@
                 android:id="@+id/header_lay"
                 style="@style/match_wrap"
                 android:minHeight="@dimen/margin_240">
+
+                <ImageView
+                    android:id="@+id/storeImage"
+                    style="@style/match_wrap"
+                    android:layout_height="@dimen/margin_210"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/abc"
+                    />
                 <ImageView
                     style="@style/match_wrap"
-                    android:background="@drawable/abc"
                     android:layout_height="@dimen/margin_210"
+                    android:scaleType="centerCrop"
                     android:src="@color/transulent_color"
                     />
 
@@ -29,7 +42,7 @@
                     <com.app.community.widget.CustomTextView
                         android:id="@+id/tvShopName"
                         style="@style/textview_title_wrap"
-                        android:text="Locost"
+                        android:text="@={merchantResponse.name}"
                         android:textColor="@color/white"
                         />
 
@@ -37,7 +50,7 @@
                         style="@style/textview_description_small_wrap"
                         android:layout_marginBottom="@dimen/margin_5"
                         android:layout_marginTop="@dimen/margin_5"
-                        android:text="Shop Address"
+                        android:text="@={merchantResponse.address}"
                         android:textColor="@color/white"
                         />
 
@@ -57,7 +70,7 @@
                             android:drawablePadding="@dimen/margin_5"
                             android:drawableStart="@drawable/location_pin"
                             android:gravity="center_vertical"
-                            android:text="1 Km"
+                            android:text="@={merchantResponse.distance}"
                             android:textColor="@color/white"
                             android:textSize="@dimen/textSize_12"
                             app:customFont="@string/font_bold" />
@@ -106,8 +119,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:max="5"
-                            android:progressTint="@color/rating_text_color"
-                            android:rating="4.3" />
+                            android:progressTint="@color/rating_text_color"/>
                     </LinearLayout>
                 </LinearLayout>
             </RelativeLayout>
@@ -170,7 +182,7 @@
 
                     <com.app.community.widget.CustomTextView
                         style="@style/textview_description_small_wrap"
-                        android:text="30 min."
+                        android:text="@={merchantResponse.averagetime}"
                         android:textColor="@color/color_blackish"
                         />
                 </LinearLayout>
@@ -192,7 +204,7 @@
 
                     <com.app.community.widget.CustomTextView
                         style="@style/textview_description_small_wrap"
-                        android:text="1300"
+                        android:text="@={merchantResponse.minorder}"
                         android:textColor="@color/color_blue_order"
                          />
                 </LinearLayout>
@@ -214,7 +226,7 @@
 
                     <com.app.community.widget.CustomTextView
                         style="@style/textview_description_small_wrap"
-                        android:text="30 min."
+                        android:text="@={merchantResponse.preferred_payment_options}"
                         android:textColor="@color/color_blackish"
                         />
                 </LinearLayout>
@@ -246,7 +258,7 @@
                     style="@style/textview_description_wrap"
                     android:layout_marginTop="@dimen/margin_5"
                     app:customFont="@string/font_book_regular"
-                    android:text="Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+                    android:text="@={merchantResponse.store_descr}"
                     />
             </LinearLayout>
 
@@ -285,13 +297,13 @@
 
                         <com.app.community.widget.CustomTextView
                             style="@style/textview_description_small_wrap"
-                            android:text="Mon to Sat"
+                            android:text="@string/mon_to_sat"
                             android:textColor="@color/color_blue_2"/>
 
 
                         <com.app.community.widget.CustomTextView
                             style="@style/textview_description_small_wrap"
-                            android:text="9 am to 9 pm"
+                            android:text="@={merchantResponse.opentime}"
                              />
                     </LinearLayout>
 

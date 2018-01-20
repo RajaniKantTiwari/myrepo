@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.SearchEvent;
 import android.view.View;
 
 import com.app.community.R;
@@ -16,7 +15,6 @@ import com.app.community.network.request.dashboard.ProductSearchRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.SimpleDividerItemDecoration;
 import com.app.community.ui.authentication.CommonActivity;
-import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.dashboard.home.adapter.SearchAdapter;
 import com.app.community.ui.dashboard.home.event.SearchProductEvent;
 import com.app.community.ui.presenter.CommonPresenter;
@@ -37,6 +35,8 @@ public class SearchActivity extends CommonActivity implements SearchAdapter.Sear
     private SearchAdapter mAdapter;
     @Inject
     CommonPresenter presenter;
+    private String search;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,10 +71,11 @@ public class SearchActivity extends CommonActivity implements SearchAdapter.Sear
 
             @Override
             public void onTextChanged(CharSequence searchText, int start, int before, int count) {
+                search=searchText.toString();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        presenter.searchProductList(SearchActivity.this,new ProductSearchRequest(searchText.toString()));
+                        presenter.searchProductList(SearchActivity.this,new ProductSearchRequest(search));
                     }
                 }, GeneralConstant.API_SERVICE);
             }
@@ -101,7 +102,7 @@ public class SearchActivity extends CommonActivity implements SearchAdapter.Sear
     }
 
     private void gotoProduct() {
-        SearchProductEvent searchEvent=new SearchProductEvent();
+        SearchProductEvent searchEvent=new SearchProductEvent(search);
         EventBus.getDefault().post(searchEvent);
         finish();
     }

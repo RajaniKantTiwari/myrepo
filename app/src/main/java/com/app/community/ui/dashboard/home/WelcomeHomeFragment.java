@@ -224,7 +224,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                mFragmentNavigation.pushFragment(HomeFragment.newInstance(mInt+1));
+                mFragmentNavigation.pushFragment(HomeFragment.newInstance(mInt+1,event.getSearchString()));
             }
         },GeneralConstant.DELAYTIME);
 

@@ -120,6 +120,10 @@
     <dimen name="margin_15_minus">-15dp</dimen>
     <dimen name="margin_25_minus">-25dp</dimen>
     <dimen name="margin_20_minus">-20dp</dimen>
+    <dimen name="margin_55">55dp</dimen>
+    <dimen name="margin_75">75dp</dimen>
+    <dimen name="margin_78">78dp</dimen>
+    <dimen name="margin_58">58dp</dimen>
 
 
 </resources>

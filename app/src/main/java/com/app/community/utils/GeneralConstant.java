@@ -54,6 +54,8 @@ public interface GeneralConstant {
     long DELAYTIME = 70;
     String RESPONSE = "response";
     long API_SERVICE = 500;
+    String TIME_ZONE_UTC = "UTC";
+    String SEARCH_STRING = "searchString";
 
 
     @IntDef({PRODUCT_MAP_FRAGMENT, PRODUCT_LIST, RECENT_FRAGMENT, CATEGORY_FRAGMENT,
