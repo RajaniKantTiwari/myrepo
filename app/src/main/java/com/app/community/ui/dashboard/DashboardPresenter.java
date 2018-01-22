@@ -7,8 +7,7 @@ import com.app.community.network.DefaultApiObserver;
 import com.app.community.network.Repository;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.response.BaseResponse;
-import com.app.community.network.response.dashboard.feed.MerchantResponseData;
-import com.app.community.network.response.dashboard.feed.SearchResponseData;
+import com.app.community.network.response.dashboard.home.SearchResponseData;
 import com.app.community.ui.base.MvpView;
 import com.app.community.ui.base.Presenter;
 

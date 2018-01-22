@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import com.app.community.R;
 import com.app.community.databinding.FragmentOfferBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
+import com.app.community.ui.dashboard.offer.adapter.OfferAdapter;
 import com.app.community.ui.presenter.CommonPresenter;
 
 import javax.inject.Inject;
@@ -28,25 +30,30 @@ public class OfferFragment extends DashboardFragment {
     @Inject
     CommonPresenter presenter;
     private FragmentOfferBinding mBinding;
+    private OfferAdapter mOfferAdapter;
 
 
-    public static Fragment newInstance(int instance){
+    public static Fragment newInstance(int instance) {
         Bundle args = new Bundle();
         args.putInt(ARGS_INSTANCE, instance);
         OfferFragment fragment = new OfferFragment();
         fragment.setArguments(args);
         return fragment;
     }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding= DataBindingUtil.inflate(inflater, R.layout.fragment_offer,container,false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_offer, container, false);
         return mBinding.getRoot();
     }
 
     @Override
     public void initializeData() {
-
+        mOfferAdapter = new OfferAdapter(getDashboardActivity());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getDashboardActivity());
+        mBinding.rvOffer.setLayoutManager(layoutManager);
+        mBinding.rvOffer.setAdapter(mOfferAdapter);
     }
 
     @Override
@@ -56,7 +63,7 @@ public class OfferFragment extends DashboardFragment {
 
     @Override
     public String getFragmentName() {
-        return null;
+        return OfferFragment.class.getSimpleName();
     }
 
     @Override

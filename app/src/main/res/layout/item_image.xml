@@ -7,6 +7,6 @@
 <ImageView
     android:id="@+id/ivStoreImage"
     style="@style/image_70_80"
-    android:src="@drawable/app_icon"/>
+    android:background="@drawable/grey_corner_bg"/>
 </LinearLayout>
 </layout>

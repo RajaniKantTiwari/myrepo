@@ -1,4 +1,4 @@
-package com.app.community.network.response.dashboard.feed;
+package com.app.community.network.response.dashboard.home;
 
 import com.app.community.network.response.BaseResponse;
 

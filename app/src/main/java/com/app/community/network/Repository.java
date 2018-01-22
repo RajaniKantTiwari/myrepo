@@ -8,8 +8,9 @@ import com.app.community.network.request.dashboard.ProductRequest;
 import com.app.community.network.response.LoginResponse;
 import com.app.community.network.response.VerifyMobileResponse;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
-import com.app.community.network.response.dashboard.feed.MerchantResponseData;
-import com.app.community.network.response.dashboard.feed.SearchResponseData;
+import com.app.community.network.response.dashboard.home.MerchantResponseData;
+import com.app.community.network.response.dashboard.home.ReviewResponseData;
+import com.app.community.network.response.dashboard.home.SearchResponseData;
 
 import io.reactivex.Observable;
 
@@ -30,4 +31,6 @@ public interface Repository {
     Observable<MerchantResponseData> getMerchantDetail(MerchantRequest merchantRequest);
 
     Observable<SearchResponseData> getMerchantListBySearch(MerchantSearchRequest search);
+
+    Observable<ReviewResponseData> getMerchantReviews(MerchantRequest merchantRequest);
 }

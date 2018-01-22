@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.app.community.R;
 import com.app.community.databinding.SearchRowItemBinding;
-import com.app.community.network.response.dashboard.feed.MerchantResponse;
+import com.app.community.network.response.dashboard.home.MerchantResponse;
 import com.app.community.utils.CommonUtils;
 
 import java.util.ArrayList;

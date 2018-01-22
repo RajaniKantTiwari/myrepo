@@ -133,6 +133,10 @@
     <color name="color_drawer_header">#553b94</color>
 
     <color name="search_bg_color">#DDDBDB</color>
+    <color name="deal_color">#492b4a</color>
+    <color name="deal_color_product">#d72563</color>
+
+
 
 
 </resources>

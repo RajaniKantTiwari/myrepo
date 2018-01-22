@@ -1,4 +1,4 @@
-package com.app.community.network.response.dashboard.feed;
+package com.app.community.network.response.dashboard.home;
 
 import android.os.Parcel;
 import android.os.Parcelable;

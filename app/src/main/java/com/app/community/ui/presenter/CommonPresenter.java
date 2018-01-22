@@ -10,7 +10,7 @@ import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.LoginResponse;
 import com.app.community.network.response.VerifyMobileResponse;
-import com.app.community.network.response.dashboard.feed.SearchResponseData;
+import com.app.community.network.response.dashboard.home.SearchResponseData;
 import com.app.community.ui.base.MvpView;
 import com.app.community.ui.base.Presenter;
 

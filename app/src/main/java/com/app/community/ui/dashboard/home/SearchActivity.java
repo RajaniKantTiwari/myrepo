@@ -14,8 +14,8 @@ import com.app.community.R;
 import com.app.community.databinding.ActivitySearchBinding;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.response.BaseResponse;
-import com.app.community.network.response.dashboard.feed.MerchantResponse;
-import com.app.community.network.response.dashboard.feed.SearchResponseData;
+import com.app.community.network.response.dashboard.home.MerchantResponse;
+import com.app.community.network.response.dashboard.home.SearchResponseData;
 import com.app.community.ui.SimpleDividerItemDecoration;
 import com.app.community.ui.authentication.CommonActivity;
 import com.app.community.ui.dashboard.home.adapter.SearchAdapter;
@@ -94,11 +94,11 @@ public class SearchActivity extends CommonActivity implements SearchAdapter.Sear
 
             @Override
             public void onTextChanged(CharSequence searchText, int start, int before, int count) {
+                search = searchText.toString();
                 if (searchText.toString().length() == 0) {
-                    mBinding.defaultSearch.layoutSearch.setVisibility(View.VISIBLE);
-                    mBinding.rvSearch.setVisibility(View.GONE);
+                    showDefault();
+
                 }else{
-                    search = searchText.toString();
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -114,6 +114,11 @@ public class SearchActivity extends CommonActivity implements SearchAdapter.Sear
 
             }
         });
+    }
+
+    private void showDefault() {
+        mBinding.defaultSearch.layoutSearch.setVisibility(View.VISIBLE);
+        mBinding.rvSearch.setVisibility(View.GONE);
     }
 
     @Override
@@ -148,6 +153,9 @@ public class SearchActivity extends CommonActivity implements SearchAdapter.Sear
                     merchantList.clear();
                     merchantList.addAll(responseData.getData());
                     mSearchAdapter.notifyDataSetChanged();
+                    if(CommonUtils.isNull(search)||search.length()==0){
+                        showDefault();
+                    }
                 }
             }
         }

@@ -1,7 +1,7 @@
 package com.app.community.ui.dashboard.home.event;
 
 
-import com.app.community.network.response.dashboard.feed.MerchantResponse;
+import com.app.community.network.response.dashboard.home.MerchantResponse;
 
 import java.util.ArrayList;
 

@@ -11,12 +11,12 @@ import com.app.community.network.request.dashboard.ProductRequest;
 import com.app.community.network.response.LoginResponse;
 import com.app.community.network.response.VerifyMobileResponse;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
-import com.app.community.network.response.dashboard.feed.MerchantResponseData;
-import com.app.community.network.response.dashboard.feed.SearchResponseData;
+import com.app.community.network.response.dashboard.home.MerchantResponseData;
+import com.app.community.network.response.dashboard.home.ReviewResponseData;
+import com.app.community.network.response.dashboard.home.SearchResponseData;
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;
-import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 /**
@@ -29,9 +29,6 @@ public interface ApiService {
 
     @POST("register/verifyotp")
     Observable<VerifyMobileResponse> verifyMobileNumber(@Body VerifyMobileRequest request);
-
-
-
 
     @POST("product/getproductdetails")
     Observable<ProductDetailsData> getProductDetail(@Body ProductRequest request);
@@ -51,6 +48,6 @@ public interface ApiService {
     @POST("common/searchbytag")
     Observable<SearchResponseData> getMerchantListBySearch(@Body MerchantSearchRequest request);
 
-
-
+    @POST("merchant/getmerchantreviews")
+    Observable<ReviewResponseData> getMerchantReviews(@Body MerchantRequest merchantRequest);
 }

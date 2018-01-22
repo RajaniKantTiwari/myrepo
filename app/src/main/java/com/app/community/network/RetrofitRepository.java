@@ -8,8 +8,9 @@ import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.response.LoginResponse;
 import com.app.community.network.response.VerifyMobileResponse;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
-import com.app.community.network.response.dashboard.feed.MerchantResponseData;
-import com.app.community.network.response.dashboard.feed.SearchResponseData;
+import com.app.community.network.response.dashboard.home.MerchantResponseData;
+import com.app.community.network.response.dashboard.home.ReviewResponseData;
+import com.app.community.network.response.dashboard.home.SearchResponseData;
 
 import io.reactivex.Observable;
 import retrofit2.Retrofit;
@@ -49,5 +50,10 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<SearchResponseData> getMerchantListBySearch(MerchantSearchRequest search) {
         return apiService.getMerchantListBySearch(search);
+    }
+
+    @Override
+    public Observable<ReviewResponseData> getMerchantReviews(MerchantRequest merchantRequest) {
+        return apiService.getMerchantReviews(merchantRequest);
     }
 }

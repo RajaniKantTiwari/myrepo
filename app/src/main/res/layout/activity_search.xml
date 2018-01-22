@@ -5,8 +5,7 @@
         android:id="@+id/layoutOrder"
         style="@style/match_match"
         android:background="@color/white_light"
-        android:orientation="vertical"
-        android:focusable="true">
+        android:orientation="vertical">
 
         <RelativeLayout
             style="@style/match_wrap"

@@ -13,9 +13,11 @@ import com.app.community.R;
 import com.app.community.databinding.FragmentProductDetailBinding;
 import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.response.BaseResponse;
-import com.app.community.network.response.dashboard.feed.MerchantResponse;
-import com.app.community.network.response.dashboard.feed.MerchantResponseData;
-import com.app.community.network.response.dashboard.feed.StoreImages;
+import com.app.community.network.response.dashboard.home.MerchantResponse;
+import com.app.community.network.response.dashboard.home.MerchantResponseData;
+import com.app.community.network.response.dashboard.home.ReviewResponse;
+import com.app.community.network.response.dashboard.home.ReviewResponseData;
+import com.app.community.network.response.dashboard.home.StoreImages;
 import com.app.community.ui.SimpleDividerItemDecoration;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.DashboardInsidePresenter;
@@ -42,6 +44,7 @@ public class ProductDetailsFragment extends DashboardFragment {
     private FragmentProductDetailBinding mBinding;
     private StoreAdapter mPhotoAdapter;
     private ReviewAdapter mReviewAdapter;
+    private ArrayList<ReviewResponse> reviewList;
     private MerchantResponse productResponse;
     @Inject
     DashboardInsidePresenter presenter;
@@ -83,12 +86,14 @@ public class ProductDetailsFragment extends DashboardFragment {
         if (CommonUtils.isNotNull(bundle)) {
             productResponse = bundle.getParcelable(GeneralConstant.RESPONSE);
         }
+        reviewList=new ArrayList<>();
         mPhotoAdapter = new StoreAdapter(getDashboardActivity());
         mBinding.photoRecycler.setAdapter(mPhotoAdapter);
-        mReviewAdapter = new ReviewAdapter(getDashboardActivity());
+        mReviewAdapter = new ReviewAdapter(getDashboardActivity(),reviewList);
         mBinding.rvReview.setAdapter(mReviewAdapter);
         if (CommonUtils.isNotNull(productResponse)) {
             presenter.getMerchantDetails(getDashboardActivity(), new MerchantRequest(Integer.parseInt(productResponse.getId())));
+            presenter.getMerchantReviews(getDashboardActivity(),new MerchantRequest(Integer.parseInt("8")));
         }
 
     }
@@ -100,19 +105,32 @@ public class ProductDetailsFragment extends DashboardFragment {
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
-        if (CommonUtils.isNotNull(response) && response instanceof MerchantResponseData) {
-            MerchantResponseData data = (MerchantResponseData) response;
-            if (CommonUtils.isNotNull(data)) {
-                ArrayList<MerchantResponse> infoList = data.getInfo();
-                if (CommonUtils.isNotNull(infoList) && infoList.size() > 0) {
-                    com.app.community.network.response.dashboard.feed.MerchantResponse merchantResponse = infoList.get(0);
-                    if (CommonUtils.isNotNull(merchantResponse)) {
-                         mBinding.setMerchantResponse(merchantResponse);
-                         setImage(merchantResponse);
+        if(requestCode==1){
+            if (CommonUtils.isNotNull(response) && response instanceof MerchantResponseData) {
+                MerchantResponseData data = (MerchantResponseData) response;
+                if (CommonUtils.isNotNull(data)) {
+                    ArrayList<MerchantResponse> infoList = data.getInfo();
+                    if (CommonUtils.isNotNull(infoList) && infoList.size() > 0) {
+                        com.app.community.network.response.dashboard.home.MerchantResponse merchantResponse = infoList.get(0);
+                        if (CommonUtils.isNotNull(merchantResponse)) {
+                            mBinding.setMerchantResponse(merchantResponse);
+                            setImage(merchantResponse);
+                        }
                     }
                 }
             }
+        }else if(requestCode==2){
+            reviewList.clear();
+           if(CommonUtils.isNotNull(response)&&response instanceof ReviewResponseData){
+               ReviewResponseData data=(ReviewResponseData)response;
+               ArrayList<ReviewResponse> responseArrayList=data.getInfo();
+               if(responseArrayList!=null){
+                   reviewList.addAll(responseArrayList);
+                   mReviewAdapter.notifyDataSetChanged();
+               }
+           }
         }
+
 
     }
 
@@ -125,6 +143,7 @@ public class ProductDetailsFragment extends DashboardFragment {
         ArrayList<StoreImages> imageList=merchantResponse.getStoreimages();
         if(CommonUtils.isNotNull(imageList)){
             mPhotoAdapter.setImageList(imageList);
+            mPhotoAdapter.notifyDataSetChanged();
         }
     }
 

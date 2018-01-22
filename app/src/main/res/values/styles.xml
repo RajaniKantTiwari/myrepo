@@ -201,6 +201,10 @@
         <item name="android:layout_width">@dimen/margin_90</item>
         <item name="android:layout_height">@dimen/margin_80</item>
     </style>
+    <style name="image_100_70" >
+        <item name="android:layout_width">@dimen/margin_100</item>
+        <item name="android:layout_height">@dimen/margin_70</item>
+    </style>
     <style name="textview_header_large_match" parent="match_wrap">
         <item name="android:textSize">@dimen/textSize_header_large</item>
         <item name="android:textColor">@color/black</item>

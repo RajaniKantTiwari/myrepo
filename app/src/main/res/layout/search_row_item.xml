@@ -6,7 +6,7 @@
 
         <variable
             name="searchData"
-            type="com.app.community.network.response.dashboard.feed.MerchantResponse" />
+            type="com.app.community.network.response.dashboard.home.MerchantResponse" />
     </data>
 
     <LinearLayout

@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 import com.app.community.R;
 import com.app.community.databinding.FragmentLocationListBinding;
 import com.app.community.network.response.BaseResponse;
-import com.app.community.network.response.dashboard.feed.MerchantResponse;
+import com.app.community.network.response.dashboard.home.MerchantResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.ProductDetailsFragment;
 import com.app.community.ui.dashboard.home.adapter.MerchantAdapter;

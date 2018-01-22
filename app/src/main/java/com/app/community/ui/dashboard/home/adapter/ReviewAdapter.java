@@ -6,10 +6,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 
 import com.app.community.R;
 import com.app.community.databinding.ItemImageBinding;
 import com.app.community.databinding.ReviewRowItemBinding;
+import com.app.community.network.response.dashboard.home.ReviewResponse;
+import com.app.community.utils.CommonUtils;
+import com.app.community.utils.GlideUtils;
+
+import java.util.ArrayList;
 
 /**
  * Created by ashok on 25/12/17.
@@ -17,30 +24,48 @@ import com.app.community.databinding.ReviewRowItemBinding;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewHolder> {
     private final LayoutInflater mInflater;
-    private ReviewRowItemBinding mBinding;
+    private final ArrayList<ReviewResponse> reviewList;
+    private final AppCompatActivity activity;
 
-    public ReviewAdapter(AppCompatActivity activity){
+    public ReviewAdapter(AppCompatActivity activity, ArrayList<ReviewResponse> reviewList){
         mInflater=LayoutInflater.from(activity);
+        this.activity=activity;
+        this.reviewList=reviewList;
     }
+
     @Override
     public ReviewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        mBinding=DataBindingUtil.inflate(mInflater, R.layout.review_row_item, parent, false);
-        return new ReviewHolder(mBinding.getRoot());
+        ReviewRowItemBinding mBinding=DataBindingUtil.inflate(mInflater, R.layout.review_row_item, parent, false);
+        return new ReviewHolder(mBinding);
     }
 
     @Override
     public void onBindViewHolder(ReviewHolder holder, int position) {
-
+       if(CommonUtils.isNotNull(reviewList)&&reviewList.size()>position){
+           holder.setResponse(reviewList.get(position));
+           GlideUtils.loadImageProfilePic(activity,reviewList.get(position).getImage(),holder.ivReview,null,R.drawable.face);
+           holder.ratingBar.setRating(CommonUtils.setRating(reviewList.get(position).getRating()));
+       }
     }
 
     @Override
     public int getItemCount() {
-        return 7;
+        return CommonUtils.isNotNull(reviewList)?reviewList.size():0;
     }
 
     class ReviewHolder extends RecyclerView.ViewHolder{
-       public ReviewHolder(View itemView) {
-           super(itemView);
+        private final ImageView ivReview;
+        private final RatingBar ratingBar;
+        private ReviewRowItemBinding itemView;
+       public ReviewHolder(ReviewRowItemBinding itemView) {
+           super(itemView.getRoot());
+           this.itemView=itemView;
+           ivReview=itemView.ivReview;
+           ratingBar=itemView.ratingBar;
        }
-   }
+
+        public void setResponse(ReviewResponse reviewResponse) {
+            itemView.setResponse(reviewResponse);
+        }
+    }
 }

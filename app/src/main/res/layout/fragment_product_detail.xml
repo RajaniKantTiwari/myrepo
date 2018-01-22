@@ -4,7 +4,7 @@
         <import type="com.app.community.utils.CommonUtils"/>
         <variable
             name="merchantResponse"
-            type="com.app.community.network.response.dashboard.feed.MerchantResponse"/>
+            type="com.app.community.network.response.dashboard.home.MerchantResponse"/>
     </data>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"

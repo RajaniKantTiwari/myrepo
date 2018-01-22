@@ -416,6 +416,11 @@
     <string name="service">Service</string>
     <string name="open_now">Open Now:</string>
     <string name="km">&#160;km</string>
+    <string name="fab_deal">Fab &amp; Deal</string>
+    <string name="food_drinks">Food &amp; Drinks</string>
+    <string name="spas">Spas</string>
+    <string name="saloons">Saloons</string>
+    <string name="jewellery">Jewellery</string>
 
 
     <string-array name="state_array">
