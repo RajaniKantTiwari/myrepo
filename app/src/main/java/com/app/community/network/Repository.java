@@ -2,11 +2,13 @@ package com.app.community.network;
 
 import com.app.community.network.request.LoginRequest;
 import com.app.community.network.request.VerifyMobileRequest;
+import com.app.community.network.request.cart.CategoryRequest;
 import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.request.dashboard.ProductRequest;
 import com.app.community.network.response.LoginResponse;
 import com.app.community.network.response.VerifyMobileResponse;
+import com.app.community.network.response.dashboard.cart.CategoryResponse;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
 import com.app.community.network.response.dashboard.home.MerchantResponseData;
 import com.app.community.network.response.dashboard.home.ReviewResponseData;
@@ -33,4 +35,6 @@ public interface Repository {
     Observable<SearchResponseData> getMerchantListBySearch(MerchantSearchRequest search);
 
     Observable<ReviewResponseData> getMerchantReviews(MerchantRequest merchantRequest);
+
+    Observable<CategoryResponse> getCategory(CategoryRequest productRequest);
 }

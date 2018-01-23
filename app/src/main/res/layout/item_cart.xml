@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/viewLine1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <com.app.community.widget.CustomTextView
+            android:id="@+id/tvType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/viewLine1"
+            android:background="@android:color/holo_red_light"
+            android:fontFamily="serif-monospace"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp"
+            android:paddingTop="5dp"
+            android:text="New"
+            android:textColor="@android:color/white"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/ivProduct"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/tvType"
+            android:layout_marginStart="@dimen/margin_20"
+            android:layout_marginTop="@dimen/margin_6"
+            android:background="#b8b8b8"
+            android:gravity="center"
+            android:scaleType="centerInside" />
+
+        <LinearLayout
+            android:id="@+id/layoutInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_20"
+            android:layout_marginTop="@dimen/margin_35"
+            android:layout_toEndOf="@+id/ivProduct"
+            android:orientation="vertical">
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvProductName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_20"
+                android:maxLines="2"
+                android:text="Red Chilly"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/textSize_13"
+                app:customFont="@string/font_regular" />
+
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvProductQty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_20"
+                android:gravity="center_vertical"
+                android:text="500g"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/textSize_11" />
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvProductPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_20"
+                android:layout_marginTop="@dimen/margin_6"
+                android:text="$ 25.00"
+                android:textColor="@color/color_blue"
+                android:textSize="@dimen/textSize_12"
+                app:customFont="@string/font_regular" />
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivMinus"
+            android:layout_width="@dimen/margin_23"
+            android:layout_height="@dimen/margin_23"
+            android:layout_below="@+id/layoutInfo"
+            android:layout_marginStart="@dimen/margin_20"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_toEndOf="@+id/ivProduct"
+            android:padding="@dimen/margin_3"
+            android:src="@drawable/sub_blue" />
+
+
+        <TextView
+            android:id="@+id/tvQty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layoutInfo"
+            android:layout_marginEnd="@dimen/margin_6"
+            android:layout_marginStart="@dimen/margin_6"
+            android:layout_marginTop="@dimen/margin_10"
+            android:padding="@dimen/margin_3"
+            android:layout_toEndOf="@+id/ivMinus"
+            android:gravity="center"
+            android:text="0"
+            android:textSize="@dimen/textSize_12"
+            app:customFont="@string/font_regular" />
+
+        <ImageView
+            android:id="@+id/ivPlus"
+            android:layout_width="@dimen/margin_23"
+            android:layout_height="@dimen/margin_23"
+            android:layout_below="@+id/layoutInfo"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_toEndOf="@+id/tvQty"
+            android:padding="@dimen/margin_3"
+            android:src="@drawable/add_blue" />
+
+        <com.app.community.widget.CustomTextView
+            android:id="@+id/tvSubscribe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/layoutInfo"
+            android:layout_marginEnd="@dimen/margin_10"
+            android:layout_marginStart="@dimen/margin_20"
+            android:layout_marginTop="@dimen/margin_10"
+            android:background="#dddddd"
+            android:paddingBottom="@dimen/margin_3"
+            android:paddingEnd="@dimen/margin_8"
+            android:paddingStart="@dimen/margin_8"
+            android:paddingTop="@dimen/margin_3"
+            android:text="Subscribe"
+            android:textAllCaps="true"
+            android:textSize="@dimen/textSize_12"
+            android:visibility="visible"
+            app:customFont="@string/font_regular" />
+
+        <View
+            android:id="@+id/viewLine2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/ivProduct"
+            android:layout_marginTop="3dp"
+            android:background="@android:color/darker_gray" />
+
+        <View
+            android:id="@+id/viewBlank"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_10"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/viewLine2" />
+
+
+    </RelativeLayout>
+</layout>

@@ -421,6 +421,7 @@
     <string name="spas">Spas</string>
     <string name="saloons">Saloons</string>
     <string name="jewellery">Jewellery</string>
+    <string name="text_checkout">CheckOut Now</string>
 
 
     <string-array name="state_array">

@@ -2,6 +2,7 @@ package com.app.community.ui.dashboard;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -28,12 +29,14 @@ import com.app.community.injector.module.DashboardModule;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.base.BaseFragment;
+import com.app.community.ui.cart.ProductSubproductFragment;
 import com.app.community.ui.dashboard.home.SearchActivity;
 import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.adapter.DrawerAdapterLeft;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.adapter.DrawerAdapterRight;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.model.Artist;
 import com.app.community.ui.dashboard.home.expendedrecyclerview.model.Genre;
+import com.app.community.ui.dashboard.home.fragment.HomeFragment;
 import com.app.community.ui.dashboard.notification.NotificationFragment;
 import com.app.community.ui.dashboard.offer.OfferFragment;
 import com.app.community.ui.dashboard.user.UserFragment;
@@ -48,9 +51,12 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import static com.app.community.ui.base.BaseActivity.AnimationType.NONE;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_SUBPRODUCT;
+
 public class DashBoardActivity extends BaseActivity implements BottomNavigationBar.BottomNavigationMenuClickListener,
         BaseFragment.FragmentNavigation, FragNavController.TransactionListener, FragNavController.RootFragmentListener,
-        DrawerAdapterLeft.DrawerLeftListener {
+        DrawerAdapterLeft.DrawerLeftListener ,DrawerAdapterRight.ProductSubHolderListener {
 
     //Better convention to properly name the indices what they are in your app
     private final int HOME = FragNavController.TAB1;
@@ -81,6 +87,8 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     public void onLeftDrawerItemClicked(int adapterPosition) {
         showToast("Clicked "+adapterPosition);
     }
+
+
 
 
     public interface OnToolbarItemClickedListener {
@@ -302,7 +310,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
             ((DefaultItemAnimator) animator).setSupportsChangeAnimations(false);
         }
         setListItem();
-        mDrawerAdapterRight = new DrawerAdapterRight(listDrawerExpandable, this);
+        mDrawerAdapterRight = new DrawerAdapterRight(listDrawerExpandable, this,this);
         mBinding.layoutDrawerRight.rvDrawer.setLayoutManager(layoutManager);
         mBinding.layoutDrawerRight.rvDrawer.setAdapter(mDrawerAdapterRight);
     }
@@ -372,7 +380,13 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         }
     }
 
-    private void closeDrawer() {
+    private void closeDrawerLeft() {
+        if (mBinding.drawer.isDrawerOpen(Gravity.LEFT)) {
+            mBinding.drawer.closeDrawers();
+        }
+    }
+
+    private void closeDrawerRight() {
         if (mBinding.drawer.isDrawerOpen(Gravity.RIGHT)) {
             mBinding.drawer.closeDrawers();
         }
@@ -449,5 +463,11 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
 
     public void setTile(String title) {
         mBinding.toolBar.tvHeading.setText(title);
+    }
+    @Override
+    public void onSubItemClicked() {
+        closeDrawerRight();
+        pushFragment(PRODUCT_SUBPRODUCT,null,R.id.container,true,true,NONE);
+        ProductSubproductFragment.newInstance(0);
     }
 }

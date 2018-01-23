@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvCat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
+
+        <View
+            android:id="@+id/viewCat"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/rvCat"
+            android:background="@android:color/darker_gray" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvSubCat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/viewCat"
+            android:orientation="horizontal" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/rvSubCat"
+            android:background="@android:color/darker_gray" />
+
+        <com.app.community.widget.CustomTextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_below="@+id/rvSubCat"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:text="Title"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/textSize_16"
+            app:customFont="@string/font_regular" />
+
+        <View
+            android:id="@+id/viewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/tvTitle"
+            android:background="@android:color/darker_gray" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/layoutCheckOut"
+            android:layout_below="@+id/viewTitle"
+            android:orientation="vertical" />
+
+        <LinearLayout
+            android:id="@+id/layoutCheckOut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin_10"
+            android:orientation="vertical">
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Sub Total : INR 0.00"
+                android:textSize="14sp"
+                app:customFont="@string/font_bold" />
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvCheckout"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margin_12"
+                android:background="@drawable/shape_button_round"
+                android:gravity="center"
+                android:paddingEnd="@dimen/margin_35"
+                android:paddingStart="@dimen/margin_35"
+                android:text="@string/text_checkout"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textSize_11"
+                app:customFont="@string/font_light" />
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

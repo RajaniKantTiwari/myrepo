@@ -22,14 +22,15 @@ public class DrawerAdapterRight extends ExpandableRecyclerViewAdapter<ProductVie
 
   private final AppCompatActivity activity;
   private final LayoutInflater mInflator;
-  private ProductSubHolder listener;
-  public interface ProductSubHolder{
+  private ProductSubHolderListener listener;
+  public interface ProductSubHolderListener{
       void onSubItemClicked();
   }
-  public DrawerAdapterRight(List<? extends ExpandableGroup> groups, AppCompatActivity activity) {
+  public DrawerAdapterRight(List<? extends ExpandableGroup> groups, AppCompatActivity activity,ProductSubHolderListener listener) {
     super(groups);
     this.activity=activity;
     mInflator=LayoutInflater.from(activity);
+    this.listener=listener;
   }
 
   @Override
@@ -56,8 +57,8 @@ public class DrawerAdapterRight extends ExpandableRecyclerViewAdapter<ProductVie
     });
     holder.tvSubProductName.setOnClickListener(new View.OnClickListener() {
       @Override
-      public void onClick(View v) {
-        Toast.makeText(activity,"TextView"+(flatPosition-childIndex)+" "+childIndex,Toast.LENGTH_SHORT).show();
+      public void onClick(View view) {
+        listener.onSubItemClicked();
       }
     });
   }

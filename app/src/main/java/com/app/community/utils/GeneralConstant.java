@@ -14,6 +14,7 @@ import static com.app.community.utils.GeneralConstant.FRAGMENTS.NEWS_TAB_FRAGMEN
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.PASTORDER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_LIST;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_MAP_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_SUBPRODUCT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.RECENT_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.WELCOME_HOME_FRAGMENT;
 
@@ -24,6 +25,7 @@ import static com.app.community.utils.GeneralConstant.FRAGMENTS.WELCOME_HOME_FRA
 public interface GeneralConstant {
 
     String ARGS_INSTANCE = "com.app.constants";
+    String INTENT_EXTRA_ID="intent_extra_id";
 
     int PERMISSIONS_REQUEST_LOCATION = 99;
     long SPLASH_TIME = 800;
@@ -62,7 +64,7 @@ public interface GeneralConstant {
 
     @IntDef({PRODUCT_MAP_FRAGMENT, PRODUCT_LIST, RECENT_FRAGMENT, CATEGORY_FRAGMENT,
             LIVEORDER_FRAGMENT, PASTORDER_FRAGMENT, WELCOME_HOME_FRAGMENT, NEWS_TAB_FRAGMENT
-            , HOME_FRAGMENT, NEWS_FRAGMENT,CONFIRM_ORDER_FRAGMENT})
+            , HOME_FRAGMENT, NEWS_FRAGMENT,CONFIRM_ORDER_FRAGMENT,PRODUCT_SUBPRODUCT})
     @Retention(RetentionPolicy.SOURCE)
     @interface FRAGMENTS {
         int PRODUCT_MAP_FRAGMENT = 1;
@@ -76,5 +78,7 @@ public interface GeneralConstant {
         int HOME_FRAGMENT = 9;
         int NEWS_FRAGMENT = 10;
         int CONFIRM_ORDER_FRAGMENT = 11;
+        int PRODUCT_SUBPRODUCT=12;
+
     }
 }

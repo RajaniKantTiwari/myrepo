@@ -16,6 +16,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.app.community.R;
+import com.app.community.ui.cart.ProductSubproductFragment;
 import com.app.community.ui.dashboard.home.ConfirmOrderFragment;
 import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.fragment.CategoryFragment;
@@ -47,6 +48,7 @@ import static com.app.community.utils.GeneralConstant.FRAGMENTS.NEWS_TAB_FRAGMEN
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.PASTORDER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_LIST;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_MAP_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_SUBPRODUCT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.RECENT_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.WELCOME_HOME_FRAGMENT;
 
@@ -256,6 +258,9 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
                 break;
             case CONFIRM_ORDER_FRAGMENT:
                 fragment=new ConfirmOrderFragment();
+                break;
+            case PRODUCT_SUBPRODUCT:
+                fragment=new ProductSubproductFragment();
                 break;
         }
         return fragment;

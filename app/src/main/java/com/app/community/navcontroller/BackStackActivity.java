@@ -66,7 +66,7 @@ public abstract class BackStackActivity extends BaseActivity {
       backStackManager.push(hostId, entry);
       return true;
     } catch (Exception e) {
-      Log.e("MultiBackStack", "Failed to add fragment to back stack", e);
+      Log.e("MultiBackStack", "Failed to add_blue fragment to back stack", e);
       return false;
     }
   }

@@ -2,8 +2,10 @@ package com.app.community.ui.dashboard.home.expendedrecyclerview.holder;
 
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
 
 import com.app.community.R;
 import com.app.community.databinding.ListItemProductsBinding;
@@ -37,6 +39,7 @@ public abstract class GroupViewHolder extends RecyclerView.ViewHolder {
 
 
   public void setOnGroupClickListener(OnGroupClickListener listener) {
+
     this.listener = listener;
   }
 

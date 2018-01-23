@@ -1,5 +1,6 @@
 package com.app.community.utils;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
@@ -62,7 +63,7 @@ public class GlideUtils {
         }).transforms(new RoundedCorners(CommonUtils.convertDpToPx(roundedRadius,activity))).into(imageView);
     }
     //load rounded image with progress bar
-    public static void loadImage(final FragmentActivity activity, String imageUrl, final ImageView imageView, final ProgressBar progressBar, final int placeholder) {
+    public static void loadImage(final Context activity, String imageUrl, final ImageView imageView, final ProgressBar progressBar, final int placeholder) {
         showProgressBar(progressBar);
         GlideApp.with(activity).load(imageUrl)
                 .placeholder(placeholder).diskCacheStrategy(DiskCacheStrategy.RESOURCE).listener(new RequestListener<Drawable>() {
