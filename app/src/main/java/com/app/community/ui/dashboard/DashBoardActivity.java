@@ -2,7 +2,6 @@ package com.app.community.ui.dashboard;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -13,12 +12,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.app.community.CommonApplication;
 import com.app.community.R;
 import com.app.community.databinding.ActivityDashboardBinding;
-import com.app.community.event.AddNewsMainFragmentEvent;
 import com.app.community.fragnav.FragNavController;
 import com.app.community.fragnav.FragNavSwitchController;
 import com.app.community.fragnav.FragNavTransactionOptions;
@@ -27,16 +24,15 @@ import com.app.community.injector.component.DaggerDashboardComponent;
 import com.app.community.injector.component.DashboardComponent;
 import com.app.community.injector.module.DashboardModule;
 import com.app.community.network.response.BaseResponse;
+import com.app.community.network.response.dashboard.drawerresponse.Ingredient;
+import com.app.community.network.response.dashboard.drawerresponse.Recipe;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.base.BaseFragment;
 import com.app.community.ui.cart.ProductSubproductFragment;
+import com.app.community.ui.dashboard.expandrecycleview.draweradapter.DrawerAdapterRight;
 import com.app.community.ui.dashboard.home.SearchActivity;
 import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.adapter.DrawerAdapterLeft;
-import com.app.community.ui.dashboard.home.expendedrecyclerview.adapter.DrawerAdapterRight;
-import com.app.community.ui.dashboard.home.expendedrecyclerview.model.Artist;
-import com.app.community.ui.dashboard.home.expendedrecyclerview.model.Genre;
-import com.app.community.ui.dashboard.home.fragment.HomeFragment;
 import com.app.community.ui.dashboard.notification.NotificationFragment;
 import com.app.community.ui.dashboard.offer.OfferFragment;
 import com.app.community.ui.dashboard.user.UserFragment;
@@ -44,9 +40,8 @@ import com.app.community.utils.ExplicitIntent;
 import com.app.community.widget.bottomnavigation.BottomNavigationBar;
 import com.app.community.widget.bottomnavigation.NavigationPage;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -56,7 +51,7 @@ import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_SUBPRODU
 
 public class DashBoardActivity extends BaseActivity implements BottomNavigationBar.BottomNavigationMenuClickListener,
         BaseFragment.FragmentNavigation, FragNavController.TransactionListener, FragNavController.RootFragmentListener,
-        DrawerAdapterLeft.DrawerLeftListener ,DrawerAdapterRight.ProductSubHolderListener {
+        DrawerAdapterLeft.DrawerLeftListener,DrawerAdapterRight.ProductSubHolderListener {
 
     //Better convention to properly name the indices what they are in your app
     private final int HOME = FragNavController.TAB1;
@@ -78,17 +73,15 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     // list of Navigation pages to be shown
     private static final int MAIN_TAB_ID = FragNavController.TAB1;
     private DrawerAdapterRight mDrawerAdapterRight;
-    private List<Genre> listDrawerExpandable;
+    private List<Recipe> listDrawerExpandable;
     private ArrayList<NavigationPage> navigationPages;
     private ActionBarDrawerToggle mDrawerToggleLeft;
     private DrawerAdapterLeft mDrawerAdapterLeft;
 
     @Override
     public void onLeftDrawerItemClicked(int adapterPosition) {
-        showToast("Clicked "+adapterPosition);
+        showToast("Clicked " + adapterPosition);
     }
-
-
 
 
     public interface OnToolbarItemClickedListener {
@@ -310,7 +303,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
             ((DefaultItemAnimator) animator).setSupportsChangeAnimations(false);
         }
         setListItem();
-        mDrawerAdapterRight = new DrawerAdapterRight(listDrawerExpandable, this,this);
+        mDrawerAdapterRight = new DrawerAdapterRight(this,listDrawerExpandable,this);
         mBinding.layoutDrawerRight.rvDrawer.setLayoutManager(layoutManager);
         mBinding.layoutDrawerRight.rvDrawer.setAdapter(mDrawerAdapterRight);
     }
@@ -342,31 +335,26 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         if (animator instanceof DefaultItemAnimator) {
             ((DefaultItemAnimator) animator).setSupportsChangeAnimations(false);
         }
-        mDrawerAdapterLeft = new DrawerAdapterLeft(this,this);
+        mDrawerAdapterLeft = new DrawerAdapterLeft(this, this);
         mBinding.layoutDrawerLeft.rvDrawer.setLayoutManager(layoutManager);
         mBinding.layoutDrawerLeft.rvDrawer.setAdapter(mDrawerAdapterLeft);
     }
 
 
     private void setListItem() {
-        for (int i = 0; i < 12; i++) {
-            Genre genre = new Genre("Title" + i, setArtistList(i));
-            listDrawerExpandable.add(genre);
+        Ingredient beef = new Ingredient("beef", false);
+        Ingredient cheese = new Ingredient("cheese", true);
+        Ingredient salsa = new Ingredient("salsa", true);
+        Ingredient tortilla = new Ingredient("tortilla", true);
+        Ingredient ketchup = new Ingredient("ketchup", true);
+        Ingredient bun = new Ingredient("bun", true);
 
-        }
+        Recipe taco = new Recipe("taco", Arrays.asList(beef, cheese, salsa, tortilla));
+        Recipe quesadilla = new Recipe("quesadilla", Arrays.asList(cheese, tortilla));
+        Recipe burger = new Recipe("burger", Arrays.asList(beef, cheese, ketchup, bun));
+        listDrawerExpandable = Arrays.asList(taco, quesadilla, burger);
     }
 
-    private List<Artist> setArtistList(int number) {
-        List<Artist> artistList = new ArrayList<>();
-        if (number % 3 == 0) {
-            return artistList;
-        }
-        for (int i = 0; i < 5; i++) {
-            Artist artist = new Artist("Artist" + number + i, false);
-            artistList.add(artist);
-        }
-        return artistList;
-    }
 
     private void openDrawerLeft() {
         if (!mBinding.drawer.isDrawerOpen(Gravity.LEFT)) {
@@ -464,10 +452,12 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     public void setTile(String title) {
         mBinding.toolBar.tvHeading.setText(title);
     }
+
     @Override
-    public void onSubItemClicked() {
-        closeDrawerRight();
-        pushFragment(PRODUCT_SUBPRODUCT,null,R.id.container,true,true,NONE);
-        ProductSubproductFragment.newInstance(0);
+    public void onSubItemClicked(int parentPosition, int childPosition) {
+        showToast(parentPosition+"    "+childPosition);
+        /*closeDrawerRight();
+        pushFragment(PRODUCT_SUBPRODUCT, null, R.id.container, true, true, NONE);
+        ProductSubproductFragment.newInstance(0);*/
     }
 }
