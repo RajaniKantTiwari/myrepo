@@ -16,7 +16,7 @@ import com.app.community.ui.dashboard.expandrecycleview.ParentViewHolder;
 public class RecipeViewHolder extends ParentViewHolder {
 
     private static final float INITIAL_POSITION = 0.0f;
-    private static final float ROTATED_POSITION = 180f;
+    private static final float ROTATED_POSITION = 90f;
 
     @NonNull
     private final ImageView mArrowExpandImageView;

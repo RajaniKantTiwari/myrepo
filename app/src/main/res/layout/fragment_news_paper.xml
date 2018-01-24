@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        style="@style/match_match"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvCat"
+            style="@style/match_wrap"
+            android:orientation="horizontal" />
+
+        <View style="@style/view_layout_brown_1" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvSubCat"
+            style="@style/match_wrap"
+            android:orientation="horizontal" />
+
+        <View style="@style/view_layout_brown_1" />
+
+        <ScrollView style="@style/match_match">
+
+            <LinearLayout
+                style="@style/match_match"
+                android:orientation="vertical">
+
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvTitle"
+                    style="@style/textview_title_match"
+                    android:gravity="center"
+                    android:padding="@dimen/margin_5"
+                    android:text="Dainik Jagran"
+                    android:textAllCaps="true"
+                    app:customFont="@string/font_regular" />
+
+                <View style="@style/view_layout_brown_1" />
+
+                <include
+                    layout="@layout/newspaper_row"
+                    />
+                <RelativeLayout
+                    style="@style/match_wrap"
+                    android:background="@drawable/grey_corner_bg"
+                    android:layout_margin="8dp">
+
+                <Spinner
+                    android:id="@+id/selectedSpiner"
+                    style="@style/match_wrap"
+                    android:overlapAnchor="false"
+                    android:dropDownWidth="@dimen/margin_230"
+                    />
+                </RelativeLayout>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:id="@+id/layoutCheckOut"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:orientation="vertical">
+
+                    <com.app.community.widget.CustomTextView
+                        android:id="@+id/tvTotal"
+                        style="@style/textview_description_large_wrap"
+                        android:layout_gravity="center"
+                        android:text="@string/sub_total" />
+
+                    <com.app.community.widget.CustomTextView
+                        android:id="@+id/tvCheckout"
+                        style="@style/textview_description_small_wrap"
+                        android:layout_height="@dimen/margin_25"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/margin_12"
+                        android:background="@drawable/shape_button_round"
+                        android:elevation="@dimen/margin_5"
+                        android:gravity="center"
+                        android:paddingEnd="@dimen/margin_35"
+                        android:paddingStart="@dimen/margin_35"
+                        android:text="@string/text_checkout"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>

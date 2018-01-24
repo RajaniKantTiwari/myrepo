@@ -15,6 +15,7 @@
             android:layout_toEndOf="@+id/ivIcon"
             android:gravity="center"
             android:text="@string/name"
+            android:ellipsize="marquee"
             android:textSize="@dimen/textSize_12"
             app:customFont="@string/font_regular"/>
 

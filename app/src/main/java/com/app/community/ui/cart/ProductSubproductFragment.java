@@ -12,10 +12,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.app.community.CommonApplication;
 import com.app.community.R;
+import com.app.community.databinding.FragmentProductSubproductBinding;
 import com.app.community.databinding.ItemCartBinding;
-import com.app.community.databinding.ProductSubproductCartBinding;
 import com.app.community.network.request.cart.CategoryRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.cart.CategoryData;
@@ -24,22 +23,18 @@ import com.app.community.network.response.dashboard.cart.ProductData;
 import com.app.community.network.response.dashboard.cart.SubCategory;
 import com.app.community.ui.base.MvpView;
 import com.app.community.ui.dashboard.DashboardFragment;
-import com.app.community.ui.dashboard.DashboardPresenter;
-import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.LogUtils;
 
 import java.util.ArrayList;
 
-import javax.inject.Inject;
-
 import static com.app.community.utils.CommonUtils.isNotNull;
 import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 
 
-public class ProductSubproductFragment extends DashboardFragment implements MvpView, OnClickListener, CartAdapter.OnAddToCart, CategoryAdapter.OnCatItemClick, SubCatAdapter.OnSubCatItemClick {
-    private ProductSubproductCartBinding mBinding;
+public class ProductSubproductFragment extends DashboardFragment implements CartAdapter.OnAddToCart, CategoryAdapter.OnCatItemClick, SubCatAdapter.OnSubCatItemClick {
+    private FragmentProductSubproductBinding mBinding;
     private CategoryAdapter mCategoryAdapter;
     private SubCatAdapter mSubCategoryAdapter;
     private LinearLayoutManager mLayoutManager, mLayoutMangerSubcat, mLayoutManagerCart;
@@ -54,7 +49,7 @@ public class ProductSubproductFragment extends DashboardFragment implements MvpV
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.product_subproduct_cart, container, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_product_subproduct, container, false);
         return mBinding.getRoot();
     }
 

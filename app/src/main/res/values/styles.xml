@@ -68,6 +68,12 @@
         <item name="android:background">@color/ver_bg_color</item>
     </style>
 
+    <style name="view_layout_brown_1">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/margin_1</item>
+        <item name="android:background">@color/ver_bg_color</item>
+    </style>
+
 
     <style name="view_layout_white">
         <item name="android:layout_width">match_parent</item>
@@ -205,6 +211,10 @@
         <item name="android:layout_width">@dimen/margin_100</item>
         <item name="android:layout_height">@dimen/margin_70</item>
     </style>
+    <style name="image_70_40" >
+        <item name="android:layout_width">@dimen/margin_70</item>
+        <item name="android:layout_height">@dimen/margin_40</item>
+    </style>
     <style name="textview_header_large_match" parent="match_wrap">
         <item name="android:textSize">@dimen/textSize_header_large</item>
         <item name="android:textColor">@color/black</item>
@@ -276,6 +286,11 @@
     <style name="textview_description_small_wrap" parent="wrap_wrap">
         <item name="android:textSize">@dimen/textSize_description_small</item>
         <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="add_sub_view">
+        <item name="android:layout_width">@dimen/margin_23</item>
+        <item name="android:layout_height">@dimen/margin_23</item>
     </style>
     <style name="textview_description_small_match" parent="match_wrap">
         <item name="android:textSize">@dimen/textSize_description_small</item>
@@ -431,7 +446,10 @@
     <style name="button_smaller_wrap" parent="wrap_wrap">
         <item name="android:textSize">@dimen/button_smaller</item>
     </style>
-
+    <style name="mySpinnerLook"
+        parent="@android:style/Widget.TextView.SpinnerItem">
+        <item name="android:textSize">@dimen/textSize_description_smaller</item>
+    </style>
     <dimen name="margin_35">35dp</dimen>
     <dimen name="margin_8_minus">-8dp</dimen>
     <dimen name="margin_45">45dp</dimen>

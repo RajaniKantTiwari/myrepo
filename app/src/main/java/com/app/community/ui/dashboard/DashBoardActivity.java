@@ -36,6 +36,7 @@ import com.app.community.ui.dashboard.home.adapter.DrawerAdapterLeft;
 import com.app.community.ui.dashboard.notification.NotificationFragment;
 import com.app.community.ui.dashboard.offer.OfferFragment;
 import com.app.community.ui.dashboard.user.UserFragment;
+import com.app.community.ui.newspaper.NewsPaperFragment;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.widget.bottomnavigation.BottomNavigationBar;
 import com.app.community.widget.bottomnavigation.NavigationPage;
@@ -409,7 +410,8 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     public Fragment getRootFragment(int index) {
         switch (index) {
             case HOME:
-                return WelcomeHomeFragment.newInstance(0);
+                return NewsPaperFragment.newInstance(0);
+                //return WelcomeHomeFragment.newInstance(0);
             case OFFER:
                 return OfferFragment.newInstance(0);
             case NOTIFICATION:

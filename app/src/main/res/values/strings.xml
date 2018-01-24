@@ -422,7 +422,8 @@
     <string name="saloons">Saloons</string>
     <string name="jewellery">Jewellery</string>
     <string name="text_checkout">CheckOut Now</string>
-
+    <string name="sub_total">Sub Total : INR 0.00</string>
+    <string name="selected_days">Selected Days</string>
 
     <string-array name="state_array">
         <item> Select State </item>
@@ -438,6 +439,14 @@
         <item> Delhi</item>
         <item> Gurgaon</item>
 
+    </string-array>
+
+    <string-array name="selected_type">
+        <item>Daily</item>
+        <item>Twice in a week</item>
+        <item>Monthly</item>
+        <item>Quaterly</item>
+        <item>Selected Days</item>
     </string-array>
 
 

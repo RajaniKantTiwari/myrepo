@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/ivProduct"
+            style="@style/image_70_40"
+            android:layout_below="@+id/tvType"
+            android:layout_marginBottom="@dimen/margin_25"
+            android:layout_marginStart="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin_6"
+            android:background="@drawable/abc"
+            android:scaleType="centerInside" />
+
+        <LinearLayout
+            android:id="@+id/layoutInfo"
+            style="@style/match_wrap"
+            android:layout_marginEnd="@dimen/margin_10"
+            android:layout_marginStart="@dimen/margin_10"
+            android:layout_toEndOf="@+id/ivProduct"
+            android:layout_toStartOf="@+id/layoutAdd"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/margin_6">
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvProductName"
+                style="@style/textview_description_large_match"
+                android:maxLines="1"
+                android:text="Red Chilly" />
+
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvProductQty"
+                style="@style/textview_description_smaller_match"
+                android:maxLines="1"
+                android:text="500g" />
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvProductPrice"
+                style="@style/textview_description_match"
+                android:text="$ 25.00"
+                android:textColor="@color/color_blue" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutAdd"
+            style="@style/wrap_wrap"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/margin_30">
+            <ImageView
+                android:id="@+id/ivMinus"
+                style="@style/add_sub_view"
+
+                android:padding="@dimen/margin_3"
+                android:src="@drawable/sub_black" />
+
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvQty"
+                style="@style/textview_description_small_wrap"
+                android:gravity="center"
+                android:padding="@dimen/margin_5"
+                android:text="0" />
+
+            <ImageView
+                android:id="@+id/ivPlus"
+                style="@style/add_sub_view"
+                android:padding="@dimen/margin_3"
+                android:src="@drawable/add_black" />
+        </LinearLayout>
+
+
+        <View
+            style="@style/view_layout_brown_1"
+            android:layout_below="@+id/ivProduct" />
+
+    </RelativeLayout>
+</layout>
