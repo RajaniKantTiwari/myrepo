@@ -9,9 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.community.R;
@@ -21,7 +18,6 @@ import com.app.community.network.response.dashboard.cart.CategoryData;
 import com.app.community.network.response.dashboard.cart.ProductData;
 import com.app.community.network.response.dashboard.cart.SubCategory;
 import com.app.community.ui.dashboard.DashboardFragment;
-import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.utils.CommonUtils;
 
 import java.util.ArrayList;
@@ -61,9 +57,9 @@ public class NewsPaperFragment extends DashboardFragment implements NewsCategory
         daysArrayList.addAll(Arrays.asList(getResources().getStringArray(R.array.selected_type)));
         SelectedDaysAdapter adapter = new SelectedDaysAdapter(getDashboardActivity(), daysArrayList);
         adapter.setDropDownViewResource(R.layout.spinner_row);
-        mBinding.selectedSpiner.setAdapter(adapter);
-        mBinding.selectedSpiner.setSelection(adapter.getCount());
-        mBinding.selectedSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        mBinding.LayoutNews.selectedSpiner.setAdapter(adapter);
+        mBinding.LayoutNews.selectedSpiner.setSelection(adapter.getCount());
+        mBinding.LayoutNews.selectedSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position != daysArrayList.size() - 1) {
@@ -73,16 +69,29 @@ public class NewsPaperFragment extends DashboardFragment implements NewsCategory
                     }
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
-
-
     }
-
+    private void setViews() {
+        mLayoutManagerNewsCat = new LinearLayoutManager(getDashboardActivity(), LinearLayoutManager.HORIZONTAL, false);
+        mLayoutMangerNewsSubcat = new LinearLayoutManager(getDashboardActivity(), LinearLayoutManager.HORIZONTAL, false);
+        mBinding.rvCat.setLayoutManager(mLayoutManagerNewsCat);
+        mBinding.rvSubCat.setLayoutManager(mLayoutMangerNewsSubcat);
+        mBinding.LayoutNews.tvCheckout.setOnClickListener(this);
+        mNewsCategoryAdapter = new NewsCategoryAdapter(mCatList, this);
+        mNewsSubCategoryAdapter = new NewsSubCatAdapter(mSubCatList, this);
+        mBinding.rvCat.setAdapter(mNewsCategoryAdapter);
+        mBinding.rvSubCat.setAdapter(mNewsSubCategoryAdapter);
+        mDaysLayoutManager = new LinearLayoutManager(getDashboardActivity());
+        mBinding.LayoutNews.rvDays.setLayoutManager(mDaysLayoutManager);
+        ArrayList<Days> daysArrayList = new ArrayList<>();
+        CommonUtils.setDays(daysArrayList);
+        mDaysAdapter = new DaysAdapter(getDashboardActivity(),daysArrayList);
+        mBinding.LayoutNews.rvDays.setAdapter(mDaysAdapter);
+    }
     @Override
     public void setListener() {
 
@@ -147,53 +156,7 @@ public class NewsPaperFragment extends DashboardFragment implements NewsCategory
 
     }
 
-    private void setViews() {
-        mLayoutManagerNewsCat = new LinearLayoutManager(getDashboardActivity(), LinearLayoutManager.HORIZONTAL, false);
-        mLayoutMangerNewsSubcat = new LinearLayoutManager(getDashboardActivity(), LinearLayoutManager.HORIZONTAL, false);
-        mBinding.rvCat.setLayoutManager(mLayoutManagerNewsCat);
-        mBinding.rvSubCat.setLayoutManager(mLayoutMangerNewsSubcat);
-        mBinding.tvCheckout.setOnClickListener(this);
-        mNewsCategoryAdapter = new NewsCategoryAdapter(mCatList, this);
-        mNewsSubCategoryAdapter = new NewsSubCatAdapter(mSubCatList, this);
-        mBinding.rvCat.setAdapter(mNewsCategoryAdapter);
-        mBinding.rvSubCat.setAdapter(mNewsSubCategoryAdapter);
-        mDaysLayoutManager = new LinearLayoutManager(getDashboardActivity());
-        mBinding.rvDays.setLayoutManager(mDaysLayoutManager);
-        ArrayList<Days> daysArrayList = new ArrayList<>();
-        setDays(daysArrayList);
-        mDaysAdapter = new DaysAdapter(getDashboardActivity(),daysArrayList);
-        mBinding.rvDays.setAdapter(mDaysAdapter);
-    }
 
-    private void setDays(ArrayList<Days> daysArrayList) {
-        Days day1 = new Days();
-        day1.setNameOfDays("Sunday");
-        daysArrayList.add(day1);
-
-        Days day2 = new Days();
-        day2.setNameOfDays("Monday");
-        daysArrayList.add(day2);
-
-        Days day3 = new Days();
-        day3.setNameOfDays("Tuesday");
-        daysArrayList.add(day3);
-
-        Days day4 = new Days();
-        day4.setNameOfDays("WednusDay");
-        daysArrayList.add(day4);
-
-        Days day5 = new Days();
-        day5.setNameOfDays("Thursday");
-        daysArrayList.add(day5);
-
-        Days day6 = new Days();
-        day6.setNameOfDays("Friday");
-        daysArrayList.add(day6);
-
-        Days day7 = new Days();
-        day7.setNameOfDays("Saturday");
-        daysArrayList.add(day7);
-    }
 
     public static Fragment newInstance(int instance) {
         Bundle args = new Bundle();

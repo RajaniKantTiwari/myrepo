@@ -31,6 +31,7 @@ import com.app.community.ui.dialogfragment.ContactDialogFragment;
 import com.app.community.ui.dialogfragment.ContactImpPlaceDialogFragment;
 import com.app.community.ui.dialogfragment.CustomDialogFragment;
 import com.app.community.ui.dialogfragment.OrderDialogFragment;
+import com.app.community.ui.newspaper.Days;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
@@ -39,6 +40,7 @@ import org.greenrobot.eventbus.EventBus;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
@@ -276,5 +278,34 @@ public class CommonUtils {
     public static float setRating(String rating) {
         String str = String.format("%.2f", Double.parseDouble(rating));
         return Float.parseFloat(str);
+    }
+    public static void setDays(ArrayList<Days> daysArrayList) {
+        Days day1 = new Days();
+        day1.setNameOfDays("Sunday");
+        daysArrayList.add(day1);
+
+        Days day2 = new Days();
+        day2.setNameOfDays("Monday");
+        daysArrayList.add(day2);
+
+        Days day3 = new Days();
+        day3.setNameOfDays("Tuesday");
+        daysArrayList.add(day3);
+
+        Days day4 = new Days();
+        day4.setNameOfDays("WednusDay");
+        daysArrayList.add(day4);
+
+        Days day5 = new Days();
+        day5.setNameOfDays("Thursday");
+        daysArrayList.add(day5);
+
+        Days day6 = new Days();
+        day6.setNameOfDays("Friday");
+        daysArrayList.add(day6);
+
+        Days day7 = new Days();
+        day7.setNameOfDays("Saturday");
+        daysArrayList.add(day7);
     }
 }

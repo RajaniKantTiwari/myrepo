@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView style="@style/match_match">
+
+        <LinearLayout
+            style="@style/match_match"
+            android:orientation="vertical">
+
+            <com.app.community.widget.CustomTextView
+                style="@style/textview_title_match"
+                android:gravity="center"
+                android:padding="@dimen/margin_5"
+                android:text="Dainik Jagran"
+                android:textAllCaps="true"
+                app:customFont="@string/font_regular" />
+
+            <View style="@style/view_layout_brown_1" />
+
+            <include layout="@layout/newspaper_row" />
+
+            <RelativeLayout
+                style="@style/match_wrap"
+                android:layout_margin="8dp"
+                android:background="@drawable/grey_corner_bg">
+
+                <Spinner
+                    android:id="@+id/selectedSpiner"
+                    style="@style/match_wrap"
+                    android:dropDownWidth="@dimen/margin_230"
+                    android:overlapAnchor="false" />
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvDays"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_100" />
+
+            <com.app.community.widget.CustomTextView
+                style="@style/textview_description_large_wrap"
+                android:layout_marginStart="@dimen/margin_25"
+                android:layout_marginTop="@dimen/margin_13"
+                android:gravity="center"
+                android:text="@string/duration"
+                android:textAllCaps="true" />
+
+            <LinearLayout
+                style="@style/match_wrap"
+                android:layout_height="@dimen/margin_25"
+                android:layout_margin="@dimen/margin_13"
+                android:background="@drawable/grey_corner_bg">
+
+                <com.app.community.widget.CustomTextView
+                    style="@style/textview_description_small_wrap"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/light_grey_bg"
+                    android:gravity="center"
+                    android:text="@string/start_date" />
+
+                <com.app.community.widget.CustomTextView
+                    style="@style/textview_description_small_wrap"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:gravity="center"
+                    android:text="22 may 2017" />
+
+                <com.app.community.widget.CustomTextView
+                    style="@style/textview_description_small_wrap"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/light_grey_bg"
+                    android:gravity="center"
+                    android:text="@string/end_date" />
+
+                <com.app.community.widget.CustomTextView
+                    style="@style/textview_description_small_wrap"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:gravity="center"
+                    android:text="22 may 2017" />
+            </LinearLayout>
+
+
+            <com.app.community.widget.CustomTextView
+                style="@style/textview_description_small_match"
+                android:layout_marginBottom="@dimen/margin_30"
+                android:layout_marginTop="@dimen/margin_10"
+                android:gravity="center"
+                android:padding="@dimen/margin_23"
+                android:text="22 may 2017" />
+
+
+            <LinearLayout
+                style="@style/match_wrap"
+                android:gravity="center">
+
+                <com.app.community.widget.CustomTextView
+                    style="@style/textview_description_large_wrap"
+                    android:layout_gravity="center"
+                    android:text="@string/sub_total" />
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvTotal"
+                    style="@style/textview_description_large_wrap"
+                    android:layout_gravity="center"
+                    android:drawableStart="@drawable/rupee_black"
+                    android:drawablePadding="@dimen/margin_2"
+                    android:text="1200"
+                    android:paddingStart="@dimen/margin_5"/>
+            </LinearLayout>
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvCheckout"
+                style="@style/textview_description_small_wrap"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/margin_20"
+                android:layout_marginTop="@dimen/margin_12"
+                android:background="@drawable/shape_button_round"
+                android:elevation="@dimen/margin_5"
+                android:gravity="center"
+                android:paddingBottom="@dimen/margin_8"
+                android:paddingEnd="@dimen/margin_35"
+                android:paddingStart="@dimen/margin_35"
+                android:paddingTop="@dimen/margin_8"
+                android:text="@string/done"
+                android:textAllCaps="true"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </ScrollView>
+</layout>

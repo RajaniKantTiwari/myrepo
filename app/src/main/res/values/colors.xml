@@ -62,6 +62,7 @@
     <color name="doctor_charge_color">#33cc33</color>
 
     <color name="background_color">#E5E6E7</color>
+    <color name="light_grey_background_color">#F5F5F5</color>
 
 
     <color name="blue">#17A4BF</color>

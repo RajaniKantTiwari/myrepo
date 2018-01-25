@@ -18,6 +18,7 @@
             android:text="@={daysName.nameOfDays}"
             android:textAllCaps="true"
             android:layout_toStartOf="@+id/radio"
+            android:paddingStart="@dimen/margin_15"
             app:customFont="@string/font_regular"/>
         <RadioButton
             android:id="@+id/radio"
