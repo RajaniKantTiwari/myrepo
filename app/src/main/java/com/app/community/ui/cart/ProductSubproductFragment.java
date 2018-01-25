@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,8 +20,9 @@ import com.app.community.network.response.dashboard.cart.CategoryData;
 import com.app.community.network.response.dashboard.cart.CategoryResponse;
 import com.app.community.network.response.dashboard.cart.ProductData;
 import com.app.community.network.response.dashboard.cart.SubCategory;
-import com.app.community.ui.base.MvpView;
+import com.app.community.network.response.dashboard.home.MerchantResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
+import com.app.community.ui.dashboard.home.ProductDetailsFragment;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.LogUtils;
@@ -169,7 +169,8 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
     public void initializeData() {
         Bundle bundle = getArguments();
         if (CommonUtils.isNotNull(bundle)) {
-            merchantId = bundle.getInt(GeneralConstant.INTENT_EXTRA_ID);
+            MerchantResponse productResponse = bundle.getParcelable(GeneralConstant.RESPONSE);
+            merchantId = Integer.parseInt(productResponse.getId());
         }
         setViews();
         callApi();
@@ -252,10 +253,17 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
         categoryRequest.setMerchant_id(merchantId);
         getPresenter().getCategory(getDashboardActivity(), categoryRequest);
     }
-    public static Fragment newInstance(int instance) {
-        Bundle args = new Bundle();
+    public static Fragment newInstance(int instance, MerchantResponse merchantResponse) {
+        /*Bundle args = new Bundle();
         args.putInt(ARGS_INSTANCE, instance);
         ProductSubproductFragment fragment = new ProductSubproductFragment();
+        fragment.setArguments(args);
+        return fragment;*/
+
+        Bundle args = new Bundle();
+        args.putInt(ARGS_INSTANCE, instance);
+        args.putParcelable(GeneralConstant.RESPONSE, merchantResponse);
+        ProductDetailsFragment fragment = new ProductDetailsFragment();
         fragment.setArguments(args);
         return fragment;
     }

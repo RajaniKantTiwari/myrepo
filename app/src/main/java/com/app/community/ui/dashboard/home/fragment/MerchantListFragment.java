@@ -18,6 +18,7 @@ import com.app.community.R;
 import com.app.community.databinding.FragmentLocationListBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.home.MerchantResponse;
+import com.app.community.ui.cart.ProductSubproductFragment;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.ProductDetailsFragment;
 import com.app.community.ui.dashboard.home.adapter.MerchantAdapter;
@@ -70,6 +71,7 @@ public class MerchantListFragment extends DashboardFragment implements ContactDi
             @Override
             public void onItemClick(int adapterPosition) {
                 if (CommonUtils.isNotNull(productList) && productList.size() > adapterPosition) {
+                    //mFragmentNavigation.pushFragment(ProductSubproductFragment.newInstance(mInt+1,productList.get(adapterPosition)));
                     mFragmentNavigation.pushFragment(ProductDetailsFragment.newInstance(mInt+1,productList.get(adapterPosition)));
                     //ExplicitIntent.getsInstance().navigateTo(getBaseActivity(), ProductDetailsFragment.class);
                 }

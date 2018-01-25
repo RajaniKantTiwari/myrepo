@@ -34,7 +34,7 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
  * Created by rajnikant on 31/12/17.
  */
 
-public class NewsPaperFragment extends DashboardFragment implements NewsCategoryAdapter.NewsOnCatItemClick, NewsSubCatAdapter.OnNewsSubCatItemClick{
+public class NewsPaperFragment extends DashboardFragment implements NewsCategoryAdapter.NewsOnCatItemClick, NewsSubCatAdapter.OnNewsSubCatItemClick {
     private FragmentNewsPaperBinding mBinding;
     private NewsCategoryAdapter mNewsCategoryAdapter;
     private NewsSubCatAdapter mNewsSubCategoryAdapter;
@@ -44,30 +44,32 @@ public class NewsPaperFragment extends DashboardFragment implements NewsCategory
     private ArrayList<ProductData> mCartList = new ArrayList<>();
     private LinearLayoutManager mLayoutManagerNewsCat;
     private LinearLayoutManager mLayoutMangerNewsSubcat;
+    private LinearLayoutManager mDaysLayoutManager;
+    private DaysAdapter mDaysAdapter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding=DataBindingUtil.inflate(inflater, R.layout.fragment_news_paper,container,false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_news_paper, container, false);
         return mBinding.getRoot();
     }
 
     @Override
     public void initializeData() {
         setViews();
-        List<String> daysArrayList=new ArrayList<>();
+        List<String> daysArrayList = new ArrayList<>();
         daysArrayList.addAll(Arrays.asList(getResources().getStringArray(R.array.selected_type)));
-        SelectedDaysAdapter adapter=new SelectedDaysAdapter(getDashboardActivity(),daysArrayList);
+        SelectedDaysAdapter adapter = new SelectedDaysAdapter(getDashboardActivity(), daysArrayList);
         adapter.setDropDownViewResource(R.layout.spinner_row);
         mBinding.selectedSpiner.setAdapter(adapter);
         mBinding.selectedSpiner.setSelection(adapter.getCount());
         mBinding.selectedSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position != daysArrayList.size()-1){
-                    if(CommonUtils.isNotNull(view)){
+                if (position != daysArrayList.size() - 1) {
+                    if (CommonUtils.isNotNull(view)) {
                         view.setBackgroundResource(0);
-                        Toast.makeText(getDashboardActivity(),""+position,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getDashboardActivity(), "" + position, Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -144,6 +146,7 @@ public class NewsPaperFragment extends DashboardFragment implements NewsCategory
 
 
     }
+
     private void setViews() {
         mLayoutManagerNewsCat = new LinearLayoutManager(getDashboardActivity(), LinearLayoutManager.HORIZONTAL, false);
         mLayoutMangerNewsSubcat = new LinearLayoutManager(getDashboardActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -154,6 +157,42 @@ public class NewsPaperFragment extends DashboardFragment implements NewsCategory
         mNewsSubCategoryAdapter = new NewsSubCatAdapter(mSubCatList, this);
         mBinding.rvCat.setAdapter(mNewsCategoryAdapter);
         mBinding.rvSubCat.setAdapter(mNewsSubCategoryAdapter);
+        mDaysLayoutManager = new LinearLayoutManager(getDashboardActivity());
+        mBinding.rvDays.setLayoutManager(mDaysLayoutManager);
+        ArrayList<Days> daysArrayList = new ArrayList<>();
+        setDays(daysArrayList);
+        mDaysAdapter = new DaysAdapter(getDashboardActivity(),daysArrayList);
+        mBinding.rvDays.setAdapter(mDaysAdapter);
+    }
+
+    private void setDays(ArrayList<Days> daysArrayList) {
+        Days day1 = new Days();
+        day1.setNameOfDays("Sunday");
+        daysArrayList.add(day1);
+
+        Days day2 = new Days();
+        day2.setNameOfDays("Monday");
+        daysArrayList.add(day2);
+
+        Days day3 = new Days();
+        day3.setNameOfDays("Tuesday");
+        daysArrayList.add(day3);
+
+        Days day4 = new Days();
+        day4.setNameOfDays("WednusDay");
+        daysArrayList.add(day4);
+
+        Days day5 = new Days();
+        day5.setNameOfDays("Thursday");
+        daysArrayList.add(day5);
+
+        Days day6 = new Days();
+        day6.setNameOfDays("Friday");
+        daysArrayList.add(day6);
+
+        Days day7 = new Days();
+        day7.setNameOfDays("Saturday");
+        daysArrayList.add(day7);
     }
 
     public static Fragment newInstance(int instance) {

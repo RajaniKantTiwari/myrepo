@@ -55,9 +55,60 @@
                     />
                 </RelativeLayout>
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rvDetail"
+                    android:id="@+id/rvDays"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_100"/>
+                <com.app.community.widget.CustomTextView
+                    style="@style/textview_description_large_wrap"
+                    android:gravity="center"
+                    android:text="@string/duration"
+                    android:layout_marginStart="@dimen/margin_25"
+                    android:layout_marginTop="@dimen/margin_13"
+                    android:textAllCaps="true" />
+                <LinearLayout
+                    style="@style/match_wrap"
+                    android:layout_height="@dimen/margin_25"
+                    android:background="@drawable/grey_corner_bg"
+                    android:layout_margin="@dimen/margin_13"
+                    >
+                    <com.app.community.widget.CustomTextView
+                        style="@style/textview_description_small_wrap"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/start_date"
+                        android:background="@drawable/grey_bg"/>
+                    <com.app.community.widget.CustomTextView
+                        style="@style/textview_description_small_wrap"
+                        android:layout_height="match_parent"
+                        android:layout_weight="7"
+                        android:text="22 may 2017"
+                        android:gravity="center" />
+                    <com.app.community.widget.CustomTextView
+                        style="@style/textview_description_small_wrap"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/end_date"
+                        android:background="@drawable/grey_bg"/>
+                    <com.app.community.widget.CustomTextView
+                        style="@style/textview_description_small_wrap"
+                        android:layout_height="match_parent"
+                        android:layout_weight="7"
+                        android:text="22 may 2017"
+                        android:gravity="center" />
+                </LinearLayout>
+
+
+                <com.app.community.widget.CustomTextView
+                    style="@style/textview_description_small_match"
+                    android:text="22 may 2017"
+                    android:gravity="center"
+                    android:padding="@dimen/margin_23"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:layout_marginBottom="@dimen/margin_30"/>
+
 
                 <LinearLayout
                     android:id="@+id/layoutCheckOut"
@@ -65,7 +116,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="@dimen/margin_10"
+                    android:layout_marginBottom="@dimen/margin_20"
                     android:layout_marginTop="@dimen/margin_10"
                     android:orientation="vertical">
 
@@ -78,12 +129,13 @@
                     <com.app.community.widget.CustomTextView
                         android:id="@+id/tvCheckout"
                         style="@style/textview_description_small_wrap"
-                        android:layout_height="@dimen/margin_25"
                         android:layout_gravity="center"
                         android:layout_marginTop="@dimen/margin_12"
                         android:background="@drawable/shape_button_round"
                         android:elevation="@dimen/margin_5"
                         android:gravity="center"
+                        android:paddingTop="@dimen/margin_5"
+                        android:paddingBottom="@dimen/margin_5"
                         android:paddingEnd="@dimen/margin_35"
                         android:paddingStart="@dimen/margin_35"
                         android:text="@string/text_checkout"

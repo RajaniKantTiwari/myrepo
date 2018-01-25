@@ -1,17 +1,33 @@
 package com.app.community.ui.newspaper;
 
+import android.databinding.Bindable;
+import android.databinding.Observable;
+import android.databinding.PropertyChangeRegistry;
+
 /**
  * Created by rajnikant on 24/01/18.
  */
 
-public class Days {
-    private String daysType;
+public class Days implements Observable{
+    private PropertyChangeRegistry changeRegistry=new PropertyChangeRegistry();
+    private String nameOfDays;
 
-    public String getDaysType() {
-        return daysType;
+    @Bindable
+    public String getNameOfDays() {
+        return nameOfDays;
     }
 
-    public void setDaysType(String daysType) {
-        this.daysType = daysType;
+    public void setNameOfDays(String nameOfDays) {
+        this.nameOfDays = nameOfDays;
+    }
+
+    @Override
+    public void addOnPropertyChangedCallback(OnPropertyChangedCallback onPropertyChangedCallback) {
+        changeRegistry.add(onPropertyChangedCallback);
+    }
+
+    @Override
+    public void removeOnPropertyChangedCallback(OnPropertyChangedCallback onPropertyChangedCallback) {
+        changeRegistry.remove(onPropertyChangedCallback);
     }
 }
