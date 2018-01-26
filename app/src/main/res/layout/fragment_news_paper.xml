@@ -21,14 +21,9 @@
             android:orientation="horizontal" />
 
         <View style="@style/view_layout_brown_1"/>
+        <FrameLayout
+            android:id="@+id/container"
+            style="@style/match_match"/>
 
-        <include
-            android:id="@+id/LayoutNews"
-            layout="@layout/news_details"
-            android:visibility="gone"/>
-        <include
-            android:id="@+id/LayoutNewsSubscribe"
-            layout="@layout/fragment_dainik_jagran"
-            />
     </LinearLayout>
 </layout>

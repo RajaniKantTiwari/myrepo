@@ -1,4 +1,4 @@
-package com.app.community.ui.newspaper;
+package com.app.community.ui.newspaper.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

@@ -66,7 +66,7 @@
 
 
     <color name="blue">#17A4BF</color>
-    <color name="button_bg_color">#009EE0</color>
+    <color name="button_bg_color">#1a9fde</color>
     <color name="button_color">#00B0F0</color>
     <color name="dark_sky_blue">#3668C1</color>
     <color name="color_dark_sky">#1893FF</color>
@@ -136,6 +136,8 @@
     <color name="search_bg_color">#DDDBDB</color>
     <color name="deal_color">#492b4a</color>
     <color name="deal_color_product">#d72563</color>
+
+    <color name="cat_background">#b8b8b8</color>
 
 
 

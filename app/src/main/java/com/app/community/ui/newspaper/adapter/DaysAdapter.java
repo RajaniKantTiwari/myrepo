@@ -1,4 +1,4 @@
-package com.app.community.ui.newspaper;
+package com.app.community.ui.newspaper.adapter;
 
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
@@ -11,10 +11,10 @@ import android.widget.RelativeLayout;
 
 import com.app.community.R;
 import com.app.community.databinding.DaysRowItemBinding;
+import com.app.community.ui.newspaper.Days;
 import com.app.community.utils.CommonUtils;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by ashok on 25/12/17.

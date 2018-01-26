@@ -18,11 +18,10 @@ import com.app.community.R;
 import com.app.community.databinding.FragmentLocationListBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.home.MerchantResponse;
-import com.app.community.ui.cart.ProductSubproductFragment;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.ProductDetailsFragment;
 import com.app.community.ui.dashboard.home.adapter.MerchantAdapter;
-import com.app.community.ui.dashboard.home.event.ProductEvent;
+import com.app.community.ui.dashboard.home.event.MerchantEvent;
 import com.app.community.ui.dialogfragment.ContactDialogFragment;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
@@ -125,7 +124,7 @@ public class MerchantListFragment extends DashboardFragment implements ContactDi
     }
 
     @Subscribe
-    public void onMessageEvent(ProductEvent event) {
+    public void onMessageEvent(MerchantEvent event) {
         if (event.getListMap() == GeneralConstant.LIST_PRODUCT) {
             mBinding.layoutList.setVisibility(View.VISIBLE);
             productList = event.getProductList();

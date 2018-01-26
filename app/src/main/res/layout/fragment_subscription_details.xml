@@ -2,7 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ScrollView style="@style/match_match">
+    <ScrollView
+        android:id="@+id/layoutSubscription"
+        style="@style/match_match">
 
         <LinearLayout
             style="@style/match_match"
@@ -18,7 +20,8 @@
 
             <View style="@style/view_layout_brown_1" />
 
-            <include layout="@layout/newspaper_row" />
+            <include
+                layout="@layout/newspaper_row" />
 
             <RelativeLayout
                 style="@style/match_wrap"
@@ -112,7 +115,7 @@
             </LinearLayout>
 
             <com.app.community.widget.CustomTextView
-                android:id="@+id/tvCheckout"
+                android:id="@+id/tvDone"
                 style="@style/textview_description_small_wrap"
                 android:layout_gravity="center"
                 android:layout_marginBottom="@dimen/margin_20"
@@ -121,8 +124,8 @@
                 android:elevation="@dimen/margin_5"
                 android:gravity="center"
                 android:paddingBottom="@dimen/margin_8"
-                android:paddingEnd="@dimen/margin_35"
-                android:paddingStart="@dimen/margin_35"
+                android:paddingEnd="@dimen/margin_50"
+                android:paddingStart="@dimen/margin_50"
                 android:paddingTop="@dimen/margin_8"
                 android:text="@string/done"
                 android:textAllCaps="true"

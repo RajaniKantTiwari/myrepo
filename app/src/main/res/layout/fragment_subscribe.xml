@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/layoutSubscribe"
+        style="@style/match_match"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/layout_ver_match_1"
+            android:layout_weight="0.8"
+            android:orientation="vertical">
+            <android.support.v4.widget.Space
+                style="@style/layout_ver_match_2" />
+            <com.app.community.widget.CustomTextView
+                style="@style/textview_title_match"
+                android:gravity="center_horizontal"
+                android:text="DAINIK JAGRAN"
+                android:textAllCaps="true"
+                android:textColor="@color/color_black"
+                app:customFont="@string/font_regular" />
+
+            <LinearLayout
+                style="@style/match_wrap"
+                android:layout_marginTop="@dimen/margin_10"
+                android:gravity="center">
+
+                <com.app.community.widget.CustomTextView
+                    style="@style/textview_header_large_wrap"
+                    android:drawableStart="@drawable/rupee_orange"
+                    android:text="1200/"
+                    android:textColor="@color/rs_text_color" />
+
+                <com.app.community.widget.CustomTextView
+                    style="@style/textview_description_wrap"
+                    android:text="year"
+                    android:textColor="@color/rs_text_color" />
+            </LinearLayout>
+            <android.support.v4.widget.Space
+                style="@style/layout_ver_match_1" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivLetter"
+            style="@style/layout_ver_match_3"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginEnd="@dimen/margin_5"
+            android:layout_marginStart="@dimen/margin_5"
+            android:src="@drawable/letterbox" />
+
+        <LinearLayout
+            style="@style/layout_ver_match_1"
+            android:gravity="center_horizontal">
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvSubscribe"
+                style="@style/textview_title_wrap"
+                android:background="@drawable/blue_round_btnbg"
+                android:elevation="@dimen/margin_5"
+                android:gravity="center_horizontal"
+                android:paddingBottom="@dimen/margin_8"
+                android:paddingEnd="@dimen/margin_50"
+                android:paddingStart="@dimen/margin_50"
+                android:paddingTop="@dimen/margin_8"
+                android:text="@string/subscribe_now"
+                android:textAllCaps="true"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </LinearLayout>
+
+</layout>

@@ -1,5 +1,6 @@
-package com.app.community.ui.newspaper;
+package com.app.community.ui.newspaper.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
@@ -12,6 +13,8 @@ import android.view.ViewGroup;
 import com.app.community.R;
 import com.app.community.databinding.ItemCatBinding;
 import com.app.community.network.response.dashboard.cart.CategoryData;
+import com.app.community.ui.dashboard.DashBoardActivity;
+import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GlideUtils;
 
 import java.util.ArrayList;
@@ -22,13 +25,15 @@ import java.util.ArrayList;
  */
 
 public class NewsCategoryAdapter extends RecyclerView.Adapter {
+    private final Activity activity;
     private Context mContext;
     private ArrayList<CategoryData> mDataList = new ArrayList<>();
     private NewsOnCatItemClick mListener;
     public interface NewsOnCatItemClick {
         void onCatClick(int pos, View view);
     }
-    public NewsCategoryAdapter(ArrayList<CategoryData> cartDataList, NewsOnCatItemClick listener) {
+    public NewsCategoryAdapter(Activity activity, ArrayList<CategoryData> cartDataList, NewsOnCatItemClick listener) {
+        this.activity=activity;
         this.mDataList = cartDataList;
         mListener = listener;
     }
@@ -49,7 +54,6 @@ public class NewsCategoryAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-
         return mDataList.size();
     }
 
@@ -68,7 +72,7 @@ public class NewsCategoryAdapter extends RecyclerView.Adapter {
             mBinding.tvName.setTag(position);
             mBinding.tvName.setText("Cat" + position);
             if (mDataList.get(position).isSelected()) {
-                mBinding.layoutCat.setBackgroundColor(Color.parseColor("#b8b8b8"));
+                mBinding.layoutCat.setBackgroundColor(CommonUtils.getColor(activity,R.color.cat_background));
                 mBinding.ivArrow.setVisibility(View.VISIBLE);
             } else {
                 mBinding.ivArrow.setVisibility(View.GONE);

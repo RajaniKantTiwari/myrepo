@@ -16,7 +16,7 @@ import com.app.community.network.response.dashboard.home.MerchantResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.ProductDetailsFragment;
 import com.app.community.ui.dashboard.home.adapter.DoctorAdapter;
-import com.app.community.ui.dashboard.home.event.ProductEvent;
+import com.app.community.ui.dashboard.home.event.MerchantEvent;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
@@ -95,7 +95,7 @@ public class DoctorListFragment extends DashboardFragment {
     }
 
     @Subscribe
-    public void onMessageEvent(ProductEvent event) {
+    public void onMessageEvent(MerchantEvent event) {
         if(event.getListMap()== GeneralConstant.LIST_PRODUCT){
           mBinding.layoutList.setVisibility(View.VISIBLE);
             doctorsList =event.getProductList();

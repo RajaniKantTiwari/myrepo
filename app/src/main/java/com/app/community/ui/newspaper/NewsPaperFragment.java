@@ -8,17 +8,19 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Toast;
 
 import com.app.community.R;
 import com.app.community.databinding.FragmentNewsPaperBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.cart.CategoryData;
-import com.app.community.network.response.dashboard.cart.ProductData;
 import com.app.community.network.response.dashboard.cart.SubCategory;
+import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.dashboard.DashboardFragment;
-import com.app.community.utils.CommonUtils;
+import com.app.community.ui.newspaper.adapter.NewsCategoryAdapter;
+import com.app.community.ui.newspaper.adapter.NewsSubCatAdapter;
+import com.app.community.ui.newspaper.adapter.SelectedDaysAdapter;
+import com.app.community.ui.newspaper.event.SubscriptionEvent;
+import com.app.community.utils.GeneralConstant;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,17 +39,23 @@ public class NewsPaperFragment extends DashboardFragment implements NewsCategory
     private int oldCatPos, oldSubCatPos;
     private ArrayList<CategoryData> mCatList = new ArrayList<>();
     private ArrayList<SubCategory> mSubCatList = new ArrayList<>();
-    private ArrayList<ProductData> mCartList = new ArrayList<>();
     private LinearLayoutManager mLayoutManagerNewsCat;
     private LinearLayoutManager mLayoutMangerNewsSubcat;
-    private LinearLayoutManager mDaysLayoutManager;
-    private DaysAdapter mDaysAdapter;
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_news_paper, container, false);
+        addFragment();
         return mBinding.getRoot();
+    }
+
+    private void addFragment() {
+        getDashboardActivity().pushChildFragment(getChildFragmentManager(), GeneralConstant.FRAGMENTS.SUBSCRIPTION_DETAIL_FRAGMENT,
+                null, R.id.container, true, false, BaseActivity.AnimationType.NONE);
+        getDashboardActivity().pushChildFragment(getChildFragmentManager(), GeneralConstant.FRAGMENTS.SUBSCRIPTION_FRAGMENT,
+                null, R.id.container, true, false, BaseActivity.AnimationType.NONE);
     }
 
     @Override
@@ -57,41 +65,19 @@ public class NewsPaperFragment extends DashboardFragment implements NewsCategory
         daysArrayList.addAll(Arrays.asList(getResources().getStringArray(R.array.selected_type)));
         SelectedDaysAdapter adapter = new SelectedDaysAdapter(getDashboardActivity(), daysArrayList);
         adapter.setDropDownViewResource(R.layout.spinner_row);
-        mBinding.LayoutNews.selectedSpiner.setAdapter(adapter);
-        mBinding.LayoutNews.selectedSpiner.setSelection(adapter.getCount());
-        mBinding.LayoutNews.selectedSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position != daysArrayList.size() - 1) {
-                    if (CommonUtils.isNotNull(view)) {
-                        view.setBackgroundResource(0);
-                        Toast.makeText(getDashboardActivity(), "" + position, Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
     }
+
     private void setViews() {
         mLayoutManagerNewsCat = new LinearLayoutManager(getDashboardActivity(), LinearLayoutManager.HORIZONTAL, false);
         mLayoutMangerNewsSubcat = new LinearLayoutManager(getDashboardActivity(), LinearLayoutManager.HORIZONTAL, false);
         mBinding.rvCat.setLayoutManager(mLayoutManagerNewsCat);
         mBinding.rvSubCat.setLayoutManager(mLayoutMangerNewsSubcat);
-        mBinding.LayoutNews.tvCheckout.setOnClickListener(this);
-        mNewsCategoryAdapter = new NewsCategoryAdapter(mCatList, this);
-        mNewsSubCategoryAdapter = new NewsSubCatAdapter(mSubCatList, this);
+        mNewsCategoryAdapter = new NewsCategoryAdapter(getDashboardActivity(),mCatList, this);
+        mNewsSubCategoryAdapter = new NewsSubCatAdapter(getDashboardActivity(),mSubCatList, this);
         mBinding.rvCat.setAdapter(mNewsCategoryAdapter);
         mBinding.rvSubCat.setAdapter(mNewsSubCategoryAdapter);
-        mDaysLayoutManager = new LinearLayoutManager(getDashboardActivity());
-        mBinding.LayoutNews.rvDays.setLayoutManager(mDaysLayoutManager);
-        ArrayList<Days> daysArrayList = new ArrayList<>();
-        CommonUtils.setDays(daysArrayList);
-        mDaysAdapter = new DaysAdapter(getDashboardActivity(),daysArrayList);
-        mBinding.LayoutNews.rvDays.setAdapter(mDaysAdapter);
     }
+
     @Override
     public void setListener() {
 
@@ -119,9 +105,7 @@ public class NewsPaperFragment extends DashboardFragment implements NewsCategory
 
     @Override
     public void onCatClick(int pos, View view) {
-//        ItemCartBinding viewBinding = DataBindingUtil.bind(view);
         View itemView = (View) view.getTag();
-
         switch (itemView.getId()) {
             case R.id.tvName:
                 mCatList.get(oldCatPos).setSelected(false);
@@ -129,8 +113,6 @@ public class NewsPaperFragment extends DashboardFragment implements NewsCategory
                 mSubCatList.clear();
                 mSubCatList.addAll(mCatList.get(pos).getSubproduct());
                 mSubCatList.get(0).setSelected(true);
-                mCartList.clear();
-                mCartList.addAll(mSubCatList.get(0).getSubproduct());
                 mNewsSubCategoryAdapter.notifyDataSetChanged();
                 mNewsCategoryAdapter.notifyDataSetChanged();
                 oldCatPos = pos;
@@ -146,16 +128,11 @@ public class NewsPaperFragment extends DashboardFragment implements NewsCategory
             case R.id.tvName:
                 mSubCatList.get(pos).setSelected(true);
                 mSubCatList.get(oldSubCatPos).setSelected(false);
-                mCartList.clear();
-                mCartList.addAll(mSubCatList.get(pos).getSubproduct());
                 mNewsSubCategoryAdapter.notifyDataSetChanged();
                 oldSubCatPos = pos;
                 break;
         }
-
-
     }
-
 
 
     public static Fragment newInstance(int instance) {

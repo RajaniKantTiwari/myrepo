@@ -1,5 +1,6 @@
-package com.app.community.ui.newspaper;
+package com.app.community.ui.newspaper.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
@@ -11,6 +12,8 @@ import android.view.ViewGroup;
 import com.app.community.R;
 import com.app.community.databinding.ItemSubcatBinding;
 import com.app.community.network.response.dashboard.cart.SubCategory;
+import com.app.community.ui.dashboard.DashBoardActivity;
+import com.app.community.utils.CommonUtils;
 
 import java.util.ArrayList;
 
@@ -19,20 +22,20 @@ import java.util.ArrayList;
  */
 
 public class NewsSubCatAdapter extends RecyclerView.Adapter {
-    private Context mContext;
+    private final Activity activity;
     private ArrayList<SubCategory> mDataList = new ArrayList<>();
     private OnNewsSubCatItemClick mListener;
     public interface OnNewsSubCatItemClick {
         void onSubCatClick(int pos, View view);
     }
-    public NewsSubCatAdapter(ArrayList<SubCategory> cartDataList, OnNewsSubCatItemClick listener) {
+    public NewsSubCatAdapter(Activity activity, ArrayList<SubCategory> cartDataList, OnNewsSubCatItemClick listener) {
         this.mDataList = cartDataList;
         mListener = listener;
+        this.activity=activity;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        mContext = parent.getContext();
         ItemSubcatBinding subcatBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_subcat, parent, false);
         return new NewsSubCatAdapter.ItemCat(subcatBinding);
     }
@@ -64,11 +67,7 @@ public class NewsSubCatAdapter extends RecyclerView.Adapter {
             mBinding.tvName.setTag(position);
             mBinding.tvName.setText("Cat" + position);
             if (mDataList.get(position).isSelected()) {
-//                mBinding.tvName.setBackgroundColor(Color.parseColor("#ffffaa"));
-//                mBinding.tvName.setBackgroundColor(mContext.getColor(R.color.active_tab_color));
-                mBinding.tvName.setBackgroundColor(Color.parseColor("#b8b8b8"));
-
-
+                mBinding.tvName.setBackgroundColor(CommonUtils.getColor(activity,R.color.cat_background));
             } else {
                 mBinding.tvName.setBackgroundColor(Color.parseColor(mDataList.get(position).getColorcode()));
 

@@ -20,6 +20,7 @@ import com.app.community.ui.cart.ProductSubproductFragment;
 import com.app.community.ui.dashboard.home.ConfirmOrderFragment;
 import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.fragment.CategoryFragment;
+import com.app.community.ui.dashboard.home.fragment.SubscribeFragment;
 import com.app.community.ui.dashboard.home.fragment.HomeFragment;
 import com.app.community.ui.dashboard.home.fragment.LiveOrderFragment;
 import com.app.community.ui.dashboard.home.fragment.NewsFragment;
@@ -28,6 +29,7 @@ import com.app.community.ui.dashboard.home.fragment.PastOrderFragment;
 import com.app.community.ui.dashboard.home.fragment.MerchantListFragment;
 import com.app.community.ui.dashboard.home.fragment.ProductMapFragment;
 import com.app.community.ui.dashboard.home.fragment.RecentFragment;
+import com.app.community.ui.newspaper.SubscriptionDetailsFragment;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.LogUtils;
 import com.app.community.utils.NetworkUtils;
@@ -50,6 +52,8 @@ import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_LIST;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_MAP_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_SUBPRODUCT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.RECENT_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.SUBSCRIPTION_DETAIL_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.SUBSCRIPTION_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.WELCOME_HOME_FRAGMENT;
 
 
@@ -261,6 +265,12 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
                 break;
             case PRODUCT_SUBPRODUCT:
                 fragment=new ProductSubproductFragment();
+                break;
+            case SUBSCRIPTION_DETAIL_FRAGMENT:
+                fragment=new SubscriptionDetailsFragment();
+                break;
+            case SUBSCRIPTION_FRAGMENT:
+                fragment=new SubscribeFragment();
                 break;
         }
         return fragment;

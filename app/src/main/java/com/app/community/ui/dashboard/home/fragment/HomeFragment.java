@@ -14,7 +14,7 @@ import com.app.community.network.response.dashboard.home.SearchResponseData;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.DashboardPresenter;
-import com.app.community.ui.dashboard.home.event.ProductEvent;
+import com.app.community.ui.dashboard.home.event.MerchantEvent;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 
@@ -31,7 +31,7 @@ public class HomeFragment extends DashboardFragment {
 
     @Inject
     DashboardPresenter presenter;
-    private ProductEvent event;
+    private MerchantEvent event;
     FragmentHomeBinding mBinding;
     private String search;
 
@@ -56,7 +56,7 @@ public class HomeFragment extends DashboardFragment {
     private void addFragment() {
         mBinding.listButton.setTag(R.drawable.ic_location);
         mBinding.listButton.setVisibility(View.VISIBLE);
-        event = new ProductEvent();
+        event = new MerchantEvent();
         event.setListMap(GeneralConstant.LIST_PRODUCT);
         getBaseActivity().pushChildFragment(getChildFragmentManager(), GeneralConstant.FRAGMENTS.PRODUCT_MAP_FRAGMENT,
                 null, R.id.container, true, false, BaseActivity.AnimationType.NONE);

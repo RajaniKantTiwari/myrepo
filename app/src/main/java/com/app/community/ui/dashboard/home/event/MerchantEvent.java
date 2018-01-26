@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * Created by Amul on 27/12/17.
  */
 
-public class ProductEvent {
+public class MerchantEvent {
     //use 1 for meeting 2 for event
     private int meetingEvent;
     //use 1 for list 2 for map
