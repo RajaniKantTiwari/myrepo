@@ -116,6 +116,8 @@
     <dimen name="margin_210">210dp</dimen>
     <dimen name="margin_240">240dp</dimen>
     <dimen name="margin_28">28dp</dimen>
+    <dimen name="margin_33">33dp</dimen>
+
     <dimen name="margin_180">180dp</dimen>
     <dimen name="margin_15_minus">-15dp</dimen>
     <dimen name="margin_25_minus">-25dp</dimen>

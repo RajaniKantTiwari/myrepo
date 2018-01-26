@@ -19,10 +19,12 @@ import com.app.community.ui.dashboard.DashboardFragment;
 
 public class FullInformationFragment extends DashboardFragment {
     private FragmentFullInformationBinding mBinding;
+    private int quantity;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding=DataBindingUtil.inflate(inflater, R.layout.fragment_full_information,container,false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_full_information, container, false);
         return mBinding.getRoot();
     }
 
@@ -33,12 +35,13 @@ public class FullInformationFragment extends DashboardFragment {
 
     @Override
     public void setListener() {
-
+        mBinding.ivAdd.setOnClickListener(this);
+        mBinding.ivSub.setOnClickListener(this);
     }
 
     @Override
     public String getFragmentName() {
-        return null;
+        return FullInformationFragment.class.getSimpleName();
     }
 
     @Override
@@ -47,8 +50,25 @@ public class FullInformationFragment extends DashboardFragment {
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View view) {
+        if (view == mBinding.ivAdd) {
+            quantity = quantity + 1;
+            addRemoveCart(quantity);
+        } else if (view == mBinding.ivSub) {
+            if (quantity > 0) {
+                quantity = quantity - 1;
+                addRemoveCart(quantity);
+            } else {
+                getBaseActivity().showToast(getResources().getString(R.string.empty_cart));
+            }
+        }
+    }
 
+    private void addRemoveCart(int quantity) {
+      mBinding.tvCart.setText(String.valueOf(quantity));
+        if (quantity == 0) {
+            getBaseActivity().showToast(getResources().getString(R.string.nothing_in_cart));
+        }
     }
 
     @Override

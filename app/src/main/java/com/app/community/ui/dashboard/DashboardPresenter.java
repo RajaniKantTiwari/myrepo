@@ -5,10 +5,12 @@ import android.app.Activity;
 
 import com.app.community.network.DefaultApiObserver;
 import com.app.community.network.Repository;
+import com.app.community.network.request.cart.CartRequest;
 import com.app.community.network.request.cart.CategoryRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.cart.CategoryResponse;
+import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
 import com.app.community.network.response.dashboard.home.SearchResponseData;
 import com.app.community.ui.base.MvpView;
 import com.app.community.ui.base.Presenter;
@@ -50,7 +52,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMessage(),0);
+                mView.onError(baseResponse.getMsg(),0);
             }
         });
     }
@@ -69,8 +71,59 @@ public class DashboardPresenter implements Presenter<MvpView> {
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMessage(),1);
+                mView.onError(baseResponse.getMsg(),1);
             }
         });
     }
+
+    public void addToCart(Activity activity, CartRequest cartRequest) {
+        mView.showProgress();
+        mRepository.addToCart(cartRequest).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+            @Override
+            public void onResponse(BaseResponse response) {
+                mView.hideProgress();
+                mView.onSuccess(response,1);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(),1);
+            }
+        });
+    }
+
+    public void deleteFromCart(Activity activity) {
+        mView.showProgress();
+        mRepository.deleteCart().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+            @Override
+            public void onResponse(BaseResponse response) {
+                mView.hideProgress();
+                mView.onSuccess(response,1);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(),1);
+            }
+        });
+    }
+    public void viewCart(Activity activity, CartRequest cartRequest) {
+        mView.showProgress();
+        mRepository.viewCart(cartRequest).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<ProductDetailsData>(activity) {
+            @Override
+            public void onResponse(ProductDetailsData response) {
+                mView.hideProgress();
+                mView.onSuccess(response,1);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(),1);
+            }
+        });
+    }
+
 }

@@ -292,6 +292,15 @@
         <item name="android:layout_width">@dimen/margin_23</item>
         <item name="android:layout_height">@dimen/margin_23</item>
     </style>
+    <style name="add_sub_view_medium">
+        <item name="android:layout_width">@dimen/margin_28</item>
+        <item name="android:layout_height">@dimen/margin_28</item>
+    </style>
+    <style name="add_sub_view_large">
+        <item name="android:layout_width">@dimen/margin_33</item>
+        <item name="android:layout_height">@dimen/margin_33</item>
+    </style>
+
     <style name="textview_description_small_match" parent="match_wrap">
         <item name="android:textSize">@dimen/textSize_description_small</item>
         <item name="android:textColor">@color/black</item>

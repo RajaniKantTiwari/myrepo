@@ -11,7 +11,7 @@ import android.os.Parcelable;
 
 public class BaseResponse implements Parcelable {
 
-    private String message;
+    private String msg;
     private String status;
 
     public String getStatus() {
@@ -22,11 +22,19 @@ public class BaseResponse implements Parcelable {
         this.status = status;
     }
 
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
     public BaseResponse(){
 
     }
     protected BaseResponse(Parcel in) {
-        message = in.readString();
+        msg = in.readString();
         status= in.readString();
     }
 
@@ -43,14 +51,6 @@ public class BaseResponse implements Parcelable {
     };
 
 
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
 
     @Override
     public int describeContents() {
@@ -59,7 +59,7 @@ public class BaseResponse implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(message);
+        dest.writeString(msg);
         dest.writeString(status);
 
     }

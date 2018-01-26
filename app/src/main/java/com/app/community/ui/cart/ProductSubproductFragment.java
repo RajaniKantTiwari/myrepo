@@ -97,8 +97,6 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
 
         } else {
             Toast.makeText(getDashboardActivity(), "You can not add more than 10 item in cart", Toast.LENGTH_SHORT).show();
-
-
         }
         mCartList.get(pos).setQty(count);
         setTotalAmount();

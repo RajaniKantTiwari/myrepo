@@ -33,6 +33,7 @@ import com.app.community.ui.dashboard.expandrecycleview.draweradapter.DrawerAdap
 import com.app.community.ui.dashboard.home.SearchActivity;
 import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.adapter.DrawerAdapterLeft;
+import com.app.community.ui.dashboard.home.fragment.CartFragment;
 import com.app.community.ui.dashboard.notification.NotificationFragment;
 import com.app.community.ui.dashboard.offer.OfferFragment;
 import com.app.community.ui.dashboard.user.UserFragment;
@@ -410,7 +411,10 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     public Fragment getRootFragment(int index) {
         switch (index) {
             case HOME:
-                return NewsPaperFragment.newInstance(0);
+
+                return CartFragment.newInstance(0);
+
+            //return NewsPaperFragment.newInstance(0);
                 //return WelcomeHomeFragment.newInstance(0);
             case OFFER:
                 return OfferFragment.newInstance(0);

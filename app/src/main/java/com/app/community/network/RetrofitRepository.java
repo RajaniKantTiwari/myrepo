@@ -2,10 +2,12 @@ package com.app.community.network;
 
 import com.app.community.network.request.LoginRequest;
 import com.app.community.network.request.VerifyMobileRequest;
+import com.app.community.network.request.cart.CartRequest;
 import com.app.community.network.request.cart.CategoryRequest;
 import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.request.dashboard.ProductRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
+import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.LoginResponse;
 import com.app.community.network.response.VerifyMobileResponse;
 import com.app.community.network.response.dashboard.cart.CategoryResponse;
@@ -62,5 +64,20 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<CategoryResponse> getCategory(CategoryRequest productRequest) {
         return apiService.getProducts(productRequest);
+    }
+
+    @Override
+    public Observable<BaseResponse> addToCart(CartRequest cartRequest) {
+        return apiService.addToCart(cartRequest);
+    }
+
+    @Override
+    public Observable<BaseResponse> deleteCart() {
+        return apiService.deleteCart();
+    }
+
+    @Override
+    public Observable<ProductDetailsData> viewCart(CartRequest cartRequest) {
+        return apiService.viewCart(cartRequest);
     }
 }

@@ -113,8 +113,7 @@ public class CartAdapter extends RecyclerView.Adapter {
     }
 
     public interface OnAddToCart {
-        public void addToCartClick(int pos, View view);
-
+        void addToCartClick(int pos, View view);
     }
 }
 

@@ -39,20 +39,22 @@
         style="@style/layout_hori_match_1"
         android:gravity="center_vertical">
         <ImageView
-            style="@style/wrap_wrap"
+            android:id="@+id/ivAdd"
+            style="@style/add_sub_view"
             android:src="@drawable/add_black"
             />
         <com.app.community.widget.CustomTextView
             android:id="@+id/tvQuantity"
             style="@style/textview_description_wrap"
+            android:layout_width="@dimen/margin_35"
+            android:gravity="center_horizontal"
             android:textColor="@color/color_black_cart"
-            android:layout_marginStart="@dimen/margin_10"
-            android:layout_marginEnd="@dimen/margin_10"
+            android:text="0"
             android:textSize="@dimen/textSize_description"
-            app:customFont="@string/font_bold"
-            android:text="1" />
+            app:customFont="@string/font_bold"/>
         <ImageView
-            style="@style/wrap_wrap"
+            android:id="@+id/ivSub"
+            style="@style/add_sub_view"
             android:src="@drawable/sub_black"
             />
     </LinearLayout>

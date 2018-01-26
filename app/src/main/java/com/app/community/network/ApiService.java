@@ -9,6 +9,7 @@ import com.app.community.network.request.cart.CategoryRequest;
 import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.request.dashboard.ProductRequest;
+import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.LoginResponse;
 import com.app.community.network.response.VerifyMobileResponse;
 import com.app.community.network.response.dashboard.cart.CategoryResponse;
@@ -19,6 +20,7 @@ import com.app.community.network.response.dashboard.home.SearchResponseData;
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 /**
@@ -36,10 +38,10 @@ public interface ApiService {
     Observable<ProductDetailsData> getProductDetail(@Body ProductRequest request);
 
     @POST("cart/addcart")
-    Observable<ProductDetailsData> addToCart(@Body CartRequest request);
+    Observable<BaseResponse> addToCart(@Body CartRequest request);
 
-    @POST("cart/deletecart")
-    Observable<ProductDetailsData> deleteCart();
+    @GET("cart/deletecart")
+    Observable<BaseResponse> deleteCart();
 
     @POST("cart/viewcart")
     Observable<ProductDetailsData> viewCart(@Body CartRequest request);
