@@ -41,6 +41,7 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
     CommonPresenter presenter;
     private String mobileNumber;
     private String userName;
+    private String addroidId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,6 +76,7 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
         Intent intent = getIntent();
         if (isNotNull(intent)) {
             Bundle bundle = intent.getExtras();
+            addroidId=CommonUtils.getDeviceId(this);
             if (isNotNull(bundle)) {
                 mobileNumber = bundle.getString(GeneralConstant.MOBILE_NUMBER);
                 userName = bundle.getString(GeneralConstant.USER_NAME);

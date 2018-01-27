@@ -19,7 +19,7 @@
 
             <com.app.community.widget.CustomEditText
                 android:id="@+id/edSearch"
-                style="@style/textview_description_small_match"
+                style="@style/textview_description_large_match"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/margin_10"
                 android:layout_toEndOf="@+id/ivBack"

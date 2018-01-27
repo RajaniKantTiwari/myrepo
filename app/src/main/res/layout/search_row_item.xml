@@ -15,7 +15,7 @@
 
         <com.app.community.widget.CustomTextView
             android:id="@+id/tvSearchItem"
-            style="@style/textview_description_match"
+            style="@style/textview_description_large_match"
             android:padding="@dimen/margin_8"
             android:text="@={searchData.name}"
             app:customFont="@string/font_regular" />

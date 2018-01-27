@@ -81,20 +81,20 @@ public abstract class DefaultApiObserver<T> extends DefaultObserver<T> {
             try {
                 errorParser =
                         adapter.fromJson(body.string());
-                LogUtils.LOGE("retro", "Error:" + errorParser.getMessage());
+                LogUtils.LOGE("retro", "Error:" + errorParser.getMsg());
 
             } catch (IOException t) {
                 e.printStackTrace();
             }
             if (errorParser != null) {
-                if (!TextUtils.isEmpty(errorParser.getMessage())) {
-                    ((BaseActivity) ref.get()).showToast(errorParser.getMessage());
+                if (!TextUtils.isEmpty(errorParser.getMsg())) {
+                    ((BaseActivity) ref.get()).showToast(errorParser.getMsg());
                 }
                 onError(e, errorParser);
             } else {
                 ((BaseActivity) ref.get()).showToast(ref.get().getString(R.string.server_error));
                 BaseResponse response = new BaseResponse();
-                response.setMessage(ref.get().getString(R.string.server_error));
+                response.setMsg(ref.get().getString(R.string.server_error));
                 onError(e, response);
             }
 

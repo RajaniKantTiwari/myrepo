@@ -25,11 +25,11 @@
                    android:layout_marginTop="@dimen/margin_55"
                    android:background="@drawable/bg_circle_white"
                    android:src="@drawable/star"
-                   android:padding="@dimen/margin_7"/>
+                   android:padding="@dimen/margin_3"/>
 
             <com.app.community.widget.CustomTextView
                 android:id="@+id/tvStar"
-                style="@style/textview_description_small_wrap"
+                style="@style/textview_description_large_wrap"
                 android:layout_marginTop="@dimen/margin_60"
                 android:layout_marginStart="@dimen/margin_78"
                 android:text="4.5"
@@ -44,19 +44,19 @@
 
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvName"
-                    style="@style/textview_description_small_wrap"
+                    style="@style/textview_description_large_wrap"
                     android:text="John Doe"
                     android:textColor="@color/white" />
 
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvMobile"
-                    style="@style/textview_description_small_wrap"
+                    style="@style/textview_description_large_wrap"
                     android:text="9999-999-9999"
                     android:textColor="@color/white" />
 
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvShopName"
-                    style="@style/textview_description_small_wrap"
+                    style="@style/textview_description_large_wrap"
                     android:text="abc@gmail.com"
                     android:textColor="@color/white" />
             </LinearLayout>

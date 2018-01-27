@@ -44,7 +44,7 @@
                 android:layout_alignParentEnd="true"
                 android:background="@android:color/transparent"
                 android:padding="@dimen/margin_12"
-                android:src="@drawable/hamberg_icon"/>
+                android:src="@drawable/hamberg_right"/>
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 </layout>

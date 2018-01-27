@@ -19,10 +19,12 @@ import com.app.community.network.response.dashboard.home.ReviewResponse;
 import com.app.community.network.response.dashboard.home.ReviewResponseData;
 import com.app.community.network.response.dashboard.home.StoreImages;
 import com.app.community.ui.SimpleDividerItemDecoration;
+import com.app.community.ui.cart.ProductSubproductFragment;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.DashboardInsidePresenter;
 import com.app.community.ui.dashboard.home.adapter.ReviewAdapter;
 import com.app.community.ui.dashboard.home.adapter.StoreAdapter;
+import com.app.community.ui.dialogfragment.OrderDialogFragment;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.GlideUtils;
@@ -39,13 +41,13 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
  * To inject activity reference.
  */
 
-public class ProductDetailsFragment extends DashboardFragment {
+public class ProductDetailsFragment extends DashboardFragment implements OrderDialogFragment.OrderDialogListener {
 
     private FragmentProductDetailBinding mBinding;
     private StoreAdapter mPhotoAdapter;
     private ReviewAdapter mReviewAdapter;
     private ArrayList<ReviewResponse> reviewList;
-    private MerchantResponse productResponse;
+    private MerchantResponse merchantResponse;
     @Inject
     DashboardInsidePresenter presenter;
 
@@ -73,7 +75,8 @@ public class ProductDetailsFragment extends DashboardFragment {
     }
 
     public void setListener() {
-
+        mBinding.tvStartShopping.setOnClickListener(this);
+        mBinding.tvShareReview.setOnClickListener(this);
     }
 
     @Override
@@ -84,28 +87,32 @@ public class ProductDetailsFragment extends DashboardFragment {
     public void initializeData() {
         Bundle bundle = getArguments();
         if (CommonUtils.isNotNull(bundle)) {
-            productResponse = bundle.getParcelable(GeneralConstant.RESPONSE);
+            merchantResponse = bundle.getParcelable(GeneralConstant.RESPONSE);
         }
-        reviewList=new ArrayList<>();
+        reviewList = new ArrayList<>();
         mPhotoAdapter = new StoreAdapter(getDashboardActivity());
         mBinding.photoRecycler.setAdapter(mPhotoAdapter);
-        mReviewAdapter = new ReviewAdapter(getDashboardActivity(),reviewList);
+        mReviewAdapter = new ReviewAdapter(getDashboardActivity(), reviewList);
         mBinding.rvReview.setAdapter(mReviewAdapter);
-        if (CommonUtils.isNotNull(productResponse)) {
-            presenter.getMerchantDetails(getDashboardActivity(), new MerchantRequest(Integer.parseInt(productResponse.getId())));
-            presenter.getMerchantReviews(getDashboardActivity(),new MerchantRequest(Integer.parseInt("8")));
+        if (CommonUtils.isNotNull(merchantResponse)) {
+            presenter.getMerchantDetails(getDashboardActivity(), new MerchantRequest(Integer.parseInt(merchantResponse.getId())));
+            presenter.getMerchantReviews(getDashboardActivity(), new MerchantRequest(Integer.parseInt("8")));
         }
 
     }
 
     @Override
     public void onClick(View view) {
-
+        if (view == mBinding.tvStartShopping) {
+            mFragmentNavigation.pushFragment(ProductSubproductFragment.newInstance(mInt + 1, merchantResponse));
+        } else if (view == mBinding.tvShareReview) {
+            CommonUtils.showOrderDialog(getDashboardActivity(), null, this);
+        }
     }
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
-        if(requestCode==1){
+        if (requestCode == 1) {
             if (CommonUtils.isNotNull(response) && response instanceof MerchantResponseData) {
                 MerchantResponseData data = (MerchantResponseData) response;
                 if (CommonUtils.isNotNull(data)) {
@@ -119,29 +126,29 @@ public class ProductDetailsFragment extends DashboardFragment {
                     }
                 }
             }
-        }else if(requestCode==2){
+        } else if (requestCode == 2) {
             reviewList.clear();
-           if(CommonUtils.isNotNull(response)&&response instanceof ReviewResponseData){
-               ReviewResponseData data=(ReviewResponseData)response;
-               ArrayList<ReviewResponse> responseArrayList=data.getInfo();
-               if(responseArrayList!=null){
-                   reviewList.addAll(responseArrayList);
-                   mReviewAdapter.notifyDataSetChanged();
-               }
-           }
+            if (CommonUtils.isNotNull(response) && response instanceof ReviewResponseData) {
+                ReviewResponseData data = (ReviewResponseData) response;
+                ArrayList<ReviewResponse> responseArrayList = data.getInfo();
+                if (responseArrayList != null) {
+                    reviewList.addAll(responseArrayList);
+                    mReviewAdapter.notifyDataSetChanged();
+                }
+            }
         }
 
 
     }
 
     private void setImage(MerchantResponse merchantResponse) {
-        if(CommonUtils.isNotNull(merchantResponse.getRating())){
+        if (CommonUtils.isNotNull(merchantResponse.getRating())) {
             mBinding.ratingBar.setRating(CommonUtils.setRating(merchantResponse.getRating()));
         }
-        GlideUtils.loadImage(getDashboardActivity(),merchantResponse.getLogo(),mBinding.imageLogo,null,0);
-        GlideUtils.loadImage(getDashboardActivity(),merchantResponse.getBanner_image(),mBinding.storeImage,null,0);
-        ArrayList<StoreImages> imageList=merchantResponse.getStoreimages();
-        if(CommonUtils.isNotNull(imageList)){
+        GlideUtils.loadImage(getDashboardActivity(), merchantResponse.getLogo(), mBinding.imageLogo, null, 0);
+        GlideUtils.loadImage(getDashboardActivity(), merchantResponse.getBanner_image(), mBinding.storeImage, null, 0);
+        ArrayList<StoreImages> imageList = merchantResponse.getStoreimages();
+        if (CommonUtils.isNotNull(imageList)) {
             mPhotoAdapter.setImageList(imageList);
             mPhotoAdapter.notifyDataSetChanged();
         }
@@ -154,5 +161,10 @@ public class ProductDetailsFragment extends DashboardFragment {
         ProductDetailsFragment fragment = new ProductDetailsFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void submit(String submit) {
+        getDashboardActivity().showToast("" + submit);
     }
 }

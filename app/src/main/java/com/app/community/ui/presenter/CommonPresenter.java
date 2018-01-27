@@ -50,7 +50,7 @@ public class CommonPresenter implements Presenter<MvpView> {
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMessage(), 2);
+                mView.onError(baseResponse.getMsg(), 2);
             }
         });
     }
@@ -69,7 +69,7 @@ public class CommonPresenter implements Presenter<MvpView> {
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMessage(), 1);
+                mView.onError(baseResponse.getMsg(), 1);
             }
         });
     }
@@ -87,7 +87,7 @@ public class CommonPresenter implements Presenter<MvpView> {
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMessage(), 1);
+                mView.onError(baseResponse.getMsg(), 1);
             }
         });
     }

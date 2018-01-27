@@ -10,7 +10,7 @@
 
         <com.app.community.widget.CustomTextView
             android:id="@+id/tvMenuName"
-            style="@style/textview_title_match"
+            style="@style/textview_title_small_match"
             android:text="HOME"
             android:layout_centerVertical="true"
             android:textColor="@color/white" />

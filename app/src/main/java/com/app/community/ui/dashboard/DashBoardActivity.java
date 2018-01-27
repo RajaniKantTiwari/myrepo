@@ -53,7 +53,7 @@ import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_SUBPRODU
 
 public class DashBoardActivity extends BaseActivity implements BottomNavigationBar.BottomNavigationMenuClickListener,
         BaseFragment.FragmentNavigation, FragNavController.TransactionListener, FragNavController.RootFragmentListener,
-        DrawerAdapterLeft.DrawerLeftListener,DrawerAdapterRight.ProductSubHolderListener {
+        DrawerAdapterLeft.DrawerLeftListener, DrawerAdapterRight.ProductSubHolderListener {
 
     //Better convention to properly name the indices what they are in your app
     private final int HOME = FragNavController.TAB1;
@@ -305,7 +305,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
             ((DefaultItemAnimator) animator).setSupportsChangeAnimations(false);
         }
         setListItem();
-        mDrawerAdapterRight = new DrawerAdapterRight(this,listDrawerExpandable,this);
+        mDrawerAdapterRight = new DrawerAdapterRight(this, listDrawerExpandable, this);
         mBinding.layoutDrawerRight.rvDrawer.setLayoutManager(layoutManager);
         mBinding.layoutDrawerRight.rvDrawer.setAdapter(mDrawerAdapterRight);
     }
@@ -412,10 +412,9 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         switch (index) {
             case HOME:
 
-                return CartFragment.newInstance(0);
-
-            //return NewsPaperFragment.newInstance(0);
-                //return WelcomeHomeFragment.newInstance(0);
+                //return CartFragment.newInstance(0);
+                //return NewsPaperFragment.newInstance(0);
+                return WelcomeHomeFragment.newInstance(0);
             case OFFER:
                 return OfferFragment.newInstance(0);
             case NOTIFICATION:
@@ -461,7 +460,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
 
     @Override
     public void onSubItemClicked(int parentPosition, int childPosition) {
-        showToast(parentPosition+"    "+childPosition);
+        showToast(parentPosition + "    " + childPosition);
         closeDrawerRight();
         pushFragment(PRODUCT_SUBPRODUCT, null, R.id.container, true, true, NONE);
         //ProductSubproductFragment.newInstance(0, productList.get(adapterPosition));

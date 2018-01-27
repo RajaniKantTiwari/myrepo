@@ -36,16 +36,16 @@
 
             <com.app.community.widget.CustomTextView
                 android:id="@+id/tvProductQty"
-                style="@style/textview_description_smaller_match"
+                style="@style/textview_description_small_match"
                 android:maxLines="1"
-                android:text="500g" />
+                android:text="500g"
+                app:customFont="@string/font_regular"/>
 
             <com.app.community.widget.CustomTextView
                 android:id="@+id/tvProductPrice"
                 style="@style/textview_description_match"
                 android:text="$ 25.00"
                 android:textColor="@color/color_blue" />
-
 
         </LinearLayout>
 
@@ -56,26 +56,25 @@
             android:gravity="center"
             android:layout_centerVertical="true"
             android:layout_marginEnd="@dimen/margin_30">
-            <ImageView
-                android:id="@+id/ivMinus"
-                style="@style/add_sub_view"
-
-                android:padding="@dimen/margin_3"
-                android:src="@drawable/sub_black" />
-
-
-            <com.app.community.widget.CustomTextView
-                android:id="@+id/tvQty"
-                style="@style/textview_description_small_wrap"
-                android:gravity="center"
-                android:padding="@dimen/margin_5"
-                android:text="0" />
 
             <ImageView
                 android:id="@+id/ivPlus"
-                style="@style/add_sub_view"
+                style="@style/add_sub_view_medium"
                 android:padding="@dimen/margin_3"
                 android:src="@drawable/add_black" />
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvQty"
+                style="@style/textview_description_wrap"
+                android:gravity="center"
+                android:padding="@dimen/margin_5"
+                android:text="0" />
+            <ImageView
+                android:id="@+id/ivMinus"
+                style="@style/add_sub_view_medium"
+                android:padding="@dimen/margin_3"
+                android:src="@drawable/sub_black" />
+
         </LinearLayout>
 
 

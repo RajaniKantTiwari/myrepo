@@ -238,7 +238,10 @@
         <item name="android:textSize">@dimen/textSize_title</item>
         <item name="android:textColor">@color/black</item>
     </style>
-
+    <style name="textview_title_small_match" parent="match_wrap">
+        <item name="android:textSize">@dimen/textSize_title_small</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
     <style name="textview_description_ex_large_match" parent="match_wrap">
         <item name="android:textSize">@dimen/textSize_description_ex_large</item>
         <item name="android:textColor">@color/black</item>

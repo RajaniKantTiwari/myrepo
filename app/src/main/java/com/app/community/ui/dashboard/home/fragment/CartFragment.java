@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.app.community.R;
 import com.app.community.databinding.CartRowItemBinding;
 import com.app.community.databinding.FragmentCartBinding;
-import com.app.community.databinding.ItemCartBinding;
 import com.app.community.network.request.cart.CartRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.cart.ProductData;

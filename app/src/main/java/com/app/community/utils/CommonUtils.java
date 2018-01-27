@@ -7,9 +7,12 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.InsetDrawable;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
@@ -26,7 +29,6 @@ import android.widget.Toast;
 import com.app.community.BuildConfig;
 import com.app.community.R;
 import com.app.community.ui.base.BaseActivity;
-import com.app.community.ui.dashboard.home.fragment.ProductMapFragment;
 import com.app.community.ui.dialogfragment.ContactDialogFragment;
 import com.app.community.ui.dialogfragment.ContactImpPlaceDialogFragment;
 import com.app.community.ui.dialogfragment.CustomDialogFragment;
@@ -34,15 +36,18 @@ import com.app.community.ui.dialogfragment.OrderDialogFragment;
 import com.app.community.ui.newspaper.Days;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.vision.barcode.Barcode;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.io.IOException;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 import java.util.TimeZone;
 
 import static com.app.community.utils.GeneralConstant.TAG;
@@ -312,5 +317,24 @@ public class CommonUtils {
         Days day7 = new Days();
         day7.setNameOfDays("Saturday");
         daysArrayList.add(day7);
+    }
+
+    public static String getDeviceId(Activity activity) {
+        return Settings.Secure.getString(activity.getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+    }
+    public static String getCountryName(Context context, double lat,double lng) {
+        Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+        List<Address> addresses = null;
+        try {
+            addresses = geocoder.getFromLocation(lat,lng,1);
+        } catch (IOException ignored) {
+            Address result;
+            if (addresses != null && !addresses.isEmpty()) {
+                return addresses.get(0).getCountryName();
+            }
+            return null;
+        }
+        return addresses.get(0).getCountryCode();
     }
 }

@@ -35,6 +35,7 @@ import com.app.community.ui.dashboard.home.fragment.HomeFragment;
 import com.app.community.ui.dashboard.home.fragment.MyOrderFragment;
 import com.app.community.ui.dashboard.home.fragment.NewsFragment;
 import com.app.community.ui.dialogfragment.ContactImpPlaceDialogFragment;
+import com.app.community.ui.dialogfragment.OrderDialogFragment;
 import com.app.community.utils.AddWelcomeChildView;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
@@ -55,7 +56,7 @@ import static com.app.community.utils.GeneralConstant.REQUEST_CALL;
  */
 
 public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapter.NewsListener,LatestNewsAdapter.LatestNewsListener,HelpPlaceAdapter.HelpListener,
-        ContactImpPlaceDialogFragment.ContactDialogListener {
+        ContactImpPlaceDialogFragment.ContactDialogListener,OrderDialogFragment.OrderDialogListener {
 
     private FragmentWelcomehomeBinding mBinding;
     private HelpPlaceAdapter mImpPlaceAdapter;
@@ -134,7 +135,8 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
     @Override
     public void onClick(View view) {
       if(view==mLastOrderBinding.layoutLastOrder){
-          mFragmentNavigation.pushFragment(ConfirmOrderFragment.newInstance(mInt+1));
+          CommonUtils.showOrderDialog(getDashboardActivity(),null,this);
+          //mFragmentNavigation.pushFragment(ConfirmOrderFragment.newInstance(mInt+1));
        }else if(view==mWelcomeBinding.tvSearch){
           ExplicitIntent.getsInstance().navigateTo(getActivity(), SearchActivity.class);
       }else if(view==mLastOrderBinding.layoutRating){
@@ -230,4 +232,8 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
 
     }
 
+    @Override
+    public void submit(String submit) {
+        getDashboardActivity().showToast(""+submit);
+    }
 }
