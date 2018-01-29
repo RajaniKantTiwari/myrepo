@@ -36,6 +36,11 @@
             android:name=".ui.dashboard.home.DoctorCheckoutActivity"/>
 
         <activity
+            android:name=".ui.fragment.ZoomAnimationImageActivity"
+            android:theme="@style/Theme.Transparent"/>
+
+
+        <activity
             android:name=".ui.dashboard.home.SearchActivity"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan"/>
 

@@ -62,7 +62,18 @@
                 android:layout_centerInParent="true"
                 style="@android:style/Widget.ProgressBar.Small"
                 android:theme="@style/AppTheme.WhiteAccent"
-                android:visibility="gone"/>
+                android:visibility="gone"
+               />
         </RelativeLayout>
+        <com.app.community.widget.CustomTextView
+            android:id="@+id/tvNoResult"
+            style="@style/textview_title_match"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingEnd="@dimen/margin_10"
+            android:paddingStart="@dimen/margin_10"
+            android:text="@string/no_result_found"
+            android:textAllCaps="true"
+            android:visibility="gone"/>
     </LinearLayout>
 </layout>

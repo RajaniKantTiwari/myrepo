@@ -29,7 +29,7 @@ import com.app.community.ui.dashboard.home.fragment.PastOrderFragment;
 import com.app.community.ui.dashboard.home.fragment.MerchantListFragment;
 import com.app.community.ui.dashboard.home.fragment.ProductMapFragment;
 import com.app.community.ui.dashboard.home.fragment.RecentFragment;
-import com.app.community.ui.fragment.ZoomAnimationImageFragment;
+import com.app.community.ui.fragment.ZoomAnimationImageActivity;
 import com.app.community.ui.newspaper.SubscriptionDetailsFragment;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.LogUtils;
@@ -275,9 +275,9 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
             case SUBSCRIPTION_FRAGMENT:
                 fragment=new SubscribeFragment();
                 break;
-            case ZOOMIMAGE_FRAGMENT:
-                fragment=new ZoomAnimationImageFragment();
-                break;
+           /* case ZOOMIMAGE_FRAGMENT:
+                fragment=new ZoomAnimationImageActivity();
+                break;*/
         }
         return fragment;
     }

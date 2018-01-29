@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
+<data>
+    <variable
+        name="news"
+        type="com.app.community.network.response.dashboard.home.News"/>
+</data>
     <LinearLayout
         android:id="@+id/layoutNews"
         style="@style/match_wrap">
@@ -23,7 +27,7 @@
                     android:padding="@dimen/margin_5"
                     android:paddingStart="@dimen/margin_20"
                     android:paddingEnd="@dimen/margin_30"
-                    android:text="@string/news"
+                    android:text="@={news.category_name}"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     />
@@ -32,7 +36,9 @@
                 android:layout_margin="@dimen/margin_8"
                 android:paddingTop="@dimen/margin_10"
                 style="@style/textview_description_match"
-                android:text="South horean President toon fae-in, left, and Chinese President Xi finping shake hands at the end of a signing ceremony at the Ireat Pall of the People in eijing. "
+                android:text="@={news.news_title}"
+                android:maxLines="2"
+
                 android:textAllCaps="true"/>
 
             <com.app.community.widget.CustomTextView
@@ -40,7 +46,8 @@
                 style="@style/textview_description_wrap"
                 android:layout_margin="@dimen/margin_8"
                 android:paddingBottom="@dimen/margin_8"
-                android:text="Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+                android:maxLines="3"
+                android:text="@={news.news_descr}"
                 app:customFont="@string/font_regular" />
             </LinearLayout>
         </android.support.v7.widget.CardView>

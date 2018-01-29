@@ -1,6 +1,7 @@
 package com.app.community.ui.dashboard;
 
 import android.app.Activity;
+import android.widget.Toast;
 
 
 import com.app.community.network.DefaultApiObserver;
@@ -12,6 +13,8 @@ import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.cart.CategoryResponse;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
 import com.app.community.network.response.dashboard.home.SearchResponseData;
+import com.app.community.network.response.dashboard.home.WelcomeHomeData;
+import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
 import com.app.community.ui.base.MvpView;
 import com.app.community.ui.base.Presenter;
 import com.app.community.ui.cart.ProductSubproductFragment;
@@ -126,4 +129,38 @@ public class DashboardPresenter implements Presenter<MvpView> {
         });
     }
 
+    public void getWelcomeHomePage(Activity activity) {
+        mView.showProgress();
+        mRepository.getWelcomeHomePage().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<WelcomeHomeData>(activity) {
+            @Override
+            public void onResponse(WelcomeHomeData response) {
+                mView.hideProgress();
+                mView.onSuccess(response,1);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(),1);
+            }
+        });
+    }
+
+    public void getCategorySubCategoryRightDrawer(Activity activity) {
+
+        //mView.showProgress();
+        mRepository.getCategorySubCategoryRightDrawer().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<ProductTypeData>(activity) {
+            @Override
+            public void onResponse(ProductTypeData response) {
+                mView.hideProgress();
+                mView.onSuccess(response,1);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(),1);
+            }
+        });
+    }
 }

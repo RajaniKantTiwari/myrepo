@@ -31,13 +31,12 @@ import com.app.community.BuildConfig;
 import com.app.community.R;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.dialogfragment.ContactDialogFragment;
-import com.app.community.ui.dialogfragment.ContactImpPlaceDialogFragment;
+import com.app.community.ui.dialogfragment.EmergencyDialogFragment;
 import com.app.community.ui.dialogfragment.CustomDialogFragment;
 import com.app.community.ui.dialogfragment.OrderDialogFragment;
 import com.app.community.ui.newspaper.Days;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.vision.barcode.Barcode;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -110,9 +109,9 @@ public class CommonUtils {
         alertdFragment.show(fm, "");
     }
 
-    public static void showContactImpDialog(AppCompatActivity activity, Bundle bundle, ContactImpPlaceDialogFragment.ContactDialogListener listener) {
+    public static void showContactImpDialog(AppCompatActivity activity, Bundle bundle, EmergencyDialogFragment.EmergencyDialogListener listener) {
         FragmentManager fm = activity.getSupportFragmentManager();
-        ContactImpPlaceDialogFragment alertdFragment = new ContactImpPlaceDialogFragment();
+        EmergencyDialogFragment alertdFragment = new EmergencyDialogFragment();
         alertdFragment.addListener(listener);
         alertdFragment.setArguments(bundle);
         // Show Alert CustomDialogFragment
@@ -184,6 +183,10 @@ public class CommonUtils {
 
     public static int getColor(Context context, int color) {
         return ContextCompat.getColor(context, color);
+    }
+
+    public static int getColor(String color) {
+        return Color.parseColor(color);
     }
 
     public static void clicked(View view) {
@@ -264,6 +267,32 @@ public class CommonUtils {
         date.append(changeStringIntoDate(endDate));
         return date.toString();
     }
+
+
+    public static String getDay(String dateTime) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+        Date date = null;
+        try {
+            date = sdf.parse(dateTime);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Calendar cal = Calendar.getInstance();
+        TimeZone timeZone = cal.getTimeZone();
+        DateFormat outputFormat = new SimpleDateFormat("E");// the day of the week
+
+        //DateFormat outputFormat = new SimpleDateFormat("EEEE");// the day of the week spelled out completely
+        outputFormat.setTimeZone(timeZone);
+        try {
+            String formattedDate = outputFormat.format(date);
+            return formattedDate;
+        } catch (Exception ex) {
+            ex.toString();
+        }
+        return null;
+    }
+
     public static String changeStringIntoDate(String dateTime) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
@@ -285,7 +314,10 @@ public class CommonUtils {
         }
         return null;
     }
-
+    public static String addStrings(String first,String second) {
+        String str =first+second;
+        return str;
+    }
     public static float setRating(String rating) {
         String str = String.format("%.2f", Double.parseDouble(rating));
         return Float.parseFloat(str);

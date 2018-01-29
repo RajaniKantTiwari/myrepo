@@ -146,16 +146,19 @@ public class SearchActivity extends CommonActivity implements SearchAdapter.Sear
         mBinding.progressBar.setVisibility(View.GONE);
         mBinding.defaultSearch.layoutSearch.setVisibility(View.GONE);
         mBinding.rvSearch.setVisibility(View.VISIBLE);
+        mBinding.tvNoResult.setVisibility(View.GONE);
         if (CommonUtils.isNotNull(response) && response instanceof SearchResponseData) {
             SearchResponseData responseData = (SearchResponseData) response;
             if (CommonUtils.isNotNull(responseData)){
-                if(CommonUtils.isNotNull(responseData.getData())){
+                if(CommonUtils.isNotNull(responseData.getData())&&responseData.getData().size()>0){
                     merchantList.clear();
                     merchantList.addAll(responseData.getData());
                     mSearchAdapter.notifyDataSetChanged();
                     if(CommonUtils.isNull(search)||search.length()==0){
                         showDefault();
                     }
+                }else{
+                    mBinding.tvNoResult.setVisibility(View.VISIBLE);
                 }
             }
         }

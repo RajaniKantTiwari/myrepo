@@ -12,46 +12,46 @@ import android.widget.TextView;
 
 import com.app.community.R;
 import com.app.community.databinding.FragmentNewsRowBinding;
+import com.app.community.network.response.dashboard.home.News;
+import com.app.community.utils.CommonUtils;
+import com.app.community.utils.GlideUtils;
+
+import java.util.ArrayList;
 
 /**
  * Created by rizvan on 12/13/16.
  */
 
 public class VerticlePagerAdapter extends PagerAdapter {
+    private final ArrayList<News> newsList;
+    private final int position;
     Context mContext;
     LayoutInflater mLayoutInflater;
 
-    public VerticlePagerAdapter(Context context) {
+    public VerticlePagerAdapter(Context context, ArrayList<News> newsList, int position) {
         mContext = context;
-        mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mLayoutInflater = LayoutInflater.from(context);
+        this.newsList = newsList;
+        this.position = position;
     }
 
     @Override
     public int getCount() {
-        return 10;
+        return CommonUtils.isNotNull(newsList) ? newsList.size() : 0;
     }
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
-        return view ==object;
+        return view == object;
     }
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-       FragmentNewsRowBinding mBinding = DataBindingUtil.inflate(mLayoutInflater, R.layout.fragment_news_row, container, false);
-        if (position % 2 == 0) {
-            mBinding.ivNews.setImageResource(R.drawable.order_detail);
-           mBinding.tvHeading.setText("However, South Africa's crisis man, AB de Villiers, was at again. In company of a feisty Dean Elgar, de Villiers steadied the ship for his team. At tea, SA (60/2) had extended their lead to 88, which in");
-            mBinding.tvDate.setText("23 may 2017");
-            mBinding.tvDescription.setText(mContext.getResources().getString(R.string.lorem_ipsum));
-        }
-        else{
-            mBinding.ivNews.setImageResource(R.drawable.ambulance);
-            mBinding.ivNews.setBackground( mContext.getResources().getDrawable(R.drawable.ambulance));
-            mBinding.tvHeading.setText(mContext.getResources().getString(R.string.lorem_ipsum));
-            mBinding.tvDate.setText("15 jan 2018");
-            mBinding.tvDescription.setText(mContext.getResources().getString(R.string.slide_1_desc));
-
+        FragmentNewsRowBinding mBinding = DataBindingUtil.inflate(mLayoutInflater, R.layout.fragment_news_row, container, false);
+        if (CommonUtils.isNotNull(newsList) && newsList.size() > position) {
+            News news = newsList.get(position);
+            GlideUtils.loadImage(mContext, news.getDisplay_image(), mBinding.ivNews, null, R.drawable.abc);
+            mBinding.setNews(news);
         }
         container.addView(mBinding.getRoot());
 

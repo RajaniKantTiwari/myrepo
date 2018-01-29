@@ -12,9 +12,11 @@ import com.app.community.network.response.LoginResponse;
 import com.app.community.network.response.VerifyMobileResponse;
 import com.app.community.network.response.dashboard.cart.CategoryResponse;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
+import com.app.community.network.response.dashboard.home.WelcomeHomeData;
 import com.app.community.network.response.dashboard.home.MerchantResponseData;
 import com.app.community.network.response.dashboard.home.ReviewResponseData;
 import com.app.community.network.response.dashboard.home.SearchResponseData;
+import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
@@ -46,4 +48,8 @@ public interface Repository {
     Observable<BaseResponse> deleteCart();
 
     Observable<ProductDetailsData> viewCart(CartRequest cartRequest);
+
+    Observable<WelcomeHomeData> getWelcomeHomePage();
+
+    Observable<ProductTypeData> getCategorySubCategoryRightDrawer();
 }

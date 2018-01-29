@@ -11,6 +11,9 @@ import com.app.community.R;
 import com.app.community.databinding.DrawerLeftRowItemBinding;
 import com.app.community.utils.CommonUtils;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * Created by ashok on 25/12/17.
  */
@@ -18,8 +21,8 @@ import com.app.community.utils.CommonUtils;
 public class DrawerAdapterLeft extends RecyclerView.Adapter<DrawerAdapterLeft.StoreViewHolder> {
     private final LayoutInflater mInflater;
     private final AppCompatActivity activity;
-    private DrawerLeftRowItemBinding mBinding;
     private DrawerLeftListener listener;
+    private ArrayList<String> drawerList;
     public interface DrawerLeftListener{
 
         void onLeftDrawerItemClicked(int adapterPosition);
@@ -28,26 +31,33 @@ public class DrawerAdapterLeft extends RecyclerView.Adapter<DrawerAdapterLeft.St
         mInflater=LayoutInflater.from(activity);
         this.activity=activity;
         this.listener=listener;
+        drawerList=new ArrayList<>();
+        drawerList.addAll(Arrays.asList(activity.getResources().getStringArray(R.array.left_drawer)));
     }
     @Override
     public StoreViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        mBinding=DataBindingUtil.inflate(mInflater, R.layout.drawer_left_row_item, parent, false);
+        DrawerLeftRowItemBinding mBinding=DataBindingUtil.inflate(mInflater, R.layout.drawer_left_row_item, parent, false);
         return new StoreViewHolder(mBinding);
     }
 
     @Override
     public void onBindViewHolder(StoreViewHolder holder, int position) {
-
+        if(CommonUtils.isNotNull(drawerList)&&drawerList.size()>position){
+            holder.setData(drawerList.get(position));
+        }
     }
 
     @Override
     public int getItemCount() {
-        return 7;
+        return CommonUtils.isNotNull(drawerList)?drawerList.size():0;
     }
 
     class StoreViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-       public StoreViewHolder(DrawerLeftRowItemBinding itemView) {
+        private final DrawerLeftRowItemBinding mBinding;
+
+        public StoreViewHolder(DrawerLeftRowItemBinding itemView) {
            super(itemView.getRoot());
+           mBinding=itemView;
            itemView.layoutUserItem.setOnClickListener(this);
        }
 
@@ -56,6 +66,10 @@ public class DrawerAdapterLeft extends RecyclerView.Adapter<DrawerAdapterLeft.St
             if(CommonUtils.isNotNull(listener)){
                 listener.onLeftDrawerItemClicked(getAdapterPosition());
             }
+        }
+
+        public void setData(String str) {
+            mBinding.tvMenuName.setText(str);
         }
     }
 }

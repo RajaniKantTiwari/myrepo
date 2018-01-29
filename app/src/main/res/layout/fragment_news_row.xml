@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="news"
+            type="com.app.community.network.response.dashboard.home.News"/>
+    </data>
 <LinearLayout
     android:orientation="vertical"
     style="@style/match_match"
@@ -8,11 +13,12 @@
     android:background="@color/white">
     <RelativeLayout
         style="@style/match_wrap"
-        android:layout_height="@dimen/margin_180">
+        android:layout_height="@dimen/margin_180"
+        android:background="@color/grey_color">
         <ImageView
             android:id="@+id/ivNews"
             style="@style/match_match"
-            android:background="@drawable/order_detail"/>
+            android:scaleType="centerCrop"/>
         <ImageView
             style="@style/wrap_wrap"
             android:src="@drawable/like"
@@ -33,7 +39,7 @@
             android:id="@+id/tvHeading"
             style="@style/textview_description_large_match"
             android:textColor="@color/color_black"
-            android:text="South horean President toon fae-in, left, and Chinese President Xi finping shake hands at the end of a signing ceremony at the Ireat Pall of the People in eijing."
+            android:text="@={news.news_title}"
             />
         <com.app.community.widget.CustomTextView
             android:id="@+id/tvDate"
@@ -51,7 +57,7 @@
         android:id="@+id/tvDescription"
         style="@style/textview_description_match"
         android:textColor="@color/color_black"
-        android:text="@string/lorem_ipsum"
+        android:text="@={news.news_descr}"
         app:customFont="@string/font_regular"
         android:layout_marginStart="@dimen/margin_7"
         android:layout_marginEnd="@dimen/margin_7"

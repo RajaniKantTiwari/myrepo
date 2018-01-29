@@ -15,6 +15,8 @@ import com.app.community.network.response.dashboard.dashboardinside.ProductDetai
 import com.app.community.network.response.dashboard.home.MerchantResponseData;
 import com.app.community.network.response.dashboard.home.ReviewResponseData;
 import com.app.community.network.response.dashboard.home.SearchResponseData;
+import com.app.community.network.response.dashboard.home.WelcomeHomeData;
+import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
 
 import io.reactivex.Observable;
 import retrofit2.Retrofit;
@@ -79,5 +81,15 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<ProductDetailsData> viewCart(CartRequest cartRequest) {
         return apiService.viewCart(cartRequest);
+    }
+
+    @Override
+    public Observable<WelcomeHomeData> getWelcomeHomePage() {
+        return apiService.getWelcomeHomePage();
+    }
+
+    @Override
+    public Observable<ProductTypeData> getCategorySubCategoryRightDrawer() {
+        return apiService.getCategorySubCategoryRightDrawer();
     }
 }

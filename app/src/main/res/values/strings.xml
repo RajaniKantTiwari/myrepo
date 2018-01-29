@@ -164,7 +164,7 @@
     <string name="continue_shopping"> Continue Shopping </string>
     <string name="proceed_checkout"> Proceed Checkout </string>
 
-    <string name="order"> Order </string>
+    <string name="order">Order </string>
     <string name="order_id"> Order ID </string>
     <string name="order_status"> Order Status </string>
     <string name="order_date"> Order Date </string>
@@ -430,6 +430,17 @@
     <string name="done">Done</string>
     <string name="nothing_in_cart">Nothing in Cart</string>
     <string name="home_delivery">Home Delivery</string>
+    <string name="percent">%</string>
+    <string name="off_on">off valid till</string>
+    <string name="code">Code :&#160;</string>
+    <string name="home">Home</string>
+    <string name="your_address">Your Address</string>
+    <string name="your_credit">Your Credits</string>
+    <string name="notification">Notification</string>
+    <string name="about_us">About Us</string>
+    <string name="help_support">Help &amp; Support</string>
+    <string name="no_result_found">No Result Found</string>
+
 
     <string-array name="state_array">
         <item> Select State </item>
@@ -459,6 +470,16 @@
         <item>@string/cash_on_delivery</item>
         <item>@string/credit_debit_card</item>
         <item>@string/paytm</item>
+    </string-array>
+
+    <string-array name="left_drawer">
+        <item>@string/home</item>
+        <item>@string/order</item>
+        <item>@string/your_address</item>
+        <item>@string/your_credit</item>
+        <item>@string/notification</item>
+        <item>@string/about_us</item>
+        <item>@string/help_support</item>
     </string-array>
 
 

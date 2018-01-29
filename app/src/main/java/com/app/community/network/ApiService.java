@@ -17,6 +17,8 @@ import com.app.community.network.response.dashboard.dashboardinside.ProductDetai
 import com.app.community.network.response.dashboard.home.MerchantResponseData;
 import com.app.community.network.response.dashboard.home.ReviewResponseData;
 import com.app.community.network.response.dashboard.home.SearchResponseData;
+import com.app.community.network.response.dashboard.home.WelcomeHomeData;
+import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;
@@ -57,4 +59,10 @@ public interface ApiService {
 
     @POST("product/getallproducts")
     Observable<CategoryResponse> getProducts(@Body CategoryRequest request);
+
+    @GET("home/homepage")
+    Observable<WelcomeHomeData> getWelcomeHomePage();
+
+    @GET("common/menulist")
+    Observable<ProductTypeData> getCategorySubCategoryRightDrawer();
 }

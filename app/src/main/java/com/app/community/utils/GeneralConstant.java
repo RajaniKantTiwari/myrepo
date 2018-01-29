@@ -64,6 +64,9 @@ public interface GeneralConstant {
     String IMAGE_LIST = "image_list";
     String POSITION = "position";
     long ANIMATION_TIME = 500;
+    String EMERGENCY = "emergency";
+    String NEWS = "news";
+    String NEWSLIST = "newslist";
 
 
     @IntDef({PRODUCT_MAP_FRAGMENT, PRODUCT_LIST, RECENT_FRAGMENT, CATEGORY_FRAGMENT,

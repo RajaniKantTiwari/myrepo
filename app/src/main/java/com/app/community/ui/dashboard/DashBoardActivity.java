@@ -30,6 +30,7 @@ import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.base.BaseFragment;
 import com.app.community.ui.cart.ProductSubproductFragment;
 import com.app.community.ui.dashboard.expandrecycleview.draweradapter.DrawerAdapterRight;
+import com.app.community.ui.dashboard.home.MerchantDetailsFragment;
 import com.app.community.ui.dashboard.home.SearchActivity;
 import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.adapter.DrawerAdapterLeft;
@@ -253,10 +254,11 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     @Override
     public void attachView() {
         getActivityComponent().inject(this);
+        mPresenter.attachView(this);
     }
 
     public void initializeData() {
-
+       mPresenter.getCategorySubCategoryRightDrawer(this);
     }
 
     public void setListener() {
@@ -413,7 +415,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         switch (index) {
             case HOME:
 
-                //return CheckoutFragment.newInstance(0);
+                //return MerchantDetailsFragment.newInstance(0,null);
                 //return NewsPaperFragment.newInstance(0);
                 return WelcomeHomeFragment.newInstance(0);
             case OFFER:

@@ -181,6 +181,14 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/textSize_15</item>
     </style>
+    <style name="image_30" >
+        <item name="android:layout_height">@dimen/margin_30</item>
+        <item name="android:layout_width">@dimen/margin_30</item>
+    </style>
+    <style name="image_35" >
+        <item name="android:layout_height">@dimen/margin_35</item>
+        <item name="android:layout_width">@dimen/margin_35</item>
+    </style>
     <style name="image_40" >
         <item name="android:layout_height">@dimen/margin_40</item>
         <item name="android:layout_width">@dimen/margin_40</item>
@@ -466,6 +474,16 @@
         parent="@android:style/Widget.TextView.SpinnerItem">
         <item name="android:textSize">@dimen/textSize_description_smaller</item>
     </style>
+
+    <style name="Theme.Transparent" parent="parentTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
     <dimen name="margin_35">35dp</dimen>
     <dimen name="margin_8_minus">-8dp</dimen>
     <dimen name="margin_45">45dp</dimen>

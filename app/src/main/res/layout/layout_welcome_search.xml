@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
+<data>
+    <variable
+        name="banner"
+        type="com.app.community.network.response.dashboard.home.Banner"/>
+</data>
     <RelativeLayout
         android:id="@+id/layoutWelcome"
         style="@style/match_wrap">
         <ImageView
+            android:id="@+id/ivBanner"
             style="@style/match_wrap"
             android:layout_height="@dimen/margin_120"
             android:src="@drawable/abc"
@@ -24,9 +29,8 @@
                 android:textColor="@color/white" />
 
             <com.app.community.widget.CustomTextView
-                android:id="@+id/tvHeading"
                 style="@style/textview_description_large_wrap"
-                android:text="@string/what_you_want_to_search_today"
+                android:text="@={banner.offer}"
                 android:textColor="@color/white"
                 app:customFont="@string/font_bold"
                 android:layout_marginTop="@dimen/margin_3"/>

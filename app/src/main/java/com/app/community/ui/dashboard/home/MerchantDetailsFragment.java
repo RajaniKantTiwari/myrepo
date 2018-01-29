@@ -27,7 +27,9 @@ import com.app.community.ui.dashboard.DashboardInsidePresenter;
 import com.app.community.ui.dashboard.home.adapter.ReviewAdapter;
 import com.app.community.ui.dashboard.home.adapter.ImageAdapter;
 import com.app.community.ui.dialogfragment.OrderDialogFragment;
+import com.app.community.ui.fragment.ZoomAnimationImageActivity;
 import com.app.community.utils.CommonUtils;
+import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.GlideUtils;
 
@@ -207,7 +209,8 @@ public class MerchantDetailsFragment extends DashboardFragment implements OrderD
         Bundle bundle = new Bundle();
         bundle.putInt(GeneralConstant.POSITION,position);
         bundle.putParcelableArrayList(GeneralConstant.IMAGE_LIST,imageList);
-        getDashboardActivity().pushFragment(ZOOMIMAGE_FRAGMENT,bundle,android.R.id.content,
-                true,true, BaseActivity.AnimationType.ZOOM);
+        ExplicitIntent.getsInstance().navigateToZoom(getDashboardActivity(), ZoomAnimationImageActivity.class,bundle);
+        /*getDashboardActivity().pushFragment(ZOOMIMAGE_FRAGMENT,bundle,android.R.id.content,
+                true,true, BaseActivity.AnimationType.ZOOM);*/
     }
 }

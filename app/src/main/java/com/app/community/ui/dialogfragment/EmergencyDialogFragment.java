@@ -10,22 +10,23 @@ import android.view.ViewGroup;
 
 import com.app.community.R;
 import com.app.community.databinding.DialogfragmentContactImpBinding;
+import com.app.community.network.response.dashboard.home.Emergency;
 import com.app.community.network.response.dashboard.home.MerchantResponse;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 
-public class ContactImpPlaceDialogFragment extends DialogFragment implements View.OnClickListener {
+public class EmergencyDialogFragment extends DialogFragment implements View.OnClickListener {
     private Dialog dialog;
     private DialogfragmentContactImpBinding mBinding;
-    private ContactDialogListener listener;
+    private EmergencyDialogListener listener;
     private String mobileNumber;
-    private MerchantResponse productInfo;
+    private Emergency emergency;
 
-    public interface ContactDialogListener {
+    public interface EmergencyDialogListener {
         void contact(String phoneNumber);
         void view(String message);
     }
-    public void addListener(ContactDialogListener listener) {
+    public void addListener(EmergencyDialogListener listener) {
         this.listener = listener;
     }
 
@@ -50,12 +51,10 @@ public class ContactImpPlaceDialogFragment extends DialogFragment implements Vie
     private void initializeData() {
         Bundle bundle = getArguments();
         if (CommonUtils.isNotNull(bundle)) {
-         productInfo=bundle.getParcelable(GeneralConstant.PRODUCT_INFO);
-         if(CommonUtils.isNotNull(productInfo)){
-             mBinding.ivName.setText(productInfo.getName());
-             mBinding.ivAddress.setText(productInfo.getAddress());
-             //mobileNumber=productInfo.getPhoneno();
-
+            emergency=bundle.getParcelable(GeneralConstant.EMERGENCY);
+         if(CommonUtils.isNotNull(emergency)){
+             mobileNumber=emergency.getPhone_no();
+          mBinding.setEmergency(emergency);
          }
         }
     }

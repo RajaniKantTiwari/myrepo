@@ -32,6 +32,16 @@ public class ExplicitIntent {
         activity.startActivity(intent);
         activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
+
+    public void navigateToZoom(Activity activity, Class<?> aClass, Bundle bundle){
+        Intent intent = new Intent(activity,aClass);
+        intent.putExtras(bundle);
+        activity.startActivity(intent);
+        activity.overridePendingTransition(R.anim.zoomin, R.anim.fadein);
+    }
+
+
+
     public void navigateTo(Activity activity, Class<?> aClass, Bundle bundle){
         Intent  intent = new Intent(activity,aClass);
         intent.putExtras(bundle);
