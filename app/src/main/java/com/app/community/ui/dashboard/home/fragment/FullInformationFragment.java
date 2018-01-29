@@ -11,7 +11,12 @@ import android.view.ViewGroup;
 import com.app.community.R;
 import com.app.community.databinding.FragmentFullInformationBinding;
 import com.app.community.network.response.BaseResponse;
+import com.app.community.network.response.dashboard.home.MerchantResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
+import com.app.community.ui.dashboard.home.MerchantDetailsFragment;
+import com.app.community.utils.GeneralConstant;
+
+import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 
 /**
  * Created by rajnikant on 31/12/17.
@@ -76,7 +81,11 @@ public class FullInformationFragment extends DashboardFragment {
 
     }
 
-    public static Fragment newInstance() {
-        return new FullInformationFragment();
+    public static Fragment newInstance(int instance) {
+        Bundle args = new Bundle();
+        args.putInt(ARGS_INSTANCE, instance);
+        FullInformationFragment fragment = new FullInformationFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 }

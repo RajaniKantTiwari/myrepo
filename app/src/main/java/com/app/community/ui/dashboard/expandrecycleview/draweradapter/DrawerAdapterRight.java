@@ -84,7 +84,6 @@ public class DrawerAdapterRight extends ExpandableRecyclerAdapter<Recipe, Ingred
             @Override
             public void onClick(View view) {
                 listener.onSubItemClicked(parentPosition,childPosition);
-                Log.e("ParentPosition",""+parentPosition+" "+childPosition);
             }
         });
         ingredientViewHolder.bind(ingredient);

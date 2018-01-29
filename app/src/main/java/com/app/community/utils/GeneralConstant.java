@@ -19,6 +19,7 @@ import static com.app.community.utils.GeneralConstant.FRAGMENTS.RECENT_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.SUBSCRIPTION_DETAIL_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.SUBSCRIPTION_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.WELCOME_HOME_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.ZOOMIMAGE_FRAGMENT;
 
 /**
  * Created by arvind on 21/12/17.
@@ -27,8 +28,6 @@ import static com.app.community.utils.GeneralConstant.FRAGMENTS.WELCOME_HOME_FRA
 public interface GeneralConstant {
 
     String ARGS_INSTANCE = "com.app.constants";
-    String INTENT_EXTRA_ID = "intent_extra_id";
-
     int PERMISSIONS_REQUEST_LOCATION = 99;
     long SPLASH_TIME = 800;
     String TITLE = "title";
@@ -45,8 +44,6 @@ public interface GeneralConstant {
     float BEARING = 45;
     int REQUEST_CALL = 1;
 
-    int ANIMATION_FROM_DEGREES = 0;
-    int ANIMATION_TO_DEGREE = 90;
     int RECENT = 1;
     int CATEGORY = 2;
 
@@ -63,12 +60,16 @@ public interface GeneralConstant {
 
     int SUBSCRIPTION = 1;
     int SUBSCRIPTION_DETAIL = 2;
+    int PAYMENT_HEIGHT = 40;
+    String IMAGE_LIST = "image_list";
+    String POSITION = "position";
+    long ANIMATION_TIME = 500;
 
 
     @IntDef({PRODUCT_MAP_FRAGMENT, PRODUCT_LIST, RECENT_FRAGMENT, CATEGORY_FRAGMENT,
             LIVEORDER_FRAGMENT, PASTORDER_FRAGMENT, WELCOME_HOME_FRAGMENT, NEWS_TAB_FRAGMENT
             , HOME_FRAGMENT, NEWS_FRAGMENT, CONFIRM_ORDER_FRAGMENT, PRODUCT_SUBPRODUCT, SUBSCRIPTION_DETAIL_FRAGMENT
-            , SUBSCRIPTION_FRAGMENT})
+            , SUBSCRIPTION_FRAGMENT,ZOOMIMAGE_FRAGMENT})
     @Retention(RetentionPolicy.SOURCE)
     @interface FRAGMENTS {
         int PRODUCT_MAP_FRAGMENT = 1;
@@ -85,5 +86,6 @@ public interface GeneralConstant {
         int PRODUCT_SUBPRODUCT = 12;
         int SUBSCRIPTION_DETAIL_FRAGMENT = 13;
         int SUBSCRIPTION_FRAGMENT = 14;
+        int ZOOMIMAGE_FRAGMENT=15;
     }
 }

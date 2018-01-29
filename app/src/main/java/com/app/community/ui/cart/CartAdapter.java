@@ -41,7 +41,6 @@ public class CartAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         CartAdapter.ItemCart itemCat = (CartAdapter.ItemCart) holder;
-//        itemCat.bind(mDataList.get(position));
         itemCat.bind(position);
     }
 
@@ -58,23 +57,15 @@ public class CartAdapter extends RecyclerView.Adapter {
         public ItemCart(ItemCartBinding itemView) {
             super(itemView.getRoot());
             mBinding = itemView;
-            mBinding.tvProductName.setOnClickListener(this);
+            mBinding.layoutInfo.setOnClickListener(this);
+            mBinding.ivProduct.setOnClickListener(this);
             mBinding.ivPlus.setOnClickListener(this);
             mBinding.ivMinus.setOnClickListener(this);
             mBinding.tvSubscribe.setOnClickListener(this);
-
-//            mBinding.tvName.setBackgroundColor(Color.parseColor("#ff00ff"));
         }
 
         public void bind(int position) {
-//            mBinding.tvName.setTag(position);
-//            if (position % 2 == 0) {
-//                mBinding.ivProduct.setBackgroundsetsetColor(Color.parseColor("#ffffaa"));
-//
-//            } else {
-//                mBinding.tvName.setBackgroundColor(Color.parseColor("#aaffaa"));
-//
-//            }
+
             mBinding.ivMinus.setTag(position);
             mBinding.ivPlus.setTag(position);
             mBinding.tvProductName.setText(mDataList.get(position).getProductname());
@@ -83,7 +74,7 @@ public class CartAdapter extends RecyclerView.Adapter {
             mBinding.tvProductQty.setText(mDataList.get(position).getMeasure());
             if (!TextUtils.isEmpty(mDataList.get(position).getIcon())) {
                 GlideUtils.loadImage(mContext, mDataList.get(position).getIcon(), mBinding.ivProduct, null, R.drawable.app_icon);
-            }else{
+            } else {
                 mBinding.ivProduct.setImageResource(R.drawable.app_icon);
             }
         }
@@ -95,25 +86,23 @@ public class CartAdapter extends RecyclerView.Adapter {
             root.setTag(view);
             int pos = (Integer) view.getTag();
             switch (view.getId()) {
-                case R.id.tvName:
-
-//                mViewListener.onItemClick(view.getTag(), root);
-                    break;
                 case R.id.ivPlus:
                     mListener.addToCartClick(pos, root);
                     break;
                 case R.id.ivMinus:
                     mListener.addToCartClick(pos, root);
                     break;
-
-
+                case R.id.ivProduct:
+                case R.id.layoutInfo:
+                        mListener.addToCartClick(pos,root);
+                    break;
             }
-
         }
     }
 
     public interface OnAddToCart {
         void addToCartClick(int pos, View view);
+
     }
 }
 

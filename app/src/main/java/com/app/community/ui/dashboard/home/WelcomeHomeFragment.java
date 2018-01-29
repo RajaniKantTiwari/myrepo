@@ -198,7 +198,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
 
     @Override
     public void view(String message) {
-        mFragmentNavigation.pushFragment(ProductDetailsFragment.newInstance(mInt+1,null));
+        mFragmentNavigation.pushFragment(MerchantDetailsFragment.newInstance(mInt+1,null));
     }
 
     @Override

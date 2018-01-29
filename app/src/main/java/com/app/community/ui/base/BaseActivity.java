@@ -29,6 +29,7 @@ import com.app.community.ui.dashboard.home.fragment.PastOrderFragment;
 import com.app.community.ui.dashboard.home.fragment.MerchantListFragment;
 import com.app.community.ui.dashboard.home.fragment.ProductMapFragment;
 import com.app.community.ui.dashboard.home.fragment.RecentFragment;
+import com.app.community.ui.fragment.ZoomAnimationImageFragment;
 import com.app.community.ui.newspaper.SubscriptionDetailsFragment;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.LogUtils;
@@ -41,6 +42,7 @@ import static com.app.community.ui.base.BaseActivity.AnimationType.DEFAULT;
 import static com.app.community.ui.base.BaseActivity.AnimationType.FADE;
 import static com.app.community.ui.base.BaseActivity.AnimationType.NONE;
 import static com.app.community.ui.base.BaseActivity.AnimationType.SLIDE;
+import static com.app.community.ui.base.BaseActivity.AnimationType.ZOOM;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.CATEGORY_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.CONFIRM_ORDER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.HOME_FRAGMENT;
@@ -55,6 +57,7 @@ import static com.app.community.utils.GeneralConstant.FRAGMENTS.RECENT_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.SUBSCRIPTION_DETAIL_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.SUBSCRIPTION_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.WELCOME_HOME_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.ZOOMIMAGE_FRAGMENT;
 
 
 /**
@@ -272,6 +275,9 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
             case SUBSCRIPTION_FRAGMENT:
                 fragment=new SubscribeFragment();
                 break;
+            case ZOOMIMAGE_FRAGMENT:
+                fragment=new ZoomAnimationImageFragment();
+                break;
         }
         return fragment;
     }
@@ -293,6 +299,9 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
         return null;
 
     }
+
+
+
 
     public Fragment pushFragment(int fragmentId, Bundle args, int containerViewId, boolean addToBackStack, boolean shouldAdd, @AnimationType int animationType) {
         try {
@@ -319,8 +328,12 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
             case FADE:
                 transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_in, R.anim.fade_out);
                 break;
+            case ZOOM:
+                transaction.setCustomAnimations(R.anim.zoomin, R.anim.fadein);
+                break;
             case NONE:
                 break;
+
         }
         if (shouldAdd)
             transaction.add(containerViewId, fragment, fragment.getFragmentName());
@@ -332,13 +345,14 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
         transaction.commitAllowingStateLoss();
     }
 
-    @IntDef({SLIDE, FADE, DEFAULT, NONE})
+    @IntDef({SLIDE, FADE, DEFAULT, NONE,ZOOM})
     @Retention(RetentionPolicy.SOURCE)
     public @interface AnimationType {
         int SLIDE = 0;
         int FADE = 1;
         int DEFAULT = 2;
         int NONE = 3;
+        int ZOOM=4;
     }
 
 

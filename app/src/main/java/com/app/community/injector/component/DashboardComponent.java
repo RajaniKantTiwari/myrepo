@@ -5,7 +5,7 @@ package com.app.community.injector.component;
 import com.app.community.injector.module.DashboardModule;
 import com.app.community.injector.scope.PerActivity;
 import com.app.community.ui.dashboard.DashBoardActivity;
-import com.app.community.ui.dashboard.home.ProductDetailsFragment;
+import com.app.community.ui.dashboard.home.MerchantDetailsFragment;
 import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 
 import dagger.Component;
@@ -15,7 +15,7 @@ import dagger.Component;
 public interface DashboardComponent {
 
     void inject(DashBoardActivity dashBoardActivity);
-    void inject(ProductDetailsFragment dashBoardActivity);
+    void inject(MerchantDetailsFragment dashBoardActivity);
     void inject(WelcomeHomeFragment welcomeActivity);
 
 }

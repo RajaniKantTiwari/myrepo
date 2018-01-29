@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="@dimen/margin_10"
+            android:paddingBottom="@dimen/margin_10"
             android:layout_marginTop="@dimen/margin_10"
             android:orientation="vertical">
 

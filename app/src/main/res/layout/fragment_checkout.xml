@@ -79,95 +79,20 @@
                     android:textAllCaps="true"
                     android:textColor="@color/color_sky_blue" />
 
-                <LinearLayout
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvDelivery"
                     style="@style/match_wrap"
-                    android:layout_marginEnd="@dimen/margin_10"
-                    android:layout_marginStart="@dimen/margin_10"
-                    android:background="@drawable/grey_corner_bg"
-                    android:gravity="center_vertical"
-                    android:padding="@dimen/margin_5">
-
-
-                    <RadioButton
-                        style="@style/textview_description_match"
-                        android:buttonTint="@color/color_sky_blue"
-                        android:checked="true"
-                        android:paddingStart="@dimen/margin_8"
-                        android:text="@string/pick_on_the_way"
-                        android:textAllCaps="true"
-                        android:textStyle="bold"
-                        />
-                </LinearLayout>
+                    android:layout_marginTop="@dimen/margin_10"/>
                 <com.app.community.widget.CustomTextView
                     style="@style/textview_header_small_wrap"
                     android:layout_marginStart="@dimen/margin_10"
                     android:layout_marginTop="@dimen/margin_10"
                     android:text="@string/payment_option"/>
-                <LinearLayout
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvPayment"
                     style="@style/match_wrap"
-                    android:layout_marginEnd="@dimen/margin_10"
-                    android:layout_marginStart="@dimen/margin_10"
-                    android:layout_marginTop="@dimen/margin_8"
-                    android:background="@drawable/grey_corner_bg"
-                    android:gravity="center_vertical"
-                    android:padding="@dimen/margin_5">
-
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/color_sky_blue"
-                        android:checked="true"
-                        android:paddingStart="@dimen/margin_8"
-                        android:text="@string/cash_on_delivery"
-                        android:textAllCaps="true"
-                        android:textColor="@color/color_black"
-                        android:textSize="@dimen/textSize_description"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    style="@style/match_wrap"
-                    android:layout_marginEnd="@dimen/margin_10"
-                    android:layout_marginStart="@dimen/margin_10"
-                    android:layout_marginTop="@dimen/margin_8"
-                    android:background="@drawable/grey_corner_bg"
-                    android:gravity="center_vertical"
-                    android:padding="@dimen/margin_5">
-
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/radio_unchecked"
-                        android:paddingStart="@dimen/margin_8"
-                        android:text="@string/credit_debit_card"
-                        android:textColor="@color/color_black"
-                        android:textSize="@dimen/textSize_description"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    style="@style/match_wrap"
-                    android:layout_marginEnd="@dimen/margin_10"
-                    android:layout_marginStart="@dimen/margin_10"
-                    android:layout_marginTop="@dimen/margin_8"
-                    android:background="@drawable/grey_corner_bg"
-                    android:gravity="center_vertical"
-                    android:padding="@dimen/margin_5">
-
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/radio_unchecked"
-                        android:paddingStart="@dimen/margin_8"
-                        android:text="@string/paytm"
-                        android:textAllCaps="true"
-                        android:textColor="@color/color_black"
-                        android:textSize="@dimen/textSize_description"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                    android:layout_marginTop="@dimen/margin_10"/>
                 <RelativeLayout style="@style/match_wrap"
                     android:layout_marginTop="@dimen/margin_13">
 

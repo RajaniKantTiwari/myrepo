@@ -14,7 +14,7 @@ import com.app.community.databinding.FragmentDoctorListBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.home.MerchantResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
-import com.app.community.ui.dashboard.home.ProductDetailsFragment;
+import com.app.community.ui.dashboard.home.MerchantDetailsFragment;
 import com.app.community.ui.dashboard.home.adapter.DoctorAdapter;
 import com.app.community.ui.dashboard.home.event.MerchantEvent;
 import com.app.community.utils.CommonUtils;
@@ -62,7 +62,7 @@ public class DoctorListFragment extends DashboardFragment {
             @Override
             public void onItemClick(int adapterPosition) {
                 if (CommonUtils.isNotNull(doctorsList) && doctorsList.size() > adapterPosition) {
-                    ExplicitIntent.getsInstance().navigateTo(getBaseActivity(), ProductDetailsFragment.class);
+                    ExplicitIntent.getsInstance().navigateTo(getBaseActivity(), MerchantDetailsFragment.class);
                 }
             }
         });

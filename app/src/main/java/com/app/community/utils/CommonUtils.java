@@ -17,6 +17,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -336,5 +337,12 @@ public class CommonUtils {
             return null;
         }
         return addresses.get(0).getCountryCode();
+    }
+    public static void setViewHeight(RecyclerView recyclerView,List list) {
+        if(CommonUtils.isNotNull(list)){
+            ViewGroup.LayoutParams params=recyclerView.getLayoutParams();
+            params.height= CommonUtils.convertDpToPx(GeneralConstant.PAYMENT_HEIGHT,recyclerView.getContext())*list.size();
+            recyclerView.setLayoutParams(params);
+        }
     }
 }

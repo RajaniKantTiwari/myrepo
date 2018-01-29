@@ -22,7 +22,11 @@ import com.app.community.network.response.dashboard.cart.ProductData;
 import com.app.community.network.response.dashboard.cart.SubCategory;
 import com.app.community.network.response.dashboard.home.MerchantResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
-import com.app.community.ui.dashboard.home.ProductDetailsFragment;
+import com.app.community.ui.dashboard.home.MerchantDetailsFragment;
+import com.app.community.ui.dashboard.home.fragment.CheckoutFragment;
+import com.app.community.ui.dashboard.home.fragment.FullInformationFragment;
+import com.app.community.ui.dashboard.home.fragment.HomeFragment;
+import com.app.community.ui.dashboard.home.fragment.NewsFragment;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.LogUtils;
@@ -82,7 +86,7 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tvCheckout:
-                Toast.makeText(getDashboardActivity(), "Under process", Toast.LENGTH_SHORT).show();
+                mFragmentNavigation.pushFragment(CheckoutFragment.newInstance(mInt + 1));
                 break;
         }
 
@@ -155,7 +159,7 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
 
     @Override
     public void setListener() {
-
+        mBinding.tvCheckout.setOnClickListener(this);
     }
 
     @Override
@@ -178,13 +182,16 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
     public void addToCartClick(int pos, View view) {
         ItemCartBinding viewBinding = DataBindingUtil.bind(view);
         View itemView = (View) view.getTag();
-
         switch (itemView.getId()) {
             case R.id.ivPlus:
                 addToCart(viewBinding.tvQty, pos);
                 break;
             case R.id.ivMinus:
                 removeFromCart(viewBinding.tvQty, pos);
+                break;
+            case R.id.ivProduct:
+            case R.id.layoutInfo:
+                mFragmentNavigation.pushFragment(FullInformationFragment.newInstance(mInt + 1));
                 break;
         }
 
@@ -251,17 +258,12 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
         categoryRequest.setMerchant_id(merchantId);
         getPresenter().getCategory(getDashboardActivity(), categoryRequest);
     }
-    public static Fragment newInstance(int instance, MerchantResponse merchantResponse) {
-        /*Bundle args = new Bundle();
-        args.putInt(ARGS_INSTANCE, instance);
-        ProductSubproductFragment fragment = new ProductSubproductFragment();
-        fragment.setArguments(args);
-        return fragment;*/
 
+    public static Fragment newInstance(int instance, MerchantResponse merchantResponse) {
         Bundle args = new Bundle();
         args.putInt(ARGS_INSTANCE, instance);
         args.putParcelable(GeneralConstant.RESPONSE, merchantResponse);
-        ProductDetailsFragment fragment = new ProductDetailsFragment();
+        MerchantDetailsFragment fragment = new MerchantDetailsFragment();
         fragment.setArguments(args);
         return fragment;
     }

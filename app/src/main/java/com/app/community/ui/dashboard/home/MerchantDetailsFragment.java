@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +20,12 @@ import com.app.community.network.response.dashboard.home.ReviewResponse;
 import com.app.community.network.response.dashboard.home.ReviewResponseData;
 import com.app.community.network.response.dashboard.home.StoreImages;
 import com.app.community.ui.SimpleDividerItemDecoration;
+import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.cart.ProductSubproductFragment;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.DashboardInsidePresenter;
 import com.app.community.ui.dashboard.home.adapter.ReviewAdapter;
-import com.app.community.ui.dashboard.home.adapter.StoreAdapter;
+import com.app.community.ui.dashboard.home.adapter.ImageAdapter;
 import com.app.community.ui.dialogfragment.OrderDialogFragment;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
@@ -33,7 +35,9 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
+import static android.content.ContentValues.TAG;
 import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.ZOOMIMAGE_FRAGMENT;
 
 
 /**
@@ -41,15 +45,17 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
  * To inject activity reference.
  */
 
-public class ProductDetailsFragment extends DashboardFragment implements OrderDialogFragment.OrderDialogListener {
+public class MerchantDetailsFragment extends DashboardFragment implements OrderDialogFragment.OrderDialogListener,ImageAdapter.ImageListener {
 
     private FragmentProductDetailBinding mBinding;
-    private StoreAdapter mPhotoAdapter;
+    private ImageAdapter mImageAdapter;
     private ReviewAdapter mReviewAdapter;
     private ArrayList<ReviewResponse> reviewList;
+
     private MerchantResponse merchantResponse;
     @Inject
     DashboardInsidePresenter presenter;
+    private ArrayList<StoreImages> imageList;
 
     @Nullable
     @Override
@@ -81,7 +87,7 @@ public class ProductDetailsFragment extends DashboardFragment implements OrderDi
 
     @Override
     public String getFragmentName() {
-        return ProductDetailsFragment.class.getSimpleName();
+        return MerchantDetailsFragment.class.getSimpleName();
     }
 
     public void initializeData() {
@@ -90,8 +96,10 @@ public class ProductDetailsFragment extends DashboardFragment implements OrderDi
             merchantResponse = bundle.getParcelable(GeneralConstant.RESPONSE);
         }
         reviewList = new ArrayList<>();
-        mPhotoAdapter = new StoreAdapter(getDashboardActivity());
-        mBinding.photoRecycler.setAdapter(mPhotoAdapter);
+        imageList=new ArrayList<>();
+        setList();
+        mImageAdapter = new ImageAdapter(getDashboardActivity(),imageList,this);
+        mBinding.photoRecycler.setAdapter(mImageAdapter);
         mReviewAdapter = new ReviewAdapter(getDashboardActivity(), reviewList);
         mBinding.rvReview.setAdapter(mReviewAdapter);
         if (CommonUtils.isNotNull(merchantResponse)) {
@@ -99,6 +107,33 @@ public class ProductDetailsFragment extends DashboardFragment implements OrderDi
             presenter.getMerchantReviews(getDashboardActivity(), new MerchantRequest(Integer.parseInt("8")));
         }
 
+    }
+
+    private void setList() {
+        try {
+            StoreImages image = new StoreImages();
+            image.setPath("https://api.androidhive.info/images/glide/small/deadpool.jpg");
+            imageList.add(image);
+
+            StoreImages image1 = new StoreImages();
+            image1.setPath("https://api.androidhive.info/images/glide/large/bvs.jpg");
+            imageList.add(image1);
+
+            StoreImages image2 = new StoreImages();
+            image2.setPath("https://api.androidhive.info/images/glide/large/cacw.jpg");
+            imageList.add(image2);
+
+            StoreImages image3 = new StoreImages();
+            image3.setPath("https://api.androidhive.info/images/glide/large/bourne.jpg");
+            imageList.add(image3);
+
+            StoreImages image4 = new StoreImages();
+            image4.setPath("https://api.androidhive.info/images/glide/large/squad.jpg");
+            imageList.add(image4);
+
+        } catch (Exception e) {
+            Log.e(TAG, "Json parsing error: " + e.getMessage());
+        }
     }
 
     @Override
@@ -147,10 +182,9 @@ public class ProductDetailsFragment extends DashboardFragment implements OrderDi
         }
         GlideUtils.loadImage(getDashboardActivity(), merchantResponse.getLogo(), mBinding.imageLogo, null, 0);
         GlideUtils.loadImage(getDashboardActivity(), merchantResponse.getBanner_image(), mBinding.storeImage, null, 0);
-        ArrayList<StoreImages> imageList = merchantResponse.getStoreimages();
-        if (CommonUtils.isNotNull(imageList)) {
-            mPhotoAdapter.setImageList(imageList);
-            mPhotoAdapter.notifyDataSetChanged();
+        if (CommonUtils.isNotNull(imageList)&&CommonUtils.isNotNull(merchantResponse.getStoreimages())) {
+            imageList.addAll(merchantResponse.getStoreimages());
+            mImageAdapter.notifyDataSetChanged();
         }
     }
 
@@ -158,7 +192,7 @@ public class ProductDetailsFragment extends DashboardFragment implements OrderDi
         Bundle args = new Bundle();
         args.putInt(ARGS_INSTANCE, instance);
         args.putParcelable(GeneralConstant.RESPONSE, productResponse);
-        ProductDetailsFragment fragment = new ProductDetailsFragment();
+        MerchantDetailsFragment fragment = new MerchantDetailsFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -166,5 +200,14 @@ public class ProductDetailsFragment extends DashboardFragment implements OrderDi
     @Override
     public void submit(String submit) {
         getDashboardActivity().showToast("" + submit);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Bundle bundle = new Bundle();
+        bundle.putInt(GeneralConstant.POSITION,position);
+        bundle.putParcelableArrayList(GeneralConstant.IMAGE_LIST,imageList);
+        getDashboardActivity().pushFragment(ZOOMIMAGE_FRAGMENT,bundle,android.R.id.content,
+                true,true, BaseActivity.AnimationType.ZOOM);
     }
 }

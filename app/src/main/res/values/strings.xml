@@ -358,7 +358,7 @@
     <string name="detail">Details</string>
     <string name="openning_hour">Opening Hour</string>
     <string name="sunday">Sunday</string>
-    <string name="photos">Photos</string>
+    <string name="photos">Photos &amp; Video</string>
     <string name="est_delivery_time">Est Delivery Time</string>
     <string name="delivery">Delivery</string>
     <string name="pick_on_the_way">Pick On The Way</string>
@@ -429,6 +429,7 @@
     <string name="end_date">End Date</string>
     <string name="done">Done</string>
     <string name="nothing_in_cart">Nothing in Cart</string>
+    <string name="home_delivery">Home Delivery</string>
 
     <string-array name="state_array">
         <item> Select State </item>
@@ -452,6 +453,12 @@
         <item>Monthly</item>
         <item>Quaterly</item>
         <item>Selected Days</item>
+    </string-array>
+
+    <string-array name="payment_option">
+        <item>@string/cash_on_delivery</item>
+        <item>@string/credit_debit_card</item>
+        <item>@string/paytm</item>
     </string-array>
 
 
