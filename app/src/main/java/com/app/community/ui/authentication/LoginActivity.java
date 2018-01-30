@@ -12,12 +12,11 @@ import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.LoginResponse;
 import com.app.community.ui.base.MvpView;
 import com.app.community.ui.presenter.CommonPresenter;
-import com.app.community.utils.ApiConstants;
+import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.UserPreference;
-import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.iid.InstanceID;
 
 import javax.inject.Inject;
@@ -70,7 +69,7 @@ public class LoginActivity extends CommonActivity implements MvpView, View.OnCli
                 LoginResponse loginResponse=(LoginResponse)response;
                 if(isNotNull(loginResponse)){
                     String type=loginResponse.getType();
-                    if(type.equals(ApiConstants.SUCCESS)){
+                    if(type.equals(AppConstants.SUCCESS)){
                         UserPreference.setUserName(userName);
                         Bundle bundle=new Bundle();
                         bundle.putString(GeneralConstant.USER_NAME,userName);

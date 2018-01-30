@@ -41,15 +41,15 @@ public class FirebaseIDService extends FirebaseInstanceIdService {
         String token = FirebaseInstanceId.getInstance().getToken();
         //LogUtils.LOGE(TAG,tkn);
         UserPreference.setDeviceToken(token);
-        LogUtils.LOGE("DeviceTokenAre", UserPreference.getDeviceToken());
+        LogUtils.LOGE("DevicePushTokenAre", UserPreference.getDeviceToken());
         sendRegistrationToServer(token);
 
     }
 
     private void sendRegistrationToServer(String token) {
-        UserPreference.setDeviceToken(token);
+        //UserPreference.setDeviceToken(token);
 
-       /* UpdateDeviceRequest deviceRequest = new UpdateDeviceRequest();
+        /*UpdateDeviceRequest deviceRequest = new UpdateDeviceRequest();
         if (PreferenceUtil.getPrefUserId() != -1)
             deviceRequest.setUserId(PreferenceUtil.getPrefUserId());
         deviceRequest.setDeviceId(refreshedToken);

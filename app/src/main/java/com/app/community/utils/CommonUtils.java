@@ -352,7 +352,7 @@ public class CommonUtils {
         daysArrayList.add(day7);
     }
 
-    public static String getDeviceId(Activity activity) {
+    public static String getDeviceUniqueId(Activity activity) {
         return Settings.Secure.getString(activity.getContentResolver(),
                 Settings.Secure.ANDROID_ID);
     }
@@ -376,5 +376,12 @@ public class CommonUtils {
             params.height= CommonUtils.convertDpToPx(GeneralConstant.PAYMENT_HEIGHT,recyclerView.getContext())*list.size();
             recyclerView.setLayoutParams(params);
         }
+    }
+
+    public static void logout() {
+        UserPreference.setDeviceToken(null);
+        UserPreference.setUserId(-1);
+        UserPreference.setToken(null);
+        UserPreference.setLogin(false);
     }
 }

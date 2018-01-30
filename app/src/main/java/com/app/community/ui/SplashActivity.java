@@ -10,6 +10,7 @@ import com.app.community.R;
 import com.app.community.ui.dashboard.DashBoardActivity;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
+import com.app.community.utils.UserPreference;
 
 
 /**
@@ -21,15 +22,17 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DataBindingUtil.setContentView(this,R.layout.activity_splash);
+        DataBindingUtil.setContentView(this, R.layout.activity_splash);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                if (UserPreference.isLogin()) {
                     ExplicitIntent.getsInstance().navigateTo(SplashActivity.this, DashBoardActivity.class);
-               // CommonUtils.showOrderDialog(SplashActivity.this,null,null);
-                //ExplicitIntent.getsInstance().navigateTo(SplashActivity.this, DoctorCheckoutActivity.class);
-                //ExplicitIntent.getsInstance().navigateTo(SplashActivity.this, WelcomeScreenActivity.class);
-                    finish();
+                } else {
+                    ExplicitIntent.getsInstance().navigateTo(SplashActivity.this, WelcomeScreenActivity.class);
+
+                }
+                finish();
             }
         }, GeneralConstant.SPLASH_TIME);
     }

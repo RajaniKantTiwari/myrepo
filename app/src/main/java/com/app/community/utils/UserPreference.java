@@ -55,4 +55,10 @@ public class UserPreference {
         return Hawk.get(PreferenceConstants.DEVICE_TOKEN,null);
     }
 
+    public static void setLogin(boolean isLogin) {
+        Hawk.put(PreferenceConstants.IS_LOGIN, isLogin);
+    }
+    public static boolean isLogin() {
+       return Hawk.get(PreferenceConstants.IS_LOGIN, false);
+    }
 }

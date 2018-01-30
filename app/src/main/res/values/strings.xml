@@ -440,6 +440,7 @@
     <string name="about_us">About Us</string>
     <string name="help_support">Help &amp; Support</string>
     <string name="no_result_found">No Result Found</string>
+    <string name="logout">Logout</string>
 
 
     <string-array name="state_array">

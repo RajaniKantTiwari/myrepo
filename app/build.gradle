@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 
+apply plugin: 'io.fabric'
 android {
 
     signingConfigs {
@@ -106,9 +107,10 @@ dependencies {
     //end
 
     //firebase library
-    compile "com.google.firebase:firebase-crash:${project.fireBaseLibrary}"
-    compile "com.google.firebase:firebase-messaging:${project.fireBaseLibrary}"
-    compile "com.google.firebase:firebase-auth:${project.fireBaseLibrary}"
+    compile "com.google.firebase:firebase-core:${project.playServiceVersion}"
+    compile "com.google.firebase:firebase-crash:${project.playServiceVersion}"
+    compile "com.google.firebase:firebase-messaging:${project.playServiceVersion}"
+    compile "com.google.firebase:firebase-auth:${project.playServiceVersion}"
 //end
 
     //google play service
@@ -130,7 +132,10 @@ dependencies {
     //to get exact location
     compile 'io.nlopez.smartlocation:library:3.3.3'
     compile 'com.roughike:bottom-bar:2.3.1'
-    compile 'me.leolin:ShortcutBadger:1.1.2@aar'
+    compile 'me.leolin:ShortcutBadger:1.1.16@aar'
+    compile('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
+        transitive = true
+    }
 }
 // ADD THIS AT THE BOTTOM
 apply plugin: 'com.google.gms.google-services'

@@ -30,18 +30,14 @@ import com.app.community.network.response.dashboard.drawerresponse.Ingredient;
 import com.app.community.network.response.dashboard.drawerresponse.Recipe;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.base.BaseFragment;
-import com.app.community.ui.cart.ProductSubproductFragment;
 import com.app.community.ui.dashboard.expandrecycleview.draweradapter.DrawerAdapterRight;
-import com.app.community.ui.dashboard.home.MerchantDetailsFragment;
 import com.app.community.ui.dashboard.home.SearchActivity;
 import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.adapter.DrawerAdapterLeft;
-import com.app.community.ui.dashboard.home.fragment.CartFragment;
-import com.app.community.ui.dashboard.home.fragment.CheckoutFragment;
 import com.app.community.ui.dashboard.notification.NotificationFragment;
 import com.app.community.ui.dashboard.offer.OfferFragment;
 import com.app.community.ui.dashboard.user.UserFragment;
-import com.app.community.ui.newspaper.NewsPaperFragment;
+import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
@@ -88,8 +84,25 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     private DrawerAdapterLeft mDrawerAdapterLeft;
 
     @Override
-    public void onLeftDrawerItemClicked(int adapterPosition) {
-        showToast("Clicked " + adapterPosition);
+    public void onLeftDrawerItemClicked(int position) {
+        switch (position){
+            case AppConstants.HOME:
+
+                break;
+            case AppConstants.ORDER:
+                break;
+            case AppConstants.YOURADDRESS:
+                break;
+            case AppConstants.YOURCREDIT:
+                break;
+            case AppConstants.NOTIFICATION:
+                break;
+            case AppConstants.ABOUTUS:
+                break;
+            case AppConstants.HELPSUPPORT:
+                break;
+
+        }
     }
 
 
@@ -267,7 +280,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         DeviceTokenRequest request=new DeviceTokenRequest();
         request.setUserid(UserPreference.getUserId());
         DeviceToken token=new DeviceToken();
-        token.setDeveiceUniqId(CommonUtils.getDeviceId(this));
+        token.setDeveiceUniqId(CommonUtils.getDeviceUniqueId(this));
         token.setDeviceTokenId(UserPreference.getDeviceToken());
         token.setDeviceType(GeneralConstant.DEVICETYPE);
         request.setInfo(token);
@@ -278,7 +291,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         mBinding.toolBar.ivSearch.setOnClickListener(this);
         mBinding.toolBar.ivDrawer.setOnClickListener(this);
         mBinding.toolBar.ivRightDrawer.setOnClickListener(this);
-
+        mBinding.layoutDrawerLeft.layoutLogout.setOnClickListener(this);
     }
 
 
@@ -290,6 +303,8 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
             openDrawerRight();
         } else if (view == mBinding.toolBar.ivSearch) {
             ExplicitIntent.getsInstance().navigateTo(this, SearchActivity.class);
+        }else if(mBinding.layoutDrawerLeft.layoutLogout==view){
+            CommonUtils.logout();
         }
     }
 

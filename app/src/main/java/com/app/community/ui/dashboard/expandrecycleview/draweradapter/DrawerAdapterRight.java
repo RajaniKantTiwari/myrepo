@@ -19,7 +19,7 @@ import java.util.List;
 
 public class DrawerAdapterRight extends ExpandableRecyclerAdapter<Recipe, Ingredient, RecipeViewHolder, IngredientViewHolder> {
 
-    private static final int PARENT_VEGETARIAN = 0;
+    private static final int PARENT_LEVEL = 0;
     private static final int PARENT_NORMAL = 1;
     private static final int CHILD_VEGETARIAN = 2;
     private static final int CHILD_NORMAL = 3;
@@ -47,7 +47,7 @@ public class DrawerAdapterRight extends ExpandableRecyclerAdapter<Recipe, Ingred
             case PARENT_NORMAL:
                 recipeView = mInflater.inflate(R.layout.list_item_products, parentViewGroup, false);
                 break;
-            case PARENT_VEGETARIAN:
+            case PARENT_LEVEL:
                 recipeView = mInflater.inflate(R.layout.list_item_products, parentViewGroup, false);
                 break;
         }
@@ -92,7 +92,7 @@ public class DrawerAdapterRight extends ExpandableRecyclerAdapter<Recipe, Ingred
     @Override
     public int getParentViewType(int parentPosition) {
         if (mRecipeList.get(parentPosition).isVegetarian()) {
-            return PARENT_VEGETARIAN;
+            return PARENT_LEVEL;
         } else {
             return PARENT_NORMAL;
         }
@@ -110,7 +110,7 @@ public class DrawerAdapterRight extends ExpandableRecyclerAdapter<Recipe, Ingred
 
     @Override
     public boolean isParentViewType(int viewType) {
-        return viewType == PARENT_VEGETARIAN || viewType == PARENT_NORMAL;
+        return viewType == PARENT_LEVEL || viewType == PARENT_NORMAL;
     }
 
 }

@@ -22,13 +22,11 @@ import com.app.community.network.response.VerifyMobileResponse;
 import com.app.community.ui.dashboard.DashBoardActivity;
 import com.app.community.ui.dialogfragment.CustomDialogFragment;
 import com.app.community.ui.presenter.CommonPresenter;
-import com.app.community.utils.ApiConstants;
+import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.UserPreference;
-import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.google.android.gms.iid.InstanceID;
 
 import javax.inject.Inject;
 
@@ -119,7 +117,7 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
                 LoginResponse loginResponse = (LoginResponse) response;
                 if (isNotNull(loginResponse)) {
                     String type = loginResponse.getType();
-                    if (type.equals(ApiConstants.SUCCESS)) {
+                    if (type.equals(AppConstants.SUCCESS)) {
                         showToast(getResources().getString(R.string.otp_has_been_send));
                     }
                 }
@@ -134,10 +132,11 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
                     VerifyMobileResponse verifyMobileResponse = (VerifyMobileResponse) response;
                     if (isNotNull(verifyMobileResponse)) {
                         String status = verifyMobileResponse.getStatus();
-                        if (status.equals(ApiConstants.SUCCESS)) {
+                        if (status.equals(AppConstants.SUCCESS)) {
                             hideKeyboard();
                             UserPreference.setUserId(verifyMobileResponse.getId());
                             UserPreference.setToken(verifyMobileResponse.getAuthkey());
+                            UserPreference.setLogin(true);
                             showToast("Success");
                         } else {
                             hideKeyboard();

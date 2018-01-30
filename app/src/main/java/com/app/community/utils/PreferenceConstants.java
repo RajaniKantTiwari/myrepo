@@ -13,4 +13,5 @@ public interface PreferenceConstants {
     String NEWS_CONNECTED = "news_connected";
     String USER_ID = "userId";
     String DEVICE_TOKEN = "device_token";
+    String IS_LOGIN = "is_login";
 }

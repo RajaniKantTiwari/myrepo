@@ -91,4 +91,22 @@ public class CommonPresenter implements Presenter<MvpView> {
             }
         });
     }
+    public void get(Activity activity, LoginRequest loginRequest) {
+        mView.showProgress();
+        mRepository.getLoginDetail(loginRequest).
+                subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<LoginResponse>(activity) {
+            @Override
+            public void onResponse(LoginResponse response) {
+                mView.hideProgress();
+                mView.onSuccess(response, 2);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), 2);
+            }
+        });
+    }
 }

@@ -6,9 +6,7 @@ import com.app.community.injector.JsonExclusionStrategy;
 import com.app.community.injector.scope.PerApplication;
 import com.app.community.network.Repository;
 import com.app.community.network.RetrofitRepository;
-import com.app.community.utils.ApiConstants;
-import com.app.community.utils.PreferenceConstants;
-import com.app.community.utils.UserPreference;
+import com.app.community.utils.AppConstants;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -20,7 +18,6 @@ import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import com.orhanobut.hawk.Hawk;
 
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -57,7 +54,7 @@ public class NetworkModule {
             String accessToken ="NNiuaxxbisaDDajofrwTVL49R33tRDAV";
             if(accessToken!=null){
                 Request.Builder requestBuilder = original.newBuilder()
-                        .header(ApiConstants.AUTHORIZATION, "Bearer "+accessToken)
+                        .header(AppConstants.AUTHORIZATION, "Bearer "+accessToken)
                         .method(original.method(), original.body());
                 Request request = requestBuilder.build();
                 return chain.proceed(request);
