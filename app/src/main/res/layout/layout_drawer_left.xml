@@ -1,11 +1,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
+    <RelativeLayout
         style="@style/match_match"
-        android:background="@color/dark_black_color"
-        android:orientation="vertical">
+        android:background="@color/dark_black_color">
 
         <RelativeLayout
+            android:id="@+id/layoutIcon"
             style="@style/match_wrap"
             android:background="@color/color_drawer_header"
             android:minHeight="@dimen/margin_120"
@@ -65,22 +65,23 @@
         <android.support.v7.widget.RecyclerView
             android:padding="@dimen/margin_20"
             android:id="@+id/rvDrawer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-        <android.support.v4.widget.Space
-            style="@style/layout_ver_match_1"/>
+            android:layout_below="@+id/layoutIcon"
+            android:layout_above="@+id/layoutLogout"
+            style="@style/match_match" />
         <RelativeLayout
             android:id="@+id/layoutLogout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/margin_50"
-            android:layout_marginBottom="@dimen/margin_10">
+            android:layout_marginBottom="@dimen/margin_10"
+            android:layout_alignParentBottom="true">
             <com.app.community.widget.CustomTextView
                 android:id="@+id/tvLogout"
                 style="@style/textview_title_small_match"
+                android:paddingStart="@dimen/margin_20"
                 android:layout_centerVertical="true"
                 android:text="@string/logout"
                 android:textColor="@color/white" />
         </RelativeLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 </layout>

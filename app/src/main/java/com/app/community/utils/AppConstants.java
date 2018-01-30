@@ -13,7 +13,9 @@ import static com.app.community.utils.AppConstants.FRAGMENTS.CHECKOUT_FRAGMENT;
 
 public interface AppConstants {
    String AUTHORIZATION ="Authorization";
-    String SUCCESS = "sucess";
+    String SUCCESS = "success";
+    int DEVICE_TOKEN_RESPONSE = 1;
+    int RIGHT_DRAWER_RESPONSE = 2;
 
     @IntDef({CHECKOUT_FRAGMENT})
    @Retention(RetentionPolicy.SOURCE)

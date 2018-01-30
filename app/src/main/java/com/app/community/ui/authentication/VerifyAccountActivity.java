@@ -137,7 +137,6 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
                             UserPreference.setUserId(verifyMobileResponse.getId());
                             UserPreference.setToken(verifyMobileResponse.getAuthkey());
                             UserPreference.setLogin(true);
-                            showToast("Success");
                         } else {
                             hideKeyboard();
                             showToast(getResources().getString(R.string.server_error));

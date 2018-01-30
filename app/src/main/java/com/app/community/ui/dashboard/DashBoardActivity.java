@@ -28,6 +28,8 @@ import com.app.community.network.request.DeviceTokenRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.drawerresponse.Ingredient;
 import com.app.community.network.response.dashboard.drawerresponse.Recipe;
+import com.app.community.network.response.dashboard.rightdrawer.ProductSubCategory;
+import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.base.BaseFragment;
 import com.app.community.ui.dashboard.expandrecycleview.draweradapter.DrawerAdapterRight;
@@ -39,8 +41,10 @@ import com.app.community.ui.dashboard.offer.OfferFragment;
 import com.app.community.ui.dashboard.user.UserFragment;
 import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
+import com.app.community.utils.DashBoardHelper;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
+import com.app.community.utils.LogUtils;
 import com.app.community.utils.UserPreference;
 import com.app.community.widget.bottomnavigation.BottomNavigationBar;
 import com.app.community.widget.bottomnavigation.NavigationPage;
@@ -57,7 +61,7 @@ import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_SUBPRODU
 public class DashBoardActivity extends BaseActivity implements BottomNavigationBar.BottomNavigationMenuClickListener,
         BaseFragment.FragmentNavigation, FragNavController.TransactionListener, FragNavController.RootFragmentListener,
         DrawerAdapterLeft.DrawerLeftListener, DrawerAdapterRight.ProductSubHolderListener {
-
+    private static String TAG=DashBoardActivity.class.getSimpleName();
     //Better convention to properly name the indices what they are in your app
     private final int HOME = FragNavController.TAB1;
     private final int OFFER = FragNavController.TAB2;
@@ -170,7 +174,6 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         switch (position) {
             case HOME:
                 mNavController.switchTab(HOME);
-                //mNavController.clearStack();
                 break;
             case OFFER:
                 mNavController.switchTab(OFFER);
@@ -265,7 +268,14 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
+        if(requestCode==AppConstants.RIGHT_DRAWER_RESPONSE){
+            if(CommonUtils.isNotNull(response)&&response instanceof ProductTypeData){
+                ArrayList<ProductSubCategory> responseList = DashBoardHelper.setRightDrawerData((ProductTypeData) response);
 
+            }
+        }else if(requestCode==AppConstants.DEVICE_TOKEN_RESPONSE){
+            LogUtils.LOGE(TAG,response.getMsg());
+        }
     }
 
 

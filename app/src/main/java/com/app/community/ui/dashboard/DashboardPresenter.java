@@ -1,16 +1,15 @@
 package com.app.community.ui.dashboard;
 
 import android.app.Activity;
-import android.widget.Toast;
 
 
 import com.app.community.network.DefaultApiObserver;
-import com.app.community.network.DeviceToken;
 import com.app.community.network.Repository;
 import com.app.community.network.request.DeviceTokenRequest;
 import com.app.community.network.request.cart.CartRequest;
 import com.app.community.network.request.cart.CategoryRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
+import com.app.community.network.request.dashboard.ProductRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.cart.CategoryResponse;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
@@ -19,7 +18,7 @@ import com.app.community.network.response.dashboard.home.WelcomeHomeData;
 import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
 import com.app.community.ui.base.MvpView;
 import com.app.community.ui.base.Presenter;
-import com.app.community.ui.cart.ProductSubproductFragment;
+import com.app.community.utils.AppConstants;
 import com.app.community.utils.LogUtils;
 
 import javax.inject.Inject;
@@ -155,19 +154,35 @@ public class DashboardPresenter implements Presenter<MvpView> {
             @Override
             public void onResponse(ProductTypeData response) {
                 mView.hideProgress();
-                mView.onSuccess(response,1);
+                mView.onSuccess(response, AppConstants.RIGHT_DRAWER_RESPONSE);
             }
 
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMsg(),1);
+                mView.onError(baseResponse.getMsg(),AppConstants.RIGHT_DRAWER_RESPONSE);
             }
         });
     }
 
-    public void setDeviceToken(Activity activity,DeviceTokenRequest token) {
+    public void setDeviceToken(Activity activity, DeviceTokenRequest token) {
         mRepository.setDeviceToken(token).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+            @Override
+            public void onResponse(BaseResponse response) {
+                mView.hideProgress();
+                mView.onSuccess(response,AppConstants.DEVICE_TOKEN_RESPONSE);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(),AppConstants.DEVICE_TOKEN_RESPONSE);
+            }
+        });
+    }
+
+    public void getProductDetails(Activity activity, ProductRequest request) {
+        mRepository.getProductDetail(request).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
             @Override
             public void onResponse(BaseResponse response) {
                 mView.hideProgress();

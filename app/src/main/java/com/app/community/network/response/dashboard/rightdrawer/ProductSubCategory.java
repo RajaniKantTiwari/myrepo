@@ -9,6 +9,25 @@ import java.util.ArrayList;
 public class ProductSubCategory {
     private String id;
     private String subcat;
+    private String displayorder;
+    private boolean isCategory;
+
+    public String getDisplayorder() {
+        return displayorder;
+    }
+
+    public void setDisplayorder(String displayorder) {
+        this.displayorder = displayorder;
+    }
+
+    public boolean isCategory() {
+        return isCategory;
+    }
+
+    public void setCategory(boolean category) {
+        isCategory = category;
+    }
+
     private ArrayList<Merchant> merchantname;
 
     public String getId() {
