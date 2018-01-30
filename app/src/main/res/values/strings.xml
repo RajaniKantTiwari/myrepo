@@ -12,7 +12,7 @@
     <string name="server_error">Server Error</string>
     <!-- setting Map Key Here-->
     <!--<string name="google_api_key">AIzaSyARxWYiJxPPGiVAzsO-v4aA_Shfjzckjwg</string>-->
-    <string name="google_api_key">AIzaSyDWNa4ZMLduib0GGSgYeIv_-FTp6v6bxrI</string>
+    <string name="google_application_key">AIzaSyDWNa4ZMLduib0GGSgYeIv_-FTp6v6bxrI</string>
 
 <!-- end -->
 

@@ -8,7 +8,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
-
+        classpath 'com.google.gms:google-services:3.1.0'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -19,6 +19,29 @@ allprojects {
         google()
         jcenter()
     }
+
+}
+
+ext {
+    //supportLibrary Version
+    supportLibrary = '26.1.0'
+
+    //Play services Version
+    playServiceVersion = '11.4.2'
+
+    //fireBase Version
+    fireBaseLibrary = '11.4.2'
+
+    //leakCanary Version
+    leakCanaryLibrary = '1.5'
+
+    //Retrofit Version
+    retrofitVersion = '2.3.0'
+
+    //Glide Version
+    glideVersion = '3.7.0'
+
+    reactVersion = '2.0.1'
 
 }
 

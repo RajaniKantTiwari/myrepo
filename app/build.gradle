@@ -67,44 +67,23 @@ android {
         enabled = true
     }
 }
-ext {
-    //supportLibrary Version
-    supportLibrary = '26.1.0'
 
-    //Play services Version
-    playServiceVersion = '11.4.2'
-
-    //fireBase Version
-    fireBaseLibrary = '11.4.2'
-
-    //leakCanary Version
-    leakCanaryLibrary = '1.5'
-
-    //Retrofit Version
-    retrofitVersion = '2.3.0'
-
-    //Glide Version
-    glideVersion = '3.7.0'
-
-    reactVersion = '2.0.1'
-
-}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //Google Support libs
-    implementation "com.android.support:design:${supportLibrary}"
-    implementation "com.android.support:recyclerview-v7:${supportLibrary}"
-    implementation "com.android.support:cardview-v7:${supportLibrary}"
-    implementation "com.android.support:appcompat-v7:${supportLibrary}"
-    implementation "com.android.support:support-annotations:${supportLibrary}"
+    implementation "com.android.support:design:${project.supportLibrary}"
+    implementation "com.android.support:recyclerview-v7:${project.supportLibrary}"
+    implementation "com.android.support:cardview-v7:${project.supportLibrary}"
+    implementation "com.android.support:appcompat-v7:${project.supportLibrary}"
+    implementation "com.android.support:support-annotations:${project.supportLibrary}"
     //end
 
     //multidex application support lib
     compile 'com.android.support:multidex:1.0.2'
 
     //glide support lib
-    compile "com.github.bumptech.glide:glide:${glideVersion}"
+    compile "com.github.bumptech.glide:glide:${project.glideVersion}"
     //end
 
     //hawk support library
@@ -127,23 +106,16 @@ dependencies {
     //end
 
     //firebase library
-    compile "com.google.firebase:firebase-core:${fireBaseLibrary}"
-    compile "com.google.firebase:firebase-auth:${fireBaseLibrary}"
-    compile "com.google.firebase:firebase-crash:${fireBaseLibrary}"
-    compile "com.google.firebase:firebase-messaging:${fireBaseLibrary}"
-    compile "com.google.firebase:firebase-invites:${fireBaseLibrary}"
+    compile "com.google.firebase:firebase-crash:${project.fireBaseLibrary}"
+    compile "com.google.firebase:firebase-messaging:${project.fireBaseLibrary}"
+    compile "com.google.firebase:firebase-auth:${project.fireBaseLibrary}"
 //end
 
     //google play service
-    compile "com.google.android.gms:play-services-location:${playServiceVersion}"
-    compile "com.google.android.gms:play-services-vision:${playServiceVersion}"
-    compile "com.google.android.gms:play-services-auth:${playServiceVersion}"
-    compile "com.google.android.gms:play-services-plus:${playServiceVersion}"
-    compile "com.google.android.gms:play-services-analytics:${playServiceVersion}"
-    compile "com.google.android.gms:play-services-maps:${playServiceVersion}"
-    compile "com.google.android.gms:play-services-ads:${playServiceVersion}"
-    compile "com.google.android.gms:play-services:${playServiceVersion}"
-    compile "com.google.android.gms:play-services-gcm:${playServiceVersion}"
+    compile "com.google.android.gms:play-services-location:${project.playServiceVersion}"
+    compile "com.google.android.gms:play-services-maps:${project.playServiceVersion}"
+    compile "com.google.android.gms:play-services-gcm:${project.playServiceVersion}"
+    compile "com.google.android.gms:play-services-places:${project.playServiceVersion}"
     //
     compile 'me.relex:circleindicator:1.2.2@aar'
     compile 'com.mikepenz:fontawesome-typeface:4.7.0.0@aar'
@@ -158,4 +130,7 @@ dependencies {
     //to get exact location
     compile 'io.nlopez.smartlocation:library:3.3.3'
     compile 'com.roughike:bottom-bar:2.3.1'
+    compile 'me.leolin:ShortcutBadger:1.1.2@aar'
 }
+// ADD THIS AT THE BOTTOM
+apply plugin: 'com.google.gms.google-services'
