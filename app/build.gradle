@@ -143,6 +143,7 @@ dependencies {
     compile "com.google.android.gms:play-services-maps:${playServiceVersion}"
     compile "com.google.android.gms:play-services-ads:${playServiceVersion}"
     compile "com.google.android.gms:play-services:${playServiceVersion}"
+    compile "com.google.android.gms:play-services-gcm:${playServiceVersion}"
     //
     compile 'me.relex:circleindicator:1.2.2@aar'
     compile 'com.mikepenz:fontawesome-typeface:4.7.0.0@aar'

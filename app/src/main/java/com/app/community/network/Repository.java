@@ -1,5 +1,6 @@
 package com.app.community.network;
 
+import com.app.community.network.request.DeviceTokenRequest;
 import com.app.community.network.request.LoginRequest;
 import com.app.community.network.request.VerifyMobileRequest;
 import com.app.community.network.request.cart.CartRequest;
@@ -52,4 +53,6 @@ public interface Repository {
     Observable<WelcomeHomeData> getWelcomeHomePage();
 
     Observable<ProductTypeData> getCategorySubCategoryRightDrawer();
+
+    Observable<BaseResponse> setDeviceToken(DeviceTokenRequest token);
 }

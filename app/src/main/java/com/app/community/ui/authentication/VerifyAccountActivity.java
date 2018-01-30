@@ -27,6 +27,8 @@ import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.UserPreference;
+import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.google.android.gms.iid.InstanceID;
 
 import javax.inject.Inject;
 
@@ -34,14 +36,14 @@ import javax.inject.Inject;
  * Created by on 23/12/17.
  */
 
-public class VerifyAccountActivity extends CommonActivity implements TextWatcher, View.OnKeyListener,CustomDialogFragment.CustomDialogListener {
+public class VerifyAccountActivity extends CommonActivity implements TextWatcher, View.OnKeyListener, CustomDialogFragment.CustomDialogListener {
     private ActivityVerifyAccountBinding mBinding;
     StringBuilder otpNumber = new StringBuilder();
     @Inject
     CommonPresenter presenter;
     private String mobileNumber;
     private String userName;
-    private String addroidId;
+    private static String TAG =VerifyAccountActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,29 +78,25 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
         Intent intent = getIntent();
         if (isNotNull(intent)) {
             Bundle bundle = intent.getExtras();
-            addroidId=CommonUtils.getDeviceId(this);
             if (isNotNull(bundle)) {
                 mobileNumber = bundle.getString(GeneralConstant.MOBILE_NUMBER);
                 userName = bundle.getString(GeneralConstant.USER_NAME);
-
-
             }
         }
-
     }
 
     @Override
     public void onClick(View view) {
         if (view == mBinding.tvResend) {
             CommonUtils.clicked(mBinding.tvResend);
-            presenter.getLoginDetail(this,new LoginRequest(userName,mobileNumber,
+            presenter.getLoginDetail(this, new LoginRequest(userName, mobileNumber,
                     UserPreference.getLatitude(), UserPreference.getLongitude()));
         } else if (view == mBinding.tvChange) {
             //CommonUtils.clicked(mBinding.tvChange);
-            Bundle bundle=new Bundle();
-            bundle.putString(GeneralConstant.TITLE,getResources().getString(R.string.please_enter_mobile_number));
-            bundle.putBoolean(GeneralConstant.VISIBLE,true);
-            CommonUtils.showDialog(this,bundle,this);
+            Bundle bundle = new Bundle();
+            bundle.putString(GeneralConstant.TITLE, getResources().getString(R.string.please_enter_mobile_number));
+            bundle.putBoolean(GeneralConstant.VISIBLE, true);
+            CommonUtils.showDialog(this, bundle, this);
         }
     }
 
@@ -110,18 +108,18 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
         } else if (requestCode == 2) {
             getOtp(response);
         }
-        if(CommonApplication.isDebug){
+        if (CommonApplication.isDebug) {
             ExplicitIntent.getsInstance().navigateTo(this, DashBoardActivity.class);
         }
     }
 
     private void getOtp(BaseResponse response) {
-        if(isNotNull(response)){
-            if(response instanceof LoginResponse){
-                LoginResponse loginResponse=(LoginResponse)response;
-                if(isNotNull(loginResponse)){
-                    String type=loginResponse.getType();
-                    if(type.equals(ApiConstants.SUCCESS)){
+        if (isNotNull(response)) {
+            if (response instanceof LoginResponse) {
+                LoginResponse loginResponse = (LoginResponse) response;
+                if (isNotNull(loginResponse)) {
+                    String type = loginResponse.getType();
+                    if (type.equals(ApiConstants.SUCCESS)) {
                         showToast(getResources().getString(R.string.otp_has_been_send));
                     }
                 }
@@ -221,8 +219,8 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
 
     @Override
     public void ok(String str) {
-        mobileNumber=str;
-        presenter.getLoginDetail(this,new LoginRequest(userName,mobileNumber,
+        mobileNumber = str;
+        presenter.getLoginDetail(this, new LoginRequest(userName, mobileNumber,
                 UserPreference.getLatitude(), UserPreference.getLongitude()));
         hideKeyboard();
     }

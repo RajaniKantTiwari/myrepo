@@ -23,6 +23,8 @@ import com.app.community.fragnav.tabhistory.FragNavTabHistoryController;
 import com.app.community.injector.component.DaggerDashboardComponent;
 import com.app.community.injector.component.DashboardComponent;
 import com.app.community.injector.module.DashboardModule;
+import com.app.community.network.DeviceToken;
+import com.app.community.network.request.DeviceTokenRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.drawerresponse.Ingredient;
 import com.app.community.network.response.dashboard.drawerresponse.Recipe;
@@ -40,7 +42,10 @@ import com.app.community.ui.dashboard.notification.NotificationFragment;
 import com.app.community.ui.dashboard.offer.OfferFragment;
 import com.app.community.ui.dashboard.user.UserFragment;
 import com.app.community.ui.newspaper.NewsPaperFragment;
+import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
+import com.app.community.utils.GeneralConstant;
+import com.app.community.utils.UserPreference;
 import com.app.community.widget.bottomnavigation.BottomNavigationBar;
 import com.app.community.widget.bottomnavigation.NavigationPage;
 
@@ -259,6 +264,14 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
 
     public void initializeData() {
        mPresenter.getCategorySubCategoryRightDrawer(this);
+        DeviceTokenRequest request=new DeviceTokenRequest();
+        request.setUserid(UserPreference.getUserId());
+        DeviceToken token=new DeviceToken();
+        token.setDeveiceUniqId(CommonUtils.getDeviceId(this));
+        token.setDeviceTokenId(UserPreference.getDeviceToken());
+        token.setDeviceType(GeneralConstant.DEVICETYPE);
+        request.setInfo(token);
+        mPresenter.setDeviceToken(this,request);
     }
 
     public void setListener() {

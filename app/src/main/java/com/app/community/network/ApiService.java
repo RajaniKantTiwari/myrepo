@@ -2,6 +2,7 @@ package com.app.community.network;
 
 
 
+import com.app.community.network.request.DeviceTokenRequest;
 import com.app.community.network.request.LoginRequest;
 import com.app.community.network.request.VerifyMobileRequest;
 import com.app.community.network.request.cart.CartRequest;
@@ -65,4 +66,7 @@ public interface ApiService {
 
     @GET("common/menulist")
     Observable<ProductTypeData> getCategorySubCategoryRightDrawer();
+
+    @POST("push/gettoken")
+    Observable<BaseResponse> setDeviceToken(@Body DeviceTokenRequest token);
 }

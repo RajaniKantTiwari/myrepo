@@ -47,4 +47,12 @@ public class UserPreference {
     public static int getUserId() {
        return Hawk.get(PreferenceConstants.USER_ID,0);
     }
+
+    public static void setDeviceToken(String token) {
+        Hawk.put(PreferenceConstants.DEVICE_TOKEN, token);
+    }
+    public static String getDeviceToken() {
+        return Hawk.get(PreferenceConstants.DEVICE_TOKEN,null);
+    }
+
 }

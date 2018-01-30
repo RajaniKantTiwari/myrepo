@@ -1,5 +1,6 @@
 package com.app.community.network;
 
+import com.app.community.network.request.DeviceTokenRequest;
 import com.app.community.network.request.LoginRequest;
 import com.app.community.network.request.VerifyMobileRequest;
 import com.app.community.network.request.cart.CartRequest;
@@ -91,5 +92,10 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<ProductTypeData> getCategorySubCategoryRightDrawer() {
         return apiService.getCategorySubCategoryRightDrawer();
+    }
+
+    @Override
+    public Observable<BaseResponse> setDeviceToken(DeviceTokenRequest token) {
+        return apiService.setDeviceToken(token);
     }
 }

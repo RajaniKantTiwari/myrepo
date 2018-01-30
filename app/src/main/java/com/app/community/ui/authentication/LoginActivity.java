@@ -2,6 +2,7 @@ package com.app.community.ui.authentication;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.app.community.R;
@@ -16,6 +17,8 @@ import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.UserPreference;
+import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.google.android.gms.iid.InstanceID;
 
 import javax.inject.Inject;
 
@@ -40,6 +43,17 @@ public class LoginActivity extends CommonActivity implements MvpView, View.OnCli
     }
 
     public void initializeData() {
+        try {
+            InstanceID instanceID = InstanceID.getInstance(this);
+
+            /*String token = instanceID.getToken(getString(R.string.gcm_defaultSenderId),
+                    GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);*/
+
+            //Log.i(TAG, "GCM Registration Token: " + token);
+
+        } catch (Exception e) {
+            Log.d(TAG, "Failed to complete token refresh", e);
+        }
     }
 
     @Override

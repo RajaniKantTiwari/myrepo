@@ -12,4 +12,5 @@ public interface PreferenceConstants {
     String USER_LONGITUDE = "user_longitude";
     String NEWS_CONNECTED = "news_connected";
     String USER_ID = "userId";
+    String DEVICE_TOKEN = "device_token";
 }

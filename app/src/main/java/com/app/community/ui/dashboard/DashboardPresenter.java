@@ -5,7 +5,9 @@ import android.widget.Toast;
 
 
 import com.app.community.network.DefaultApiObserver;
+import com.app.community.network.DeviceToken;
 import com.app.community.network.Repository;
+import com.app.community.network.request.DeviceTokenRequest;
 import com.app.community.network.request.cart.CartRequest;
 import com.app.community.network.request.cart.CategoryRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
@@ -160,6 +162,22 @@ public class DashboardPresenter implements Presenter<MvpView> {
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
                 mView.onError(baseResponse.getMsg(),1);
+            }
+        });
+    }
+
+    public void setDeviceToken(Activity activity,DeviceTokenRequest token) {
+        mRepository.setDeviceToken(token).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+            @Override
+            public void onResponse(BaseResponse response) {
+                mView.hideProgress();
+                mView.onSuccess(response,2);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(),2);
             }
         });
     }
