@@ -1,11 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     style="@style/wrap_wrap">
     <ImageView
         android:id="@+id/ivPlace"
-        style="@style/image_90_80"
+        style="@style/image_70"
         android:src="@drawable/ambulance"/>
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="@dimen/margin_70"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/margin_4"
+        android:background="@color/background_tranparent">
+        <com.app.community.widget.CustomTextView
+            android:id="@+id/tvServiceType"
+            style="@style/textview_description_wrap"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize_very_small"/>
+        <com.app.community.widget.CustomTextView
+            android:id="@+id/tvPhoneNumber"
+            style="@style/textview_description_wrap"
+            android:textSize="@dimen/textsize_very_small"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</RelativeLayout>
 </layout>

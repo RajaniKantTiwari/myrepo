@@ -54,6 +54,7 @@
     <dimen name="button_small">11sp</dimen>
     <dimen name="button_medium">12sp</dimen>
     <dimen name="button_large">13sp</dimen>
+    <dimen name="textsize_very_small">6sp</dimen>
 
 
     <dimen name="default_padding">4dp</dimen>
