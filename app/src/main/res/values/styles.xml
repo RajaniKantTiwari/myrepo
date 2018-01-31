@@ -279,6 +279,7 @@
     </style>
 
 
+
     <style name="textview_header_wrap" parent="wrap_wrap">
         <item name="android:textSize">@dimen/textSize_header</item>
         <item name="android:textColor">@color/black</item>
@@ -482,6 +483,10 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="drawer_style" parent="match_wrap">
+        <item name="android:layout_height">@dimen/drawerview_height</item>
     </style>
 
     <dimen name="margin_35">35dp</dimen>

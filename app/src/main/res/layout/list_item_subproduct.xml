@@ -4,8 +4,7 @@
 
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/layoutChild"
-        style="@style/match_wrap"
-        android:layout_height="@dimen/margin_35"
+        style="@style/drawer_style"
         android:layout_marginStart="@dimen/margin_16"
         android:layout_marginEnd="@dimen/margin_15"
         android:orientation="vertical">
