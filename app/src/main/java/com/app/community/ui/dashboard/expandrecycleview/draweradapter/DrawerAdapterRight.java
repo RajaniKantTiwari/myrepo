@@ -30,7 +30,7 @@ public class DrawerAdapterRight extends ExpandableRecyclerAdapter<ProductSubCate
     public interface ProductSubHolderListener{
         void onSubItemClicked(int parentPosition, int childPosition);
     }
-    public DrawerAdapterRight(Context context, @NonNull List<ProductSubCategory> subCatList, ProductSubHolderListener listener) {
+    public DrawerAdapterRight(Context context, List<ProductSubCategory> subCatList, ProductSubHolderListener listener) {
         super(subCatList);
         mSubCatList = subCatList;
         this.listener=listener;

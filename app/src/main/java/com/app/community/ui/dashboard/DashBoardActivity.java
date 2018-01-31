@@ -271,8 +271,13 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
             if(CommonUtils.isNotNull(response)&&response instanceof ProductTypeData){
                 this.responseList.clear();
                 ArrayList<ProductSubCategory> responseList = DashBoardHelper.setRightDrawerData((ProductTypeData) response);
-                this.responseList.addAll(responseList);
-                mDrawerAdapterRight.notifyDataSetChanged();
+                LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+                mDrawerAdapterRight = new DrawerAdapterRight(this, responseList, this);
+                mBinding.layoutDrawerRight.rvDrawer.setLayoutManager(layoutManager);
+                mBinding.layoutDrawerRight.rvDrawer.setAdapter(mDrawerAdapterRight);
+
+                //this.responseList.addAll(responseList);
+                //mDrawerAdapterRight.notifyDataSetChanged();
             }
         }else if(requestCode==AppConstants.DEVICE_TOKEN_RESPONSE){
             LogUtils.LOGE(TAG,response.getMsg());
@@ -347,9 +352,9 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
             ((DefaultItemAnimator) animator).setSupportsChangeAnimations(false);
         }
         //setListItem();
-        mDrawerAdapterRight = new DrawerAdapterRight(this, responseList, this);
+        /*mDrawerAdapterRight = new DrawerAdapterRight(this, responseList, this);
         mBinding.layoutDrawerRight.rvDrawer.setLayoutManager(layoutManager);
-        mBinding.layoutDrawerRight.rvDrawer.setAdapter(mDrawerAdapterRight);
+        mBinding.layoutDrawerRight.rvDrawer.setAdapter(mDrawerAdapterRight);*/
     }
 
 
