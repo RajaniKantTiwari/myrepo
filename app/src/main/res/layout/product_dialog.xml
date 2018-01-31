@@ -1,79 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <data>
+
         <variable
             name="merchantResponse"
-            type="com.app.community.network.response.dashboard.home.MerchantResponse"/>
+            type="com.app.community.network.response.dashboard.home.MerchantResponse" />
     </data>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/match_wrap"
-    android:gravity="center"
-    android:layout_marginEnd="@dimen/margin_12"
-    android:layout_marginStart="@dimen/margin_13"
-    android:layout_marginTop="@dimen/margin_15">
 
-    <android.support.v7.widget.CardView
-        android:layout_width="307dp"
-        android:layout_height="wrap_content"
-        android:elevation="@dimen/margin_5"
-        app:cardCornerRadius="@dimen/margin_4">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        style="@style/match_wrap"
+        android:layout_marginEnd="@dimen/margin_12"
+        android:layout_marginStart="@dimen/margin_13"
+        android:layout_marginTop="@dimen/margin_15"
+        android:gravity="center">
 
-        <LinearLayout
-            style="@style/match_match"
-            android:layout_marginBottom="@dimen/margin_25"
-            android:layout_marginEnd="@dimen/margin_10"
-            android:layout_marginStart="@dimen/margin_31"
-            android:layout_marginTop="@dimen/margin_25"
-            android:orientation="vertical">
-
-            <com.app.community.widget.CustomTextView
-                android:id="@+id/tvTitle"
-                style="@style/match_wrap"
-                android:textAllCaps="true"
-                android:textColor="@color/color_blue"
-                android:textSize="@dimen/textSize_13"
-                app:customFont="@string/font_bold" />
+        <android.support.v7.widget.CardView
+            android:layout_width="307dp"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/margin_5"
+            app:cardCornerRadius="@dimen/margin_4">
 
             <LinearLayout
-                android:id="@+id/layoutDate"
-                style="@style/match_wrap"
-                android:layout_marginTop="@dimen/margin_22"
-                android:gravity="center_vertical">
+                style="@style/match_match"
+                android:layout_marginBottom="@dimen/margin_25"
+                android:layout_marginEnd="@dimen/margin_10"
+                android:layout_marginStart="@dimen/margin_31"
+                android:layout_marginTop="@dimen/margin_25"
+                android:orientation="vertical">
+
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvTitle"
+                    style="@style/textview_description_large_wrap"
+                    android:textAllCaps="true"
+                    android:textColor="@color/color_blue" />
 
                 <LinearLayout
+                    android:id="@+id/layoutDate"
                     style="@style/match_wrap"
-                    android:layout_marginStart="@dimen/margin_20"
-                    android:orientation="vertical">
-                    <com.app.community.widget.CustomTextView
-                        android:id="@+id/tvTime"
-                        style="@style/wrap_wrap"
-                        android:textColor="@color/background"
-                        android:textSize="@dimen/textSize_12"
-                        app:customFont="@string/font_bold" />
-                </LinearLayout>
-            </LinearLayout>
+                    android:layout_marginTop="@dimen/margin_22"
+                    android:gravity="center_vertical">
 
-            <LinearLayout
-                android:id="@+id/layoutLocation"
-                style="@style/match_wrap"
-                android:layout_marginTop="@dimen/margin_19"
-                android:gravity="center_vertical">
+                    <LinearLayout
+                        style="@style/match_wrap"
+                        android:layout_marginStart="@dimen/margin_20"
+                        android:orientation="vertical">
+
+                        <com.app.community.widget.CustomTextView
+                            android:id="@+id/tvTime"
+                            style="@style/textview_description_wrap"
+                            android:textColor="@color/background" />
+                    </LinearLayout>
+                </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/layoutLocation"
                     style="@style/match_wrap"
-                    android:layout_marginStart="@dimen/margin_22"
-                    android:orientation="vertical">
+                    android:layout_marginTop="@dimen/margin_19"
+                    android:gravity="center_vertical">
 
-                    <com.app.community.widget.CustomTextView
-                        android:id="@+id/tvLocation"
-                        style="@style/wrap_wrap"
-                        android:textColor="@color/background"
-                        android:textSize="@dimen/textSize_12"
-                        app:customFont="@string/font_bold" />
+                    <LinearLayout
+                        style="@style/match_wrap"
+                        android:layout_marginStart="@dimen/margin_22"
+                        android:orientation="vertical">
+
+                        <com.app.community.widget.CustomTextView
+                            android:id="@+id/tvLocation"
+                            style="@style/textview_description_wrap"
+                            android:textColor="@color/background" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
-</LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
 </layout>

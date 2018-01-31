@@ -5,7 +5,6 @@
 
     <dimen name="margin_1">1dp</dimen>
     <dimen name="margin_1_5">1.5dp</dimen>
-
     <dimen name="margin_2">2dp</dimen>
     <dimen name="margin_3">3dp</dimen>
     <dimen name="margin_4">4dp</dimen>
@@ -31,43 +30,25 @@
     <dimen name="margin_24">24dp</dimen>
     <dimen name="margin_25">25dp</dimen>
     <dimen name="margin_56">56dp</dimen>
-
     <dimen name="margin_60">60dp</dimen>
+    <dimen name="textSize_app_name">28sp</dimen>
 
-
-    <dimen name="textSize_10">10sp</dimen>
-    <dimen name="textSize_11">11sp</dimen>
-    <dimen name="textSize_12">12sp</dimen>
-    <dimen name="textSize_13">13sp</dimen>
-    <dimen name="textSize_14">14sp</dimen>
-    <dimen name="textSize_15">15sp</dimen>
-    <dimen name="textSize_16">16sp</dimen>
-    <dimen name="textSize_17">17sp</dimen>
-    <dimen name="textSize_18">18sp</dimen>
-    <dimen name="textSize_19">19sp</dimen>
-    <dimen name="textSize_20">20sp</dimen>
-
-
-    <dimen name="textSize_header_large">23sp</dimen>
-
-    <dimen name="textSize_header">20sp</dimen>
+    <dimen name="textSize_header_large">21sp</dimen>
+    <dimen name="textSize_header">19sp</dimen>
     <dimen name="textSize_header_small">17sp</dimen>
-
-    <dimen name="textSize_title">16sp</dimen>
-    <dimen name="textSize_title_small">15sp</dimen>
-
-    <dimen name="textSize_description_ex_large">14sp</dimen>
+    <dimen name="textSize_header_smaller">16sp</dimen>
+    <dimen name="textSize_title">15sp</dimen>
+    <dimen name="textSize_title_small">14sp</dimen>
+    <dimen name="textSize_description_ex_large">13sp</dimen>
     <dimen name="textSize_description_large">12sp</dimen>
-    <dimen name="textSize_description">12sp</dimen>
-    <dimen name="textSize_description_small">11sp</dimen>
-    <dimen name="textSize_description_smaller">9sp</dimen>
-    <dimen name="edit_textSize_larger">15sp</dimen>
-    <dimen name="edit_textSize_large">14sp</dimen>
+    <dimen name="textSize_description">11sp</dimen>
+    <dimen name="textSize_description_small">10sp</dimen>
+    <dimen name="textSize_description_smaller">8.3sp</dimen>
+    <dimen name="edit_textSize_larger">14sp</dimen>
+    <dimen name="edit_textSize_large">13sp</dimen>
     <dimen name="edit_textSize_medium">12sp</dimen>
-    <dimen name="edit_textSize_small">12sp</dimen>
-    <dimen name="edit_textSize_smaller">11sp</dimen>
-
-
+    <dimen name="edit_textSize_small">11sp</dimen>
+    <dimen name="edit_textSize_smaller">10sp</dimen>
     <dimen name="button_very_small">9sp</dimen>
     <dimen name="button_smaller">10sp</dimen>
     <dimen name="button_small">11sp</dimen>
@@ -84,8 +65,6 @@
     <dimen name="tab_height">56dp</dimen>
 
     <dimen name="profile_size">100dp</dimen>
-    <dimen name="textSize_28">28sp</dimen>
-    <dimen name="textSize_25">25sp</dimen>
     <dimen name="location_card_height">300dp</dimen>
     <dimen name="margin_50">50dp</dimen>
     <dimen name="margin_30">30dp</dimen>
@@ -93,14 +72,11 @@
     <dimen name="margin_100">100dp</dimen>
     <dimen name="margin_70">70dp</dimen>
     <dimen name="margin_200">200dp</dimen>
-    <dimen name="textSize_22">22sp</dimen>
-    <dimen name="textSize_24">24sp</dimen>
     <dimen name="margin_80">80dp</dimen>
     <dimen name="margin_120">120dp</dimen>
     <dimen name="margin_140">140dp</dimen>
     <dimen name="margin_65">65dp</dimen>
     <dimen name="margin_150">150dp</dimen>
-    <dimen name="textSize_8">8sp</dimen>
     <dimen name="margin_5_minus">-5dp</dimen>
     <dimen name="margin_270">270dp</dimen>
     <dimen name="margin_118">118dp</dimen>

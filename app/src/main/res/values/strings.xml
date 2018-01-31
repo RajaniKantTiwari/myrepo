@@ -442,6 +442,7 @@
     <string name="no_result_found">No Result Found</string>
     <string name="logout">Logout</string>
     <string name="no_data_found">No Data Found</string>
+    <string name="subscribe">Subscribe</string>
 
 
     <string-array name="state_array">

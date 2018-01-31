@@ -16,7 +16,7 @@
                 style="@style/wrap_wrap"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_horizontal"
-                android:textSize="@dimen/textSize_18"
+                android:textSize="@dimen/textSize_header_smaller"
                 android:textColor="@color/color_blue"
                 app:customFont="@string/font_bold" />
             <ImageView style="@style/view_layout" />
@@ -28,7 +28,7 @@
                 android:paddingTop="@dimen/margin_5"
                 android:hint="@string/mobileNumber"
                 android:gravity="center_horizontal"
-                android:textSize="@dimen/textSize_18"
+                android:textSize="@dimen/textSize_header_smaller"
                 app:customFont="@string/font_bold"
                 android:inputType="number"
                 android:visibility="gone"/>
@@ -42,7 +42,7 @@
                     style="@style/wrap_wrap"
                     android:layout_marginStart="@dimen/margin_30"
                     android:text="@string/cancel"
-                    android:textSize="@dimen/textSize_20"
+                    android:textSize="@dimen/textSize_header"
                     app:customFont="@string/font_regular"
                     android:textColor="@color/color_blue"
                     android:layout_weight="1"
@@ -54,7 +54,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="@dimen/margin_30"
                     android:text="@string/ok"
-                    android:textSize="@dimen/textSize_20"
+                    android:textSize="@dimen/textSize_header"
                     app:customFont="@string/font_bold"
                     android:textColor="@color/color_blue"
                     android:layout_weight="1"

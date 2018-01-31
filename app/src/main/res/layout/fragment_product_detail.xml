@@ -67,14 +67,13 @@
                             android:background="@color/white"/>
 
                         <com.app.community.widget.CustomTextView
-                            style="@style/wrap_wrap"
+                            style="@style/textview_description_wrap"
                             android:layout_marginStart="@dimen/margin_5"
                             android:drawablePadding="@dimen/margin_5"
                             android:drawableStart="@drawable/location_pin"
                             android:gravity="center_vertical"
                             android:text="@{CommonUtils.twoDecimalPlaceString(merchantResponse.distance)}"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/textSize_12"
                             app:customFont="@string/font_bold" />
                     </LinearLayout>
                 </LinearLayout>
@@ -91,13 +90,12 @@
 
 
                     <com.app.community.widget.CustomTextView
-                        style="@style/wrap_wrap"
+                        style="@style/textview_description_wrap"
                         android:layout_marginBottom="@dimen/margin_5"
                         android:layout_marginTop="@dimen/margin_5"
                         android:gravity="start"
                         android:text="54 Reviews"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/textSize_12"
                         app:customFont="@string/font_bold" />
 
                     <LinearLayout
@@ -106,13 +104,11 @@
                         android:orientation="horizontal">
 
                         <com.app.community.widget.CustomTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            style="@style/textview_description_wrap"
                             android:layout_marginBottom="@dimen/margin_5"
                             android:layout_marginTop="@dimen/margin_5"
                             android:text="@{CommonUtils.oneDecimalPlaceString(merchantResponse.rating)}"
                             android:textColor="@color/rating_text_color"
-                            android:textSize="@dimen/textSize_12"
                             app:customFont="@string/font_bold" />
 
                         <RatingBar
@@ -175,11 +171,10 @@
                     android:layout_marginStart="@dimen/margin_3">
 
                     <com.app.community.widget.CustomTextView
-                        style="@style/textview_description_wrap"
+                        style="@style/textview_description_small_wrap"
                         android:text="@string/average_time_to_deliver"
                         android:textAllCaps="true"
                         android:ellipsize="end"
-                        android:textSize="@dimen/textSize_10"
                         android:textColor="@color/color_blackish"
                         />
 

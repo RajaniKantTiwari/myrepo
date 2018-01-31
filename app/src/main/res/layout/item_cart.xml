@@ -50,35 +50,27 @@
 
             <com.app.community.widget.CustomTextView
                 android:id="@+id/tvProductName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/textview_description_large_wrap"
                 android:layout_marginEnd="@dimen/margin_20"
                 android:maxLines="2"
                 android:text="Red Chilly"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/textSize_13"
                 app:customFont="@string/font_regular" />
 
 
             <com.app.community.widget.CustomTextView
                 android:id="@+id/tvProductQty"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/textview_description_small_wrap"
                 android:layout_marginEnd="@dimen/margin_20"
                 android:gravity="center_vertical"
-                android:text="500g"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/textSize_11" />
+                android:text="500g"/>
 
             <com.app.community.widget.CustomTextView
                 android:id="@+id/tvProductPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/textview_description_large_wrap"
                 android:layout_marginEnd="@dimen/margin_20"
                 android:layout_marginTop="@dimen/margin_6"
                 android:text="$ 25.00"
                 android:textColor="@color/color_blue"
-                android:textSize="@dimen/textSize_12"
                 app:customFont="@string/font_regular" />
 
 
@@ -98,8 +90,7 @@
 
         <TextView
             android:id="@+id/tvQty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/textview_description_large_wrap"
             android:layout_below="@+id/layoutInfo"
             android:layout_marginEnd="@dimen/margin_6"
             android:layout_marginStart="@dimen/margin_6"
@@ -108,7 +99,6 @@
             android:layout_toEndOf="@+id/ivMinus"
             android:gravity="center"
             android:text="0"
-            android:textSize="@dimen/textSize_12"
             app:customFont="@string/font_regular" />
 
         <ImageView
@@ -123,22 +113,19 @@
 
         <com.app.community.widget.CustomTextView
             android:id="@+id/tvSubscribe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/textview_description_large_wrap"
             android:layout_alignParentEnd="true"
             android:layout_below="@+id/layoutInfo"
             android:layout_marginEnd="@dimen/margin_10"
             android:layout_marginStart="@dimen/margin_20"
             android:layout_marginTop="@dimen/margin_10"
-            android:background="#dddddd"
+            android:background="@color/subscribe_color"
             android:paddingBottom="@dimen/margin_3"
             android:paddingEnd="@dimen/margin_8"
             android:paddingStart="@dimen/margin_8"
             android:paddingTop="@dimen/margin_3"
-            android:text="Subscribe"
+            android:text="@string/subscribe"
             android:textAllCaps="true"
-            android:textSize="@dimen/textSize_12"
-            android:visibility="visible"
             app:customFont="@string/font_regular" />
 
         <View

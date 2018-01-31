@@ -10,7 +10,7 @@
         android:textColor="@color/blue"
         android:text="@string/app_name"
         android:drawableTop="@drawable/app_icon"
-        android:textSize="@dimen/textSize_28"
+        android:textSize="@dimen/textSize_app_name"
         app:customFont="@string/font_bold"
         android:gravity="center"/>
 </RelativeLayout>

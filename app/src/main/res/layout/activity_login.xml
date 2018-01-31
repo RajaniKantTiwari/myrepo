@@ -75,7 +75,7 @@
                 android:textAllCaps="true"
                 android:layout_gravity="center_horizontal"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/textSize_13"
+                android:textSize="@dimen/button_large"
                 app:customFont="@string/font_bold" />
             <com.app.community.widget.CustomTextView
                 android:id="@+id/tvSignupForAccount"
