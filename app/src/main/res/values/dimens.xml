@@ -129,6 +129,7 @@
     <dimen name="margin_75">75dp</dimen>
     <dimen name="margin_78">78dp</dimen>
     <dimen name="margin_58">58dp</dimen>
+    <dimen name="drawerview_height">35dp</dimen>
 
 
 </resources>
