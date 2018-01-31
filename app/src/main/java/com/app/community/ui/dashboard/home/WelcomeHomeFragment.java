@@ -169,6 +169,8 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
         if (CommonUtils.isNotNull(response) && response instanceof WelcomeHomeData) {
             WelcomeHomeData welcomeHomeData = (WelcomeHomeData) response;
             setResponseData(welcomeHomeData);
+        }else{
+            //mBinding.layoutNoData
         }
     }
 

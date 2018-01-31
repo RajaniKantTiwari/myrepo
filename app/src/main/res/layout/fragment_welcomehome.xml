@@ -27,5 +27,10 @@
 
             </LinearLayout>
         </ScrollView>
+
+        <include
+            android:id="@+id/layoutNoData"
+            layout="@layout/layout_no_data_found"
+            android:visibility="gone"/>
     </LinearLayout>
 </layout>

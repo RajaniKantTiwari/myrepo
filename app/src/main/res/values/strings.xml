@@ -441,6 +441,7 @@
     <string name="help_support">Help &amp; Support</string>
     <string name="no_result_found">No Result Found</string>
     <string name="logout">Logout</string>
+    <string name="no_data_found">No Data Found</string>
 
 
     <string-array name="state_array">
