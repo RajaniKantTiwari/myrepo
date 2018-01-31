@@ -10,11 +10,11 @@ public class UserPreference {
     public UserPreference() {
     }
 
-    public static void setToken(String token) {
+    public static void setAuthToken(String token) {
         Hawk.put(PreferenceConstants.TOKEN, token);
     }
 
-    public static String getToken() {
+    public static String getAuthToken() {
         return Hawk.get(PreferenceConstants.TOKEN);
 
     }

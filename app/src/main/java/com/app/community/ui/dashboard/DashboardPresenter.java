@@ -147,36 +147,36 @@ public class DashboardPresenter implements Presenter<MvpView> {
         });
     }
 
-    public void getCategorySubCategoryRightDrawer(Activity activity) {
+    public void getCategorySubCategoryRightDrawer(DashBoardActivity activity) {
 
         //mView.showProgress();
         mRepository.getCategorySubCategoryRightDrawer().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<ProductTypeData>(activity) {
             @Override
             public void onResponse(ProductTypeData response) {
                 mView.hideProgress();
-                mView.onSuccess(response, AppConstants.RIGHT_DRAWER_RESPONSE);
+                activity.onSuccess(response, AppConstants.RIGHT_DRAWER_RESPONSE);
             }
 
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMsg(),AppConstants.RIGHT_DRAWER_RESPONSE);
+                activity.onError(baseResponse.getMsg(),AppConstants.RIGHT_DRAWER_RESPONSE);
             }
         });
     }
 
-    public void setDeviceToken(Activity activity, DeviceTokenRequest token) {
+    public void setDeviceToken(DashBoardActivity activity, DeviceTokenRequest token) {
         mRepository.setDeviceToken(token).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
             @Override
             public void onResponse(BaseResponse response) {
                 mView.hideProgress();
-                mView.onSuccess(response,AppConstants.DEVICE_TOKEN_RESPONSE);
+                activity.onSuccess(response,AppConstants.DEVICE_TOKEN_RESPONSE);
             }
 
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMsg(),AppConstants.DEVICE_TOKEN_RESPONSE);
+                activity.onError(baseResponse.getMsg(),AppConstants.DEVICE_TOKEN_RESPONSE);
             }
         });
     }

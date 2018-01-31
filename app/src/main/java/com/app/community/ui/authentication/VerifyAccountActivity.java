@@ -135,8 +135,10 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
                         if (status.equals(AppConstants.SUCCESS)) {
                             hideKeyboard();
                             UserPreference.setUserId(verifyMobileResponse.getId());
-                            UserPreference.setToken(verifyMobileResponse.getAuthkey());
+                            UserPreference.setAuthToken(verifyMobileResponse.getAuthkey());
                             UserPreference.setLogin(true);
+                            ExplicitIntent.getsInstance().navigateTo(this, DashBoardActivity.class);
+                            finish();
                         } else {
                             hideKeyboard();
                             showToast(getResources().getString(R.string.server_error));

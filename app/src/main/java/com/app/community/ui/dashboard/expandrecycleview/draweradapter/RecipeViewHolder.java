@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.community.R;
-import com.app.community.network.response.dashboard.drawerresponse.Recipe;
+import com.app.community.network.response.dashboard.rightdrawer.ProductSubCategory;
 import com.app.community.ui.dashboard.expandrecycleview.ParentViewHolder;
 
 
@@ -29,8 +29,8 @@ public class RecipeViewHolder extends ParentViewHolder {
         mArrowExpandImageView = (ImageView) itemView.findViewById(R.id.ivArrow);
     }
 
-    public void bind(@NonNull Recipe recipe) {
-        mRecipeTextView.setText(recipe.getName());
+    public void bind(@NonNull ProductSubCategory productSubCategory) {
+        mRecipeTextView.setText(productSubCategory.getSubcat());
     }
 
     @SuppressLint("NewApi")

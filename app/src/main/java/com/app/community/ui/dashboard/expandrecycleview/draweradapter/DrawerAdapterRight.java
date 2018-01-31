@@ -3,7 +3,6 @@ package com.app.community.ui.dashboard.expandrecycleview.draweradapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.UiThread;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,13 +10,14 @@ import android.view.ViewGroup;
 
 import com.app.community.R;
 import com.app.community.network.response.dashboard.drawerresponse.Ingredient;
-import com.app.community.network.response.dashboard.drawerresponse.Recipe;
+import com.app.community.network.response.dashboard.rightdrawer.Merchant;
+import com.app.community.network.response.dashboard.rightdrawer.ProductSubCategory;
 import com.app.community.ui.dashboard.expandrecycleview.ExpandableRecyclerAdapter;
 import com.app.community.ui.dashboard.expandrecycleview.IngredientViewHolder;
 
 import java.util.List;
 
-public class DrawerAdapterRight extends ExpandableRecyclerAdapter<Recipe, Ingredient, RecipeViewHolder, IngredientViewHolder> {
+public class DrawerAdapterRight extends ExpandableRecyclerAdapter<ProductSubCategory, Merchant, RecipeViewHolder, IngredientViewHolder> {
 
     private static final int PARENT_LEVEL = 0;
     private static final int PARENT_NORMAL = 1;
@@ -25,14 +25,14 @@ public class DrawerAdapterRight extends ExpandableRecyclerAdapter<Recipe, Ingred
     private static final int CHILD_NORMAL = 3;
 
     private LayoutInflater mInflater;
-    private List<Recipe> mRecipeList;
+    private List<ProductSubCategory> mSubCatList;
     private ProductSubHolderListener listener;
     public interface ProductSubHolderListener{
         void onSubItemClicked(int parentPosition, int childPosition);
     }
-    public DrawerAdapterRight(Context context, @NonNull List<Recipe> recipeList,ProductSubHolderListener listener) {
-        super(recipeList);
-        mRecipeList = recipeList;
+    public DrawerAdapterRight(Context context, @NonNull List<ProductSubCategory> subCatList, ProductSubHolderListener listener) {
+        super(subCatList);
+        mSubCatList = subCatList;
         this.listener=listener;
         mInflater = LayoutInflater.from(context);
     }
@@ -64,34 +64,36 @@ public class DrawerAdapterRight extends ExpandableRecyclerAdapter<Recipe, Ingred
             case CHILD_NORMAL:
                 ingredientView = mInflater.inflate(R.layout.list_item_subproduct, childViewGroup, false);
                 break;
-            case CHILD_VEGETARIAN:
+                //Dont Remove It
+            /*case CHILD_VEGETARIAN:
                 ingredientView = mInflater.inflate(R.layout.list_item_subproduct, childViewGroup, false);
-                break;
+                break;*/
+            //end
         }
         return new IngredientViewHolder(ingredientView);
     }
 
     @UiThread
     @Override
-    public void onBindParentViewHolder(@NonNull RecipeViewHolder recipeViewHolder, int parentPosition, @NonNull Recipe recipe) {
+    public void onBindParentViewHolder(@NonNull RecipeViewHolder recipeViewHolder, int parentPosition, @NonNull ProductSubCategory recipe) {
         recipeViewHolder.bind(recipe);
     }
 
     @UiThread
     @Override
-    public void onBindChildViewHolder(@NonNull IngredientViewHolder ingredientViewHolder, final int parentPosition, final int childPosition, @NonNull Ingredient ingredient) {
+    public void onBindChildViewHolder(@NonNull IngredientViewHolder ingredientViewHolder, final int parentPosition, final int childPosition, @NonNull Merchant merchant) {
         ingredientViewHolder.mIngredientTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 listener.onSubItemClicked(parentPosition,childPosition);
             }
         });
-        ingredientViewHolder.bind(ingredient);
+        ingredientViewHolder.bind(merchant);
     }
 
     @Override
     public int getParentViewType(int parentPosition) {
-        if (mRecipeList.get(parentPosition).isVegetarian()) {
+        if (mSubCatList.get(parentPosition).isCategory()) {
             return PARENT_LEVEL;
         } else {
             return PARENT_NORMAL;
@@ -100,12 +102,14 @@ public class DrawerAdapterRight extends ExpandableRecyclerAdapter<Recipe, Ingred
 
     @Override
     public int getChildViewType(int parentPosition, int childPosition) {
-        Ingredient ingredient = mRecipeList.get(parentPosition).getIngredient(childPosition);
-        if (ingredient.isVegetarian()) {
+        Merchant merchant = mSubCatList.get(parentPosition).getMerchant(childPosition);
+        //Dont Remove It
+       /* if (ingredient.isVegetarian()) {
             return CHILD_VEGETARIAN;
-        } else {
+        } else {*/
+       //end
             return CHILD_NORMAL;
-        }
+        /*}*/
     }
 
     @Override

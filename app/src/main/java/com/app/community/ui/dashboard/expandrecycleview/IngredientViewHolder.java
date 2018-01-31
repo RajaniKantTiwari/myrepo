@@ -6,6 +6,8 @@ import android.widget.TextView;
 
 import com.app.community.R;
 import com.app.community.network.response.dashboard.drawerresponse.Ingredient;
+import com.app.community.network.response.dashboard.rightdrawer.Merchant;
+import com.app.community.utils.CommonUtils;
 
 public class IngredientViewHolder extends ChildViewHolder {
 
@@ -13,10 +15,10 @@ public class IngredientViewHolder extends ChildViewHolder {
 
     public IngredientViewHolder(@NonNull View itemView) {
         super(itemView);
-        mIngredientTextView = (TextView) itemView.findViewById(R.id.tvSubProductName);
+        mIngredientTextView =itemView.findViewById(R.id.tvSubProductName);
     }
 
-    public void bind(@NonNull Ingredient ingredient) {
-        mIngredientTextView.setText(ingredient.getName());
+    public void bind(@NonNull Merchant merchant) {
+        mIngredientTextView.setText(CommonUtils.isNotNull(merchant.getName())?merchant.getName():merchant.getCity());
     }
 }

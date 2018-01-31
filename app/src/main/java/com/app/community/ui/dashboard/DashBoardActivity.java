@@ -82,7 +82,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     // list of Navigation pages to be shown
     private static final int MAIN_TAB_ID = FragNavController.TAB1;
     private DrawerAdapterRight mDrawerAdapterRight;
-    private List<Recipe> listDrawerExpandable;
+    ArrayList<ProductSubCategory> responseList;
     private ArrayList<NavigationPage> navigationPages;
     private ActionBarDrawerToggle mDrawerToggleLeft;
     private DrawerAdapterLeft mDrawerAdapterLeft;
@@ -119,8 +119,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_dashboard);
         hideSoftKeyboard(mBinding.getRoot());
-
-        listDrawerExpandable = new ArrayList<>();
+        responseList = new ArrayList<>();
         initTabs();
         initDashboardComponent();
         attachView();
@@ -270,8 +269,10 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     public void onSuccess(BaseResponse response, int requestCode) {
         if(requestCode==AppConstants.RIGHT_DRAWER_RESPONSE){
             if(CommonUtils.isNotNull(response)&&response instanceof ProductTypeData){
+                this.responseList.clear();
                 ArrayList<ProductSubCategory> responseList = DashBoardHelper.setRightDrawerData((ProductTypeData) response);
-
+                this.responseList.addAll(responseList);
+                mDrawerAdapterRight.notifyDataSetChanged();
             }
         }else if(requestCode==AppConstants.DEVICE_TOKEN_RESPONSE){
             LogUtils.LOGE(TAG,response.getMsg());
@@ -345,8 +346,8 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         if (animator instanceof DefaultItemAnimator) {
             ((DefaultItemAnimator) animator).setSupportsChangeAnimations(false);
         }
-        setListItem();
-        mDrawerAdapterRight = new DrawerAdapterRight(this, listDrawerExpandable, this);
+        //setListItem();
+        mDrawerAdapterRight = new DrawerAdapterRight(this, responseList, this);
         mBinding.layoutDrawerRight.rvDrawer.setLayoutManager(layoutManager);
         mBinding.layoutDrawerRight.rvDrawer.setAdapter(mDrawerAdapterRight);
     }
@@ -384,7 +385,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     }
 
 
-    private void setListItem() {
+   /* private void setListItem() {
         Ingredient beef = new Ingredient("beef", false);
         Ingredient cheese = new Ingredient("cheese", true);
         Ingredient salsa = new Ingredient("salsa", true);
@@ -396,7 +397,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         Recipe quesadilla = new Recipe("quesadilla", Arrays.asList(cheese, tortilla));
         Recipe burger = new Recipe("burger", Arrays.asList(beef, cheese, ketchup, bun));
         listDrawerExpandable = Arrays.asList(taco, quesadilla, burger);
-    }
+    }*/
 
 
     private void openDrawerLeft() {

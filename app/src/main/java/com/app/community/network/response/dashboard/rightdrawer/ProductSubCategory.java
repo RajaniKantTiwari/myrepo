@@ -1,16 +1,21 @@
 package com.app.community.network.response.dashboard.rightdrawer;
 
+import com.app.community.network.response.dashboard.drawerresponse.Ingredient;
+import com.app.community.ui.dashboard.expandrecycleview.model.Parent;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by rajnikant on 29/01/18.
  */
 
-public class ProductSubCategory {
+public class ProductSubCategory implements Parent<Merchant> {
     private String id;
     private String subcat;
     private String displayorder;
     private boolean isCategory;
+    private ArrayList<Merchant> merchantname;
 
     public String getDisplayorder() {
         return displayorder;
@@ -28,7 +33,6 @@ public class ProductSubCategory {
         isCategory = category;
     }
 
-    private ArrayList<Merchant> merchantname;
 
     public String getId() {
         return id;
@@ -52,5 +56,19 @@ public class ProductSubCategory {
 
     public void setMerchantname(ArrayList<Merchant> merchantname) {
         this.merchantname = merchantname;
+    }
+
+    @Override
+    public List<Merchant> getChildList() {
+        return merchantname;
+    }
+
+    @Override
+    public boolean isInitiallyExpanded() {
+        return false;
+    }
+
+    public Merchant getMerchant(int childPosition) {
+        return merchantname.get(childPosition);
     }
 }

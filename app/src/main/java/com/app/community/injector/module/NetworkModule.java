@@ -7,6 +7,7 @@ import com.app.community.injector.scope.PerApplication;
 import com.app.community.network.Repository;
 import com.app.community.network.RetrofitRepository;
 import com.app.community.utils.AppConstants;
+import com.app.community.utils.UserPreference;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -50,8 +51,8 @@ public class NetworkModule {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         httpClient.addInterceptor(chain -> {
             Request original = chain.request();
-            //String accessToken = UserPreference.getToken();
-            String accessToken ="NNiuaxxbisaDDajofrwTVL49R33tRDAV";
+            String accessToken = UserPreference.getAuthToken();
+            //String accessToken ="NNiuaxxbisaDDajofrwTVL49R33tRDAV";
             if(accessToken!=null){
                 Request.Builder requestBuilder = original.newBuilder()
                         .header(AppConstants.AUTHORIZATION, "Bearer "+accessToken)

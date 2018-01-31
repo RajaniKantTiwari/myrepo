@@ -381,7 +381,7 @@ public class CommonUtils {
     public static void logout() {
         UserPreference.setDeviceToken(null);
         UserPreference.setUserId(-1);
-        UserPreference.setToken(null);
+        UserPreference.setAuthToken(null);
         UserPreference.setLogin(false);
     }
 }
