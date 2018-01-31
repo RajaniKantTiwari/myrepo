@@ -48,7 +48,7 @@ public class DrawerAdapterRight extends ExpandableRecyclerAdapter<ProductSubCate
                 recipeView = mInflater.inflate(R.layout.list_item_products, parentViewGroup, false);
                 break;
             case PARENT_LEVEL:
-                recipeView = mInflater.inflate(R.layout.list_item_products, parentViewGroup, false);
+                recipeView = mInflater.inflate(R.layout.list_item_products_level, parentViewGroup, false);
                 break;
         }
         return new RecipeViewHolder(recipeView);

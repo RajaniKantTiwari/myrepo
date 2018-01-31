@@ -275,9 +275,6 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
                 mBinding.layoutDrawerRight.rvDrawer.setLayoutManager(layoutManager);
                 mDrawerAdapterRight = new DrawerAdapterRight(this, responseList, this);
                 mBinding.layoutDrawerRight.rvDrawer.setAdapter(mDrawerAdapterRight);
-
-                //this.responseList.addAll(responseList);
-                //mDrawerAdapterRight.notifyDataSetChanged();
             }
         }else if(requestCode==AppConstants.DEVICE_TOKEN_RESPONSE){
             LogUtils.LOGE(TAG,response.getMsg());
