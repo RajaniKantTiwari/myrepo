@@ -110,10 +110,6 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     }
 
 
-    public interface OnToolbarItemClickedListener {
-        void onClicked(int id);
-    }
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -305,6 +301,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         mBinding.toolBar.ivDrawer.setOnClickListener(this);
         mBinding.toolBar.ivRightDrawer.setOnClickListener(this);
         mBinding.layoutDrawerLeft.layoutLogout.setOnClickListener(this);
+
     }
 
 
@@ -317,7 +314,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         } else if (view == mBinding.toolBar.ivSearch) {
             ExplicitIntent.getsInstance().navigateTo(this, SearchActivity.class);
         }else if(mBinding.layoutDrawerLeft.layoutLogout==view){
-            CommonUtils.logout();
+            CommonUtils.logout(this);
         }
     }
 

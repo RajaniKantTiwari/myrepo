@@ -29,6 +29,7 @@ import android.widget.Toast;
 
 import com.app.community.BuildConfig;
 import com.app.community.R;
+import com.app.community.ui.authentication.LoginActivity;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.dialogfragment.ContactDialogFragment;
 import com.app.community.ui.dialogfragment.EmergencyDialogFragment;
@@ -378,10 +379,11 @@ public class CommonUtils {
         }
     }
 
-    public static void logout() {
+    public static void logout(Activity activity) {
         UserPreference.setDeviceToken(null);
         UserPreference.setUserId(-1);
         UserPreference.setAuthToken(null);
         UserPreference.setLogin(false);
+        ExplicitIntent.getsInstance().navigateTo(activity, LoginActivity.class);
     }
 }

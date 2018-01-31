@@ -13,12 +13,17 @@ import android.text.TextUtils;
 
 import com.app.community.R;
 import com.app.community.network.response.BaseResponse;
+import com.app.community.ui.authentication.LoginActivity;
 import com.app.community.ui.base.BaseActivity;
+import com.app.community.utils.AppConstants;
+import com.app.community.utils.CommonUtils;
+import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.LogUtils;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.HttpException;
+
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.net.ConnectException;
@@ -31,9 +36,11 @@ import okhttp3.ResponseBody;
 public abstract class DefaultApiObserver<T> extends DefaultObserver<T> {
 
     private final WeakReference<Activity> ref;
+    private final Activity activity;
 
 
     public DefaultApiObserver(Activity activity) {
+        this.activity = activity;
         ref = new WeakReference<>(activity);
     }
 
@@ -45,14 +52,21 @@ public abstract class DefaultApiObserver<T> extends DefaultObserver<T> {
 
     public void onNext(T value) {
         /*try {*/
-            ((BaseActivity) ref.get()).hideProgress();
-            if (value == null) {
-                ((BaseActivity) ref.get()).showToast(ref.get().getString(R.string.server_error));
-            } else if (value instanceof BaseResponse) {
-                BaseResponse baseResponse = ((BaseResponse) value);
-                onResponse(value);
-
+        ((BaseActivity) ref.get()).hideProgress();
+        if (value == null) {
+            ((BaseActivity) ref.get()).showToast(ref.get().getString(R.string.server_error));
+        } else if (value instanceof BaseResponse) {
+            BaseResponse baseResponse = ((BaseResponse) value);
+            if (CommonUtils.isNotNull(baseResponse)) {
+                if ( CommonUtils.isNotNull(baseResponse.getStatus())&&baseResponse.getStatus().equalsIgnoreCase(AppConstants.FORBIDDEN)) {
+                    ExplicitIntent.getsInstance().navigateTo(activity, LoginActivity.class);
+                    activity.finish();
+                } else {
+                    onResponse(value);
+                }
             }
+
+        }
        /* } catch (Exception e) {
             LogUtils.LOGE("ApiObserver", e.printStackTrace());
         }*/
