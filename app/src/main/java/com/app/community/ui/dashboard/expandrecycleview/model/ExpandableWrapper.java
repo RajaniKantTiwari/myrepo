@@ -2,6 +2,8 @@ package com.app.community.ui.dashboard.expandrecycleview.model;
 
 import android.support.annotation.NonNull;
 
+import com.app.community.utils.CommonUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,10 +98,11 @@ public class ExpandableWrapper<P extends Parent<C>, C> {
     private List<ExpandableWrapper<P, C>> generateChildItemList(P parentListItem) {
         List<ExpandableWrapper<P, C>> childItemList = new ArrayList<>();
 
-        for (C child : parentListItem.getChildList()) {
-            childItemList.add(new ExpandableWrapper<P, C>(child));
+        if(CommonUtils.isNotNull(parentListItem)&&CommonUtils.isNotNull(parentListItem.getChildList())){
+            for (C child : parentListItem.getChildList()) {
+                childItemList.add(new ExpandableWrapper<P, C>(child));
+            }
         }
-
         return childItemList;
     }
 

@@ -19,12 +19,16 @@ public class DashBoardHelper {
                 for (int i = 0; i < listResponse.size(); i++) {
                     ProductType productType = listResponse.get(i);
                     if (CommonUtils.isNotNull(productType)) {
+
                         ProductSubCategory productSubCategory=new ProductSubCategory();
                         productSubCategory.setId(productType.getId());
                         productSubCategory.setSubcat(productType.getCategory());
                         productSubCategory.setDisplayorder(productType.getDisplayorder());
                         productSubCategory.setCategory(true);
+
                         subCategory.add(productSubCategory);
+
+
                         ArrayList<ProductSubCategory> subCat = productType.getSubcategory();
                         if(CommonUtils.isNotNull(subCat)&&subCat.size()>0){
                             subCategory.addAll(subCat);

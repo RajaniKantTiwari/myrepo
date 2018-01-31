@@ -148,7 +148,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
 
     @Override
     public void initializeData() {
-        getPresenter().getWelcomeHomePage(getDashboardActivity());
+        //getPresenter().getWelcomeHomePage(getDashboardActivity());
     }
 
     @Override

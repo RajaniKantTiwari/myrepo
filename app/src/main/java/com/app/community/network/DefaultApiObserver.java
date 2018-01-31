@@ -44,7 +44,7 @@ public abstract class DefaultApiObserver<T> extends DefaultObserver<T> {
     @Override
 
     public void onNext(T value) {
-        try {
+        /*try {*/
             ((BaseActivity) ref.get()).hideProgress();
             if (value == null) {
                 ((BaseActivity) ref.get()).showToast(ref.get().getString(R.string.server_error));
@@ -53,9 +53,9 @@ public abstract class DefaultApiObserver<T> extends DefaultObserver<T> {
                 onResponse(value);
 
             }
-        } catch (Exception e) {
-            LogUtils.LOGE("ApiObserver", e.toString());
-        }
+       /* } catch (Exception e) {
+            LogUtils.LOGE("ApiObserver", e.printStackTrace());
+        }*/
 
     }
 

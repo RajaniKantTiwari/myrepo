@@ -272,8 +272,8 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
                 this.responseList.clear();
                 ArrayList<ProductSubCategory> responseList = DashBoardHelper.setRightDrawerData((ProductTypeData) response);
                 LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-                mDrawerAdapterRight = new DrawerAdapterRight(this, responseList, this);
                 mBinding.layoutDrawerRight.rvDrawer.setLayoutManager(layoutManager);
+                mDrawerAdapterRight = new DrawerAdapterRight(this, responseList, this);
                 mBinding.layoutDrawerRight.rvDrawer.setAdapter(mDrawerAdapterRight);
 
                 //this.responseList.addAll(responseList);
