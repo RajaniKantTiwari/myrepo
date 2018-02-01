@@ -64,7 +64,7 @@ import static com.app.community.utils.GeneralConstant.REQUEST_CALL;
  */
 
 public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapter.NewsListener, LatestNewsAdapter.LatestNewsListener, EmergencyAdapter.EmergencyListener,
-        EmergencyDialogFragment.EmergencyDialogListener, OrderDialogFragment.OrderDialogListener,OffersAdapter.OffersListener {
+        EmergencyDialogFragment.EmergencyDialogListener, OrderDialogFragment.OrderDialogListener, OffersAdapter.OffersListener {
 
     private FragmentWelcomehomeBinding mBinding;
     private EmergencyAdapter mEmergencyAdapter;
@@ -87,6 +87,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_welcomehome, container, false);
+        getDashboardActivity().setTile(getString(R.string.home));
         CommonUtils.register(this);
         mWelcomeBinding = AddWelcomeChildView.addWelcomeSearchView(inflater, mBinding);
         mEmergencyPlaceBinding = AddWelcomeChildView.addImportantPlace(inflater, mBinding);
@@ -101,7 +102,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
     private void initializeView() {
         emergencyList = new ArrayList<>();
         newsList = new ArrayList<>();
-        offersList=new ArrayList<>();
+        offersList = new ArrayList<>();
         LinearLayoutManager placeManager = new LinearLayoutManager(getContext());
         placeManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mEmergencyPlaceBinding.rvImportantPlace.setLayoutManager(placeManager);
@@ -165,39 +166,41 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
         if (CommonUtils.isNotNull(response) && response instanceof WelcomeHomeData) {
+            CommonUtils.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, true);
             WelcomeHomeData welcomeHomeData = (WelcomeHomeData) response;
             setResponseData(welcomeHomeData);
-        }else{
-            //mBinding.layoutNoData
+        } else {
+            CommonUtils.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, false);
         }
     }
 
     private void setResponseData(WelcomeHomeData welcomeHomeData) {
-        if (CommonUtils.isNotNull(welcomeHomeData)) {
-            ArrayList<Banner> bannerList = welcomeHomeData.getBanner();
-            ArrayList<News> newsList = welcomeHomeData.getNews();
-            ArrayList<Offer> offersList = welcomeHomeData.getOffer();
-            ArrayList<Emergency> emergencyList = welcomeHomeData.getEmergency();
-            ArrayList<LastOrder> lastOrdersList=welcomeHomeData.getOrderreview();
-            setBanner(bannerList);
-            setNews(newsList);
-            setOffer(offersList);
-            setEmergency(emergencyList);
-            setLastOrder(lastOrdersList);
-        }
+        ArrayList<Banner> bannerList = welcomeHomeData.getBanner();
+        ArrayList<News> newsList = welcomeHomeData.getNews();
+        ArrayList<Offer> offersList = welcomeHomeData.getOffer();
+        ArrayList<Emergency> emergencyList = welcomeHomeData.getEmergency();
+        ArrayList<LastOrder> lastOrdersList = welcomeHomeData.getOrderreview();
+        setBanner(bannerList);
+        setNews(newsList);
+        setOffer(offersList);
+        setEmergency(emergencyList);
+        setLastOrder(lastOrdersList);
     }
 
     private void setLastOrder(ArrayList<LastOrder> lastOrdersList) {
-        if(CommonUtils.isNotNull(lastOrdersList)&&lastOrdersList.size()>0){
+        if (CommonUtils.isNotNull(lastOrdersList) && lastOrdersList.size() > 0) {
+            mLastOrderBinding.getRoot().setVisibility(View.VISIBLE);
             LastOrder order = lastOrdersList.get(0);
-            if(CommonUtils.isNotNull(order)){
+            if (CommonUtils.isNotNull(order)) {
                 mLastOrderBinding.tvProductName.setText(order.getProductname());
                 mLastOrderBinding.tvDetails.setText(order.getMeasure());
-                GlideUtils.loadImage(getDashboardActivity(),order.getIcon(),mLastOrderBinding.ivLastOrder,null,R.drawable.stroke_grey);
-                if(CommonUtils.isNotNull(order.getRating())){
+                GlideUtils.loadImage(getDashboardActivity(), order.getIcon(), mLastOrderBinding.ivLastOrder, null, R.drawable.stroke_grey);
+                if (CommonUtils.isNotNull(order.getRating())) {
                     mLastOrderBinding.rating.setRating(Float.parseFloat(CommonUtils.oneDecimalPlaceString(order.getRating())));
                 }
             }
+        } else {
+            mLastOrderBinding.getRoot().setVisibility(View.GONE);
         }
     }
 
@@ -228,7 +231,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
             mNewsViewBinding.getRoot().setVisibility(View.VISIBLE);
             this.newsList.clear();
             this.newsList.addAll(newsList);
-            CommonUtils.setRecyclerViewHeight(mNewsViewBinding.rvNews,newsList,GeneralConstant.NEWS_HEIGHT);
+            CommonUtils.setRecyclerViewHeight(mNewsViewBinding.rvNews, newsList, GeneralConstant.NEWS_HEIGHT);
             mNewsAdapter.notifyDataSetChanged();
         } else {
             mNewsViewBinding.getRoot().setVisibility(View.GONE);
@@ -237,11 +240,14 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
 
     private void setBanner(ArrayList<Banner> bannerList) {
         if (CommonUtils.isNotNull(bannerList) && bannerList.size() > 0) {
+            mWelcomeBinding.getRoot().setVisibility(View.VISIBLE);
             Banner banner = bannerList.get(0);
             if (CommonUtils.isNotNull(banner)) {
                 mWelcomeBinding.setBanner(banner);
                 GlideUtils.loadImage(getDashboardActivity(), banner.getBannerimage(), mWelcomeBinding.ivBanner, null, R.drawable.abc);
             }
+        } else {
+            mWelcomeBinding.getRoot().setVisibility(View.GONE);
         }
     }
 

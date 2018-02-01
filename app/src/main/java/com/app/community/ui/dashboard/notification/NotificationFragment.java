@@ -41,6 +41,7 @@ public class NotificationFragment extends DashboardFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding= DataBindingUtil.inflate(inflater, R.layout.fragment_notification,container,false);
+        getDashboardActivity().setTile(getString(R.string.notification));
         return mBinding.getRoot();
     }
 

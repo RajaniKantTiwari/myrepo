@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_match">
+    <LinearLayout
+        android:id="@+id/layoutMain"
         style="@style/match_match"
         android:background="@color/white"
         android:focusable="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
     <LinearLayout
         android:id="@+id/layoutFirst"
         style="@style/match_wrap"
@@ -27,10 +30,10 @@
 
             </LinearLayout>
         </ScrollView>
-
-        <include
-            android:id="@+id/layoutNoData"
-            layout="@layout/layout_no_data_found"
-            android:visibility="gone"/>
     </LinearLayout>
+    <include
+        android:id="@+id/layoutNoData"
+        layout="@layout/layout_no_data_found"
+        android:visibility="gone"/>
+</RelativeLayout>
 </layout>

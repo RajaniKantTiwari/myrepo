@@ -266,7 +266,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         if(requestCode==AppConstants.RIGHT_DRAWER_RESPONSE){
             if(CommonUtils.isNotNull(response)&&response instanceof ProductTypeData){
                 this.responseList.clear();
-                ArrayList<ProductSubCategory> responseList = DashBoardHelper.setRightDrawerData((ProductTypeData) response);
+                this.responseList.addAll(DashBoardHelper.setRightDrawerData((ProductTypeData) response));
                 LinearLayoutManager layoutManager = new LinearLayoutManager(this);
                 mBinding.layoutDrawerRight.rvDrawer.setLayoutManager(layoutManager);
                 mDrawerAdapterRight = new DrawerAdapterRight(this, responseList, this);

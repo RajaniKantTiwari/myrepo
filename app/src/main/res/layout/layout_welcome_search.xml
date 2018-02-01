@@ -13,7 +13,6 @@
             android:id="@+id/ivBanner"
             style="@style/match_wrap"
             android:layout_height="@dimen/margin_120"
-            android:src="@drawable/abc"
             android:scaleType="centerCrop"/>
 
         <LinearLayout

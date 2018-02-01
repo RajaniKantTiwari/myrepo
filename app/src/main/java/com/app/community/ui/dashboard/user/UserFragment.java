@@ -40,6 +40,7 @@ public class UserFragment extends DashboardFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding= DataBindingUtil.inflate(inflater, R.layout.fragment_user,container,false);
+        getDashboardActivity().setTile(getString(R.string.user));
         return mBinding.getRoot();
     }
 

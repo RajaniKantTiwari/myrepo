@@ -25,10 +25,12 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.app.community.BuildConfig;
 import com.app.community.R;
+import com.app.community.databinding.LayoutNoDataFoundBinding;
 import com.app.community.ui.authentication.LoginActivity;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.dialogfragment.ContactDialogFragment;
@@ -231,6 +233,7 @@ public class CommonUtils {
             EventBus.getDefault().register(fragment);
         }
     }
+
     public static void unregister(Fragment fragment) {
         if (EventBus.getDefault().isRegistered(fragment)) {
             EventBus.getDefault().unregister(fragment);
@@ -261,7 +264,7 @@ public class CommonUtils {
         return String.format("%.2f", number);
     }
 
-    public static String getStartEndDate(String startDate,String endDate) {
+    public static String getStartEndDate(String startDate, String endDate) {
         StringBuilder date = new StringBuilder();
         date.append(changeStringIntoDate(startDate));
         date.append(" to ");
@@ -315,14 +318,17 @@ public class CommonUtils {
         }
         return null;
     }
-    public static String addStrings(String first,String second) {
-        String str =first+second;
+
+    public static String addStrings(String first, String second) {
+        String str = first + second;
         return str;
     }
+
     public static float setRating(String rating) {
         String str = String.format("%.2f", Double.parseDouble(rating));
         return Float.parseFloat(str);
     }
+
     public static void setDays(ArrayList<Days> daysArrayList) {
         Days day1 = new Days();
         day1.setNameOfDays("Sunday");
@@ -357,11 +363,12 @@ public class CommonUtils {
         return Settings.Secure.getString(activity.getContentResolver(),
                 Settings.Secure.ANDROID_ID);
     }
-    public static String getCountryName(Context context, double lat,double lng) {
+
+    public static String getCountryName(Context context, double lat, double lng) {
         Geocoder geocoder = new Geocoder(context, Locale.getDefault());
         List<Address> addresses = null;
         try {
-            addresses = geocoder.getFromLocation(lat,lng,1);
+            addresses = geocoder.getFromLocation(lat, lng, 1);
         } catch (IOException ignored) {
             Address result;
             if (addresses != null && !addresses.isEmpty()) {
@@ -371,25 +378,38 @@ public class CommonUtils {
         }
         return addresses.get(0).getCountryCode();
     }
-    public static void setViewHeight(RecyclerView recyclerView,List list) {
-        if(CommonUtils.isNotNull(list)){
-            ViewGroup.LayoutParams params=recyclerView.getLayoutParams();
-            params.height= CommonUtils.convertDpToPx(GeneralConstant.PAYMENT_HEIGHT,recyclerView.getContext())*list.size();
+
+    public static void setViewHeight(RecyclerView recyclerView, List list) {
+        if (CommonUtils.isNotNull(list)) {
+            ViewGroup.LayoutParams params = recyclerView.getLayoutParams();
+            params.height = CommonUtils.convertDpToPx(GeneralConstant.PAYMENT_HEIGHT, recyclerView.getContext()) * list.size();
             recyclerView.setLayoutParams(params);
         }
     }
-    public static void setRecyclerViewHeight(RecyclerView recyclerView,List list,int height) {
-        if(CommonUtils.isNotNull(list)){
-            ViewGroup.LayoutParams params=recyclerView.getLayoutParams();
-            params.height= CommonUtils.convertDpToPx(height,recyclerView.getContext())*list.size();
+
+    public static void setRecyclerViewHeight(RecyclerView recyclerView, List list, int height) {
+        if (CommonUtils.isNotNull(list)) {
+            ViewGroup.LayoutParams params = recyclerView.getLayoutParams();
+            params.height = CommonUtils.convertDpToPx(height, recyclerView.getContext()) * list.size();
             recyclerView.setLayoutParams(params);
         }
     }
+
     public static void logout(Activity activity) {
         UserPreference.setDeviceToken(null);
         UserPreference.setUserId(-1);
         UserPreference.setAuthToken(null);
         UserPreference.setLogin(false);
         ExplicitIntent.getsInstance().navigateTo(activity, LoginActivity.class);
+    }
+
+    public static void setVisibility(View layoutMain, View layoutNoData, boolean shouldMainVisible) {
+        if (shouldMainVisible) {
+            layoutMain.setVisibility(View.VISIBLE);
+            layoutNoData.setVisibility(View.GONE);
+        } else {
+            layoutMain.setVisibility(View.GONE);
+            layoutNoData.setVisibility(View.VISIBLE);
+        }
     }
 }
