@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/match_match">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_match"
+    android:background="@color/white">
     <LinearLayout
         android:id="@+id/layoutMain"
         style="@style/match_match"
@@ -35,5 +36,5 @@
         android:id="@+id/layoutNoData"
         layout="@layout/layout_no_data_found"
         android:visibility="gone"/>
-</RelativeLayout>
+</FrameLayout>
 </layout>

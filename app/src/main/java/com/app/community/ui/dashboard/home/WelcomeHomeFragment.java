@@ -40,7 +40,6 @@ import com.app.community.ui.dashboard.home.event.SearchProductEvent;
 import com.app.community.ui.dashboard.home.fragment.HomeFragment;
 import com.app.community.ui.dashboard.home.fragment.MyOrderFragment;
 import com.app.community.ui.dashboard.home.fragment.NewsFragment;
-import com.app.community.ui.dashboard.offer.adapter.OfferAdapter;
 import com.app.community.ui.dialogfragment.EmergencyDialogFragment;
 import com.app.community.ui.dialogfragment.OrderDialogFragment;
 import com.app.community.utils.AddWelcomeChildView;

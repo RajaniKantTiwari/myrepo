@@ -1,72 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<RelativeLayout
-    style="@style/match_wrap"
-    android:layout_height="@dimen/margin_180">
-    <ImageView
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_match"
+    android:background="@color/white">
+    <LinearLayout
+        android:id="@+id/layoutMain"
         style="@style/match_match"
-        android:src="@drawable/abc"
-        android:scaleType="centerCrop"/>
-</RelativeLayout>
-<LinearLayout
-    style="@style/match_wrap"
-    android:layout_height="@dimen/margin_30">
-    <android.support.v4.widget.Space
-        style="@style/layout_hori_match_1" />
-    <com.app.community.widget.CustomTextView
-        android:id="@+id/tvFabDeal"
-        style="@style/textview_description_wrap"
-        android:layout_height="match_parent"
-        android:text="@string/fab_deal"
-        android:textColor="@color/deal_color"
-        android:gravity="center"/>
-    <android.support.v4.widget.Space
-        style="@style/layout_hori_match_1" />
-    <com.app.community.widget.CustomTextView
-        android:id="@+id/tvFoodDrink"
-        style="@style/textview_description_wrap"
-        android:layout_height="match_parent"
-        android:text="@string/food_drinks"
-        android:textColor="@color/search_bg_color"
-        android:gravity="center"/>
-    <android.support.v4.widget.Space
-        style="@style/layout_hori_match_1" />
-    <com.app.community.widget.CustomTextView
-        android:id="@+id/tvSpas"
-        style="@style/textview_description_wrap"
-        android:layout_height="match_parent"
-        android:text="@string/spas"
-        android:textColor="@color/search_bg_color"
-        android:gravity="center"/>
-    <android.support.v4.widget.Space
-        style="@style/layout_hori_match_1" />
-    <com.app.community.widget.CustomTextView
-        android:id="@+id/tvSaloon"
-        style="@style/textview_description_wrap"
-        android:layout_height="match_parent"
-        android:text="@string/saloons"
-        android:textColor="@color/search_bg_color"
-        android:gravity="center"/>
-    <android.support.v4.widget.Space
-        style="@style/layout_hori_match_1" />
-    <com.app.community.widget.CustomTextView
-        android:id="@+id/tvJewellry"
-        style="@style/textview_description_wrap"
-        android:layout_height="match_parent"
-        android:text="@string/jewellery"
-        android:textColor="@color/search_bg_color"
-        android:gravity="center"/>
-    <android.support.v4.widget.Space
-        style="@style/layout_hori_match_1" />
-</LinearLayout>
-    <ImageView
-        style="@style/view_layout_brown" />
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvOffer"
-        style="@style/match_match"
-        android:padding="@dimen/margin_10"/>
-</LinearLayout>
+        android:orientation="vertical">
+        <RelativeLayout
+            style="@style/match_wrap"
+            android:layout_height="@dimen/margin_180">
+
+            <ImageView
+                style="@style/match_match"
+                android:scaleType="centerCrop"
+                android:src="@drawable/abc" />
+        </RelativeLayout>
+
+        <LinearLayout
+            style="@style/match_wrap"
+            android:layout_height="@dimen/margin_30">
+
+           <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvOfferType"
+               style="@style/match_wrap"/>
+        </LinearLayout>
+
+        <ImageView style="@style/view_layout_brown" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvOffer"
+            style="@style/match_match"
+            android:padding="@dimen/margin_10" />
+    </LinearLayout>
+    <include
+        android:id="@+id/layoutNoData"
+        layout="@layout/layout_no_data_found"
+        android:visibility="gone"
+        />
+</FrameLayout>
 </layout>

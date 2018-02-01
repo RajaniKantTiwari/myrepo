@@ -27,6 +27,7 @@ import com.app.community.ui.dashboard.home.fragment.CheckoutFragment;
 import com.app.community.ui.dashboard.home.fragment.FullInformationFragment;
 import com.app.community.ui.dashboard.home.fragment.HomeFragment;
 import com.app.community.ui.dashboard.home.fragment.NewsFragment;
+import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.LogUtils;
@@ -171,8 +172,8 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
     public void initializeData() {
         Bundle bundle = getArguments();
         if (CommonUtils.isNotNull(bundle)) {
-            MerchantResponse productResponse = bundle.getParcelable(GeneralConstant.RESPONSE);
-            merchantId = Integer.parseInt(productResponse.getId());
+            String productResponse = bundle.getString(AppConstants.MERCHANT_ID);
+            merchantId = Integer.parseInt(productResponse);
         }
         setViews();
         callApi();

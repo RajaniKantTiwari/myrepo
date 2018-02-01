@@ -90,7 +90,7 @@
     <style name="view_layout_nav_bar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/margin_2</item>
-        <item name="android:layout_marginTop">@dimen/margin_5_minus</item>
+        <item name="android:layout_marginTop">@dimen/margin_15_minus</item>
         <item name="android:background">@color/colorNavAccentSelected</item>
     </style>
 

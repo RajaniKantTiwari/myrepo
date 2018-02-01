@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    style="@style/wrap_wrap"
+    android:layout_height="@dimen/margin_30">
+    <com.app.community.widget.CustomTextView
+        android:id="@+id/tvOfferType"
+        style="@style/textview_description_wrap"
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/margin_15"
+        android:paddingEnd="@dimen/margin_15"
+        android:gravity="center"
+        android:text="@string/fab_deal"
+        android:textColor="@color/deal_color" />
+
+   <!-- <android.support.v4.widget.Space style="@style/layout_hori_match_1" />
+
+    <com.app.community.widget.CustomTextView
+        android:id="@+id/tvFoodDrink"
+        style="@style/textview_description_wrap"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/food_drinks"
+        android:textColor="@color/search_bg_color" />
+
+    <android.support.v4.widget.Space style="@style/layout_hori_match_1" />
+
+    <com.app.community.widget.CustomTextView
+        android:id="@+id/tvSpas"
+        style="@style/textview_description_wrap"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/spas"
+        android:textColor="@color/search_bg_color" />
+
+    <android.support.v4.widget.Space style="@style/layout_hori_match_1" />
+
+    <com.app.community.widget.CustomTextView
+        android:id="@+id/tvSaloon"
+        style="@style/textview_description_wrap"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/saloons"
+        android:textColor="@color/search_bg_color" />
+
+    <android.support.v4.widget.Space style="@style/layout_hori_match_1" />
+
+    <com.app.community.widget.CustomTextView
+        android:id="@+id/tvJewellry"
+        style="@style/textview_description_wrap"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/jewellery"
+        android:textColor="@color/search_bg_color" />
+
+    <android.support.v4.widget.Space style="@style/layout_hori_match_1" />-->
+</LinearLayout>
+</layout>

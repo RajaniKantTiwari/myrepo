@@ -28,6 +28,7 @@ import com.app.community.network.request.DeviceTokenRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.drawerresponse.Ingredient;
 import com.app.community.network.response.dashboard.drawerresponse.Recipe;
+import com.app.community.network.response.dashboard.rightdrawer.Merchant;
 import com.app.community.network.response.dashboard.rightdrawer.ProductSubCategory;
 import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
 import com.app.community.ui.base.BaseActivity;
@@ -61,7 +62,7 @@ import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_SUBPRODU
 public class DashBoardActivity extends BaseActivity implements BottomNavigationBar.BottomNavigationMenuClickListener,
         BaseFragment.FragmentNavigation, FragNavController.TransactionListener, FragNavController.RootFragmentListener,
         DrawerAdapterLeft.DrawerLeftListener, DrawerAdapterRight.ProductSubHolderListener {
-    private static String TAG=DashBoardActivity.class.getSimpleName();
+    private static String TAG = DashBoardActivity.class.getSimpleName();
     //Better convention to properly name the indices what they are in your app
     private final int HOME = FragNavController.TAB1;
     private final int OFFER = FragNavController.TAB2;
@@ -89,9 +90,10 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
 
     @Override
     public void onLeftDrawerItemClicked(int position) {
-        switch (position){
+        closeDrawerLeft();
+        switch (position) {
             case AppConstants.HOME:
-
+                onTabSelected(HOME);
                 break;
             case AppConstants.ORDER:
                 break;
@@ -100,8 +102,10 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
             case AppConstants.YOURCREDIT:
                 break;
             case AppConstants.NOTIFICATION:
+                onTabSelected(NOTIFICATION);
                 break;
             case AppConstants.ABOUTUS:
+                onTabSelected(USER);
                 break;
             case AppConstants.HELPSUPPORT:
                 break;
@@ -263,17 +267,25 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
-        if(requestCode==AppConstants.RIGHT_DRAWER_RESPONSE){
-            if(CommonUtils.isNotNull(response)&&response instanceof ProductTypeData){
+        if (requestCode == AppConstants.RIGHT_DRAWER_RESPONSE) {
+            if (CommonUtils.isNotNull(response) && response instanceof ProductTypeData) {
                 this.responseList.clear();
                 this.responseList.addAll(DashBoardHelper.setRightDrawerData((ProductTypeData) response));
-                LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-                mBinding.layoutDrawerRight.rvDrawer.setLayoutManager(layoutManager);
-                mDrawerAdapterRight = new DrawerAdapterRight(this, responseList, this);
-                mBinding.layoutDrawerRight.rvDrawer.setAdapter(mDrawerAdapterRight);
+                if(responseList.size()>0){
+                    CommonUtils.setVisibility(mBinding.layoutDrawerRight.layoutMain,
+                            mBinding.layoutDrawerRight.layoutNoData.layoutNoData,true);
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+                    mBinding.layoutDrawerRight.rvDrawer.setLayoutManager(layoutManager);
+                    mDrawerAdapterRight = new DrawerAdapterRight(this, responseList, this);
+                    mBinding.layoutDrawerRight.rvDrawer.setAdapter(mDrawerAdapterRight);
+                }else{
+                    CommonUtils.setVisibility(mBinding.layoutDrawerRight.layoutMain,
+                            mBinding.layoutDrawerRight.layoutNoData.layoutNoData,false);
+                }
+
             }
-        }else if(requestCode==AppConstants.DEVICE_TOKEN_RESPONSE){
-            LogUtils.LOGE(TAG,response.getMsg());
+        } else if (requestCode == AppConstants.DEVICE_TOKEN_RESPONSE) {
+            LogUtils.LOGE(TAG, response.getMsg());
         }
     }
 
@@ -285,15 +297,15 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     }
 
     public void initializeData() {
-       mPresenter.getCategorySubCategoryRightDrawer(this);
-        DeviceTokenRequest request=new DeviceTokenRequest();
+        mPresenter.getCategorySubCategoryRightDrawer(this);
+        DeviceTokenRequest request = new DeviceTokenRequest();
         request.setUserid(UserPreference.getUserId());
-        DeviceToken token=new DeviceToken();
+        DeviceToken token = new DeviceToken();
         token.setDeveiceUniqId(CommonUtils.getDeviceUniqueId(this));
         token.setDeviceTokenId(UserPreference.getDeviceToken());
         token.setDeviceType(GeneralConstant.DEVICETYPE);
         request.setInfo(token);
-        mPresenter.setDeviceToken(this,request);
+        mPresenter.setDeviceToken(this, request);
     }
 
     public void setListener() {
@@ -313,7 +325,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
             openDrawerRight();
         } else if (view == mBinding.toolBar.ivSearch) {
             ExplicitIntent.getsInstance().navigateTo(this, SearchActivity.class);
-        }else if(mBinding.layoutDrawerLeft.layoutLogout==view){
+        } else if (mBinding.layoutDrawerLeft.layoutLogout == view) {
             CommonUtils.logout(this);
         }
     }
@@ -345,10 +357,6 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         if (animator instanceof DefaultItemAnimator) {
             ((DefaultItemAnimator) animator).setSupportsChangeAnimations(false);
         }
-        //setListItem();
-        /*mDrawerAdapterRight = new DrawerAdapterRight(this, responseList, this);
-        mBinding.layoutDrawerRight.rvDrawer.setLayoutManager(layoutManager);
-        mBinding.layoutDrawerRight.rvDrawer.setAdapter(mDrawerAdapterRight);*/
     }
 
 
@@ -382,22 +390,6 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         mBinding.layoutDrawerLeft.rvDrawer.setLayoutManager(layoutManager);
         mBinding.layoutDrawerLeft.rvDrawer.setAdapter(mDrawerAdapterLeft);
     }
-
-
-   /* private void setListItem() {
-        Ingredient beef = new Ingredient("beef", false);
-        Ingredient cheese = new Ingredient("cheese", true);
-        Ingredient salsa = new Ingredient("salsa", true);
-        Ingredient tortilla = new Ingredient("tortilla", true);
-        Ingredient ketchup = new Ingredient("ketchup", true);
-        Ingredient bun = new Ingredient("bun", true);
-
-        Recipe taco = new Recipe("taco", Arrays.asList(beef, cheese, salsa, tortilla));
-        Recipe quesadilla = new Recipe("quesadilla", Arrays.asList(cheese, tortilla));
-        Recipe burger = new Recipe("burger", Arrays.asList(beef, cheese, ketchup, bun));
-        listDrawerExpandable = Arrays.asList(taco, quesadilla, burger);
-    }*/
-
 
     private void openDrawerLeft() {
         if (!mBinding.drawer.isDrawerOpen(Gravity.LEFT)) {
@@ -502,8 +494,21 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     @Override
     public void onSubItemClicked(int parentPosition, int childPosition) {
         showToast(parentPosition + "    " + childPosition);
+        Bundle bundle=new Bundle();
+        if (CommonUtils.isNotNull(responseList) && responseList.size() > parentPosition) {
+            ProductSubCategory subCategory = responseList.get(parentPosition);
+            if (CommonUtils.isNotNull(subCategory)) {
+                ArrayList<Merchant> merchantList = subCategory.getMerchantname();
+                if (CommonUtils.isNotNull(merchantList) && merchantList.size() > childPosition) {
+                    Merchant merchantData = merchantList.get(childPosition);
+                    if(CommonUtils.isNotNull(merchantData)){
+                        bundle.putString(AppConstants.MERCHANT_ID,merchantData.getId());
+                    }
+                }
+            }
+        }
         closeDrawerRight();
-        pushFragment(PRODUCT_SUBPRODUCT, null, R.id.container, true, true, NONE);
+        pushFragment(PRODUCT_SUBPRODUCT, bundle, R.id.container, true, true, NONE);
         //ProductSubproductFragment.newInstance(0, productList.get(adapterPosition));
     }
 }
