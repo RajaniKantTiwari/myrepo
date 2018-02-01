@@ -1,5 +1,8 @@
 package com.app.community.network.response.dashboard.home;
 
+import android.databinding.Bindable;
+import android.databinding.Observable;
+import android.databinding.PropertyChangeRegistry;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -7,7 +10,8 @@ import android.os.Parcelable;
  * Created by rajnikant on 29/01/18.
  */
 
-public class Emergency implements Parcelable {
+public class Emergency implements Parcelable,Observable {
+    private PropertyChangeRegistry registry=new PropertyChangeRegistry();
     private String id;
     private String service_type;
     private String descr;
@@ -55,7 +59,7 @@ public class Emergency implements Parcelable {
             return new Emergency[size];
         }
     };
-
+    @Bindable
     public String getId() {
         return id;
     }
@@ -63,7 +67,7 @@ public class Emergency implements Parcelable {
     public void setId(String id) {
         this.id = id;
     }
-
+    @Bindable
     public String getService_type() {
         return service_type;
     }
@@ -71,7 +75,7 @@ public class Emergency implements Parcelable {
     public void setService_type(String service_type) {
         this.service_type = service_type;
     }
-
+    @Bindable
     public String getDescr() {
         return descr;
     }
@@ -79,7 +83,7 @@ public class Emergency implements Parcelable {
     public void setDescr(String descr) {
         this.descr = descr;
     }
-
+    @Bindable
     public String getSubject() {
         return subject;
     }
@@ -87,7 +91,7 @@ public class Emergency implements Parcelable {
     public void setSubject(String subject) {
         this.subject = subject;
     }
-
+    @Bindable
     public String getLat() {
         return lat;
     }
@@ -95,7 +99,7 @@ public class Emergency implements Parcelable {
     public void setLat(String lat) {
         this.lat = lat;
     }
-
+    @Bindable
     public String getLng() {
         return lng;
     }
@@ -103,7 +107,7 @@ public class Emergency implements Parcelable {
     public void setLng(String lng) {
         this.lng = lng;
     }
-
+    @Bindable
     public String getDisplay_config() {
         return display_config;
     }
@@ -111,7 +115,7 @@ public class Emergency implements Parcelable {
     public void setDisplay_config(String display_config) {
         this.display_config = display_config;
     }
-
+    @Bindable
     public String getCreated_at() {
         return created_at;
     }
@@ -119,7 +123,7 @@ public class Emergency implements Parcelable {
     public void setCreated_at(String created_at) {
         this.created_at = created_at;
     }
-
+    @Bindable
     public String getUpdated_at() {
         return updated_at;
     }
@@ -127,7 +131,7 @@ public class Emergency implements Parcelable {
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
     }
-
+    @Bindable
     public String getIsactive() {
         return isactive;
     }
@@ -135,7 +139,7 @@ public class Emergency implements Parcelable {
     public void setIsactive(String isactive) {
         this.isactive = isactive;
     }
-
+    @Bindable
     public String getDisplay_order() {
         return display_order;
     }
@@ -143,7 +147,7 @@ public class Emergency implements Parcelable {
     public void setDisplay_order(String display_order) {
         this.display_order = display_order;
     }
-
+    @Bindable
     public String getPhone_no() {
         return phone_no;
     }
@@ -151,7 +155,7 @@ public class Emergency implements Parcelable {
     public void setPhone_no(String phone_no) {
         this.phone_no = phone_no;
     }
-
+    @Bindable
     public String getIcon() {
         return icon;
     }
@@ -159,7 +163,7 @@ public class Emergency implements Parcelable {
     public void setIcon(String icon) {
         this.icon = icon;
     }
-
+    @Bindable
     public String getEmail() {
         return email;
     }
@@ -167,7 +171,7 @@ public class Emergency implements Parcelable {
     public void setEmail(String email) {
         this.email = email;
     }
-
+    @Bindable
     public String getDistance() {
         return distance;
     }
@@ -198,5 +202,15 @@ public class Emergency implements Parcelable {
         dest.writeString(icon);
         dest.writeString(email);
         dest.writeString(distance);
+    }
+
+    @Override
+    public void addOnPropertyChangedCallback(OnPropertyChangedCallback onPropertyChangedCallback) {
+        registry.add(onPropertyChangedCallback);
+    }
+
+    @Override
+    public void removeOnPropertyChangedCallback(OnPropertyChangedCallback onPropertyChangedCallback) {
+        registry.remove(onPropertyChangedCallback);
     }
 }

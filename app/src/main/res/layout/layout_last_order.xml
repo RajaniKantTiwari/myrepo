@@ -11,8 +11,8 @@
             android:elevation="@dimen/margin_5"
             app:cardCornerRadius="@dimen/margin_2"
             android:layout_marginTop="@dimen/margin_10"
-            android:layout_marginStart="@dimen/margin_12"
-            android:layout_marginEnd="@dimen/margin_12">
+            android:layout_marginStart="@dimen/welcome_margin_start"
+            android:layout_marginEnd="@dimen/welcome_margin_end">
 
             <LinearLayout
                 style="@style/match_wrap"
@@ -22,9 +22,9 @@
                 <com.app.community.widget.CustomTextView
                     style="@style/textview_description_wrap"
                     android:background="@color/color_green"
-                    android:padding="@dimen/margin_5"
-                    android:paddingEnd="@dimen/margin_30"
-                    android:paddingStart="@dimen/margin_20"
+                    android:padding="@dimen/margin_4"
+                    android:paddingEnd="@dimen/margin_25"
+                    android:paddingStart="@dimen/margin_15"
                     android:text="@string/last_order"
                     android:textAllCaps="true"
                     android:textColor="@color/white" />
@@ -34,10 +34,10 @@
                     android:gravity="center_vertical">
 
                     <ImageView
-                        style="@style/image_70_80"
+                        style="@style/image_60_70"
                         android:src="@drawable/green_chilli"
                         android:background="@drawable/stroke_grey"
-                        android:layout_margin="@dimen/margin_5"/>
+                        android:layout_margin="@dimen/margin_4"/>
 
                     <LinearLayout
                         style="@style/wrap_wrap"
@@ -64,8 +64,8 @@
                     <LinearLayout
                         android:id="@+id/layoutRating"
                         style="@style/wrap_wrap"
-                        android:paddingTop="@dimen/margin_10"
-                        android:paddingBottom="@dimen/margin_10"
+                        android:paddingTop="@dimen/margin_8"
+                        android:paddingBottom="@dimen/margin_8"
                         android:gravity="center_vertical"
                         >
                     <RatingBar
@@ -73,7 +73,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/margin_22"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginStart="@dimen/margin_4"
                         android:max="5"
                         android:progressTint="@color/star_text_color"
                         android:rating="4.3" />

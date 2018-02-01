@@ -202,6 +202,10 @@
         <item name="android:layout_width">@dimen/margin_60</item>
         <item name="android:layout_height">@dimen/margin_60</item>
     </style>
+    <style name="image_60_70" >
+        <item name="android:layout_width">@dimen/margin_60</item>
+        <item name="android:layout_height">@dimen/margin_70</item>
+    </style>
     <style name="image_70_80" >
         <item name="android:layout_width">@dimen/margin_70</item>
         <item name="android:layout_height">@dimen/margin_80</item>

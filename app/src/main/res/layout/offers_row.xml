@@ -16,11 +16,11 @@
             style="@style/match_wrap"
             android:elevation="@dimen/margin_5"
             android:layout_marginTop="@dimen/margin_10"
-            android:layout_marginStart="@dimen/margin_12"
-            android:layout_marginEnd="@dimen/margin_12">
+            android:layout_marginStart="@dimen/welcome_margin_start"
+            android:layout_marginEnd="@dimen/welcome_margin_end">
             <LinearLayout
                 style="@style/match_wrap"
-                android:layout_margin="@dimen/margin_4"
+                android:layout_margin="@dimen/margin_3"
                 android:layout_gravity="center_vertical">
                 <ImageView
                     android:id="@+id/ivOffer"

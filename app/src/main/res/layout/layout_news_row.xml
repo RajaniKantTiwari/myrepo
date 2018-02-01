@@ -14,9 +14,9 @@
             style="@style/match_wrap"
             android:elevation="@dimen/margin_5"
             app:cardCornerRadius="@dimen/margin_2"
-            android:layout_marginTop="@dimen/margin_10"
-            android:layout_marginStart="@dimen/margin_12"
-            android:layout_marginEnd="@dimen/margin_12">
+            android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginStart="@dimen/welcome_margin_start"
+            android:layout_marginEnd="@dimen/welcome_margin_end">
             <LinearLayout
                 style="@style/match_wrap"
                 android:orientation="vertical"
@@ -24,17 +24,17 @@
                 <com.app.community.widget.CustomTextView
                     style="@style/textview_description_wrap"
                     android:background="@color/yellow_color"
-                    android:padding="@dimen/margin_5"
-                    android:paddingStart="@dimen/margin_20"
-                    android:paddingEnd="@dimen/margin_30"
+                    android:padding="@dimen/margin_3"
+                    android:paddingStart="@dimen/margin_18"
+                    android:paddingEnd="@dimen/margin_25"
                     android:text="@={news.category_name}"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     />
             <com.app.community.widget.CustomTextView
                 android:id="@+id/tvHeading"
-                android:layout_margin="@dimen/margin_8"
-                android:paddingTop="@dimen/margin_10"
+                android:layout_margin="@dimen/margin_5"
+                android:paddingTop="@dimen/margin_6"
                 style="@style/textview_description_match"
                 android:text="@={news.news_title}"
                 android:maxLines="2"
@@ -44,8 +44,8 @@
             <com.app.community.widget.CustomTextView
                 android:id="@+id/tvDetails"
                 style="@style/textview_description_wrap"
-                android:layout_margin="@dimen/margin_8"
-                android:paddingBottom="@dimen/margin_8"
+                android:layout_margin="@dimen/margin_6"
+                android:paddingBottom="@dimen/margin_7"
                 android:maxLines="3"
                 android:text="@={news.news_descr}"
                 app:customFont="@string/font_regular" />

@@ -1,5 +1,6 @@
 package com.app.community.network.response.dashboard.home;
 
+import android.databinding.Bindable;
 import android.databinding.Observable;
 import android.databinding.PropertyChangeRegistry;
 
@@ -15,7 +16,7 @@ public class ReviewResponse implements Observable{
     private String dimension;
     private String comments;
     private String image;
-
+    @Bindable
     public String getImage() {
         return image;
     }
@@ -23,7 +24,7 @@ public class ReviewResponse implements Observable{
     public void setImage(String image) {
         this.image = image;
     }
-
+    @Bindable
     public String getUsername() {
         return username;
     }
@@ -31,7 +32,7 @@ public class ReviewResponse implements Observable{
     public void setUsername(String username) {
         this.username = username;
     }
-
+    @Bindable
     public String getRating() {
         return rating;
     }
@@ -39,7 +40,7 @@ public class ReviewResponse implements Observable{
     public void setRating(String rating) {
         this.rating = rating;
     }
-
+    @Bindable
     public String getDimension() {
         return dimension;
     }
@@ -47,7 +48,7 @@ public class ReviewResponse implements Observable{
     public void setDimension(String dimension) {
         this.dimension = dimension;
     }
-
+    @Bindable
     public String getComments() {
         return comments;
     }

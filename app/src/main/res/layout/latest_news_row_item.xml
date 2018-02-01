@@ -11,8 +11,8 @@
             android:elevation="@dimen/margin_5"
             app:cardCornerRadius="@dimen/margin_4"
             android:layout_marginTop="@dimen/margin_8"
-            android:layout_marginStart="@dimen/margin_12"
-            android:layout_marginEnd="@dimen/margin_12"
+            android:layout_marginStart="@dimen/welcome_margin_start"
+            android:layout_marginEnd="@dimen/welcome_margin_end"
             >
 
             <LinearLayout
@@ -25,8 +25,8 @@
                     style="@style/textview_description_wrap"
                     android:background="@color/red_color"
                     android:padding="@dimen/margin_5"
-                    android:paddingEnd="@dimen/margin_30"
-                    android:paddingStart="@dimen/margin_30"
+                    android:paddingEnd="@dimen/margin_25"
+                    android:paddingStart="@dimen/margin_25"
                     android:text="TREND"
                     android:textAllCaps="true"
                     android:textColor="@color/white" />
@@ -36,15 +36,15 @@
                     android:gravity="center_vertical">
 
                     <ImageView
-                        style="@style/image_90_80"
+                        style="@style/image_70_60"
                         android:background="@drawable/abc"
-                        android:layout_margin="@dimen/margin_10"/>
+                        android:layout_margin="@dimen/margin_8"/>
 
                     <LinearLayout
                         style="@style/textview_description_wrap"
                         android:orientation="vertical"
                         android:gravity="center_vertical"
-                        android:layout_margin="@dimen/margin_10">
+                        android:layout_margin="@dimen/margin_8">
 
                         <com.app.community.widget.CustomTextView
                             android:id="@+id/tvHeading"
@@ -55,8 +55,8 @@
                         <com.app.community.widget.CustomTextView
                             android:id="@+id/tvDetails"
                             style="@style/textview_description_small_wrap"
-                            android:layout_marginTop="@dimen/margin_4"
-                            android:layout_marginBottom="@dimen/margin_4"
+                            android:layout_marginTop="@dimen/margin_3"
+                            android:layout_marginBottom="@dimen/margin_3"
                             android:text="n publishing and graphic design, lorem ipsum is a filler text or greeking commonly used to demonstrate the textual elements of a graphic document or visual presentation."
                             app:customFont="@string/font_bold" />
                     </LinearLayout>
