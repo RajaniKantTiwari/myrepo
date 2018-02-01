@@ -26,7 +26,7 @@
                 android:id="@+id/bottomLayout"
                 layout="@layout/bottom_nav_bar"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_65"
+                android:layout_height="@dimen/bottom_navi_height"
                 android:layout_alignParentBottom="true"/>
         </RelativeLayout>
         <LinearLayout

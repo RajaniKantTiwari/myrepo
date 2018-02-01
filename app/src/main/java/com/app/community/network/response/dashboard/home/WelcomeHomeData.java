@@ -13,7 +13,7 @@ public class WelcomeHomeData extends BaseResponse {
     private ArrayList<News> news;
     private ArrayList<Offer>   offer;
     private ArrayList<Emergency> emergency;
-    private ArrayList<LastOrder> orderreview;
+    /*private ArrayList<LastOrder> orderreview;
 
     public ArrayList<LastOrder> getOrderreview() {
         return orderreview;
@@ -21,7 +21,7 @@ public class WelcomeHomeData extends BaseResponse {
 
     public void setOrderreview(ArrayList<LastOrder> orderreview) {
         this.orderreview = orderreview;
-    }
+    }*/
 
     public ArrayList<Banner> getBanner() {
         return banner;

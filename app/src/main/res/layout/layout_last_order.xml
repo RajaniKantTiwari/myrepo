@@ -1,27 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-<data>
-    <variable
-        name="lastOrder"
-        type="com.app.community.network.response.dashboard.home.LastOrder"/>
-</data>
+
     <LinearLayout
         android:id="@+id/layoutLastOrder"
         style="@style/match_wrap">
 
         <android.support.v7.widget.CardView
             style="@style/match_wrap"
-            android:elevation="@dimen/margin_5"
-            app:cardCornerRadius="@dimen/margin_2"
-            android:layout_marginTop="@dimen/margin_10"
+            android:layout_marginEnd="@dimen/welcome_margin_end"
             android:layout_marginStart="@dimen/welcome_margin_start"
-            android:layout_marginEnd="@dimen/welcome_margin_end">
+            android:layout_marginTop="@dimen/margin_10"
+            android:elevation="@dimen/margin_5"
+            app:cardCornerRadius="@dimen/margin_2">
 
             <LinearLayout
                 style="@style/match_wrap"
-                android:orientation="vertical"
-                android:background="@drawable/stroke_dark_grey_bg">
+                android:background="@drawable/stroke_dark_grey_bg"
+                android:orientation="vertical">
 
                 <com.app.community.widget.CustomTextView
                     style="@style/textview_description_wrap"
@@ -40,48 +36,47 @@
                     <ImageView
                         android:id="@+id/ivLastOrder"
                         style="@style/image_60_70"
-                        android:src="@drawable/green_chilli"
+                        android:layout_margin="@dimen/margin_4"
                         android:background="@drawable/stroke_grey"
-                        android:layout_margin="@dimen/margin_4"/>
+                        android:src="@drawable/green_chilli" />
 
                     <LinearLayout
                         style="@style/wrap_wrap"
-                        android:orientation="vertical"
-                        android:gravity="center_vertical">
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
 
                         <com.app.community.widget.CustomTextView
-                            android:id="@+id/tvHeading"
+                            android:id="@+id/tvProductName"
                             style="@style/textview_description_wrap"
-                            android:text="@={lastOrder.productname}"
                             android:textAllCaps="true"
-                            android:textColor="@color/color_black"/>
+                            android:textColor="@color/color_black" />
 
                         <com.app.community.widget.CustomTextView
                             android:id="@+id/tvDetails"
                             style="@style/textview_description_small_wrap"
                             android:layout_marginTop="@dimen/margin_5"
-                            android:text="@={lastOrder.measure}"
                             android:textColor="@color/color_black"
                             app:customFont="@string/font_bold" />
                     </LinearLayout>
-                    <android.support.v4.widget.Space
-                        style="@style/layout_hori_wrap_1"/>
+
+                    <android.support.v4.widget.Space style="@style/layout_hori_wrap_1" />
+
                     <LinearLayout
                         android:id="@+id/layoutRating"
                         style="@style/wrap_wrap"
-                        android:paddingTop="@dimen/margin_8"
-                        android:paddingBottom="@dimen/margin_8"
                         android:gravity="center_vertical"
-                        >
-                    <RatingBar
-                        android:id="@+id/rating"
-                        style="@style/Widget.AppCompat.RatingBar.Small"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/margin_22"
-                        android:layout_marginStart="@dimen/margin_4"
-                        android:max="5"
-                        android:progressTint="@color/star_text_color" />
+                        android:paddingBottom="@dimen/margin_8"
+                        android:paddingTop="@dimen/margin_8">
+
+                        <RatingBar
+                            android:id="@+id/rating"
+                            style="@style/Widget.AppCompat.RatingBar.Small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_22"
+                            android:layout_marginStart="@dimen/margin_4"
+                            android:max="5"
+                            android:progressTint="@color/star_text_color" />
                     </LinearLayout>
                 </LinearLayout>
 

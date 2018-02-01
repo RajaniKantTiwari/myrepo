@@ -27,7 +27,6 @@ import com.app.community.databinding.LayoutWelcomeSearchBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.home.Banner;
 import com.app.community.network.response.dashboard.home.Emergency;
-import com.app.community.network.response.dashboard.home.LastOrder;
 import com.app.community.network.response.dashboard.home.News;
 import com.app.community.network.response.dashboard.home.Offer;
 import com.app.community.network.response.dashboard.home.WelcomeHomeData;
@@ -179,25 +178,28 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
             ArrayList<News> newsList = welcomeHomeData.getNews();
             ArrayList<Offer> offersList = welcomeHomeData.getOffer();
             ArrayList<Emergency> emergencyList = welcomeHomeData.getEmergency();
-            ArrayList<LastOrder> lastOrdersList=welcomeHomeData.getOrderreview();
+            //ArrayList<LastOrder> lastOrdersList=welcomeHomeData.getOrderreview();
             setBanner(bannerList);
             setNews(newsList);
             setOffer(offersList);
             setEmergency(emergencyList);
-            setLastOrder(lastOrdersList);
+            //setLastOrder(lastOrdersList);
         }
     }
 
-    private void setLastOrder(ArrayList<LastOrder> lastOrdersList) {
+    /*private void setLastOrder(ArrayList<LastOrder> lastOrdersList) {
         if(CommonUtils.isNotNull(lastOrdersList)&&lastOrdersList.size()>0){
             LastOrder order = lastOrdersList.get(0);
-            mLastOrderBinding.setLastOrder(order);
-            GlideUtils.loadImage(getDashboardActivity(),order.getIcon(),mLastOrderBinding.ivLastOrder,null,R.drawable.stroke_grey);
-            if(CommonUtils.isNotNull(order.getRating())){
-                mLastOrderBinding.rating.setRating(Float.parseFloat(CommonUtils.oneDecimalPlaceString(order.getRating())));
+            if(CommonUtils.isNotNull(order)){
+                mLastOrderBinding.tvProductName.setText(order.getProductname());
+                mLastOrderBinding.tvDetails.setText(order.getMeasure());
+                GlideUtils.loadImage(getDashboardActivity(),order.getIcon(),mLastOrderBinding.ivLastOrder,null,R.drawable.stroke_grey);
+                if(CommonUtils.isNotNull(order.getRating())){
+                    mLastOrderBinding.rating.setRating(Float.parseFloat(CommonUtils.oneDecimalPlaceString(order.getRating())));
+                }
             }
         }
-    }
+    }*/
 
     private void setEmergency(ArrayList<Emergency> emergencyList) {
         if (CommonUtils.isNotNull(emergencyList) && emergencyList.size() > 0) {
