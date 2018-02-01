@@ -47,6 +47,7 @@ public class EmergencyAdapter extends RecyclerView.Adapter<EmergencyAdapter.Emer
     @Override
     public void onBindViewHolder(EmergencyViewHolder holder, int position) {
         if(CommonUtils.isNotNull(emergencyList)&&emergencyList.size()>position){
+            holder.setData(emergencyList.get(position));
             GlideUtils.loadImage(activity,emergencyList.get(position).getIcon(),holder.ivPlace,null,R.drawable.ambulance);
         }
     }
@@ -58,9 +59,11 @@ public class EmergencyAdapter extends RecyclerView.Adapter<EmergencyAdapter.Emer
     class EmergencyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private final ImageView ivPlace;
+        private final HelpPlaceRowBinding itmView;
 
         public EmergencyViewHolder(HelpPlaceRowBinding itemView) {
            super(itemView.getRoot());
+           itmView=itemView;
             ivPlace=itemView.ivPlace;
            itemView.ivPlace.setOnClickListener(this);
        }
@@ -70,6 +73,10 @@ public class EmergencyAdapter extends RecyclerView.Adapter<EmergencyAdapter.Emer
             if(CommonUtils.isNotNull(listener)){
                 listener.emergencyClicked(getAdapterPosition());
             }
+        }
+
+        public void setData(Emergency emergency) {
+            itmView.setEmergency(emergency);
         }
     }
 }

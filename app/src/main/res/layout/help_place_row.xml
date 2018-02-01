@@ -7,7 +7,8 @@
     </data>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    style="@style/wrap_wrap">
+    style="@style/wrap_wrap"
+    android:layout_height="@dimen/margin_70">
     <ImageView
         android:id="@+id/ivPlace"
         style="@style/image_70"

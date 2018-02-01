@@ -378,7 +378,13 @@ public class CommonUtils {
             recyclerView.setLayoutParams(params);
         }
     }
-
+    public static void setRecyclerViewHeight(RecyclerView recyclerView,List list,int height) {
+        if(CommonUtils.isNotNull(list)){
+            ViewGroup.LayoutParams params=recyclerView.getLayoutParams();
+            params.height= CommonUtils.convertDpToPx(height,recyclerView.getContext())*list.size();
+            recyclerView.setLayoutParams(params);
+        }
+    }
     public static void logout(Activity activity) {
         UserPreference.setDeviceToken(null);
         UserPreference.setUserId(-1);

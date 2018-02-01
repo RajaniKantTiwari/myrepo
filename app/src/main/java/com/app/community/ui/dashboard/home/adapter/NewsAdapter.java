@@ -23,6 +23,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.LatestNewsHold
     private final NewsListener newsListener;
     private final AppCompatActivity activity;
     private ArrayList<News> newsList;
+
+
     public interface NewsListener{
 
         void newsItemClick(int position);
@@ -36,6 +38,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.LatestNewsHold
     @Override
     public LatestNewsHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutNewsRowBinding mBinding=DataBindingUtil.inflate(mInflater, R.layout.layout_news_row, parent, false);
+        /*mBinding.getRoot().measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        height = mBinding.getRoot().getMeasuredHeight();*/
         return new LatestNewsHolder(mBinding);
     }
 
@@ -44,6 +48,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.LatestNewsHold
         if(CommonUtils.isNotNull(newsList)&&newsList.size()>position){
             holder.setData(newsList.get(position));
         }
+
     }
 
     @Override

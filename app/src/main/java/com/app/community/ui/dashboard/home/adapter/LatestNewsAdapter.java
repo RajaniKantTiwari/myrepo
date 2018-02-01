@@ -39,7 +39,7 @@ public class LatestNewsAdapter extends RecyclerView.Adapter<LatestNewsAdapter.La
 
     @Override
     public int getItemCount() {
-        return 15;
+        return 0;
     }
     class LatestNewsHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
        public LatestNewsHolder(LatestNewsRowItemBinding itemView) {

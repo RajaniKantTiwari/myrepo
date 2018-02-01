@@ -68,8 +68,7 @@ public interface GeneralConstant {
     String NEWS = "news";
     String NEWSLIST = "newslist";
     String DEVICETYPE="1";
-
-
+    int NEWS_HEIGHT = 100;
 
 
     @IntDef({PRODUCT_MAP_FRAGMENT, PRODUCT_LIST, RECENT_FRAGMENT, CATEGORY_FRAGMENT,
