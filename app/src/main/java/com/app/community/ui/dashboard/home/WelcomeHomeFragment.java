@@ -27,6 +27,7 @@ import com.app.community.databinding.LayoutWelcomeSearchBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.home.Banner;
 import com.app.community.network.response.dashboard.home.Emergency;
+import com.app.community.network.response.dashboard.home.LastOrder;
 import com.app.community.network.response.dashboard.home.News;
 import com.app.community.network.response.dashboard.home.Offer;
 import com.app.community.network.response.dashboard.home.WelcomeHomeData;
@@ -111,8 +112,6 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
         mLatestBinding.rvLatestNews.setLayoutManager(latestNewsManager);
         mLatestNewsAdapter = new LatestNewsAdapter(getBaseActivity(), this);
         mLatestBinding.rvLatestNews.setAdapter(mLatestNewsAdapter);
-
-
         LinearLayoutManager newsManager = new LinearLayoutManager(getBaseActivity());
         mNewsViewBinding.rvNews.setLayoutManager(newsManager);
         mNewsAdapter = new NewsAdapter(getBaseActivity(), newsList, this);
@@ -180,11 +179,23 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
             ArrayList<News> newsList = welcomeHomeData.getNews();
             ArrayList<Offer> offersList = welcomeHomeData.getOffer();
             ArrayList<Emergency> emergencyList = welcomeHomeData.getEmergency();
+            ArrayList<LastOrder> lastOrdersList=welcomeHomeData.getOrderreview();
             setBanner(bannerList);
             setNews(newsList);
             setOffer(offersList);
             setEmergency(emergencyList);
+            setLastOrder(lastOrdersList);
+        }
+    }
 
+    private void setLastOrder(ArrayList<LastOrder> lastOrdersList) {
+        if(CommonUtils.isNotNull(lastOrdersList)&&lastOrdersList.size()>0){
+            LastOrder order = lastOrdersList.get(0);
+            mLastOrderBinding.setLastOrder(order);
+            GlideUtils.loadImage(getDashboardActivity(),order.getIcon(),mLastOrderBinding.ivLastOrder,null,R.drawable.stroke_grey);
+            if(CommonUtils.isNotNull(order.getRating())){
+                mLastOrderBinding.rating.setRating(Float.parseFloat(CommonUtils.oneDecimalPlaceString(order.getRating())));
+            }
         }
     }
 

@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
+<data>
+    <variable
+        name="lastOrder"
+        type="com.app.community.network.response.dashboard.home.LastOrder"/>
+</data>
     <LinearLayout
         android:id="@+id/layoutLastOrder"
         style="@style/match_wrap">
@@ -34,6 +38,7 @@
                     android:gravity="center_vertical">
 
                     <ImageView
+                        android:id="@+id/ivLastOrder"
                         style="@style/image_60_70"
                         android:src="@drawable/green_chilli"
                         android:background="@drawable/stroke_grey"
@@ -47,7 +52,7 @@
                         <com.app.community.widget.CustomTextView
                             android:id="@+id/tvHeading"
                             style="@style/textview_description_wrap"
-                            android:text="GREEN CANENNE"
+                            android:text="@={lastOrder.productname}"
                             android:textAllCaps="true"
                             android:textColor="@color/color_black"/>
 
@@ -55,7 +60,7 @@
                             android:id="@+id/tvDetails"
                             style="@style/textview_description_small_wrap"
                             android:layout_marginTop="@dimen/margin_5"
-                            android:text="500 grams"
+                            android:text="@={lastOrder.measure}"
                             android:textColor="@color/color_black"
                             app:customFont="@string/font_bold" />
                     </LinearLayout>
@@ -69,14 +74,14 @@
                         android:gravity="center_vertical"
                         >
                     <RatingBar
+                        android:id="@+id/rating"
                         style="@style/Widget.AppCompat.RatingBar.Small"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/margin_22"
                         android:layout_marginStart="@dimen/margin_4"
                         android:max="5"
-                        android:progressTint="@color/star_text_color"
-                        android:rating="4.3" />
+                        android:progressTint="@color/star_text_color" />
                     </LinearLayout>
                 </LinearLayout>
 

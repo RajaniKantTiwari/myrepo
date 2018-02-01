@@ -19,6 +19,6 @@ public class IngredientViewHolder extends ChildViewHolder {
     }
 
     public void bind(@NonNull Merchant merchant) {
-        mIngredientTextView.setText(CommonUtils.isNotNull(merchant.getName())?merchant.getName():merchant.getCity());
+        mIngredientTextView.setText(merchant.getStorename());
     }
 }

@@ -14,6 +14,8 @@ import android.view.View;
 import com.app.community.CommonApplication;
 import com.app.community.R;
 import com.app.community.databinding.ActivityVerifyAccountBinding;
+import com.app.community.network.DeviceToken;
+import com.app.community.network.request.DeviceTokenRequest;
 import com.app.community.network.request.LoginRequest;
 import com.app.community.network.request.VerifyMobileRequest;
 import com.app.community.network.response.BaseResponse;
@@ -137,6 +139,8 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
                             UserPreference.setUserId(verifyMobileResponse.getId());
                             UserPreference.setAuthToken(verifyMobileResponse.getAuthkey());
                             UserPreference.setLogin(true);
+
+                            //setToken();
                             ExplicitIntent.getsInstance().navigateTo(this, DashBoardActivity.class);
                             finish();
                         } else {
@@ -150,6 +154,17 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
             e.printStackTrace();
         }
     }
+
+    /*private void setToken() {
+        DeviceTokenRequest request=new DeviceTokenRequest();
+        request.setUserid(UserPreference.getUserId());
+        DeviceToken token=new DeviceToken();
+        token.setDeveiceUniqId(CommonUtils.getDeviceUniqueId(this));
+        token.setDeviceTokenId(UserPreference.getDeviceToken());
+        token.setDeviceType(GeneralConstant.DEVICETYPE);
+        request.setInfo(token);
+        presenter.setDeviceToken(this,request);
+    }*/
 
     @Override
     public void onError(String message, int requestCode) {

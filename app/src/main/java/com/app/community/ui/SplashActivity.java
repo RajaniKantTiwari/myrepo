@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.app.community.CommonApplication;
 import com.app.community.R;
 import com.app.community.ui.dashboard.DashBoardActivity;
 import com.app.community.utils.ExplicitIntent;
@@ -26,12 +27,17 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (UserPreference.isLogin()) {
+                if(CommonApplication.isDebug){
                     ExplicitIntent.getsInstance().navigateTo(SplashActivity.this, DashBoardActivity.class);
-                } else {
-                    ExplicitIntent.getsInstance().navigateTo(SplashActivity.this, WelcomeScreenActivity.class);
+                }else{
+                    if (UserPreference.isLogin()) {
+                        ExplicitIntent.getsInstance().navigateTo(SplashActivity.this, DashBoardActivity.class);
+                    } else {
+                        ExplicitIntent.getsInstance().navigateTo(SplashActivity.this, WelcomeScreenActivity.class);
 
+                    }
                 }
+
                 finish();
             }
         }, GeneralConstant.SPLASH_TIME);

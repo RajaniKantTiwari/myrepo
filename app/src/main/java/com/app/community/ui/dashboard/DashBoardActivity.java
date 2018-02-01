@@ -281,7 +281,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     @Override
     public void attachView() {
         getActivityComponent().inject(this);
-        mPresenter.attachView(this);
+        //mPresenter.attachView(this);
     }
 
     public void initializeData() {

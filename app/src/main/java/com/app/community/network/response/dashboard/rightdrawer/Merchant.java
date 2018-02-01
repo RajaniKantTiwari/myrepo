@@ -12,6 +12,7 @@ public class Merchant {
     private String opentime;
     private String closetime;
     private String logo;
+    private String storename;
     private String category;
     private String distance;
     private String pincode;
@@ -22,6 +23,14 @@ public class Merchant {
     private String averagetime;
     private String image;
     private String banner_image;
+
+    public String getStorename() {
+        return storename;
+    }
+
+    public void setStorename(String storename) {
+        this.storename = storename;
+    }
 
     public String getId() {
         return id;

@@ -153,13 +153,13 @@ public class DashboardPresenter implements Presenter<MvpView> {
         mRepository.getCategorySubCategoryRightDrawer().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<ProductTypeData>(activity) {
             @Override
             public void onResponse(ProductTypeData response) {
-                mView.hideProgress();
+                //mView.hideProgress();
                 activity.onSuccess(response, AppConstants.RIGHT_DRAWER_RESPONSE);
             }
 
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
-                mView.hideProgress();
+                //mView.hideProgress();
                 activity.onError(baseResponse.getMsg(),AppConstants.RIGHT_DRAWER_RESPONSE);
             }
         });
@@ -169,13 +169,11 @@ public class DashboardPresenter implements Presenter<MvpView> {
         mRepository.setDeviceToken(token).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
             @Override
             public void onResponse(BaseResponse response) {
-                mView.hideProgress();
                 activity.onSuccess(response,AppConstants.DEVICE_TOKEN_RESPONSE);
             }
 
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
-                mView.hideProgress();
                 activity.onError(baseResponse.getMsg(),AppConstants.DEVICE_TOKEN_RESPONSE);
             }
         });
