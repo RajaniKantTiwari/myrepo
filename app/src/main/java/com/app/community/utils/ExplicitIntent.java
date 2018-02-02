@@ -32,6 +32,13 @@ public class ExplicitIntent {
         activity.startActivity(intent);
         activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
+    public void clearPreviousNavigateTo(Activity activity, Class<?> aClass){
+        Intent intent = new Intent(activity,aClass);
+        // set the new task and clear flags
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        activity.startActivity(intent);
+        activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
 
     public void navigateToZoom(Activity activity, Class<?> aClass, Bundle bundle){
         Intent intent = new Intent(activity,aClass);

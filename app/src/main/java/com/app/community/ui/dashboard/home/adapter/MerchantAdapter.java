@@ -55,7 +55,7 @@ public class MerchantAdapter extends RecyclerView.Adapter<MerchantAdapter.Mercha
     public void onBindViewHolder(MerchantViewHolder holder, int position) {
         if (CommonUtils.isNotNull(merchantList) && merchantList.size() > position) {
             MerchantResponse response = merchantList.get(position);
-            GlideUtils.loadImage(activity, response.getLogo(), holder.imageView, null, 0);
+            GlideUtils.loadImage(activity, response.getImage(), holder.imageView, null, 0);
             if (CommonUtils.isNotNull(response)) {
                 holder.setData(response);
                 if (CommonUtils.isNotNull(response.getRating())) {
@@ -131,6 +131,8 @@ public class MerchantAdapter extends RecyclerView.Adapter<MerchantAdapter.Mercha
 
         public void setData(MerchantResponse response) {
             itemView.setMerchantResponse(response);
+            itemView.tvOpen.setText(activity.getResources().getString(R.string.open_now)+response.getOpentime()+
+                    activity.getResources().getString(R.string.to)+response.getClosetime());
         }
     }
 }

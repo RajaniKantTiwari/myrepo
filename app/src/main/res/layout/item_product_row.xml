@@ -25,8 +25,7 @@
 
             <ImageView
                 android:id="@+id/ivProductImage"
-                android:layout_width="@dimen/margin_80"
-                android:layout_height="@dimen/margin_80"
+                style="@style/image_70"
                 android:padding="@dimen/margin_5"
                 android:src="@drawable/mother_dairy"
                 android:background="@drawable/stroke_grey"/>
@@ -36,46 +35,55 @@
                 style="@style/match_wrap"
                 android:layout_toEndOf="@+id/ivProductImage"
                 android:gravity="center_vertical"
-                android:padding="@dimen/margin_5">
+                android:padding="@dimen/margin_3">
 
 
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvProductName"
                     android:text="@={merchantResponse.name}"
-                    style="@style/textview_description_ex_large_wrap"
+                    style="@style/textview_description_ex_large_match"
+                    android:layout_toStartOf="@+id/tvStar"
+                    android:layout_marginEnd="@dimen/margin_4"
                     />
 
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvLocation"
-                    style="@style/textview_description_smaller_wrap"
+                    style="@style/textview_description_smaller_match"
                     android:text="@={merchantResponse.address}"
                     android:layout_below="@+id/tvProductName"
                     android:textColor="@color/color_black"
-                    android:layout_marginTop="@dimen/margin_3" />
+                    android:layout_marginTop="@dimen/margin_3"
+                    android:layout_toStartOf="@+id/tvStar"
+                    android:layout_marginEnd="@dimen/margin_4"
+                    />
 
-                <LinearLayout
+                <RelativeLayout
                     android:id="@+id/layoutProductType"
-                    style="@style/wrap_wrap"
+                    style="@style/match_wrap"
                     android:layout_below="@+id/tvLocation"
                     android:layout_marginBottom="@dimen/margin_15"
-                    android:layout_marginTop="@dimen/margin_3">
+                    android:layout_marginTop="@dimen/margin_3"
+                    android:layout_toStartOf="@+id/tvContact">
                     <com.app.community.widget.CustomTextView
                         android:id="@+id/tvProductType"
-                        style="@style/textview_description_smaller_wrap"
+                        style="@style/textview_description_smaller_match"
                         android:text="@={merchantResponse.category}"
                         android:textColor="@color/color_black"
+                        android:layout_toStartOf="@+id/tvdistance"
                         />
 
                     <com.app.community.widget.CustomTextView
                         android:id="@+id/tvdistance"
                         style="@style/textview_description_smaller_wrap"
                         android:layout_marginStart="@dimen/margin_5"
+                        android:layout_marginEnd="@dimen/margin_5"
                         android:drawablePadding="@dimen/margin_5"
+                        android:layout_alignParentEnd="true"
                         android:text="@{CommonUtils.twoDecimalPlaceString(merchantResponse.distance)+@string/km}"
                         android:textColor="@color/color_black"
                         android:drawableStart="@drawable/location_img"
                         />
-                </LinearLayout>
+                </RelativeLayout>
 
 
                 <com.app.community.widget.CustomTextView
@@ -141,7 +149,6 @@
                     android:layout_toEndOf="@+id/tvClose"
                     android:background="@drawable/light_black_bg_3"
                     android:padding="@dimen/margin_5"
-                    android:text="@{@string/open_now+CommonUtils.getStartEndDate(merchantResponse.opentime,merchantResponse.closetime)}"
                     />
                 <com.app.community.widget.CustomTextView
                     style="@style/textview_description_smaller_wrap"

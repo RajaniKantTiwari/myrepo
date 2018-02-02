@@ -56,7 +56,7 @@ public class UserFragment extends DashboardFragment {
 
     @Override
     public String getFragmentName() {
-        return null;
+        return UserFragment.class.getSimpleName();
     }
 
     @Override

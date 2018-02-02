@@ -15,7 +15,7 @@ import com.orhanobut.hawk.Hawk;
 public class CommonApplication extends MultiDexApplication {
 
     private ApplicationComponent applicationComponent;
-    public static boolean isDebug=true;
+    public static boolean isDebug=false;
     @Override
     public void onCreate() {
         super.onCreate();
