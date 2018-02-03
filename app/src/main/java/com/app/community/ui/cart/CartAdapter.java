@@ -16,9 +16,7 @@ import com.app.community.utils.GlideUtils;
 import java.util.ArrayList;
 
 
-/**
- * Created by  on 01/01/18.
- */
+
 
 public class CartAdapter extends RecyclerView.Adapter {
     private Context mContext;

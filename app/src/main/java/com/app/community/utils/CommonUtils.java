@@ -379,13 +379,13 @@ public class CommonUtils {
         return addresses.get(0).getCountryCode();
     }
 
-    public static void setViewHeight(RecyclerView recyclerView, List list) {
+    /*public static void setViewHeight(RecyclerView recyclerView, List list) {
         if (CommonUtils.isNotNull(list)) {
             ViewGroup.LayoutParams params = recyclerView.getLayoutParams();
             params.height = CommonUtils.convertDpToPx(GeneralConstant.PAYMENT_HEIGHT, recyclerView.getContext()) * list.size();
             recyclerView.setLayoutParams(params);
         }
-    }
+    }*/
 
     public static void setRecyclerViewHeight(RecyclerView recyclerView, List list, int height) {
         if (CommonUtils.isNotNull(list)) {

@@ -68,11 +68,11 @@ public class CheckoutFragment extends DashboardFragment{
         setPaymentOption();
         paymentAdapter = new PaymentAdapter(getBaseActivity(), paymentList);
         mBinding.rvPayment.setAdapter(paymentAdapter);
-        CommonUtils.setViewHeight(mBinding.rvPayment,paymentList);
+        CommonUtils.setRecyclerViewHeight(mBinding.rvPayment,paymentList,GeneralConstant.PAYMENT_HEIGHT);
         setDelivery();
         deliveryAdapter = new PaymentAdapter(getBaseActivity(), deliveryList);
         mBinding.rvDelivery.setAdapter(deliveryAdapter);
-        CommonUtils.setViewHeight(mBinding.rvDelivery,deliveryList);
+        CommonUtils.setRecyclerViewHeight(mBinding.rvDelivery,deliveryList,GeneralConstant.PAYMENT_HEIGHT);
 
     }
 

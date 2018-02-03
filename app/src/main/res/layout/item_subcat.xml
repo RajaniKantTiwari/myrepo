@@ -2,25 +2,29 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-        android:layout_width="@dimen/margin_60"
-        android:layout_height="@dimen/margin_25"
+    <RelativeLayout
+        android:layout_width="@dimen/margin_80"
+        android:layout_height="@dimen/margin_35"
         android:orientation="horizontal">
 
 
         <com.app.community.widget.CustomTextView
             android:id="@+id/tvName"
             style="@style/textview_description_smaller_match"
+            android:layout_height="match_parent"
             android:layout_toEndOf="@+id/ivIcon"
             android:gravity="center"
             android:text="@string/name"
-            android:ellipsize="marquee"/>
+            android:ellipsize="marquee"
+            android:layout_toStartOf="@+id/viewLayout"/>
 
         <View
-            android:layout_width="0.75dp"
-            android:layout_height="@dimen/margin_25"
-            android:background="@color/color_dark_grey" />
-    </LinearLayout>
+            android:id="@+id/viewLayout"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_dark_grey"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
 </layout>
 
 

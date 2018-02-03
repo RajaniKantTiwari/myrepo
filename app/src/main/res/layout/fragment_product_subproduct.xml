@@ -4,9 +4,11 @@
 <FrameLayout
     style="@style/match_match">
     <RelativeLayout
+        android:id="@+id/layoutMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:visibility="gone">
 
 
         <android.support.v7.widget.RecyclerView
@@ -37,16 +39,14 @@
 
         <com.app.community.widget.CustomTextView
             android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            style="@style/textview_description_large_wrap"
+            android:layout_height="@dimen/margin_40"
             android:layout_below="@+id/rvSubCat"
             android:layout_centerHorizontal="true"
-            android:fontFamily="casual"
+            android:textAllCaps="true"
             android:gravity="center"
-            android:text="Title"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/textSize_title"
-            app:customFont="@string/font_regular" />
+            android:textSize="@dimen/textSize_title"/>
 
         <View
             android:id="@+id/viewTitle"
@@ -92,7 +92,8 @@
                 android:paddingStart="@dimen/margin_35"
                 android:text="@string/text_checkout"
                 android:textAllCaps="true"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:layout_marginBottom="@dimen/margin_30"/>
         </LinearLayout>
     </RelativeLayout>
     <include

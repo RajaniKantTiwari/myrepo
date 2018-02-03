@@ -74,19 +74,13 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
         mBinding.rvCat.setAdapter(mCategoryAdapter);
         mBinding.rvSubCat.setAdapter(mSubCategoryAdapter);
         mBinding.rvDetail.setAdapter(mCartAdapter);
-
-//        mBinding.layoutSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                callApi();
-//            }
-//        });
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tvCheckout:
+                CommonUtils.clicked(mBinding.tvCheckout);
                 mFragmentNavigation.pushFragment(CheckoutFragment.newInstance(mInt + 1));
                 break;
         }
@@ -132,6 +126,7 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
             if (response instanceof CategoryResponse) {
                 CategoryResponse categoryResponse = (CategoryResponse) response;
                 if (isNotNull(categoryResponse)) {
+                    CommonUtils.setVisibility(mBinding.layoutMain,mBinding.layoutNoData.layoutNoData,true);
                     mCatList.clear();
                     mSubCatList.clear();
                     mCartList.clear();
@@ -148,8 +143,12 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
                     mBinding.tvTitle.setText(categoryResponse.getInfo().get(0).getSubproduct().get(0).getName());
 
                     mBinding.tvTotal.setText("Sub Total : INR" + 0.00);
+                }else{
+                    CommonUtils.setVisibility(mBinding.layoutMain,mBinding.layoutNoData.layoutNoData,false);
                 }
             }
+        }else {
+            CommonUtils.setVisibility(mBinding.layoutMain,mBinding.layoutNoData.layoutNoData,false);
         }
     }
 
