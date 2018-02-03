@@ -5,10 +5,6 @@ import android.app.Application;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
-/**
- * Created by on 21/09/17.
- * To inject activity reference.
- */
 
 class ActivityLifeCycle implements Application.ActivityLifecycleCallbacks{
 

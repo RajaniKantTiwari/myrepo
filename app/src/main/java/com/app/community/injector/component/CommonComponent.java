@@ -12,9 +12,6 @@ import com.app.community.ui.fragment.DemoFragment;
 
 import dagger.Component;
 
-/**
- * Created by arvind on 13/11/17.
- */
 
 @PerActivity
 @Component(dependencies = ApplicationComponent.class, modules = CommonModule.class)

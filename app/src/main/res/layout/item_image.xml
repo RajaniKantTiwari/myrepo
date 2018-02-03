@@ -6,7 +6,7 @@
     android:padding="@dimen/margin_5">
 <ImageView
     android:id="@+id/ivStoreImage"
-    style="@style/image_70_80"
+    style="@style/image_60_70"
     android:background="@drawable/grey_corner_bg"/>
 </LinearLayout>
 </layout>

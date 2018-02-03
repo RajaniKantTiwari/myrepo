@@ -42,10 +42,7 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.ZOOMIMAGE_FRAGMENT;
 
 
-/**
- * Created by atul on 22/09/17.
- * To inject activity reference.
- */
+
 
 public class MerchantDetailsFragment extends DashboardFragment implements OrderDialogFragment.OrderDialogListener,ImageAdapter.ImageListener {
 
@@ -156,19 +153,27 @@ public class MerchantDetailsFragment extends DashboardFragment implements OrderD
                     ArrayList<MerchantResponse> infoList = data.getInfo();
                     if (CommonUtils.isNotNull(infoList) && infoList.size() > 0) {
                         com.app.community.network.response.dashboard.home.MerchantResponse merchantResponse = infoList.get(0);
+                        CommonUtils.setVisibility(mBinding.layoutMain,mBinding.layoutNoData.layoutNoData,true);
                         if (CommonUtils.isNotNull(merchantResponse)) {
                             mBinding.setMerchantResponse(merchantResponse);
                             setImage(merchantResponse);
+                        }else{
+                            CommonUtils.setVisibility(mBinding.layoutMain,mBinding.layoutNoData.layoutNoData,false);
                         }
                     }
                 }
+                else{
+                    CommonUtils.setVisibility(mBinding.layoutMain,mBinding.layoutNoData.layoutNoData,false);
+                }
+            }else{
+                CommonUtils.setVisibility(mBinding.layoutMain,mBinding.layoutNoData.layoutNoData,false);
             }
         } else if (requestCode == 2) {
             reviewList.clear();
             if (CommonUtils.isNotNull(response) && response instanceof ReviewResponseData) {
                 ReviewResponseData data = (ReviewResponseData) response;
                 ArrayList<ReviewResponse> responseArrayList = data.getInfo();
-                if (responseArrayList != null) {
+                if (CommonUtils.isNotNull(responseArrayList)) {
                     reviewList.addAll(responseArrayList);
                     mReviewAdapter.notifyDataSetChanged();
                 }
@@ -182,7 +187,7 @@ public class MerchantDetailsFragment extends DashboardFragment implements OrderD
         if (CommonUtils.isNotNull(merchantResponse.getRating())) {
             mBinding.ratingBar.setRating(CommonUtils.setRating(merchantResponse.getRating()));
         }
-        GlideUtils.loadImage(getDashboardActivity(), merchantResponse.getLogo(), mBinding.imageLogo, null, 0);
+        GlideUtils.loadImage(getDashboardActivity(), merchantResponse.getImage(), mBinding.imageLogo, null, 0);
         GlideUtils.loadImage(getDashboardActivity(), merchantResponse.getBanner_image(), mBinding.storeImage, null, 0);
         if (CommonUtils.isNotNull(imageList)&&CommonUtils.isNotNull(merchantResponse.getStoreimages())) {
             imageList.addAll(merchantResponse.getStoreimages());

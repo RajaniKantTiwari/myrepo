@@ -1,8 +1,6 @@
 package com.app.community.network.request;
 
-/**
- * Created by rajnikant on 27/01/18.
- */
+
 
 public class PaymentOption {
     private boolean isChecked;

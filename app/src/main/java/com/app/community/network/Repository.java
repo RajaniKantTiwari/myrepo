@@ -23,10 +23,7 @@ import io.reactivex.Completable;
 import io.reactivex.Observable;
 
 
-/**
- * Created by atul on 24/01/17.
- * Interface having all the api functions declaration.
- */
+
 
 public interface Repository {
     Observable<LoginResponse> getLoginDetail(LoginRequest request);

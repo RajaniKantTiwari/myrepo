@@ -25,9 +25,7 @@ import com.app.community.ui.presenter.CommonPresenter;
 import dagger.Module;
 import dagger.Provides;
 
-/**
- * Created by arvind on 13/10/17.
- */
+
 
 @Module
 public class CommonModule {

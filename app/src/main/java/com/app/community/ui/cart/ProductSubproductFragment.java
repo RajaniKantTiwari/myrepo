@@ -125,27 +125,21 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
         if (response != null) {
             if (response instanceof CategoryResponse) {
                 CategoryResponse categoryResponse = (CategoryResponse) response;
-                if (isNotNull(categoryResponse)) {
                     CommonUtils.setVisibility(mBinding.layoutMain,mBinding.layoutNoData.layoutNoData,true);
                     mCatList.clear();
                     mSubCatList.clear();
                     mCartList.clear();
                     mCatList.addAll(categoryResponse.getInfo());
                     mCatList.get(0).setSelected(true);
-
                     mSubCatList.addAll(categoryResponse.getInfo().get(0).getSubproduct());
                     mSubCatList.get(0).setSelected(true);
-
                     mCartList.addAll(categoryResponse.getInfo().get(0).getSubproduct().get(0).getSubproduct());
                     mCategoryAdapter.notifyDataSetChanged();
                     mSubCategoryAdapter.notifyDataSetChanged();
                     mCartAdapter.notifyDataSetChanged();
                     mBinding.tvTitle.setText(categoryResponse.getInfo().get(0).getSubproduct().get(0).getName());
-
                     mBinding.tvTotal.setText("Sub Total : INR" + 0.00);
-                }else{
-                    CommonUtils.setVisibility(mBinding.layoutMain,mBinding.layoutNoData.layoutNoData,false);
-                }
+
             }
         }else {
             CommonUtils.setVisibility(mBinding.layoutMain,mBinding.layoutNoData.layoutNoData,false);

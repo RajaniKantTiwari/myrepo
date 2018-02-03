@@ -271,7 +271,13 @@ public class CommonUtils {
         date.append(changeStringIntoDate(endDate));
         return date.toString();
     }
-
+    public static String addStartEndDate(String startDate, String endDate) {
+        StringBuilder date = new StringBuilder();
+        date.append(startDate);
+        date.append(" to ");
+        date.append(endDate);
+        return date.toString();
+    }
 
     public static String getDay(String dateTime) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

@@ -1,8 +1,6 @@
 package com.app.community.network;
 
-/**
- * Created by rajnikant on 30/01/18.
- */
+
 
 public class DeviceToken {
     private String deviceTokenId;

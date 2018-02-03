@@ -26,9 +26,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
-/**
- * Created by arvind on 01/11/17.
- */
+
 
 public interface ApiService {
     @POST("register/user")

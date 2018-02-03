@@ -8,9 +8,7 @@ import com.app.community.injector.scope.PerApplication;
 import dagger.Module;
 import dagger.Provides;
 
-/**
- * Created by arvind on 02/11/17.
- */
+
 @Module
 public class ApplicationModule {
     private CommonApplication application;

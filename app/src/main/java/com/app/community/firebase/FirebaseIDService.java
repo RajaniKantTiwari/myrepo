@@ -25,14 +25,7 @@ import com.app.community.utils.UserPreference;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
-
-/**
- * Created by francesco on 13/09/16.
- */
 public class FirebaseIDService extends FirebaseInstanceIdService {
     private static final String TAG = FirebaseIDService.class.getSimpleName();
 

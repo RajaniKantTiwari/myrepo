@@ -2,9 +2,7 @@ package com.app.community.network.request;
 
 import com.app.community.network.DeviceToken;
 
-/**
- * Created by rajnikant on 30/01/18.
- */
+
 
 public class DeviceTokenRequest {
     private int userid;

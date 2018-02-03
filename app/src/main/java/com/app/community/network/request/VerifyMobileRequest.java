@@ -1,8 +1,6 @@
 package com.app.community.network.request;
 
-/**
- * Created by on 23/12/17.
- */
+
 
 public class VerifyMobileRequest {
     private String mobile;

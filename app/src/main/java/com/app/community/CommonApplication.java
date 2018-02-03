@@ -8,9 +8,6 @@ import com.app.community.injector.module.ApplicationModule;
 import com.orhanobut.hawk.Hawk;
 
 
-/**
- * Created by  on 02/11/17.
- */
 
 public class CommonApplication extends MultiDexApplication {
 

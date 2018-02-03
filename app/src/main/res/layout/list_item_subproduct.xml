@@ -15,7 +15,7 @@
         <com.app.community.widget.CustomTextView
             android:id="@+id/tvSubProductName"
             style="@style/textview_description_match"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
             android:ellipsize="end"
             android:paddingEnd="@dimen/margin_5"
             android:gravity="bottom"

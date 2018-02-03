@@ -43,7 +43,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewHold
     public void onBindViewHolder(ReviewHolder holder, int position) {
        if(CommonUtils.isNotNull(reviewList)&&reviewList.size()>position){
            holder.setResponse(reviewList.get(position));
-           GlideUtils.loadImageProfilePic(activity,reviewList.get(position).getImage(),holder.ivReview,null,R.drawable.face);
+           GlideUtils.loadImageProfilePic(activity,reviewList.get(position).getImage(),holder.ivReview,null,R.drawable.avatar);
            holder.ratingBar.setRating(CommonUtils.setRating(reviewList.get(position).getRating()));
        }
     }
@@ -66,6 +66,11 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewHold
 
         public void setResponse(ReviewResponse reviewResponse) {
             itemView.setResponse(reviewResponse);
+            try {
+                itemView.ratingBar.setRating(Float.parseFloat(CommonUtils.twoDecimalPlaceString(reviewResponse.getRating())));
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

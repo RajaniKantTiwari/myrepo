@@ -1,370 +1,390 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
     <data>
-        <import type="com.app.community.utils.CommonUtils"/>
+
+        <import type="com.app.community.utils.CommonUtils" />
+
         <variable
             name="merchantResponse"
-            type="com.app.community.network.response.dashboard.home.MerchantResponse"/>
+            type="com.app.community.network.response.dashboard.home.MerchantResponse" />
     </data>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/match_match"
-    android:fillViewport="true">
-    <LinearLayout
-        style="@style/match_match"
-        android:orientation="vertical">
-        <RelativeLayout style="@style/match_wrap">
-            <RelativeLayout
-                android:id="@+id/header_lay"
-                style="@style/match_wrap"
-                android:minHeight="@dimen/margin_240">
 
-                <ImageView
-                    android:id="@+id/storeImage"
-                    style="@style/match_wrap"
-                    android:layout_height="@dimen/margin_210"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/background_placeholder"
-                    />
-                <ImageView
-                    style="@style/match_wrap"
-                    android:layout_height="@dimen/margin_210"
-                    android:scaleType="centerCrop"
-                    android:src="@color/transulent_color"
-                    />
+    <FrameLayout style="@style/match_match">
 
-                <LinearLayout
-                    android:id="@+id/info_lay"
-                    style="@style/wrap_wrap"
-                    android:orientation="vertical"
-                    android:layout_marginStart="@dimen/margin_10"
-                    android:layout_alignParentBottom="true"
-                    >
-                    <com.app.community.widget.CustomTextView
-                        android:id="@+id/tvShopName"
-                        style="@style/textview_title_wrap"
-                        android:text="@={merchantResponse.name}"
-                        android:textColor="@color/white"
-                        />
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/layoutMain"
+            style="@style/match_match"
+            android:background="@color/white"
+            android:fillViewport="true"
+            >
 
-                    <com.app.community.widget.CustomTextView
-                        style="@style/textview_description_small_wrap"
-                        android:layout_marginBottom="@dimen/margin_5"
-                        android:layout_marginTop="@dimen/margin_5"
-                        android:text="@={merchantResponse.address}"
-                        android:textColor="@color/white"
-                        />
+            <LinearLayout
+                style="@style/match_match"
+                android:orientation="vertical">
 
-                    <LinearLayout
-                        android:id="@+id/imglay"
-                        style="@style/wrap_wrap"
-                        android:orientation="horizontal">
+                <RelativeLayout style="@style/match_wrap">
+
+                    <RelativeLayout
+                        android:id="@+id/header_lay"
+                        style="@style/match_wrap"
+                        android:minHeight="@dimen/margin_200">
 
                         <ImageView
-                            android:id="@+id/imageLogo"
-                            style="@style/image_60"
-                            android:src="@drawable/lacoste"
-                            android:background="@color/white"/>
+                            android:id="@+id/storeImage"
+                            style="@style/match_wrap"
+                            android:layout_height="@dimen/margin_180"
+                            android:scaleType="fitXY" />
+
+                        <ImageView
+                            style="@style/match_wrap"
+                            android:layout_height="@dimen/margin_180"
+                            android:scaleType="fitCenter"
+                            android:src="@color/transulent_color" />
+
+                        <LinearLayout
+                            android:id="@+id/info_lay"
+                            style="@style/wrap_wrap"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="@dimen/margin_10"
+                            android:orientation="vertical">
+
+                            <com.app.community.widget.CustomTextView
+                                android:id="@+id/tvShopName"
+                                style="@style/textview_header_wrap"
+                                android:text="@={merchantResponse.name}"
+                                android:textColor="@color/white" />
+
+                            <com.app.community.widget.CustomTextView
+                                style="@style/textview_description_wrap"
+                                android:layout_marginBottom="@dimen/margin_5"
+                                android:layout_marginTop="@dimen/margin_5"
+                                android:text="@={merchantResponse.address}"
+                                android:textColor="@color/white" />
+
+                            <LinearLayout
+                                android:id="@+id/imglay"
+                                style="@style/wrap_wrap"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/imageLogo"
+                                    style="@style/image_50"
+                                    android:background="@drawable/stroke_grey"
+                                    android:scaleType="fitXY"
+                                    android:elevation="@dimen/margin_5"/>
+
+                                <com.app.community.widget.CustomTextView
+                                    style="@style/textview_description_wrap"
+                                    android:layout_marginStart="@dimen/margin_5"
+                                    android:drawablePadding="@dimen/margin_5"
+                                    android:drawableStart="@drawable/location_pin"
+                                    android:gravity="center_vertical"
+                                    android:text="@{CommonUtils.twoDecimalPlaceString(merchantResponse.distance)+@string/km}"
+                                    android:textColor="@color/white"
+                                    app:customFont="@string/font_bold" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            style="@style/wrap_wrap"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/margin_20"
+                            android:gravity="end"
+                            android:orientation="vertical"
+                            android:paddingBottom="@dimen/margin_35">
+
+
+                            <com.app.community.widget.CustomTextView
+                                style="@style/textview_description_wrap"
+                                android:layout_marginBottom="@dimen/margin_5"
+                                android:layout_marginTop="@dimen/margin_5"
+                                android:gravity="start"
+                                android:text="54 Reviews"
+                                android:textColor="@color/white"
+                                app:customFont="@string/font_bold" />
+
+                            <LinearLayout
+                                style="@style/wrap_wrap"
+                                android:gravity="end|center_vertical"
+                                android:orientation="horizontal">
+
+                                <com.app.community.widget.CustomTextView
+                                    style="@style/textview_description_wrap"
+                                    android:layout_marginBottom="@dimen/margin_5"
+                                    android:layout_marginTop="@dimen/margin_5"
+                                    android:text="@{CommonUtils.oneDecimalPlaceString(merchantResponse.rating)}"
+                                    android:textColor="@color/rating_text_color"
+                                    app:customFont="@string/font_bold" />
+
+                                <RatingBar
+                                    android:id="@+id/ratingBar"
+                                    style="@style/Widget.AppCompat.RatingBar.Small"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:max="5"
+                                    android:progressTint="@color/rating_text_color" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/layout_review_shopping"
+                        style="@style/match_wrap"
+                        android:layout_below="@+id/header_lay">
 
                         <com.app.community.widget.CustomTextView
-                            style="@style/textview_description_wrap"
-                            android:layout_marginStart="@dimen/margin_5"
-                            android:drawablePadding="@dimen/margin_5"
-                            android:drawableStart="@drawable/location_pin"
-                            android:gravity="center_vertical"
-                            android:text="@{CommonUtils.twoDecimalPlaceString(merchantResponse.distance)}"
-                            android:textColor="@color/white"
-                            app:customFont="@string/font_bold" />
+                            android:id="@+id/tvStartShopping"
+                            style="@style/button_medium_wrap"
+                            android:layout_marginEnd="@dimen/margin_5"
+                            android:layout_toStartOf="@+id/tvShareReview"
+                            android:background="@drawable/blue_round_btn_bg"
+                            android:gravity="center"
+                            android:paddingBottom="@dimen/margin_3"
+                            android:paddingEnd="@dimen/margin_10"
+                            android:paddingStart="@dimen/margin_10"
+                            android:paddingTop="@dimen/margin_3"
+                            android:text="@string/start_shopping"
+                            android:textColor="@color/white" />
+
+                        <com.app.community.widget.CustomTextView
+                            android:id="@+id/tvShareReview"
+                            style="@style/button_medium_wrap"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/margin_15"
+                            android:background="@drawable/dark_round_btnbg"
+                            android:gravity="center"
+                            android:paddingBottom="@dimen/margin_3"
+                            android:paddingEnd="@dimen/margin_10"
+                            android:paddingStart="@dimen/margin_10"
+                            android:paddingTop="@dimen/margin_3"
+                            android:text="@string/share_review"
+                            android:textColor="@color/white" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/info_layb"
+                        style="@style/match_wrap"
+                        android:layout_below="@+id/layout_review_shopping"
+                        android:layout_marginTop="@dimen/margin_10">
+
+                        <LinearLayout
+                            style="@style/linear_layout_wrap"
+                            android:layout_marginStart="@dimen/margin_3"
+                            android:layout_weight="1.3"
+                            android:orientation="vertical"
+                            android:paddingBottom="5dp"
+                            android:paddingTop="5dp">
+
+                            <com.app.community.widget.CustomTextView
+                                style="@style/textview_description_small_wrap"
+                                android:ellipsize="end"
+                                android:text="@string/average_time_to_deliver"
+                                android:textAllCaps="true"
+                                android:textColor="@color/color_blackish"
+                                app:customFont="@string/font_regular" />
+
+                            <com.app.community.widget.CustomTextView
+                                style="@style/textview_description_small_wrap"
+                                android:text="@={merchantResponse.averagetime}"
+                                android:textColor="@color/color_blackish"
+                                app:customFont="@string/font_regular" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            style="@style/linear_layout_wrap"
+                            android:orientation="vertical"
+                            android:paddingBottom="5dp"
+                            android:paddingTop="5dp">
+
+                            <com.app.community.widget.CustomTextView
+                                style="@style/textview_description_wrap"
+                                android:ellipsize="end"
+                                android:text="@string/min_order"
+                                android:textAllCaps="true"
+                                android:textColor="@color/color_blackish"
+                                app:customFont="@string/font_regular" />
+
+                            <com.app.community.widget.CustomTextView
+                                style="@style/textview_description_small_wrap"
+                                android:text="@={merchantResponse.minorder}"
+                                android:textColor="@color/color_blue_order"
+                                app:customFont="@string/font_regular" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            style="@style/linear_layout_wrap"
+                            android:layout_weight="1.3"
+                            android:orientation="vertical"
+                            android:padding="@dimen/margin_5">
+
+                            <com.app.community.widget.CustomTextView
+                                style="@style/textview_description_wrap"
+                                android:ellipsize="end"
+                                android:text="@string/payment_option"
+                                android:textAllCaps="true"
+                                android:textColor="@color/color_blackish"
+                                app:customFont="@string/font_regular" />
+
+                            <com.app.community.widget.CustomTextView
+                                style="@style/textview_description_small_wrap"
+                                android:text="@={merchantResponse.preferred_payment_options}"
+                                android:textColor="@color/color_blackish"
+                                app:customFont="@string/font_regular" />
+                        </LinearLayout>
                     </LinearLayout>
-                </LinearLayout>
+
+                    <View
+                        android:id="@+id/div_a"
+                        style="@style/view_layout"
+                        android:layout_below="@+id/info_layb"
+                        android:layout_marginTop="@dimen/margin_5" />
 
 
-                <LinearLayout
-                    style="@style/wrap_wrap"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="@dimen/margin_20"
-                    android:gravity="end"
-                    android:layout_alignParentBottom="true"
-                    android:paddingBottom="@dimen/margin_35"
-                    android:orientation="vertical">
-
-
-                    <com.app.community.widget.CustomTextView
-                        style="@style/textview_description_wrap"
-                        android:layout_marginBottom="@dimen/margin_5"
-                        android:layout_marginTop="@dimen/margin_5"
+                    <LinearLayout
+                        android:id="@+id/detail_lay"
+                        style="@style/match_wrap"
+                        android:layout_below="@+id/div_a"
                         android:gravity="start"
-                        android:text="54 Reviews"
-                        android:textColor="@color/white"
-                        app:customFont="@string/font_bold" />
-
-                    <LinearLayout
-                        style="@style/wrap_wrap"
-                        android:gravity="end|center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/margin_5"
+                        android:paddingEnd="@dimen/margin_15"
+                        android:paddingStart="@dimen/margin_15"
+                        android:paddingTop="@dimen/margin_5">
 
                         <com.app.community.widget.CustomTextView
                             style="@style/textview_description_wrap"
-                            android:layout_marginBottom="@dimen/margin_5"
+                            android:text="@string/detail"
+                            android:textAllCaps="true"
+                            android:textColor="@color/darker_black_color" />
+
+                        <com.app.community.widget.CustomTextView
+                            android:id="@+id/tvDetails"
+                            style="@style/textview_description_wrap"
                             android:layout_marginTop="@dimen/margin_5"
-                            android:text="@{CommonUtils.oneDecimalPlaceString(merchantResponse.rating)}"
-                            android:textColor="@color/rating_text_color"
-                            app:customFont="@string/font_bold" />
-
-                        <RatingBar
-                            android:id="@+id/ratingBar"
-                            style="@style/Widget.AppCompat.RatingBar.Small"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:max="5"
-                            android:progressTint="@color/rating_text_color"/>
+                            android:text="@={merchantResponse.store_descr}"
+                            app:customFont="@string/font_book_regular" />
                     </LinearLayout>
-                </LinearLayout>
-            </RelativeLayout>
-<RelativeLayout
-    android:id="@+id/layout_review_shopping"
-    style="@style/match_wrap"
-    android:layout_below="@+id/header_lay">
-    <com.app.community.widget.CustomTextView
-        android:id="@+id/tvStartShopping"
-        style="@style/button_medium_wrap"
-        android:layout_marginEnd="@dimen/margin_5"
-        android:layout_toStartOf="@+id/tvShareReview"
-        android:background="@drawable/blue_round_btn_bg"
-        android:gravity="center"
-        android:paddingBottom="@dimen/margin_3"
-        android:paddingEnd="@dimen/margin_10"
-        android:paddingStart="@dimen/margin_10"
-        android:paddingTop="@dimen/margin_3"
-        android:text="@string/start_shopping"
-        android:textColor="@color/white"
-        />
 
-    <com.app.community.widget.CustomTextView
-        android:id="@+id/tvShareReview"
-        style="@style/button_medium_wrap"
-        android:layout_alignParentEnd="true"
-        android:background="@drawable/dark_round_btnbg"
-        android:gravity="center"
-        android:paddingBottom="@dimen/margin_3"
-        android:paddingEnd="@dimen/margin_10"
-        android:paddingStart="@dimen/margin_10"
-        android:paddingTop="@dimen/margin_3"
-        android:layout_marginEnd="@dimen/margin_15"
-        android:text="@string/share_review"
-        android:textColor="@color/white"
-        />
-</RelativeLayout>
-            <LinearLayout
-                android:id="@+id/info_layb"
-                style="@style/match_wrap"
-                android:layout_below="@+id/layout_review_shopping"
-                android:layout_marginTop="@dimen/margin_10">
-
-                <LinearLayout
-                    style="@style/linear_layout_wrap"
-                    android:orientation="vertical"
-                    android:layout_weight="1.3"
-                    android:paddingBottom="5dp"
-                    android:paddingTop="5dp"
-                    android:layout_marginStart="@dimen/margin_3">
-
-                    <com.app.community.widget.CustomTextView
-                        style="@style/textview_description_small_wrap"
-                        android:text="@string/average_time_to_deliver"
-                        android:textAllCaps="true"
-                        android:ellipsize="end"
-                        android:textColor="@color/color_blackish"
-                        />
-
-                    <com.app.community.widget.CustomTextView
-                        style="@style/textview_description_small_wrap"
-                        android:text="@={merchantResponse.averagetime}"
-                        android:textColor="@color/color_blackish"
-                        />
-                </LinearLayout>
-
-
-                <LinearLayout
-                    style="@style/linear_layout_wrap"
-                    android:orientation="vertical"
-                    android:paddingBottom="5dp"
-                    android:paddingTop="5dp">
-
-                    <com.app.community.widget.CustomTextView
-                        style="@style/textview_description_wrap"
-                        android:text="@string/min_order"
-                        android:ellipsize="end"
-                        android:textAllCaps="true"
-                        android:textColor="@color/color_blackish"
-                        />
-
-                    <com.app.community.widget.CustomTextView
-                        style="@style/textview_description_small_wrap"
-                        android:text="@={merchantResponse.minorder}"
-                        android:textColor="@color/color_blue_order"
-                         />
-                </LinearLayout>
-
-
-                <LinearLayout
-                    style="@style/linear_layout_wrap"
-                    android:orientation="vertical"
-                    android:layout_weight="1.3"
-                    android:padding="@dimen/margin_5">
-
-                    <com.app.community.widget.CustomTextView
-                        style="@style/textview_description_wrap"
-                        android:text="@string/payment_option"
-                        android:textAllCaps="true"
-                        android:ellipsize="end"
-                        android:textColor="@color/color_blackish"
-                        />
-
-                    <com.app.community.widget.CustomTextView
-                        style="@style/textview_description_small_wrap"
-                        android:text="@={merchantResponse.preferred_payment_options}"
-                        android:textColor="@color/color_blackish"
-                        />
-                </LinearLayout>
-            </LinearLayout>
-
-            <View
-                android:id="@+id/div_a"
-                style="@style/view_layout"
-                android:layout_below="@+id/info_layb"
-                android:layout_marginTop="@dimen/margin_15" />
-
-
-            <LinearLayout
-                android:id="@+id/detail_lay"
-                style="@style/match_wrap"
-                android:layout_below="@+id/div_a"
-                android:gravity="start"
-                android:orientation="vertical"
-                android:padding="@dimen/margin_15">
-
-                <com.app.community.widget.CustomTextView
-                    style="@style/textview_description_wrap"
-                    android:text="@string/detail"
-                    android:textAllCaps="true"
-                    android:textColor="@color/darker_black_color"/>
-
-                <com.app.community.widget.CustomTextView
-                    android:id="@+id/tvDetails"
-                    style="@style/textview_description_wrap"
-                    android:layout_marginTop="@dimen/margin_5"
-                    app:customFont="@string/font_book_regular"
-                    android:text="@={merchantResponse.store_descr}"
-                    />
-            </LinearLayout>
-
-            <View
-                android:id="@+id/div_b"
-                style="@style/view_layout"
-                android:layout_below="@+id/detail_lay"
-                android:layout_marginTop="@dimen/margin_7" />
-
-            <LinearLayout
-                android:id="@+id/time_lay"
-                style="@style/match_wrap"
-                android:layout_below="@+id/div_b"
-                android:orientation="vertical"
-                android:padding="@dimen/margin_10"
-                android:layout_marginStart="@dimen/margin_5">
-
-
-                <com.app.community.widget.CustomTextView
-                    style="@style/textview_description_wrap"
-                    android:text="@string/openning_hour"
-                    android:textAllCaps="true"
-                    android:textColor="@color/darker_black_color"/>
-
-                <LinearLayout
-                    style="@style/wrap_wrap"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="@dimen/margin_5">
-
+                    <View
+                        android:id="@+id/div_b"
+                        style="@style/view_layout"
+                        android:layout_below="@+id/detail_lay"
+                        android:layout_marginTop="@dimen/margin_3" />
 
                     <LinearLayout
-                        style="@style/wrap_wrap"
+                        android:id="@+id/time_lay"
+                        style="@style/match_wrap"
+                        android:layout_below="@+id/div_b"
+                        android:layout_marginStart="@dimen/margin_10"
                         android:orientation="vertical"
-                        android:layout_marginStart="@dimen/margin_2"
-                        >
-
-                        <com.app.community.widget.CustomTextView
-                            style="@style/textview_description_small_wrap"
-                            android:text="@string/mon_to_sat"
-                            android:textColor="@color/color_blue_2"/>
+                        android:padding="@dimen/margin_5">
 
 
                         <com.app.community.widget.CustomTextView
-                            style="@style/textview_description_small_wrap"
-                            android:text="@{CommonUtils.getStartEndDate(merchantResponse.opentime,merchantResponse.closetime)}"
-                            />
+                            style="@style/textview_description_wrap"
+                            android:text="@string/openning_hour"
+                            android:textAllCaps="true"
+                            android:textColor="@color/darker_black_color" />
+
+                        <LinearLayout
+                            style="@style/wrap_wrap"
+                            android:layout_marginTop="@dimen/margin_5"
+                            android:orientation="horizontal">
+
+
+                            <LinearLayout
+                                style="@style/wrap_wrap"
+                                android:layout_marginStart="@dimen/margin_2"
+                                android:orientation="vertical">
+
+                                <com.app.community.widget.CustomTextView
+                                    style="@style/textview_description_small_wrap"
+                                    android:text="@string/mon_to_sat"
+                                    android:textColor="@color/color_blue_2" />
+
+
+                                <com.app.community.widget.CustomTextView
+                                    style="@style/textview_description_small_wrap"
+                                    android:text="@{CommonUtils.addStartEndDate(merchantResponse.opentime,merchantResponse.closetime)}" />
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                style="@style/wrap_wrap"
+                                android:layout_marginStart="@dimen/margin_20"
+                                android:orientation="vertical">
+
+
+                                <com.app.community.widget.CustomTextView
+                                    style="@style/textview_description_small_wrap"
+                                    android:text="@string/sunday"
+                                    android:textColor="@color/color_blue_2" />
+
+
+                                <com.app.community.widget.CustomTextView
+                                    style="@style/textview_description_small_wrap"
+                                    android:text="@{CommonUtils.addStartEndDate(merchantResponse.opentime,merchantResponse.closetime)}" />
+                            </LinearLayout>
+                        </LinearLayout>
                     </LinearLayout>
 
+                    <View
+                        android:id="@+id/div_c"
+                        style="@style/view_layout"
+                        android:layout_below="@+id/time_lay" />
 
                     <LinearLayout
-                        style="@style/wrap_wrap"
-                        android:layout_marginStart="@dimen/margin_20"
-                        android:orientation="vertical">
-
-
-                        <com.app.community.widget.CustomTextView
-                            style="@style/textview_description_small_wrap"
-                            android:text="@string/sunday"
-                            android:textColor="@color/color_blue_2" />
-
+                        android:id="@+id/photo_lay"
+                        style="@style/match_wrap"
+                        android:layout_below="@+id/div_c"
+                        android:layout_marginStart="@dimen/margin_10"
+                        android:gravity="start"
+                        android:orientation="vertical"
+                        android:padding="@dimen/margin_5">
 
                         <com.app.community.widget.CustomTextView
-                            style="@style/textview_description_small_wrap"
-                            android:text="@{CommonUtils.getStartEndDate(merchantResponse.opentime,merchantResponse.closetime)}"
-                            />
+                            style="@style/textview_description_wrap"
+                            android:text="@string/photos"
+                            android:textAllCaps="true" />
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/photoRecycler"
+                            style="@style/match_wrap"
+                            android:padding="@dimen/margin_5_minus" />
+
                     </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-            <View
-                android:id="@+id/div_c"
-                style="@style/view_layout"
-                android:layout_below="@+id/time_lay"/>
-            <LinearLayout
-                android:id="@+id/photo_lay"
-                style="@style/match_wrap"
-                android:layout_below="@+id/div_c"
-                android:gravity="start"
-                android:orientation="vertical"
-                android:padding="@dimen/margin_15">
-                <com.app.community.widget.CustomTextView
-                    style="@style/textview_description_wrap"
-                    android:text="@string/photos"
-                    android:textAllCaps="true" />
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/photoRecycler"
-                    style="@style/match_wrap"
-                    android:padding="@dimen/margin_5_minus" />
+                    <View
+                        android:id="@+id/div_d"
+                        style="@style/view_layout"
+                        android:layout_below="@+id/photo_lay" />
 
+                    <com.app.community.widget.CustomTextView
+                        android:id="@+id/tvReview"
+                        style="@style/textview_description_wrap"
+                        android:layout_below="@+id/div_d"
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:padding="@dimen/margin_15"
+                        android:text="@string/review"
+                        android:textAllCaps="true" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rvReview"
+                        style="@style/match_wrap"
+                        android:layout_below="@+id/tvReview" />
+                </RelativeLayout>
             </LinearLayout>
-            <View
-                android:id="@+id/div_d"
-                style="@style/view_layout"
-                android:layout_below="@+id/photo_lay"/>
-            <com.app.community.widget.CustomTextView
-                android:id="@+id/tvReview"
-                style="@style/textview_description_wrap"
-                android:text="@string/review"
-                android:layout_below="@+id/div_d"
-                android:textAllCaps="true"
-                android:padding="@dimen/margin_15"
-                android:layout_marginTop="@dimen/margin_10"/>
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rvReview"
-                style="@style/match_wrap"
-                android:layout_below="@+id/tvReview"
-                 />
-        </RelativeLayout>
-    </LinearLayout>
-</ScrollView>
+        </ScrollView>
+        <include
+            android:id="@+id/layoutNoData"
+            layout="@layout/layout_no_data_found"
+            android:visibility="gone"/>
+    </FrameLayout>
 </layout>

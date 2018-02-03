@@ -20,25 +20,12 @@ package com.app.community.firebase;
  *
  */
 
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
-import android.support.v4.app.NotificationCompat;
-import android.util.Log;
-
-import com.app.community.utils.LogUtils;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import java.util.Map;
-import java.util.Set;
 
-import me.leolin.shortcutbadger.ShortcutBadger;
 
-/**
- * Created by francesco on 13/09/16.
- */
 public class FirebaseMessageService extends FirebaseMessagingService {
     private static final String TAG = FirebaseMessageService.class.getSimpleName();
     @Override

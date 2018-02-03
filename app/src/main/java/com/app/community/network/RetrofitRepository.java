@@ -22,10 +22,7 @@ import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
 import io.reactivex.Observable;
 import retrofit2.Retrofit;
 
-/**
- * Created by atul on 24/01/17.
- * Interface having all the api functions declaration.
- */
+
 
 public class RetrofitRepository implements Repository {
     private ApiService apiService;

@@ -500,7 +500,6 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
 
     @Override
     public void onSubItemClicked(int parentPosition, int childPosition) {
-        showToast(parentPosition + "    " + childPosition);
         Bundle bundle=new Bundle();
         if (CommonUtils.isNotNull(responseList) && responseList.size() > parentPosition) {
             ProductSubCategory subCategory = responseList.get(parentPosition);
