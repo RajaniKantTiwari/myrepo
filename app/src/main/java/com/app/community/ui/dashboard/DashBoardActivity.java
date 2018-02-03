@@ -104,9 +104,9 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
                 ExplicitIntent.getsInstance().navigateTo(this, MyOrderActivity.class);
                 break;
             case AppConstants.MYADDRESS:
-                Bundle bundle=new Bundle();
-                bundle.putBoolean(GeneralConstant.IS_FROM_HOME,true);
-                ExplicitIntent.getsInstance().navigateTo(this, WelcomeScreenActivity.class,bundle);
+                Bundle bundle = new Bundle();
+                bundle.putBoolean(GeneralConstant.IS_FROM_HOME, true);
+                ExplicitIntent.getsInstance().navigateTo(this, WelcomeScreenActivity.class, bundle);
                 break;
             case AppConstants.MYACCOUNT:
                 onTabSelected(USER);
@@ -287,21 +287,26 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
             if (CommonUtils.isNotNull(response) && response instanceof ProductTypeData) {
                 this.responseList.clear();
                 this.responseList.addAll(DashBoardHelper.setRightDrawerData((ProductTypeData) response));
-                if(responseList.size()>0){
+                if (responseList.size() > 0) {
                     CommonUtils.setVisibility(mBinding.layoutDrawerRight.layoutMain,
-                            mBinding.layoutDrawerRight.layoutNoData.layoutNoData,true);
+                            mBinding.layoutDrawerRight.layoutNoData.layoutNoData, true);
                     LinearLayoutManager layoutManager = new LinearLayoutManager(this);
                     mBinding.layoutDrawerRight.rvDrawer.setLayoutManager(layoutManager);
                     mDrawerAdapterRight = new DrawerAdapterRight(this, responseList, this);
                     mBinding.layoutDrawerRight.rvDrawer.setAdapter(mDrawerAdapterRight);
-                }else{
+                } else {
                     CommonUtils.setVisibility(mBinding.layoutDrawerRight.layoutMain,
-                            mBinding.layoutDrawerRight.layoutNoData.layoutNoData,false);
+                            mBinding.layoutDrawerRight.layoutNoData.layoutNoData, false);
                 }
 
             }
         } else if (requestCode == AppConstants.DEVICE_TOKEN_RESPONSE) {
             LogUtils.LOGE(TAG, response.getMsg());
+        } else if (requestCode == AppConstants.LOGOUT) {
+            if (CommonUtils.isNotNull(response)) {
+                showToast(response.getMsg());
+                CommonUtils.logout(this);
+            }
         }
     }
 
@@ -344,8 +349,9 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         } else if (view == mBinding.toolBar.ivSearch) {
             ExplicitIntent.getsInstance().navigateTo(this, SearchActivity.class);
         } else if (mBinding.layoutDrawerLeft.layoutLogout == view) {
-            CommonUtils.logout(this);
-        }else if( mBinding.layoutDrawerLeft.ivAvatar==view){
+            mPresenter.logout(this);
+
+        } else if (mBinding.layoutDrawerLeft.ivAvatar == view) {
             closeDrawerLeft();
             onTabSelected(USER);
             mBottomNav.selectItem(USER);
@@ -509,15 +515,15 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
 
     @Override
     public void onSubItemClicked(int parentPosition, int childPosition) {
-        Bundle bundle=new Bundle();
+        Bundle bundle = new Bundle();
         if (CommonUtils.isNotNull(responseList) && responseList.size() > parentPosition) {
             ProductSubCategory subCategory = responseList.get(parentPosition);
             if (CommonUtils.isNotNull(subCategory)) {
                 ArrayList<Merchant> merchantList = subCategory.getMerchantname();
                 if (CommonUtils.isNotNull(merchantList) && merchantList.size() > childPosition) {
                     Merchant merchantData = merchantList.get(childPosition);
-                    if(CommonUtils.isNotNull(merchantData)){
-                        bundle.putString(AppConstants.MERCHANT_ID,merchantData.getId());
+                    if (CommonUtils.isNotNull(merchantData)) {
+                        bundle.putString(AppConstants.MERCHANT_ID, merchantData.getId());
                     }
                 }
             }
@@ -538,8 +544,8 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Bundle bundle=new Bundle();
-                bundle.putString(AppConstants.MERCHANT_ID,event.getMerchantId());
+                Bundle bundle = new Bundle();
+                bundle.putString(AppConstants.MERCHANT_ID, event.getMerchantId());
                 pushFragment(PRODUCT_SUBPRODUCT, bundle, R.id.container, true, true, NONE);
             }
         }, GeneralConstant.DELAYTIME);

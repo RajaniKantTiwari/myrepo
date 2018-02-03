@@ -95,4 +95,9 @@ public class RetrofitRepository implements Repository {
     public Observable<BaseResponse> setDeviceToken(DeviceTokenRequest token) {
         return apiService.setDeviceToken(token);
     }
+
+    @Override
+    public Observable<BaseResponse> logout() {
+        return apiService.logout();
+    }
 }

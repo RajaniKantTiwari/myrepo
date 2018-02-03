@@ -63,6 +63,8 @@ public class MyOrderActivity extends CommonActivity {
            liveOrder();
         } else if (view == mBinding.layoutPastOrder) {
             pastOrder();
+        }else if(mBinding.layoutHeader.ivBack==view){
+            finish();
         }
     }
 

@@ -194,4 +194,21 @@ public class DashboardPresenter implements Presenter<MvpView> {
             }
         });
     }
+
+    public void logout(DashBoardActivity activity) {
+        activity.showProgress();
+        mRepository.logout().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+            @Override
+            public void onResponse(BaseResponse response) {
+                activity.hideProgress();
+                activity.onSuccess(response, AppConstants.LOGOUT);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                activity.hideProgress();
+                activity.onError(baseResponse.getMsg(),AppConstants.LOGOUT);
+            }
+        });
+    }
 }

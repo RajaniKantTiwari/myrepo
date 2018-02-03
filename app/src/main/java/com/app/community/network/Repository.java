@@ -52,4 +52,6 @@ public interface Repository {
     Observable<ProductTypeData> getCategorySubCategoryRightDrawer();
 
     Observable<BaseResponse> setDeviceToken(DeviceTokenRequest token);
+
+    Observable<BaseResponse> logout();
 }

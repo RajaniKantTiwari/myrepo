@@ -67,4 +67,7 @@ public interface ApiService {
 
     @POST("push/gettoken")
     Observable<BaseResponse> setDeviceToken(@Body DeviceTokenRequest token);
+
+    @GET("register/logout")
+    Observable<BaseResponse> logout();
 }
