@@ -40,7 +40,11 @@ public class OfferDetailsActivity extends DashboardInsideActivity {
     }
 
     private void setListener() {
-        mBinding.ivBack.setOnClickListener(this);
+        mBinding.layoutHeader.tvHeader.setVisibility(View.VISIBLE);
+        mBinding.layoutHeader.tvHeader.setText(getResources().getString(R.string.offer));
+        mBinding.layoutHeader.headerLayout.setBackgroundColor(CommonUtils.getColor(this,R.color.dark_black));
+        mBinding.layoutHeader.ivBack.setImageResource(R.drawable.ic_back_white);
+        mBinding.layoutHeader.ivBack.setOnClickListener(this);
     }
 
 
@@ -71,7 +75,7 @@ public class OfferDetailsActivity extends DashboardInsideActivity {
 
     @Override
     public void onClick(View view) {
-       if(mBinding.ivBack==view){
+       if(mBinding.layoutHeader.ivBack==view){
            finish();
        }
     }

@@ -7,26 +7,10 @@
         android:background="@color/white"
         android:orientation="vertical">
 
-        <RelativeLayout
-            style="@style/match_wrap"
-            android:layout_height="@dimen/margin_50"
-            android:background="@color/dark_black">
-
-            <ImageView
-                android:id="@+id/ivBack"
-                style="@style/wrap_match"
-                android:layout_centerVertical="true"
-                android:paddingStart="@dimen/margin_8"
-                android:src="@drawable/ic_back_white" />
-
-            <com.app.community.widget.CustomTextView
-                android:id="@+id/tvOffer"
-                style="@style/textview_title_wrap"
-                android:layout_centerInParent="true"
-                android:text="@string/offer"
-                android:textColor="@color/white"
-                android:textAllCaps="true" />
-        </RelativeLayout>
+        <include
+            android:id="@+id/layoutHeader"
+            layout="@layout/header_layout"
+            />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvOffer"

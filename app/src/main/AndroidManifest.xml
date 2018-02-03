@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.app.community">
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <application
         android:name=".CommonApplication"
         android:allowBackup="true"
@@ -21,35 +23,35 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.WelcomeScreenActivity"
-            android:theme="@style/welcome"/>
-        <activity android:name=".ui.authentication.LoginActivity"/>
-        <activity android:name=".ui.authentication.VerifyAccountActivity"/>
+        <activity
+            android:name=".ui.WelcomeScreenActivity"
+            android:theme="@style/welcome" />
+        <activity android:name=".ui.authentication.LoginActivity" />
+        <activity android:name=".ui.authentication.VerifyAccountActivity" />
         <activity
             android:name=".ui.dashboard.DashBoardActivity"
             android:theme="@style/dashboard"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"/>
-        <activity
-            android:name=".ui.dashboard.home.DoctorDetailsActivity"/>
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity android:name=".ui.dashboard.home.DoctorDetailsActivity" />
 
-        <activity
-            android:name=".ui.dashboard.home.DoctorCheckoutActivity"/>
+        <activity android:name=".ui.dashboard.home.DoctorCheckoutActivity" />
 
         <activity
             android:name=".ui.fragment.ZoomAnimationImageActivity"
-            android:theme="@style/Theme.Transparent"/>
+            android:theme="@style/Theme.Transparent" />
 
 
         <activity
             android:name=".ui.dashboard.home.SearchActivity"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"/>
-        <activity android:name=".ui.dashboard.offer.OfferDetailsActivity"/>
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity android:name=".ui.dashboard.offer.OfferDetailsActivity" />
+        <activity android:name=".ui.activity.HelpsAndSupportActivity" />
 
         <service
             android:name=".firebase.FirebaseIDService"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
 
@@ -57,7 +59,7 @@
             android:name=".firebase.FirebaseMessageService"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 

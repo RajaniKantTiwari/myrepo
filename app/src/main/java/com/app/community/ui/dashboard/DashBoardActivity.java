@@ -32,6 +32,7 @@ import com.app.community.network.response.dashboard.rightdrawer.Merchant;
 import com.app.community.network.response.dashboard.rightdrawer.ProductSubCategory;
 import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
 import com.app.community.ui.WelcomeScreenActivity;
+import com.app.community.ui.activity.HelpsAndSupportActivity;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.base.BaseFragment;
 import com.app.community.ui.dashboard.expandrecycleview.draweradapter.DrawerAdapterRight;
@@ -95,6 +96,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         switch (position) {
             case AppConstants.HOME:
                 onTabSelected(HOME);
+                mBottomNav.selectItem(HOME);
                 break;
             case AppConstants.ORDER:
                 break;
@@ -107,11 +109,15 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
                 break;
             case AppConstants.NOTIFICATION:
                 onTabSelected(NOTIFICATION);
+                mBottomNav.selectItem(NOTIFICATION);
+
                 break;
             case AppConstants.ABOUTUS:
                 onTabSelected(USER);
+                mBottomNav.selectItem(USER);
                 break;
             case AppConstants.HELPSUPPORT:
+                ExplicitIntent.getsInstance().navigateTo(this, HelpsAndSupportActivity.class);
                 break;
 
         }
@@ -297,13 +303,11 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     @Override
     public void attachView() {
         getActivityComponent().inject(this);
-        //mPresenter.attachView(this);
     }
 
     public void initializeData() {
         mBinding.layoutDrawerLeft.tvName.setText(UserPreference.getUserName());
         mBinding.layoutDrawerLeft.tvMobile.setText(UserPreference.getUserMono());
-
         mPresenter.getCategorySubCategoryRightDrawer(this);
         DeviceTokenRequest request = new DeviceTokenRequest();
         request.setUserid(UserPreference.getUserId());
@@ -354,12 +358,6 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         //This is necessary to change the icon of the Drawer Toggle upon state change.
         mDrawerToggleRight.syncState();
         mBinding.drawer.addDrawerListener(mDrawerToggleRight);
-
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        // RecyclerView has some built in animations to it, using the DefaultItemAnimator.
-        // Specifically when you call notifyItemChanged() it does a fade animation for the changing
-        // of the data in the ViewHolder. If you would like to disable this you can use the following:
         RecyclerView.ItemAnimator animator = mBinding.layoutDrawerRight.rvDrawer.getItemAnimator();
         if (animator instanceof DefaultItemAnimator) {
             ((DefaultItemAnimator) animator).setSupportsChangeAnimations(false);
