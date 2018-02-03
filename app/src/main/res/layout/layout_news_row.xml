@@ -12,6 +12,7 @@
 
         <android.support.v7.widget.CardView
             style="@style/match_wrap"
+            android:minHeight="@dimen/margin_120"
             android:elevation="@dimen/margin_5"
             app:cardCornerRadius="@dimen/margin_2"
             android:layout_marginTop="@dimen/margin_8"
@@ -19,6 +20,7 @@
             android:layout_marginEnd="@dimen/welcome_margin_end">
             <LinearLayout
                 style="@style/match_wrap"
+                android:minHeight="@dimen/margin_120"
                 android:orientation="vertical"
                 android:background="@drawable/stroke_dark_grey_bg">
                 <com.app.community.widget.CustomTextView
@@ -28,8 +30,11 @@
                     android:paddingStart="@dimen/margin_18"
                     android:paddingEnd="@dimen/margin_25"
                     android:text="@={news.category_name}"
+                    android:maxLines="1"
+                    android:maxLength="30"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
+                    android:ellipsize="end"
                     />
             <com.app.community.widget.CustomTextView
                 android:id="@+id/tvHeading"
@@ -38,7 +43,7 @@
                 style="@style/textview_description_match"
                 android:text="@={news.news_title}"
                 android:maxLines="2"
-
+                android:ellipsize="end"
                 android:textAllCaps="true"/>
 
             <com.app.community.widget.CustomTextView
@@ -47,6 +52,7 @@
                 android:layout_margin="@dimen/margin_6"
                 android:paddingBottom="@dimen/margin_7"
                 android:maxLines="3"
+                android:ellipsize="end"
                 android:text="@={news.news_descr}"
                 app:customFont="@string/font_regular" />
             </LinearLayout>

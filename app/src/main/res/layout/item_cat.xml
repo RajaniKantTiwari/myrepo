@@ -4,43 +4,42 @@
 
     <RelativeLayout
         android:id="@+id/layoutCat"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/margin_80"
+        android:layout_height="@dimen/margin_25"
        >
 
         <ImageView
             android:id="@+id/ivIcon"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:layout_width="@dimen/margin_12"
+            android:layout_height="@dimen/margin_12"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="@dimen/margin_3"
-            android:layout_marginStart="@dimen/margin_3"
+            android:layout_marginEnd="@dimen/margin_2"
+            android:layout_marginStart="@dimen/margin_2"
             android:layout_toStartOf="@+id/tvName"
             android:visibility="visible" />
 
         <com.app.community.widget.CustomTextView
             android:id="@+id/tvName"
-           style="@style/textview_description_wrap"
+           style="@style/textview_description_smaller_wrap"
             android:layout_centerInParent="true"
             android:gravity="center"
             android:maxLength="10"
             android:maxLines="1"
-            android:text="@string/name"
-            app:customFont="@string/font_regular"/>
+            android:text="@string/name"/>
 
         <ImageView
             android:id="@+id/ivArrow"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:layout_width="@dimen/margin_8"
+            android:layout_height="@dimen/margin_8"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="@dimen/margin_3"
-            android:layout_marginStart="@dimen/margin_3"
+            android:layout_marginEnd="@dimen/margin_2"
+            android:layout_marginStart="@dimen/margin_2"
             android:layout_toEndOf="@+id/tvName"
             android:src="@android:drawable/arrow_down_float"
             android:visibility="gone" />
 
         <View
-            android:layout_width="1dp"
+            android:layout_width="0.75dp"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:background="@color/color_dark_grey" />

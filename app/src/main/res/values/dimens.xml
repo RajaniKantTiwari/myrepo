@@ -61,7 +61,7 @@
 
     <!--Animation Duration-->
     <integer name="duration">400</integer>
-    <integer name="zoom_duration">700</integer>
+    <integer name="zoom_duration">800</integer>
 
     <dimen name="tab_height">56dp</dimen>
 
@@ -110,7 +110,7 @@
     <dimen name="welcome_margin_start">10dp</dimen>
     <dimen name="welcome_margin_end">10dp</dimen>
     <dimen name="bottom_navi_height">55dp</dimen>
-
+    <dimen name="margin_110">110dp</dimen>
 
 
 </resources>

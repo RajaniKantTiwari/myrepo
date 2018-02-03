@@ -24,7 +24,7 @@
                     style="@style/match_wrap"
                     android:layout_height="@dimen/margin_210"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/abc"
+                    android:src="@drawable/background_placeholder"
                     />
                 <ImageView
                     style="@style/match_wrap"

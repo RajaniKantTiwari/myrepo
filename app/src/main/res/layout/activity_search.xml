@@ -15,19 +15,21 @@
                 android:id="@+id/ivBack"
                 style="@style/wrap_match"
                 android:layout_centerVertical="true"
-                android:src="@drawable/back" />
+                android:src="@drawable/ic_back_black"
+                android:paddingStart="@dimen/margin_5"
+                />
 
             <com.app.community.widget.CustomEditText
                 android:id="@+id/edSearch"
                 style="@style/textview_description_large_match"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/margin_10"
                 android:layout_toEndOf="@+id/ivBack"
                 android:layout_toStartOf="@+id/tvGo"
                 android:background="@null"
-                android:drawableStart="@drawable/search_small"
+                android:drawableStart="@drawable/ic_search"
                 android:hint="@string/search_city_product_service"
-                android:padding="@dimen/margin_7" />
+                android:padding="@dimen/margin_7"
+                android:paddingStart="@dimen/margin_0"/>
 
             <com.app.community.widget.CustomTextView
                 android:id="@+id/tvGo"

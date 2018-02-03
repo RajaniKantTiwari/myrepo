@@ -3,25 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/margin_60"
+        android:layout_height="@dimen/margin_25"
         android:orientation="horizontal">
 
 
         <com.app.community.widget.CustomTextView
             android:id="@+id/tvName"
-            android:layout_width="119dp"
-            android:layout_height="40dp"
+            style="@style/textview_description_smaller_match"
             android:layout_toEndOf="@+id/ivIcon"
             android:gravity="center"
             android:text="@string/name"
-            android:ellipsize="marquee"
-            android:textSize="@dimen/textSize_description"
-            app:customFont="@string/font_regular"/>
+            android:ellipsize="marquee"/>
 
         <View
-            android:layout_width="1dp"
-            android:layout_height="40dp"
+            android:layout_width="0.75dp"
+            android:layout_height="@dimen/margin_25"
             android:background="@color/color_dark_grey" />
     </LinearLayout>
 </layout>

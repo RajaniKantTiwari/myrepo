@@ -65,10 +65,11 @@ public interface GeneralConstant {
     String POSITION = "position";
     long ANIMATION_TIME = 500;
     String EMERGENCY = "emergency";
-    String NEWS = "news";
     String NEWSLIST = "newslist";
     String DEVICETYPE="1";
-    int NEWS_HEIGHT = 100;
+    int NEWS_HEIGHT = 145;
+    String IS_FROM_HOME ="is_from_home" ;
+    int OFFER_HEIGHT = 75;
 
 
     @IntDef({PRODUCT_MAP_FRAGMENT, PRODUCT_LIST, RECENT_FRAGMENT, CATEGORY_FRAGMENT,

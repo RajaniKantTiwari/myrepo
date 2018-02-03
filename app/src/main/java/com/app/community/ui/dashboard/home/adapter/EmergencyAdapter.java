@@ -40,7 +40,6 @@ public class EmergencyAdapter extends RecyclerView.Adapter<EmergencyAdapter.Emer
     @Override
     public EmergencyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mBinding=DataBindingUtil.inflate(mInflater, R.layout.help_place_row, parent, false);
-
         return new EmergencyViewHolder(mBinding);
     }
 
@@ -48,7 +47,7 @@ public class EmergencyAdapter extends RecyclerView.Adapter<EmergencyAdapter.Emer
     public void onBindViewHolder(EmergencyViewHolder holder, int position) {
         if(CommonUtils.isNotNull(emergencyList)&&emergencyList.size()>position){
             holder.setData(emergencyList.get(position));
-            GlideUtils.loadImage(activity,emergencyList.get(position).getIcon(),holder.ivPlace,null,R.drawable.ambulance);
+            GlideUtils.loadImage(activity,emergencyList.get(position).getIcon(),holder.ivPlace,null,R.drawable.icon_placeholder);
         }
     }
 

@@ -40,9 +40,11 @@ import com.app.community.ui.dashboard.home.event.SearchProductEvent;
 import com.app.community.ui.dashboard.home.fragment.HomeFragment;
 import com.app.community.ui.dashboard.home.fragment.MyOrderFragment;
 import com.app.community.ui.dashboard.home.fragment.NewsFragment;
+import com.app.community.ui.dashboard.offer.OfferDetailsActivity;
 import com.app.community.ui.dialogfragment.EmergencyDialogFragment;
 import com.app.community.ui.dialogfragment.OrderDialogFragment;
 import com.app.community.utils.AddWelcomeChildView;
+import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
@@ -113,12 +115,13 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
         mLatestBinding.rvLatestNews.setAdapter(mLatestNewsAdapter);
         LinearLayoutManager newsManager = new LinearLayoutManager(getBaseActivity());
         mNewsViewBinding.rvNews.setLayoutManager(newsManager);
+        mNewsViewBinding.rvNews.setNestedScrollingEnabled(false);
         mNewsAdapter = new NewsAdapter(getBaseActivity(), newsList, this);
         mNewsViewBinding.rvNews.setAdapter(mNewsAdapter);
 
-
         LinearLayoutManager offerManager = new LinearLayoutManager(getBaseActivity());
         mOfferBinding.rvOffer.setLayoutManager(offerManager);
+        mOfferBinding.rvOffer.setNestedScrollingEnabled(false);
         mOfferAdapter = new OffersAdapter(getBaseActivity(), offersList, this);
         mOfferBinding.rvOffer.setAdapter(mOfferAdapter);
 
@@ -219,6 +222,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
             mOfferBinding.getRoot().setVisibility(View.VISIBLE);
             this.offersList.clear();
             this.offersList.addAll(offersList);
+            CommonUtils.setRecyclerViewHeight(mOfferBinding.rvOffer, offersList, GeneralConstant.OFFER_HEIGHT);
             mOfferAdapter.notifyDataSetChanged();
         } else {
             mOfferBinding.getRoot().setVisibility(View.GONE);
@@ -243,7 +247,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
             Banner banner = bannerList.get(0);
             if (CommonUtils.isNotNull(banner)) {
                 mWelcomeBinding.setBanner(banner);
-                GlideUtils.loadImage(getDashboardActivity(), banner.getBannerimage(), mWelcomeBinding.ivBanner, null, R.drawable.abc);
+                GlideUtils.loadImage(getDashboardActivity(), banner.getBannerimage(), mWelcomeBinding.ivBanner, null, R.drawable.background_placeholder);
             }
         } else {
             mWelcomeBinding.getRoot().setVisibility(View.GONE);
@@ -345,7 +349,12 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
     }
 
     @Override
-    public void offersItemClick(int adapterPosition) {
+    public void offersItemClick(int position) {
+        if(CommonUtils.isNotNull(offersList)&&offersList.size()>position){
+            Bundle bundle=new Bundle();
+            bundle.putParcelable(AppConstants.OFFER,offersList.get(position));
+            ExplicitIntent.getsInstance().navigateTo(getDashboardActivity(), OfferDetailsActivity.class,bundle);
+        }
 
     }
 }

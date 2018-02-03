@@ -19,6 +19,7 @@ import com.app.community.ui.dialogfragment.CustomDialogFragment;
 import com.app.community.ui.location.GPSTracker;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
+import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.UserPreference;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -39,11 +40,21 @@ public class WelcomeScreenActivity extends BaseActivity implements CustomDialogF
 
     private GPSTracker gpsTracker;
     private boolean isClickedOnAddress;
+    private boolean isFromHome;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_welcome_screen);
+        initializeData();
         setListener();
+    }
+
+    private void initializeData() {
+        Intent intent=getIntent();
+        if(CommonUtils.isNotNull(intent)){
+            Bundle bundle=intent.getExtras();
+            isFromHome=bundle.getBoolean(GeneralConstant.IS_FROM_HOME);
+        }
     }
 
     public void setListener() {
@@ -114,10 +125,9 @@ public class WelcomeScreenActivity extends BaseActivity implements CustomDialogF
     private void getLatLong() {
         UserPreference.setLatitude(gpsTracker.getLatitude());
         UserPreference.setLongitude(gpsTracker.getLongitude());
-        /*Bundle bundle=new Bundle();
-        bundle.putString(GeneralConstant.TITLE,getResources().getString(R.string.dialog_title));
-        CommonUtils.showDialog(this,bundle,this);*/
-        ExplicitIntent.getsInstance().navigateTo(this, LoginActivity.class);
+        if(!isFromHome){
+            ExplicitIntent.getsInstance().navigateTo(this, LoginActivity.class);
+        }
         finish();
     }
 
@@ -151,7 +161,9 @@ public class WelcomeScreenActivity extends BaseActivity implements CustomDialogF
                     /*Bundle bundle=new Bundle();
                     bundle.putString(GeneralConstant.TITLE,getResources().getString(R.string.dialog_title));
                     CommonUtils.showDialog(this,bundle,this);*/
-                    ExplicitIntent.getsInstance().navigateTo(this, LoginActivity.class);
+                    if(!isFromHome){
+                        ExplicitIntent.getsInstance().navigateTo(this, LoginActivity.class);
+                    }
                     finish();
                 }catch (Exception ex){
 

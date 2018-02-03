@@ -14,7 +14,7 @@
             <ImageView
                 style="@style/match_match"
                 android:scaleType="centerCrop"
-                android:src="@drawable/abc" />
+                android:src="@drawable/background_placeholder" />
         </RelativeLayout>
 
         <LinearLayout

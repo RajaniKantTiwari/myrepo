@@ -18,7 +18,7 @@
         <ImageView
             android:id="@+id/ivNews"
             style="@style/match_match"
-            android:scaleType="centerCrop"/>
+            android:scaleType="center"/>
         <ImageView
             style="@style/wrap_wrap"
             android:src="@drawable/like"

@@ -37,7 +37,7 @@
 
                     <ImageView
                         style="@style/image_70_60"
-                        android:background="@drawable/abc"
+                        android:background="@drawable/background_placeholder"
                         android:layout_margin="@dimen/margin_8"/>
 
                     <LinearLayout

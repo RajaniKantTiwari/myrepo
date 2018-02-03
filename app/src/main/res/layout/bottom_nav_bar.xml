@@ -18,7 +18,8 @@
             android:foreground="?android:attr/selectableItemBackground">
             <View
                 android:id="@+id/viewBar1"
-                style="@style/view_layout_nav_bar" />
+                style="@style/view_layout_nav_bar"
+                />
 
             <RelativeLayout style="@style/layout_bottom_image">
 

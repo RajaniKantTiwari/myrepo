@@ -14,6 +14,7 @@
         <android.support.v7.widget.CardView
             android:id="@+id/cvLayout"
             style="@style/match_wrap"
+            android:minHeight="@dimen/margin_55"
             android:elevation="@dimen/margin_5"
             android:layout_marginTop="@dimen/margin_10"
             android:layout_marginStart="@dimen/welcome_margin_start"
@@ -41,6 +42,7 @@
                     android:layout_marginEnd="@dimen/margin_3"
                     />
                 <com.app.community.widget.CustomTextView
+                    android:id="@+id/tv"
                     style="@style/textview_description_wrap"
                     android:text="@string/off_on"
                     android:textColor="@color/white"

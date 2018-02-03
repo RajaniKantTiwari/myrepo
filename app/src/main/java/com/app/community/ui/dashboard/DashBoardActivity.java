@@ -31,6 +31,7 @@ import com.app.community.network.response.dashboard.drawerresponse.Recipe;
 import com.app.community.network.response.dashboard.rightdrawer.Merchant;
 import com.app.community.network.response.dashboard.rightdrawer.ProductSubCategory;
 import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
+import com.app.community.ui.WelcomeScreenActivity;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.base.BaseFragment;
 import com.app.community.ui.dashboard.expandrecycleview.draweradapter.DrawerAdapterRight;
@@ -98,6 +99,9 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
             case AppConstants.ORDER:
                 break;
             case AppConstants.YOURADDRESS:
+                Bundle bundle=new Bundle();
+                bundle.putBoolean(GeneralConstant.IS_FROM_HOME,true);
+                ExplicitIntent.getsInstance().navigateTo(this, WelcomeScreenActivity.class,bundle);
                 break;
             case AppConstants.YOURCREDIT:
                 break;
@@ -297,6 +301,9 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     }
 
     public void initializeData() {
+        mBinding.layoutDrawerLeft.tvName.setText(UserPreference.getUserName());
+        mBinding.layoutDrawerLeft.tvMobile.setText(UserPreference.getUserMono());
+
         mPresenter.getCategorySubCategoryRightDrawer(this);
         DeviceTokenRequest request = new DeviceTokenRequest();
         request.setUserid(UserPreference.getUserId());

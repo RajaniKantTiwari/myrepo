@@ -22,7 +22,7 @@
             android:id="@+id/ivProductImage"
             style="@style/wrap_wrap"
             android:layout_below="@+id/header"
-            android:src="@drawable/abc" />
+            android:src="@drawable/background_placeholder" />
 
         <ImageView
             android:id="@+id/layoutLine"

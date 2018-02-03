@@ -22,8 +22,8 @@ public class UserPreference {
     public static void setUserName(String userName) {
         Hawk.put(PreferenceConstants.USER_NAME, userName);
     }
-    public static void getUserName() {
-        Hawk.get(PreferenceConstants.USER_NAME, null);
+    public static String getUserName() {
+       return Hawk.get(PreferenceConstants.USER_NAME, null);
     }
 
     public static void setLatitude(double latitude) {
@@ -60,5 +60,12 @@ public class UserPreference {
     }
     public static boolean isLogin() {
        return Hawk.get(PreferenceConstants.IS_LOGIN, false);
+    }
+
+    public static void setUserMono(String userMono) {
+        Hawk.put(PreferenceConstants.USER_MONO, userMono);
+    }
+    public static String getUserMono() {
+       return Hawk.get(PreferenceConstants.USER_MONO, null);
     }
 }

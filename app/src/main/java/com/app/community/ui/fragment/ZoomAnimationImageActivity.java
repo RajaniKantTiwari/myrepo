@@ -101,7 +101,7 @@ public class ZoomAnimationImageActivity extends BaseActivity {
     @Override
     public void onClick(View view) {
         animation = AnimationUtils.loadAnimation(this, R.anim.zoomout);
-        mBinding.imageLayout.setVisibility(View.GONE);
+        //mBinding.imageLayout.setVisibility(View.GONE);
         mBinding.getRoot().startAnimation(animation);
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {

@@ -71,6 +71,7 @@ public class LoginActivity extends CommonActivity implements MvpView, View.OnCli
                     String type=loginResponse.getType();
                     if(type.equals(AppConstants.SUCCESS)){
                         UserPreference.setUserName(userName);
+                        UserPreference.setUserMono(mobileNumber);
                         Bundle bundle=new Bundle();
                         bundle.putString(GeneralConstant.USER_NAME,userName);
                         bundle.putString(GeneralConstant.MOBILE_NUMBER,mobileNumber);

@@ -18,6 +18,7 @@ public interface AppConstants {
     int RIGHT_DRAWER_RESPONSE = 2;
     String FORBIDDEN = "403";
     String MERCHANT_ID = "merchant_id";
+    String OFFER = "offer";
 
     @IntDef({CHECKOUT_FRAGMENT})
     @Retention(RetentionPolicy.SOURCE)

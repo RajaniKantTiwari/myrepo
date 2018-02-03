@@ -6,9 +6,7 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.app.community.R;
 import com.app.community.databinding.FragmentNewsRowBinding;
@@ -50,7 +48,7 @@ public class VerticlePagerAdapter extends PagerAdapter {
         FragmentNewsRowBinding mBinding = DataBindingUtil.inflate(mLayoutInflater, R.layout.fragment_news_row, container, false);
         if (CommonUtils.isNotNull(newsList) && newsList.size() > position) {
             News news = newsList.get(position);
-            GlideUtils.loadImage(mContext, news.getDisplay_image(), mBinding.ivNews, null, R.drawable.abc);
+            GlideUtils.loadImage(mContext, news.getDisplay_image(), mBinding.ivNews, null, R.drawable.background_placeholder);
             mBinding.setNews(news);
         }
         container.addView(mBinding.getRoot());

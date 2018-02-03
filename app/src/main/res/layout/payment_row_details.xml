@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_wrap"
+    android:padding="@dimen/margin_2"
+    android:orientation="horizontal">
+    <ImageView
+       style="@style/wrap_wrap"
+        android:background="@drawable/black_dot"
+        android:layout_marginTop="@dimen/margin_5"/>
+    <com.app.community.widget.CustomTextView
+        android:id="@+id/tvOffer"
+        style="@style/textview_description_wrap"
+        android:text="@string/lorem_ipsum"
+        />
+</LinearLayout>
+
+</layout>
