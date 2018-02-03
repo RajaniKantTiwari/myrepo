@@ -12,6 +12,7 @@ import android.view.View;
 
 import com.app.community.R;
 import com.app.community.databinding.ActivitySearchBinding;
+import com.app.community.event.ProductDetailsEvent;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.home.MerchantResponse;
@@ -168,11 +169,21 @@ public class SearchActivity extends CommonActivity implements SearchAdapter.Sear
 
 
     @Override
-    public void itemClicked(int adapterPosition) {
-        gotoProduct();
+    public void itemClicked(int position) {
+        if(CommonUtils.isNotNull(merchantList)&&merchantList.size()>position){
+            MerchantResponse merchant = merchantList.get(position);
+            if(CommonUtils.isNotNull(merchant)){
+                gotoProductDetails(merchant.getId());
+            }
+        }
+
 
     }
-
+    private void gotoProductDetails(String id) {
+        ProductDetailsEvent productDetailsEvent = new ProductDetailsEvent(id);
+        EventBus.getDefault().post(productDetailsEvent);
+        finish();
+    }
     @Override
     public void onProductServiceItemClick(int position, int type) {
 

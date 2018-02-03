@@ -233,12 +233,23 @@ public class CommonUtils {
             EventBus.getDefault().register(fragment);
         }
     }
-
+    public static void register(Activity activity) {
+        if (!EventBus.getDefault().isRegistered(activity)) {
+            EventBus.getDefault().register(activity);
+        }
+    }
     public static void unregister(Fragment fragment) {
         if (EventBus.getDefault().isRegistered(fragment)) {
             EventBus.getDefault().unregister(fragment);
         }
     }
+    public static void unregister(Activity activity) {
+        if (EventBus.getDefault().isRegistered(activity)) {
+            EventBus.getDefault().unregister(activity);
+        }
+    }
+
+
 
     public static String oneDecimalPlaceString(String str) {
         if (isNotNull(str) && str.length() > 0) {

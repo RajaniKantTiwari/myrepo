@@ -79,5 +79,10 @@ public class NewsFragment extends DashboardFragment  {
         fragment.setArguments(bundle);
         return fragment;
     }
+    public static Fragment newInstance(Bundle bundle) {
+        NewsFragment fragment = new NewsFragment();
+        fragment.setArguments(bundle);
+        return fragment;
+    }
 
 }

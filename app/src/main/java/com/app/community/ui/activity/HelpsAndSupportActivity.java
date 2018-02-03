@@ -25,14 +25,14 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
  * Created by rajnikant on 31/12/17.
  */
 
-public class HelpsAndSupportActivity extends CommonActivity implements HelpSupportAdapter.HelpSupportListener,OrderDialogFragment.OrderDialogListener {
+public class HelpsAndSupportActivity extends CommonActivity implements HelpSupportAdapter.HelpSupportListener, OrderDialogFragment.OrderDialogListener {
     private FragmentHelpsupportBinding mBinding;
     private HelpSupportAdapter mAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding=DataBindingUtil.setContentView(this,R.layout.fragment_helpsupport);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.fragment_helpsupport);
         initializeAdapter();
         initializeData();
         setListener();
@@ -40,8 +40,8 @@ public class HelpsAndSupportActivity extends CommonActivity implements HelpSuppo
 
 
     private void initializeAdapter() {
-        LinearLayoutManager layoutManager=new LinearLayoutManager(this);
-        mAdapter=new HelpSupportAdapter(this,this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        mAdapter = new HelpSupportAdapter(this, this);
         mBinding.rvChoice.setLayoutManager(layoutManager);
         mBinding.rvChoice.addItemDecoration(new SimpleDividerItemDecoration(getResources()));
         mBinding.rvChoice.setAdapter(mAdapter);
@@ -50,12 +50,11 @@ public class HelpsAndSupportActivity extends CommonActivity implements HelpSuppo
     public void initializeData() {
         mBinding.layoutHeader.tvHeader.setVisibility(View.VISIBLE);
         mBinding.layoutHeader.tvHeader.setText(getResources().getString(R.string.offer));
-        mBinding.layoutHeader.headerLayout.setBackgroundColor(CommonUtils.getColor(this,R.color.dark_black));
+        mBinding.layoutHeader.headerLayout.setBackgroundColor(CommonUtils.getColor(this, R.color.dark_black));
         mBinding.layoutHeader.ivBack.setImageResource(R.drawable.ic_back_white);
     }
 
     public void setListener() {
-
         mBinding.layoutHeader.ivBack.setOnClickListener(this);
     }
 
@@ -65,8 +64,10 @@ public class HelpsAndSupportActivity extends CommonActivity implements HelpSuppo
     }
 
     @Override
-    public void onClick(View v) {
-
+    public void onClick(View view) {
+        if (view==mBinding.layoutHeader.ivBack){
+            finish();
+        }
     }
 
     @Override
@@ -77,8 +78,8 @@ public class HelpsAndSupportActivity extends CommonActivity implements HelpSuppo
 
     @Override
     public void itemClicked(int adapterPosition, boolean isChecked) {
-        if(isChecked){
-            CommonUtils.showOrderDialog(this,null,this);
+        if (isChecked) {
+            CommonUtils.showOrderDialog(this, null, this);
         }
     }
 

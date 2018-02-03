@@ -17,7 +17,7 @@
             android:id="@+id/tvSearchItem"
             style="@style/textview_description_large_match"
             android:padding="@dimen/margin_8"
-            android:text="@={searchData.name}"
+            android:text="@={searchData.store_name}"
             app:customFont="@string/font_regular" />
     </LinearLayout>
 </layout>

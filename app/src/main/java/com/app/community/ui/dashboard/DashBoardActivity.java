@@ -2,6 +2,7 @@ package com.app.community.ui.dashboard;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -16,6 +17,7 @@ import android.view.View;
 import com.app.community.CommonApplication;
 import com.app.community.R;
 import com.app.community.databinding.ActivityDashboardBinding;
+import com.app.community.event.ProductDetailsEvent;
 import com.app.community.fragnav.FragNavController;
 import com.app.community.fragnav.FragNavSwitchController;
 import com.app.community.fragnav.FragNavTransactionOptions;
@@ -39,6 +41,8 @@ import com.app.community.ui.dashboard.expandrecycleview.draweradapter.DrawerAdap
 import com.app.community.ui.dashboard.home.SearchActivity;
 import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.adapter.DrawerAdapterLeft;
+import com.app.community.ui.dashboard.home.event.SearchProductEvent;
+import com.app.community.ui.dashboard.home.fragment.HomeFragment;
 import com.app.community.ui.dashboard.notification.NotificationFragment;
 import com.app.community.ui.dashboard.offer.OfferFragment;
 import com.app.community.ui.dashboard.user.UserFragment;
@@ -51,6 +55,8 @@ import com.app.community.utils.LogUtils;
 import com.app.community.utils.UserPreference;
 import com.app.community.widget.bottomnavigation.BottomNavigationBar;
 import com.app.community.widget.bottomnavigation.NavigationPage;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -128,6 +134,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_dashboard);
+        CommonUtils.register(this);
         hideSoftKeyboard(mBinding.getRoot());
         responseList = new ArrayList<>();
         initTabs();
@@ -324,6 +331,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         mBinding.toolBar.ivDrawer.setOnClickListener(this);
         mBinding.toolBar.ivRightDrawer.setOnClickListener(this);
         mBinding.layoutDrawerLeft.layoutLogout.setOnClickListener(this);
+        mBinding.layoutDrawerLeft.ivAvatar.setOnClickListener(this);
 
     }
 
@@ -338,6 +346,10 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
             ExplicitIntent.getsInstance().navigateTo(this, SearchActivity.class);
         } else if (mBinding.layoutDrawerLeft.layoutLogout == view) {
             CommonUtils.logout(this);
+        }else if( mBinding.layoutDrawerLeft.ivAvatar==view){
+            closeDrawerLeft();
+            onTabSelected(USER);
+            mBottomNav.selectItem(USER);
         }
     }
 
@@ -514,5 +526,24 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         closeDrawerRight();
         pushFragment(PRODUCT_SUBPRODUCT, bundle, R.id.container, true, true, NONE);
         //ProductSubproductFragment.newInstance(0, productList.get(adapterPosition));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        CommonUtils.unregister(this);
+    }
+
+    @Subscribe
+    public void onSearchProduct(ProductDetailsEvent event) {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Bundle bundle=new Bundle();
+                bundle.putString(AppConstants.MERCHANT_ID,event.getMerchantId());
+                pushFragment(PRODUCT_SUBPRODUCT, bundle, R.id.container, true, true, NONE);
+            }
+        }, GeneralConstant.DELAYTIME);
+
     }
 }

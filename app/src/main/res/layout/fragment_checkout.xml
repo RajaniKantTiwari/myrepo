@@ -106,6 +106,7 @@
                         android:textColor="@color/color_sky_blue"/>
 
                     <com.app.community.widget.CustomTextView
+                        android:id="@+id/editAddress"
                         style="@style/textview_description_ex_large_wrap"
                         android:padding="@dimen/margin_5"
                         android:layout_marginEnd="@dimen/margin_8"

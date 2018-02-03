@@ -53,7 +53,9 @@ public class WelcomeScreenActivity extends BaseActivity implements CustomDialogF
         Intent intent=getIntent();
         if(CommonUtils.isNotNull(intent)){
             Bundle bundle=intent.getExtras();
-            isFromHome=bundle.getBoolean(GeneralConstant.IS_FROM_HOME);
+            if(CommonUtils.isNotNull(bundle)){
+                isFromHome=bundle.getBoolean(GeneralConstant.IS_FROM_HOME);
+            }
         }
     }
 

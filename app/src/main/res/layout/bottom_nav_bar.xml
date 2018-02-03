@@ -25,7 +25,7 @@
 
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/imageViewBar1"
-                    style="@style/wrap_wrap"
+                    style="@style/home_view"
                     android:src="@drawable/ic_home" />
             </RelativeLayout>
 
@@ -47,7 +47,7 @@
 
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/imageViewBar2"
-                    style="@style/wrap_wrap"
+                    style="@style/home_view"
                     android:src="@drawable/ic_gift" />
             </RelativeLayout>
 
@@ -69,7 +69,7 @@
 
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/imageViewBar3"
-                    style="@style/wrap_wrap"
+                    style="@style/home_view"
                     android:src="@drawable/ic_notification" />
             </RelativeLayout>
 
@@ -91,9 +91,29 @@
 
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/imageViewBar4"
-                    style="@style/wrap_wrap"
+                    style="@style/home_view"
                     android:src="@drawable/ic_user" />
+            </RelativeLayout>
 
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/linearLayoutBar5"
+            style="@style/linear_layout_match"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:visibility="gone">
+
+            <View
+                android:id="@+id/viewBar5"
+                style="@style/view_layout_nav_bar"
+                android:visibility="invisible" />
+
+            <RelativeLayout style="@style/layout_bottom_image">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/imageViewBar5"
+                    style="@style/home_view"
+                    android:src="@drawable/ic_user" />
             </RelativeLayout>
 
         </RelativeLayout>

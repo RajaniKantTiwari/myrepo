@@ -44,6 +44,12 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <style name="home_view">
+        <item name="android:layout_width">@dimen/margin_25</item>
+        <item name="android:layout_height">@dimen/margin_25</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
     <style name="CustomAlertDialogTheme" parent="AppTheme">
         <item name="android:windowTitleStyle">@style/CustomAlertDialogTitle</item>
     </style>
@@ -90,7 +96,7 @@
     <style name="view_layout_nav_bar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/margin_2</item>
-        <item name="android:background">@color/colorNavAccentSelected</item>
+        <item name="android:background">@color/color_dark_grey</item>
     </style>
 
     <style name="view_layout_vertical">

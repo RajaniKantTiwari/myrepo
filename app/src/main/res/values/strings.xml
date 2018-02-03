@@ -399,7 +399,7 @@
     <string name="any_other_feedback">Any Other Feedback (Optional)</string>
     <string name="submit">Submit</string>
     <string name="selection_option">Select Option</string>
-    <string name="news">news</string>
+    <string name="news">News</string>
     <string name="what_you_want_to_search_today">What you want to search today?</string>
     <string name="last_order">Last Order</string>
     <string name="review">Reviews</string>
@@ -434,7 +434,7 @@
     <string name="off_on">off valid till</string>
     <string name="code">Code :&#160;</string>
     <string name="home">Home</string>
-    <string name="your_address">Your Address</string>
+    <string name="your_address">My Address</string>
     <string name="your_credit">Your Credits</string>
     <string name="notification">Notification</string>
     <string name="about_us">About Us</string>
@@ -446,6 +446,7 @@
     <string name="offer">Offer</string>
     <string name="user">User</string>
     <string name="to">&#160;to&#160;</string>
+    <string name="change_location">Change Location</string>
 
 
     <string-array name="state_array">

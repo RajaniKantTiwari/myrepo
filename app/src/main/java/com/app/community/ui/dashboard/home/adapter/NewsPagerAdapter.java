@@ -1,5 +1,6 @@
 package com.app.community.ui.dashboard.home.adapter;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -12,8 +13,11 @@ import com.app.community.ui.dashboard.home.fragment.NewsFragment;
  */
 
 public class NewsPagerAdapter extends FragmentPagerAdapter {
-        public NewsPagerAdapter(FragmentManager fm) {
+    private final Bundle bundle;
+
+    public NewsPagerAdapter(FragmentManager fm, Bundle bundle) {
             super(fm);
+            this.bundle=bundle;
         }
 
         @Override
@@ -22,7 +26,7 @@ public class NewsPagerAdapter extends FragmentPagerAdapter {
                 case 0:
                     return new HelpsAndSupportFragment();
                 case 1:
-                    return new NewsFragment();
+                    return NewsFragment.newInstance(bundle);
                 default:
                     return null;
             }

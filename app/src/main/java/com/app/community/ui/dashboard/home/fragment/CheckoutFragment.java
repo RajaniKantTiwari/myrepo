@@ -15,11 +15,13 @@ import com.app.community.network.request.PaymentOption;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.home.MerchantResponse;
 import com.app.community.ui.SimpleDividerItemDecoration;
+import com.app.community.ui.activity.EditAddressActivity;
 import com.app.community.ui.activity.PaymentAdapter;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.MerchantDetailsFragment;
 import com.app.community.ui.dashboard.home.adapter.CheckoutCartAdapter;
 import com.app.community.utils.CommonUtils;
+import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
 
 import java.util.ArrayList;
@@ -32,7 +34,7 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
  * Created by ashok on 26/12/17.
  */
 
-public class CheckoutFragment extends DashboardFragment{
+public class CheckoutFragment extends DashboardFragment {
     private FragmentCheckoutBinding mBinding;
     private CheckoutCartAdapter mCheckoutAdapter;
     List<PaymentOption> paymentList = new ArrayList<>();
@@ -68,14 +70,13 @@ public class CheckoutFragment extends DashboardFragment{
         setPaymentOption();
         paymentAdapter = new PaymentAdapter(getBaseActivity(), paymentList);
         mBinding.rvPayment.setAdapter(paymentAdapter);
-        CommonUtils.setRecyclerViewHeight(mBinding.rvPayment,paymentList,GeneralConstant.PAYMENT_HEIGHT);
+        CommonUtils.setRecyclerViewHeight(mBinding.rvPayment, paymentList, GeneralConstant.PAYMENT_HEIGHT);
         setDelivery();
         deliveryAdapter = new PaymentAdapter(getBaseActivity(), deliveryList);
         mBinding.rvDelivery.setAdapter(deliveryAdapter);
-        CommonUtils.setRecyclerViewHeight(mBinding.rvDelivery,deliveryList,GeneralConstant.PAYMENT_HEIGHT);
+        CommonUtils.setRecyclerViewHeight(mBinding.rvDelivery, deliveryList, GeneralConstant.PAYMENT_HEIGHT);
 
     }
-
 
 
     private void setDelivery() {
@@ -103,7 +104,7 @@ public class CheckoutFragment extends DashboardFragment{
 
     @Override
     public void setListener() {
-
+        mBinding.editAddress.setOnClickListener(this);
     }
 
     @Override
@@ -118,7 +119,11 @@ public class CheckoutFragment extends DashboardFragment{
 
     @Override
     public void onClick(View view) {
+        if (view == mBinding.editAddress) {
+            CommonUtils.clicked(mBinding.editAddress);
+            ExplicitIntent.getsInstance().navigateTo(getDashboardActivity(),EditAddressActivity.class);
 
+        }
     }
 
     @Override

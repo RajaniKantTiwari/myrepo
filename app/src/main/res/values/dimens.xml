@@ -109,7 +109,7 @@
     <dimen name="drawerview_height">35dp</dimen>
     <dimen name="welcome_margin_start">10dp</dimen>
     <dimen name="welcome_margin_end">10dp</dimen>
-    <dimen name="bottom_navi_height">55dp</dimen>
+    <dimen name="bottom_navi_height">45dp</dimen>
     <dimen name="margin_110">110dp</dimen>
 
 

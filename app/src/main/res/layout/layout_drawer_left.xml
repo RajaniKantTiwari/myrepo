@@ -21,6 +21,13 @@
                 android:background="@drawable/bg_circle_white"
                 android:scaleType="fitCenter"
                 android:src="@drawable/avatar" />
+            <ImageView
+                android:id="@+id/ivEdit"
+                style="@style/wrap_wrap"
+                android:background="@drawable/bg_circle_white"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_edit"
+                android:layout_marginStart="@dimen/margin_50" />
                <ImageView
                    android:layout_width="@dimen/margin_20"
                    android:layout_height="@dimen/margin_20"

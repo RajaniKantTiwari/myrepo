@@ -40,6 +40,7 @@ import com.app.community.ui.dashboard.home.event.SearchProductEvent;
 import com.app.community.ui.dashboard.home.fragment.HomeFragment;
 import com.app.community.ui.dashboard.home.fragment.MyOrderFragment;
 import com.app.community.ui.dashboard.home.fragment.NewsFragment;
+import com.app.community.ui.dashboard.home.fragment.NewsMainActivity;
 import com.app.community.ui.dashboard.offer.OfferDetailsActivity;
 import com.app.community.ui.dialogfragment.EmergencyDialogFragment;
 import com.app.community.ui.dialogfragment.OrderDialogFragment;
@@ -265,7 +266,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
 
     @Override
     public void newsItemClick(int position) {
-        if (mFragmentNavigation != null) {
+        /*if (mFragmentNavigation != null) {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -276,7 +277,12 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
                     mFragmentNavigation.pushFragment(NewsFragment.newInstance(mInt + 1, bundle));
                 }
             }, GeneralConstant.DELAYTIME);
-        }
+        }*/
+
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList(GeneralConstant.NEWSLIST, newsList);
+        bundle.putInt(GeneralConstant.POSITION, position);
+        ExplicitIntent.getsInstance().navigateTo(getDashboardActivity(), NewsMainActivity.class,bundle);
     }
 
     @Override

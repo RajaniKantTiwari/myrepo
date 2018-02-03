@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.app.community.R;
 import com.app.community.databinding.DrawerLeftRowItemBinding;
 import com.app.community.utils.CommonUtils;
+import com.app.community.widget.CustomTextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,6 +45,11 @@ public class DrawerAdapterLeft extends RecyclerView.Adapter<DrawerAdapterLeft.St
     public void onBindViewHolder(StoreViewHolder holder, int position) {
         if(CommonUtils.isNotNull(drawerList)&&drawerList.size()>position){
             holder.setData(drawerList.get(position));
+            if(position==2){
+                holder.tvChange.setVisibility(View.VISIBLE);
+            }else{
+                holder.tvChange.setVisibility(View.GONE);
+            }
         }
     }
 
@@ -54,10 +60,12 @@ public class DrawerAdapterLeft extends RecyclerView.Adapter<DrawerAdapterLeft.St
 
     class StoreViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private final DrawerLeftRowItemBinding mBinding;
+        private final CustomTextView tvChange;
 
         public StoreViewHolder(DrawerLeftRowItemBinding itemView) {
            super(itemView.getRoot());
            mBinding=itemView;
+            tvChange=itemView.tvChange;
            itemView.layoutUserItem.setOnClickListener(this);
        }
 
