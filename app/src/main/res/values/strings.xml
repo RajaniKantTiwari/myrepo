@@ -436,8 +436,8 @@
     <string name="off_on">off valid till</string>
     <string name="code">Code :&#160;</string>
     <string name="home">Home</string>
-    <string name="your_address">My Address</string>
-    <string name="your_credit">My Account</string>
+    <string name="my_address">My Address</string>
+    <string name="my_account">My Account</string>
     <string name="notification">Notifications</string>
     <string name="about_us">About Us</string>
     <string name="help_support">Help &amp; Support</string>
@@ -484,8 +484,8 @@
     <string-array name="left_drawer">
         <item>@string/home</item>
         <item>@string/my_order</item>
-        <item>@string/your_address</item>
-        <item>@string/your_credit</item>
+        <item>@string/my_address</item>
+        <item>@string/my_account</item>
         <item>@string/notification</item>
         <item>@string/about_us</item>
         <item>@string/help_support</item>

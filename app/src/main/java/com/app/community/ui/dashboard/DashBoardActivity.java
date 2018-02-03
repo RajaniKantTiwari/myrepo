@@ -100,15 +100,17 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
                 onTabSelected(HOME);
                 mBottomNav.selectItem(HOME);
                 break;
-            case AppConstants.ORDER:
+            case AppConstants.MYORDER:
+                ExplicitIntent.getsInstance().navigateTo(this, MyOrderActivity.class);
                 break;
-            case AppConstants.YOURADDRESS:
+            case AppConstants.MYADDRESS:
                 Bundle bundle=new Bundle();
                 bundle.putBoolean(GeneralConstant.IS_FROM_HOME,true);
                 ExplicitIntent.getsInstance().navigateTo(this, WelcomeScreenActivity.class,bundle);
                 break;
-            case AppConstants.MYORDER:
-                  ExplicitIntent.getsInstance().navigateTo(this, MyOrderActivity.class);
+            case AppConstants.MYACCOUNT:
+                onTabSelected(USER);
+                mBottomNav.selectItem(USER);
                 break;
             case AppConstants.NOTIFICATION:
                 onTabSelected(NOTIFICATION);

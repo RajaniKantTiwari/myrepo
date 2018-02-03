@@ -3,58 +3,51 @@ package com.app.community.ui.dashboard.home.fragment;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.app.community.R;
-import com.app.community.databinding.FragmentMyOrderBinding;
+import com.app.community.databinding.ActivityMyOrderBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.authentication.CommonActivity;
 import com.app.community.ui.base.BaseActivity;
-import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.event.MyOrderEvent;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 
 import org.greenrobot.eventbus.EventBus;
 
-import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
-
 /**
  * Created by rajnikant on 31/12/17.
  */
 
 public class MyOrderActivity extends CommonActivity {
-    private FragmentMyOrderBinding mBinding;
+    private ActivityMyOrderBinding mBinding;
     private MyOrderEvent event;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DataBindingUtil.setContentView(this,R.layout.fragment_my_order);
+        mBinding=DataBindingUtil.setContentView(this,R.layout.activity_my_order);
         initializeData();
         setListener();
     }
-
-  /*  @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_order, container, false);
-        return mBinding.getRoot();
-    }
-*/
     public void initializeData() {
+        mBinding.layoutHeader.tvHeader.setVisibility(View.VISIBLE);
+        mBinding.layoutHeader.tvHeader.setText(getResources().getString(R.string.offer));
+        mBinding.layoutHeader.headerLayout.setBackgroundColor(CommonUtils.getColor(this,R.color.dark_black));
+        mBinding.layoutHeader.ivBack.setImageResource(R.drawable.ic_back_white);
+
         event=new MyOrderEvent();
         event.setLivePastOrder(GeneralConstant.LIVEORDER);
 
-        pushFragment( GeneralConstant.FRAGMENTS.LIVEORDER_FRAGMENT,null,R.id.container,true,false,BaseActivity.AnimationType.NONE);
-        pushFragment( GeneralConstant.FRAGMENTS.PASTORDER_FRAGMENT,null,R.id.container,true,false,BaseActivity.AnimationType.NONE);
+        pushFragment( GeneralConstant.FRAGMENTS.LIVEORDER_FRAGMENT,null,R.id.container,false,false,BaseActivity.AnimationType.NONE);
+        pushFragment( GeneralConstant.FRAGMENTS.PASTORDER_FRAGMENT,null,R.id.container,false,false,BaseActivity.AnimationType.NONE);
         EventBus.getDefault().post(event);
     }
 
     
     public void setListener() {
+        mBinding.layoutHeader.ivBack.setOnClickListener(this);
         mBinding.layoutLiveOrder.setOnClickListener(this);
         mBinding.layoutPastOrder.setOnClickListener(this);
     }

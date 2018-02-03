@@ -5,7 +5,9 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         style="@style/match_match"
         android:orientation="vertical">
-
+       <include
+           android:id="@+id/layoutHeader"
+           layout="@layout/header_layout"/>
         <LinearLayout
             style="@style/match_wrap"
             android:layout_height="@dimen/margin_50">
@@ -19,11 +21,10 @@
                     android:id="@+id/tvLiveOrder"
                     style="@style/textview_description_ex_large_match"
                     android:layout_weight="1"
-                    android:textColor="@color/dark_black"
                     android:gravity="center"
                     android:text="@string/live_order"
                     android:textAllCaps="true"
-                    />
+                    android:textColor="@color/dark_black" />
 
                 <ImageView
                     android:id="@+id/ivLiveOrder"
@@ -46,13 +47,11 @@
                     android:gravity="center"
                     android:text="@string/past_order"
                     android:textAllCaps="true"
-                    android:textColor="@color/grey_cart"
-                    />
+                    android:textColor="@color/grey_cart" />
 
                 <ImageView
                     android:id="@+id/ivPastOrder"
-                    style="@style/view_layout_brown"
-                    />
+                    style="@style/view_layout_brown" />
 
             </LinearLayout>
 
