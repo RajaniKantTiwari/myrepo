@@ -28,8 +28,6 @@ import com.app.community.injector.module.DashboardModule;
 import com.app.community.network.DeviceToken;
 import com.app.community.network.request.DeviceTokenRequest;
 import com.app.community.network.response.BaseResponse;
-import com.app.community.network.response.dashboard.drawerresponse.Ingredient;
-import com.app.community.network.response.dashboard.drawerresponse.Recipe;
 import com.app.community.network.response.dashboard.rightdrawer.Merchant;
 import com.app.community.network.response.dashboard.rightdrawer.ProductSubCategory;
 import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
@@ -41,8 +39,7 @@ import com.app.community.ui.dashboard.expandrecycleview.draweradapter.DrawerAdap
 import com.app.community.ui.dashboard.home.SearchActivity;
 import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.adapter.DrawerAdapterLeft;
-import com.app.community.ui.dashboard.home.event.SearchProductEvent;
-import com.app.community.ui.dashboard.home.fragment.HomeFragment;
+import com.app.community.ui.dashboard.home.fragment.MyOrderActivity;
 import com.app.community.ui.dashboard.notification.NotificationFragment;
 import com.app.community.ui.dashboard.offer.OfferFragment;
 import com.app.community.ui.dashboard.user.UserFragment;
@@ -59,7 +56,6 @@ import com.app.community.widget.bottomnavigation.NavigationPage;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -111,7 +107,8 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
                 bundle.putBoolean(GeneralConstant.IS_FROM_HOME,true);
                 ExplicitIntent.getsInstance().navigateTo(this, WelcomeScreenActivity.class,bundle);
                 break;
-            case AppConstants.YOURCREDIT:
+            case AppConstants.MYORDER:
+                  ExplicitIntent.getsInstance().navigateTo(this, MyOrderActivity.class);
                 break;
             case AppConstants.NOTIFICATION:
                 onTabSelected(NOTIFICATION);

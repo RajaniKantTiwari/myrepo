@@ -29,7 +29,7 @@ public interface AppConstants {
     int HOME = 0;
     int ORDER = 1;
     int YOURADDRESS = 2;
-    int YOURCREDIT = 3;
+    int MYORDER = 3;
     int NOTIFICATION = 4;
     int ABOUTUS = 5;
     int HELPSUPPORT = 6;

@@ -19,32 +19,60 @@
                 android:layout_centerVertical="true"
                 android:background="@android:color/transparent"
                 android:padding="@dimen/margin_12"
-                android:src="@drawable/hamberg_icon"/>
+                android:src="@drawable/hamberg_icon" />
+
             <com.app.community.widget.CustomTextView
                 android:id="@+id/tvHeading"
                 style="@style/textview_title_wrap"
-                android:textColor="@color/white"
                 android:layout_centerInParent="true"
                 android:text="@string/app_name"
-                />
+                android:textColor="@color/white" />
+
             <ImageView
                 android:id="@+id/ivSearch"
                 style="@style/wrap_wrap"
                 android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/layoutCart"
                 android:background="@android:color/transparent"
                 android:contentDescription="@null"
                 android:padding="@dimen/margin_12"
-                android:layout_toStartOf="@+id/ivRightDrawer"
-                android:src="@drawable/ic_search_white"
-                 />
+                android:src="@drawable/ic_search_white" />
+
+            <RelativeLayout
+                android:id="@+id/layoutCart"
+                style="@style/wrap_wrap"
+                android:layout_width="@dimen/margin_50"
+                android:layout_toStartOf="@+id/ivRightDrawer">
+                <ImageView
+                    android:id="@+id/ivCart"
+                    style="@style/wrap_wrap"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/black_dot"
+                    android:contentDescription="@null"
+                    android:padding="@dimen/margin_12"
+                    android:src="@drawable/shopping_cart"
+                    />
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvPastOrder"
+                    style="@style/textview_description_ex_large_wrap"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:text="20"
+                    android:background="@drawable/black_cart_dot"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:layout_alignParentEnd="true"
+                    />
+
+            </RelativeLayout>
+
             <ImageView
                 android:id="@+id/ivRightDrawer"
                 style="@style/wrap_wrap"
-                android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
                 android:background="@android:color/transparent"
                 android:padding="@dimen/margin_12"
-                android:src="@drawable/hamberg_right"/>
+                android:src="@drawable/hamberg_right" />
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 </layout>

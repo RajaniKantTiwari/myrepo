@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE resources [
-    <!ENTITY appname "App Name">
+    <!ENTITY appname "Hamara Dost">
     <!ENTITY author "MrGreen">
     ]>
 <resources>
@@ -165,6 +165,8 @@
     <string name="proceed_checkout"> Proceed Checkout </string>
 
     <string name="order">Order </string>
+    <string name="my_order">My Order </string>
+
     <string name="order_id"> Order ID </string>
     <string name="order_status"> Order Status </string>
     <string name="order_date"> Order Date </string>
@@ -435,8 +437,8 @@
     <string name="code">Code :&#160;</string>
     <string name="home">Home</string>
     <string name="your_address">My Address</string>
-    <string name="your_credit">Your Credits</string>
-    <string name="notification">Notification</string>
+    <string name="your_credit">My Account</string>
+    <string name="notification">Notifications</string>
     <string name="about_us">About Us</string>
     <string name="help_support">Help &amp; Support</string>
     <string name="no_result_found">No Result Found</string>
@@ -481,7 +483,7 @@
 
     <string-array name="left_drawer">
         <item>@string/home</item>
-        <item>@string/order</item>
+        <item>@string/my_order</item>
         <item>@string/your_address</item>
         <item>@string/your_credit</item>
         <item>@string/notification</item>

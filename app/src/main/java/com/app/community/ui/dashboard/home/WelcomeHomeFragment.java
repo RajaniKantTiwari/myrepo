@@ -38,7 +38,7 @@ import com.app.community.ui.dashboard.home.adapter.NewsAdapter;
 import com.app.community.ui.dashboard.home.adapter.OffersAdapter;
 import com.app.community.ui.dashboard.home.event.SearchProductEvent;
 import com.app.community.ui.dashboard.home.fragment.HomeFragment;
-import com.app.community.ui.dashboard.home.fragment.MyOrderFragment;
+import com.app.community.ui.dashboard.home.fragment.MyOrderActivity;
 import com.app.community.ui.dashboard.home.fragment.NewsFragment;
 import com.app.community.ui.dashboard.home.fragment.NewsMainActivity;
 import com.app.community.ui.dashboard.offer.OfferDetailsActivity;
@@ -161,7 +161,8 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
         } else if (view == mWelcomeBinding.tvSearch) {
             ExplicitIntent.getsInstance().navigateTo(getActivity(), SearchActivity.class);
         } else if (view == mLastOrderBinding.layoutRating) {
-            mFragmentNavigation.pushFragment(MyOrderFragment.newInstance(mInt + 1));
+            ExplicitIntent.getsInstance().navigateTo(getDashboardActivity(),MyOrderActivity.class);
+            //mFragmentNavigation.pushFragment(MyOrderActivity.newInstance(mInt + 1));
         }
     }
 

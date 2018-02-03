@@ -34,13 +34,6 @@ public class NewsMainActivity extends CommonActivity {
         initializeData();
     }
 
-   /* @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_main_news, container, false);
-        return mBinding.getRoot();
-    }*/
-
     public void initializeData() {
         mBinding.layoutHeader.tvHeader.setVisibility(View.VISIBLE);
         mBinding.layoutHeader.tvHeader.setText(getResources().getString(R.string.news));
