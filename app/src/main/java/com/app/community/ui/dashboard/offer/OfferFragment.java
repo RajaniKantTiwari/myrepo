@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
 import com.app.community.R;
@@ -51,6 +52,7 @@ public class OfferFragment extends DashboardFragment implements OfferTypesAdapte
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_offer, container, false);
+        getDashboardActivity().showToast("OfferFragment");
         getDashboardActivity().setTile(getString(R.string.offer));
         return mBinding.getRoot();
     }

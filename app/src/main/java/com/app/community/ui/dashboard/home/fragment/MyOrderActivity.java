@@ -73,6 +73,8 @@ public class MyOrderActivity extends CommonActivity {
         mBinding.tvPastOrder.setTextColor(CommonUtils.getColor(this,R.color.color_dark_grey));
         mBinding.ivPastOrder.setBackgroundColor(CommonUtils.getColor(this,R.color.dark_black_color));
         mBinding.ivLiveOrder.setBackgroundColor(CommonUtils.getColor(this,R.color.ver_bg_color));
+        mBinding.ivLiveOrder.setVisibility(View.VISIBLE);
+        mBinding.ivPastOrder.setVisibility(View.INVISIBLE);
         event.setLivePastOrder(GeneralConstant.PASTORDER);
         EventBus.getDefault().post(event);
 
@@ -83,8 +85,8 @@ public class MyOrderActivity extends CommonActivity {
         mBinding.tvPastOrder.setTextColor(CommonUtils.getColor(this,R.color.dark_black));
         mBinding.ivLiveOrder.setBackgroundColor(CommonUtils.getColor(this,R.color.dark_black_color));
         mBinding.ivPastOrder.setBackgroundColor(CommonUtils.getColor(this,R.color.ver_bg_color));
-        //mBinding.ivLiveOrder.setVisibility(View.INVISIBLE);
-        //mBinding.ivPastOrder.setVisibility(View.VISIBLE);
+        mBinding.ivLiveOrder.setVisibility(View.INVISIBLE);
+        mBinding.ivPastOrder.setVisibility(View.VISIBLE);
         event.setLivePastOrder(GeneralConstant.LIVEORDER);
         EventBus.getDefault().post(event);
     }

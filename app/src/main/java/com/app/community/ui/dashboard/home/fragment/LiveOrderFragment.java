@@ -37,9 +37,9 @@ public class LiveOrderFragment extends DashboardFragment {
     }
     private void initializeAdapter() {
         mAdapter = new LiveOrderAdapter(getBaseActivity());
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getBaseActivity());
+        /*LinearLayoutManager layoutManager = new LinearLayoutManager(getBaseActivity());
         mBinding.rvOrder.setLayoutManager(layoutManager);
-        mBinding.rvOrder.setAdapter(mAdapter);
+        mBinding.rvOrder.setAdapter(mAdapter);*/
     }
     @Override
     public void initializeData() {

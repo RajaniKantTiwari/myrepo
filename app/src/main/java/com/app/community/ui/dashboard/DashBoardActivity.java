@@ -4,24 +4,19 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
-import android.view.MenuItem;
 import android.view.View;
 
 import com.app.community.CommonApplication;
 import com.app.community.R;
 import com.app.community.databinding.ActivityDashboardBinding;
 import com.app.community.event.ProductDetailsEvent;
-import com.app.community.fragnav.FragNavController;
-import com.app.community.fragnav.FragNavSwitchController;
-import com.app.community.fragnav.FragNavTransactionOptions;
-import com.app.community.fragnav.tabhistory.FragNavTabHistoryController;
 import com.app.community.injector.component.DaggerDashboardComponent;
 import com.app.community.injector.component.DashboardComponent;
 import com.app.community.injector.module.DashboardModule;
@@ -34,11 +29,11 @@ import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
 import com.app.community.ui.WelcomeScreenActivity;
 import com.app.community.ui.activity.HelpsAndSupportActivity;
 import com.app.community.ui.base.BaseActivity;
-import com.app.community.ui.base.BaseFragment;
 import com.app.community.ui.dashboard.expandrecycleview.draweradapter.DrawerAdapterRight;
 import com.app.community.ui.dashboard.home.SearchActivity;
 import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.adapter.DrawerAdapterLeft;
+import com.app.community.ui.dashboard.home.event.NewsEvent;
 import com.app.community.ui.dashboard.home.fragment.MyOrderActivity;
 import com.app.community.ui.dashboard.notification.NotificationFragment;
 import com.app.community.ui.dashboard.offer.OfferFragment;
@@ -50,29 +45,25 @@ import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.LogUtils;
 import com.app.community.utils.UserPreference;
-import com.app.community.widget.bottomnavigation.BottomNavigationBar;
-import com.app.community.widget.bottomnavigation.NavigationPage;
 
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
 import static com.app.community.ui.base.BaseActivity.AnimationType.NONE;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.HOME_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.NEWS_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.NOTIFICATION_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.OFFER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_SUBPRODUCT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.USER_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.WELCOME_HOME_FRAGMENT;
 
-public class DashBoardActivity extends BaseActivity implements BottomNavigationBar.BottomNavigationMenuClickListener,
-        BaseFragment.FragmentNavigation, FragNavController.TransactionListener, FragNavController.RootFragmentListener,
-        DrawerAdapterLeft.DrawerLeftListener, DrawerAdapterRight.ProductSubHolderListener {
+public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft.DrawerLeftListener, DrawerAdapterRight.ProductSubHolderListener {
     private static String TAG = DashBoardActivity.class.getSimpleName();
     //Better convention to properly name the indices what they are in your app
-    private final int HOME = FragNavController.TAB1;
-    private final int OFFER = FragNavController.TAB2;
-    private final int NOTIFICATION = FragNavController.TAB3;
-    private final int USER = FragNavController.TAB4;
-    private FragNavController mNavController;
 
     private ActivityDashboardBinding mBinding;
     public DashboardComponent mDashboardComponent;
@@ -81,14 +72,8 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     //Sliding drawer
     private ActionBarDrawerToggle mDrawerToggleRight;
 
-    //Bottom bar
-    // helper class for handling UI and click events of bottom-nav-bar
-    private BottomNavigationBar mBottomNav;
-    // list of Navigation pages to be shown
-    private static final int MAIN_TAB_ID = FragNavController.TAB1;
     private DrawerAdapterRight mDrawerAdapterRight;
     ArrayList<ProductSubCategory> responseList;
-    private ArrayList<NavigationPage> navigationPages;
     private ActionBarDrawerToggle mDrawerToggleLeft;
     private DrawerAdapterLeft mDrawerAdapterLeft;
 
@@ -97,8 +82,7 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         closeDrawerLeft();
         switch (position) {
             case AppConstants.HOME:
-                onTabSelected(HOME);
-                mBottomNav.selectItem(HOME);
+                //onTabSelected(WELCOME_HOME_FRAGMENT);
                 break;
             case AppConstants.MYORDER:
                 ExplicitIntent.getsInstance().navigateTo(this, MyOrderActivity.class);
@@ -109,17 +93,14 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
                 ExplicitIntent.getsInstance().navigateTo(this, WelcomeScreenActivity.class, bundle);
                 break;
             case AppConstants.MYACCOUNT:
-                onTabSelected(USER);
-                mBottomNav.selectItem(USER);
+                //onTabSelected(USER_FRAGMENT);
                 break;
             case AppConstants.NOTIFICATION:
-                onTabSelected(NOTIFICATION);
-                mBottomNav.selectItem(NOTIFICATION);
+                //onTabSelected(NOTIFICATION_FRAGMENT);
 
                 break;
             case AppConstants.ABOUTUS:
-                onTabSelected(USER);
-                mBottomNav.selectItem(USER);
+                //onTabSelected(USER_FRAGMENT);
                 break;
             case AppConstants.HELPSUPPORT:
                 ExplicitIntent.getsInstance().navigateTo(this, HelpsAndSupportActivity.class);
@@ -136,32 +117,12 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         CommonUtils.register(this);
         hideSoftKeyboard(mBinding.getRoot());
         responseList = new ArrayList<>();
-        initTabs();
         initDashboardComponent();
         attachView();
         setupDrawerToggleRight();
         setupDrawerToggleLeft();
-        navigationControl(savedInstanceState);
         initializeData();
         setListener();
-    }
-
-    private void navigationControl(Bundle savedInstanceState) {
-        boolean initial = savedInstanceState == null;
-        if (initial) {
-            mBottomNav.selectItem(HOME);
-        }
-        mNavController = FragNavController.newBuilder(savedInstanceState, getSupportFragmentManager(), R.id.container)
-                .transactionListener(this)
-                .rootFragmentListener(this, 4)
-                .popStrategy(FragNavTabHistoryController.UNIQUE_TAB_HISTORY)
-                .switchController(new FragNavSwitchController() {
-                    @Override
-                    public void switchTab(int index, FragNavTransactionOptions transactionOptions) {
-                        mBottomNav.selectItem(index);
-                    }
-                })
-                .build();
     }
 
     private void initDashboardComponent() {
@@ -176,110 +137,73 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         return mDashboardComponent;
     }
 
-    @Override
-    public void onBackPressed() {
-        if (!mNavController.popFragment()) {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
     public void onTabSelected(int position) {
         changeIcon(position);
         switch (position) {
-            case HOME:
-                mNavController.switchTab(HOME);
+            case WELCOME_HOME_FRAGMENT:
+                pushFragment(WELCOME_HOME_FRAGMENT, null, R.id.container, false, false, NONE);
+                clearAllBackStack();
                 break;
-            case OFFER:
-                mNavController.switchTab(OFFER);
+            case OFFER_FRAGMENT:
+                pushFragment(OFFER_FRAGMENT, null, R.id.container, false, false, NONE);
+                clearAllBackStack();
+
                 break;
-            case NOTIFICATION:
-                mNavController.switchTab(NOTIFICATION);
+            case NOTIFICATION_FRAGMENT:
+                pushFragment(NOTIFICATION_FRAGMENT, null, R.id.container, false, false, NONE);
+                clearAllBackStack();
+
                 break;
-            case USER:
-                mNavController.switchTab(USER);
+            case USER_FRAGMENT:
+                pushFragment(USER_FRAGMENT, null, R.id.container, false, false, NONE);
+                clearAllBackStack();
                 break;
         }
     }
 
     private void changeIcon(int position) {
-        for (int i = 0; i < navigationPages.size(); i++) {
-            NavigationPage navigation = navigationPages.get(i);
+        for (int i = 0; i < AppConstants.NO_OF_TAB; i++) {
             switch (i) {
                 case 0:
                     if (i == position) {
-                        navigation.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_home));
+                        mBinding.bottomLayout.viewBar1.setVisibility(View.VISIBLE);
+                        mBinding.bottomLayout.imageViewBar1.setImageResource(R.drawable.ic_home);
                     } else {
-                        navigation.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_home_light));
+                        mBinding.bottomLayout.viewBar1.setVisibility(View.INVISIBLE);
+                        mBinding.bottomLayout.imageViewBar1.setImageResource(R.drawable.ic_home_light);
                     }
 
                     break;
                 case 1:
                     if (i == position) {
-                        navigation.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_gift));
+                        mBinding.bottomLayout.viewBar2.setVisibility(View.VISIBLE);
+                        mBinding.bottomLayout.imageViewBar2.setImageResource(R.drawable.ic_gift);
                     } else {
-                        navigation.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_gift_light));
+                        mBinding.bottomLayout.viewBar2.setVisibility(View.INVISIBLE);
+                        mBinding.bottomLayout.imageViewBar2.setImageResource(R.drawable.ic_gift_light);
                     }
                     break;
                 case 2:
                     if (i == position) {
-                        navigation.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_notification));
+                        mBinding.bottomLayout.viewBar3.setVisibility(View.VISIBLE);
+                        mBinding.bottomLayout.imageViewBar3.setImageResource(R.drawable.ic_notification);
                     } else {
-                        navigation.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_notification_light));
+                        mBinding.bottomLayout.viewBar3.setVisibility(View.INVISIBLE);
+                        mBinding.bottomLayout.imageViewBar3.setImageResource(R.drawable.ic_notification_light);
                     }
                     break;
                 case 3:
                     if (i == position) {
-                        navigation.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_user));
+                        mBinding.bottomLayout.viewBar4.setVisibility(View.VISIBLE);
+                        mBinding.bottomLayout.imageViewBar4.setImageResource(R.drawable.ic_user);
                     } else {
-                        navigation.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_user_light));
+                        mBinding.bottomLayout.viewBar4.setVisibility(View.INVISIBLE);
+                        mBinding.bottomLayout.imageViewBar4.setImageResource(R.drawable.ic_user_light);
                     }
                     break;
             }
-            navigationPages.set(i, navigation);
         }
-        mBottomNav.setIcon(navigationPages);
     }
-
-
-    private void initTabs() {
-        NavigationPage page1 = new NavigationPage("", ContextCompat.getDrawable(this, R.drawable.ic_home), getRootFragment(HOME));
-        NavigationPage page2 = new NavigationPage("", ContextCompat.getDrawable(this, R.drawable.ic_gift_light), getRootFragment(OFFER));
-        NavigationPage page3 = new NavigationPage("", ContextCompat.getDrawable(this, R.drawable.ic_notification_light), getRootFragment(NOTIFICATION));
-        NavigationPage page4 = new NavigationPage("", ContextCompat.getDrawable(this, R.drawable.ic_user_light), getRootFragment(USER));
-
-        navigationPages = new ArrayList<>();
-        navigationPages.add(page1);
-        navigationPages.add(page2);
-        navigationPages.add(page3);
-        navigationPages.add(page4);
-
-        setupBottomBarHolderActivity(navigationPages);
-
-    }
-
-
-    /**
-     * initializes the BottomBarHolderActivity with sent list of Navigation pages
-     *
-     * @param
-     */
-    public void setupBottomBarHolderActivity(List<NavigationPage> pages) {
-
-        // throw error if pages does not have 4 elements
-        if (pages.size() != 4) {
-            throw new RuntimeException("List of NavigationPage must contain 4 members.");
-        } else {
-            // mNavigationPageList = pages;
-            mBottomNav = new BottomNavigationBar(this, pages, this);
-//            if (savedInstanceState == null) {
-            //showFragment(rootTabFragment(MAIN_TAB_ID));
-//            }
-            mBottomNav.selectItem(MAIN_TAB_ID);
-        }
-
-    }
-
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
@@ -317,6 +241,8 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     }
 
     public void initializeData() {
+
+
         mBinding.layoutDrawerLeft.tvName.setText(UserPreference.getUserName());
         mBinding.layoutDrawerLeft.tvMobile.setText(UserPreference.getUserMono());
         mPresenter.getCategorySubCategoryRightDrawer(this);
@@ -337,6 +263,11 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         mBinding.layoutDrawerLeft.layoutLogout.setOnClickListener(this);
         mBinding.layoutDrawerLeft.ivAvatar.setOnClickListener(this);
 
+        mBinding.bottomLayout.linearLayoutBar1.setOnClickListener(this);
+        mBinding.bottomLayout.linearLayoutBar2.setOnClickListener(this);
+        mBinding.bottomLayout.linearLayoutBar3.setOnClickListener(this);
+        mBinding.bottomLayout.linearLayoutBar4.setOnClickListener(this);
+
     }
 
 
@@ -353,8 +284,42 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
 
         } else if (mBinding.layoutDrawerLeft.ivAvatar == view) {
             closeDrawerLeft();
-            onTabSelected(USER);
-            mBottomNav.selectItem(USER);
+            changeIcon(USER_FRAGMENT);
+            onTabSelected(USER_FRAGMENT);
+        } else if (view == mBinding.bottomLayout.linearLayoutBar1) {
+            changeIcon(WELCOME_HOME_FRAGMENT);
+            replaceFragment(new WelcomeHomeFragment());
+            /*onTabSelected(WELCOME_HOME_FRAGMENT);
+            FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
+            transaction1.replace(R.id.container, new WelcomeHomeFragment(), WelcomeHomeFragment.class.getSimpleName());
+            transaction1.commitAllowingStateLoss();*/
+        } else if (view == mBinding.bottomLayout.linearLayoutBar2) {
+            changeIcon(OFFER_FRAGMENT);
+            replaceFragment(new OfferFragment());
+
+            /*onTabSelected(OFFER_FRAGMENT);
+            FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
+            transaction1.replace(R.id.container, new OfferFragment(), OfferFragment.class.getSimpleName());
+            transaction1.commitAllowingStateLoss();*/
+
+        } else if (view == mBinding.bottomLayout.linearLayoutBar3) {
+
+            changeIcon(NOTIFICATION_FRAGMENT);
+            replaceFragment(new NotificationFragment());
+            /*onTabSelected(NOTIFICATION_FRAGMENT);
+
+            FragmentTransaction transaction1=getSupportFragmentManager().beginTransaction();
+            transaction1.replace(R.id.container, new NotificationFragment(), NotificationFragment.class.getSimpleName());
+            transaction1.commitAllowingStateLoss();*/
+
+        } else if (view == mBinding.bottomLayout.linearLayoutBar4) {
+            changeIcon(USER_FRAGMENT);
+            replaceFragment(new UserFragment());
+            /*onTabSelected(USER_FRAGMENT);
+            FragmentTransaction transaction1=getSupportFragmentManager().beginTransaction();
+            transaction1.replace(R.id.container, new UserFragment(), UserFragment.class.getSimpleName());
+            transaction1.commitAllowingStateLoss();*/
+
         }
     }
 
@@ -438,77 +403,6 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
     }
 
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        if (mNavController != null) {
-            mNavController.onSaveInstanceState(outState);
-        }
-    }
-
-    //control for tab navigation
-    @Override
-    public void pushFragment(Fragment fragment) {
-        if (mNavController != null) {
-            mNavController.pushFragment(fragment);
-        }
-    }
-
-    @Override
-    public void popFragment() {
-        if (mNavController != null) {
-            mNavController.popFragment();
-        }
-    }
-
-
-    @Override
-    public Fragment getRootFragment(int index) {
-        switch (index) {
-            case HOME:
-
-                //return MerchantDetailsFragment.newInstance(0,null);
-                //return NewsPaperFragment.newInstance(0);
-                return WelcomeHomeFragment.newInstance(0);
-            case OFFER:
-                return OfferFragment.newInstance(0);
-            case NOTIFICATION:
-                return NotificationFragment.newInstance(0);
-            case USER:
-                return UserFragment.newInstance(0);
-        }
-        throw new IllegalStateException("Need to send an index that we know");
-    }
-
-    @Override
-    public void onTabTransaction(Fragment fragment, int index) {
-        // If we have a backstack, show the back button
-        if (getSupportActionBar() != null && mNavController != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(!mNavController.isRootFragment());
-        }
-    }
-
-    @Override
-    public void onFragmentTransaction(Fragment fragment, FragNavController.TransactionType transactionType) {
-        //do fragmentty stuff. Maybe change title, I'm not going to tell you how to live your life
-        // If we have a backstack, show the back button
-        if (getSupportActionBar() != null && mNavController != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(!mNavController.isRootFragment());
-        }
-    }
-    //end
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                mNavController.popFragment();
-                break;
-        }
-        return true;
-    }
-
     public void setTile(String title) {
         mBinding.toolBar.tvHeading.setText(title);
     }
@@ -530,7 +424,6 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         }
         closeDrawerRight();
         pushFragment(PRODUCT_SUBPRODUCT, bundle, R.id.container, true, true, NONE);
-        //ProductSubproductFragment.newInstance(0, productList.get(adapterPosition));
     }
 
     @Override
@@ -551,4 +444,16 @@ public class DashBoardActivity extends BaseActivity implements BottomNavigationB
         }, GeneralConstant.DELAYTIME);
 
     }
+
+    @Subscribe
+    public void onNewsEvent(NewsEvent event) {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                pushFragment(NEWS_FRAGMENT, null, R.id.container, true, true, NONE);
+            }
+        }, GeneralConstant.DELAYTIME);
+
+    }
+
 }

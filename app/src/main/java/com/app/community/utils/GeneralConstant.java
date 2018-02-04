@@ -11,6 +11,8 @@ import static com.app.community.utils.GeneralConstant.FRAGMENTS.HOME_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.LIVEORDER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.NEWS_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.NEWS_TAB_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.NOTIFICATION_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.OFFER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.PASTORDER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_LIST;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_MAP_FRAGMENT;
@@ -18,6 +20,7 @@ import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_SUBPRODU
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.RECENT_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.SUBSCRIPTION_DETAIL_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.SUBSCRIPTION_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.USER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.WELCOME_HOME_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.ZOOMIMAGE_FRAGMENT;
 
@@ -75,16 +78,16 @@ public interface GeneralConstant {
     @IntDef({PRODUCT_MAP_FRAGMENT, PRODUCT_LIST, RECENT_FRAGMENT, CATEGORY_FRAGMENT,
             LIVEORDER_FRAGMENT, PASTORDER_FRAGMENT, WELCOME_HOME_FRAGMENT, NEWS_TAB_FRAGMENT
             , HOME_FRAGMENT, NEWS_FRAGMENT, CONFIRM_ORDER_FRAGMENT, PRODUCT_SUBPRODUCT, SUBSCRIPTION_DETAIL_FRAGMENT
-            , SUBSCRIPTION_FRAGMENT,ZOOMIMAGE_FRAGMENT})
+            , SUBSCRIPTION_FRAGMENT,ZOOMIMAGE_FRAGMENT,OFFER_FRAGMENT,NOTIFICATION_FRAGMENT,USER_FRAGMENT})
     @Retention(RetentionPolicy.SOURCE)
     @interface FRAGMENTS {
-        int PRODUCT_MAP_FRAGMENT = 1;
-        int PRODUCT_LIST = 2;
-        int RECENT_FRAGMENT = 3;
+        int PRODUCT_MAP_FRAGMENT = 16;
+        int PRODUCT_LIST = 17;
+        int RECENT_FRAGMENT = 18;
         int CATEGORY_FRAGMENT = 4;
         int LIVEORDER_FRAGMENT = 5;
         int PASTORDER_FRAGMENT = 6;
-        int WELCOME_HOME_FRAGMENT = 7;
+        int WELCOME_HOME_FRAGMENT = 0;
         int NEWS_TAB_FRAGMENT = 8;
         int HOME_FRAGMENT = 9;
         int NEWS_FRAGMENT = 10;
@@ -93,5 +96,8 @@ public interface GeneralConstant {
         int SUBSCRIPTION_DETAIL_FRAGMENT = 13;
         int SUBSCRIPTION_FRAGMENT = 14;
         int ZOOMIMAGE_FRAGMENT=15;
+        int OFFER_FRAGMENT=1;
+        int NOTIFICATION_FRAGMENT=2;
+        int USER_FRAGMENT=3;
     }
 }

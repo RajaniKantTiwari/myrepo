@@ -35,7 +35,8 @@ public class VerticlePagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return CommonUtils.isNotNull(newsList) ? newsList.size() : 0;
+        return 10;
+        //return CommonUtils.isNotNull(newsList) ? newsList.size() : 0;
     }
 
     @Override
@@ -46,11 +47,11 @@ public class VerticlePagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         FragmentNewsRowBinding mBinding = DataBindingUtil.inflate(mLayoutInflater, R.layout.fragment_news_row, container, false);
-        if (CommonUtils.isNotNull(newsList) && newsList.size() > position) {
+        /*if (CommonUtils.isNotNull(newsList) && newsList.size() > position) {
             News news = newsList.get(position);
             GlideUtils.loadImage(mContext, news.getDisplay_image(), mBinding.ivNews, null, R.drawable.background_placeholder);
             mBinding.setNews(news);
-        }
+        }*/
         container.addView(mBinding.getRoot());
 
         return mBinding.getRoot();

@@ -20,6 +20,7 @@ import com.app.community.ui.cart.ProductSubproductFragment;
 import com.app.community.ui.dashboard.home.ConfirmOrderFragment;
 import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.fragment.CategoryFragment;
+import com.app.community.ui.dashboard.home.fragment.NewsMainFragment;
 import com.app.community.ui.dashboard.home.fragment.SubscribeFragment;
 import com.app.community.ui.dashboard.home.fragment.HomeFragment;
 import com.app.community.ui.dashboard.home.fragment.LiveOrderFragment;
@@ -29,6 +30,9 @@ import com.app.community.ui.dashboard.home.fragment.PastOrderFragment;
 import com.app.community.ui.dashboard.home.fragment.MerchantListFragment;
 import com.app.community.ui.dashboard.home.fragment.ProductMapFragment;
 import com.app.community.ui.dashboard.home.fragment.RecentFragment;
+import com.app.community.ui.dashboard.notification.NotificationFragment;
+import com.app.community.ui.dashboard.offer.OfferFragment;
+import com.app.community.ui.dashboard.user.UserFragment;
 import com.app.community.ui.fragment.ZoomAnimationImageActivity;
 import com.app.community.ui.newspaper.SubscriptionDetailsFragment;
 import com.app.community.utils.CommonUtils;
@@ -49,6 +53,8 @@ import static com.app.community.utils.GeneralConstant.FRAGMENTS.HOME_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.LIVEORDER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.NEWS_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.NEWS_TAB_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.NOTIFICATION_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.OFFER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.PASTORDER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_LIST;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_MAP_FRAGMENT;
@@ -56,6 +62,7 @@ import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_SUBPRODU
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.RECENT_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.SUBSCRIPTION_DETAIL_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.SUBSCRIPTION_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.USER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.WELCOME_HOME_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.ZOOMIMAGE_FRAGMENT;
 
@@ -261,7 +268,7 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
                 fragment=new HomeFragment();
                 break;
             case NEWS_FRAGMENT:
-                fragment=new NewsFragment();
+                fragment=new NewsMainFragment();
                 break;
             case CONFIRM_ORDER_FRAGMENT:
                 fragment=new ConfirmOrderFragment();
@@ -275,9 +282,14 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
             case SUBSCRIPTION_FRAGMENT:
                 fragment=new SubscribeFragment();
                 break;
-           /* case ZOOMIMAGE_FRAGMENT:
-                fragment=new ZoomAnimationImageActivity();
-                break;*/
+            case OFFER_FRAGMENT:
+                new OfferFragment();
+                break;
+            case NOTIFICATION_FRAGMENT:
+                new NotificationFragment();
+                break;
+            case USER_FRAGMENT:
+                new UserFragment();
         }
         return fragment;
     }
@@ -342,6 +354,24 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
         if (addToBackStack)
             transaction.addToBackStack(fragment.getFragmentName());
 
+        transaction.commitAllowingStateLoss();
+    }
+
+    public void clearAllBackStack(){
+        FragmentManager fm =getSupportFragmentManager();
+        for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+            fm.popBackStack();
+        }
+    }
+
+    public void addFragment(Fragment fragment){
+        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.container, fragment, fragment.getClass().getSimpleName());
+        transaction.commitAllowingStateLoss();
+    }
+    public void replaceFragment(Fragment fragment){
+        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, fragment, fragment.getClass().getSimpleName());
         transaction.commitAllowingStateLoss();
     }
 

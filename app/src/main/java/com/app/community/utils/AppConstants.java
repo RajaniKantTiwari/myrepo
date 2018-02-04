@@ -20,6 +20,7 @@ public interface AppConstants {
     String MERCHANT_ID = "merchant_id";
     String OFFER = "offer";
     int LOGOUT = 3;
+    int NO_OF_TAB = 4;
 
     @IntDef({CHECKOUT_FRAGMENT})
     @Retention(RetentionPolicy.SOURCE)

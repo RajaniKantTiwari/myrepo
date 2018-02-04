@@ -13,11 +13,9 @@ import com.app.community.ui.dashboard.home.fragment.NewsFragment;
  */
 
 public class NewsPagerAdapter extends FragmentPagerAdapter {
-    private final Bundle bundle;
 
-    public NewsPagerAdapter(FragmentManager fm, Bundle bundle) {
+    public NewsPagerAdapter(FragmentManager fm) {
             super(fm);
-            this.bundle=bundle;
         }
 
         @Override
@@ -26,7 +24,7 @@ public class NewsPagerAdapter extends FragmentPagerAdapter {
                 case 0:
                     return new HelpsAndSupportFragment();
                 case 1:
-                    return NewsFragment.newInstance(bundle);
+                    return new NewsFragment();
                 default:
                     return null;
             }
