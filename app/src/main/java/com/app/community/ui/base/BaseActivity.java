@@ -206,8 +206,8 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
 
     @Override
     public boolean isNetworkConnected() {
-        boolean connectionStatus=NetworkUtils.isNetworkConnected(getApplicationContext());
-        if(!connectionStatus){
+        boolean connectionStatus = NetworkUtils.isNetworkConnected(getApplicationContext());
+        if (!connectionStatus) {
             showToast(getResources().getString(R.string.network_not_connected));
         }
         return connectionStatus;
@@ -237,8 +237,8 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
         return mAlive;
     }
 
-    private static BaseFragment getFragment(int fragmentId) {
-        BaseFragment fragment = null;
+    private static Fragment getFragment(int fragmentId) {
+        Fragment fragment = null;
         switch (fragmentId) {
             case PRODUCT_MAP_FRAGMENT:
                 fragment = new ProductMapFragment();
@@ -259,28 +259,28 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
                 fragment = new PastOrderFragment();
                 break;
             case WELCOME_HOME_FRAGMENT:
-                fragment=new WelcomeHomeFragment();
+                fragment = new WelcomeHomeFragment();
                 break;
             case NEWS_TAB_FRAGMENT:
-                fragment=new NewsTabFragment();
+                fragment = new NewsTabFragment();
                 break;
             case HOME_FRAGMENT:
-                fragment=new HomeFragment();
+                fragment = new HomeFragment();
                 break;
             case NEWS_FRAGMENT:
-                fragment=new NewsMainFragment();
+                fragment = new NewsMainFragment();
                 break;
             case CONFIRM_ORDER_FRAGMENT:
-                fragment=new ConfirmOrderFragment();
+                fragment = new ConfirmOrderFragment();
                 break;
             case PRODUCT_SUBPRODUCT:
-                fragment=new ProductSubproductFragment();
+                fragment = new ProductSubproductFragment();
                 break;
             case SUBSCRIPTION_DETAIL_FRAGMENT:
-                fragment=new SubscriptionDetailsFragment();
+                fragment = new SubscriptionDetailsFragment();
                 break;
             case SUBSCRIPTION_FRAGMENT:
-                fragment=new SubscribeFragment();
+                fragment = new SubscribeFragment();
                 break;
             case OFFER_FRAGMENT:
                 new OfferFragment();
@@ -296,7 +296,7 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
 
     public Fragment pushChildFragment(FragmentManager manager, int fragmentId, Bundle args, int containerViewId, boolean shouldAdd, boolean addToBackStack, @AnimationType int animationType) {
         try {
-            BaseFragment fragment = getFragment(fragmentId);
+            Fragment fragment = getFragment(fragmentId);
             if (fragment == null) return null;
             if (args != null)
                 fragment.setArguments(args);
@@ -313,11 +313,9 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
     }
 
 
-
-
     public Fragment pushFragment(int fragmentId, Bundle args, int containerViewId, boolean addToBackStack, boolean shouldAdd, @AnimationType int animationType) {
         try {
-            BaseFragment fragment = getFragment(fragmentId);
+            Fragment fragment = getFragment(fragmentId);
             if (fragment == null) return null;
             if (args != null)
                 fragment.setArguments(args);
@@ -331,7 +329,22 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
         return null;
     }
 
-    private void setAnimation(int containerViewId, boolean shouldAdd, boolean addToBackStack, @AnimationType int animationType, BaseFragment fragment, FragmentTransaction transaction) {
+    public Fragment pushFragment(Fragment fragment, Bundle args, int containerViewId, boolean addToBackStack, boolean shouldAdd, @AnimationType int animationType) {
+        try {
+            if (fragment == null) return null;
+            if (args != null)
+                fragment.setArguments(args);
+
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            setAnimation(containerViewId, shouldAdd, addToBackStack, animationType, fragment, ft);
+            return fragment;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    private void setAnimation(int containerViewId, boolean shouldAdd, boolean addToBackStack, @AnimationType int animationType, Fragment fragment, FragmentTransaction transaction) {
         switch (animationType) {
             case DEFAULT:
             case SLIDE:
@@ -348,41 +361,49 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
 
         }
         if (shouldAdd)
-            transaction.add(containerViewId, fragment, fragment.getFragmentName());
+            transaction.add(containerViewId, fragment, fragment.getClass().getSimpleName());
         else
-            transaction.replace(containerViewId, fragment, fragment.getFragmentName());
+            transaction.replace(containerViewId, fragment, fragment.getClass().getSimpleName());
         if (addToBackStack)
-            transaction.addToBackStack(fragment.getFragmentName());
+            transaction.addToBackStack(fragment.getClass().getSimpleName());
 
         transaction.commitAllowingStateLoss();
     }
 
-    public void clearAllBackStack(){
-        FragmentManager fm =getSupportFragmentManager();
-        for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+    public void clearAllBackStack() {
+        FragmentManager fm = getSupportFragmentManager();
+        for (int i = 0; i < fm.getBackStackEntryCount(); ++i) {
             fm.popBackStack();
         }
     }
 
-    public void addFragment(Fragment fragment){
-        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.container, fragment, fragment.getClass().getSimpleName());
-        transaction.commitAllowingStateLoss();
-    }
-    public void replaceFragment(Fragment fragment){
-        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, fragment, fragment.getClass().getSimpleName());
-        transaction.commitAllowingStateLoss();
+    private void setAnimation(FragmentTransaction transaction,@AnimationType int animationType) {
+        switch (animationType) {
+            case DEFAULT:
+            case SLIDE:
+                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
+                break;
+            case FADE:
+                transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_in, R.anim.fade_out);
+                break;
+            case ZOOM:
+                transaction.setCustomAnimations(R.anim.zoomin, R.anim.fadein);
+                break;
+            case NONE:
+                break;
+
+        }
     }
 
-    @IntDef({SLIDE, FADE, DEFAULT, NONE,ZOOM})
+
+    @IntDef({SLIDE, FADE, DEFAULT, NONE, ZOOM})
     @Retention(RetentionPolicy.SOURCE)
     public @interface AnimationType {
         int SLIDE = 0;
         int FADE = 1;
         int DEFAULT = 2;
         int NONE = 3;
-        int ZOOM=4;
+        int ZOOM = 4;
     }
 
 

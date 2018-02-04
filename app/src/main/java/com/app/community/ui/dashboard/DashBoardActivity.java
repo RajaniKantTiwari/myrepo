@@ -35,6 +35,7 @@ import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.adapter.DrawerAdapterLeft;
 import com.app.community.ui.dashboard.home.event.NewsEvent;
 import com.app.community.ui.dashboard.home.fragment.MyOrderActivity;
+import com.app.community.ui.dashboard.home.fragment.NewsMainFragment;
 import com.app.community.ui.dashboard.notification.NotificationFragment;
 import com.app.community.ui.dashboard.offer.OfferFragment;
 import com.app.community.ui.dashboard.user.UserFragment;
@@ -288,14 +289,20 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
             onTabSelected(USER_FRAGMENT);
         } else if (view == mBinding.bottomLayout.linearLayoutBar1) {
             changeIcon(WELCOME_HOME_FRAGMENT);
-            replaceFragment(new WelcomeHomeFragment());
+            clearAllBackStack();
+            //replaceFragment(new WelcomeHomeFragment(),null,NONE);
+            pushFragment(new WelcomeHomeFragment(),null, R.id.container, true, false, NONE);
             /*onTabSelected(WELCOME_HOME_FRAGMENT);
             FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
             transaction1.replace(R.id.container, new WelcomeHomeFragment(), WelcomeHomeFragment.class.getSimpleName());
             transaction1.commitAllowingStateLoss();*/
         } else if (view == mBinding.bottomLayout.linearLayoutBar2) {
             changeIcon(OFFER_FRAGMENT);
-            replaceFragment(new OfferFragment());
+            clearAllBackStack();
+            //replaceFragment(new OfferFragment(),null,NONE);
+            pushFragment(new OfferFragment(),null, R.id.container, true, false, NONE);
+
+
 
             /*onTabSelected(OFFER_FRAGMENT);
             FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
@@ -305,7 +312,11 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         } else if (view == mBinding.bottomLayout.linearLayoutBar3) {
 
             changeIcon(NOTIFICATION_FRAGMENT);
-            replaceFragment(new NotificationFragment());
+            clearAllBackStack();
+            pushFragment(new NotificationFragment(),null, R.id.container, true, false, NONE);
+
+            //replaceFragment(new NotificationFragment(),null,NONE);
+
             /*onTabSelected(NOTIFICATION_FRAGMENT);
 
             FragmentTransaction transaction1=getSupportFragmentManager().beginTransaction();
@@ -314,7 +325,11 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
 
         } else if (view == mBinding.bottomLayout.linearLayoutBar4) {
             changeIcon(USER_FRAGMENT);
-            replaceFragment(new UserFragment());
+            clearAllBackStack();
+            //replaceFragment(new UserFragment(),null,NONE);
+            pushFragment(new UserFragment(),null, R.id.container, true, false, NONE);
+
+
             /*onTabSelected(USER_FRAGMENT);
             FragmentTransaction transaction1=getSupportFragmentManager().beginTransaction();
             transaction1.replace(R.id.container, new UserFragment(), UserFragment.class.getSimpleName());
@@ -450,10 +465,9 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                pushFragment(NEWS_FRAGMENT, null, R.id.container, true, true, NONE);
+                pushFragment(new NewsMainFragment(), null, R.id.container, true, true, NONE);
             }
         }, GeneralConstant.DELAYTIME);
 
     }
-
 }
