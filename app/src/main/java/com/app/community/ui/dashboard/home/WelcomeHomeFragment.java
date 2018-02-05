@@ -41,6 +41,7 @@ import com.app.community.ui.dashboard.home.event.SearchProductEvent;
 import com.app.community.ui.dashboard.home.fragment.HomeFragment;
 import com.app.community.ui.dashboard.home.fragment.MyOrderActivity;
 import com.app.community.ui.dashboard.home.fragment.NewsFragment;
+import com.app.community.ui.dashboard.home.fragment.NewsMainFragment;
 import com.app.community.ui.dashboard.offer.OfferDetailsActivity;
 import com.app.community.ui.dialogfragment.EmergencyDialogFragment;
 import com.app.community.ui.dialogfragment.OrderDialogFragment;
@@ -275,7 +276,8 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
                     Bundle bundle = new Bundle();
                     bundle.putParcelableArrayList(GeneralConstant.NEWSLIST, newsList);
                     bundle.putInt(GeneralConstant.POSITION, position);
-                    EventBus.getDefault().post(new NewsEvent());
+                    getDashboardActivity().addFragmentInContainer(new NewsMainFragment(),bundle,true,true,NONE);
+                    //EventBus.getDefault().post(new NewsEvent());
                 }
             }, GeneralConstant.DELAYTIME);
 
@@ -288,7 +290,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
     @Override
     public void onItemClick(int adapterPosition) {
         Bundle bundle = new Bundle();
-        getDashboardActivity().openFragment(new NewsFragment(),bundle,true,false,NONE);
+        getDashboardActivity().addFragmentInContainer(new NewsFragment(),bundle,true,false,NONE);
     }
 
     @Override
@@ -315,7 +317,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
 
     @Override
     public void view(String message) {
-        getDashboardActivity().openFragment(new MerchantDetailsFragment(),null,true,true,NONE);
+        getDashboardActivity().addFragmentInContainer(new MerchantDetailsFragment(),null,true,true,NONE);
     }
 
     @Override
@@ -345,7 +347,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
             public void run() {
                 Bundle args = new Bundle();
                 args.putString(GeneralConstant.SEARCH_STRING,event.getSearchString());
-                getDashboardActivity().openFragment(new HomeFragment(), null, false, false, NONE);
+                getDashboardActivity().addFragmentInContainer(new HomeFragment(), null, false, false, NONE);
             }
         }, GeneralConstant.DELAYTIME);
 

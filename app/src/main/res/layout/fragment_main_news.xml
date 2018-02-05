@@ -3,8 +3,9 @@
     <LinearLayout
         style="@style/match_match"
         android:background="@color/white">
-        <android.support.v4.view.ViewPager
-            android:id="@+id/viewPager"
-            style="@style/match_match"/>
+        <com.app.community.utils.viewpager.BTFragmentGridPager
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/fragmentGridPager"/>
     </LinearLayout>
 </layout>

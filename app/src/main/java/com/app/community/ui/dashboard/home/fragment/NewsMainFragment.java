@@ -11,10 +11,14 @@ import android.view.ViewGroup;
 import com.app.community.R;
 import com.app.community.databinding.FragmentMainNewsBinding;
 import com.app.community.network.response.BaseResponse;
+import com.app.community.network.response.dashboard.home.News;
 import com.app.community.ui.dashboard.DashboardFragment;
-import com.app.community.ui.dashboard.home.adapter.NewsPagerAdapter;
+import com.app.community.utils.AppConstants;
+import com.app.community.utils.CommonUtils;
+import com.app.community.utils.GeneralConstant;
+import com.app.community.utils.viewpager.BTFragmentGridPager;
 
-import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
+import java.util.ArrayList;
 
 /**
  * Created by rajnikant on 31/12/17.
@@ -22,7 +26,9 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 
 public class NewsMainFragment extends DashboardFragment {
     private FragmentMainNewsBinding mBinding;
-    private NewsPagerAdapter pagerAdapter;
+    private BTFragmentGridPager.FragmentGridPagerAdapter mFragmentGridPagerAdapter;
+    private ArrayList<News> newsList;
+    private int position;
 
     @Nullable
     @Override
@@ -33,9 +39,36 @@ public class NewsMainFragment extends DashboardFragment {
 
     @Override
     public void initializeData() {
-        pagerAdapter=new NewsPagerAdapter(getDashboardActivity().getSupportFragmentManager());
-        mBinding.viewPager.setAdapter(pagerAdapter);
-        mBinding.viewPager.setCurrentItem(1);
+        Bundle bundle = getArguments();
+        if (CommonUtils.isNotNull(bundle)) {
+            newsList = bundle.getParcelableArrayList(GeneralConstant.NEWSLIST);
+            position = bundle.getInt(GeneralConstant.POSITION);
+        }
+
+
+        mFragmentGridPagerAdapter = new BTFragmentGridPager.FragmentGridPagerAdapter() {
+            @Override
+            public int rowCount() {
+                return 10;
+            }
+
+            @Override
+            public int columnCount(int row) {
+                return CommonUtils.isNotNull(newsList) ? newsList.size() : 0;
+            }
+
+            @Override
+            public Fragment getItem(BTFragmentGridPager.GridIndex index) {
+                NewsFragment newsFragment = new NewsFragment();
+                Bundle bundle=new Bundle();
+                bundle.putParcelable(GeneralConstant.NEWS,newsList.get(index.getCol()));
+                newsFragment.setArguments(bundle);
+                newsFragment.setGridIndex(index);
+                return newsFragment;
+            }
+        };
+        mBinding.fragmentGridPager.setGridPagerAdapter(mFragmentGridPagerAdapter);
+        mBinding.fragmentGridPager.setCurrentItem(position);
     }
 
     @Override
@@ -62,13 +95,4 @@ public class NewsMainFragment extends DashboardFragment {
 
     }
 
-
-
-    public static Fragment newInstance(int instance) {
-        Bundle args = new Bundle();
-        args.putInt(ARGS_INSTANCE, instance);
-        NewsMainFragment fragment = new NewsMainFragment();
-        fragment.setArguments(args);
-        return fragment;
-    }
 }

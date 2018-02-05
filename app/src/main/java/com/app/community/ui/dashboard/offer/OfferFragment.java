@@ -52,7 +52,6 @@ public class OfferFragment extends DashboardFragment implements OfferTypesAdapte
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_offer, container, false);
-        getDashboardActivity().showToast("OfferFragment");
         getDashboardActivity().setTile(getString(R.string.offer));
         return mBinding.getRoot();
     }

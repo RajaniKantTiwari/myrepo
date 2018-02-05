@@ -140,7 +140,7 @@ public class MerchantDetailsFragment extends DashboardFragment implements OrderD
         if (view == mBinding.tvStartShopping) {
             Bundle bundle=new Bundle();
             bundle.putParcelable(GeneralConstant.RESPONSE, merchantResponse);
-            getDashboardActivity().openFragment(new ProductSubproductFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
+            getDashboardActivity().addFragmentInContainer(new ProductSubproductFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
         } else if (view == mBinding.tvShareReview) {
             CommonUtils.showOrderDialog(getDashboardActivity(), null, this);
         }

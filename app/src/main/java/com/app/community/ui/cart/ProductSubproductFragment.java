@@ -74,7 +74,7 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
         switch (view.getId()) {
             case R.id.tvCheckout:
                 CommonUtils.clicked(mBinding.tvCheckout);
-                getDashboardActivity().openFragment(new CheckoutFragment(),null,true,true, NONE);
+                getDashboardActivity().addFragmentInContainer(new CheckoutFragment(),null,true,true, NONE);
                 break;
         }
 
@@ -178,7 +178,7 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
                 break;
             case R.id.ivProduct:
             case R.id.layoutInfo:
-                getDashboardActivity().openFragment(new FullInformationFragment(),null,true,true, NONE);
+                getDashboardActivity().addFragmentInContainer(new FullInformationFragment(),null,true,true, NONE);
                 break;
         }
 

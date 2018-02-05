@@ -61,7 +61,7 @@ public class ConfirmOrderFragment extends DashboardFragment {
     public void onClick(View view) {
         if (view == mBinding.tvRaiseAnIssue) {
             CommonUtils.clicked(mBinding.tvRaiseAnIssue);
-            getDashboardActivity().openFragment(new HelpsAndSupportFragment(),null,true,true, BaseActivity.AnimationType.NONE);
+            getDashboardActivity().addFragmentInContainer(new HelpsAndSupportFragment(),null,true,true, BaseActivity.AnimationType.NONE);
             //mFragmentNavigation.pushFragment(HelpsAndSupportFragment.newInstance(mInt + 1));
         } else if (view == mBinding.tvHome) {
             CommonUtils.clicked(mBinding.tvHome);

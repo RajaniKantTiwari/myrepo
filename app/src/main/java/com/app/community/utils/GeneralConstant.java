@@ -73,6 +73,7 @@ public interface GeneralConstant {
     int NEWS_HEIGHT = 145;
     String IS_FROM_HOME ="is_from_home" ;
     int OFFER_HEIGHT = 75;
+    String NEWS = "news";
 
 
     @IntDef({PRODUCT_MAP_FRAGMENT, PRODUCT_LIST, RECENT_FRAGMENT, CATEGORY_FRAGMENT,

@@ -85,7 +85,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         closeDrawerLeft();
         switch (position) {
             case AppConstants.HOME:
-                //onTabSelected(WELCOME_HOME_FRAGMENT);
+                openFragment(new WelcomeHomeFragment(),null,false, false, NONE);
                 break;
             case AppConstants.MYORDER:
                 ExplicitIntent.getsInstance().navigateTo(this, MyOrderActivity.class);
@@ -96,11 +96,10 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                 ExplicitIntent.getsInstance().navigateTo(this, WelcomeScreenActivity.class, bundle);
                 break;
             case AppConstants.MYACCOUNT:
-                //onTabSelected(USER_FRAGMENT);
+                openFragment(new UserFragment(),null,false, false, NONE);
                 break;
             case AppConstants.NOTIFICATION:
-                //onTabSelected(NOTIFICATION_FRAGMENT);
-
+                openFragment(new NotificationFragment(),null,false, false, NONE);
                 break;
             case AppConstants.ABOUTUS:
 
@@ -159,9 +158,13 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         }
     }
 
-    public void openFragment(Fragment fragment, Bundle bundle,boolean addToBackStack, boolean shouldAdd, @AnimationType int animationType) {
-        pushFragment(fragment, null, R.id.container, false, false, NONE);
+    private void openFragment(Fragment fragment, Bundle bundle,boolean addToBackStack, boolean shouldAdd, @AnimationType int animationType) {
+        pushFragment(fragment, bundle, R.id.container, addToBackStack, shouldAdd, animationType);
         clearAllBackStack();
+    }
+
+    public void addFragmentInContainer(Fragment fragment, Bundle bundle,boolean addToBackStack, boolean shouldAdd, @AnimationType int animationType) {
+        pushFragment(fragment, bundle, R.id.container, addToBackStack, shouldAdd, animationType);
     }
 
     private void changeIcon(int position) {
