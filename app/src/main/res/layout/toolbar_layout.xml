@@ -21,12 +21,23 @@
                 android:padding="@dimen/margin_12"
                 android:src="@drawable/hamberg_icon" />
 
-            <com.app.community.widget.CustomTextView
-                android:id="@+id/tvHeading"
-                style="@style/textview_title_wrap"
-                android:layout_centerInParent="true"
-                android:text="@string/app_name"
-                android:textColor="@color/white" />
+            <LinearLayout
+                style="@style/match_match"
+                android:layout_toEndOf="@+id/ivDrawer"
+                android:layout_toStartOf="@+id/ivSearch"
+                android:gravity="center_vertical">
+
+                <android.support.v4.widget.Space style="@style/layout_hori_match_4" />
+
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvHeading"
+                    style="@style/textview_title_wrap"
+                    android:layout_centerInParent="true"
+                    android:text="@string/app_name"
+                    android:textColor="@color/white" />
+
+                <android.support.v4.widget.Space style="@style/layout_hori_match_1" />
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/ivSearch"
@@ -43,6 +54,7 @@
                 style="@style/wrap_wrap"
                 android:layout_width="@dimen/margin_50"
                 android:layout_toStartOf="@+id/ivRightDrawer">
+
                 <ImageView
                     android:id="@+id/ivCart"
                     style="@style/wrap_wrap"
@@ -50,18 +62,18 @@
                     android:background="@drawable/black_dot"
                     android:contentDescription="@null"
                     android:padding="@dimen/margin_12"
-                    android:src="@drawable/shopping_cart"
-                    />
+                    android:src="@drawable/shopping_cart" />
+
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvPastOrder"
-                    style="@style/textview_description_ex_large_wrap"
-                    android:layout_marginTop="@dimen/margin_5"
-                    android:text="20"
-                    android:background="@drawable/black_cart_dot"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white"
+                    style="@style/textview_description_small_wrap"
                     android:layout_alignParentEnd="true"
-                    />
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:gravity="center"
+                    android:background="@drawable/black_cart_dot"
+                    android:text="200"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white" />
 
             </RelativeLayout>
 

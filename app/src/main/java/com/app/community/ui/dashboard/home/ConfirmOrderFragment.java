@@ -11,7 +11,8 @@ import android.view.ViewGroup;
 import com.app.community.R;
 import com.app.community.databinding.FragmentConfirmOrderBinding;
 import com.app.community.network.response.BaseResponse;
-import com.app.community.ui.base.BaseFragment;
+import com.app.community.ui.base.BaseActivity;
+import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.fragment.HelpsAndSupportFragment;
 import com.app.community.utils.CommonUtils;
 
@@ -23,7 +24,7 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
  * To inject activity reference.
  */
 
-public class ConfirmOrderFragment extends BaseFragment {
+public class ConfirmOrderFragment extends DashboardFragment {
 
     private FragmentConfirmOrderBinding mBinding;
 
@@ -60,10 +61,11 @@ public class ConfirmOrderFragment extends BaseFragment {
     public void onClick(View view) {
         if (view == mBinding.tvRaiseAnIssue) {
             CommonUtils.clicked(mBinding.tvRaiseAnIssue);
-            mFragmentNavigation.pushFragment(HelpsAndSupportFragment.newInstance(mInt + 1));
+            getDashboardActivity().openFragment(new HelpsAndSupportFragment(),null,true,true, BaseActivity.AnimationType.NONE);
+            //mFragmentNavigation.pushFragment(HelpsAndSupportFragment.newInstance(mInt + 1));
         } else if (view == mBinding.tvHome) {
             CommonUtils.clicked(mBinding.tvHome);
-            mFragmentNavigation.popFragment();
+           // mFragmentNavigation.popFragment();
         }
     }
 

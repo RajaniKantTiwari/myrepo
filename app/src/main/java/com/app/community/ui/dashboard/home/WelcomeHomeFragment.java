@@ -56,6 +56,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 
+import static com.app.community.ui.base.BaseActivity.AnimationType.NONE;
 import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 import static com.app.community.utils.GeneralConstant.REQUEST_CALL;
 
@@ -287,7 +288,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
     @Override
     public void onItemClick(int adapterPosition) {
         Bundle bundle = new Bundle();
-        mFragmentNavigation.pushFragment(NewsFragment.newInstance(mInt + 1, bundle));
+        getDashboardActivity().openFragment(new NewsFragment(),bundle,true,false,NONE);
     }
 
     @Override
@@ -314,7 +315,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
 
     @Override
     public void view(String message) {
-        mFragmentNavigation.pushFragment(MerchantDetailsFragment.newInstance(mInt + 1, null));
+        getDashboardActivity().openFragment(new MerchantDetailsFragment(),null,true,true,NONE);
     }
 
     @Override
@@ -342,7 +343,9 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                mFragmentNavigation.pushFragment(HomeFragment.newInstance(mInt + 1, event.getSearchString()));
+                Bundle args = new Bundle();
+                args.putString(GeneralConstant.SEARCH_STRING,event.getSearchString());
+                getDashboardActivity().openFragment(new HomeFragment(), null, false, false, NONE);
             }
         }, GeneralConstant.DELAYTIME);
 

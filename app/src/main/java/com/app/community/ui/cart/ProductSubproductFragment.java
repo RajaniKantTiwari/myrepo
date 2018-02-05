@@ -3,7 +3,6 @@ package com.app.community.ui.cart;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,22 +19,16 @@ import com.app.community.network.response.dashboard.cart.CategoryData;
 import com.app.community.network.response.dashboard.cart.CategoryResponse;
 import com.app.community.network.response.dashboard.cart.ProductData;
 import com.app.community.network.response.dashboard.cart.SubCategory;
-import com.app.community.network.response.dashboard.home.MerchantResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
-import com.app.community.ui.dashboard.home.MerchantDetailsFragment;
 import com.app.community.ui.dashboard.home.fragment.CheckoutFragment;
 import com.app.community.ui.dashboard.home.fragment.FullInformationFragment;
-import com.app.community.ui.dashboard.home.fragment.HomeFragment;
-import com.app.community.ui.dashboard.home.fragment.NewsFragment;
 import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
-import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.LogUtils;
 
 import java.util.ArrayList;
 
-import static com.app.community.utils.CommonUtils.isNotNull;
-import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
+import static com.app.community.ui.base.BaseActivity.AnimationType.NONE;
 
 
 public class ProductSubproductFragment extends DashboardFragment implements CartAdapter.OnAddToCart, CategoryAdapter.OnCatItemClick, SubCatAdapter.OnSubCatItemClick {
@@ -81,7 +74,7 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
         switch (view.getId()) {
             case R.id.tvCheckout:
                 CommonUtils.clicked(mBinding.tvCheckout);
-                mFragmentNavigation.pushFragment(CheckoutFragment.newInstance(mInt + 1));
+                getDashboardActivity().openFragment(new CheckoutFragment(),null,true,true, NONE);
                 break;
         }
 
@@ -185,7 +178,7 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
                 break;
             case R.id.ivProduct:
             case R.id.layoutInfo:
-                mFragmentNavigation.pushFragment(FullInformationFragment.newInstance(mInt + 1));
+                getDashboardActivity().openFragment(new FullInformationFragment(),null,true,true, NONE);
                 break;
         }
 
@@ -253,12 +246,12 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
         getPresenter().getCategory(getDashboardActivity(), categoryRequest);
     }
 
-    public static Fragment newInstance(int instance, MerchantResponse merchantResponse) {
+    /*public static Fragment newInstance(int instance, MerchantResponse merchantResponse) {
         Bundle args = new Bundle();
         args.putInt(ARGS_INSTANCE, instance);
         args.putParcelable(GeneralConstant.RESPONSE, merchantResponse);
         MerchantDetailsFragment fragment = new MerchantDetailsFragment();
         fragment.setArguments(args);
         return fragment;
-    }
+    }*/
 }

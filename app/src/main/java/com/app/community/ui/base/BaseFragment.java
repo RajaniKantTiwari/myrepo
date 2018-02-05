@@ -15,8 +15,6 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 
 public abstract class BaseFragment extends Fragment implements MvpView,View.OnClickListener {
     private BaseActivity mActivity;
-    public FragmentNavigation mFragmentNavigation;
-    public int mInt;
 
     public abstract void initializeData();
 
@@ -42,18 +40,6 @@ public abstract class BaseFragment extends Fragment implements MvpView,View.OnCl
             BaseActivity activity = (BaseActivity) context;
             this.mActivity = activity;
             activity.onFragmentAttached();
-        }
-        if (context instanceof FragmentNavigation) {
-            mFragmentNavigation = (FragmentNavigation) context;
-        }
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Bundle args = getArguments();
-        if (args != null) {
-            mInt = args.getInt(ARGS_INSTANCE);
         }
     }
 
@@ -99,15 +85,5 @@ public abstract class BaseFragment extends Fragment implements MvpView,View.OnCl
     public BaseActivity getBaseActivity() {
         return mActivity;
     }
-    public interface Callback {
 
-        void onFragmentAttached();
-
-        void onFragmentDetached(String tag);
-    }
-
-    public interface FragmentNavigation {
-        void pushFragment(Fragment fragment);
-        void popFragment();
-    }
 }

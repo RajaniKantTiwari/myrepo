@@ -32,6 +32,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 
+import static com.app.community.ui.base.BaseActivity.AnimationType.NONE;
 import static com.app.community.utils.GeneralConstant.REQUEST_CALL;
 
 /**
@@ -71,9 +72,10 @@ public class MerchantListFragment extends DashboardFragment implements ContactDi
             @Override
             public void onItemClick(int adapterPosition) {
                 if (CommonUtils.isNotNull(productList) && productList.size() > adapterPosition) {
-                    mFragmentNavigation.pushFragment(ProductSubproductFragment.newInstance(mInt+1,productList.get(adapterPosition)));
-                    //mFragmentNavigation.pushFragment(MerchantDetailsFragment.newInstance(mInt+1,productList.get(adapterPosition)));
-                    //ExplicitIntent.getsInstance().navigateTo(getBaseActivity(), MerchantDetailsFragment.class);
+                    Bundle bundle=new Bundle();
+                    bundle.putParcelable(GeneralConstant.RESPONSE, productList.get(adapterPosition));
+                    getDashboardActivity().openFragment(new ProductSubproductFragment(),bundle,true,false,NONE);
+                    //mFragmentNavigation.pushFragment(ProductSubproductFragment.newInstance(mInt+1,productList.get(adapterPosition)));
                 }
             }
 
@@ -84,7 +86,10 @@ public class MerchantListFragment extends DashboardFragment implements ContactDi
 
             @Override
             public void onViewClick(int adapterPosition) {
-                mFragmentNavigation.pushFragment(MerchantDetailsFragment.newInstance(mInt+1, productList.get(adapterPosition)));
+                Bundle bundle=new Bundle();
+                bundle.putParcelable(GeneralConstant.RESPONSE, productList.get(adapterPosition));
+                getDashboardActivity().openFragment(new MerchantDetailsFragment(),bundle,true,false,NONE);
+                //mFragmentNavigation.pushFragment(MerchantDetailsFragment.newInstance(mInt+1, productList.get(adapterPosition)));
             }
         });
     }
@@ -155,7 +160,6 @@ public class MerchantListFragment extends DashboardFragment implements ContactDi
                 // No permisison needed
                 Intent smsIntent = new Intent(Intent.ACTION_SENDTO, uri);
                 // Set the message to be sent
-                //smsIntent.putExtra("sms_body", "SMS application launched from stackandroid.com example");
                 startActivity(smsIntent);
             } catch (Exception e) {
                 getBaseActivity().showToast(getResources().getString(R.string.message_failed));

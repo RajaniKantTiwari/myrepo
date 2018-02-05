@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -29,6 +30,7 @@ import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
 import com.app.community.ui.WelcomeScreenActivity;
 import com.app.community.ui.activity.HelpsAndSupportActivity;
 import com.app.community.ui.base.BaseActivity;
+import com.app.community.ui.cart.ProductSubproductFragment;
 import com.app.community.ui.dashboard.expandrecycleview.draweradapter.DrawerAdapterRight;
 import com.app.community.ui.dashboard.home.SearchActivity;
 import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
@@ -101,6 +103,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
 
                 break;
             case AppConstants.ABOUTUS:
+
                 //onTabSelected(USER_FRAGMENT);
                 break;
             case AppConstants.HELPSUPPORT:
@@ -142,24 +145,23 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         changeIcon(position);
         switch (position) {
             case WELCOME_HOME_FRAGMENT:
-                pushFragment(WELCOME_HOME_FRAGMENT, null, R.id.container, false, false, NONE);
-                clearAllBackStack();
+                openFragment(new WelcomeHomeFragment(),null,false, false, NONE);
                 break;
             case OFFER_FRAGMENT:
-                pushFragment(OFFER_FRAGMENT, null, R.id.container, false, false, NONE);
-                clearAllBackStack();
-
+                openFragment(new OfferFragment(),null,false, false, NONE);
                 break;
             case NOTIFICATION_FRAGMENT:
-                pushFragment(NOTIFICATION_FRAGMENT, null, R.id.container, false, false, NONE);
-                clearAllBackStack();
-
+                openFragment(new NotificationFragment(),null,false, false, NONE);
                 break;
             case USER_FRAGMENT:
-                pushFragment(USER_FRAGMENT, null, R.id.container, false, false, NONE);
-                clearAllBackStack();
+                openFragment(new UserFragment(),null,false, false, NONE);
                 break;
         }
+    }
+
+    public void openFragment(Fragment fragment, Bundle bundle,boolean addToBackStack, boolean shouldAdd, @AnimationType int animationType) {
+        pushFragment(fragment, null, R.id.container, false, false, NONE);
+        clearAllBackStack();
     }
 
     private void changeIcon(int position) {
@@ -242,8 +244,6 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
     }
 
     public void initializeData() {
-
-
         mBinding.layoutDrawerLeft.tvName.setText(UserPreference.getUserName());
         mBinding.layoutDrawerLeft.tvMobile.setText(UserPreference.getUserMono());
         mPresenter.getCategorySubCategoryRightDrawer(this);
@@ -255,6 +255,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         token.setDeviceType(GeneralConstant.DEVICETYPE);
         request.setInfo(token);
         mPresenter.setDeviceToken(this, request);
+        pushFragment(new WelcomeHomeFragment(),null, R.id.container, true, false, NONE);
     }
 
     public void setListener() {
@@ -290,51 +291,19 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         } else if (view == mBinding.bottomLayout.linearLayoutBar1) {
             changeIcon(WELCOME_HOME_FRAGMENT);
             clearAllBackStack();
-            //replaceFragment(new WelcomeHomeFragment(),null,NONE);
             pushFragment(new WelcomeHomeFragment(),null, R.id.container, true, false, NONE);
-            /*onTabSelected(WELCOME_HOME_FRAGMENT);
-            FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
-            transaction1.replace(R.id.container, new WelcomeHomeFragment(), WelcomeHomeFragment.class.getSimpleName());
-            transaction1.commitAllowingStateLoss();*/
         } else if (view == mBinding.bottomLayout.linearLayoutBar2) {
             changeIcon(OFFER_FRAGMENT);
             clearAllBackStack();
-            //replaceFragment(new OfferFragment(),null,NONE);
             pushFragment(new OfferFragment(),null, R.id.container, true, false, NONE);
-
-
-
-            /*onTabSelected(OFFER_FRAGMENT);
-            FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
-            transaction1.replace(R.id.container, new OfferFragment(), OfferFragment.class.getSimpleName());
-            transaction1.commitAllowingStateLoss();*/
-
         } else if (view == mBinding.bottomLayout.linearLayoutBar3) {
-
             changeIcon(NOTIFICATION_FRAGMENT);
             clearAllBackStack();
             pushFragment(new NotificationFragment(),null, R.id.container, true, false, NONE);
-
-            //replaceFragment(new NotificationFragment(),null,NONE);
-
-            /*onTabSelected(NOTIFICATION_FRAGMENT);
-
-            FragmentTransaction transaction1=getSupportFragmentManager().beginTransaction();
-            transaction1.replace(R.id.container, new NotificationFragment(), NotificationFragment.class.getSimpleName());
-            transaction1.commitAllowingStateLoss();*/
-
         } else if (view == mBinding.bottomLayout.linearLayoutBar4) {
             changeIcon(USER_FRAGMENT);
             clearAllBackStack();
-            //replaceFragment(new UserFragment(),null,NONE);
             pushFragment(new UserFragment(),null, R.id.container, true, false, NONE);
-
-
-            /*onTabSelected(USER_FRAGMENT);
-            FragmentTransaction transaction1=getSupportFragmentManager().beginTransaction();
-            transaction1.replace(R.id.container, new UserFragment(), UserFragment.class.getSimpleName());
-            transaction1.commitAllowingStateLoss();*/
-
         }
     }
 
@@ -381,9 +350,6 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
 
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        // RecyclerView has some built in animations to it, using the DefaultItemAnimator.
-        // Specifically when you call notifyItemChanged() it does a fade animation for the changing
-        // of the data in the ViewHolder. If you would like to disable this you can use the following:
         RecyclerView.ItemAnimator animator = mBinding.layoutDrawerLeft.rvDrawer.getItemAnimator();
         if (animator instanceof DefaultItemAnimator) {
             ((DefaultItemAnimator) animator).setSupportsChangeAnimations(false);
@@ -438,7 +404,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
             }
         }
         closeDrawerRight();
-        pushFragment(PRODUCT_SUBPRODUCT, bundle, R.id.container, true, true, NONE);
+        pushFragment(new ProductSubproductFragment(), bundle, R.id.container, true, true, NONE);
     }
 
     @Override
@@ -454,7 +420,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
             public void run() {
                 Bundle bundle = new Bundle();
                 bundle.putString(AppConstants.MERCHANT_ID, event.getMerchantId());
-                pushFragment(PRODUCT_SUBPRODUCT, bundle, R.id.container, true, true, NONE);
+                pushFragment(new ProductSubproductFragment(), bundle, R.id.container, true, true, NONE);
             }
         }, GeneralConstant.DELAYTIME);
 

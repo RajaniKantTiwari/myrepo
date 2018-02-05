@@ -7,14 +7,55 @@
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             style="@style/match_match"
-            android:gravity="center"
             android:orientation="vertical"
-            android:visibility="gone">
+            >
 
-            <com.app.community.widget.CustomTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/user" />
+            <RelativeLayout
+                android:id="@+id/layoutIcon"
+                style="@style/match_wrap"
+                android:background="@color/color_drawer_header"
+                android:paddingTop="@dimen/margin_30">
+
+                <ImageView
+                    android:id="@+id/ivAvatar"
+                    style="@style/image_80"
+                    android:background="@drawable/bg_circle_white"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/avatar"
+                    android:layout_centerHorizontal="true"/>
+
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvStar"
+                    style="@style/textview_description_large_wrap"
+                    android:layout_marginTop="@dimen/margin_60"
+                    android:layout_marginStart="@dimen/margin_78"
+                    android:text="4.5"
+                    android:textColor="@color/star_text_color" />
+
+                <LinearLayout
+                    style="@style/match_wrap"
+                    android:layout_below="@+id/ivAvatar"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:layout_marginBottom="@dimen/margin_8"
+                    android:orientation="vertical">
+
+                    <com.app.community.widget.CustomTextView
+                        android:id="@+id/tvName"
+                        style="@style/textview_description_large_wrap"
+                        android:textColor="@color/white" />
+
+                    <com.app.community.widget.CustomTextView
+                        android:id="@+id/tvMobile"
+                        style="@style/textview_description_large_wrap"
+                        android:textColor="@color/white" />
+
+                    <com.app.community.widget.CustomTextView
+                        android:id="@+id/tvShopName"
+                        style="@style/textview_description_large_wrap"
+                        android:text="abc@gmail.com"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
         <include
             android:id="@+id/layoutNoData"

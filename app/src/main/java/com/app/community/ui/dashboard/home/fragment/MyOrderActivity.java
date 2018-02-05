@@ -40,8 +40,8 @@ public class MyOrderActivity extends CommonActivity {
         event=new MyOrderEvent();
         event.setLivePastOrder(GeneralConstant.LIVEORDER);
 
-        pushFragment( GeneralConstant.FRAGMENTS.LIVEORDER_FRAGMENT,null,R.id.container,false,false,BaseActivity.AnimationType.NONE);
-        pushFragment( GeneralConstant.FRAGMENTS.PASTORDER_FRAGMENT,null,R.id.container,false,false,BaseActivity.AnimationType.NONE);
+        pushFragment( new LiveOrderFragment(),null,R.id.container,false,false,BaseActivity.AnimationType.NONE);
+        pushFragment(new PastOrderFragment(),null,R.id.container,false,false,BaseActivity.AnimationType.NONE);
         EventBus.getDefault().post(event);
     }
 

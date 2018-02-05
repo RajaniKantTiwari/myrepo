@@ -64,16 +64,13 @@ import static com.app.community.utils.GeneralConstant.FRAGMENTS.SUBSCRIPTION_DET
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.SUBSCRIPTION_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.USER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.WELCOME_HOME_FRAGMENT;
-import static com.app.community.utils.GeneralConstant.FRAGMENTS.ZOOMIMAGE_FRAGMENT;
-
-
 /**
  * Created by ashok on 01/11/17.
  */
 /*
 Parent Activity to give functionality to all Activity
 */
-public abstract class BaseActivity extends AppCompatActivity implements MvpView, BaseFragment.Callback, View.OnClickListener {
+public abstract class BaseActivity extends AppCompatActivity implements MvpView,View.OnClickListener {
     //private ActivityComponent mActivityComponent;
     private static String TAG = BaseActivity.class.getSimpleName();
     private Snackbar mSnackbar;
@@ -312,23 +309,6 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
 
     }
 
-
-    public Fragment pushFragment(int fragmentId, Bundle args, int containerViewId, boolean addToBackStack, boolean shouldAdd, @AnimationType int animationType) {
-        try {
-            Fragment fragment = getFragment(fragmentId);
-            if (fragment == null) return null;
-            if (args != null)
-                fragment.setArguments(args);
-
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            setAnimation(containerViewId, shouldAdd, addToBackStack, animationType, fragment, ft);
-            return fragment;
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return null;
-    }
-
     public Fragment pushFragment(Fragment fragment, Bundle args, int containerViewId, boolean addToBackStack, boolean shouldAdd, @AnimationType int animationType) {
         try {
             if (fragment == null) return null;
@@ -376,25 +356,6 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
             fm.popBackStack();
         }
     }
-
-    private void setAnimation(FragmentTransaction transaction,@AnimationType int animationType) {
-        switch (animationType) {
-            case DEFAULT:
-            case SLIDE:
-                transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
-                break;
-            case FADE:
-                transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_in, R.anim.fade_out);
-                break;
-            case ZOOM:
-                transaction.setCustomAnimations(R.anim.zoomin, R.anim.fadein);
-                break;
-            case NONE:
-                break;
-
-        }
-    }
-
 
     @IntDef({SLIDE, FADE, DEFAULT, NONE, ZOOM})
     @Retention(RetentionPolicy.SOURCE)

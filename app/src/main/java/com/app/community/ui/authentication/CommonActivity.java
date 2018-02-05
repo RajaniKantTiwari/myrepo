@@ -18,7 +18,7 @@ import com.app.community.ui.base.MvpView;
 /*
 Parent Activity of Authorization to give functionality to all Activity
 */
-public abstract class CommonActivity extends BaseActivity implements MvpView,BaseFragment.Callback{
+public abstract class CommonActivity extends BaseActivity implements MvpView{
     private CommonComponent mActivityComponent;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
