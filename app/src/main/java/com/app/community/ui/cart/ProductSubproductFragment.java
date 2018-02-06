@@ -201,15 +201,11 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
 
         switch (itemView.getId()) {
             case R.id.tvName:
-
                 mCatList.get(oldCatPos).setSelected(false);
                 mCatList.get(pos).setSelected(true);
-
                 mSubCatList.clear();
                 mSubCatList.addAll(mCatList.get(pos).getSubproduct());
                 mSubCatList.get(0).setSelected(true);
-
-
                 mCartList.clear();
                 mCartList.addAll(mSubCatList.get(0).getSubproduct());
                 mSubCategoryAdapter.notifyDataSetChanged();
@@ -226,7 +222,6 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
         View itemView = (View) view.getTag();
         switch (itemView.getId()) {
             case R.id.tvName:
-
                 mSubCatList.get(pos).setSelected(true);
                 mSubCatList.get(oldSubCatPos).setSelected(false);
                 mCartList.clear();
@@ -245,13 +240,4 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
         categoryRequest.setMerchant_id(merchantId);
         getPresenter().getCategory(getDashboardActivity(), categoryRequest);
     }
-
-    /*public static Fragment newInstance(int instance, MerchantResponse merchantResponse) {
-        Bundle args = new Bundle();
-        args.putInt(ARGS_INSTANCE, instance);
-        args.putParcelable(GeneralConstant.RESPONSE, merchantResponse);
-        MerchantDetailsFragment fragment = new MerchantDetailsFragment();
-        fragment.setArguments(args);
-        return fragment;
-    }*/
 }

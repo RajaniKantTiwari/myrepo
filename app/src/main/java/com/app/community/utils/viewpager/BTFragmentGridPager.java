@@ -358,9 +358,9 @@ public class BTFragmentGridPager extends ViewPager {
 
     public interface FragmentGridPagerAdapter{
 
-        public int rowCount();
-        public int columnCount(int row);
-        public Fragment getItem(GridIndex index);
+         int rowCount();
+         int columnCount(int row);
+         Fragment getItem(GridIndex index);
 
     }
 

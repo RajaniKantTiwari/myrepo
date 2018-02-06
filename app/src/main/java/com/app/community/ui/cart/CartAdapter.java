@@ -63,11 +63,13 @@ public class CartAdapter extends RecyclerView.Adapter {
         }
 
         public void bind(int position) {
-
             mBinding.ivMinus.setTag(position);
             mBinding.ivPlus.setTag(position);
+            mBinding.ivProduct.setTag(position);
+            mBinding.layoutInfo.setTag(position);
+            mBinding.tvSubscribe.setTag(position);
             mBinding.tvProductName.setText(mDataList.get(position).getProductname());
-            mBinding.tvProductPrice.setText("INR " + String.valueOf(mDataList.get(position).getProduct_mrp()));
+            mBinding.tvProductPrice.setText(String.valueOf(mDataList.get(position).getProduct_mrp()));
             mBinding.tvQty.setText(String.valueOf(mDataList.get(position).getQty()));
             mBinding.tvProductQty.setText(mDataList.get(position).getMeasure());
             if (!TextUtils.isEmpty(mDataList.get(position).getIcon())) {

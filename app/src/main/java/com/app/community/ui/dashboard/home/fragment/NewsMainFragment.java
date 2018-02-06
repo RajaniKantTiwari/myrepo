@@ -49,11 +49,12 @@ public class NewsMainFragment extends DashboardFragment {
         mFragmentGridPagerAdapter = new BTFragmentGridPager.FragmentGridPagerAdapter() {
             @Override
             public int rowCount() {
-                return 10;
+                return 3;
             }
 
             @Override
             public int columnCount(int row) {
+                
                 return CommonUtils.isNotNull(newsList) ? newsList.size() : 0;
             }
 
