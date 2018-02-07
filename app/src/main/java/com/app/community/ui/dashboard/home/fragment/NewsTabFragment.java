@@ -8,8 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.community.R;
-import com.app.community.databinding.FragmentFullInformationBinding;
-import com.app.community.databinding.FragmentNewsBinding;
 import com.app.community.databinding.FragmentNewsTabBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.base.BaseActivity;

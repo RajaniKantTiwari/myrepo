@@ -40,7 +40,6 @@ import com.app.community.ui.dashboard.home.event.NewsEvent;
 import com.app.community.ui.dashboard.home.event.SearchProductEvent;
 import com.app.community.ui.dashboard.home.fragment.HomeFragment;
 import com.app.community.ui.dashboard.home.fragment.MyOrderActivity;
-import com.app.community.ui.dashboard.home.fragment.NewsFragment;
 import com.app.community.ui.dashboard.home.fragment.NewsMainFragment;
 import com.app.community.ui.dashboard.offer.OfferDetailsActivity;
 import com.app.community.ui.dialogfragment.EmergencyDialogFragment;
@@ -290,7 +289,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
     @Override
     public void onItemClick(int adapterPosition) {
         Bundle bundle = new Bundle();
-        getDashboardActivity().addFragmentInContainer(new NewsFragment(),bundle,true,false,NONE);
+        getDashboardActivity().addFragmentInContainer(new NewsMainFragment(),bundle,true,false,NONE);
     }
 
     @Override

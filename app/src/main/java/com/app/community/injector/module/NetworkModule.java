@@ -52,7 +52,7 @@ public class NetworkModule {
         httpClient.addInterceptor(chain -> {
             Request original = chain.request();
             //String accessToken = UserPreference.getAuthToken();
-            String accessToken ="ec9SzxcvcyegjvC7RfLFgTfZNJS_AY28";
+            String accessToken ="FUPCSStq7aW1abD8yed7b_wJpgT8WBqq";
             if(accessToken!=null){
                 Request.Builder requestBuilder = original.newBuilder()
                         .header(AppConstants.AUTHORIZATION, "Bearer "+accessToken)

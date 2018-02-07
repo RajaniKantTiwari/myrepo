@@ -86,8 +86,9 @@ public class SearchActivity extends CommonActivity implements SearchAdapter.Sear
 
     public void setListener() {
         mBinding.layoutHeader.ivBack.setOnClickListener(this);
-        mBinding.layoutHeader.tvGo.setOnClickListener(this);
-        mBinding.layoutHeader.tvGo.setVisibility(View.VISIBLE);
+        mBinding.layoutHeader.textView.setOnClickListener(this);
+        mBinding.layoutHeader.textView.setVisibility(View.VISIBLE);
+        mBinding.layoutHeader.textView.setText(getResources().getString(R.string.go));
         mBinding.layoutHeader.edSearch.setVisibility(View.VISIBLE);
         mBinding.layoutHeader.edSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -133,7 +134,7 @@ public class SearchActivity extends CommonActivity implements SearchAdapter.Sear
     public void onClick(View view) {
         if (view == mBinding.layoutHeader.ivBack) {
             finish();
-        } else if (view == mBinding.layoutHeader.tvGo) {
+        } else if (view == mBinding.layoutHeader.textView) {
             gotoProduct();
         }
     }

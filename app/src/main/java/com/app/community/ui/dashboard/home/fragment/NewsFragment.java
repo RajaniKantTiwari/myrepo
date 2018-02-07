@@ -1,3 +1,4 @@
+/*
 package com.app.community.ui.dashboard.home.fragment;
 
 import android.databinding.DataBindingUtil;
@@ -15,18 +16,17 @@ import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.GlideUtils;
-import com.app.community.utils.viewpager.BTFragmentGridPager;
 
-import java.util.ArrayList;
 
+*/
 /**
  * Created by rajnikant on 31/12/17.
- */
+ *//*
+
 
 public class NewsFragment extends DashboardFragment  {
     private FragmentNewsRowBinding mBinding;
     private News news;
-    private BTFragmentGridPager.GridIndex mGridIndex;
 
     @Nullable
     @Override
@@ -70,7 +70,6 @@ public class NewsFragment extends DashboardFragment  {
     public void onSuccess(BaseResponse response, int requestCode) {
 
     }
-    public void setGridIndex(BTFragmentGridPager.GridIndex gridIndex){
-        mGridIndex = gridIndex;
-    }
+
 }
+*/

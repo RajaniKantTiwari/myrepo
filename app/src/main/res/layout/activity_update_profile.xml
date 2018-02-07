@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
-    <ScrollView style="@style/match_match">
 
-        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            style="@style/match_match"
-            android:background="@color/white">
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/match_match"
+        android:background="@color/white">
 
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                style="@style/match_match"
-                android:background="@android:color/white"
+        <ScrollView style="@style/match_match"
+            android:background="@android:color/white">
+
+            <LinearLayout
+                style="@style/match_wrap"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
@@ -27,35 +28,35 @@
                         android:scaleType="fitCenter"
                         android:src="@drawable/avatar" />
 
-                        <com.app.community.widget.CustomEditText
-                            android:id="@+id/edName"
-                            style="@style/edit_text_style_medium"
-                            android:layout_marginTop="@dimen/margin_10"
-                            android:text="@string/name"
-                            android:textColor="@color/white"
-                            android:gravity="center_horizontal"
-                            android:paddingBottom="@dimen/margin_5"
-                            android:paddingTop="@dimen/margin_5" />
+                    <com.app.community.widget.CustomEditText
+                        android:id="@+id/edName"
+                        style="@style/edit_text_style_medium"
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:gravity="center_horizontal"
+                        android:paddingBottom="@dimen/margin_5"
+                        android:paddingTop="@dimen/margin_5"
+                        android:text="@string/name"
+                        android:textColor="@color/white" />
 
-                        <ImageView style="@style/view_layout_brown" />
+                    <ImageView style="@style/view_layout_brown" />
 
-                        <com.app.community.widget.CustomTextView
-                            android:id="@+id/tvMobile"
-                            style="@style/textview_description_large_wrap"
-                            android:layout_marginTop="@dimen/margin_10"
-                            android:textColor="@color/white"
-                            android:text="955863452"/>
+                    <com.app.community.widget.CustomTextView
+                        android:id="@+id/tvMobile"
+                        style="@style/textview_description_large_wrap"
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:text="955863452"
+                        android:textColor="@color/white" />
 
                     <com.app.community.widget.CustomEditText
                         android:id="@+id/edEmail"
                         style="@style/edit_text_style_medium"
                         android:layout_marginTop="@dimen/margin_10"
-                        android:text="@string/email_address"
-                        android:inputType="textEmailAddress"
-                        android:textColor="@color/white"
                         android:gravity="center_horizontal"
+                        android:inputType="textEmailAddress"
                         android:paddingBottom="@dimen/margin_5"
-                        android:paddingTop="@dimen/margin_5" />
+                        android:paddingTop="@dimen/margin_5"
+                        android:text="@string/email_address"
+                        android:textColor="@color/white" />
 
                     <ImageView style="@style/view_layout_brown" />
                 </LinearLayout>
@@ -69,24 +70,25 @@
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rvPayment"
                     style="@style/match_wrap" />
+
                 <com.app.community.widget.CustomEditText
                     android:id="@+id/edCreditDetails"
                     style="@style/edit_text_style_medium"
                     android:layout_marginTop="@dimen/margin_10"
                     android:gravity="center_horizontal"
-                    android:inputType="number"
                     android:hint="1234567899"
+                    android:inputType="number"
                     android:paddingBottom="@dimen/margin_5"
                     android:paddingTop="@dimen/margin_5" />
 
                 <ImageView style="@style/view_layout" />
 
             </LinearLayout>
+        </ScrollView>
 
-            <include
-                android:id="@+id/layoutNoData"
-                layout="@layout/layout_no_data_found"
-                android:visibility="gone" />
-        </FrameLayout>
-    </ScrollView>
+        <include
+            android:id="@+id/layoutNoData"
+            layout="@layout/layout_no_data_found"
+            android:visibility="gone" />
+    </FrameLayout>
 </layout>

@@ -1,3 +1,4 @@
+/*
 package com.app.community.ui.dashboard.home.adapter;
 
 import android.os.Bundle;
@@ -8,9 +9,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.app.community.ui.dashboard.home.fragment.HelpsAndSupportFragment;
 import com.app.community.ui.dashboard.home.fragment.NewsFragment;
 
+*/
 /**
  * Created by rajnikant on 15/01/18.
- */
+ *//*
+
 
 public class NewsPagerAdapter extends FragmentPagerAdapter {
 
@@ -35,3 +38,4 @@ public class NewsPagerAdapter extends FragmentPagerAdapter {
             return 2;
         }
 }
+*/

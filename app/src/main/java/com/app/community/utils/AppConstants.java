@@ -21,6 +21,7 @@ public interface AppConstants {
     String OFFER = "offer";
     int LOGOUT = 3;
     int NO_OF_TAB = 4;
+    int HORIZONTAL_CHILD=3;
 
     @IntDef({CHECKOUT_FRAGMENT})
     @Retention(RetentionPolicy.SOURCE)

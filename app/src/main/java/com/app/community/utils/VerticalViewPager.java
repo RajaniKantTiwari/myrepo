@@ -1,3 +1,4 @@
+/*
 package com.app.community.utils;
 
 import android.content.Context;
@@ -7,9 +8,11 @@ import android.view.MotionEvent;
 import android.view.View;
 
 
+*/
 /**
  * Created by jrizvan on 12/13/16.
- */
+ *//*
+
 
 public class VerticalViewPager extends ViewPager {
 
@@ -71,9 +74,11 @@ public class VerticalViewPager extends ViewPager {
         }
     }
 
-    /**
+    */
+/**
      * Swaps the X and Y coordinates of your touch event.
-     */
+     *//*
+
     private MotionEvent swapXY(MotionEvent ev) {
         float width = getWidth();
         float height = getHeight();
@@ -98,3 +103,4 @@ public class VerticalViewPager extends ViewPager {
         return super.onTouchEvent(swapXY(ev));
     }
 }
+*/
