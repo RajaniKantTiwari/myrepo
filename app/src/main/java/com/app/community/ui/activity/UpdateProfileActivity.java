@@ -3,6 +3,7 @@ package com.app.community.ui.activity;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 
@@ -43,16 +44,19 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
 
     public void setListener() {
         mBinding.ivProfile.setOnClickListener(this);
+        mBinding.tvDone.setOnClickListener(this);
     }
 
     public void initializeData() {
-        GlideUtils.loadImageProfilePic(this, UserPreference.getImage(),mBinding.ivProfile,null,0);
-
+        GlideUtils.loadImageProfilePic(this, UserPreference.getImage(), mBinding.ivProfile, null, R.drawable.avatar);
         setPaymentOption();
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        mBinding.rvPayment.setLayoutManager(layoutManager);
         paymentAdapter = new PaymentAdapter(this, paymentList);
         mBinding.rvPayment.setAdapter(paymentAdapter);
         CommonUtils.setRecyclerViewHeight(mBinding.rvPayment, paymentList, GeneralConstant.PAYMENT_HEIGHT);
     }
+
     private void setPaymentOption() {
         PaymentOption option1 = new PaymentOption();
         option1.setPaymentString(getResources().getString(R.string.cash_on_delivery));
@@ -78,11 +82,15 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.ivProfile:
+            if(mBinding.ivProfile==view){
                 showImageChooserDialog();
-                break;
-        }
+            }else if(mBinding.tvDone==view){
+                updateProfile();
+            }
+    }
+
+    private void updateProfile() {
+
     }
 
     private void showImageChooserDialog() {

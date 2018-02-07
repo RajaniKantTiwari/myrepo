@@ -63,7 +63,7 @@ public interface GeneralConstant {
 
     int SUBSCRIPTION = 1;
     int SUBSCRIPTION_DETAIL = 2;
-    int PAYMENT_HEIGHT = 46;
+    int PAYMENT_HEIGHT = 48;
     String IMAGE_LIST = "image_list";
     String POSITION = "position";
     long ANIMATION_TIME = 500;

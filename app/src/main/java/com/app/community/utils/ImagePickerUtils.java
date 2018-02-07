@@ -54,7 +54,7 @@ public class ImagePickerUtils extends Fragment implements Alert.OnAlertClickList
     private static final int MEMORY_PERMISSION_REQUEST = IMAGE_PICKER_REQUEST + 1;
     private OnImagePickerListener listener;
     private String mediaPath;
-    private boolean isFirstTime=true;
+    private boolean isFirstTime = true;
     private int mType;
 
     public static void add(@NonNull FragmentManager manager, @NonNull OnImagePickerListener listener) {
@@ -108,7 +108,7 @@ public class ImagePickerUtils extends Fragment implements Alert.OnAlertClickList
                     == PackageManager.PERMISSION_GRANTED) {
                 LogUtils.LOGD(TAG, "Permission is granted");
                 return true;
-            } else if(isFirstTime){
+            } else if (isFirstTime) {
                 LogUtils.LOGD(TAG, "Permission is revoked");
                 requestPermissions(new String[]{Manifest.permission.CAMERA}, CAMERA_PIC_REQUEST);
                 return false;
@@ -127,7 +127,7 @@ public class ImagePickerUtils extends Fragment implements Alert.OnAlertClickList
                     == PackageManager.PERMISSION_GRANTED) {
                 LogUtils.LOGD(TAG, "Permission is granted");
                 return true;
-            } else if(isFirstTime){
+            } else if (isFirstTime) {
                 LogUtils.LOGD(TAG, "Permission is revoked");
                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MEMORY_PERMISSION_REQUEST);
                 return false;
@@ -148,7 +148,7 @@ public class ImagePickerUtils extends Fragment implements Alert.OnAlertClickList
         layoutCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isCameraPermitionGranted(true)){
+                if (isCameraPermitionGranted(true)) {
                     dialog.dismiss();
                     mediaPath = BitmapUtils.scaledImagePath();
                     File file = new File(mediaPath);
@@ -159,10 +159,10 @@ public class ImagePickerUtils extends Fragment implements Alert.OnAlertClickList
                 }
             }
         });
-        layoutCamera.setOnClickListener(new View.OnClickListener() {
+        layoutGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isStoragePermissionGranted(true)){
+                if (isStoragePermissionGranted(true)) {
                     dialog.dismiss();
                     Intent galleryIntent = new Intent(
                             Intent.ACTION_PICK,
@@ -173,26 +173,6 @@ public class ImagePickerUtils extends Fragment implements Alert.OnAlertClickList
             }
         });
         dialog.show();
-       /* builder.setItems(items, (dialog, which) -> {
-            if (items[which].equals("Take Photo")&&isCameraPermitionGranted(true)) {
-                dialog.dismiss();
-                mediaPath = BitmapUtils.scaledImagePath();
-                File file = new File(mediaPath);
-                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                Uri photoURI = FileProvider.getUriForFile(getActivity(), getActivity().getApplicationContext().getPackageName() + ".provider", file);
-                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
-            } else if (items[which].equals("Choose from Library")&&isStoragePermissionGranted(true)) {
-                dialog.dismiss();
-                Intent galleryIntent = new Intent(
-                        Intent.ACTION_PICK,
-                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(galleryIntent, IMAGE_PICKER_REQUEST);
-            } else if (items[which].equals("Cancel")) {
-                dialog.dismiss();
-            }
-        });
-        builder.show();*/
     }
 
     private String handleCameraResult() {
@@ -235,8 +215,8 @@ public class ImagePickerUtils extends Fragment implements Alert.OnAlertClickList
                 LogUtils.LOGD("Permission", "Storage permission pending");
             }
         }
-        if(isFirstTime){
-            isFirstTime=false;
+        if (isFirstTime) {
+            isFirstTime = false;
             isCameraPermitionGranted(true);
         }
         if ((isStoragePermissionGranted(false) && isCameraPermitionGranted(false))) {

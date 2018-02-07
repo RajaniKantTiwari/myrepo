@@ -59,7 +59,7 @@ public class SearchActivity extends CommonActivity implements SearchAdapter.Sear
     private void initializeAdapter() {
         // set search list
         merchantList = new ArrayList<>();
-        mSearchAdapter = new SearchAdapter(this,merchantList, this);
+        mSearchAdapter = new SearchAdapter(this, merchantList, this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mBinding.rvSearch.setLayoutManager(layoutManager);
         mBinding.rvSearch.addItemDecoration(new SimpleDividerItemDecoration(getResources()));
@@ -102,7 +102,7 @@ public class SearchActivity extends CommonActivity implements SearchAdapter.Sear
                 if (searchText.toString().length() == 0) {
                     showDefault();
 
-                }else{
+                } else {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -153,15 +153,15 @@ public class SearchActivity extends CommonActivity implements SearchAdapter.Sear
         mBinding.tvNoResult.setVisibility(View.GONE);
         if (CommonUtils.isNotNull(response) && response instanceof SearchResponseData) {
             SearchResponseData responseData = (SearchResponseData) response;
-            if (CommonUtils.isNotNull(responseData)){
-                if(CommonUtils.isNotNull(responseData.getData())&&responseData.getData().size()>0){
+            if (CommonUtils.isNotNull(responseData)) {
+                if (CommonUtils.isNotNull(responseData.getData()) && responseData.getData().size() > 0) {
                     merchantList.clear();
                     merchantList.addAll(responseData.getData());
                     mSearchAdapter.notifyDataSetChanged();
-                    if(CommonUtils.isNull(search)||search.length()==0){
+                    if (CommonUtils.isNull(search) || search.length() == 0) {
                         showDefault();
                     }
-                }else{
+                } else {
                     mBinding.tvNoResult.setVisibility(View.VISIBLE);
                 }
             }
@@ -171,20 +171,22 @@ public class SearchActivity extends CommonActivity implements SearchAdapter.Sear
 
     @Override
     public void itemClicked(int position) {
-        if(CommonUtils.isNotNull(merchantList)&&merchantList.size()>position){
+        if (CommonUtils.isNotNull(merchantList) && merchantList.size() > position) {
             MerchantResponse merchant = merchantList.get(position);
-            if(CommonUtils.isNotNull(merchant)){
+            if (CommonUtils.isNotNull(merchant)) {
                 gotoProductDetails(merchant.getId());
             }
         }
 
 
     }
+
     private void gotoProductDetails(String id) {
         ProductDetailsEvent productDetailsEvent = new ProductDetailsEvent(id);
         EventBus.getDefault().post(productDetailsEvent);
         finish();
     }
+
     @Override
     public void onProductServiceItemClick(int position, int type) {
 

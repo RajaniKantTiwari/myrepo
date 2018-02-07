@@ -16,7 +16,6 @@
             android:src="@drawable/camera" />
 
         <com.app.community.widget.CustomTextView
-            android:id="@+id/tvEdit"
             style="@style/match_wrap"
             android:layout_gravity="center_vertical"
             android:lineSpacingExtra="@dimen/textSize_description_smaller"
