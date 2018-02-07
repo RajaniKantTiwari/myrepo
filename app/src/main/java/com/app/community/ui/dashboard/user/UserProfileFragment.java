@@ -15,6 +15,8 @@ import com.app.community.ui.activity.UpdateProfileActivity;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.presenter.CommonPresenter;
 import com.app.community.utils.ExplicitIntent;
+import com.app.community.utils.GlideUtils;
+import com.app.community.utils.UserPreference;
 
 import javax.inject.Inject;
 
@@ -42,6 +44,7 @@ public class UserProfileFragment extends DashboardFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding= DataBindingUtil.inflate(inflater, R.layout.fragment_user,container,false);
+        GlideUtils.loadImageProfilePic(getContext(), UserPreference.getImage(),mBinding.ivProfile,null,0);
         getDashboardActivity().setTile(getString(R.string.user));
         return mBinding.getRoot();
     }

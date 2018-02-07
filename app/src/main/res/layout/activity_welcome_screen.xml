@@ -1,82 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        style="@style/match_match">
+        style="@style/match_match"
+        android:orientation="vertical">
+
         <LinearLayout
             style="@style/match_wrap"
             android:orientation="vertical">
-        <com.app.community.widget.CustomTextView
-            style="@style/textview_title_match"
-            android:text="@string/welcome_to_app_name"
-            android:layout_marginTop="@dimen/margin_15"
-            android:gravity="center_horizontal"
-            android:textColor="@color/darker_blackish"
-            app:customFont="@string/font_bold"
-            />
 
-        <com.app.community.widget.CustomTextView
-            style="@style/match_wrap"
-            android:text="@string/lets_first_check_that"
-            android:layout_marginTop="@dimen/margin_5"
-            android:gravity="center_horizontal"
-            app:customFont="@string/font_regular"
-            android:textSize="@dimen/button_large"
-            android:textColor="@color/color_dark_grey"/>
+            <RelativeLayout style="@style/match_wrap">
+                <ImageView
+                    android:id="@+id/ivBack"
+                    style="@style/wrap_wrap"
+                    android:src="@drawable/ic_back_black"
+                    android:padding="@dimen/margin_10"
+                    android:visibility="gone"/>
+                <com.app.community.widget.CustomTextView
+                    style="@style/textview_title_wrap"
+                    android:layout_marginTop="@dimen/margin_15"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/welcome_to_app_name"
+                    android:textColor="@color/darker_blackish"
+                    app:customFont="@string/font_bold"/>
+            </RelativeLayout>
+
+            <com.app.community.widget.CustomTextView
+                style="@style/match_wrap"
+                android:layout_marginTop="@dimen/margin_5"
+                android:gravity="center_horizontal"
+                android:text="@string/lets_first_check_that"
+                android:textColor="@color/color_dark_grey"
+                android:textSize="@dimen/button_large"
+                app:customFont="@string/font_regular" />
         </LinearLayout>
+
         <ImageView
             style="@style/match_match"
-            android:layout_weight="1"
-            android:src="@drawable/welcome_screen"
-            android:layout_marginTop="@dimen/margin_8"
-            android:layout_marginStart="@dimen/margin_10"
+            android:layout_marginBottom="@dimen/margin_20"
             android:layout_marginEnd="@dimen/margin_10"
-            android:layout_marginBottom="@dimen/margin_20"/>
+            android:layout_marginStart="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin_8"
+            android:layout_weight="1"
+            android:src="@drawable/welcome_screen" />
+
         <LinearLayout
             style="@style/match_wrap"
-            android:orientation="vertical"
-            android:layout_alignParentBottom="true">
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+
             <com.app.community.widget.CustomTextView
                 style="@style/textview_title_match"
+                android:gravity="center"
                 android:text="@string/choose_your_location"
                 android:textAllCaps="true"
-                android:gravity="center"
-                android:textColor="@color/darker_blackish"
-                />
+                android:textColor="@color/darker_blackish" />
+
             <LinearLayout
                 android:id="@+id/layoutLocation"
                 style="@style/match_wrap"
-                android:background="@drawable/blue_round_btnbg"
-                android:layout_marginTop="@dimen/margin_20"
-                android:layout_marginStart="@dimen/margin_45"
                 android:layout_marginEnd="@dimen/margin_45"
-                android:paddingTop="@dimen/margin_12"
-                android:paddingBottom="@dimen/margin_12"
+                android:layout_marginStart="@dimen/margin_45"
+                android:layout_marginTop="@dimen/margin_20"
+                android:background="@drawable/blue_round_btnbg"
                 android:gravity="center"
-                >
-        <com.app.community.widget.CustomTextView
-            android:id="@+id/tvCurrentLocation"
-            style="@style/textview_description_wrap"
-            android:text="@string/use_my_current_location"
-            app:customFont="@string/font_bold"
-            android:elevation="@dimen/margin_5"
-            android:paddingStart="@dimen/margin_10"
-            android:textColor="@android:color/white"
-            android:drawablePadding="@dimen/margin_10"
-            android:drawableStart="@drawable/ic_location_white"
-            android:textAllCaps="true"/>
+                android:paddingBottom="@dimen/margin_12"
+                android:paddingTop="@dimen/margin_12">
+
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvCurrentLocation"
+                    style="@style/textview_description_wrap"
+                    android:drawablePadding="@dimen/margin_10"
+                    android:drawableStart="@drawable/ic_location_white"
+                    android:elevation="@dimen/margin_5"
+                    android:paddingStart="@dimen/margin_10"
+                    android:text="@string/use_my_current_location"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/white"
+                    app:customFont="@string/font_bold" />
             </LinearLayout>
-        <com.app.community.widget.CustomTextView
-            android:id="@+id/tvManually"
-            style="@style/match_wrap"
-            android:text="@string/select_manually"
-            android:gravity="center_horizontal"
-            android:textSize="@dimen/button_large"
-            app:customFont="@string/font_bold"
-            android:textColor="@color/button_bg_color"
-            android:padding="@dimen/margin_10"
-            android:layout_marginTop="@dimen/margin_5"
-            android:layout_marginBottom="@dimen/margin_25"/>
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvManually"
+                style="@style/match_wrap"
+                android:layout_marginBottom="@dimen/margin_25"
+                android:layout_marginTop="@dimen/margin_5"
+                android:gravity="center_horizontal"
+                android:padding="@dimen/margin_10"
+                android:text="@string/select_manually"
+                android:textColor="@color/button_bg_color"
+                android:textSize="@dimen/button_large"
+                app:customFont="@string/font_bold" />
         </LinearLayout>
     </LinearLayout>
 </layout>

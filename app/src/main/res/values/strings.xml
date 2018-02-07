@@ -454,6 +454,7 @@
     <string name="change_payment_option">Change Payment Option</string>
     <string name="choose_from_camera">Take Photo</string>
     <string name="choose_from_library">Choose from Library</string>
+    <string name="moblile_number">Mobile Number</string>
 
 
     <string-array name="state_array">

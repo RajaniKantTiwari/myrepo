@@ -261,7 +261,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         mBinding.toolBar.ivDrawer.setOnClickListener(this);
         mBinding.toolBar.ivRightDrawer.setOnClickListener(this);
         mBinding.layoutDrawerLeft.layoutLogout.setOnClickListener(this);
-        mBinding.layoutDrawerLeft.ivAvatar.setOnClickListener(this);
+        mBinding.layoutDrawerLeft.ivProfile.setOnClickListener(this);
 
         mBinding.bottomLayout.linearLayoutBar1.setOnClickListener(this);
         mBinding.bottomLayout.linearLayoutBar2.setOnClickListener(this);
@@ -282,7 +282,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         } else if (mBinding.layoutDrawerLeft.layoutLogout == view) {
             mPresenter.logout(this);
 
-        } else if (mBinding.layoutDrawerLeft.ivAvatar == view) {
+        } else if (mBinding.layoutDrawerLeft.ivProfile == view) {
             closeDrawerLeft();
             changeIcon(USER_FRAGMENT);
             onTabSelected(USER_FRAGMENT);

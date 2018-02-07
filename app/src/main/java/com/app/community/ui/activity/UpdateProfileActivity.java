@@ -17,6 +17,7 @@ import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.GlideUtils;
 import com.app.community.utils.ImagePickerUtils;
 import com.app.community.utils.LogUtils;
+import com.app.community.utils.UserPreference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +46,8 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
     }
 
     public void initializeData() {
+        GlideUtils.loadImageProfilePic(this, UserPreference.getImage(),mBinding.ivProfile,null,0);
+
         setPaymentOption();
         paymentAdapter = new PaymentAdapter(this, paymentList);
         mBinding.rvPayment.setAdapter(paymentAdapter);

@@ -48,6 +48,8 @@
         <activity android:name=".ui.activity.EditAddressActivity" />
         <activity android:name=".ui.activity.HelpsAndSupportActivity" />
         <activity android:name=".ui.dashboard.home.fragment.MyOrderActivity" />
+        <activity android:name=".ui.activity.UpdateProfileActivity" />
+
         <service
             android:name=".firebase.FirebaseIDService"
             android:exported="false">

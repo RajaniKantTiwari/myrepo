@@ -46,6 +46,8 @@
 
 
     <color name="hint_color">#676767</color>
+    <color name="hint_color_light">#EFEFEF</color>
+
     <color name="white_e2e2e2">#e6e5e6</color>
     <color name="background_doctor">#FAFAFA</color>
 
@@ -97,6 +99,7 @@
 
 
     <color name="white">#ffffff</color>
+
     <color name="transulent">#33FFFFFF</color>
 
     <color name="transulent_color">#0F000000</color>

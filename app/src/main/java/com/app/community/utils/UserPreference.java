@@ -1,6 +1,14 @@
 package com.app.community.utils;
 
+import android.content.Context;
+import android.location.Address;
+import android.location.Geocoder;
+
 import com.orhanobut.hawk.Hawk;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by arvind on 01/11/17.
@@ -72,6 +80,12 @@ public class UserPreference {
     public static String getDeviceToken() {
         return Hawk.get(PreferenceConstants.DEVICE_TOKEN,null);
     }
+    public static void setImage(String imageUrl) {
+        Hawk.put(PreferenceConstants.IMAGE_URL, imageUrl);
+    }
+    public static String getImage() {
+        return Hawk.get(PreferenceConstants.IMAGE_URL,null);
+    }
 
     public static void setLogin(boolean isLogin) {
         Hawk.put(PreferenceConstants.IS_LOGIN, isLogin);
@@ -85,5 +99,39 @@ public class UserPreference {
     }
     public static String getUserMono() {
        return Hawk.get(PreferenceConstants.USER_MONO, null);
+    }
+
+
+    public static void setAddress(String address) {
+        Hawk.put(PreferenceConstants.ADDRESS, address);
+    }
+    public static String getAddress() {
+            return Hawk.get(PreferenceConstants.ADDRESS, null);
+    }
+
+    public static String getAddress(Context context, double latitude, double longitude) {
+        try {
+            Geocoder geoCoder = new Geocoder(context, Locale.getDefault());
+            List<Address> addresses = geoCoder.getFromLocation(latitude, longitude, 1);
+            String address = "";
+            if (addresses != null && addresses.size() >= 0) {
+                if(addresses.get(0).getAddressLine(0)!=null)
+                    address = addresses.get(0).getAddressLine(0);
+
+                if (addresses != null && addresses.size() >= 1) {
+                    if(addresses.get(0).getAddressLine(1)!=null)
+                    address += ", " + addresses.get(0).getAddressLine(1);
+                }
+
+                if (addresses != null && addresses.size() >= 2) {
+                    if(addresses.get(0).getAddressLine(2)!=null)
+                        address += ", " + addresses.get(0).getAddressLine(2);
+                }
+            }
+            return address;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

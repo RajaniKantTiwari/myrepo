@@ -57,7 +57,7 @@
             android:id="@+id/tvDescription"
             style="@style/textview_description_match"
             android:textColor="@color/color_black"
-            android:text="@={news.news_descr}"
+            android:text="@={news.full_article}"
             app:customFont="@string/font_regular"
             android:layout_marginStart="@dimen/margin_7"
             android:layout_marginEnd="@dimen/margin_7"

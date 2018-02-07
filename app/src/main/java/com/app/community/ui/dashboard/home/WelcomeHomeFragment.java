@@ -271,19 +271,13 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    // mFragmentNavigation.pushFragment(ConfirmOrderFragment.newInstance(mInt+1));
                     Bundle bundle = new Bundle();
                     bundle.putParcelableArrayList(GeneralConstant.NEWSLIST, newsList);
                     bundle.putInt(GeneralConstant.POSITION, position);
                     getDashboardActivity().addFragmentInContainer(new NewsMainFragment(),bundle,true,true,NONE);
-                    //EventBus.getDefault().post(new NewsEvent());
                 }
             }, GeneralConstant.DELAYTIME);
 
-        /*Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList(GeneralConstant.NEWSLIST, newsList);
-        bundle.putInt(GeneralConstant.POSITION, position);
-        ExplicitIntent.getsInstance().navigateTo(getDashboardActivity(), NewsMainActivity.class,bundle);*/
     }
 
     @Override

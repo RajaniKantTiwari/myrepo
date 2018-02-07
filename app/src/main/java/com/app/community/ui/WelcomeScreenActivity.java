@@ -41,6 +41,7 @@ public class WelcomeScreenActivity extends BaseActivity implements CustomDialogF
     private GPSTracker gpsTracker;
     private boolean isClickedOnAddress;
     private boolean isFromHome;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,18 +51,24 @@ public class WelcomeScreenActivity extends BaseActivity implements CustomDialogF
     }
 
     private void initializeData() {
-        Intent intent=getIntent();
-        if(CommonUtils.isNotNull(intent)){
-            Bundle bundle=intent.getExtras();
-            if(CommonUtils.isNotNull(bundle)){
-                isFromHome=bundle.getBoolean(GeneralConstant.IS_FROM_HOME);
+        Intent intent = getIntent();
+        if (CommonUtils.isNotNull(intent)) {
+            Bundle bundle = intent.getExtras();
+            if (CommonUtils.isNotNull(bundle)) {
+                isFromHome = bundle.getBoolean(GeneralConstant.IS_FROM_HOME);
             }
+        }
+        if (isFromHome) {
+            mBinding.ivBack.setVisibility(View.VISIBLE);
+        } else {
+            mBinding.ivBack.setVisibility(View.GONE);
         }
     }
 
     public void setListener() {
         mBinding.layoutLocation.setOnClickListener(this);
         mBinding.tvManually.setOnClickListener(this);
+        mBinding.ivBack.setOnClickListener(this);
     }
 
 
@@ -89,19 +96,22 @@ public class WelcomeScreenActivity extends BaseActivity implements CustomDialogF
     public void onClick(View view) {
         if (view == mBinding.layoutLocation) {
             CommonUtils.clicked(mBinding.layoutLocation);
-            if(isNetworkConnected()){
+            if (isNetworkConnected()) {
                 getCurrentLocation();
             }
-        }else if(view==mBinding.tvManually){
+        } else if (view == mBinding.tvManually) {
             CommonUtils.clicked(mBinding.tvManually);
-            if(isNetworkConnected()) {
+            if (isNetworkConnected()) {
                 if (!isClickedOnAddress) {
                     isClickedOnAddress = true;
                     address();
                 }
             }
+        } else if (view == mBinding.ivBack) {
+            finish();
         }
     }
+
     private void address() {
         try {
             Intent intent =
@@ -113,6 +123,7 @@ public class WelcomeScreenActivity extends BaseActivity implements CustomDialogF
         } catch (GooglePlayServicesNotAvailableException e) {
         }
     }
+
     private void getCurrentLocation() {
         // create class object
         gpsTracker = new GPSTracker(WelcomeScreenActivity.this);
@@ -127,7 +138,7 @@ public class WelcomeScreenActivity extends BaseActivity implements CustomDialogF
     private void getLatLong() {
         UserPreference.setLatitude(gpsTracker.getLatitude());
         UserPreference.setLongitude(gpsTracker.getLongitude());
-        if(!isFromHome){
+        if (!isFromHome) {
             ExplicitIntent.getsInstance().navigateTo(this, LoginActivity.class);
         }
         finish();
@@ -152,22 +163,27 @@ public class WelcomeScreenActivity extends BaseActivity implements CustomDialogF
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
-            isClickedOnAddress=false;
+            isClickedOnAddress = false;
             if (resultCode == RESULT_OK) {
                 try {
-                    // retrive the data by using getPlace() method.
-                    Place place = PlaceAutocomplete.getPlace(this, data);
-                    LatLng latLng = place.getLatLng();
-                    UserPreference.setLatitude(latLng.latitude);
-                    UserPreference.setLongitude(latLng.longitude);
-                    /*Bundle bundle=new Bundle();
-                    bundle.putString(GeneralConstant.TITLE,getResources().getString(R.string.dialog_title));
-                    CommonUtils.showDialog(this,bundle,this);*/
-                    if(!isFromHome){
+                    if (CommonUtils.isNotNull(data)) {
+                        // retrive the data by using getPlace() method.
+                        Place place = PlaceAutocomplete.getPlace(this, data);
+                        if (CommonUtils.isNotNull(place)) {
+                            LatLng latLng = place.getLatLng();
+                            UserPreference.setAddress(place.getAddress().toString());
+                            UserPreference.setLatitude(latLng.latitude);
+                            UserPreference.setLongitude(latLng.longitude);
+                        }
+
+                    }
+
+
+                    if (!isFromHome) {
                         ExplicitIntent.getsInstance().navigateTo(this, LoginActivity.class);
                     }
                     finish();
-                }catch (Exception ex){
+                } catch (Exception ex) {
 
                 }
 
