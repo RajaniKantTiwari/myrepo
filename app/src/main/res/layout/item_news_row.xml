@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="news"
+            type="com.app.community.network.response.dashboard.home.News"/>
+    </data>
+    <LinearLayout
+        android:orientation="vertical"
+        style="@style/match_match"
+        android:minHeight="500dp"
+        android:background="@color/white">
+        <RelativeLayout
+            style="@style/match_wrap"
+            android:layout_height="@dimen/margin_180"
+            android:background="@color/selected_background">
+            <ImageView
+                android:id="@+id/ivNews"
+                style="@style/match_match"
+                android:scaleType="fitCenter"/>
+            <ImageView
+                style="@style/wrap_wrap"
+                android:src="@drawable/like"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/margin_15"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:layout_alignParentBottom="true"
+                />
+        </RelativeLayout>
+
+        <LinearLayout
+            style="@style/match_wrap"
+            android:layout_marginTop="@dimen/margin_17"
+            android:layout_marginStart="@dimen/margin_7"
+            android:layout_marginEnd="@dimen/margin_7"
+            android:orientation="vertical">
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvHeading"
+                style="@style/textview_description_large_match"
+                android:textColor="@color/color_black"
+                android:text="@={news.news_title}"
+                />
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvDate"
+                style="@style/textview_description_large_match"
+                android:text="22 may 2017"
+                android:textColor="@color/deep_sky_blue"
+                app:customFont="@string/font_regular"
+                android:layout_marginTop="@dimen/margin_10"
+                android:layout_marginBottom="@dimen/margin_15"
+                />
+        </LinearLayout>
+        <ImageView
+            style="@style/view_layout" />
+        <com.app.community.widget.CustomTextView
+            android:id="@+id/tvDescription"
+            style="@style/textview_description_match"
+            android:textColor="@color/color_black"
+            android:text="@={news.news_descr}"
+            app:customFont="@string/font_regular"
+            android:layout_marginStart="@dimen/margin_7"
+            android:layout_marginEnd="@dimen/margin_7"
+            android:layout_marginTop="@dimen/margin_10"
+            />
+    </LinearLayout>
+</layout>

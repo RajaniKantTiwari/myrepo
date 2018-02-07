@@ -13,7 +13,9 @@ import com.app.community.databinding.FragmentMainNewsBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.home.News;
 import com.app.community.ui.dashboard.DashboardFragment;
-import com.app.community.ui.dashboard.home.adapter.VerticalPagerAdapter;
+import com.app.community.ui.dashboard.home.adapter.FirstPagerAdapter;
+import com.app.community.ui.dashboard.home.adapter.SecondPagerAdapter;
+import com.app.community.ui.dashboard.home.adapter.ThirdPagerAdapter;
 import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
@@ -47,18 +49,21 @@ public class NewsMainFragment extends DashboardFragment {
         ArrayList<PagerAdapter> verticalAdapters = new ArrayList<>();
         generateVerticalAdapters(verticalAdapters);
         mBinding.viewPager.setAdapter(new DoubleViewPagerAdapter(getContext(), verticalAdapters));
+        mBinding.viewPager.setCurrentItem(1);
     }
+
     private void generateVerticalAdapters(ArrayList<PagerAdapter> verticalAdapters) {
         for (int i = 0; i < AppConstants.HORIZONTAL_CHILD; i++) {
             if (i == 0) {
-                verticalAdapters.add(new VerticalPagerAdapter(getContext(), i, 1));
-            } else if (i == 1){
-                verticalAdapters.add(new VerticalPagerAdapter(getContext(), i, 10));
-            }else if(i==2){
-                verticalAdapters.add(new VerticalPagerAdapter(getContext(), i, 1));
+                verticalAdapters.add(new FirstPagerAdapter(getContext(), i, 1));
+            } else if (i == 1) {
+                verticalAdapters.add(new SecondPagerAdapter(getContext(), newsList));
+            } else if (i == 2) {
+                verticalAdapters.add(new ThirdPagerAdapter(getContext(), i, 1));
             }
         }
     }
+
     @Override
     public void setListener() {
     }

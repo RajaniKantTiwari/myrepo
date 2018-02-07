@@ -17,14 +17,14 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class VerticalPagerAdapter extends PagerAdapter {
+public class FirstPagerAdapter extends PagerAdapter {
 
     private Context mContext;
     private int mParent;
     private int mChilds;
     private JSONArray mColors;
 
-    public VerticalPagerAdapter(Context c, int parent, int childs){
+    public FirstPagerAdapter(Context c, int parent, int childs){
         mContext = c;
         mParent = parent;
         mChilds = childs;
@@ -52,7 +52,6 @@ public class VerticalPagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-
         LinearLayout linear = new LinearLayout(mContext);
         linear.setOrientation(LinearLayout.VERTICAL);
         linear.setGravity(Gravity.CENTER);
