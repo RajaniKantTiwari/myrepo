@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -40,7 +38,7 @@ import com.app.community.ui.dashboard.home.fragment.MyOrderActivity;
 import com.app.community.ui.dashboard.home.fragment.NewsMainFragment;
 import com.app.community.ui.dashboard.notification.NotificationFragment;
 import com.app.community.ui.dashboard.offer.OfferFragment;
-import com.app.community.ui.dashboard.user.UserFragment;
+import com.app.community.ui.dashboard.user.UserProfileFragment;
 import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.DashBoardHelper;
@@ -56,11 +54,8 @@ import java.util.ArrayList;
 import javax.inject.Inject;
 
 import static com.app.community.ui.base.BaseActivity.AnimationType.NONE;
-import static com.app.community.utils.GeneralConstant.FRAGMENTS.HOME_FRAGMENT;
-import static com.app.community.utils.GeneralConstant.FRAGMENTS.NEWS_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.NOTIFICATION_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.OFFER_FRAGMENT;
-import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_SUBPRODUCT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.USER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.WELCOME_HOME_FRAGMENT;
 
@@ -96,7 +91,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                 ExplicitIntent.getsInstance().navigateTo(this, WelcomeScreenActivity.class, bundle);
                 break;
             case AppConstants.MYACCOUNT:
-                openFragment(new UserFragment(),null,false, false, NONE);
+                openFragment(new UserProfileFragment(),null,false, false, NONE);
                 break;
             case AppConstants.NOTIFICATION:
                 openFragment(new NotificationFragment(),null,false, false, NONE);
@@ -153,7 +148,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                 openFragment(new NotificationFragment(),null,false, false, NONE);
                 break;
             case USER_FRAGMENT:
-                openFragment(new UserFragment(),null,false, false, NONE);
+                openFragment(new UserProfileFragment(),null,false, false, NONE);
                 break;
         }
     }
@@ -306,7 +301,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         } else if (view == mBinding.bottomLayout.linearLayoutBar4) {
             changeIcon(USER_FRAGMENT);
             clearAllBackStack();
-            pushFragment(new UserFragment(),null, R.id.container, true, false, NONE);
+            pushFragment(new UserProfileFragment(),null, R.id.container, true, false, NONE);
         }
     }
 

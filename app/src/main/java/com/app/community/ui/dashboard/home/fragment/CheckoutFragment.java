@@ -37,8 +37,8 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 public class CheckoutFragment extends DashboardFragment {
     private FragmentCheckoutBinding mBinding;
     private CheckoutCartAdapter mCheckoutAdapter;
-    List<PaymentOption> paymentList = new ArrayList<>();
-    List<PaymentOption> deliveryList = new ArrayList<>();
+    private List<PaymentOption> paymentList = new ArrayList<>();
+    private List<PaymentOption> deliveryList = new ArrayList<>();
 
     private PaymentAdapter paymentAdapter;
     private PaymentAdapter deliveryAdapter;

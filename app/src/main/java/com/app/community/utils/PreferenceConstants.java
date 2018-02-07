@@ -13,4 +13,7 @@ public interface PreferenceConstants {
     String DEVICE_TOKEN = "device_token";
     String IS_LOGIN = "is_login";
     String USER_MONO = "user_mono";
+    String EMAIL = "email";
+    String PAYMENT_OPTION = "payment_option";
+    String CARD_NUMBER = "card_number";
 }

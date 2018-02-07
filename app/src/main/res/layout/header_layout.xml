@@ -19,7 +19,7 @@
             style="@style/textview_description_large_match"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/ivBack"
-            android:layout_toStartOf="@+id/tvGo"
+            android:layout_toStartOf="@+id/textView"
             android:background="@null"
             android:drawablePadding="@dimen/margin_5"
             android:drawableStart="@drawable/ic_search"
@@ -36,7 +36,7 @@
             android:visibility="gone"/>
 
         <com.app.community.widget.CustomTextView
-            android:id="@+id/tvGo"
+            android:id="@+id/textView"
             style="@style/textview_title_wrap"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"

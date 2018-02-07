@@ -449,6 +449,11 @@
     <string name="user">User</string>
     <string name="to">&#160;to&#160;</string>
     <string name="change_location">Change Location</string>
+    <string name="prefered_payment_option">Your Prefered Payment Option</string>
+    <string name="select_address">Select Address</string>
+    <string name="change_payment_option">Change Payment Option</string>
+    <string name="choose_from_camera">Take Photo</string>
+    <string name="choose_from_library">Choose from Library</string>
 
 
     <string-array name="state_array">

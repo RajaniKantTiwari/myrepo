@@ -24,7 +24,6 @@ import com.app.community.ui.dashboard.home.fragment.NewsMainFragment;
 import com.app.community.ui.dashboard.home.fragment.SubscribeFragment;
 import com.app.community.ui.dashboard.home.fragment.HomeFragment;
 import com.app.community.ui.dashboard.home.fragment.LiveOrderFragment;
-import com.app.community.ui.dashboard.home.fragment.NewsFragment;
 import com.app.community.ui.dashboard.home.fragment.NewsTabFragment;
 import com.app.community.ui.dashboard.home.fragment.PastOrderFragment;
 import com.app.community.ui.dashboard.home.fragment.MerchantListFragment;
@@ -32,8 +31,7 @@ import com.app.community.ui.dashboard.home.fragment.ProductMapFragment;
 import com.app.community.ui.dashboard.home.fragment.RecentFragment;
 import com.app.community.ui.dashboard.notification.NotificationFragment;
 import com.app.community.ui.dashboard.offer.OfferFragment;
-import com.app.community.ui.dashboard.user.UserFragment;
-import com.app.community.ui.fragment.ZoomAnimationImageActivity;
+import com.app.community.ui.dashboard.user.UserProfileFragment;
 import com.app.community.ui.newspaper.SubscriptionDetailsFragment;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.LogUtils;
@@ -286,7 +284,7 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
                 new NotificationFragment();
                 break;
             case USER_FRAGMENT:
-                new UserFragment();
+                new UserProfileFragment();
         }
         return fragment;
     }

@@ -16,6 +16,7 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -24,6 +25,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
+import android.view.View;
+import android.widget.TextView;
 
 import com.app.community.R;
 import com.yalantis.ucrop.UCrop;
@@ -138,10 +141,39 @@ public class ImagePickerUtils extends Fragment implements Alert.OnAlertClickList
 
 
     private void showGalleryDialog() {
-        final CharSequence[] items = {"Take Photo", "Choose from Library", "Cancel"};
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle("Add Photo");
-        builder.setItems(items, (dialog, which) -> {
+        BottomSheetDialog dialog = new BottomSheetDialog(getContext());
+        dialog.setContentView(R.layout.profile_dialog_layout);
+        View layoutCamera = dialog.findViewById(R.id.layoutCamera);
+        View layoutGallery = dialog.findViewById(R.id.layoutGallery);
+        layoutCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isCameraPermitionGranted(true)){
+                    dialog.dismiss();
+                    mediaPath = BitmapUtils.scaledImagePath();
+                    File file = new File(mediaPath);
+                    Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    Uri photoURI = FileProvider.getUriForFile(getActivity(), getActivity().getApplicationContext().getPackageName() + ".provider", file);
+                    cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                    startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
+                }
+            }
+        });
+        layoutCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isStoragePermissionGranted(true)){
+                    dialog.dismiss();
+                    Intent galleryIntent = new Intent(
+                            Intent.ACTION_PICK,
+                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(galleryIntent, IMAGE_PICKER_REQUEST);
+                }
+
+            }
+        });
+        dialog.show();
+       /* builder.setItems(items, (dialog, which) -> {
             if (items[which].equals("Take Photo")&&isCameraPermitionGranted(true)) {
                 dialog.dismiss();
                 mediaPath = BitmapUtils.scaledImagePath();
@@ -160,7 +192,7 @@ public class ImagePickerUtils extends Fragment implements Alert.OnAlertClickList
                 dialog.dismiss();
             }
         });
-        builder.show();
+        builder.show();*/
     }
 
     private String handleCameraResult() {

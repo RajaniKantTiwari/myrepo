@@ -25,7 +25,25 @@ public class UserPreference {
     public static String getUserName() {
        return Hawk.get(PreferenceConstants.USER_NAME, null);
     }
+    public static void setEmail(String email) {
+        Hawk.put(PreferenceConstants.EMAIL, email);
+    }
+    public static String getEmail() {
+        return Hawk.get(PreferenceConstants.EMAIL, null);
+    }
 
+    public static void setPaymentOption(String paymentOption) {
+        Hawk.put(PreferenceConstants.PAYMENT_OPTION, paymentOption);
+    }
+    public static String getPaymentOption() {
+        return Hawk.get(PreferenceConstants.PAYMENT_OPTION, null);
+    }
+    public static void setCardNumber(String cardNumber) {
+        Hawk.put(PreferenceConstants.CARD_NUMBER, cardNumber);
+    }
+    public static String getCardNumber() {
+        return Hawk.get(PreferenceConstants.CARD_NUMBER, null);
+    }
     public static void setLatitude(double latitude) {
         Hawk.put(PreferenceConstants.USER_LATITUDE, latitude);
     }
