@@ -51,8 +51,8 @@ public class NetworkModule {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         httpClient.addInterceptor(chain -> {
             Request original = chain.request();
-            //String accessToken = UserPreference.getAuthToken();
-            String accessToken ="FUPCSStq7aW1abD8yed7b_wJpgT8WBqq";
+            String accessToken = UserPreference.getAuthToken();
+            //String accessToken ="FUPCSStq7aW1abD8yed7b_wJpgT8WBqq";
             if(accessToken!=null){
                 Request.Builder requestBuilder = original.newBuilder()
                         .header(AppConstants.AUTHORIZATION, "Bearer "+accessToken)
