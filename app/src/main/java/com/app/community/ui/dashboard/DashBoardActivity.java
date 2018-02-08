@@ -27,6 +27,7 @@ import com.app.community.network.response.dashboard.rightdrawer.ProductSubCatego
 import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
 import com.app.community.ui.WelcomeScreenActivity;
 import com.app.community.ui.activity.HelpsAndSupportActivity;
+import com.app.community.ui.activity.UpdateProfileActivity;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.cart.ProductSubproductFragment;
 import com.app.community.ui.dashboard.expandrecycleview.draweradapter.DrawerAdapterRight;
@@ -262,6 +263,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         mBinding.toolBar.ivRightDrawer.setOnClickListener(this);
         mBinding.layoutDrawerLeft.layoutLogout.setOnClickListener(this);
         mBinding.layoutDrawerLeft.ivProfile.setOnClickListener(this);
+        mBinding.layoutDrawerLeft.ivUpdate.setOnClickListener(this);
 
         mBinding.bottomLayout.linearLayoutBar1.setOnClickListener(this);
         mBinding.bottomLayout.linearLayoutBar2.setOnClickListener(this);
@@ -286,6 +288,9 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
             closeDrawerLeft();
             changeIcon(USER_FRAGMENT);
             onTabSelected(USER_FRAGMENT);
+        }else if (mBinding.layoutDrawerLeft.ivUpdate == view) {
+            closeDrawerLeft();
+            ExplicitIntent.getsInstance().navigateTo(this, UpdateProfileActivity.class);
         } else if (view == mBinding.bottomLayout.linearLayoutBar1) {
             changeIcon(WELCOME_HOME_FRAGMENT);
             clearAllBackStack();

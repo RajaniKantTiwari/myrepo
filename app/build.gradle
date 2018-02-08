@@ -134,6 +134,13 @@ dependencies {
     compile 'com.roughike:bottom-bar:2.3.1'
     compile 'me.leolin:ShortcutBadger:1.1.16@aar'
     compile project(':DoubleViewPager')
+    //cropping image library
+    implementation project(':cropper')
+    //end
+    //image from camera gallery
+    implementation project(':libary')
+    //end
+
     compile('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
         transitive = true
     }

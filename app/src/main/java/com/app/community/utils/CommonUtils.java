@@ -38,11 +38,13 @@ import com.app.community.ui.dialogfragment.EmergencyDialogFragment;
 import com.app.community.ui.dialogfragment.CustomDialogFragment;
 import com.app.community.ui.dialogfragment.OrderDialogFragment;
 import com.app.community.ui.newspaper.Days;
+import com.app.community.widget.CustomEditText;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -52,6 +54,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 import static com.app.community.utils.GeneralConstant.TAG;
 
@@ -428,5 +434,25 @@ public class CommonUtils {
             layoutMain.setVisibility(View.GONE);
             layoutNoData.setVisibility(View.VISIBLE);
         }
+    }
+    /**
+     * create multipart from file
+     *
+     * @param filePath
+     * @return
+     */
+    public static MultipartBody.Part createMultipart(String filePath, String parameter) {
+        if (TextUtils.isEmpty(filePath)) return null;
+        File file = new File(filePath.replace("file:////", "/"));
+
+        // create RequestBody instance from file
+        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+
+        // MultipartBody.Part is used to send also the actual file name
+        return MultipartBody.Part.createFormData(parameter, file.getName(), requestFile);
+    }
+
+    public static void showCursorEnd(CustomEditText editText) {
+        editText.setSelection(editText.getText().length());
     }
 }

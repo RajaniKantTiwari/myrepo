@@ -2,7 +2,6 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <import type="com.app.community.utils.UserPreference" />
     </data>
 
@@ -28,12 +27,22 @@
                     <include
                         android:id="@+id/layoutHeader"
                         layout="@layout/header_layout" />
+                    <RelativeLayout
+                        style="@style/wrap_wrap">
                     <ImageView
                         android:id="@+id/ivProfile"
                         style="@style/image_80"
                         android:layout_marginTop="@dimen/margin_10"
                         android:scaleType="fitCenter"
                         android:src="@drawable/avatar" />
+                        <ImageView
+                            android:id="@+id/imgEditPic"
+                            style="@style/wrap_wrap"
+                            android:layout_marginTop="@dimen/margin_60"
+                            android:layout_marginStart="@dimen/margin_60"
+
+                            android:src="@drawable/ic_edit_profile_pic" />
+                    </RelativeLayout>
 
                     <com.app.community.widget.CustomEditText
                         android:id="@+id/edName"
@@ -71,6 +80,7 @@
                         android:paddingTop="@dimen/margin_5"
                         android:text="@{UserPreference.email}"
                         android:textColor="@color/white"
+                        android:textCursorDrawable="@drawable/cursor_white"
                         android:textColorHint="@color/hint_color_light" />
 
                     <ImageView style="@style/view_layout_brown" />
@@ -111,7 +121,7 @@
                     android:elevation="@dimen/margin_5"
                     android:gravity="center_horizontal"
                     android:padding="@dimen/margin_12"
-                    android:text="@string/done"
+                    android:text="@string/update"
                     android:textAllCaps="true"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/button_large"

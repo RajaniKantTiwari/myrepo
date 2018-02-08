@@ -25,7 +25,9 @@
                 android:src="@drawable/avatar" />
 
             <ImageView
+                android:id="@+id/ivUpdate"
                 style="@style/wrap_wrap"
+                android:padding="@dimen/margin_5"
                 android:layout_marginStart="@dimen/margin_58"
                 android:background="@color/transulent_color"
                 android:src="@drawable/ic_ed_profile"
