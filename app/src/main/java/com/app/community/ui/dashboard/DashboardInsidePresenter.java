@@ -34,23 +34,6 @@ public class DashboardInsidePresenter implements Presenter<MvpView> {
         this.mRepository = repository;
     }
 
-    /*public void getProductDetails(Activity activity, ProductRequest productRequest) {
-        mView.showProgress();
-        mRepository.getProductDetail(productRequest).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<ProductDetailsData>(activity) {
-            @Override
-            public void onResponse(ProductDetailsData response) {
-                mView.hideProgress();
-                mView.onSuccess(response, 0);
-            }
-
-            @Override
-            public void onError(Throwable call, BaseResponse baseResponse) {
-                mView.hideProgress();
-                mView.onError(baseResponse.getMsg(), 0);
-            }
-        });
-    }*/
-
     public void getMerchantDetails(Activity activity, MerchantRequest merchantRequest) {
         mView.showProgress();
         mRepository.getMerchantDetail(merchantRequest).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<MerchantResponseData>(activity) {

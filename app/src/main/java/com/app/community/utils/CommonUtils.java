@@ -69,6 +69,7 @@ import static com.app.community.utils.GeneralConstant.TAG;
 
 public class CommonUtils {
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
+    private DateFormat newDateFormat;
 
     public static int convertDpToPx(int dp, Context context) {
         return Math.round(dp * (context.getResources().getDisplayMetrics().xdpi / DisplayMetrics.DENSITY_DEFAULT));
@@ -472,5 +473,21 @@ public class CommonUtils {
             e.printStackTrace();
         }
         return open > 0 && close > 0;
+    }
+
+    public static String getCreatedDate(String date) {
+        String createdDate=null;
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        dateFormat.setTimeZone(TimeZone.getTimeZone(AppConstants.TIME_ZONE));
+
+        try {
+            Date cDate=dateFormat.parse(date);
+            DateFormat newDateFormat = new SimpleDateFormat("hh:mm aa dd MMM EEE");
+            newDateFormat.setTimeZone(TimeZone.getTimeZone(AppConstants.TIME_ZONE));
+            return newDateFormat.format(cDate);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return createdDate;
     }
 }

@@ -73,7 +73,7 @@
                                     style="@style/image_50"
                                     android:background="@drawable/stroke_grey"
                                     android:scaleType="fitXY"
-                                    android:elevation="@dimen/margin_5"/>
+                                    android:elevation="@dimen/margin_8"/>
 
                                 <com.app.community.widget.CustomTextView
                                     style="@style/textview_description_wrap"

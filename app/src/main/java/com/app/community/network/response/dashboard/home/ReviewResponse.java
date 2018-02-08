@@ -16,6 +16,34 @@ public class ReviewResponse implements Observable{
     private String dimension;
     private String comments;
     private String image;
+    private String created_at;
+    private String avatar_base_url;
+    private String avatar_path;
+
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
+    }
+
+    public String getAvatar_base_url() {
+        return avatar_base_url;
+    }
+
+    public void setAvatar_base_url(String avatar_base_url) {
+        this.avatar_base_url = avatar_base_url;
+    }
+
+    public String getAvatar_path() {
+        return avatar_path;
+    }
+
+    public void setAvatar_path(String avatar_path) {
+        this.avatar_path = avatar_path;
+    }
+
     @Bindable
     public String getImage() {
         return image;

@@ -24,6 +24,7 @@ import com.app.community.ui.dashboard.home.MerchantDetailsFragment;
 import com.app.community.ui.dashboard.home.adapter.MerchantAdapter;
 import com.app.community.ui.dashboard.home.event.MerchantEvent;
 import com.app.community.ui.dialogfragment.ContactDialogFragment;
+import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 
@@ -73,9 +74,8 @@ public class MerchantListFragment extends DashboardFragment implements ContactDi
             public void onItemClick(int adapterPosition) {
                 if (CommonUtils.isNotNull(productList) && productList.size() > adapterPosition) {
                     Bundle bundle=new Bundle();
-                    bundle.putParcelable(GeneralConstant.RESPONSE, productList.get(adapterPosition));
+                    bundle.putString(AppConstants.MERCHANT_ID, productList.get(adapterPosition).getId());
                     getDashboardActivity().addFragmentInContainer(new ProductSubproductFragment(),bundle,true,false,NONE);
-                    //mFragmentNavigation.pushFragment(ProductSubproductFragment.newInstance(mInt+1,productList.get(adapterPosition)));
                 }
             }
 
@@ -88,8 +88,7 @@ public class MerchantListFragment extends DashboardFragment implements ContactDi
             public void onViewClick(int adapterPosition) {
                 Bundle bundle=new Bundle();
                 bundle.putParcelable(GeneralConstant.RESPONSE, productList.get(adapterPosition));
-                getDashboardActivity().addFragmentInContainer(new MerchantDetailsFragment(),bundle,true,false,NONE);
-                //mFragmentNavigation.pushFragment(MerchantDetailsFragment.newInstance(mInt+1, productList.get(adapterPosition)));
+                getDashboardActivity().addFragmentInContainer(new MerchantDetailsFragment(),bundle,true,true,NONE);
             }
         });
     }
