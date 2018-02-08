@@ -14,8 +14,8 @@ import static com.app.community.utils.GeneralConstant.FRAGMENTS.NEWS_TAB_FRAGMEN
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.NOTIFICATION_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.OFFER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.PASTORDER_FRAGMENT;
-import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_LIST;
-import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_MAP_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.MERCHANT_LIST_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.MERCHANT_MAP_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_SUBPRODUCT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.RECENT_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.SUBSCRIPTION_DETAIL_FRAGMENT;
@@ -76,14 +76,14 @@ public interface GeneralConstant {
     String PROFILE_UPDATE_PARAMETER = "profileUrl";
 
 
-    @IntDef({PRODUCT_MAP_FRAGMENT, PRODUCT_LIST, RECENT_FRAGMENT, CATEGORY_FRAGMENT,
+    @IntDef({MERCHANT_MAP_FRAGMENT, MERCHANT_LIST_FRAGMENT, RECENT_FRAGMENT, CATEGORY_FRAGMENT,
             LIVEORDER_FRAGMENT, PASTORDER_FRAGMENT, WELCOME_HOME_FRAGMENT, NEWS_TAB_FRAGMENT
             , HOME_FRAGMENT, NEWS_FRAGMENT, CONFIRM_ORDER_FRAGMENT, PRODUCT_SUBPRODUCT, SUBSCRIPTION_DETAIL_FRAGMENT
             , SUBSCRIPTION_FRAGMENT,ZOOMIMAGE_FRAGMENT,OFFER_FRAGMENT,NOTIFICATION_FRAGMENT,USER_FRAGMENT})
     @Retention(RetentionPolicy.SOURCE)
     @interface FRAGMENTS {
-        int PRODUCT_MAP_FRAGMENT = 16;
-        int PRODUCT_LIST = 17;
+        int MERCHANT_MAP_FRAGMENT = 16;
+        int MERCHANT_LIST_FRAGMENT = 17;
         int RECENT_FRAGMENT = 18;
         int CATEGORY_FRAGMENT = 4;
         int LIVEORDER_FRAGMENT = 5;

@@ -20,9 +20,9 @@ import com.app.community.ui.cart.ProductSubproductFragment;
 import com.app.community.ui.dashboard.home.ConfirmOrderFragment;
 import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.fragment.CategoryFragment;
+import com.app.community.ui.dashboard.home.fragment.MerchantFragment;
 import com.app.community.ui.dashboard.home.fragment.NewsMainFragment;
 import com.app.community.ui.dashboard.home.fragment.SubscribeFragment;
-import com.app.community.ui.dashboard.home.fragment.HomeFragment;
 import com.app.community.ui.dashboard.home.fragment.LiveOrderFragment;
 import com.app.community.ui.dashboard.home.fragment.NewsTabFragment;
 import com.app.community.ui.dashboard.home.fragment.PastOrderFragment;
@@ -54,8 +54,8 @@ import static com.app.community.utils.GeneralConstant.FRAGMENTS.NEWS_TAB_FRAGMEN
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.NOTIFICATION_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.OFFER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.PASTORDER_FRAGMENT;
-import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_LIST;
-import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_MAP_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.MERCHANT_LIST_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.MERCHANT_MAP_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.PRODUCT_SUBPRODUCT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.RECENT_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.SUBSCRIPTION_DETAIL_FRAGMENT;
@@ -235,10 +235,10 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
     private static Fragment getFragment(int fragmentId) {
         Fragment fragment = null;
         switch (fragmentId) {
-            case PRODUCT_MAP_FRAGMENT:
+            case MERCHANT_MAP_FRAGMENT:
                 fragment = new ProductMapFragment();
                 break;
-            case PRODUCT_LIST:
+            case MERCHANT_LIST_FRAGMENT:
                 fragment = new MerchantListFragment();
                 break;
             case RECENT_FRAGMENT:
@@ -260,7 +260,7 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
                 fragment = new NewsTabFragment();
                 break;
             case HOME_FRAGMENT:
-                fragment = new HomeFragment();
+                fragment = new MerchantFragment();
                 break;
             case NEWS_FRAGMENT:
                 fragment = new NewsMainFragment();

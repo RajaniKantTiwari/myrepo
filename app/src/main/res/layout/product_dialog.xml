@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-
+        <import type="com.app.community.utils.CommonUtils"/>
         <variable
             name="merchantResponse"
             type="com.app.community.network.response.dashboard.home.MerchantResponse" />
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
         style="@style/match_wrap"
         android:layout_marginEnd="@dimen/margin_12"
@@ -24,53 +24,48 @@
 
             <LinearLayout
                 style="@style/match_match"
-                android:layout_marginBottom="@dimen/margin_25"
-                android:layout_marginEnd="@dimen/margin_10"
-                android:layout_marginStart="@dimen/margin_31"
-                android:layout_marginTop="@dimen/margin_25"
-                android:orientation="vertical">
+                android:layout_margin="@dimen/margin_5">
 
-                <com.app.community.widget.CustomTextView
-                    android:id="@+id/tvTitle"
-                    style="@style/textview_description_large_wrap"
-                    android:textAllCaps="true"
-                    android:textColor="@color/color_blue" />
+                <ImageView
+                    android:id="@+id/ivProduct"
+                    style="@style/image_60_70"
+                    android:background="@drawable/stroke_grey"/>
 
-                <LinearLayout
-                    android:id="@+id/layoutDate"
+                <RelativeLayout
                     style="@style/match_wrap"
-                    android:layout_marginTop="@dimen/margin_22"
+                    android:layout_height="@dimen/margin_70"
+                    android:layout_marginStart="@dimen/margin_5"
+                    android:orientation="vertical"
                     android:gravity="center_vertical">
 
-                    <LinearLayout
-                        style="@style/match_wrap"
-                        android:layout_marginStart="@dimen/margin_20"
-                        android:orientation="vertical">
+                    <com.app.community.widget.CustomTextView
+                        android:id="@+id/tvTitle"
+                        style="@style/textview_description_ex_large_wrap"
+                        android:layout_marginStart="@dimen/margin_5"
+                        android:maxLines="1" />
 
-                        <com.app.community.widget.CustomTextView
-                            android:id="@+id/tvTime"
-                            style="@style/textview_description_wrap"
-                            android:textColor="@color/background" />
-                    </LinearLayout>
-                </LinearLayout>
+                    <com.app.community.widget.CustomTextView
+                        android:id="@+id/tvAddress"
+                        style="@style/textview_description_small_wrap"
+                        android:layout_marginStart="@dimen/margin_5"
+                        android:layout_below="@+id/tvTitle"
+                        android:maxLines="2" />
 
-                <LinearLayout
-                    android:id="@+id/layoutLocation"
-                    style="@style/match_wrap"
-                    android:layout_marginTop="@dimen/margin_19"
-                    android:gravity="center_vertical">
-
-                    <LinearLayout
-                        style="@style/match_wrap"
-                        android:layout_marginStart="@dimen/margin_22"
-                        android:orientation="vertical">
-
-                        <com.app.community.widget.CustomTextView
-                            android:id="@+id/tvLocation"
-                            style="@style/textview_description_wrap"
-                            android:textColor="@color/background" />
-                    </LinearLayout>
-                </LinearLayout>
+                    <com.app.community.widget.CustomTextView
+                        android:id="@+id/tvType"
+                        style="@style/textview_description_wrap"
+                        android:layout_below="@+id/tvAddress"
+                        android:layout_marginStart="@dimen/margin_5"
+                        android:maxLines="1" />
+                    <com.app.community.widget.CustomTextView
+                        android:id="@+id/tvDistance"
+                        style="@style/textview_description_wrap"
+                        android:layout_toEndOf="@+id/tvType"
+                        android:layout_below="@+id/tvAddress"
+                        android:layout_marginStart="@dimen/margin_5"
+                        android:drawableStart="@drawable/location_img"
+                        android:maxLines="1" />
+                </RelativeLayout>
             </LinearLayout>
         </android.support.v7.widget.CardView>
     </LinearLayout>

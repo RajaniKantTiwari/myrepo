@@ -22,12 +22,10 @@ import org.greenrobot.eventbus.EventBus;
 
 import javax.inject.Inject;
 
-import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
-
 /**
  * Created by Amul on 13/11/17.
  */
-public class HomeFragment extends DashboardFragment {
+public class MerchantFragment extends DashboardFragment {
 
     @Inject
     DashboardPresenter presenter;
@@ -35,14 +33,6 @@ public class HomeFragment extends DashboardFragment {
     FragmentHomeBinding mBinding;
     private String search;
 
-    public static HomeFragment newInstance(int instance,String search) {
-        Bundle args = new Bundle();
-        args.putString(GeneralConstant.SEARCH_STRING,search);
-        args.putInt(ARGS_INSTANCE, instance);
-        HomeFragment fragment = new HomeFragment();
-        fragment.setArguments(args);
-        return fragment;
-    }
 
 
     @Nullable
@@ -58,9 +48,9 @@ public class HomeFragment extends DashboardFragment {
         mBinding.listButton.setVisibility(View.VISIBLE);
         event = new MerchantEvent();
         event.setListMap(GeneralConstant.LIST_PRODUCT);
-        getBaseActivity().pushChildFragment(getChildFragmentManager(), GeneralConstant.FRAGMENTS.PRODUCT_MAP_FRAGMENT,
+        getBaseActivity().pushChildFragment(getChildFragmentManager(), GeneralConstant.FRAGMENTS.MERCHANT_MAP_FRAGMENT,
                 null, R.id.container, true, false, BaseActivity.AnimationType.NONE);
-        getBaseActivity().pushChildFragment(getChildFragmentManager(), GeneralConstant.FRAGMENTS.PRODUCT_LIST,
+        getBaseActivity().pushChildFragment(getChildFragmentManager(), GeneralConstant.FRAGMENTS.MERCHANT_LIST_FRAGMENT,
                 null, R.id.container, true, false, BaseActivity.AnimationType.NONE);
     }
 
@@ -82,7 +72,7 @@ public class HomeFragment extends DashboardFragment {
 
     @Override
     public String getFragmentName() {
-        return HomeFragment.class.getSimpleName();
+        return MerchantFragment.class.getSimpleName();
     }
 
     @Override
