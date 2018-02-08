@@ -79,7 +79,11 @@
         <item name="android:layout_height">@dimen/margin_1</item>
         <item name="android:background">@color/ver_bg_color</item>
     </style>
-
+    <style name="view_layout_dark_white">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/margin_1</item>
+        <item name="android:background">@color/white_line</item>
+    </style>
 
     <style name="view_layout_white">
         <item name="android:layout_width">match_parent</item>

@@ -108,6 +108,7 @@
     <color name="yellow_color">#FF6600</color>
     <color name="rating">#FFEC33</color>
     <color name="yelloish">#FFCC00</color>
+    <color name="white_line">#f2f2f2</color>
 
     <color name="dark_yellow">#ffcc00</color>
     <color name="star_text_color">#ffcc00</color>

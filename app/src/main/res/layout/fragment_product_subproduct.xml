@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        android:visibility="gone">
+        >
 
 
         <android.support.v7.widget.RecyclerView
@@ -49,10 +49,9 @@
 
         <View
             android:id="@+id/viewTitle"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
+            style="@style/view_layout_dark_white"
             android:layout_below="@+id/tvTitle"
-            android:background="@android:color/darker_gray" />
+            android:layout_marginBottom="@dimen/margin_5"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvDetail"

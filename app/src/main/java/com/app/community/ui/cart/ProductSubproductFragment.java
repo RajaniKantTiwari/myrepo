@@ -176,7 +176,7 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
             case R.id.ivMinus:
                 removeFromCart(viewBinding.tvQty, pos);
                 break;
-            case R.id.ivProduct:
+            case R.id.layoutProduct:
             case R.id.layoutInfo:
                 getDashboardActivity().addFragmentInContainer(new FullInformationFragment(),null,true,true, NONE);
                 break;

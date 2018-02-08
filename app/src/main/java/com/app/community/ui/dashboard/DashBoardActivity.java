@@ -35,6 +35,8 @@ import com.app.community.ui.dashboard.home.SearchActivity;
 import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.adapter.DrawerAdapterLeft;
 import com.app.community.ui.dashboard.home.event.NewsEvent;
+import com.app.community.ui.dashboard.home.event.SearchProductEvent;
+import com.app.community.ui.dashboard.home.fragment.HomeFragment;
 import com.app.community.ui.dashboard.home.fragment.MyOrderActivity;
 import com.app.community.ui.dashboard.home.fragment.NewsMainFragment;
 import com.app.community.ui.dashboard.notification.NotificationFragment;
@@ -418,17 +420,24 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
 
     @Subscribe
     public void onSearchProduct(ProductDetailsEvent event) {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
                 Bundle bundle = new Bundle();
                 bundle.putString(AppConstants.MERCHANT_ID, event.getMerchantId());
                 pushFragment(new ProductSubproductFragment(), bundle, R.id.container, true, true, NONE);
-            }
-        }, GeneralConstant.DELAYTIME);
+
 
     }
+     @Subscribe
+        public void onSearchProduct(SearchProductEvent event) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Bundle bundle = new Bundle();
+                    bundle.putString(GeneralConstant.SEARCH_STRING,event.getSearchString());
+                    addFragmentInContainer(new HomeFragment(), bundle, false, false, NONE);
+                }
+            }, GeneralConstant.DELAYTIME);
 
+        }
     @Subscribe
     public void onNewsEvent(NewsEvent event) {
         new Handler().postDelayed(new Runnable() {

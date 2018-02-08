@@ -56,7 +56,7 @@ public class CartAdapter extends RecyclerView.Adapter {
             super(itemView.getRoot());
             mBinding = itemView;
             mBinding.layoutInfo.setOnClickListener(this);
-            mBinding.ivProduct.setOnClickListener(this);
+            mBinding.layoutProduct.setOnClickListener(this);
             mBinding.ivPlus.setOnClickListener(this);
             mBinding.ivMinus.setOnClickListener(this);
             mBinding.tvSubscribe.setOnClickListener(this);
@@ -65,7 +65,7 @@ public class CartAdapter extends RecyclerView.Adapter {
         public void bind(int position) {
             mBinding.ivMinus.setTag(position);
             mBinding.ivPlus.setTag(position);
-            mBinding.ivProduct.setTag(position);
+            mBinding.layoutProduct.setTag(position);
             mBinding.layoutInfo.setTag(position);
             mBinding.tvSubscribe.setTag(position);
             mBinding.tvProductName.setText(mDataList.get(position).getProductname());
@@ -92,7 +92,7 @@ public class CartAdapter extends RecyclerView.Adapter {
                 case R.id.ivMinus:
                     mListener.addToCartClick(pos, root);
                     break;
-                case R.id.ivProduct:
+                case R.id.layoutProduct:
                 case R.id.layoutInfo:
                         mListener.addToCartClick(pos,root);
                     break;

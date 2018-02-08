@@ -8,9 +8,7 @@
 
         <View
             android:id="@+id/viewLine1"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray" />
+            style="@style/view_layout_dark_white" />
 
         <com.app.community.widget.CustomTextView
             android:id="@+id/tvType"
@@ -27,23 +25,28 @@
             android:textColor="@android:color/white"
             android:visibility="invisible" />
 
-        <ImageView
-            android:id="@+id/ivProduct"
-            style="@style/image_60_70"
-            android:layout_below="@+id/tvType"
-            android:layout_marginStart="@dimen/margin_20"
-            android:layout_marginTop="@dimen/margin_6"
-            android:background="@drawable/stroke_grey"
-            android:gravity="center"
-            android:scaleType="centerInside" />
+        <LinearLayout
+            android:id="@+id/layoutProduct"
+            style="@style/wrap_wrap">
+
+            <ImageView
+                android:id="@+id/ivProduct"
+                style="@style/image_60_70"
+                android:layout_below="@+id/tvType"
+                android:layout_marginStart="@dimen/margin_20"
+                android:layout_marginTop="@dimen/margin_6"
+                android:background="@drawable/stroke_grey"
+                android:gravity="center"
+                android:scaleType="centerInside" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/layoutInfo"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/margin_70"
+            android:gravity="center_vertical"
             android:layout_marginStart="@dimen/margin_20"
-            android:layout_marginTop="@dimen/margin_35"
-            android:layout_toEndOf="@+id/ivProduct"
+            android:layout_toEndOf="@+id/layoutProduct"
             android:layout_toStartOf="@+id/layoutCart"
             android:orientation="vertical">
 
@@ -76,9 +79,9 @@
         <LinearLayout
             android:id="@+id/layoutCart"
             style="@style/wrap_wrap"
-            android:layout_toStartOf="@+id/tvSubscribe"
+            android:layout_centerVertical="true"
             android:layout_marginTop="@dimen/margin_5"
-            android:layout_centerVertical="true">
+            android:layout_toStartOf="@+id/tvSubscribe">
 
             <ImageView
                 android:id="@+id/ivMinus"
@@ -127,19 +130,16 @@
 
         <View
             android:id="@+id/viewLine2"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/ivProduct"
-            android:layout_marginTop="@dimen/margin_7"
-            android:background="@android:color/darker_gray" />
+            style="@style/view_layout_dark_white"
+            android:layout_below="@+id/layoutProduct"
+            android:layout_marginTop="@dimen/margin_7" />
 
         <View
             android:id="@+id/viewBlank"
             android:layout_width="match_parent"
             android:layout_height="@dimen/margin_10"
             android:layout_alignParentBottom="true"
-            android:layout_below="@+id/viewLine2"
-            />
+            android:layout_below="@+id/viewLine2" />
 
 
     </RelativeLayout>

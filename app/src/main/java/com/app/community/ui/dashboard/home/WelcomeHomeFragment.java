@@ -36,9 +36,6 @@ import com.app.community.ui.dashboard.home.adapter.EmergencyAdapter;
 import com.app.community.ui.dashboard.home.adapter.LatestNewsAdapter;
 import com.app.community.ui.dashboard.home.adapter.NewsAdapter;
 import com.app.community.ui.dashboard.home.adapter.OffersAdapter;
-import com.app.community.ui.dashboard.home.event.NewsEvent;
-import com.app.community.ui.dashboard.home.event.SearchProductEvent;
-import com.app.community.ui.dashboard.home.fragment.HomeFragment;
 import com.app.community.ui.dashboard.home.fragment.MyOrderActivity;
 import com.app.community.ui.dashboard.home.fragment.NewsMainFragment;
 import com.app.community.ui.dashboard.offer.OfferDetailsActivity;
@@ -52,7 +49,6 @@ import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.GlideUtils;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 
@@ -91,7 +87,6 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_welcomehome, container, false);
         getDashboardActivity().setTile(getString(R.string.home));
-        CommonUtils.register(this);
         mWelcomeBinding = AddWelcomeChildView.addWelcomeSearchView(inflater, mBinding);
         mEmergencyPlaceBinding = AddWelcomeChildView.addImportantPlace(inflater, mBinding);
         mNewsViewBinding = AddWelcomeChildView.addNewsView(inflater, mBinding);
@@ -326,26 +321,6 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
             }
         }
     }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);
-    }
-
-    @Subscribe
-    public void onSearchProduct(SearchProductEvent event) {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Bundle args = new Bundle();
-                args.putString(GeneralConstant.SEARCH_STRING,event.getSearchString());
-                getDashboardActivity().addFragmentInContainer(new HomeFragment(), null, false, false, NONE);
-            }
-        }, GeneralConstant.DELAYTIME);
-
-    }
-
     @Override
     public void submit(String submit) {
         getDashboardActivity().showToast("" + submit);
