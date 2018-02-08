@@ -67,9 +67,10 @@ public class MerchantAdapter extends RecyclerView.Adapter<MerchantAdapter.Mercha
                     holder.tvDiscount.setBackgroundColor(CommonUtils.getColor(activity, R.color.light_green));
                 } else {
                     holder.tvDiscount.setBackgroundColor(CommonUtils.getColor(activity, R.color.greyish_color));
-                }if(CommonUtils.isNotNull(response.getDistance())){
+                }
+                if (CommonUtils.isNotNull(response.getDistance())) {
                     holder.tvdistance.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     holder.tvdistance.setVisibility(View.GONE);
                 }
             }
@@ -97,14 +98,15 @@ public class MerchantAdapter extends RecyclerView.Adapter<MerchantAdapter.Mercha
         private final CustomTextView tvDiscount;
         private final CustomTextView tvdistance;
         private ItemProductRowBinding itemView;
+
         public MerchantViewHolder(ItemProductRowBinding itemView) {
             super(itemView.getRoot());
-            this.itemView=itemView;
+            this.itemView = itemView;
             imageView = itemView.ivProductImage;
             tvContact = itemView.tvContact;
             tvView = itemView.tvView;
             tvStar = itemView.tvStar;
-            tvdistance=itemView.tvdistance;
+            tvdistance = itemView.tvdistance;
             tvDiscount = itemView.tvDiscount;
             itemView.ivProductImage.setOnClickListener(this);
             itemView.tvProductName.setOnClickListener(this);
@@ -131,9 +133,13 @@ public class MerchantAdapter extends RecyclerView.Adapter<MerchantAdapter.Mercha
 
         public void setData(MerchantResponse response) {
             itemView.setMerchantResponse(response);
-            CommonUtils.isShopOpen(response.getOpentime(),response.getClosetime());
-            itemView.tvOpen.setText(activity.getResources().getString(R.string.open_now)+" "+response.getOpentime()+
-                    activity.getResources().getString(R.string.to)+response.getClosetime());
+            if (CommonUtils.isShopOpen(response.getOpentime(), response.getClosetime())) {
+                itemView.tvClose.setVisibility(View.GONE);
+            } else {
+                itemView.tvClose.setVisibility(View.VISIBLE);
+            }
+            itemView.tvOpen.setText(activity.getResources().getString(R.string.open_now) + " " + response.getOpentime() +
+                    activity.getResources().getString(R.string.to) + response.getClosetime());
         }
     }
 }

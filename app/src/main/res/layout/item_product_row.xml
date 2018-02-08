@@ -140,6 +140,7 @@
                     android:textColor="@color/white"
                     android:padding="@dimen/margin_5"
                     android:text="@string/closed_now"
+                    android:visibility="gone"
                     />
 
                 <com.app.community.widget.CustomTextView

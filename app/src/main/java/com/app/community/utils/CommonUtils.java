@@ -241,22 +241,24 @@ public class CommonUtils {
             EventBus.getDefault().register(fragment);
         }
     }
+
     public static void register(Activity activity) {
         if (!EventBus.getDefault().isRegistered(activity)) {
             EventBus.getDefault().register(activity);
         }
     }
+
     public static void unregister(Fragment fragment) {
         if (EventBus.getDefault().isRegistered(fragment)) {
             EventBus.getDefault().unregister(fragment);
         }
     }
+
     public static void unregister(Activity activity) {
         if (EventBus.getDefault().isRegistered(activity)) {
             EventBus.getDefault().unregister(activity);
         }
     }
-
 
 
     public static String oneDecimalPlaceString(String str) {
@@ -290,6 +292,7 @@ public class CommonUtils {
         date.append(changeStringIntoDate(endDate));
         return date.toString();
     }
+
     public static String addStartEndDate(String startDate, String endDate) {
         StringBuilder date = new StringBuilder();
         date.append(startDate);
@@ -429,6 +432,7 @@ public class CommonUtils {
             layoutNoData.setVisibility(View.VISIBLE);
         }
     }
+
     /**
      * create multipart from file
      *
@@ -449,29 +453,24 @@ public class CommonUtils {
     public static void showCursorEnd(CustomEditText editText) {
         editText.setSelection(editText.getText().length());
     }
-    public static boolean isShopOpen(String openTime,String closeTime){
+
+    public static boolean isShopOpen(String openTime, String closeTime) {
+        long open = 0;
+        long close = 0;
         final Date current = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm aa");
-        simpleDateFormat.setTimeZone(TimeZone.getTimeZone(AppConstants.TIME_ZONE));
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        dateFormat.setTimeZone(TimeZone.getTimeZone(AppConstants.TIME_ZONE));
+        String date = dateFormat.format(current);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm aa");
         try {
-            Date startTime = simpleDateFormat.parse(openTime);
-            Date endTime = simpleDateFormat.parse(openTime);
-            String currentTime = simpleDateFormat.format(current);
-            Date currentDate = simpleDateFormat.parse(currentTime);
-
-            long open = currentDate.getTime() - startTime.getTime();
-            long close = endTime.getTime() - currentDate.getTime();
-            Log.e("OPEN_TIME",open+"   "+close);
-
+            Date startTime = simpleDateFormat.parse(date + " " + openTime);
+            Date endTime = simpleDateFormat.parse(date + " " + closeTime);
+            open = current.getTime() - startTime.getTime();
+            close = endTime.getTime() - current.getTime();
+            //Log.e("OPEN_TIME", "Current " + current.getTime() + " Open   " + startTime.getTime() + " Close  " + endTime.getTime());
         } catch (Exception e) {
-            /*final Date currentTime = new Date();
-            final SimpleDateFormat sdf = new SimpleDateFormat("EEE, MMM d, yyyy hh:mm:ss a z");
-            // Give it to me in GMT time.
-            sdf.setTimeZone(TimeZone.getTimeZone(AppConstants.TIME_ZONE));
-            System.out.println("GMT time: " + sdf.format(currentTime));*/
-
             e.printStackTrace();
         }
-        return false;
+        return open > 0 && close > 0;
     }
 }

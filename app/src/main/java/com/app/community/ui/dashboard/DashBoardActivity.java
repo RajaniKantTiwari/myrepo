@@ -83,6 +83,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         closeDrawerLeft();
         switch (position) {
             case AppConstants.HOME:
+                changeIcon(WELCOME_HOME_FRAGMENT);
                 openFragment(new WelcomeHomeFragment(),null,false, false, NONE);
                 break;
             case AppConstants.MYORDER:
@@ -94,13 +95,14 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                 ExplicitIntent.getsInstance().navigateTo(this, WelcomeScreenActivity.class, bundle);
                 break;
             case AppConstants.MYACCOUNT:
+                changeIcon(USER_FRAGMENT);
                 openFragment(new UserProfileFragment(),null,false, false, NONE);
                 break;
             case AppConstants.NOTIFICATION:
+                changeIcon(NOTIFICATION_FRAGMENT);
                 openFragment(new NotificationFragment(),null,false, false, NONE);
                 break;
             case AppConstants.ABOUTUS:
-
                 //onTabSelected(USER_FRAGMENT);
                 break;
             case AppConstants.HELPSUPPORT:
