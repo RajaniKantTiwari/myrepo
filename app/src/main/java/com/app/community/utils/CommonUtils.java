@@ -20,6 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -47,6 +48,7 @@ import org.greenrobot.eventbus.EventBus;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -298,7 +300,7 @@ public class CommonUtils {
 
     public static String getDay(String dateTime) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+        sdf.setTimeZone(TimeZone.getTimeZone(AppConstants.TIME_ZONE));
         Date date = null;
         try {
             date = sdf.parse(dateTime);
@@ -322,7 +324,7 @@ public class CommonUtils {
 
     public static String changeStringIntoDate(String dateTime) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+        sdf.setTimeZone(TimeZone.getTimeZone(AppConstants.TIME_ZONE));
         Date date = null;
         try {
             date = sdf.parse(dateTime);
@@ -402,14 +404,6 @@ public class CommonUtils {
         return addresses.get(0).getCountryCode();
     }
 
-    /*public static void setViewHeight(RecyclerView recyclerView, List list) {
-        if (CommonUtils.isNotNull(list)) {
-            ViewGroup.LayoutParams params = recyclerView.getLayoutParams();
-            params.height = CommonUtils.convertDpToPx(GeneralConstant.PAYMENT_HEIGHT, recyclerView.getContext()) * list.size();
-            recyclerView.setLayoutParams(params);
-        }
-    }*/
-
     public static void setRecyclerViewHeight(RecyclerView recyclerView, List list, int height) {
         if (CommonUtils.isNotNull(list)) {
             ViewGroup.LayoutParams params = recyclerView.getLayoutParams();
@@ -454,5 +448,30 @@ public class CommonUtils {
 
     public static void showCursorEnd(CustomEditText editText) {
         editText.setSelection(editText.getText().length());
+    }
+    public static boolean isShopOpen(String openTime,String closeTime){
+        final Date current = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm aa");
+        simpleDateFormat.setTimeZone(TimeZone.getTimeZone(AppConstants.TIME_ZONE));
+        try {
+            Date startTime = simpleDateFormat.parse(openTime);
+            Date endTime = simpleDateFormat.parse(openTime);
+            String currentTime = simpleDateFormat.format(current);
+            Date currentDate = simpleDateFormat.parse(currentTime);
+
+            long open = currentDate.getTime() - startTime.getTime();
+            long close = endTime.getTime() - currentDate.getTime();
+            Log.e("OPEN_TIME",open+"   "+close);
+
+        } catch (Exception e) {
+            /*final Date currentTime = new Date();
+            final SimpleDateFormat sdf = new SimpleDateFormat("EEE, MMM d, yyyy hh:mm:ss a z");
+            // Give it to me in GMT time.
+            sdf.setTimeZone(TimeZone.getTimeZone(AppConstants.TIME_ZONE));
+            System.out.println("GMT time: " + sdf.format(currentTime));*/
+
+            e.printStackTrace();
+        }
+        return false;
     }
 }

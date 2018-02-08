@@ -22,6 +22,8 @@ public interface AppConstants {
     int LOGOUT = 3;
     int NO_OF_TAB = 4;
     int HORIZONTAL_CHILD=3;
+    String TIME_ZONE="GMT";
+
 
     @IntDef({CHECKOUT_FRAGMENT})
     @Retention(RetentionPolicy.SOURCE)

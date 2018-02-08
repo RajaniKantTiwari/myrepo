@@ -131,7 +131,8 @@ public class MerchantAdapter extends RecyclerView.Adapter<MerchantAdapter.Mercha
 
         public void setData(MerchantResponse response) {
             itemView.setMerchantResponse(response);
-            itemView.tvOpen.setText(activity.getResources().getString(R.string.open_now)+response.getOpentime()+
+            CommonUtils.isShopOpen(response.getOpentime(),response.getClosetime());
+            itemView.tvOpen.setText(activity.getResources().getString(R.string.open_now)+" "+response.getOpentime()+
                     activity.getResources().getString(R.string.to)+response.getClosetime());
         }
     }

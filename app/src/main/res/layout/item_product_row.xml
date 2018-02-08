@@ -150,16 +150,6 @@
                     android:background="@drawable/light_black_bg_3"
                     android:padding="@dimen/margin_5"
                     />
-                <com.app.community.widget.CustomTextView
-                    style="@style/textview_description_smaller_wrap"
-                    android:layout_below="@+id/layoutProductType"
-                    android:layout_alignParentEnd="true"
-                    android:background="@drawable/red_bg_4"
-                    android:padding="@dimen/margin_5"
-                    android:text="@string/open_now"
-                    android:textColor="@color/white"
-                    android:visibility="gone"
-                    />
 
             </RelativeLayout>
 
