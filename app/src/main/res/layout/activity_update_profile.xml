@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <data>
-        <import type="com.app.community.utils.UserPreference" />
-    </data>
-
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         style="@style/match_match"
         android:background="@color/white">
@@ -52,7 +47,6 @@
                         android:hint="@string/name"
                         android:paddingBottom="@dimen/margin_5"
                         android:paddingTop="@dimen/margin_5"
-                        android:text="@{UserPreference.userName}"
                         android:textColor="@color/white"
                         android:textCursorDrawable="@drawable/cursor_white"
                         android:textColorHint="@color/hint_color_light" />
@@ -64,7 +58,6 @@
                         style="@style/textview_description_large_wrap"
                         android:layout_marginTop="@dimen/margin_10"
                         android:hint="@string/moblile_number"
-                        android:text="@{UserPreference.userMono}"
                         android:textColor="@color/white"
                         android:textCursorDrawable="@drawable/cursor_white"
                         android:textColorHint="@color/hint_color_light" />
@@ -78,7 +71,6 @@
                         android:inputType="textEmailAddress"
                         android:paddingBottom="@dimen/margin_5"
                         android:paddingTop="@dimen/margin_5"
-                        android:text="@{UserPreference.email}"
                         android:textColor="@color/white"
                         android:textCursorDrawable="@drawable/cursor_white"
                         android:textColorHint="@color/hint_color_light" />
@@ -105,7 +97,6 @@
                     android:inputType="number"
                     android:paddingBottom="@dimen/margin_5"
                     android:paddingTop="@dimen/margin_5"
-                    android:text="@{UserPreference.cardNumber}"
                     android:textColorHint="@color/hint_color_light" />
 
                 <ImageView style="@style/view_layout" />

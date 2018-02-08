@@ -62,8 +62,14 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
     }
 
     public void initializeData() {
+        mBinding.edName.setText(UserPreference.getUserName());
+        mBinding.tvMobile.setText(UserPreference.getUserMono());
+        mBinding.edEmail.setText(UserPreference.getUserMono());
+        mBinding.edCreditDetails.setText(UserPreference.getUserMono());
         CommonUtils.showCursorEnd(mBinding.edName);
         CommonUtils.showCursorEnd(mBinding.edEmail);
+        CommonUtils.showCursorEnd(mBinding.edCreditDetails);
+        mBinding.edName.setCursorVisible(true);
         GlideUtils.loadImageProfilePic(this, UserPreference.getImage(), mBinding.ivProfile, null, R.drawable.avatar);
         setPaymentOption();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -208,6 +214,7 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
     private void gotoCropper(Uri sourceUri) {
         CropImage.activity(sourceUri).setAspectRatio(1, 1)
                 .setGuidelines(CropImageView.Guidelines.ON)
+                .setCropShape(CropImageView.CropShape.OVAL)
                 .start(this);
     }
 

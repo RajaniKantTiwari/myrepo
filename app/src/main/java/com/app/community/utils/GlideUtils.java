@@ -34,7 +34,8 @@ import com.bumptech.glide.request.target.Target;
  */
 
 public class GlideUtils {
-    private static String TAG=GlideUtils.class.getSimpleName();
+    private static String TAG = GlideUtils.class.getSimpleName();
+
     //load image with progressbar
     public static void loadImageUsingGlide(Context mContext, String imageUrl, ImageView imageView, final ProgressBar progressBar) {
         if (progressBar != null) {
@@ -68,35 +69,35 @@ public class GlideUtils {
     //load simple image with progress bar
     public static void loadImage(final Context mContext, String imageUrl, final ImageView imageView, final ProgressBar progressBar, final int placeholder) {
         showProgressBar(progressBar);
-        try {
-            Glide.with(mContext).load(imageUrl).asBitmap().placeholder(placeholder)
-                    .diskCacheStrategy(DiskCacheStrategy.SOURCE).listener(new RequestListener<String, Bitmap>() {
-                @Override
-                public boolean onException(Exception e, String model, Target<Bitmap> target, boolean isFirstResource) {
-                    imageView.setImageResource(placeholder);
-                    hideProgressBar(progressBar);
-                    return false;
-                }
+        /*try {*/
+        Glide.with(mContext).load(imageUrl).asBitmap().placeholder(placeholder)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE).listener(new RequestListener<String, Bitmap>() {
+            @Override
+            public boolean onException(Exception e, String model, Target<Bitmap> target, boolean isFirstResource) {
+                imageView.setImageResource(placeholder);
+                hideProgressBar(progressBar);
+                return false;
+            }
 
-                @Override
-                public boolean onResourceReady(Bitmap resource, String model, Target<Bitmap> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                    hideProgressBar(progressBar);
-                    return false;
-                }
-            }).into(new BitmapImageViewTarget(imageView) {
-                @Override
-                protected void setResource(Bitmap resource) {
-                    imageView.setImageBitmap(resource);
-                }
-            });
-        }catch (Exception ex){
+            @Override
+            public boolean onResourceReady(Bitmap resource, String model, Target<Bitmap> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                hideProgressBar(progressBar);
+                return false;
+            }
+        }).into(new BitmapImageViewTarget(imageView) {
+            @Override
+            protected void setResource(Bitmap resource) {
+                imageView.setImageBitmap(resource);
+            }
+        });
+        /*}catch (Exception ex){
             hideProgressBar(progressBar);
-        }
+        }*/
     }
 
     //Circular Image With progressbar and placeholder
     public static void loadImageProfilePic(final Context mContext, String imageUrl, final ImageView imageView, final ProgressBar progressBar, final int placeholder) {
-        try{
+        try {
             showProgressBar(progressBar);
             Glide.with(mContext).load(imageUrl).asBitmap().placeholder(placeholder)
                     .diskCacheStrategy(DiskCacheStrategy.SOURCE).listener(new RequestListener<String, Bitmap>() {
@@ -122,8 +123,8 @@ public class GlideUtils {
                     //progressBarVisibility(progressBar);
                 }
             });
-        }catch (Exception ex){
-           LogUtils.LOGE(TAG,ex.toString());
+        } catch (Exception ex) {
+            LogUtils.LOGE(TAG, ex.toString());
         }
     }
 
