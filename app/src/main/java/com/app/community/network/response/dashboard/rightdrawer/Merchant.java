@@ -23,6 +23,15 @@ public class Merchant {
     private String averagetime;
     private String image;
     private String banner_image;
+    private String background_color;
+
+    public String getBackground_color() {
+        return background_color;
+    }
+
+    public void setBackground_color(String background_color) {
+        this.background_color = background_color;
+    }
 
     public String getStorename() {
         return storename;

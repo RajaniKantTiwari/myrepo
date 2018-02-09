@@ -40,11 +40,6 @@ import javax.inject.Inject;
 
 import static android.content.ContentValues.TAG;
 import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
-import static com.app.community.utils.GeneralConstant.FRAGMENTS.ZOOMIMAGE_FRAGMENT;
-
-
-
-
 public class MerchantDetailsFragment extends DashboardFragment implements OrderDialogFragment.OrderDialogListener,ImageAdapter.ImageListener {
 
     private FragmentProductDetailBinding mBinding;
@@ -142,6 +137,9 @@ public class MerchantDetailsFragment extends DashboardFragment implements OrderD
             CommonUtils.clicked(mBinding.tvStartShopping);
             Bundle bundle=new Bundle();
             bundle.putString(AppConstants.MERCHANT_ID, merchantResponse.getId());
+            bundle.putString(AppConstants.MERCHANT_ADDRESS,merchantResponse.getAddress());
+            bundle.putString(AppConstants.MERCHANT_IMAGE,merchantResponse.getImage());
+            bundle.putString(AppConstants.MERCHANT_BACKGROUND_COLOR,merchantResponse.getBackground_color());
             getDashboardActivity().addFragmentInContainer(new ProductSubproductFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
         } else if (view == mBinding.tvShareReview) {
             CommonUtils.clicked(mBinding.tvStartShopping);

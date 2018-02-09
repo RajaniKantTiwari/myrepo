@@ -114,7 +114,6 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
-        LogUtils.LOGD("", "onSuccess Called");
         if (response != null) {
             if (response instanceof CategoryResponse) {
                 CategoryResponse categoryResponse = (CategoryResponse) response;
@@ -160,6 +159,8 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
         if (CommonUtils.isNotNull(bundle)) {
             String productResponse = bundle.getString(AppConstants.MERCHANT_ID);
             merchantId = Integer.parseInt(productResponse);
+            getDashboardActivity().setHeader(bundle.getString(AppConstants.MERCHANT_ADDRESS),
+                    bundle.getString(AppConstants.MERCHANT_IMAGE),bundle.getString(AppConstants.MERCHANT_BACKGROUND_COLOR));
         }
         setViews();
         callApi();

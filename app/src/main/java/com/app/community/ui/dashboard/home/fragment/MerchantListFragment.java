@@ -73,8 +73,12 @@ public class MerchantListFragment extends DashboardFragment implements ContactDi
             @Override
             public void onItemClick(int adapterPosition) {
                 if (CommonUtils.isNotNull(productList) && productList.size() > adapterPosition) {
+                    MerchantResponse merchantResponse = productList.get(adapterPosition);
                     Bundle bundle=new Bundle();
-                    bundle.putString(AppConstants.MERCHANT_ID, productList.get(adapterPosition).getId());
+                    bundle.putString(AppConstants.MERCHANT_ID, merchantResponse.getId());
+                    bundle.putString(AppConstants.MERCHANT_ADDRESS,merchantResponse.getAddress());
+                    bundle.putString(AppConstants.MERCHANT_IMAGE,merchantResponse.getImage());
+                    bundle.putString(AppConstants.MERCHANT_BACKGROUND_COLOR,merchantResponse.getBackground_color());
                     getDashboardActivity().addFragmentInContainer(new ProductSubproductFragment(),bundle,true,false,NONE);
                 }
             }

@@ -22,10 +22,12 @@
                 android:src="@drawable/hamberg_icon" />
 
             <LinearLayout
+                android:id="@+id/layoutTab"
                 style="@style/match_match"
                 android:layout_toEndOf="@+id/ivDrawer"
                 android:layout_toStartOf="@+id/ivSearch"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:visibility="gone">
 
                 <android.support.v4.widget.Space style="@style/layout_hori_match_4" />
 
@@ -38,6 +40,30 @@
 
                 <android.support.v4.widget.Space style="@style/layout_hori_match_1" />
             </LinearLayout>
+            <RelativeLayout
+                android:id="@+id/layoutProduct"
+                style="@style/match_match"
+                android:layout_toEndOf="@+id/ivDrawer"
+                android:layout_toStartOf="@+id/ivSearch"
+                android:gravity="center_vertical"
+                android:visibility="gone">
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvAddress"
+                    style="@style/textview_description_smaller_wrap"
+                    android:layout_centerVertical="true"
+                    android:text="@string/app_name"
+                    android:ellipsize="marquee"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:textColor="@color/white" />
+                <ImageView
+                    android:id="@+id/ivProductImage"
+                    style="@style/image_40"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/hamberg_right" />
+
+            </RelativeLayout>
 
             <ImageView
                 android:id="@+id/ivSearch"

@@ -24,6 +24,9 @@ public interface AppConstants {
     int HORIZONTAL_CHILD=3;
     String TIME_ZONE="GMT";
     String PRODUCT_DATA = "product_data";
+    String MERCHANT_IMAGE = "merchant_image";
+    String MERCHANT_ADDRESS = "merchant_address";
+    String MERCHANT_BACKGROUND_COLOR = "merchant_background_color";
 
 
     @IntDef({CHECKOUT_FRAGMENT})

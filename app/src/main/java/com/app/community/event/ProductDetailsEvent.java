@@ -1,18 +1,20 @@
 package com.app.community.event;
 
+import com.app.community.network.response.dashboard.home.MerchantResponse;
+
 /**
  * Created by rajnikant on 03/02/18.
  */
 
 public class ProductDetailsEvent {
-    private String merchantId;
+    private MerchantResponse merchant;
 
-    public ProductDetailsEvent(String merchantId) {
-        this.merchantId = merchantId;
+    public ProductDetailsEvent(MerchantResponse merchant) {
+        this.merchant = merchant;
     }
 
-    public String getMerchantId() {
-        return merchantId;
+    public MerchantResponse getMerchant() {
+        return merchant;
     }
 
 }

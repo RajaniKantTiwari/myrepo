@@ -178,15 +178,15 @@ public class SearchActivity extends CommonActivity implements SearchAdapter.Sear
         if (CommonUtils.isNotNull(merchantList) && merchantList.size() > position) {
             MerchantResponse merchant = merchantList.get(position);
             if (CommonUtils.isNotNull(merchant)) {
-                gotoProductDetails(merchant.getId());
+                gotoProductDetails(merchant);
             }
         }
 
 
     }
 
-    private void gotoProductDetails(String id) {
-        ProductDetailsEvent productDetailsEvent = new ProductDetailsEvent(id);
+    private void gotoProductDetails(MerchantResponse merchantResponse) {
+        ProductDetailsEvent productDetailsEvent = new ProductDetailsEvent(merchantResponse);
         EventBus.getDefault().post(productDetailsEvent);
         finish();
     }

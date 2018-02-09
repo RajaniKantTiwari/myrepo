@@ -13,9 +13,7 @@ import android.view.ViewGroup;
 import com.app.community.R;
 import com.app.community.databinding.FragmentNotificationBinding;
 import com.app.community.network.response.BaseResponse;
-import com.app.community.ui.SimpleDividerItemDecoration;
 import com.app.community.ui.dashboard.DashboardFragment;
-import com.app.community.ui.dashboard.home.adapter.ReviewAdapter;
 import com.app.community.ui.presenter.CommonPresenter;
 
 import javax.inject.Inject;
@@ -46,7 +44,7 @@ public class NotificationFragment extends DashboardFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_notification, container, false);
-        getDashboardActivity().setTile(getString(R.string.notification));
+        getDashboardActivity().setHeaderTitle(getString(R.string.notification));
         return mBinding.getRoot();
     }
 

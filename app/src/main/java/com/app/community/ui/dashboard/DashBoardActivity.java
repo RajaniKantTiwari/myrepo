@@ -1,6 +1,7 @@
 package com.app.community.ui.dashboard;
 
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -22,6 +23,7 @@ import com.app.community.injector.module.DashboardModule;
 import com.app.community.network.DeviceToken;
 import com.app.community.network.request.DeviceTokenRequest;
 import com.app.community.network.response.BaseResponse;
+import com.app.community.network.response.dashboard.home.MerchantResponse;
 import com.app.community.network.response.dashboard.rightdrawer.Merchant;
 import com.app.community.network.response.dashboard.rightdrawer.ProductSubCategory;
 import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
@@ -48,6 +50,7 @@ import com.app.community.utils.CommonUtils;
 import com.app.community.utils.DashBoardHelper;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
+import com.app.community.utils.GlideUtils;
 import com.app.community.utils.LogUtils;
 import com.app.community.utils.PreferenceUtils;
 
@@ -392,8 +395,20 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
     }
 
 
-    public void setTile(String title) {
+    public void setHeaderTitle(String title) {
+        mBinding.toolBar.layoutTab.setVisibility(View.VISIBLE);
+        mBinding.toolBar.layoutProduct.setVisibility(View.GONE);
         mBinding.toolBar.tvHeading.setText(title);
+    }
+
+    public void setHeader(String address, String imageUrl, String bgColor) {
+        mBinding.toolBar.layoutTab.setVisibility(View.GONE);
+        mBinding.toolBar.layoutProduct.setVisibility(View.VISIBLE);
+        mBinding.toolBar.tvAddress.setText(address);
+        GlideUtils.loadImage(this, imageUrl, mBinding.toolBar.ivProductImage, null, R.drawable.icon_placeholder);
+        if (CommonUtils.isNotNull(bgColor)) {
+            mBinding.toolBar.toolbar.setBackgroundColor(Color.parseColor(bgColor));
+        }
     }
 
     @Override
@@ -407,6 +422,10 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                     Merchant merchantData = merchantList.get(childPosition);
                     if (CommonUtils.isNotNull(merchantData)) {
                         bundle.putString(AppConstants.MERCHANT_ID, merchantData.getId());
+                        bundle.putString(AppConstants.MERCHANT_ADDRESS,merchantData.getAddress());
+                        bundle.putString(AppConstants.MERCHANT_IMAGE,merchantData.getImage());
+                        bundle.putString(AppConstants.MERCHANT_BACKGROUND_COLOR,merchantData.getBackground_color());
+
                     }
                 }
             }
@@ -424,7 +443,11 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
     @Subscribe
     public void onSearchProduct(ProductDetailsEvent event) {
         Bundle bundle = new Bundle();
-        bundle.putString(AppConstants.MERCHANT_ID, event.getMerchantId());
+        MerchantResponse merchantResponse=event.getMerchant();
+        bundle.putString(AppConstants.MERCHANT_ID, merchantResponse.getId());
+        bundle.putString(AppConstants.MERCHANT_ADDRESS,merchantResponse.getAddress());
+        bundle.putString(AppConstants.MERCHANT_IMAGE,merchantResponse.getImage());
+        bundle.putString(AppConstants.MERCHANT_BACKGROUND_COLOR,merchantResponse.getBackground_color());
         pushFragment(new ProductSubproductFragment(), bundle, R.id.container, true, true, NONE);
 
 

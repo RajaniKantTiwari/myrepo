@@ -48,8 +48,6 @@ import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.GlideUtils;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.util.ArrayList;
 
 import static com.app.community.ui.base.BaseActivity.AnimationType.NONE;
@@ -86,7 +84,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_welcomehome, container, false);
-        getDashboardActivity().setTile(getString(R.string.home));
+        getDashboardActivity().setHeaderTitle(getString(R.string.home));
         mWelcomeBinding = AddWelcomeChildView.addWelcomeSearchView(inflater, mBinding);
         mEmergencyPlaceBinding = AddWelcomeChildView.addImportantPlace(inflater, mBinding);
         mNewsViewBinding = AddWelcomeChildView.addNewsView(inflater, mBinding);
