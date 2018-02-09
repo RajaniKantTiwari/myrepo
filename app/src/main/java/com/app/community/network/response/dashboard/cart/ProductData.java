@@ -1,10 +1,13 @@
 package com.app.community.network.response.dashboard.cart;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by virender on 10/01/18.
  */
 
-public class ProductData {
+public class ProductData implements Parcelable{
     private int id;
     private String productname;
     private String manufacture;
@@ -16,6 +19,33 @@ public class ProductData {
     private String colorcode;
     private String icon;
 
+    public ProductData() {
+    }
+
+    protected ProductData(Parcel in) {
+        id = in.readInt();
+        productname = in.readString();
+        manufacture = in.readString();
+        producttype = in.readString();
+        product_mrp = in.readFloat();
+        selling_price = in.readString();
+        qty = in.readInt();
+        measure = in.readString();
+        colorcode = in.readString();
+        icon = in.readString();
+    }
+
+    public static final Creator<ProductData> CREATOR = new Creator<ProductData>() {
+        @Override
+        public ProductData createFromParcel(Parcel in) {
+            return new ProductData(in);
+        }
+
+        @Override
+        public ProductData[] newArray(int size) {
+            return new ProductData[size];
+        }
+    };
 
     public String getIcon() {
         return icon;
@@ -95,6 +125,25 @@ public class ProductData {
 
     public void setQty(int qty) {
         this.qty = qty;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(productname);
+        dest.writeString(manufacture);
+        dest.writeString(producttype);
+        dest.writeFloat(product_mrp);
+        dest.writeString(selling_price);
+        dest.writeInt(qty);
+        dest.writeString(measure);
+        dest.writeString(colorcode);
+        dest.writeString(icon);
     }
 }
 

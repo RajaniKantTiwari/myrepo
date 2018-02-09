@@ -15,6 +15,7 @@ import com.app.community.databinding.ActivityWelcomeScreenBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.authentication.LoginActivity;
 import com.app.community.ui.base.BaseActivity;
+import com.app.community.ui.dashboard.home.event.UpdateAddress;
 import com.app.community.ui.dialogfragment.CustomDialogFragment;
 import com.app.community.ui.location.GPSTracker;
 import com.app.community.utils.CommonUtils;
@@ -27,6 +28,8 @@ import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.maps.model.LatLng;
+
+import org.greenrobot.eventbus.EventBus;
 
 import static com.app.community.utils.GeneralConstant.PERMISSIONS_REQUEST_LOCATION;
 
@@ -141,6 +144,8 @@ public class WelcomeScreenActivity extends BaseActivity implements CustomDialogF
         if (!isFromHome) {
             ExplicitIntent.getsInstance().navigateTo(this, LoginActivity.class);
         }
+        EventBus.getDefault().post(new UpdateAddress());
+
         finish();
     }
 
@@ -178,7 +183,7 @@ public class WelcomeScreenActivity extends BaseActivity implements CustomDialogF
 
                     }
 
-
+                    EventBus.getDefault().post(new UpdateAddress());
                     if (!isFromHome) {
                         ExplicitIntent.getsInstance().navigateTo(this, LoginActivity.class);
                     }
@@ -201,6 +206,7 @@ public class WelcomeScreenActivity extends BaseActivity implements CustomDialogF
     @Override
     public void ok(String string) {
         ExplicitIntent.getsInstance().navigateTo(this, LoginActivity.class);
+        EventBus.getDefault().post(new UpdateAddress());
         finish();
     }
 

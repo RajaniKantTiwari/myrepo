@@ -23,6 +23,7 @@ public interface AppConstants {
     int NO_OF_TAB = 4;
     int HORIZONTAL_CHILD=3;
     String TIME_ZONE="GMT";
+    String PRODUCT_DATA = "product_data";
 
 
     @IntDef({CHECKOUT_FRAGMENT})

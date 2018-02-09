@@ -36,6 +36,7 @@ import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.adapter.DrawerAdapterLeft;
 import com.app.community.ui.dashboard.home.event.NewsEvent;
 import com.app.community.ui.dashboard.home.event.SearchProductEvent;
+import com.app.community.ui.dashboard.home.event.UpdateAddress;
 import com.app.community.ui.dashboard.home.fragment.MerchantFragment;
 import com.app.community.ui.dashboard.home.fragment.MyOrderActivity;
 import com.app.community.ui.dashboard.home.fragment.NewsMainFragment;
@@ -84,7 +85,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         switch (position) {
             case AppConstants.HOME:
                 changeIcon(WELCOME_HOME_FRAGMENT);
-                openFragment(new WelcomeHomeFragment(),null,false, false, NONE);
+                openFragment(new WelcomeHomeFragment(), null, false, false, NONE);
                 break;
             case AppConstants.MYORDER:
                 ExplicitIntent.getsInstance().navigateTo(this, MyOrderActivity.class);
@@ -96,11 +97,11 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                 break;
             case AppConstants.MYACCOUNT:
                 changeIcon(USER_FRAGMENT);
-                openFragment(new UserProfileFragment(),null,false, false, NONE);
+                openFragment(new UserProfileFragment(), null, false, false, NONE);
                 break;
             case AppConstants.NOTIFICATION:
                 changeIcon(NOTIFICATION_FRAGMENT);
-                openFragment(new NotificationFragment(),null,false, false, NONE);
+                openFragment(new NotificationFragment(), null, false, false, NONE);
                 break;
             case AppConstants.ABOUTUS:
                 //onTabSelected(USER_FRAGMENT);
@@ -144,26 +145,26 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         changeIcon(position);
         switch (position) {
             case WELCOME_HOME_FRAGMENT:
-                openFragment(new WelcomeHomeFragment(),null,false, false, NONE);
+                openFragment(new WelcomeHomeFragment(), null, false, false, NONE);
                 break;
             case OFFER_FRAGMENT:
-                openFragment(new OfferFragment(),null,false, false, NONE);
+                openFragment(new OfferFragment(), null, false, false, NONE);
                 break;
             case NOTIFICATION_FRAGMENT:
-                openFragment(new NotificationFragment(),null,false, false, NONE);
+                openFragment(new NotificationFragment(), null, false, false, NONE);
                 break;
             case USER_FRAGMENT:
-                openFragment(new UserProfileFragment(),null,false, false, NONE);
+                openFragment(new UserProfileFragment(), null, false, false, NONE);
                 break;
         }
     }
 
-    private void openFragment(Fragment fragment, Bundle bundle,boolean addToBackStack, boolean shouldAdd, @AnimationType int animationType) {
+    private void openFragment(Fragment fragment, Bundle bundle, boolean addToBackStack, boolean shouldAdd, @AnimationType int animationType) {
         pushFragment(fragment, bundle, R.id.container, addToBackStack, shouldAdd, animationType);
         clearAllBackStack();
     }
 
-    public void addFragmentInContainer(Fragment fragment, Bundle bundle,boolean addToBackStack, boolean shouldAdd, @AnimationType int animationType) {
+    public void addFragmentInContainer(Fragment fragment, Bundle bundle, boolean addToBackStack, boolean shouldAdd, @AnimationType int animationType) {
         pushFragment(fragment, bundle, R.id.container, addToBackStack, shouldAdd, animationType);
     }
 
@@ -258,7 +259,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         token.setDeviceType(GeneralConstant.DEVICETYPE);
         request.setInfo(token);
         mPresenter.setDeviceToken(this, request);
-        pushFragment(new WelcomeHomeFragment(),null, R.id.container, true, false, NONE);
+        pushFragment(new WelcomeHomeFragment(), null, R.id.container, true, false, NONE);
     }
 
     public void setListener() {
@@ -292,25 +293,25 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
             closeDrawerLeft();
             changeIcon(USER_FRAGMENT);
             onTabSelected(USER_FRAGMENT);
-        }else if (mBinding.layoutDrawerLeft.ivUpdate == view) {
+        } else if (mBinding.layoutDrawerLeft.ivUpdate == view) {
             closeDrawerLeft();
             ExplicitIntent.getsInstance().navigateTo(this, UpdateProfileActivity.class);
         } else if (view == mBinding.bottomLayout.linearLayoutBar1) {
             changeIcon(WELCOME_HOME_FRAGMENT);
             clearAllBackStack();
-            pushFragment(new WelcomeHomeFragment(),null, R.id.container, true, false, NONE);
+            pushFragment(new WelcomeHomeFragment(), null, R.id.container, true, false, NONE);
         } else if (view == mBinding.bottomLayout.linearLayoutBar2) {
             changeIcon(OFFER_FRAGMENT);
             clearAllBackStack();
-            pushFragment(new OfferFragment(),null, R.id.container, true, false, NONE);
+            pushFragment(new OfferFragment(), null, R.id.container, true, false, NONE);
         } else if (view == mBinding.bottomLayout.linearLayoutBar3) {
             changeIcon(NOTIFICATION_FRAGMENT);
             clearAllBackStack();
-            pushFragment(new NotificationFragment(),null, R.id.container, true, false, NONE);
+            pushFragment(new NotificationFragment(), null, R.id.container, true, false, NONE);
         } else if (view == mBinding.bottomLayout.linearLayoutBar4) {
             changeIcon(USER_FRAGMENT);
             clearAllBackStack();
-            pushFragment(new UserProfileFragment(),null, R.id.container, true, false, NONE);
+            pushFragment(new UserProfileFragment(), null, R.id.container, true, false, NONE);
         }
     }
 
@@ -422,24 +423,26 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
 
     @Subscribe
     public void onSearchProduct(ProductDetailsEvent event) {
-                Bundle bundle = new Bundle();
-                bundle.putString(AppConstants.MERCHANT_ID, event.getMerchantId());
-                pushFragment(new ProductSubproductFragment(), bundle, R.id.container, true, true, NONE);
+        Bundle bundle = new Bundle();
+        bundle.putString(AppConstants.MERCHANT_ID, event.getMerchantId());
+        pushFragment(new ProductSubproductFragment(), bundle, R.id.container, true, true, NONE);
 
 
     }
-     @Subscribe
-        public void onSearchProduct(SearchProductEvent event) {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Bundle bundle = new Bundle();
-                    bundle.putString(GeneralConstant.SEARCH_STRING,event.getSearchString());
-                    addFragmentInContainer(new MerchantFragment(), bundle, false, false, NONE);
-                }
-            }, GeneralConstant.DELAYTIME);
 
-        }
+    @Subscribe
+    public void onSearchProduct(SearchProductEvent event) {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Bundle bundle = new Bundle();
+                bundle.putString(GeneralConstant.SEARCH_STRING, event.getSearchString());
+                addFragmentInContainer(new MerchantFragment(), bundle, false, false, NONE);
+            }
+        }, GeneralConstant.DELAYTIME);
+
+    }
+
     @Subscribe
     public void onNewsEvent(NewsEvent event) {
         new Handler().postDelayed(new Runnable() {
@@ -449,5 +452,10 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
             }
         }, GeneralConstant.DELAYTIME);
 
+    }
+
+    @Subscribe
+    public void onAddressEvent(UpdateAddress event) {
+        mDrawerAdapterLeft.notifyDataSetChanged();
     }
 }

@@ -8,8 +8,7 @@
         style="@style/textview_title_match"
         android:textColor="@color/color_black"
         android:textSize="@dimen/textSize_description"
-        android:paddingTop="@dimen/margin_5"
-        android:paddingBottom="@dimen/margin_5"
+        android:padding="@dimen/margin_5"
         android:textAllCaps="true"/>
 </RelativeLayout>
 </layout>

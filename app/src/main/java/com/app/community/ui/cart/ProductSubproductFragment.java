@@ -178,7 +178,11 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
                 break;
             case R.id.layoutProduct:
             case R.id.layoutInfo:
-                getDashboardActivity().addFragmentInContainer(new FullInformationFragment(),null,true,true, NONE);
+                if(CommonUtils.isNotNull(mCartList)&&mCartList.size()>pos){
+                    Bundle bundle=new Bundle();
+                    bundle.putParcelable(AppConstants.PRODUCT_DATA,mCartList.get(pos));
+                    getDashboardActivity().addFragmentInContainer(new FullInformationFragment(),bundle,true,true, NONE);
+                }
                 break;
         }
 

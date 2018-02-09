@@ -2,6 +2,7 @@ package com.app.community.ui.dashboard.home.fragment;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,7 +13,9 @@ import com.app.community.R;
 import com.app.community.databinding.FragmentFullInformationBinding;
 import com.app.community.network.request.dashboard.ProductRequest;
 import com.app.community.network.response.BaseResponse;
+import com.app.community.network.response.dashboard.cart.ProductData;
 import com.app.community.ui.dashboard.DashboardFragment;
+import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
 
 import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
@@ -24,8 +27,9 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 public class FullInformationFragment extends DashboardFragment {
     private FragmentFullInformationBinding mBinding;
     private int quantity;
-    private int productId=8;
-    private int merchantId=8;
+    private int productId = 8;
+    private int merchantId = 8;
+    private ProductData productData;
 
     @Nullable
     @Override
@@ -36,8 +40,12 @@ public class FullInformationFragment extends DashboardFragment {
 
     @Override
     public void initializeData() {
-        ProductRequest request=new ProductRequest(productId,merchantId);
-        getPresenter().getProductDetails(getBaseActivity(),request);
+        Bundle bundle = getArguments();
+        if (CommonUtils.isNotNull(bundle)) {
+            productData = bundle.getParcelable(AppConstants.PRODUCT_DATA);
+        }
+        ProductRequest request = new ProductRequest(productId, merchantId);
+        getPresenter().getProductDetails(getBaseActivity(), request);
     }
 
     @Override
@@ -54,7 +62,7 @@ public class FullInformationFragment extends DashboardFragment {
 
     @Override
     public void attachView() {
-        if (CommonUtils.isNotNull(getPresenter())){
+        if (CommonUtils.isNotNull(getPresenter())) {
             getPresenter().attachView(this);
         }
     }
@@ -71,7 +79,7 @@ public class FullInformationFragment extends DashboardFragment {
             } else {
                 getBaseActivity().showToast(getResources().getString(R.string.empty_cart));
             }
-        }else if(view==mBinding.tvAddToCart){
+        } else if (view == mBinding.tvAddToCart) {
             CommonUtils.clicked(mBinding.tvAddToCart);
         }
     }
