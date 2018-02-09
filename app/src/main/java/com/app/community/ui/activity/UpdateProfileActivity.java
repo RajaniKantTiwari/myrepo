@@ -4,10 +4,8 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialog;
-import android.support.v4.content.FileProvider;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.view.View;
@@ -24,7 +22,7 @@ import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.GlideUtils;
 import com.app.community.utils.ImagePickerUtils;
 import com.app.community.utils.LogUtils;
-import com.app.community.utils.UserPreference;
+import com.app.community.utils.PreferenceUtils;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -62,15 +60,15 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
     }
 
     public void initializeData() {
-        mBinding.edName.setText(UserPreference.getUserName());
-        mBinding.tvMobile.setText(UserPreference.getUserMono());
-        mBinding.edEmail.setText(UserPreference.getUserMono());
-        mBinding.edCreditDetails.setText(UserPreference.getUserMono());
+        mBinding.edName.setText(PreferenceUtils.getUserName());
+        mBinding.tvMobile.setText(PreferenceUtils.getUserMono());
+        mBinding.edEmail.setText(PreferenceUtils.getUserMono());
+        mBinding.edCreditDetails.setText(PreferenceUtils.getUserMono());
         CommonUtils.showCursorEnd(mBinding.edName);
         CommonUtils.showCursorEnd(mBinding.edEmail);
         CommonUtils.showCursorEnd(mBinding.edCreditDetails);
         mBinding.edName.setCursorVisible(true);
-        GlideUtils.loadImageProfilePic(this, UserPreference.getImage(), mBinding.ivProfile, null, R.drawable.avatar);
+        GlideUtils.loadImageProfilePic(this, PreferenceUtils.getImage(), mBinding.ivProfile, null, R.drawable.avatar);
         setPaymentOption();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mBinding.rvPayment.setLayoutManager(layoutManager);

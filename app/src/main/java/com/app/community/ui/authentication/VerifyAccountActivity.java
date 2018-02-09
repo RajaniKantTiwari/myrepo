@@ -14,8 +14,6 @@ import android.view.View;
 import com.app.community.CommonApplication;
 import com.app.community.R;
 import com.app.community.databinding.ActivityVerifyAccountBinding;
-import com.app.community.network.DeviceToken;
-import com.app.community.network.request.DeviceTokenRequest;
 import com.app.community.network.request.LoginRequest;
 import com.app.community.network.request.VerifyMobileRequest;
 import com.app.community.network.response.BaseResponse;
@@ -28,7 +26,7 @@ import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
-import com.app.community.utils.UserPreference;
+import com.app.community.utils.PreferenceUtils;
 
 import javax.inject.Inject;
 
@@ -90,7 +88,7 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
         if (view == mBinding.tvResend) {
             CommonUtils.clicked(mBinding.tvResend);
             presenter.getLoginDetail(this, new LoginRequest(userName, mobileNumber,
-                    UserPreference.getLatitude(), UserPreference.getLongitude()));
+                    PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude()));
         } else if (view == mBinding.tvChange) {
             //CommonUtils.clicked(mBinding.tvChange);
             Bundle bundle = new Bundle();
@@ -136,9 +134,9 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
                         String status = verifyMobileResponse.getStatus();
                         if (status.equals(AppConstants.SUCCESS)) {
                             hideKeyboard();
-                            UserPreference.setUserId(verifyMobileResponse.getId());
-                            UserPreference.setAuthToken(verifyMobileResponse.getAuthkey());
-                            UserPreference.setLogin(true);
+                            PreferenceUtils.setUserId(verifyMobileResponse.getId());
+                            PreferenceUtils.setAuthToken(verifyMobileResponse.getAuthkey());
+                            PreferenceUtils.setLogin(true);
 
                             //setToken();
                             ExplicitIntent.getsInstance().clearPreviousNavigateTo(this, DashBoardActivity.class);
@@ -157,10 +155,10 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
 
     /*private void setToken() {
         DeviceTokenRequest request=new DeviceTokenRequest();
-        request.setUserid(UserPreference.getUserId());
+        request.setUserid(PreferenceUtils.getUserId());
         DeviceToken token=new DeviceToken();
         token.setDeveiceUniqId(CommonUtils.getDeviceUniqueId(this));
-        token.setDeviceTokenId(UserPreference.getDeviceToken());
+        token.setDeviceTokenId(PreferenceUtils.getDeviceToken());
         token.setDeviceType(GeneralConstant.DEVICETYPE);
         request.setInfo(token);
         presenter.setDeviceToken(this,request);
@@ -236,7 +234,7 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
     public void ok(String str) {
         mobileNumber = str;
         presenter.getLoginDetail(this, new LoginRequest(userName, mobileNumber,
-                UserPreference.getLatitude(), UserPreference.getLongitude()));
+                PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude()));
         hideKeyboard();
     }
 

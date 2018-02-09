@@ -131,7 +131,7 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
                     mSubCategoryAdapter.notifyDataSetChanged();
                     mCartAdapter.notifyDataSetChanged();
                     mBinding.tvTitle.setText(categoryResponse.getInfo().get(0).getSubproduct().get(0).getName());
-                    mBinding.tvTotal.setText("Sub Total : INR" + 0.00);
+                    mBinding.tvTotal.setText(""+0.00);
 
             }
         }else {
@@ -190,7 +190,7 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
         for (ProductData data : mCartList) {
             total += data.getQty() * data.getProduct_mrp();
         }
-        mBinding.tvTotal.setText("Sub Total : INR" + total);
+        mBinding.tvTotal.setText(""+total);
 
     }
 

@@ -456,6 +456,8 @@
     <string name="choose_from_library">Choose from Library</string>
     <string name="moblile_number">Mobile Number</string>
     <string name="update">Update</string>
+    <string name="enter_new_address">Enter New Address</string>
+    <string name="please_enter_text_to_get_merchant">Please Enter text to search merchant</string>
 
 
     <string-array name="state_array">

@@ -48,7 +48,7 @@ import com.app.community.utils.DashBoardHelper;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.LogUtils;
-import com.app.community.utils.UserPreference;
+import com.app.community.utils.PreferenceUtils;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -247,14 +247,14 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
     }
 
     public void initializeData() {
-        mBinding.layoutDrawerLeft.tvName.setText(UserPreference.getUserName());
-        mBinding.layoutDrawerLeft.tvMobile.setText(UserPreference.getUserMono());
+        mBinding.layoutDrawerLeft.tvName.setText(PreferenceUtils.getUserName());
+        mBinding.layoutDrawerLeft.tvMobile.setText(PreferenceUtils.getUserMono());
         mPresenter.getCategorySubCategoryRightDrawer(this);
         DeviceTokenRequest request = new DeviceTokenRequest();
-        request.setUserid(UserPreference.getUserId());
+        request.setUserid(PreferenceUtils.getUserId());
         DeviceToken token = new DeviceToken();
         token.setDeveiceUniqId(CommonUtils.getDeviceUniqueId(this));
-        token.setDeviceTokenId(UserPreference.getDeviceToken());
+        token.setDeviceTokenId(PreferenceUtils.getDeviceToken());
         token.setDeviceType(GeneralConstant.DEVICETYPE);
         request.setInfo(token);
         mPresenter.setDeviceToken(this, request);

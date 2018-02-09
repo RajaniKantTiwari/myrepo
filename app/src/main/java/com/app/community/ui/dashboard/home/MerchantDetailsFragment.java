@@ -28,6 +28,7 @@ import com.app.community.ui.dashboard.home.adapter.ReviewAdapter;
 import com.app.community.ui.dashboard.home.adapter.ImageAdapter;
 import com.app.community.ui.dialogfragment.OrderDialogFragment;
 import com.app.community.ui.fragment.ZoomAnimationImageActivity;
+import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
@@ -138,10 +139,12 @@ public class MerchantDetailsFragment extends DashboardFragment implements OrderD
     @Override
     public void onClick(View view) {
         if (view == mBinding.tvStartShopping) {
+            CommonUtils.clicked(mBinding.tvStartShopping);
             Bundle bundle=new Bundle();
-            bundle.putParcelable(GeneralConstant.RESPONSE, merchantResponse);
+            bundle.putString(AppConstants.MERCHANT_ID, merchantResponse.getId());
             getDashboardActivity().addFragmentInContainer(new ProductSubproductFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
         } else if (view == mBinding.tvShareReview) {
+            CommonUtils.clicked(mBinding.tvStartShopping);
             CommonUtils.showOrderDialog(getDashboardActivity(), null, this);
         }
     }

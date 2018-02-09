@@ -20,18 +20,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.app.community.BuildConfig;
 import com.app.community.R;
-import com.app.community.databinding.LayoutNoDataFoundBinding;
 import com.app.community.ui.authentication.LoginActivity;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.dialogfragment.ContactDialogFragment;
@@ -48,7 +45,6 @@ import org.greenrobot.eventbus.EventBus;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -417,10 +413,10 @@ public class CommonUtils {
     }
 
     public static void logout(Activity activity) {
-        UserPreference.setDeviceToken(null);
-        UserPreference.setUserId(-1);
-        UserPreference.setAuthToken(null);
-        UserPreference.setLogin(false);
+        PreferenceUtils.setDeviceToken(null);
+        PreferenceUtils.setUserId(-1);
+        PreferenceUtils.setAuthToken(null);
+        PreferenceUtils.setLogin(false);
         ExplicitIntent.getsInstance().navigateTo(activity, LoginActivity.class);
     }
 
@@ -477,12 +473,11 @@ public class CommonUtils {
 
     public static String getCreatedDate(String date) {
         String createdDate=null;
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        dateFormat.setTimeZone(TimeZone.getTimeZone(AppConstants.TIME_ZONE));
-
         try {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            dateFormat.setTimeZone(TimeZone.getTimeZone(AppConstants.TIME_ZONE));
             Date cDate=dateFormat.parse(date);
-            DateFormat newDateFormat = new SimpleDateFormat("hh:mm aa dd MMM EEE");
+            DateFormat newDateFormat = new SimpleDateFormat("hh:mm aa dd MMM yyyy");
             newDateFormat.setTimeZone(TimeZone.getTimeZone(AppConstants.TIME_ZONE));
             return newDateFormat.format(cDate);
         } catch (Exception e) {

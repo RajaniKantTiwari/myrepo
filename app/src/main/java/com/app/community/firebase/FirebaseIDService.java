@@ -21,7 +21,7 @@ package com.app.community.firebase;
  */
 
 import com.app.community.utils.LogUtils;
-import com.app.community.utils.UserPreference;
+import com.app.community.utils.PreferenceUtils;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 
@@ -33,14 +33,14 @@ public class FirebaseIDService extends FirebaseInstanceIdService {
     public void onTokenRefresh() {
         String token = FirebaseInstanceId.getInstance().getToken();
         //LogUtils.LOGE(TAG,tkn);
-        UserPreference.setDeviceToken(token);
-        LogUtils.LOGE("DevicePushTokenAre", UserPreference.getDeviceToken());
+        PreferenceUtils.setDeviceToken(token);
+        LogUtils.LOGE("DevicePushTokenAre", PreferenceUtils.getDeviceToken());
         sendRegistrationToServer(token);
 
     }
 
     private void sendRegistrationToServer(String token) {
-        //UserPreference.setDeviceToken(token);
+        //PreferenceUtils.setDeviceToken(token);
 
         /*UpdateDeviceRequest deviceRequest = new UpdateDeviceRequest();
         if (PreferenceUtil.getPrefUserId() != -1)

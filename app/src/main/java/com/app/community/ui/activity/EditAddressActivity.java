@@ -21,7 +21,7 @@ import java.util.ArrayList;
  */
 
 public class EditAddressActivity extends CommonActivity implements MvpView, View.OnClickListener, EditAddressAdapter.EditListener {
-    ActivityEditAddressBinding mBinding;
+    private ActivityEditAddressBinding mBinding;
     private ArrayList<EditAddress> editList = new ArrayList<>();
     private EditAddressAdapter adapter;
 

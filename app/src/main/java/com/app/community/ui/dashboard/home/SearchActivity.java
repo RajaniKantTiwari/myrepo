@@ -135,7 +135,11 @@ public class SearchActivity extends CommonActivity implements SearchAdapter.Sear
         if (view == mBinding.layoutHeader.ivBack) {
             finish();
         } else if (view == mBinding.layoutHeader.textView) {
-            gotoProduct();
+            if (CommonUtils.isNotNull(search) && search.length() > 0) {
+                gotoProduct();
+            } else {
+                showToast(getResources().getString(R.string.please_enter_text_to_get_merchant));
+            }
         }
     }
 

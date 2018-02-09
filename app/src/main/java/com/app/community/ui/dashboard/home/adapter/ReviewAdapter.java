@@ -45,7 +45,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewHold
        if(CommonUtils.isNotNull(reviewList)&&reviewList.size()>position){
            holder.setResponse(reviewList.get(position));
            GlideUtils.loadImageProfilePic(activity,reviewList.get(position).getAvatar_base_url()+"/"+reviewList.get(position).getAvatar_path(),holder.ivReview,null,R.drawable.avatar);
-           holder.postDate.setText(CommonUtils.getCreatedDate("2017-12-24 23:55:08"));
+           holder.postDate.setText(CommonUtils.getCreatedDate(reviewList.get(position).getCreated_at()));
            holder.ratingBar.setRating(CommonUtils.setRating(reviewList.get(position).getRating()));
        }
     }

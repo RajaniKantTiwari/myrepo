@@ -14,8 +14,8 @@ import java.util.Locale;
  * Created by arvind on 01/11/17.
  */
 
-public class UserPreference {
-    public UserPreference() {
+public class PreferenceUtils {
+    public PreferenceUtils() {
     }
 
     public static void setAuthToken(String token) {

@@ -2,7 +2,7 @@
 
     <data>
 
-        <import type="com.app.community.utils.UserPreference" />
+        <import type="com.app.community.utils.PreferenceUtils" />
 
     </data>
 
@@ -61,19 +61,19 @@
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvName"
                     style="@style/textview_description_large_wrap"
-                    android:text="@{UserPreference.userName}"
+                    android:text="@{PreferenceUtils.userName}"
                     android:textColor="@color/white" />
 
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvMobile"
                     style="@style/textview_description_large_wrap"
-                    android:text="@{UserPreference.userMono}"
+                    android:text="@{PreferenceUtils.userMono}"
                     android:textColor="@color/white" />
 
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvShopName"
                     style="@style/textview_description_large_wrap"
-                    android:text="@{UserPreference.email}"
+                    android:text="@{PreferenceUtils.email}"
                     android:textColor="@color/white" />
             </LinearLayout>
         </RelativeLayout>

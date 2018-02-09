@@ -16,7 +16,7 @@ import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
-import com.app.community.utils.UserPreference;
+import com.app.community.utils.PreferenceUtils;
 import com.google.android.gms.iid.InstanceID;
 
 import javax.inject.Inject;
@@ -70,8 +70,8 @@ public class LoginActivity extends CommonActivity implements MvpView, View.OnCli
                 if(isNotNull(loginResponse)){
                     String type=loginResponse.getType();
                     if(type.equals(AppConstants.SUCCESS)){
-                        UserPreference.setUserName(userName);
-                        UserPreference.setUserMono(mobileNumber);
+                        PreferenceUtils.setUserName(userName);
+                        PreferenceUtils.setUserMono(mobileNumber);
                         Bundle bundle=new Bundle();
                         bundle.putString(GeneralConstant.USER_NAME,userName);
                         bundle.putString(GeneralConstant.MOBILE_NUMBER,mobileNumber);
@@ -90,7 +90,7 @@ public class LoginActivity extends CommonActivity implements MvpView, View.OnCli
            if(isValid()){
                if(isNetworkConnected()){
                    presenter.getLoginDetail(this,new LoginRequest(userName,mobileNumber,
-                           UserPreference.getLatitude(), UserPreference.getLongitude()));
+                           PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude()));
                }
            }
         }else if(view==mBinding.tvSignupForAccount){

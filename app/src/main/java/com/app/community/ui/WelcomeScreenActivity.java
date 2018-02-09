@@ -20,7 +20,7 @@ import com.app.community.ui.location.GPSTracker;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
-import com.app.community.utils.UserPreference;
+import com.app.community.utils.PreferenceUtils;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.common.api.Status;
@@ -136,8 +136,8 @@ public class WelcomeScreenActivity extends BaseActivity implements CustomDialogF
     }
 
     private void getLatLong() {
-        UserPreference.setLatitude(gpsTracker.getLatitude());
-        UserPreference.setLongitude(gpsTracker.getLongitude());
+        PreferenceUtils.setLatitude(gpsTracker.getLatitude());
+        PreferenceUtils.setLongitude(gpsTracker.getLongitude());
         if (!isFromHome) {
             ExplicitIntent.getsInstance().navigateTo(this, LoginActivity.class);
         }
@@ -171,9 +171,9 @@ public class WelcomeScreenActivity extends BaseActivity implements CustomDialogF
                         Place place = PlaceAutocomplete.getPlace(this, data);
                         if (CommonUtils.isNotNull(place)) {
                             LatLng latLng = place.getLatLng();
-                            UserPreference.setAddress(place.getAddress().toString());
-                            UserPreference.setLatitude(latLng.latitude);
-                            UserPreference.setLongitude(latLng.longitude);
+                            PreferenceUtils.setAddress(place.getAddress().toString());
+                            PreferenceUtils.setLatitude(latLng.latitude);
+                            PreferenceUtils.setLongitude(latLng.longitude);
                         }
 
                     }

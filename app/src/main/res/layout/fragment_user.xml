@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 <data>
-    <import type="com.app.community.utils.UserPreference"/>
+    <import type="com.app.community.utils.PreferenceUtils"/>
 </data>
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         style="@style/match_match"
@@ -45,19 +45,19 @@
                     <com.app.community.widget.CustomTextView
                         android:id="@+id/tvName"
                         style="@style/textview_description_large_wrap"
-                        android:text="@{UserPreference.userName}"
+                        android:text="@{PreferenceUtils.userName}"
                         android:textColor="@color/white" />
 
                     <com.app.community.widget.CustomTextView
                         android:id="@+id/tvMobile"
-                        android:text="@{UserPreference.userMono}"
+                        android:text="@{PreferenceUtils.userMono}"
                         style="@style/textview_description_large_wrap"
                         android:textColor="@color/white" />
 
                     <com.app.community.widget.CustomTextView
                         android:id="@+id/tvShopName"
                         style="@style/textview_description_large_wrap"
-                        android:text="@{UserPreference.paymentOption}"
+                        android:text="@{PreferenceUtils.paymentOption}"
                         android:textColor="@color/white" />
                 </LinearLayout>
             </LinearLayout>
@@ -69,11 +69,11 @@
             <com.app.community.widget.CustomTextView
                 android:layout_marginTop="@dimen/margin_15"
                 style="@style/textview_description_large_wrap"
-                android:text="@{UserPreference.paymentOption}"/>
+                android:text="@{PreferenceUtils.paymentOption}"/>
             <com.app.community.widget.CustomTextView
                 android:layout_marginTop="@dimen/margin_15"
                 style="@style/textview_description_large_wrap"
-                android:text="@{UserPreference.cardNumber}"/>
+                android:text="@{PreferenceUtils.cardNumber}"/>
 
         </LinearLayout>
 

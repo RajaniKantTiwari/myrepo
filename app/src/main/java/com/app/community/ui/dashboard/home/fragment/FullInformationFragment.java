@@ -42,6 +42,7 @@ public class FullInformationFragment extends DashboardFragment {
 
     @Override
     public void setListener() {
+        mBinding.tvAddToCart.setOnClickListener(this);
         mBinding.ivAdd.setOnClickListener(this);
         mBinding.ivSub.setOnClickListener(this);
     }
@@ -70,6 +71,8 @@ public class FullInformationFragment extends DashboardFragment {
             } else {
                 getBaseActivity().showToast(getResources().getString(R.string.empty_cart));
             }
+        }else if(view==mBinding.tvAddToCart){
+            CommonUtils.clicked(mBinding.tvAddToCart);
         }
     }
 

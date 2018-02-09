@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.app.community.R;
 import com.app.community.databinding.DrawerLeftRowItemBinding;
 import com.app.community.utils.CommonUtils;
-import com.app.community.utils.UserPreference;
+import com.app.community.utils.PreferenceUtils;
 import com.app.community.widget.CustomTextView;
 
 import java.util.ArrayList;
@@ -50,10 +50,10 @@ public class DrawerAdapterLeft extends RecyclerView.Adapter<DrawerAdapterLeft.St
             holder.setData(drawerList.get(position));
             if (position == 2) {
                 holder.tvChange.setVisibility(View.VISIBLE);
-                if (UserPreference.getAddress() != null) {
-                    holder.tvChange.setText(UserPreference.getAddress());
+                if (PreferenceUtils.getAddress() != null) {
+                    holder.tvChange.setText(PreferenceUtils.getAddress());
                 } else {
-                    holder.tvChange.setText(UserPreference.getAddress(activity, UserPreference.getLatitude(), UserPreference.getLongitude()));
+                    holder.tvChange.setText(PreferenceUtils.getAddress(activity, PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude()));
                 }
             } else {
                 holder.tvChange.setVisibility(View.GONE);
