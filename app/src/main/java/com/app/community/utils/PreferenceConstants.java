@@ -18,4 +18,5 @@ public interface PreferenceConstants {
     String CARD_NUMBER = "card_number";
     String IMAGE_URL = "image_url";
     String ADDRESS="address";
+    String CART_DETAILS = "cart_details";
 }

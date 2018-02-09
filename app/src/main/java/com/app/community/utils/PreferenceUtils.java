@@ -4,9 +4,12 @@ import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 
+import com.app.community.network.response.dashboard.cart.ProductData;
 import com.orhanobut.hawk.Hawk;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -134,4 +137,10 @@ public class PreferenceUtils {
         }
         return null;
     }
+   /* public static void setCartData(HashMap<Integer,ArrayList<ProductData>> hashMap) {
+        Hawk.put(PreferenceConstants.CART_DETAILS, userName);
+    }
+    public static HashMap<Integer,ArrayList<ProductData>> getCartData(HashMap<Integer,ArrayList<ProductData>> hashMap) {
+        return Hawk.get(PreferenceConstants.CART_DETAILS);
+    }*/
 }

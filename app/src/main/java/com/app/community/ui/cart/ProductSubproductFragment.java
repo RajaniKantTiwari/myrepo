@@ -39,7 +39,7 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
     private CartAdapter mCartAdapter;
     private int oldCatPos, oldSubCatPos;
     private int MAX_LIMIT = 10, MIN_LIMIT = 0;
-    private int merchantId = 2;
+    private int merchantId;
     private ArrayList<CategoryData> mCatList = new ArrayList<>();
     private ArrayList<SubCategory> mSubCatList = new ArrayList<>();
     private ArrayList<ProductData> mCartList = new ArrayList<>();
