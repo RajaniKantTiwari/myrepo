@@ -20,9 +20,13 @@ import com.app.community.ui.activity.PaymentAdapter;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.MerchantDetailsFragment;
 import com.app.community.ui.dashboard.home.adapter.CheckoutCartAdapter;
+import com.app.community.ui.dashboard.home.event.UpdateAddress;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
+import com.app.community.utils.PreferenceUtils;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,6 +51,7 @@ public class CheckoutFragment extends DashboardFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_checkout, container, false);
+        CommonUtils.register(this);
         initializeView();
         return mBinding.getRoot();
     }
@@ -131,11 +136,21 @@ public class CheckoutFragment extends DashboardFragment {
 
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        CommonUtils.unregister(this);
+    }
+
     public static Fragment newInstance(int instance) {
         Bundle args = new Bundle();
         args.putInt(ARGS_INSTANCE, instance);
         CheckoutFragment fragment = new CheckoutFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+    @Subscribe
+    public void onAddressEvent(UpdateAddress event) {
+        mBinding.tvAddress.setText(PreferenceUtils.getAddress());
     }
 }

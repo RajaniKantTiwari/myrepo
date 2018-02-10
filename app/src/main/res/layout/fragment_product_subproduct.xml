@@ -82,6 +82,7 @@
                         style="@style/textview_description_large_wrap"
                         android:layout_gravity="center"
                         android:layout_marginStart="@dimen/margin_7"
+                        android:drawablePadding="@dimen/margin_7"
                         android:drawableStart="@drawable/rupee_black" />
                 </LinearLayout>
 

@@ -49,7 +49,7 @@ public class HelpsAndSupportActivity extends CommonActivity implements HelpSuppo
 
     public void initializeData() {
         mBinding.layoutHeader.tvHeader.setVisibility(View.VISIBLE);
-        mBinding.layoutHeader.tvHeader.setText(getResources().getString(R.string.offer));
+        mBinding.layoutHeader.tvHeader.setText(getResources().getString(R.string.help_support));
         mBinding.layoutHeader.headerLayout.setBackgroundColor(CommonUtils.getColor(this, R.color.dark_black));
         mBinding.layoutHeader.ivBack.setImageResource(R.drawable.ic_back_white);
     }

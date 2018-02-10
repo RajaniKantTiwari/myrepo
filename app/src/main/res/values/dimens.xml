@@ -61,6 +61,8 @@
 
     <!--Animation Duration-->
     <integer name="duration">400</integer>
+    <integer name="mono_length">10</integer>
+
     <integer name="zoom_duration">800</integer>
 
     <dimen name="tab_height">56dp</dimen>

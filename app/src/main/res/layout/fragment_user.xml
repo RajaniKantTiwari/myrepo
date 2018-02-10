@@ -55,9 +55,9 @@
                         android:textColor="@color/white" />
 
                     <com.app.community.widget.CustomTextView
-                        android:id="@+id/tvShopName"
+                        android:id="@+id/tvEmail"
                         style="@style/textview_description_large_wrap"
-                        android:text="@{PreferenceUtils.paymentOption}"
+                        android:text="@{PreferenceUtils.email}"
                         android:textColor="@color/white" />
                 </LinearLayout>
             </LinearLayout>
@@ -71,6 +71,7 @@
                 style="@style/textview_description_large_wrap"
                 android:text="@{PreferenceUtils.paymentOption}"/>
             <com.app.community.widget.CustomTextView
+                android:id="@+id/tvCardNumber"
                 android:layout_marginTop="@dimen/margin_15"
                 style="@style/textview_description_large_wrap"
                 android:text="@{PreferenceUtils.cardNumber}"/>

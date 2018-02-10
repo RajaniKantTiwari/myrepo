@@ -1,7 +1,5 @@
 package com.app.community.injector.component;
 
-
-
 import com.app.community.injector.module.ApplicationModule;
 import com.app.community.injector.module.NetworkModule;
 import com.app.community.injector.scope.PerApplication;

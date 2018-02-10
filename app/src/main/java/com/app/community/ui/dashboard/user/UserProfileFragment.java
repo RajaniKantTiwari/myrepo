@@ -10,13 +10,17 @@ import android.view.ViewGroup;
 
 import com.app.community.R;
 import com.app.community.databinding.FragmentUserBinding;
+import com.app.community.event.UpdateProfileEvent;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.activity.UpdateProfileActivity;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.presenter.CommonPresenter;
+import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GlideUtils;
 import com.app.community.utils.PreferenceUtils;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import javax.inject.Inject;
 
@@ -46,6 +50,7 @@ public class UserProfileFragment extends DashboardFragment {
         mBinding= DataBindingUtil.inflate(inflater, R.layout.fragment_user,container,false);
         GlideUtils.loadImageProfilePic(getContext(), PreferenceUtils.getImage(),mBinding.ivProfile,null,R.drawable.avatar);
         getDashboardActivity().setHeaderTitle(getString(R.string.user));
+        CommonUtils.register(this);
         return mBinding.getRoot();
     }
 
@@ -79,5 +84,20 @@ public class UserProfileFragment extends DashboardFragment {
      if(view==mBinding.ivEdit){
          ExplicitIntent.getsInstance().navigateTo(getDashboardActivity(), UpdateProfileActivity.class);
      }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        CommonUtils.unregister(this);
+    }
+
+    @Subscribe
+    public void onUpdateProfileEvent(UpdateProfileEvent event) {
+        GlideUtils.loadImageProfilePic(getContext(), PreferenceUtils.getImage(),mBinding.ivProfile,null,R.drawable.avatar);
+        mBinding.tvName.setText(PreferenceUtils.getUserName());
+        mBinding.tvMobile.setText(PreferenceUtils.getUserMono());
+        mBinding.tvEmail.setText(PreferenceUtils.getEmail());
+        mBinding.tvCardNumber.setText(PreferenceUtils.getCardNumber());
     }
 }

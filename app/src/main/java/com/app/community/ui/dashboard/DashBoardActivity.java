@@ -17,6 +17,7 @@ import com.app.community.CommonApplication;
 import com.app.community.R;
 import com.app.community.databinding.ActivityDashboardBinding;
 import com.app.community.event.ProductDetailsEvent;
+import com.app.community.event.UpdateProfileEvent;
 import com.app.community.injector.component.DaggerDashboardComponent;
 import com.app.community.injector.component.DashboardComponent;
 import com.app.community.injector.module.DashboardModule;
@@ -399,6 +400,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         mBinding.toolBar.layoutTab.setVisibility(View.VISIBLE);
         mBinding.toolBar.layoutProduct.setVisibility(View.GONE);
         mBinding.toolBar.tvHeading.setText(title);
+        mBinding.toolBar.toolbar.setBackgroundColor(CommonUtils.getColor(this,R.color.darker_blackish));
     }
 
     public void setHeader(String address, String imageUrl, String bgColor) {
@@ -480,5 +482,12 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
     @Subscribe
     public void onAddressEvent(UpdateAddress event) {
         mDrawerAdapterLeft.notifyDataSetChanged();
+    }
+
+    @Subscribe
+    public void onUpdateProfileEvent(UpdateProfileEvent event) {
+        GlideUtils.loadImageProfilePic(this, PreferenceUtils.getImage(),mBinding.layoutDrawerLeft.ivProfile, null, R.drawable.avatar);
+        mBinding.layoutDrawerLeft.tvName.setText(PreferenceUtils.getUserName());
+        mBinding.layoutDrawerLeft.tvMobile.setText(PreferenceUtils.getUserMono());
     }
 }

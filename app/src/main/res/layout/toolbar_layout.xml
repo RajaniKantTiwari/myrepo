@@ -35,7 +35,6 @@
                     android:id="@+id/tvHeading"
                     style="@style/textview_title_wrap"
                     android:layout_centerInParent="true"
-                    android:text="@string/app_name"
                     android:textColor="@color/white" />
 
                 <android.support.v4.widget.Space style="@style/layout_hori_match_1" />
@@ -51,17 +50,15 @@
                     android:id="@+id/tvAddress"
                     style="@style/textview_description_smaller_wrap"
                     android:layout_centerVertical="true"
-                    android:text="@string/app_name"
-                    android:ellipsize="marquee"
-                    android:marqueeRepeatLimit="marquee_forever"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:layout_toStartOf="@+id/ivProductImage"
+                    android:layout_marginEnd="@dimen/margin_5"/>
                 <ImageView
                     android:id="@+id/ivProductImage"
-                    style="@style/image_40"
+                    style="@style/image_70_50"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/hamberg_right" />
+                    android:background="@android:color/transparent"/>
 
             </RelativeLayout>
 

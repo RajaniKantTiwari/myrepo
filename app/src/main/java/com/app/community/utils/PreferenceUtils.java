@@ -1,6 +1,8 @@
 package com.app.community.utils;
 
 import android.content.Context;
+import android.databinding.Observable;
+import android.databinding.PropertyChangeRegistry;
 import android.location.Address;
 import android.location.Geocoder;
 
@@ -17,7 +19,9 @@ import java.util.Locale;
  * Created by arvind on 01/11/17.
  */
 
-public class PreferenceUtils {
+public class PreferenceUtils implements Observable {
+    private PropertyChangeRegistry registry = new PropertyChangeRegistry();
+
     public PreferenceUtils() {
     }
 
@@ -159,5 +163,16 @@ public class PreferenceUtils {
 
     public static HashMap<Integer, ArrayList<ProductData>> getCartData(HashMap<Integer, ArrayList<ArrayList<ProductData>>> pruductCart) {
         return Hawk.get(getUserMono());
+    }
+
+    @Override
+    public void addOnPropertyChangedCallback(OnPropertyChangedCallback onPropertyChangedCallback) {
+        registry.add(onPropertyChangedCallback);
+    }
+
+    @Override
+    public void removeOnPropertyChangedCallback(OnPropertyChangedCallback onPropertyChangedCallback) {
+        registry.remove(onPropertyChangedCallback);
+
     }
 }

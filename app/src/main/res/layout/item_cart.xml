@@ -126,7 +126,8 @@
             android:paddingTop="@dimen/margin_3"
             android:text="@string/subscribe"
             android:textAllCaps="true"
-            app:customFont="@string/font_regular" />
+            app:customFont="@string/font_regular"
+            android:visibility="invisible"/>
 
         <View
             android:id="@+id/viewLine2"

@@ -44,6 +44,7 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
     private ArrayList<SubCategory> mSubCatList = new ArrayList<>();
     private ArrayList<ProductData> mCartList = new ArrayList<>();
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -82,13 +83,12 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
 
     private void addToCart(TextView textView, int pos) {
         int count = Integer.parseInt(textView.getText().toString());
-
         if (count < MAX_LIMIT) {
             count++;
             textView.setText(String.valueOf(count));
 
         } else {
-            Toast.makeText(getDashboardActivity(), "You can not add more than 10 item in cart", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getDashboardActivity(), getResources().getString(R.string.you_can_not_add), Toast.LENGTH_SHORT).show();
         }
         mCartList.get(pos).setQty(count);
         setTotalAmount();

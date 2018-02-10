@@ -458,6 +458,9 @@
     <string name="update">Update</string>
     <string name="enter_new_address">Enter New Address</string>
     <string name="please_enter_text_to_get_merchant">Please Enter text to search merchant</string>
+    <string name="you_can_not_add">You can not add more than 10 item in cart</string>
+    <string name="enter_card_number">Enter Card Number</string>
+    <string name="update_profile">Update Profile</string>
 
 
     <string-array name="state_array">

@@ -118,6 +118,7 @@
                 </RelativeLayout>
 
                 <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvAddress"
                     style="@style/textview_description_match"
                     android:layout_marginEnd="@dimen/margin_10"
                     android:layout_marginStart="@dimen/margin_10"

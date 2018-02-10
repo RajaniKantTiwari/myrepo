@@ -13,6 +13,7 @@ import android.view.View;
 
 import com.app.community.R;
 import com.app.community.databinding.ActivityUpdateProfileBinding;
+import com.app.community.event.UpdateProfileEvent;
 import com.app.community.network.request.PaymentOption;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.authentication.CommonActivity;
@@ -27,6 +28,8 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import net.alhazmy13.mediapicker.Image.ImagePicker;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -51,12 +54,20 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_update_profile);
         initializeData();
+        setHeader();
         setListener();
+    }
+
+    private void setHeader() {
+        mBinding.layoutHeader.ivBack.setImageResource(R.drawable.ic_back_white);
+        mBinding.layoutHeader.tvHeader.setVisibility(View.VISIBLE);
+        mBinding.layoutHeader.tvHeader.setText(getResources().getString(R.string.update_profile));
     }
 
     public void setListener() {
         mBinding.ivProfile.setOnClickListener(this);
-        mBinding.tvDone.setOnClickListener(this);
+        mBinding.tvUpdate.setOnClickListener(this);
+        mBinding.layoutHeader.ivBack.setOnClickListener(this);
     }
 
     public void initializeData() {
@@ -102,36 +113,44 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
 
     @Override
     public void onClick(View view) {
-            if(mBinding.ivProfile==view){
-                showImageChooserDialog();
-            }else if(mBinding.tvDone==view){
-                updateProfile();
-            }
+        if (mBinding.ivProfile == view) {
+            showImageChooserDialog();
+        } else if (mBinding.tvUpdate == view) {
+            PreferenceUtils.setImage(profilePicFilePath);
+            PreferenceUtils.setUserName(mBinding.edName.getText().toString());
+            PreferenceUtils.setEmail(mBinding.edEmail.getText().toString());
+            PreferenceUtils.setCardNumber(mBinding.edCreditDetails.getText().toString());
+            updateProfile();
+            EventBus.getDefault().post(new UpdateProfileEvent());
+            finish();
+        } else if (mBinding.layoutHeader.ivBack == view) {
+                finish();
+        }
     }
 
 
     private void showImageChooserDialog() {
         //ImagePickerUtils.add(getSupportFragmentManager(), this);
 
-            BottomSheetDialog dialog = new BottomSheetDialog(this);
-            dialog.setContentView(R.layout.profile_dialog_layout);
-            View layoutCamera = dialog.findViewById(R.id.layoutCamera);
-            View layoutGallery = dialog.findViewById(R.id.layoutGallery);
-            View layoutCancel=dialog.findViewById(R.id.layoutCancel);
-            layoutCamera.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialog.dismiss();
-                    openImageCamera();
-                }
-            });
-            layoutGallery.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialog.dismiss();
-                    openImageGallery();
-                }
-            });
+        BottomSheetDialog dialog = new BottomSheetDialog(this);
+        dialog.setContentView(R.layout.profile_dialog_layout);
+        View layoutCamera = dialog.findViewById(R.id.layoutCamera);
+        View layoutGallery = dialog.findViewById(R.id.layoutGallery);
+        View layoutCancel = dialog.findViewById(R.id.layoutCancel);
+        layoutCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                openImageCamera();
+            }
+        });
+        layoutGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                openImageGallery();
+            }
+        });
         layoutCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,13 +158,14 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
                 clearImage();
             }
         });
-            dialog.show();
+        dialog.show();
 
     }
 
     private void clearImage() {
         profilePicFilePath = "";
     }
+
     /**
      * Open camera to capture image
      */
@@ -179,6 +199,8 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
     @Override
     public void success(String name, String path, int type) {
         GlideUtils.loadImageProfilePic(this, path, mBinding.ivProfile, null, 0);
+        PreferenceUtils.setImage(path);
+        EventBus.getDefault().post(new UpdateProfileEvent());
     }
 
     @Override
@@ -188,7 +210,7 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
             if (requestCode == ImagePicker.IMAGE_PICKER_REQUEST_CODE) {
                 List<String> mPaths = (List<String>) data.getSerializableExtra(ImagePicker.EXTRA_IMAGE_PATH);
                 profilePicFilePath = mPaths.get(0);
-                profilePicFilePath="file:///"+profilePicFilePath;
+                profilePicFilePath = "file:///" + profilePicFilePath;
                 gotoCropper(Uri.parse(profilePicFilePath));
             } else if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
                 LogUtils.LOGD(TAG, "CROP");
@@ -202,13 +224,15 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
             }
         }
     }
+
     private void setImageFromLocal(String filePath) {
-        profilePicFilePath=filePath;
+        profilePicFilePath = filePath;
         File f = new File(filePath);
         if (f.exists()) {
             GlideUtils.loadImageProfilePic(this, filePath, mBinding.ivProfile, null, R.drawable.avatar);
         }
     }
+
     private void gotoCropper(Uri sourceUri) {
         CropImage.activity(sourceUri).setAspectRatio(1, 1)
                 .setGuidelines(CropImageView.Guidelines.ON)
@@ -222,11 +246,11 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
             //String name = mBinding.edtName.getText().toString().trim();
             //String phoneNumber = mBinding.edtPhone.getText().toString().trim();
             if (TextUtils.isEmpty(profilePicFilePath)) {
-               // presenter.updateProfile(this, name, phoneNumber, age, currentGender, null);
+                // presenter.updateProfile(this, name, phoneNumber, age, currentGender, null);
             } else {
                 MultipartBody.Part body = CommonUtils.createMultipart(profilePicFilePath, GeneralConstant.PROFILE_UPDATE_PARAMETER);
                 if (body != null) {
-                   // presenter.updateProfile(this, name, phoneNumber, age, currentGender, body);
+                    // presenter.updateProfile(this, name, phoneNumber, age, currentGender, body);
                 } else {
                     //presenter.updateProfile(this, name, phoneNumber, age, currentGender, null);
                 }
@@ -244,5 +268,6 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
     public void fail(String message) {
         LogUtils.LOGD(TAG, message);
     }
+
 
 }

@@ -1,6 +1,5 @@
 <resources>
 
-
     <!-- Base application theme. -->
     <style name="parentTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
@@ -227,6 +226,10 @@
         <item name="android:layout_width">@dimen/margin_70</item>
         <item name="android:layout_height">@dimen/margin_60</item>
     </style>
+    <style name="image_60_50" >
+        <item name="android:layout_width">@dimen/margin_60</item>
+        <item name="android:layout_height">@dimen/margin_50</item>
+    </style>
     <style name="image_80" >
         <item name="android:layout_width">@dimen/margin_80</item>
         <item name="android:layout_height">@dimen/margin_80</item>
@@ -243,6 +246,10 @@
     <style name="image_70_40" >
         <item name="android:layout_width">@dimen/margin_70</item>
         <item name="android:layout_height">@dimen/margin_40</item>
+    </style>
+    <style name="image_70_50" >
+        <item name="android:layout_width">@dimen/margin_70</item>
+        <item name="android:layout_height">@dimen/margin_50</item>
     </style>
     <style name="textview_header_large_match" parent="match_wrap">
         <item name="android:textSize">@dimen/textSize_header_large</item>

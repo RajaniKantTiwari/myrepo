@@ -57,6 +57,7 @@
                 android:layout_marginTop="@dimen/margin_10"
                 android:paddingBottom="@dimen/margin_5"
                 android:paddingTop="@dimen/margin_5"
+                android:maxLength="@integer/mono_length"
                 android:inputType="number"/>
 
             <ImageView style="@style/view_layout" />
