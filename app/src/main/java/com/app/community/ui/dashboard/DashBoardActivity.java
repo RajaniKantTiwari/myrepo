@@ -141,6 +141,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         setupDrawerToggleLeft();
         initializeData();
         setListener();
+        onUpdateCartEvent(new UpdateCartEvent());
     }
 
     private void initDashboardComponent() {
@@ -506,12 +507,12 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
     public void onUpdateCartEvent(UpdateCartEvent event) {
         int cartItem = 0;
         if (CommonUtils.isNotNull(PreferenceUtils.getCartData()) && PreferenceUtils.getCartData().size() > 0) {
-                ArrayList<ProductData> productList = PreferenceUtils.getCartData();
-                    for (ProductData product : productList) {
-                        if (CommonUtils.isNotNull(product)) {
-                            cartItem = cartItem + product.getQty();
-                        }
-                    }
+            ArrayList<ProductData> productList = PreferenceUtils.getCartData();
+            for (ProductData product : productList) {
+                if (CommonUtils.isNotNull(product)) {
+                    cartItem = cartItem + product.getQty();
+                }
+            }
         }
         if (cartItem > 0) {
             mBinding.toolBar.tvCart.setText(String.valueOf(cartItem));
@@ -547,12 +548,5 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
             mPresenter.addForCartList(this, request);
 
         }
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        showToast("onStopCalled");
-
     }
 }

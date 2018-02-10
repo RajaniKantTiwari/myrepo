@@ -252,6 +252,9 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
                 mCatList.get(pos).setSelected(true);
                 mSubCatList.clear();
                 mSubCatList.addAll(mCatList.get(pos).getSubproduct());
+                for(int i=0;i<mSubCatList.size();i++){
+                    mSubCatList.get(i).setSelected(false);
+                }
                 mSubCatList.get(0).setSelected(true);
                 mCartList.clear();
                 mCartList.addAll(mSubCatList.get(0).getSubproduct());
@@ -269,8 +272,8 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
         View itemView = (View) view.getTag();
         switch (itemView.getId()) {
             case R.id.tvName:
-                mSubCatList.get(pos).setSelected(true);
                 mSubCatList.get(oldSubCatPos).setSelected(false);
+                mSubCatList.get(pos).setSelected(true);
                 mCartList.clear();
                 mCartList.addAll(mSubCatList.get(pos).getSubproduct());
                 mSubCategoryAdapter.notifyDataSetChanged();
