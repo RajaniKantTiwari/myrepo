@@ -36,6 +36,7 @@ import com.app.community.ui.dashboard.home.adapter.EmergencyAdapter;
 import com.app.community.ui.dashboard.home.adapter.LatestNewsAdapter;
 import com.app.community.ui.dashboard.home.adapter.NewsAdapter;
 import com.app.community.ui.dashboard.home.adapter.OffersAdapter;
+import com.app.community.ui.dashboard.home.event.UpdateAddress;
 import com.app.community.ui.dashboard.home.fragment.MyOrderActivity;
 import com.app.community.ui.dashboard.home.fragment.NewsMainFragment;
 import com.app.community.ui.dashboard.offer.OfferDetailsActivity;
@@ -47,6 +48,8 @@ import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.GlideUtils;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 
@@ -84,6 +87,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_welcomehome, container, false);
+        CommonUtils.register(this);
         getDashboardActivity().setHeaderTitle(getString(R.string.home));
         mWelcomeBinding = AddWelcomeChildView.addWelcomeSearchView(inflater, mBinding);
         mEmergencyPlaceBinding = AddWelcomeChildView.addImportantPlace(inflater, mBinding);
@@ -294,7 +298,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
         callIntent = new Intent(Intent.ACTION_CALL);
         callIntent.setData(Uri.parse("tel:" + phoneNumber));
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(getBaseActivity(), new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL);
+            requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL);
             return;
         } else
             startActivity(callIntent);
@@ -308,15 +312,11 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case REQUEST_CALL: {
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    startActivity(callIntent);
-                } else {
-                    getBaseActivity().showToast(getResources().getString(R.string.permition_denied));
-                }
-            }
+        if (requestCode == REQUEST_CALL
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            startActivity(callIntent);
+        }else {
+            getBaseActivity().showToast(getResources().getString(R.string.permition_denied));
         }
     }
     @Override
@@ -333,4 +333,16 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
         }
 
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        CommonUtils.unregister(this);
+    }
+
+    @Subscribe
+    public void onAddressEvent(UpdateAddress event) {
+        getPresenter().getWelcomeHomePage(getDashboardActivity());
+    }
+
 }

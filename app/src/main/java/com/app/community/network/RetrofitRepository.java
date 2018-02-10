@@ -2,6 +2,7 @@ package com.app.community.network;
 
 import com.app.community.network.request.DeviceTokenRequest;
 import com.app.community.network.request.LoginRequest;
+import com.app.community.network.request.UpdateLocation;
 import com.app.community.network.request.VerifyMobileRequest;
 import com.app.community.network.request.cart.CartRequest;
 import com.app.community.network.request.cart.CategoryRequest;
@@ -99,5 +100,10 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<BaseResponse> logout() {
         return apiService.logout();
+    }
+
+    @Override
+    public Observable<BaseResponse> updateLocation(UpdateLocation updateLocation) {
+        return apiService.updateLocation(updateLocation);
     }
 }

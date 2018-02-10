@@ -5,12 +5,14 @@ import android.app.Activity;
 import com.app.community.network.DefaultApiObserver;
 import com.app.community.network.Repository;
 import com.app.community.network.request.LoginRequest;
+import com.app.community.network.request.UpdateLocation;
 import com.app.community.network.request.VerifyMobileRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.LoginResponse;
 import com.app.community.network.response.VerifyMobileResponse;
 import com.app.community.network.response.dashboard.home.SearchResponseData;
+import com.app.community.ui.WelcomeScreenActivity;
 import com.app.community.ui.base.MvpView;
 import com.app.community.ui.base.Presenter;
 
@@ -106,6 +108,25 @@ public class CommonPresenter implements Presenter<MvpView> {
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
                 mView.onError(baseResponse.getMsg(), 2);
+            }
+        });
+    }
+
+    public void updateLocation(WelcomeScreenActivity activity, UpdateLocation updateLocation) {
+        activity.showProgress();
+        mRepository.updateLocation(updateLocation).
+                subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+            @Override
+            public void onResponse(BaseResponse response) {
+                activity.hideProgress();
+                activity.onSuccess(response, 0);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                activity.hideProgress();
+                activity.onError(baseResponse.getMsg(), 0);
             }
         });
     }

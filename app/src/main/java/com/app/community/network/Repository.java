@@ -2,6 +2,7 @@ package com.app.community.network;
 
 import com.app.community.network.request.DeviceTokenRequest;
 import com.app.community.network.request.LoginRequest;
+import com.app.community.network.request.UpdateLocation;
 import com.app.community.network.request.VerifyMobileRequest;
 import com.app.community.network.request.cart.CartRequest;
 import com.app.community.network.request.cart.CategoryRequest;
@@ -54,4 +55,6 @@ public interface Repository {
     Observable<BaseResponse> setDeviceToken(DeviceTokenRequest token);
 
     Observable<BaseResponse> logout();
+
+    Observable<BaseResponse> updateLocation(UpdateLocation updateLocation);
 }

@@ -75,7 +75,7 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
         switch (view.getId()) {
             case R.id.tvCheckout:
                 CommonUtils.clicked(mBinding.tvCheckout);
-                getDashboardActivity().addFragmentInContainer(new CheckoutFragment(),null,true,true, NONE);
+                getDashboardActivity().addFragmentInContainer(new CheckoutFragment(), null, true, true, NONE);
                 break;
         }
 
@@ -117,24 +117,26 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
         if (response != null) {
             if (response instanceof CategoryResponse) {
                 CategoryResponse categoryResponse = (CategoryResponse) response;
-                    CommonUtils.setVisibility(mBinding.layoutMain,mBinding.layoutNoData.layoutNoData,true);
-                    mCatList.clear();
-                    mSubCatList.clear();
-                    mCartList.clear();
-                    mCatList.addAll(categoryResponse.getInfo());
-                    mCatList.get(0).setSelected(true);
-                    mSubCatList.addAll(categoryResponse.getInfo().get(0).getSubproduct());
-                    mSubCatList.get(0).setSelected(true);
-                    mCartList.addAll(categoryResponse.getInfo().get(0).getSubproduct().get(0).getSubproduct());
-                    mCategoryAdapter.notifyDataSetChanged();
-                    mSubCategoryAdapter.notifyDataSetChanged();
-                    mCartAdapter.notifyDataSetChanged();
-                    mBinding.tvTitle.setText(categoryResponse.getInfo().get(0).getSubproduct().get(0).getName());
-                    mBinding.tvTotal.setText(""+0.00);
+                CommonUtils.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, true);
+                ArrayList<CategoryData> categoryList = categoryResponse.getInfo();
+                mCatList.clear();
+                mSubCatList.clear();
+                mCartList.clear();
+                mCatList.addAll(categoryResponse.getInfo());
+
+                mCatList.get(0).setSelected(true);
+                mSubCatList.addAll(categoryResponse.getInfo().get(0).getSubproduct());
+                mSubCatList.get(0).setSelected(true);
+                mCartList.addAll(categoryResponse.getInfo().get(0).getSubproduct().get(0).getSubproduct());
+                mCategoryAdapter.notifyDataSetChanged();
+                mSubCategoryAdapter.notifyDataSetChanged();
+                mCartAdapter.notifyDataSetChanged();
+                mBinding.tvTitle.setText(categoryResponse.getInfo().get(0).getSubproduct().get(0).getName());
+                mBinding.tvTotal.setText("" + 0.00);
 
             }
-        }else {
-            CommonUtils.setVisibility(mBinding.layoutMain,mBinding.layoutNoData.layoutNoData,false);
+        } else {
+            CommonUtils.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, false);
         }
     }
 
@@ -160,7 +162,7 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
             String productResponse = bundle.getString(AppConstants.MERCHANT_ID);
             merchantId = Integer.parseInt(productResponse);
             getDashboardActivity().setHeader(bundle.getString(AppConstants.MERCHANT_ADDRESS),
-                    bundle.getString(AppConstants.MERCHANT_IMAGE),bundle.getString(AppConstants.MERCHANT_BACKGROUND_COLOR));
+                    bundle.getString(AppConstants.MERCHANT_IMAGE), bundle.getString(AppConstants.MERCHANT_BACKGROUND_COLOR));
         }
         setViews();
         callApi();
@@ -179,10 +181,10 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
                 break;
             case R.id.layoutProduct:
             case R.id.layoutInfo:
-                if(CommonUtils.isNotNull(mCartList)&&mCartList.size()>pos){
-                    Bundle bundle=new Bundle();
-                    bundle.putParcelable(AppConstants.PRODUCT_DATA,mCartList.get(pos));
-                    getDashboardActivity().addFragmentInContainer(new FullInformationFragment(),bundle,true,true, NONE);
+                if (CommonUtils.isNotNull(mCartList) && mCartList.size() > pos) {
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable(AppConstants.PRODUCT_DATA, mCartList.get(pos));
+                    getDashboardActivity().addFragmentInContainer(new FullInformationFragment(), bundle, true, true, NONE);
                 }
                 break;
         }
@@ -195,7 +197,7 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
         for (ProductData data : mCartList) {
             total += data.getQty() * data.getProduct_mrp();
         }
-        mBinding.tvTotal.setText(""+total);
+        mBinding.tvTotal.setText("" + total);
 
     }
 

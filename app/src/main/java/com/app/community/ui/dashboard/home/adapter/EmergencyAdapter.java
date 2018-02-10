@@ -70,6 +70,7 @@ public class EmergencyAdapter extends RecyclerView.Adapter<EmergencyAdapter.Emer
         @Override
         public void onClick(View view) {
             if(CommonUtils.isNotNull(listener)){
+                CommonUtils.clicked(itmView.ivPlace);
                 listener.emergencyClicked(getAdapterPosition());
             }
         }

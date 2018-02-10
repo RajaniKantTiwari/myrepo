@@ -6,9 +6,26 @@ package com.app.community.network.request.cart;
 
 public class CartRequest {
     private int merchant_id;
-    private int product_id;
+    private int merchantlist_id;
+    private int masterproductid;
     private int qty;
     private int userid;
+
+    public int getMasterproductid() {
+        return masterproductid;
+    }
+
+    public void setMasterproductid(int masterproductid) {
+        this.masterproductid = masterproductid;
+    }
+
+    public int getMerchantlist_id() {
+        return merchantlist_id;
+    }
+
+    public void setMerchantlist_id(int merchantlist_id) {
+        this.merchantlist_id = merchantlist_id;
+    }
 
     public int getMerchant_id() {
         return merchant_id;
@@ -18,13 +35,6 @@ public class CartRequest {
         this.merchant_id = merchant_id;
     }
 
-    public int getProduct_id() {
-        return product_id;
-    }
-
-    public void setProduct_id(int product_id) {
-        this.product_id = product_id;
-    }
 
     public int getQty() {
         return qty;

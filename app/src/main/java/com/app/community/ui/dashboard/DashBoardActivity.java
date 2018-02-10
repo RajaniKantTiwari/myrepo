@@ -481,6 +481,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
 
     @Subscribe
     public void onAddressEvent(UpdateAddress event) {
+        mPresenter.getCategorySubCategoryRightDrawer(this);
         mDrawerAdapterLeft.notifyDataSetChanged();
     }
 
