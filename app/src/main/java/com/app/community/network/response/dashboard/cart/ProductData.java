@@ -18,6 +18,32 @@ public class ProductData implements Parcelable{
     private String measure;
     private String colorcode;
     private String icon;
+    private int merchantlistid;
+    private int masterproductid;
+    private int merchantId;
+    public void setMerchantId(int merchantId) {
+        this.merchantId = merchantId;
+    }
+
+    public int getMerchantId() {
+        return merchantId;
+    }
+
+    public int getMerchantlistid() {
+        return merchantlistid;
+    }
+
+    public void setMerchantlistid(int merchantlistid) {
+        this.merchantlistid = merchantlistid;
+    }
+
+    public int getMasterproductid() {
+        return masterproductid;
+    }
+
+    public void setMasterproductid(int masterproductid) {
+        this.masterproductid = masterproductid;
+    }
 
     public ProductData() {
     }
@@ -33,6 +59,7 @@ public class ProductData implements Parcelable{
         measure = in.readString();
         colorcode = in.readString();
         icon = in.readString();
+        merchantId=in.readInt();
     }
 
     public static final Creator<ProductData> CREATOR = new Creator<ProductData>() {
@@ -144,6 +171,9 @@ public class ProductData implements Parcelable{
         dest.writeString(measure);
         dest.writeString(colorcode);
         dest.writeString(icon);
+        dest.writeInt(merchantId);
     }
+
+
 }
 

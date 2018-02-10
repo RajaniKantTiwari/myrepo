@@ -82,20 +82,19 @@
                     android:id="@+id/ivCart"
                     style="@style/wrap_wrap"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/black_dot"
                     android:contentDescription="@null"
                     android:padding="@dimen/margin_12"
                     android:src="@drawable/shopping_cart" />
 
                 <com.app.community.widget.CustomTextView
-                    android:id="@+id/tvPastOrder"
+                    android:id="@+id/tvCart"
                     style="@style/textview_description_small_wrap"
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="@dimen/margin_5"
                     android:gravity="center"
                     android:background="@drawable/black_cart_dot"
-                    android:text="200"
                     android:textAllCaps="true"
+                    android:visibility="gone"
                     android:textColor="@color/white" />
 
             </RelativeLayout>

@@ -12,18 +12,23 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Toast;
 
 import com.app.community.CommonApplication;
 import com.app.community.R;
 import com.app.community.databinding.ActivityDashboardBinding;
 import com.app.community.event.ProductDetailsEvent;
+import com.app.community.event.UpdateCartEvent;
 import com.app.community.event.UpdateProfileEvent;
 import com.app.community.injector.component.DaggerDashboardComponent;
 import com.app.community.injector.component.DashboardComponent;
 import com.app.community.injector.module.DashboardModule;
 import com.app.community.network.DeviceToken;
 import com.app.community.network.request.DeviceTokenRequest;
+import com.app.community.network.request.cart.Cart;
+import com.app.community.network.request.cart.CartListRequest;
 import com.app.community.network.response.BaseResponse;
+import com.app.community.network.response.dashboard.cart.ProductData;
 import com.app.community.network.response.dashboard.home.MerchantResponse;
 import com.app.community.network.response.dashboard.rightdrawer.Merchant;
 import com.app.community.network.response.dashboard.rightdrawer.ProductSubCategory;
@@ -37,6 +42,7 @@ import com.app.community.ui.dashboard.expandrecycleview.draweradapter.DrawerAdap
 import com.app.community.ui.dashboard.home.SearchActivity;
 import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.adapter.DrawerAdapterLeft;
+import com.app.community.ui.dashboard.home.event.AddCartEvent;
 import com.app.community.ui.dashboard.home.event.NewsEvent;
 import com.app.community.ui.dashboard.home.event.SearchProductEvent;
 import com.app.community.ui.dashboard.home.event.UpdateAddress;
@@ -54,10 +60,14 @@ import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.GlideUtils;
 import com.app.community.utils.LogUtils;
 import com.app.community.utils.PreferenceUtils;
+import com.crashlytics.android.answers.AddToCartEvent;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -237,7 +247,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
             }
         } else if (requestCode == AppConstants.DEVICE_TOKEN_RESPONSE) {
             LogUtils.LOGE(TAG, response.getMsg());
-        } else if (requestCode == AppConstants.LOGOUT) {
+        } /*else if (requestCode == AppConstants.LOGOUT||requestCode==AppConstants.CARTADDED) {*/ else if (requestCode == AppConstants.LOGOUT) {
             if (CommonUtils.isNotNull(response)) {
                 showToast(response.getMsg());
                 CommonUtils.logout(this);
@@ -400,7 +410,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         mBinding.toolBar.layoutTab.setVisibility(View.VISIBLE);
         mBinding.toolBar.layoutProduct.setVisibility(View.GONE);
         mBinding.toolBar.tvHeading.setText(title);
-        mBinding.toolBar.toolbar.setBackgroundColor(CommonUtils.getColor(this,R.color.darker_blackish));
+        mBinding.toolBar.toolbar.setBackgroundColor(CommonUtils.getColor(this, R.color.darker_blackish));
     }
 
     public void setHeader(String address, String imageUrl, String bgColor) {
@@ -424,9 +434,9 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                     Merchant merchantData = merchantList.get(childPosition);
                     if (CommonUtils.isNotNull(merchantData)) {
                         bundle.putString(AppConstants.MERCHANT_ID, merchantData.getId());
-                        bundle.putString(AppConstants.MERCHANT_ADDRESS,merchantData.getAddress());
-                        bundle.putString(AppConstants.MERCHANT_IMAGE,merchantData.getImage());
-                        bundle.putString(AppConstants.MERCHANT_BACKGROUND_COLOR,merchantData.getBackground_color());
+                        bundle.putString(AppConstants.MERCHANT_ADDRESS, merchantData.getAddress());
+                        bundle.putString(AppConstants.MERCHANT_IMAGE, merchantData.getImage());
+                        bundle.putString(AppConstants.MERCHANT_BACKGROUND_COLOR, merchantData.getBackground_color());
 
                     }
                 }
@@ -445,11 +455,11 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
     @Subscribe
     public void onSearchProduct(ProductDetailsEvent event) {
         Bundle bundle = new Bundle();
-        MerchantResponse merchantResponse=event.getMerchant();
+        MerchantResponse merchantResponse = event.getMerchant();
         bundle.putString(AppConstants.MERCHANT_ID, merchantResponse.getId());
-        bundle.putString(AppConstants.MERCHANT_ADDRESS,merchantResponse.getAddress());
-        bundle.putString(AppConstants.MERCHANT_IMAGE,merchantResponse.getImage());
-        bundle.putString(AppConstants.MERCHANT_BACKGROUND_COLOR,merchantResponse.getBackground_color());
+        bundle.putString(AppConstants.MERCHANT_ADDRESS, merchantResponse.getAddress());
+        bundle.putString(AppConstants.MERCHANT_IMAGE, merchantResponse.getImage());
+        bundle.putString(AppConstants.MERCHANT_BACKGROUND_COLOR, merchantResponse.getBackground_color());
         pushFragment(new ProductSubproductFragment(), bundle, R.id.container, true, true, NONE);
 
 
@@ -487,8 +497,62 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
 
     @Subscribe
     public void onUpdateProfileEvent(UpdateProfileEvent event) {
-        GlideUtils.loadImageProfilePic(this, PreferenceUtils.getImage(),mBinding.layoutDrawerLeft.ivProfile, null, R.drawable.avatar);
+        GlideUtils.loadImageProfilePic(this, PreferenceUtils.getImage(), mBinding.layoutDrawerLeft.ivProfile, null, R.drawable.avatar);
         mBinding.layoutDrawerLeft.tvName.setText(PreferenceUtils.getUserName());
         mBinding.layoutDrawerLeft.tvMobile.setText(PreferenceUtils.getUserMono());
+    }
+
+    @Subscribe
+    public void onUpdateCartEvent(UpdateCartEvent event) {
+        int cartItem = 0;
+        if (CommonUtils.isNotNull(PreferenceUtils.getCartData()) && PreferenceUtils.getCartData().size() > 0) {
+                ArrayList<ProductData> productList = PreferenceUtils.getCartData();
+                    for (ProductData product : productList) {
+                        if (CommonUtils.isNotNull(product)) {
+                            cartItem = cartItem + product.getQty();
+                        }
+                    }
+        }
+        if (cartItem > 0) {
+            mBinding.toolBar.tvCart.setText(String.valueOf(cartItem));
+            mBinding.toolBar.tvCart.setVisibility(View.VISIBLE);
+        } else {
+            mBinding.toolBar.tvCart.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (CommonUtils.isNotNull(PreferenceUtils.getCartData()) &&
+                CommonUtils.isNotNull(PreferenceUtils.getCartData().size())
+                && PreferenceUtils.getCartData().size() > 0) {
+            //request for cart
+            CartListRequest request = new CartListRequest();
+            //list of product added in cart
+            ArrayList<Cart> cartList = new ArrayList<>();
+            ArrayList<ProductData> productList = PreferenceUtils.getCartData();
+            request.setMerchant_id(productList.get(0).getMerchantId());
+            //id of merchant
+            for (ProductData product : productList) {
+                if (CommonUtils.isNotNull(product)) {
+                    Cart cart = new Cart();
+                    cart.setMerchantlist_id(product.getMerchantlistid());
+                    cart.setMasterproductid(product.getMasterproductid());
+                    cart.setQty(product.getQty());
+                    cartList.add(cart);
+                }
+            }
+            request.setCart(cartList);
+            mPresenter.addForCartList(this, request);
+
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        showToast("onStopCalled");
+
     }
 }

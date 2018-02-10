@@ -9,7 +9,6 @@ import android.location.Geocoder;
 import com.app.community.network.response.dashboard.cart.ProductData;
 import com.orhanobut.hawk.Hawk;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -157,12 +156,12 @@ public class PreferenceUtils implements Observable {
         return null;
     }
 
-    public static void setCartData(HashMap<Integer, ArrayList<ArrayList<ProductData>>> pruductCart) {
-        Hawk.put(getUserMono(), pruductCart);
+    public static void setCartData(ArrayList<ProductData> addCartList) {
+        Hawk.put(getUserMono(), addCartList);
     }
 
-    public static HashMap<Integer, ArrayList<ProductData>> getCartData(HashMap<Integer, ArrayList<ArrayList<ProductData>>> pruductCart) {
-        return Hawk.get(getUserMono());
+    public static ArrayList<ProductData> getCartData() {
+        return Hawk.get(getUserMono(),null);
     }
 
     @Override

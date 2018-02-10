@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.app.community.R;
 import com.app.community.databinding.FragmentProductSubproductBinding;
 import com.app.community.databinding.ItemCartBinding;
+import com.app.community.event.UpdateCartEvent;
+import com.app.community.network.request.cart.CartListRequest;
 import com.app.community.network.request.cart.CategoryRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.cart.CategoryData;
@@ -25,8 +27,14 @@ import com.app.community.ui.dashboard.home.fragment.FullInformationFragment;
 import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.LogUtils;
+import com.app.community.utils.PreferenceUtils;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
+import java.util.TreeSet;
 
 import static com.app.community.ui.base.BaseActivity.AnimationType.NONE;
 
@@ -43,7 +51,7 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
     private ArrayList<CategoryData> mCatList = new ArrayList<>();
     private ArrayList<SubCategory> mSubCatList = new ArrayList<>();
     private ArrayList<ProductData> mCartList = new ArrayList<>();
-
+    private ArrayList<ProductData> addCartList = new ArrayList<>();
 
     @Nullable
     @Override
@@ -59,9 +67,7 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
         mBinding.rvCat.setLayoutManager(mLayoutManager);
         mBinding.rvSubCat.setLayoutManager(mLayoutMangerSubcat);
         mBinding.rvDetail.setLayoutManager(mLayoutManagerCart);
-
         mBinding.tvCheckout.setOnClickListener(this);
-
         mCategoryAdapter = new CategoryAdapter(mCatList, this);
         mSubCategoryAdapter = new SubCatAdapter(mSubCatList, this);
         mCartAdapter = new CartAdapter(mCartList, this);
@@ -82,18 +88,26 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
     }
 
     private void addToCart(TextView textView, int pos) {
+        boolean isNotAdded = true;
         int count = Integer.parseInt(textView.getText().toString());
         if (count < MAX_LIMIT) {
             count++;
             textView.setText(String.valueOf(count));
-
         } else {
             Toast.makeText(getDashboardActivity(), getResources().getString(R.string.you_can_not_add), Toast.LENGTH_SHORT).show();
         }
         mCartList.get(pos).setQty(count);
+        for (int i = 0; i < addCartList.size(); i++) {
+            if (mCartList.get(pos).getMerchantlistid() == addCartList.get(i).getMerchantlistid()) {
+                isNotAdded = false;
+                addCartList.set(i, mCartList.get(pos));
+            }
+        }
+        if (isNotAdded) {
+            addCartList.add(mCartList.get(pos));
+        }
+        setCartData();
         setTotalAmount();
-
-
     }
 
     private void removeFromCart(TextView textView, int pos) {
@@ -101,15 +115,32 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
         if (count > MIN_LIMIT) {
             count--;
             textView.setText(String.valueOf(count));
-
         } else {
             count = 0;
             Toast.makeText(getDashboardActivity(), "Your cart is already empty.", Toast.LENGTH_SHORT).show();
         }
         mCartList.get(pos).setQty(count);
-
+        for (int i = 0; i < addCartList.size(); i++) {
+            if (mCartList.get(pos).getMerchantlistid() == addCartList.get(i).getMerchantlistid()) {
+                if (mCartList.get(pos).getQty() == 0) {
+                    addCartList.remove(i);
+                } else {
+                    addCartList.set(i, mCartList.get(pos));
+                }
+            }
+        }
+        setCartData();
         setTotalAmount();
 
+    }
+
+    private void setCartData() {
+        if(addCartList.size()>0){
+            ProductData product = addCartList.get(0);
+            product.setMerchantId(merchantId);
+            addCartList.set(0,product);
+        }
+        PreferenceUtils.setCartData(addCartList);
     }
 
     @Override
@@ -119,20 +150,29 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
                 CategoryResponse categoryResponse = (CategoryResponse) response;
                 CommonUtils.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, true);
                 ArrayList<CategoryData> categoryList = categoryResponse.getInfo();
-                mCatList.clear();
-                mSubCatList.clear();
-                mCartList.clear();
-                mCatList.addAll(categoryResponse.getInfo());
+                if (CommonUtils.isNotNull(categoryList) && categoryList.size() > 0) {
+                    mCatList.clear();
+                    mSubCatList.clear();
+                    mCartList.clear();
+                    mCatList.addAll(categoryList);
+                    mCatList.get(0).setSelected(true);
+                    CategoryData categoryData = categoryList.get(0);
+                    if (CommonUtils.isNotNull(categoryData)) {
+                        mSubCatList.addAll(categoryData.getSubproduct());
+                        if (mSubCatList.size() > 0) {
+                            mSubCatList.get(0).setSelected(true);
+                            mCartList.addAll(categoryData.getSubproduct().get(0).getSubproduct());
+                            mBinding.tvTitle.setText(categoryData.getSubproduct().get(0).getName());
+                        }
+                        mCategoryAdapter.notifyDataSetChanged();
+                        mSubCategoryAdapter.notifyDataSetChanged();
+                        mCartAdapter.notifyDataSetChanged();
 
-                mCatList.get(0).setSelected(true);
-                mSubCatList.addAll(categoryResponse.getInfo().get(0).getSubproduct());
-                mSubCatList.get(0).setSelected(true);
-                mCartList.addAll(categoryResponse.getInfo().get(0).getSubproduct().get(0).getSubproduct());
-                mCategoryAdapter.notifyDataSetChanged();
-                mSubCategoryAdapter.notifyDataSetChanged();
-                mCartAdapter.notifyDataSetChanged();
-                mBinding.tvTitle.setText(categoryResponse.getInfo().get(0).getSubproduct().get(0).getName());
-                mBinding.tvTotal.setText("" + 0.00);
+                    }
+                    mBinding.tvTotal.setText(String.valueOf(0.00));
+                } else {
+                    CommonUtils.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, false);
+                }
 
             }
         } else {
@@ -194,11 +234,11 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
 
     private void setTotalAmount() {
         float total = 0.0f;
-        for (ProductData data : mCartList) {
+        EventBus.getDefault().post(new UpdateCartEvent());
+        for (ProductData data : addCartList) {
             total += data.getQty() * data.getProduct_mrp();
         }
-        mBinding.tvTotal.setText("" + total);
-
+        mBinding.tvTotal.setText(String.valueOf(total));
     }
 
     @Override
@@ -238,8 +278,6 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
                 oldSubCatPos = pos;
                 break;
         }
-
-
     }
 
     private void callApi() {

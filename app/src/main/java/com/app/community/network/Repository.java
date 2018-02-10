@@ -4,6 +4,7 @@ import com.app.community.network.request.DeviceTokenRequest;
 import com.app.community.network.request.LoginRequest;
 import com.app.community.network.request.UpdateLocation;
 import com.app.community.network.request.VerifyMobileRequest;
+import com.app.community.network.request.cart.CartListRequest;
 import com.app.community.network.request.cart.CartRequest;
 import com.app.community.network.request.cart.CategoryRequest;
 import com.app.community.network.request.dashboard.MerchantRequest;
@@ -57,4 +58,6 @@ public interface Repository {
     Observable<BaseResponse> logout();
 
     Observable<BaseResponse> updateLocation(UpdateLocation updateLocation);
+
+    Observable<BaseResponse> addForCartList(CartListRequest request);
 }

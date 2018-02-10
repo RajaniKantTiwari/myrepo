@@ -20,6 +20,8 @@ public interface AppConstants {
     String MERCHANT_ID = "merchant_id";
     String OFFER = "offer";
     int LOGOUT = 3;
+    int CARTADDED = 4;
+
     int NO_OF_TAB = 4;
     int HORIZONTAL_CHILD=3;
     String TIME_ZONE="GMT";

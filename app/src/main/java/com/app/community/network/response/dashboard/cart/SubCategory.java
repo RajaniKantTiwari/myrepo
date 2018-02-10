@@ -11,6 +11,8 @@ public class SubCategory {
     private String name;
     private boolean isSelected;
     private String colorcode="#ffffff";
+    private ArrayList<ProductData> subproduct;
+
     public String getColorcode() {
         return colorcode;
     }
@@ -18,7 +20,6 @@ public class SubCategory {
     public void setColorcode(String colorcode) {
         this.colorcode = colorcode;
     }
-    private ArrayList<ProductData> subproduct;
 
 
     public int getId() {

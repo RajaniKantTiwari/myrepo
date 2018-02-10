@@ -8,6 +8,7 @@ public class CategoryData {
     private String name;
     private boolean isSelected;
     private String colorcode;
+    private String icons;
 
     public String getIcons() {
         return icons;
@@ -17,7 +18,6 @@ public class CategoryData {
         this.icons = icons;
     }
 
-    private String icons;
 
 
     public String getColorcode() {
