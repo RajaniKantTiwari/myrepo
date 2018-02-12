@@ -1,4 +1,4 @@
-package com.app.community.ui.fragment;
+package com.app.community.ui.activity;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
@@ -17,7 +15,7 @@ import com.app.community.databinding.FragmentZoomImageSliderBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.home.StoreImages;
 import com.app.community.ui.base.BaseActivity;
-import com.app.community.ui.base.BaseFragment;
+import com.app.community.ui.activity.adapter.ImageViewPager;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 

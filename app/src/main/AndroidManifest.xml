@@ -37,7 +37,7 @@
         <activity android:name=".ui.dashboard.home.DoctorCheckoutActivity" />
 
         <activity
-            android:name=".ui.fragment.ZoomAnimationImageActivity"
+            android:name=".ui.activity.ZoomAnimationImageActivity"
             android:theme="@style/Theme.Transparent" />
 
 

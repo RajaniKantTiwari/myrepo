@@ -27,7 +27,7 @@ import com.app.community.ui.dashboard.DashboardInsidePresenter;
 import com.app.community.ui.dashboard.home.adapter.ReviewAdapter;
 import com.app.community.ui.dashboard.home.adapter.ImageAdapter;
 import com.app.community.ui.dialogfragment.OrderDialogFragment;
-import com.app.community.ui.fragment.ZoomAnimationImageActivity;
+import com.app.community.ui.activity.ZoomAnimationImageActivity;
 import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;

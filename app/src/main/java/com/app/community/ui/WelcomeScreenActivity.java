@@ -165,6 +165,7 @@ public class WelcomeScreenActivity extends CommonActivity implements CustomDialo
             ExplicitIntent.getsInstance().navigateTo(this, LoginActivity.class);
             finish();
         } else {
+            PreferenceUtils.setAddress(PreferenceUtils.getAddress(this, PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude()));
             EventBus.getDefault().post(new UpdateAddress());
             presenter.updateLocation(this, new UpdateLocation(gpsTracker.getLatitude(), gpsTracker.getLongitude()));
         }
@@ -200,6 +201,7 @@ public class WelcomeScreenActivity extends CommonActivity implements CustomDialo
                             PreferenceUtils.setAddress(place.getAddress().toString());
                             PreferenceUtils.setLatitude(latLng.latitude);
                             PreferenceUtils.setLongitude(latLng.longitude);
+                            PreferenceUtils.setAddress(PreferenceUtils.getAddress(this, PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude()));
                         }
 
                     }
@@ -208,7 +210,7 @@ public class WelcomeScreenActivity extends CommonActivity implements CustomDialo
                         ExplicitIntent.getsInstance().navigateTo(this, LoginActivity.class);
                         finish();
                     } else {
-                        presenter.updateLocation(this, new UpdateLocation(gpsTracker.getLatitude(), gpsTracker.getLongitude()));
+                        presenter.updateLocation(this, new UpdateLocation(PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude()));
                     }
                 } catch (Exception ex) {
                     showToast(getResources().getString(R.string.something_went_wrong));

@@ -50,11 +50,11 @@ public class DrawerAdapterLeft extends RecyclerView.Adapter<DrawerAdapterLeft.St
             holder.setData(drawerList.get(position));
             if (position == 2) {
                 holder.tvChange.setVisibility(View.VISIBLE);
-                if (PreferenceUtils.getAddress() != null) {
+                /*if (PreferenceUtils.getAddress() != null) {*/
                     holder.tvChange.setText(PreferenceUtils.getAddress());
-                } else {
+                /*} else {
                     holder.tvChange.setText(PreferenceUtils.getAddress(activity, PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude()));
-                }
+                }*/
             } else {
                 holder.tvChange.setVisibility(View.GONE);
             }

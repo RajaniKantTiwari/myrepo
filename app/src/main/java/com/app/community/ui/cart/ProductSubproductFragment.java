@@ -51,12 +51,17 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
     private ArrayList<CategoryData> mCatList = new ArrayList<>();
     private ArrayList<SubCategory> mSubCatList = new ArrayList<>();
     private ArrayList<ProductData> mCartList = new ArrayList<>();
-    private ArrayList<ProductData> addCartList = new ArrayList<>();
+    private ArrayList<ProductData> addCartList;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_product_subproduct, container, false);
+        if(CommonUtils.isNotNull(PreferenceUtils.getCartData())&&PreferenceUtils.getCartData().size()>0){
+            addCartList=PreferenceUtils.getCartData();
+        }else{
+            addCartList= new ArrayList<>();
+        }
         return mBinding.getRoot();
     }
 

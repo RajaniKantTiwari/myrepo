@@ -66,6 +66,7 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
 
     public void setListener() {
         mBinding.ivProfile.setOnClickListener(this);
+        mBinding.imgEditPic.setOnClickListener(this);
         mBinding.tvUpdate.setOnClickListener(this);
         mBinding.layoutHeader.ivBack.setOnClickListener(this);
     }
@@ -113,7 +114,7 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
 
     @Override
     public void onClick(View view) {
-        if (mBinding.ivProfile == view) {
+        if (mBinding.ivProfile == view||mBinding.imgEditPic==view) {
             showImageChooserDialog();
         } else if (mBinding.tvUpdate == view) {
             PreferenceUtils.setImage(profilePicFilePath);

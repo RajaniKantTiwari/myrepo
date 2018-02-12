@@ -1,4 +1,4 @@
-package com.app.community.ui.fragment;
+package com.app.community.ui.activity.adapter;
 
 import android.app.Activity;
 import android.databinding.DataBindingUtil;
