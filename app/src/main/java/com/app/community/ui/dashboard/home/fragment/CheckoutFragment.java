@@ -13,12 +13,10 @@ import com.app.community.R;
 import com.app.community.databinding.FragmentCheckoutBinding;
 import com.app.community.network.request.PaymentOption;
 import com.app.community.network.response.BaseResponse;
-import com.app.community.network.response.dashboard.home.MerchantResponse;
 import com.app.community.ui.SimpleDividerItemDecoration;
 import com.app.community.ui.activity.EditAddressActivity;
 import com.app.community.ui.activity.PaymentAdapter;
 import com.app.community.ui.dashboard.DashboardFragment;
-import com.app.community.ui.dashboard.home.MerchantDetailsFragment;
 import com.app.community.ui.dashboard.home.adapter.CheckoutCartAdapter;
 import com.app.community.ui.dashboard.home.event.UpdateAddress;
 import com.app.community.utils.CommonUtils;
@@ -29,7 +27,6 @@ import com.app.community.utils.PreferenceUtils;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
