@@ -69,7 +69,7 @@ public class CheckoutFragment extends DashboardFragment {
 
     @Override
     public void initializeData() {
-       // getPresenter().viewCart(getDashboardActivity(),new CheckoutRequest(1));
+        getPresenter().viewCart(getDashboardActivity());
         mCheckoutAdapter = new CheckoutCartAdapter(getBaseActivity());
         mBinding.rvCartItem.setAdapter(mCheckoutAdapter);
         setPaymentOption();
@@ -83,11 +83,7 @@ public class CheckoutFragment extends DashboardFragment {
 
     }
 
-    private void setCheckoutData() {
-        if(CommonUtils.isNotNull(PreferenceUtils.getCartData())){
-            mCheckoutAdapter.setCartList(PreferenceUtils.getCartData());
-        }
-    }
+
 
 
     private void setDelivery() {

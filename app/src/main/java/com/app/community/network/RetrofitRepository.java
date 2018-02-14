@@ -80,8 +80,8 @@ public class RetrofitRepository implements Repository {
     }
 
     @Override
-    public Observable<ProductDetailsData> viewCart(CartRequest cartRequest) {
-        return apiService.viewCart(cartRequest);
+    public Observable<ProductDetailsData> viewCart() {
+        return apiService.viewCart();
     }
 
     @Override

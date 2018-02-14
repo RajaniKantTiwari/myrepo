@@ -17,21 +17,8 @@
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_horizontal"
                 android:textSize="@dimen/textSize_header_smaller"
-                android:textColor="@color/color_blue"
+                android:textColor="@color/dark_black_color"
                 app:customFont="@string/font_bold" />
-            <ImageView style="@style/view_layout" />
-            <com.app.community.widget.CustomEditText
-                android:id="@+id/edMobileNumber"
-                style="@style/edit_text_style"
-                android:layout_marginTop="@dimen/margin_15"
-                android:paddingBottom="@dimen/margin_5"
-                android:paddingTop="@dimen/margin_5"
-                android:hint="@string/mobileNumber"
-                android:gravity="center_horizontal"
-                android:textSize="@dimen/textSize_header_smaller"
-                app:customFont="@string/font_bold"
-                android:inputType="number"
-                android:visibility="gone"/>
             <ImageView style="@style/view_layout" />
 
             <LinearLayout
@@ -44,7 +31,7 @@
                     android:text="@string/cancel"
                     android:textSize="@dimen/textSize_header"
                     app:customFont="@string/font_regular"
-                    android:textColor="@color/color_blue"
+                    android:textColor="@color/dark_black_color"
                     android:layout_weight="1"
                     />
                 <ImageView style="@style/view_layout_vertical" />
@@ -56,7 +43,7 @@
                     android:text="@string/ok"
                     android:textSize="@dimen/textSize_header"
                     app:customFont="@string/font_bold"
-                    android:textColor="@color/color_blue"
+                    android:textColor="@color/dark_black_color"
                     android:layout_weight="1"
                     android:gravity="end"/>
             </LinearLayout>

@@ -14,6 +14,7 @@ import com.app.community.R;
 import com.app.community.databinding.FragmentProductSubproductBinding;
 import com.app.community.databinding.ItemCartBinding;
 import com.app.community.event.UpdateCartEvent;
+import com.app.community.network.request.cart.Cart;
 import com.app.community.network.request.cart.CartListRequest;
 import com.app.community.network.request.cart.CategoryRequest;
 import com.app.community.network.response.BaseResponse;
@@ -87,7 +88,7 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
             case R.id.tvCheckout:
                 CommonUtils.clicked(mBinding.tvCheckout);
                 if(CommonUtils.isNotNull(PreferenceUtils.getCartData())&&PreferenceUtils.getCartData().size()>0){
-                    getDashboardActivity().addFragmentInContainer(new CheckoutFragment(), null, true, true, NONE);
+                    addToCartList();
                 }else {
                     getDashboardActivity().showToast(getResources().getString(R.string.please_add_data_in_cart_first));
                 }
@@ -95,6 +96,31 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
                 break;
         }
 
+    }
+
+    private void addToCartList() {
+        if (CommonUtils.isNotNull(PreferenceUtils.getCartData()) &&
+                CommonUtils.isNotNull(PreferenceUtils.getCartData().size())
+                && PreferenceUtils.getCartData().size() > 0) {
+            //request for cart
+            CartListRequest request = new CartListRequest();
+            //list of product added in cart
+            ArrayList<Cart> cartList = new ArrayList<>();
+            ArrayList<ProductData> productList = PreferenceUtils.getCartData();
+            request.setMerchant_id(productList.get(0).getMerchantId());
+            //id of merchant
+            for (ProductData product : productList) {
+                if (CommonUtils.isNotNull(product)) {
+                    Cart cart = new Cart();
+                    cart.setMerchantlist_id(product.getMerchantlistid());
+                    cart.setMasterproductid(product.getMasterproductid());
+                    cart.setQty(product.getQty());
+                    cartList.add(cart);
+                }
+            }
+            request.setCart(cartList);
+            getPresenter().addForCartList(getDashboardActivity(), request);
+        }
     }
 
     private void addToCart(TextView textView, int pos) {
@@ -155,6 +181,15 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
+
+        if(requestCode==AppConstants.CARTADDED){
+            getDashboardActivity().addFragmentInContainer(new CheckoutFragment(), null, true, true, NONE);
+        }else{
+            productSubProductResponse(response);
+        }
+    }
+
+    private void productSubProductResponse(BaseResponse response) {
         if (response != null) {
             if (response instanceof CategoryResponse) {
                 CategoryResponse categoryResponse = (CategoryResponse) response;

@@ -48,7 +48,7 @@ public interface Repository {
 
     Observable<BaseResponse> deleteCart();
 
-    Observable<ProductDetailsData> viewCart(CartRequest cartRequest);
+    Observable<ProductDetailsData> viewCart();
 
     Observable<WelcomeHomeData> getWelcomeHomePage();
 

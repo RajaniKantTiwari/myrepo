@@ -47,8 +47,8 @@ public interface ApiService {
     @GET("cart/deletecart")
     Observable<BaseResponse> deleteCart();
 
-    @POST("cart/viewcart")
-    Observable<ProductDetailsData> viewCart(@Body CartRequest request);
+    @GET("cart/viewcart")
+    Observable<ProductDetailsData> viewCart();
 
     @POST("merchant/getmerchantdetails")
     Observable<MerchantResponseData> getMerchantDetails(@Body MerchantRequest request);

@@ -74,6 +74,9 @@ public interface GeneralConstant {
     String IS_FROM_HOME ="is_from_home" ;
     int OFFER_HEIGHT = 75;
     String PROFILE_UPDATE_PARAMETER = "profileUrl";
+    String PARENT_POSITION = "parent_position";
+    String CHILD_POSITION = "child_position";
+    String MESSAGE = "message";
 
 
     @IntDef({MERCHANT_MAP_FRAGMENT, MERCHANT_LIST_FRAGMENT, RECENT_FRAGMENT, CATEGORY_FRAGMENT,

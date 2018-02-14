@@ -12,7 +12,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.Toast;
 
 import com.app.community.CommonApplication;
 import com.app.community.R;
@@ -42,7 +41,6 @@ import com.app.community.ui.dashboard.expandrecycleview.draweradapter.DrawerAdap
 import com.app.community.ui.dashboard.home.SearchActivity;
 import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.adapter.DrawerAdapterLeft;
-import com.app.community.ui.dashboard.home.event.AddCartEvent;
 import com.app.community.ui.dashboard.home.event.NewsEvent;
 import com.app.community.ui.dashboard.home.event.SearchProductEvent;
 import com.app.community.ui.dashboard.home.event.UpdateAddress;
@@ -52,6 +50,7 @@ import com.app.community.ui.dashboard.home.fragment.NewsMainFragment;
 import com.app.community.ui.dashboard.notification.NotificationFragment;
 import com.app.community.ui.dashboard.offer.OfferFragment;
 import com.app.community.ui.dashboard.user.UserProfileFragment;
+import com.app.community.ui.dialogfragment.CustomDialogFragment;
 import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.DashBoardHelper;
@@ -60,14 +59,10 @@ import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.GlideUtils;
 import com.app.community.utils.LogUtils;
 import com.app.community.utils.PreferenceUtils;
-import com.crashlytics.android.answers.AddToCartEvent;
 
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -77,7 +72,8 @@ import static com.app.community.utils.GeneralConstant.FRAGMENTS.OFFER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.USER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.WELCOME_HOME_FRAGMENT;
 
-public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft.DrawerLeftListener, DrawerAdapterRight.ProductSubHolderListener {
+public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft.DrawerLeftListener,
+        DrawerAdapterRight.ProductSubHolderListener, CustomDialogFragment.CustomDialogListener {
     private static String TAG = DashBoardActivity.class.getSimpleName();
     //Better convention to properly name the indices what they are in your app
 
@@ -243,14 +239,14 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                 } else {
                     CommonUtils.setVisibility(mBinding.layoutDrawerRight.layoutMain,
                             mBinding.layoutDrawerRight.layoutNoData.layoutNoData, false);
-                    mBinding.layoutDrawerRight.layoutNoData.layoutNoData.setBackgroundColor(CommonUtils.getColor(this,R.color.dark_black_color));
+                    mBinding.layoutDrawerRight.layoutNoData.layoutNoData.setBackgroundColor(CommonUtils.getColor(this, R.color.dark_black_color));
                     mBinding.layoutDrawerRight.layoutNoData.tvSubProductName.setText(getResources().getString(R.string.service_is_anavailable_for_this_area));
                 }
 
-            }else {
+            } else {
                 CommonUtils.setVisibility(mBinding.layoutDrawerRight.layoutMain,
                         mBinding.layoutDrawerRight.layoutNoData.layoutNoData, false);
-                mBinding.layoutDrawerRight.layoutNoData.layoutNoData.setBackgroundColor(CommonUtils.getColor(this,R.color.dark_black_color));
+                mBinding.layoutDrawerRight.layoutNoData.layoutNoData.setBackgroundColor(CommonUtils.getColor(this, R.color.dark_black_color));
                 mBinding.layoutDrawerRight.layoutNoData.tvSubProductName.setText(getResources().getString(R.string.service_is_anavailable_for_this_area));
             }
         } else if (requestCode == AppConstants.DEVICE_TOKEN_RESPONSE) {
@@ -433,6 +429,19 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
 
     @Override
     public void onSubItemClicked(int parentPosition, int childPosition) {
+        if (CommonUtils.isNotNull(PreferenceUtils.getCartData()) && PreferenceUtils.getCartData().size() > 0) {
+            Bundle bundle = new Bundle();
+            bundle.putString(GeneralConstant.MESSAGE, getResources().getString(R.string.if_you_change_merchant_all_previous));
+            bundle.putInt(GeneralConstant.PARENT_POSITION, parentPosition);
+            bundle.putInt(GeneralConstant.CHILD_POSITION, childPosition);
+            CommonUtils.showDialog(this, bundle, this);
+        } else {
+            openProductSubProduct(parentPosition, childPosition);
+        }
+
+    }
+
+    private void openProductSubProduct(int parentPosition, int childPosition) {
         Bundle bundle = new Bundle();
         if (CommonUtils.isNotNull(responseList) && responseList.size() > parentPosition) {
             ProductSubCategory subCategory = responseList.get(parentPosition);
@@ -555,5 +564,16 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
             mPresenter.addForCartList(this, request);
 
         }
+    }
+
+    @Override
+    public void ok(int parentPosition, int childPosition) {
+        PreferenceUtils.setCartData(null);
+        openProductSubProduct(parentPosition, childPosition);
+    }
+
+    @Override
+    public void cancel() {
+
     }
 }

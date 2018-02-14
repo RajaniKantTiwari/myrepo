@@ -115,9 +115,9 @@ public class DashboardPresenter implements Presenter<MvpView> {
             }
         });
     }
-    public void viewCart(Activity activity, CartRequest cartRequest) {
+    public void viewCart(Activity activity) {
         mView.showProgress();
-        mRepository.viewCart(cartRequest).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<ProductDetailsData>(activity) {
+        mRepository.viewCart().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<ProductDetailsData>(activity) {
             @Override
             public void onResponse(ProductDetailsData response) {
                 mView.hideProgress();
