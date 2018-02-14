@@ -11,6 +11,10 @@ import android.widget.LinearLayout;
 import com.app.community.R;
 import com.app.community.databinding.CartRowItemBinding;
 import com.app.community.databinding.OfferRowBinding;
+import com.app.community.network.response.dashboard.home.Offer;
+import com.app.community.utils.CommonUtils;
+
+import java.util.ArrayList;
 
 /**
  * Created by ashok on 25/12/17.
@@ -19,35 +23,56 @@ import com.app.community.databinding.OfferRowBinding;
 public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferViewHolder> {
     private final LayoutInflater mInflater;
     private OfferRowBinding mBinding;
-
-    public OfferAdapter(AppCompatActivity activity){
-        mInflater=LayoutInflater.from(activity);
+    private OfferListener listener;
+    private ArrayList<Offer> offersList;
+    public void setOffersList(ArrayList<Offer> offersList) {
+       this.offersList=offersList;
+       notifyDataSetChanged();
     }
+
+    public interface OfferListener {
+        void onOfferClicked(int position);
+    }
+
+    public OfferAdapter(AppCompatActivity activity, OfferListener listener) {
+        mInflater = LayoutInflater.from(activity);
+        this.listener = listener;
+    }
+
     @Override
     public OfferViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        mBinding=DataBindingUtil.inflate(mInflater, R.layout.offer_row, parent, false);
+        mBinding = DataBindingUtil.inflate(mInflater, R.layout.offer_row, parent, false);
         return new OfferViewHolder(mBinding);
     }
 
     @Override
     public void onBindViewHolder(OfferViewHolder holder, int position) {
-      if(position%2==0){
-          holder.layoutProduct.setVisibility(View.VISIBLE);
-      }else {
-          holder.layoutProduct.setVisibility(View.GONE);
-      }
+        if (position % 2 == 0) {
+            holder.layoutProduct.setVisibility(View.VISIBLE);
+        } else {
+            holder.layoutProduct.setVisibility(View.GONE);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return CommonUtils.isNotNull(offersList)?offersList.size():0;
     }
-    class OfferViewHolder extends RecyclerView.ViewHolder{
+
+    class OfferViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final LinearLayout layoutProduct;
 
         public OfferViewHolder(OfferRowBinding itemView) {
             super(itemView.getRoot());
-            layoutProduct=itemView.layoutProduct;
+            layoutProduct = itemView.layoutProduct;
+            itemView.layoutOffer.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            if (CommonUtils.isNotNull(listener)) {
+                listener.onOfferClicked(getAdapterPosition());
+            }
         }
     }
 }

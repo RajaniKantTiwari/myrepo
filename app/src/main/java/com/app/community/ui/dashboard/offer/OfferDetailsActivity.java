@@ -42,7 +42,7 @@ public class OfferDetailsActivity extends DashboardInsideActivity {
     private void setListener() {
         mBinding.layoutHeader.tvHeader.setVisibility(View.VISIBLE);
         mBinding.layoutHeader.tvHeader.setText(getResources().getString(R.string.offer));
-        mBinding.layoutHeader.headerLayout.setBackgroundColor(CommonUtils.getColor(this,R.color.dark_black));
+        mBinding.layoutHeader.headerLayout.setBackgroundColor(CommonUtils.getColor(this, R.color.dark_black));
         mBinding.layoutHeader.ivBack.setImageResource(R.drawable.ic_back_white);
         mBinding.layoutHeader.ivBack.setOnClickListener(this);
     }
@@ -53,7 +53,13 @@ public class OfferDetailsActivity extends DashboardInsideActivity {
         if (CommonUtils.isNotNull(intent)) {
             Bundle bundle = intent.getExtras();
             if (CommonUtils.isNotNull(bundle)) {
-                offer=bundle.getParcelable(AppConstants.OFFER);
+                mBinding.rvOffer.setVisibility(View.VISIBLE);
+                mBinding.noDataFound.layoutNoData.setVisibility(View.GONE);
+                offer = bundle.getParcelable(AppConstants.OFFER);
+            } else {
+                mBinding.noDataFound.layoutNoData.setVisibility(View.VISIBLE);
+                mBinding.rvOffer.setVisibility(View.GONE);
+
             }
         }
         mOfferAdapter = new OfferDetailsAdapter(this);
@@ -75,8 +81,8 @@ public class OfferDetailsActivity extends DashboardInsideActivity {
 
     @Override
     public void onClick(View view) {
-       if(mBinding.layoutHeader.ivBack==view){
-           finish();
-       }
+        if (mBinding.layoutHeader.ivBack == view) {
+            finish();
+        }
     }
 }

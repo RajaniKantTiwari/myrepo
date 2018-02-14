@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/layoutOrder"
         style="@style/match_match"
         android:background="@color/white"
@@ -9,12 +9,19 @@
 
         <include
             android:id="@+id/layoutHeader"
-            layout="@layout/header_layout"
-            />
+            layout="@layout/header_layout" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvOffer"
             style="@style/match_match"
+            android:layout_below="@+id/layoutHeader"
             android:padding="@dimen/margin_10" />
-    </LinearLayout>
+        <include
+            android:id="@+id/noDataFound"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/layoutHeader"
+            layout="@layout/layout_no_data_found"
+            android:visibility="gone"/>
+    </RelativeLayout>
 </layout>

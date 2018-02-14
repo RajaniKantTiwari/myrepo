@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.community.R;
-import com.app.community.databinding.FragmentHelpsupportBinding;
+import com.app.community.databinding.ActivityHelpsupportBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.SimpleDividerItemDecoration;
 import com.app.community.ui.dashboard.DashboardFragment;
@@ -25,13 +25,13 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
  */
 
 public class HelpsAndSupportFragment extends DashboardFragment implements HelpSupportAdapter.HelpSupportListener,OrderDialogFragment.OrderDialogListener {
-    private FragmentHelpsupportBinding mBinding;
+    private ActivityHelpsupportBinding mBinding;
     private HelpSupportAdapter mAdapter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding=DataBindingUtil.inflate(inflater, R.layout.fragment_helpsupport,container,false);
+        mBinding=DataBindingUtil.inflate(inflater, R.layout.activity_helpsupport,container,false);
         initializeAdapter();
         return mBinding.getRoot();
     }

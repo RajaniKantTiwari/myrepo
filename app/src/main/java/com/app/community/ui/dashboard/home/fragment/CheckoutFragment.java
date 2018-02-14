@@ -14,6 +14,7 @@ import com.app.community.databinding.FragmentCheckoutBinding;
 import com.app.community.network.request.PaymentOption;
 import com.app.community.network.request.cart.CheckoutRequest;
 import com.app.community.network.response.BaseResponse;
+import com.app.community.network.response.dashboard.cart.ProductData;
 import com.app.community.ui.SimpleDividerItemDecoration;
 import com.app.community.ui.activity.EditAddressActivity;
 import com.app.community.ui.activity.PaymentAdapter;
@@ -68,6 +69,7 @@ public class CheckoutFragment extends DashboardFragment {
 
     @Override
     public void initializeData() {
+       // getPresenter().viewCart(getDashboardActivity(),new CheckoutRequest(1));
         mCheckoutAdapter = new CheckoutCartAdapter(getBaseActivity());
         mBinding.rvCartItem.setAdapter(mCheckoutAdapter);
         setPaymentOption();
@@ -79,6 +81,12 @@ public class CheckoutFragment extends DashboardFragment {
         mBinding.rvDelivery.setAdapter(deliveryAdapter);
         CommonUtils.setRecyclerViewHeight(mBinding.rvDelivery, deliveryList, GeneralConstant.PAYMENT_HEIGHT);
 
+    }
+
+    private void setCheckoutData() {
+        if(CommonUtils.isNotNull(PreferenceUtils.getCartData())){
+            mCheckoutAdapter.setCartList(PreferenceUtils.getCartData());
+        }
     }
 
 
@@ -128,7 +136,7 @@ public class CheckoutFragment extends DashboardFragment {
             ExplicitIntent.getsInstance().navigateTo(getDashboardActivity(), EditAddressActivity.class);
 
         } else if (view == mBinding.tvProceedToPay) {
-            //getPresenter().checkout(new CheckoutRequest());
+            getPresenter().checkout(getDashboardActivity(),new CheckoutRequest(1));
         }
     }
 

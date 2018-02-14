@@ -3,36 +3,30 @@ package com.app.community.ui.activity;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.app.community.R;
-import com.app.community.databinding.FragmentHelpsupportBinding;
+import com.app.community.databinding.ActivityHelpsupportBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.SimpleDividerItemDecoration;
 import com.app.community.ui.authentication.CommonActivity;
-import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.adapter.HelpSupportAdapter;
 import com.app.community.ui.dialogfragment.OrderDialogFragment;
 import com.app.community.utils.CommonUtils;
-
-import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 
 /**
  * Created by rajnikant on 31/12/17.
  */
 
 public class HelpsAndSupportActivity extends CommonActivity implements HelpSupportAdapter.HelpSupportListener, OrderDialogFragment.OrderDialogListener {
-    private FragmentHelpsupportBinding mBinding;
+    private ActivityHelpsupportBinding mBinding;
     private HelpSupportAdapter mAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding = DataBindingUtil.setContentView(this, R.layout.fragment_helpsupport);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_helpsupport);
         initializeAdapter();
         initializeData();
         setListener();

@@ -33,7 +33,7 @@ public class MyOrderActivity extends CommonActivity {
     }
     public void initializeData() {
         mBinding.layoutHeader.tvHeader.setVisibility(View.VISIBLE);
-        mBinding.layoutHeader.tvHeader.setText(getResources().getString(R.string.offer));
+        mBinding.layoutHeader.tvHeader.setText(getResources().getString(R.string.my_order));
         mBinding.layoutHeader.headerLayout.setBackgroundColor(CommonUtils.getColor(this,R.color.dark_black));
         mBinding.layoutHeader.ivBack.setImageResource(R.drawable.ic_back_white);
 
@@ -73,8 +73,6 @@ public class MyOrderActivity extends CommonActivity {
         mBinding.tvPastOrder.setTextColor(CommonUtils.getColor(this,R.color.color_dark_grey));
         mBinding.ivPastOrder.setBackgroundColor(CommonUtils.getColor(this,R.color.dark_black_color));
         mBinding.ivLiveOrder.setBackgroundColor(CommonUtils.getColor(this,R.color.ver_bg_color));
-        mBinding.ivLiveOrder.setVisibility(View.VISIBLE);
-        mBinding.ivPastOrder.setVisibility(View.INVISIBLE);
         event.setLivePastOrder(GeneralConstant.PASTORDER);
         EventBus.getDefault().post(event);
 
@@ -85,8 +83,6 @@ public class MyOrderActivity extends CommonActivity {
         mBinding.tvPastOrder.setTextColor(CommonUtils.getColor(this,R.color.dark_black));
         mBinding.ivLiveOrder.setBackgroundColor(CommonUtils.getColor(this,R.color.dark_black_color));
         mBinding.ivPastOrder.setBackgroundColor(CommonUtils.getColor(this,R.color.ver_bg_color));
-        mBinding.ivLiveOrder.setVisibility(View.INVISIBLE);
-        mBinding.ivPastOrder.setVisibility(View.VISIBLE);
         event.setLivePastOrder(GeneralConstant.LIVEORDER);
         EventBus.getDefault().post(event);
     }

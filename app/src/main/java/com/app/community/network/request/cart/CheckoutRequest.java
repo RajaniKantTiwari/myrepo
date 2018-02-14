@@ -7,11 +7,11 @@ package com.app.community.network.request.cart;
 public class CheckoutRequest {
 private int response;
 
-    public int getResponse() {
-        return response;
+    public CheckoutRequest(int response) {
+      this.response=response;
     }
 
-    public void setResponse(int response) {
-        this.response = response;
+    public int getResponse() {
+        return response;
     }
 }

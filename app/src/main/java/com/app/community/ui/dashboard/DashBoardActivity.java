@@ -243,8 +243,15 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                 } else {
                     CommonUtils.setVisibility(mBinding.layoutDrawerRight.layoutMain,
                             mBinding.layoutDrawerRight.layoutNoData.layoutNoData, false);
+                    mBinding.layoutDrawerRight.layoutNoData.layoutNoData.setBackgroundColor(CommonUtils.getColor(this,R.color.dark_black_color));
+                    mBinding.layoutDrawerRight.layoutNoData.tvSubProductName.setText(getResources().getString(R.string.service_is_anavailable_for_this_area));
                 }
 
+            }else {
+                CommonUtils.setVisibility(mBinding.layoutDrawerRight.layoutMain,
+                        mBinding.layoutDrawerRight.layoutNoData.layoutNoData, false);
+                mBinding.layoutDrawerRight.layoutNoData.layoutNoData.setBackgroundColor(CommonUtils.getColor(this,R.color.dark_black_color));
+                mBinding.layoutDrawerRight.layoutNoData.tvSubProductName.setText(getResources().getString(R.string.service_is_anavailable_for_this_area));
             }
         } else if (requestCode == AppConstants.DEVICE_TOKEN_RESPONSE) {
             LogUtils.LOGE(TAG, response.getMsg());

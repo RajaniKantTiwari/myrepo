@@ -13,12 +13,15 @@ import android.view.ViewGroup;
 import com.app.community.R;
 import com.app.community.databinding.FragmentOfferBinding;
 import com.app.community.network.response.BaseResponse;
+import com.app.community.network.response.dashboard.home.Offer;
 import com.app.community.network.response.dashboard.offer.OfferType;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.offer.adapter.OfferAdapter;
 import com.app.community.ui.dashboard.offer.adapter.OfferTypesAdapter;
 import com.app.community.ui.presenter.CommonPresenter;
+import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
+import com.app.community.utils.ExplicitIntent;
 
 import java.util.ArrayList;
 
@@ -30,7 +33,8 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
  * Created by ashok on 13/11/17.
  */
 
-public class OfferFragment extends DashboardFragment implements OfferTypesAdapter.OfferTypeListener {
+public class OfferFragment extends DashboardFragment implements
+        OfferTypesAdapter.OfferTypeListener, OfferAdapter.OfferListener {
 
     @Inject
     CommonPresenter presenter;
@@ -38,6 +42,7 @@ public class OfferFragment extends DashboardFragment implements OfferTypesAdapte
     private OfferAdapter mOfferAdapter;
     private OfferTypesAdapter mOfferTypeAdapter;
     private ArrayList<OfferType> offerTypeList;
+    private ArrayList<Offer> offersList;
 
     public static Fragment newInstance(int instance) {
         Bundle args = new Bundle();
@@ -57,17 +62,37 @@ public class OfferFragment extends DashboardFragment implements OfferTypesAdapte
 
     @Override
     public void initializeData() {
-        mOfferAdapter = new OfferAdapter(getDashboardActivity());
+        mOfferAdapter = new OfferAdapter(getDashboardActivity(), this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getDashboardActivity());
         mBinding.rvOffer.setLayoutManager(layoutManager);
         mBinding.rvOffer.setAdapter(mOfferAdapter);
+        offersList = new ArrayList<>();
+        setOffers();
+
+
         offerTypeList = new ArrayList<>();
         setOfferList(offerTypeList);
-        mOfferTypeAdapter = new OfferTypesAdapter(getDashboardActivity(),offerTypeList , this);
+        mOfferTypeAdapter = new OfferTypesAdapter(getDashboardActivity(), offerTypeList, this);
         LinearLayoutManager offerTypeManager = new LinearLayoutManager(getDashboardActivity());
         offerTypeManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mBinding.rvOfferType.setLayoutManager(offerTypeManager);
         mBinding.rvOfferType.setAdapter(mOfferTypeAdapter);
+    }
+
+    private void setOffers() {
+        Offer offer1 = new Offer();
+        offersList.add(offer1);
+        Offer offer2 = new Offer();
+        offersList.add(offer2);
+        Offer offer3 = new Offer();
+        offersList.add(offer3);
+        Offer offer4 = new Offer();
+        offersList.add(offer4);
+        Offer offer5 = new Offer();
+        offersList.add(offer5);
+        Offer offer6 = new Offer();
+        offersList.add(offer6);
+        mOfferAdapter.setOffersList(offersList);
     }
 
     private void setOfferList(ArrayList<OfferType> offerTypeList) {
@@ -136,5 +161,14 @@ public class OfferFragment extends DashboardFragment implements OfferTypesAdapte
             offerTypeList.set(i, type);
         }
         mOfferTypeAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onOfferClicked(int position) {
+        if (CommonUtils.isNotNull(offersList) && offersList.size() > position) {
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(AppConstants.OFFER, offersList.get(position));
+            ExplicitIntent.getsInstance().navigateTo(getDashboardActivity(), OfferDetailsActivity.class, bundle);
+        }
     }
 }

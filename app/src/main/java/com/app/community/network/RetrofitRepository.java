@@ -7,6 +7,7 @@ import com.app.community.network.request.VerifyMobileRequest;
 import com.app.community.network.request.cart.CartListRequest;
 import com.app.community.network.request.cart.CartRequest;
 import com.app.community.network.request.cart.CategoryRequest;
+import com.app.community.network.request.cart.CheckoutRequest;
 import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.request.dashboard.ProductRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
@@ -111,5 +112,10 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<BaseResponse> addForCartList(CartListRequest request) {
         return apiService.addForCartList(request);
+    }
+
+    @Override
+    public Observable<BaseResponse> checkout(CheckoutRequest checkoutRequest) {
+        return apiService.checkout(checkoutRequest);
     }
 }
