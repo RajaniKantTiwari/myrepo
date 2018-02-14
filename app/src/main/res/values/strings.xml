@@ -461,6 +461,7 @@
     <string name="you_can_not_add">You can not add more than 10 item in cart</string>
     <string name="enter_card_number">Enter Card Number</string>
     <string name="update_profile">Update Profile</string>
+    <string name="please_add_data_in_cart_first">Please Add Data In Cart First</string>
 
 
     <string-array name="state_array">

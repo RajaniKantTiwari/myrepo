@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.app.community.R;
 import com.app.community.databinding.FragmentCheckoutBinding;
 import com.app.community.network.request.PaymentOption;
+import com.app.community.network.request.cart.CheckoutRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.SimpleDividerItemDecoration;
 import com.app.community.ui.activity.EditAddressActivity;
@@ -106,6 +107,7 @@ public class CheckoutFragment extends DashboardFragment {
 
     @Override
     public void setListener() {
+        mBinding.tvProceedToPay.setOnClickListener(this);
         mBinding.editAddress.setOnClickListener(this);
     }
 
@@ -116,15 +118,17 @@ public class CheckoutFragment extends DashboardFragment {
 
     @Override
     public void attachView() {
-
+      getPresenter().attachView(this);
     }
 
     @Override
     public void onClick(View view) {
         if (view == mBinding.editAddress) {
             CommonUtils.clicked(mBinding.editAddress);
-            ExplicitIntent.getsInstance().navigateTo(getDashboardActivity(),EditAddressActivity.class);
+            ExplicitIntent.getsInstance().navigateTo(getDashboardActivity(), EditAddressActivity.class);
 
+        } else if (view == mBinding.tvProceedToPay) {
+            //getPresenter().checkout(new CheckoutRequest());
         }
     }
 
@@ -146,6 +150,7 @@ public class CheckoutFragment extends DashboardFragment {
         fragment.setArguments(args);
         return fragment;
     }
+
     @Subscribe
     public void onAddressEvent(UpdateAddress event) {
         mBinding.tvAddress.setText(PreferenceUtils.getAddress());

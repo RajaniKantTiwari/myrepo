@@ -78,4 +78,7 @@ public interface ApiService {
 
     @POST("cart/addalltocart")
     Observable<BaseResponse> addForCartList(@Body CartListRequest request);
+
+    @POST("cart/checkoutcart")
+    Observable<BaseResponse> checkout(@Body CartListRequest request);
 }

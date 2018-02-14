@@ -25,6 +25,8 @@ import com.google.firebase.messaging.RemoteMessage;
 
 import java.util.Map;
 
+import me.leolin.shortcutbadger.ShortcutBadger;
+
 
 public class FirebaseMessageService extends FirebaseMessagingService {
     private static final String TAG = FirebaseMessageService.class.getSimpleName();
@@ -33,6 +35,8 @@ public class FirebaseMessageService extends FirebaseMessagingService {
         super.onMessageReceived(remoteMessage);
 
         if(remoteMessage!=null){
+            ShortcutBadger.applyCount(getApplicationContext(), 5);
+            //ShortcutBadger.removeCount(getApplicationContext());
             Map<String, String> dataMsg = remoteMessage.getData();
             /*if(dataMsg!=null){
                 Set<String> keySet = dataMsg.keySet();

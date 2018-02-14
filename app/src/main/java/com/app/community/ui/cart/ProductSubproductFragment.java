@@ -86,7 +86,12 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
         switch (view.getId()) {
             case R.id.tvCheckout:
                 CommonUtils.clicked(mBinding.tvCheckout);
-                getDashboardActivity().addFragmentInContainer(new CheckoutFragment(), null, true, true, NONE);
+                if(CommonUtils.isNotNull(PreferenceUtils.getCartData())&&PreferenceUtils.getCartData().size()>0){
+                    getDashboardActivity().addFragmentInContainer(new CheckoutFragment(), null, true, true, NONE);
+                }else {
+                    getDashboardActivity().showToast(getResources().getString(R.string.please_add_data_in_cart_first));
+                }
+
                 break;
         }
 
