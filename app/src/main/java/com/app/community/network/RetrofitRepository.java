@@ -15,6 +15,7 @@ import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.LoginResponse;
 import com.app.community.network.response.VerifyMobileResponse;
 import com.app.community.network.response.dashboard.cart.CategoryResponse;
+import com.app.community.network.response.dashboard.cart.ProductFullInformationData;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
 import com.app.community.network.response.dashboard.home.MerchantResponseData;
 import com.app.community.network.response.dashboard.home.ReviewResponseData;
@@ -45,7 +46,7 @@ public class RetrofitRepository implements Repository {
     }
 
     @Override
-    public Observable<ProductDetailsData> getProductDetail(ProductRequest productRequest) {
+    public Observable<ProductFullInformationData> getProductDetail(ProductRequest productRequest) {
         return apiService.getProductDetail(productRequest);
     }
 

@@ -364,6 +364,9 @@
     <string name="est_delivery_time">Est Delivery Time</string>
     <string name="delivery">Delivery</string>
     <string name="pick_on_the_way">Pick On The Way</string>
+    <string name="slash">/</string>
+
+
     <string name="delivery_at">Delivery At</string>
     <string name="proced_to_pay">Proceed To Pay</string>
     <string name="google_service_not_present">Google Service not Present</string>

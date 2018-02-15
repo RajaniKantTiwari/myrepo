@@ -15,6 +15,7 @@ import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.LoginResponse;
 import com.app.community.network.response.VerifyMobileResponse;
 import com.app.community.network.response.dashboard.cart.CategoryResponse;
+import com.app.community.network.response.dashboard.cart.ProductFullInformationData;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
 import com.app.community.network.response.dashboard.home.WelcomeHomeData;
 import com.app.community.network.response.dashboard.home.MerchantResponseData;
@@ -34,7 +35,7 @@ public interface Repository {
     Observable<VerifyMobileResponse> verifyMobileNumber(VerifyMobileRequest verifyMobileRequest);
 
 
-    Observable<ProductDetailsData> getProductDetail(ProductRequest productRequest);
+    Observable<ProductFullInformationData> getProductDetail(ProductRequest productRequest);
 
     Observable<MerchantResponseData> getMerchantDetail(MerchantRequest merchantRequest);
 

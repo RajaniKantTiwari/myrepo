@@ -19,7 +19,7 @@
                 android:textSize="@dimen/textSize_header_smaller"
                 android:textColor="@color/dark_black_color"
                 app:customFont="@string/font_bold" />
-            <ImageView style="@style/view_layout" />
+            <ImageView style="@style/view_layout_brown_1" />
             <com.app.community.widget.CustomEditText
                 android:id="@+id/edMobileNumber"
                 style="@style/edit_text_style"
@@ -32,7 +32,7 @@
                 app:customFont="@string/font_bold"
                 android:inputType="number"
                 android:visibility="gone"/>
-            <ImageView style="@style/view_layout" />
+            <ImageView style="@style/view_layout_brown_1" />
 
             <LinearLayout
                 style="@style/match_wrap"

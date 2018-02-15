@@ -119,7 +119,7 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
                 }
             }
             request.setCart(cartList);
-            getPresenter().addForCartList(getDashboardActivity(), request);
+            getPresenter().addForCartList(getDashboardActivity(), request,this);
         }
     }
 
@@ -269,6 +269,7 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
                 if (CommonUtils.isNotNull(mCartList) && mCartList.size() > pos) {
                     Bundle bundle = new Bundle();
                     bundle.putParcelable(AppConstants.PRODUCT_DATA, mCartList.get(pos));
+                    bundle.putInt(AppConstants.MERCHANT_ID,merchantId);
                     getDashboardActivity().addFragmentInContainer(new FullInformationFragment(), bundle, true, true, NONE);
                 }
                 break;

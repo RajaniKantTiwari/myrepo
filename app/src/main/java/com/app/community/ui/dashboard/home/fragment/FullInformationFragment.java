@@ -14,9 +14,11 @@ import com.app.community.databinding.FragmentFullInformationBinding;
 import com.app.community.network.request.dashboard.ProductRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.cart.ProductData;
+import com.app.community.network.response.dashboard.cart.ProductFullInformationData;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
+import com.app.community.utils.GlideUtils;
 
 import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 
@@ -27,9 +29,10 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 public class FullInformationFragment extends DashboardFragment {
     private FragmentFullInformationBinding mBinding;
     private int quantity;
-    private int productId = 8;
-    private int merchantId = 8;
+    /*private int productId = 8;
+    private int merchantId = 8;*/
     private ProductData productData;
+    private int merchantId;
 
     @Nullable
     @Override
@@ -43,9 +46,12 @@ public class FullInformationFragment extends DashboardFragment {
         Bundle bundle = getArguments();
         if (CommonUtils.isNotNull(bundle)) {
             productData = bundle.getParcelable(AppConstants.PRODUCT_DATA);
+            merchantId = bundle.getInt(AppConstants.MERCHANT_ID);
         }
-        ProductRequest request = new ProductRequest(productId, merchantId);
-        getPresenter().getProductDetails(getBaseActivity(), request);
+        if (CommonUtils.isNotNull(productData)) {
+            ProductRequest request = new ProductRequest(productData.getMasterproductid(), merchantId);
+            getPresenter().getProductDetails(getBaseActivity(), request);
+        }
     }
 
     @Override
@@ -93,7 +99,15 @@ public class FullInformationFragment extends DashboardFragment {
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
-
+        if (CommonUtils.isNotNull(response) && response instanceof ProductFullInformationData) {
+            ProductFullInformationData data = (ProductFullInformationData) response;
+            if (CommonUtils.isNotNull(data.getInfo())&&data.getInfo().size()>0) {
+                ProductData productData=data.getInfo().get(0);
+                GlideUtils.loadImage(getDashboardActivity(),productData.getImagepath()
+                        ,mBinding.ivProductImage,null,R.drawable.background_placeholder);
+                mBinding.setProduct(productData);
+            }
+        }
     }
 
     public static Fragment newInstance(int instance) {

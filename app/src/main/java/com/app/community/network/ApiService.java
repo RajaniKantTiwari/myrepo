@@ -17,6 +17,7 @@ import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.LoginResponse;
 import com.app.community.network.response.VerifyMobileResponse;
 import com.app.community.network.response.dashboard.cart.CategoryResponse;
+import com.app.community.network.response.dashboard.cart.ProductFullInformationData;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
 import com.app.community.network.response.dashboard.home.MerchantResponseData;
 import com.app.community.network.response.dashboard.home.ReviewResponseData;
@@ -39,7 +40,7 @@ public interface ApiService {
     Observable<VerifyMobileResponse> verifyMobileNumber(@Body VerifyMobileRequest request);
 
     @POST("product/getproductdetails")
-    Observable<ProductDetailsData> getProductDetail(@Body ProductRequest request);
+    Observable<ProductFullInformationData> getProductDetail(@Body ProductRequest request);
 
     @POST("cart/addcart")
     Observable<BaseResponse> addToCart(@Body CartRequest request);

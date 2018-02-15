@@ -561,7 +561,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                 }
             }
             request.setCart(cartList);
-            mPresenter.addForCartList(this, request);
+            mPresenter.addForCartList(this, request, this);
 
         }
     }

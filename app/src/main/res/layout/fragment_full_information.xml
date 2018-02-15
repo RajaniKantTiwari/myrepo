@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
+<data>
+    <import type="com.app.community.utils.CommonUtils"/>
+    <variable
+        name="product"
+        type="com.app.community.network.response.dashboard.cart.ProductData"/>
+</data>
     <RelativeLayout
         style="@style/match_wrap"
         android:background="@color/white"
@@ -10,19 +15,21 @@
         <com.app.community.widget.CustomTextView
             android:id="@+id/header"
             style="@style/textview_title_match"
-            android:layout_marginTop="@dimen/margin_25"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="25dp"
             android:gravity="center_horizontal"
             android:text="@string/full_information"
             android:textAllCaps="true"
             android:textColor="@color/color_black"
-            app:customFont="@string/font_book_regular"
-            />
+            app:customFont="@string/font_book_regular" />
 
         <ImageView
             android:id="@+id/ivProductImage"
             style="@style/wrap_wrap"
+            android:layout_height="@dimen/margin_200"
             android:layout_below="@+id/header"
-            android:src="@drawable/background_placeholder" />
+            />
 
         <ImageView
             android:id="@+id/layoutLine"
@@ -40,21 +47,21 @@
 
                 <com.app.community.widget.CustomTextView
                     style="@style/textview_header_small_wrap"
-                    android:text="12.00/"
+                    android:text="@{CommonUtils.price(product.selling_price)}"
                     android:drawableStart="@drawable/rupee"
                     android:drawablePadding="@dimen/margin_5"
                     android:textColor="@color/color_sky_blue" />
 
                 <com.app.community.widget.CustomTextView
                     style="@style/textview_description_small_wrap"
-                    android:text="500gram"
+                    android:text="@={product.measure}"
                     android:textColor="@color/color_sky_blue" />
             </LinearLayout>
 
             <com.app.community.widget.CustomTextView
                 style="@style/textview_description_match"
                 android:layout_marginTop="@dimen/margin_2"
-                android:text="JALPENO"
+                android:text="@={product.productname}"
                 android:textColor="@color/color_black"
                 />
 
@@ -62,7 +69,7 @@
                 android:layout_marginTop="@dimen/margin_15"
                 style="@style/textview_description_small_match"
                 android:textColor="@color/color_black"
-                android:text="falapeños are a pod type of !apsicum annuum. The growing period is 70–80 days. When mature, the plant stands 70–90 cm (28–35 in) tall. Typically, a plant produces 25 to 35 pods. (uring a growing period, a plant will be picked multiple times. As the growing season ends, the peppers turn red, as seen in Sriracha sauce. falapeños thrive in a number of soil types and temperatures, though they prefer warmer climates, provided they have adequate water."
+                android:text="@={product.productdescription}"
                 />
 
         </LinearLayout>
