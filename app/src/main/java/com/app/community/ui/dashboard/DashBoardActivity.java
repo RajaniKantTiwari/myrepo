@@ -50,7 +50,7 @@ import com.app.community.ui.dashboard.home.fragment.NewsMainFragment;
 import com.app.community.ui.dashboard.notification.NotificationFragment;
 import com.app.community.ui.dashboard.offer.OfferFragment;
 import com.app.community.ui.dashboard.user.UserProfileFragment;
-import com.app.community.ui.dialogfragment.CustomDialogFragment;
+import com.app.community.ui.dialogfragment.CheckoutDialogFragment;
 import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.DashBoardHelper;
@@ -73,7 +73,7 @@ import static com.app.community.utils.GeneralConstant.FRAGMENTS.USER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.WELCOME_HOME_FRAGMENT;
 
 public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft.DrawerLeftListener,
-        DrawerAdapterRight.ProductSubHolderListener, CustomDialogFragment.CustomDialogListener {
+        DrawerAdapterRight.ProductSubHolderListener, CheckoutDialogFragment.CheckoutDialogListener {
     private static String TAG = DashBoardActivity.class.getSimpleName();
     //Better convention to properly name the indices what they are in your app
 
@@ -434,7 +434,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
             bundle.putString(GeneralConstant.MESSAGE, getResources().getString(R.string.if_you_change_merchant_all_previous));
             bundle.putInt(GeneralConstant.PARENT_POSITION, parentPosition);
             bundle.putInt(GeneralConstant.CHILD_POSITION, childPosition);
-            CommonUtils.showDialog(this, bundle, this);
+            CommonUtils.showCheckoutDialog(this, bundle, this);
         } else {
             openProductSubProduct(parentPosition, childPosition);
         }
@@ -569,6 +569,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
     @Override
     public void ok(int parentPosition, int childPosition) {
         PreferenceUtils.setCartData(null);
+        onUpdateCartEvent(new UpdateCartEvent());
         openProductSubProduct(parentPosition, childPosition);
     }
 

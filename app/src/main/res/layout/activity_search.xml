@@ -12,6 +12,7 @@
             layout="@layout/header_layout" />
 
         <RelativeLayout
+            android:id="@+id/layoutMain"
             style="@style/match_match"
             android:paddingTop="@dimen/margin_16">
 

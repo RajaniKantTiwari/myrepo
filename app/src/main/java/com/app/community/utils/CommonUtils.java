@@ -31,6 +31,7 @@ import com.app.community.BuildConfig;
 import com.app.community.R;
 import com.app.community.ui.authentication.LoginActivity;
 import com.app.community.ui.base.BaseActivity;
+import com.app.community.ui.dialogfragment.CheckoutDialogFragment;
 import com.app.community.ui.dialogfragment.ContactDialogFragment;
 import com.app.community.ui.dialogfragment.EmergencyDialogFragment;
 import com.app.community.ui.dialogfragment.CustomDialogFragment;
@@ -92,6 +93,15 @@ public class CommonUtils {
     public static void showDialog(AppCompatActivity activity, Bundle bundle, CustomDialogFragment.CustomDialogListener listener) {
         FragmentManager fm = activity.getSupportFragmentManager();
         CustomDialogFragment alertdFragment = new CustomDialogFragment();
+        alertdFragment.DialogListener(listener);
+        alertdFragment.setArguments(bundle);
+        // Show Alert CustomDialogFragment
+        alertdFragment.show(fm, "");
+    }
+
+    public static void showCheckoutDialog(AppCompatActivity activity, Bundle bundle, CheckoutDialogFragment.CheckoutDialogListener listener) {
+        FragmentManager fm = activity.getSupportFragmentManager();
+        CheckoutDialogFragment alertdFragment = new CheckoutDialogFragment();
         alertdFragment.DialogListener(listener);
         alertdFragment.setArguments(bundle);
         // Show Alert CustomDialogFragment

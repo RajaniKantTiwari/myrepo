@@ -123,6 +123,7 @@ public class SearchActivity extends CommonActivity implements SearchAdapter.Sear
     private void showDefault() {
         mBinding.defaultSearch.layoutSearch.setVisibility(View.VISIBLE);
         mBinding.rvSearch.setVisibility(View.GONE);
+        mBinding.tvNoResult.setVisibility(View.GONE);
     }
 
     @Override
@@ -162,13 +163,14 @@ public class SearchActivity extends CommonActivity implements SearchAdapter.Sear
                     merchantList.clear();
                     merchantList.addAll(responseData.getData());
                     mSearchAdapter.notifyDataSetChanged();
-                    if (CommonUtils.isNull(search) || search.length() == 0) {
-                        showDefault();
-                    }
                 } else {
+                    mBinding.layoutMain.setVisibility(View.GONE);
                     mBinding.tvNoResult.setVisibility(View.VISIBLE);
                 }
             }
+        }
+        if (CommonUtils.isNull(search) || search.length() == 0) {
+            showDefault();
         }
     }
 

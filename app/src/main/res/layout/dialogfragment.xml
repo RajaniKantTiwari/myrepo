@@ -20,6 +20,19 @@
                 android:textColor="@color/dark_black_color"
                 app:customFont="@string/font_bold" />
             <ImageView style="@style/view_layout" />
+            <com.app.community.widget.CustomEditText
+                android:id="@+id/edMobileNumber"
+                style="@style/edit_text_style"
+                android:layout_marginTop="@dimen/margin_15"
+                android:paddingBottom="@dimen/margin_5"
+                android:paddingTop="@dimen/margin_5"
+                android:hint="@string/mobileNumber"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/textSize_header_smaller"
+                app:customFont="@string/font_bold"
+                android:inputType="number"
+                android:visibility="gone"/>
+            <ImageView style="@style/view_layout" />
 
             <LinearLayout
                 style="@style/match_wrap"

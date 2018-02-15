@@ -2,11 +2,9 @@ package com.app.community.ui.dialogfragment;
 
 import android.app.Dialog;
 import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,23 +12,23 @@ import android.view.Window;
 
 import com.app.community.R;
 import com.app.community.databinding.DialogfragmentBinding;
-import com.app.community.ui.base.BaseActivity;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 
-public class CustomDialogFragment extends android.support.v4.app.DialogFragment implements View.OnClickListener {
+public class CheckoutDialogFragment extends DialogFragment implements View.OnClickListener {
     private Dialog dialog;
     private DialogfragmentBinding mBinding;
-    private CustomDialogListener listener;
+    private CheckoutDialogListener listener;
+    private int parentPosition;
+    private int childPosition;
 
 
-    public interface CustomDialogListener {
-        void ok(String str);
-
+    public interface CheckoutDialogListener {
+        void ok(int parentPosition, int childPosition);
         void cancel();
     }
 
-    public void DialogListener(CustomDialogListener listener) {
+    public void DialogListener(CheckoutDialogListener listener) {
         this.listener = listener;
     }
 
@@ -49,11 +47,10 @@ public class CustomDialogFragment extends android.support.v4.app.DialogFragment 
     private void initializeData() {
         Bundle bundle = getArguments();
         if (CommonUtils.isNotNull(bundle)) {
-            mBinding.tvMessage.setText(bundle.getString(GeneralConstant.TITLE));
-            if (bundle.getBoolean(GeneralConstant.VISIBLE, false)) {
-                mBinding.edMobileNumber.setVisibility(View.VISIBLE);
-                ((BaseActivity) getActivity()).showKeyboard();
-            }
+            parentPosition=bundle.getInt(GeneralConstant.PARENT_POSITION);
+            childPosition=bundle.getInt(GeneralConstant.CHILD_POSITION);
+            mBinding.tvMessage.setText(bundle.getString(GeneralConstant.MESSAGE));
+
         }
     }
 
@@ -65,18 +62,8 @@ public class CustomDialogFragment extends android.support.v4.app.DialogFragment 
     @Override
     public void onClick(View view) {
         if (view == mBinding.tvOk) {
-            if(mBinding.edMobileNumber.getVisibility()==View.VISIBLE){
-                String mobile = mBinding.edMobileNumber.getText().toString();
-                if (CommonUtils.isNotNull(mobile) && mobile.length() > 0) {
-                    dialog.cancel();
-                    listener.ok(mobile);
-                } else {
-                    ((BaseActivity) getActivity()).showToast(getResources().getString(R.string.please_enter_mobile_number));
-                }
-            }else{
-                listener.ok(null);
-            }
-
+            dialog.cancel();
+            listener.ok(parentPosition,childPosition);
         } else if (view == mBinding.tvCancel) {
             dialog.cancel();
             listener.cancel();
