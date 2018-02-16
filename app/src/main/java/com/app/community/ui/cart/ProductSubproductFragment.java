@@ -13,7 +13,9 @@ import android.widget.Toast;
 import com.app.community.R;
 import com.app.community.databinding.FragmentProductSubproductBinding;
 import com.app.community.databinding.ItemCartBinding;
+import com.app.community.event.ProductUpdateEvent;
 import com.app.community.event.UpdateCartEvent;
+import com.app.community.event.UpdateProfileEvent;
 import com.app.community.network.request.cart.Cart;
 import com.app.community.network.request.cart.CartListRequest;
 import com.app.community.network.request.cart.CategoryRequest;
@@ -27,10 +29,13 @@ import com.app.community.ui.dashboard.home.fragment.CheckoutFragment;
 import com.app.community.ui.dashboard.home.fragment.FullInformationFragment;
 import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
+import com.app.community.utils.GeneralConstant;
+import com.app.community.utils.GlideUtils;
 import com.app.community.utils.LogUtils;
 import com.app.community.utils.PreferenceUtils;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,6 +63,7 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_product_subproduct, container, false);
+        CommonUtils.register(this);
         if(CommonUtils.isNotNull(PreferenceUtils.getCartData())&&PreferenceUtils.getCartData().size()>0){
             addCartList=PreferenceUtils.getCartData();
         }else{
@@ -270,6 +276,7 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
                     Bundle bundle = new Bundle();
                     bundle.putParcelable(AppConstants.PRODUCT_DATA, mCartList.get(pos));
                     bundle.putInt(AppConstants.MERCHANT_ID,merchantId);
+                    bundle.putInt(GeneralConstant.POSITION,pos);
                     getDashboardActivity().addFragmentInContainer(new FullInformationFragment(), bundle, true, true, NONE);
                 }
                 break;
@@ -327,6 +334,17 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
                 oldSubCatPos = pos;
                 break;
         }
+    }
+    @Subscribe
+    public void onUpdateProductData(ProductUpdateEvent event) {
+        addCartList=PreferenceUtils.getCartData();
+        mCartList.set(event.getPosition(),event.getProductData());
+        mCartAdapter.notifyDataSetChanged();
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        CommonUtils.unregister(this);
     }
 
     private void callApi() {

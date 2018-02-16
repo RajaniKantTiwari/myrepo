@@ -14,7 +14,8 @@
     <RelativeLayout
         style="@style/match_wrap"
         android:background="@color/white"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:clickable="true">
 
         <com.app.community.widget.CustomTextView
             android:id="@+id/header"
