@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 
 
 import com.app.community.R;
-import com.app.community.network.response.dashboard.drawerresponse.Ingredient;
 import com.app.community.network.response.dashboard.rightdrawer.Merchant;
 import com.app.community.network.response.dashboard.rightdrawer.ProductSubCategory;
 import com.app.community.ui.dashboard.expandrecycleview.ExpandableRecyclerAdapter;
@@ -28,7 +27,7 @@ public class DrawerAdapterRight extends ExpandableRecyclerAdapter<ProductSubCate
     private List<ProductSubCategory> mSubCatList;
     private ProductSubHolderListener listener;
     public interface ProductSubHolderListener{
-        void onSubItemClicked(int parentPosition, int childPosition);
+        void onSubItemClicked(int parentPosition, int childPosition, Merchant merchant);
     }
     public DrawerAdapterRight(Context context, List<ProductSubCategory> subCatList, ProductSubHolderListener listener) {
         super(subCatList);
@@ -85,7 +84,7 @@ public class DrawerAdapterRight extends ExpandableRecyclerAdapter<ProductSubCate
         ingredientViewHolder.mIngredientTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.onSubItemClicked(parentPosition,childPosition);
+                listener.onSubItemClicked(parentPosition,childPosition,merchant);
             }
         });
         ingredientViewHolder.bind(merchant);

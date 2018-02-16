@@ -13,6 +13,7 @@ import android.view.View;
 import com.app.community.R;
 import com.app.community.databinding.ActivitySearchBinding;
 import com.app.community.event.ProductDetailsEvent;
+import com.app.community.event.UpdateCartEvent;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.home.MerchantResponse;
@@ -22,9 +23,11 @@ import com.app.community.ui.authentication.CommonActivity;
 import com.app.community.ui.dashboard.home.adapter.SearchAdapter;
 import com.app.community.ui.dashboard.home.adapter.SearchProductServiceAdapter;
 import com.app.community.ui.dashboard.home.event.SearchProductEvent;
+import com.app.community.ui.dialogfragment.CheckoutDialogFragment;
 import com.app.community.ui.presenter.CommonPresenter;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
+import com.app.community.utils.PreferenceUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -36,7 +39,9 @@ import javax.inject.Inject;
  * Created by rajnikant on 31/12/17.
  */
 
-public class SearchActivity extends CommonActivity implements SearchAdapter.SearchListener, SearchProductServiceAdapter.SearchProductServiceListener {
+public class SearchActivity extends CommonActivity implements
+        SearchAdapter.SearchListener,CheckoutDialogFragment.CheckoutDialogListener,
+        SearchProductServiceAdapter.SearchProductServiceListener {
     @Inject
     CommonPresenter presenter;
     private String search;
@@ -45,6 +50,7 @@ public class SearchActivity extends CommonActivity implements SearchAdapter.Sear
     private ActivitySearchBinding mBinding;
     private SearchAdapter mSearchAdapter;
     private ArrayList<MerchantResponse> merchantList;
+    private MerchantResponse merchant;
 
 
     @Override
@@ -178,23 +184,42 @@ public class SearchActivity extends CommonActivity implements SearchAdapter.Sear
     @Override
     public void itemClicked(int position) {
         if (CommonUtils.isNotNull(merchantList) && merchantList.size() > position) {
-            MerchantResponse merchant = merchantList.get(position);
+             merchant = merchantList.get(position);
             if (CommonUtils.isNotNull(merchant)) {
-                gotoProductDetails(merchant);
+                if (CommonUtils.isNotNull(PreferenceUtils.getCartData()) &&
+                        PreferenceUtils.getCartData().size() > 0
+                        && Integer.parseInt(merchant.getId())
+                        != PreferenceUtils.getCartData().get(0).getMerchantId()) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString(GeneralConstant.MESSAGE, getResources().getString(R.string.if_you_change_merchant_all_previous));
+                    CommonUtils.showCheckoutDialog(this, bundle, this);
+                } else {
+                    gotoProductDetails();
+                }
             }
         }
-
-
     }
 
-    private void gotoProductDetails(MerchantResponse merchantResponse) {
-        ProductDetailsEvent productDetailsEvent = new ProductDetailsEvent(merchantResponse);
+    private void gotoProductDetails() {
+        ProductDetailsEvent productDetailsEvent = new ProductDetailsEvent(merchant);
         EventBus.getDefault().post(productDetailsEvent);
         finish();
     }
 
     @Override
     public void onProductServiceItemClick(int position, int type) {
+
+    }
+
+    @Override
+    public void ok(int parentPosition, int childPosition) {
+        PreferenceUtils.setCartData(null);
+        EventBus.getDefault().post(new UpdateCartEvent());
+        gotoProductDetails();
+    }
+
+    @Override
+    public void cancel() {
 
     }
 }

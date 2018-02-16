@@ -29,8 +29,10 @@ import android.widget.Toast;
 
 import com.app.community.BuildConfig;
 import com.app.community.R;
+import com.app.community.event.UpdateCartEvent;
 import com.app.community.ui.authentication.LoginActivity;
 import com.app.community.ui.base.BaseActivity;
+import com.app.community.ui.dashboard.DashBoardActivity;
 import com.app.community.ui.dialogfragment.CheckoutDialogFragment;
 import com.app.community.ui.dialogfragment.ContactDialogFragment;
 import com.app.community.ui.dialogfragment.EmergencyDialogFragment;
@@ -499,5 +501,10 @@ public class CommonUtils {
             e.printStackTrace();
         }
         return createdDate;
+    }
+
+    public static void resetCart(DashBoardActivity dashBoardActivity) {
+        PreferenceUtils.setCartData(null);
+        dashBoardActivity.onUpdateCartEvent(new UpdateCartEvent());
     }
 }

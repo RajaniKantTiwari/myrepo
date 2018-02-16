@@ -432,8 +432,10 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
     }
 
     @Override
-    public void onSubItemClicked(int parentPosition, int childPosition) {
-        if (CommonUtils.isNotNull(PreferenceUtils.getCartData()) && PreferenceUtils.getCartData().size() > 0) {
+    public void onSubItemClicked(int parentPosition, int childPosition, Merchant merchant) {
+        if (CommonUtils.isNotNull(PreferenceUtils.getCartData()) &&
+                PreferenceUtils.getCartData().size() > 0
+                &&Integer.parseInt(merchant.getId())!=PreferenceUtils.getCartData().get(0).getMerchantId()) {
             Bundle bundle = new Bundle();
             bundle.putString(GeneralConstant.MESSAGE, getResources().getString(R.string.if_you_change_merchant_all_previous));
             bundle.putInt(GeneralConstant.PARENT_POSITION, parentPosition);
@@ -572,8 +574,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
 
     @Override
     public void ok(int parentPosition, int childPosition) {
-        PreferenceUtils.setCartData(null);
-        onUpdateCartEvent(new UpdateCartEvent());
+        CommonUtils.resetCart(this);
         openProductSubProduct(parentPosition, childPosition);
     }
 
