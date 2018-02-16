@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-<data>
-    <import type="com.app.community.utils.CommonUtils"/>
-    <variable
-        name="product"
-        type="com.app.community.network.response.dashboard.cart.ProductData"/>
-</data>
+
+    <data>
+
+        <import type="com.app.community.utils.CommonUtils" />
+
+        <variable
+            name="product"
+            type="com.app.community.network.response.dashboard.cart.ProductData" />
+    </data>
+
     <RelativeLayout
         style="@style/match_wrap"
         android:background="@color/white"
@@ -24,32 +28,37 @@
             android:textColor="@color/color_black"
             app:customFont="@string/font_book_regular" />
 
-        <ImageView
-            android:id="@+id/ivProductImage"
-            style="@style/wrap_wrap"
+        <RelativeLayout
+            android:id="@+id/layoutProduct"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/margin_200"
-            android:layout_below="@+id/header"
-            />
+            android:layout_below="@+id/header">
+
+            <ImageView
+                android:id="@+id/ivProductImage"
+                style="@style/wrap_wrap"
+                android:layout_margin="@dimen/margin_5" />
+        </RelativeLayout>
 
         <ImageView
             android:id="@+id/layoutLine"
             style="@style/view_layout"
-            android:layout_below="@+id/ivProductImage" />
+            android:layout_below="@+id/layoutProduct" />
 
         <LinearLayout
             style="@style/match_wrap"
             android:layout_below="@+id/layoutLine"
             android:layout_margin="@dimen/margin_10"
-            android:paddingTop="@dimen/margin_5"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="@dimen/margin_5">
 
             <LinearLayout style="@style/match_wrap">
 
                 <com.app.community.widget.CustomTextView
                     style="@style/textview_header_small_wrap"
-                    android:text="@{CommonUtils.price(product.selling_price)}"
-                    android:drawableStart="@drawable/rupee"
                     android:drawablePadding="@dimen/margin_5"
+                    android:drawableStart="@drawable/rupee"
+                    android:text="@{CommonUtils.price(product.selling_price)}"
                     android:textColor="@color/color_sky_blue" />
 
                 <com.app.community.widget.CustomTextView
@@ -62,15 +71,13 @@
                 style="@style/textview_description_match"
                 android:layout_marginTop="@dimen/margin_2"
                 android:text="@={product.productname}"
-                android:textColor="@color/color_black"
-                />
+                android:textColor="@color/color_black" />
 
             <com.app.community.widget.CustomTextView
-                android:layout_marginTop="@dimen/margin_15"
                 style="@style/textview_description_small_match"
-                android:textColor="@color/color_black"
+                android:layout_marginTop="@dimen/margin_15"
                 android:text="@={product.productdescription}"
-                />
+                android:textColor="@color/color_black" />
 
         </LinearLayout>
 
@@ -78,12 +85,12 @@
             style="@style/match_wrap"
             android:layout_height="@dimen/margin_50"
             android:layout_alignParentBottom="true"
-            android:background="@color/white_e2e2e2">
+            android:background="@color/grey_white">
 
             <LinearLayout
                 style="@style/wrap_wrap"
-                android:layout_marginStart="@dimen/margin_10"
-                android:layout_centerVertical="true">
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/margin_10">
 
                 <ImageView
                     android:id="@+id/ivAdd"
@@ -94,10 +101,9 @@
                     android:id="@+id/tvCart"
                     style="@style/textview_title_wrap"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="@dimen/margin_10"
                     android:layout_marginEnd="@dimen/margin_10"
-                    android:textColor="@color/color_sky_blue"
-                    />
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:textColor="@color/color_sky_blue" />
 
                 <ImageView
                     android:id="@+id/ivSub"

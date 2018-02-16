@@ -86,7 +86,7 @@
 
                 <RelativeLayout
                     style="@style/match_wrap"
-                    android:background="@color/white_e2e2e2"
+                    android:background="@color/grey_white"
                     android:padding="@dimen/margin_5"
                     android:paddingEnd="@dimen/margin_10"
                     android:paddingStart="@dimen/margin_10">

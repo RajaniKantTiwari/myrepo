@@ -44,6 +44,7 @@ import com.app.community.ui.dashboard.home.adapter.DrawerAdapterLeft;
 import com.app.community.ui.dashboard.home.event.NewsEvent;
 import com.app.community.ui.dashboard.home.event.SearchProductEvent;
 import com.app.community.ui.dashboard.home.event.UpdateAddress;
+import com.app.community.ui.dashboard.home.fragment.CheckoutFragment;
 import com.app.community.ui.dashboard.home.fragment.MerchantFragment;
 import com.app.community.ui.dashboard.home.fragment.MyOrderActivity;
 import com.app.community.ui.dashboard.home.fragment.NewsMainFragment;
@@ -292,6 +293,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         mBinding.bottomLayout.linearLayoutBar2.setOnClickListener(this);
         mBinding.bottomLayout.linearLayoutBar3.setOnClickListener(this);
         mBinding.bottomLayout.linearLayoutBar4.setOnClickListener(this);
+        mBinding.toolBar.layoutCart.setOnClickListener(this);
 
     }
 
@@ -330,6 +332,8 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
             changeIcon(USER_FRAGMENT);
             clearAllBackStack();
             pushFragment(new UserProfileFragment(), null, R.id.container, true, false, NONE);
+        }else if(view==mBinding.toolBar.layoutCart){
+            addFragmentInContainer(new CheckoutFragment(), null, true, true, NONE);
         }
     }
 
