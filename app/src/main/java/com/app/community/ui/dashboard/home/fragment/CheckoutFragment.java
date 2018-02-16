@@ -15,6 +15,7 @@ import com.app.community.network.request.PaymentOption;
 import com.app.community.network.request.cart.CheckoutRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.cart.ProductData;
+import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
 import com.app.community.ui.SimpleDividerItemDecoration;
 import com.app.community.ui.activity.EditAddressActivity;
 import com.app.community.ui.activity.PaymentAdapter;
@@ -84,8 +85,6 @@ public class CheckoutFragment extends DashboardFragment {
     }
 
 
-
-
     private void setDelivery() {
         PaymentOption option1 = new PaymentOption();
         option1.setPaymentString(getResources().getString(R.string.pick_on_the_way));
@@ -117,12 +116,12 @@ public class CheckoutFragment extends DashboardFragment {
 
     @Override
     public String getFragmentName() {
-        return null;
+        return CheckoutFragment.class.getSimpleName();
     }
 
     @Override
     public void attachView() {
-      getPresenter().attachView(this);
+        getPresenter().attachView(this);
     }
 
     @Override
@@ -132,13 +131,16 @@ public class CheckoutFragment extends DashboardFragment {
             ExplicitIntent.getsInstance().navigateTo(getDashboardActivity(), EditAddressActivity.class);
 
         } else if (view == mBinding.tvProceedToPay) {
-            getPresenter().checkout(getDashboardActivity(),new CheckoutRequest(1));
+            getPresenter().checkout(getDashboardActivity(), new CheckoutRequest(1));
         }
     }
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
+        if (CommonUtils.isNotNull(response) && response instanceof ProductDetailsData) {
+            ProductDetailsData data = (ProductDetailsData) response;
 
+        }
     }
 
     @Override

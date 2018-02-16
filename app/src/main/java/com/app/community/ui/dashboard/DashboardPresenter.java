@@ -126,7 +126,6 @@ public class DashboardPresenter implements Presenter<MvpView> {
                 mView.hideProgress();
                 mView.onSuccess(response, 1);
             }
-
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();

@@ -576,6 +576,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
     public void ok(int parentPosition, int childPosition) {
         CommonUtils.resetCart(this);
         openProductSubProduct(parentPosition, childPosition);
+        mPresenter.deleteFromCart(this);
     }
 
     @Override

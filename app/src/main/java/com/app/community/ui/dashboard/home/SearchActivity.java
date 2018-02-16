@@ -214,6 +214,7 @@ public class SearchActivity extends CommonActivity implements
     @Override
     public void ok(int parentPosition, int childPosition) {
         PreferenceUtils.setCartData(null);
+        presenter.deleteFromCart(this);
         EventBus.getDefault().post(new UpdateCartEvent());
         gotoProductDetails();
     }
