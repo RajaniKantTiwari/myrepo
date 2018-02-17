@@ -30,6 +30,8 @@ import javax.inject.Inject;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
+import static com.app.community.utils.GeneralConstant.VIEW_CART;
+
 
 public class DashboardPresenter implements Presenter<MvpView> {
 
@@ -124,12 +126,12 @@ public class DashboardPresenter implements Presenter<MvpView> {
             @Override
             public void onResponse(ProductDetailsData response) {
                 mView.hideProgress();
-                mView.onSuccess(response, 1);
+                mView.onSuccess(response, VIEW_CART);
             }
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMsg(), 1);
+                mView.onError(baseResponse.getMsg(), VIEW_CART);
             }
         });
     }
@@ -254,6 +256,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
     }
 
     public void checkout(Activity activity, CheckoutRequest checkoutRequest) {
+        mView.showProgress();
         mRepository.checkout(checkoutRequest).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
             @Override

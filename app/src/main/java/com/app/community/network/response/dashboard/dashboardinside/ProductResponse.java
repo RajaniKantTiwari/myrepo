@@ -10,7 +10,52 @@ import android.os.Parcelable;
 public class ProductResponse implements Parcelable{
     private String productname;
     private String mrp;
-    private String quantity;
+    private int quantity;
+    private int selling_price;
+    private int product_mrp;
+    private int tax;
+    private int avg_time_to_deliver;
+    private int shipping;
+
+    public int getSelling_price() {
+        return selling_price;
+    }
+
+    public void setSelling_price(int selling_price) {
+        this.selling_price = selling_price;
+    }
+
+    public int getProduct_mrp() {
+        return product_mrp;
+    }
+
+    public void setProduct_mrp(int product_mrp) {
+        this.product_mrp = product_mrp;
+    }
+
+    public int getTax() {
+        return tax;
+    }
+
+    public void setTax(int tax) {
+        this.tax = tax;
+    }
+
+    public int getAvg_time_to_deliver() {
+        return avg_time_to_deliver;
+    }
+
+    public void setAvg_time_to_deliver(int avg_time_to_deliver) {
+        this.avg_time_to_deliver = avg_time_to_deliver;
+    }
+
+    public int getShipping() {
+        return shipping;
+    }
+
+    public void setShipping(int shipping) {
+        this.shipping = shipping;
+    }
 
     public String getProductname() {
         return productname;
@@ -28,18 +73,18 @@ public class ProductResponse implements Parcelable{
         this.mrp = mrp;
     }
 
-    public String getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
     protected ProductResponse(Parcel in) {
         productname = in.readString();
         mrp = in.readString();
-        quantity = in.readString();
+        quantity = in.readInt();
     }
 
     public static final Creator<ProductResponse> CREATOR = new Creator<ProductResponse>() {
@@ -63,6 +108,6 @@ public class ProductResponse implements Parcelable{
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(productname);
         dest.writeString(mrp);
-        dest.writeString(quantity);
+        dest.writeInt(quantity);
     }
 }

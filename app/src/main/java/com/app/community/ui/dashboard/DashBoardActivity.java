@@ -180,7 +180,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         pushFragment(fragment, bundle, R.id.container, addToBackStack, shouldAdd, animationType);
     }
 
-    private void changeIcon(int position) {
+    public void changeIcon(int position) {
         for (int i = 0; i < AppConstants.NO_OF_TAB; i++) {
             switch (i) {
                 case 0:
@@ -332,11 +332,14 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
             changeIcon(USER_FRAGMENT);
             clearAllBackStack();
             pushFragment(new UserProfileFragment(), null, R.id.container, true, false, NONE);
-        }else if(view==mBinding.toolBar.layoutCart){
-            addFragmentInContainer(new CheckoutFragment(), null, true, true, NONE);
+        } else if (view == mBinding.toolBar.layoutCart) {
+            if (CommonUtils.isNotNull(PreferenceUtils.getCartData()) && PreferenceUtils.getCartData().size() > 0) {
+                addFragmentInContainer(new CheckoutFragment(), null, true, true, NONE);
+            } else {
+                showToast(getResources().getString(R.string.please_add_data_in_cart_first));
+            }
         }
     }
-
 
     void setupDrawerToggleRight() {
 
@@ -435,7 +438,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
     public void onSubItemClicked(int parentPosition, int childPosition, Merchant merchant) {
         if (CommonUtils.isNotNull(PreferenceUtils.getCartData()) &&
                 PreferenceUtils.getCartData().size() > 0
-                &&Integer.parseInt(merchant.getId())!=PreferenceUtils.getCartData().get(0).getMerchantId()) {
+                && Integer.parseInt(merchant.getId()) != PreferenceUtils.getCartData().get(0).getMerchantId()) {
             Bundle bundle = new Bundle();
             bundle.putString(GeneralConstant.MESSAGE, getResources().getString(R.string.if_you_change_merchant_all_previous));
             bundle.putInt(GeneralConstant.PARENT_POSITION, parentPosition);

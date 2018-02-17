@@ -77,6 +77,8 @@ public interface GeneralConstant {
     String PARENT_POSITION = "parent_position";
     String CHILD_POSITION = "child_position";
     String MESSAGE = "message";
+    int VIEW_CART=1;
+    int CHECKOUT=2;
 
 
     @IntDef({MERCHANT_MAP_FRAGMENT, MERCHANT_LIST_FRAGMENT, RECENT_FRAGMENT, CATEGORY_FRAGMENT,

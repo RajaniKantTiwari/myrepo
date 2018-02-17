@@ -36,7 +36,6 @@
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/rvCartItem"
                         style="@style/match_wrap"
-                        android:minHeight="@dimen/margin_100"
                         android:paddingStart="@dimen/margin_5"
                         android:paddingEnd="@dimen/margin_5"/>
                 </LinearLayout>

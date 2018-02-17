@@ -16,7 +16,9 @@ import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.fragment.HelpsAndSupportFragment;
 import com.app.community.utils.CommonUtils;
 
+import static com.app.community.ui.base.BaseActivity.AnimationType.NONE;
 import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.WELCOME_HOME_FRAGMENT;
 
 
 /**
@@ -65,6 +67,9 @@ public class ConfirmOrderFragment extends DashboardFragment {
             //mFragmentNavigation.pushFragment(HelpsAndSupportFragment.newInstance(mInt + 1));
         } else if (view == mBinding.tvHome) {
             CommonUtils.clicked(mBinding.tvHome);
+            getBaseActivity().clearAllBackStack();
+            getDashboardActivity().changeIcon(WELCOME_HOME_FRAGMENT);
+            getDashboardActivity().addFragmentInContainer(new WelcomeHomeFragment(), null, false, false, NONE);
            // mFragmentNavigation.popFragment();
         }
     }

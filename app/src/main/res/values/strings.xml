@@ -467,6 +467,8 @@
     <string name="please_add_data_in_cart_first">Please Add Data In Cart First</string>
     <string name="service_is_anavailable_for_this_area">Service is unavailable in your area</string>
     <string name="if_you_change_merchant_all_previous">If You Change Merchnt Your Previous Data Will Be Lost</string>
+    <string name="shipping_charge">Shipping Charge</string>
+    <string name="total_amount">Total Amount</string>
 
 
     <string-array name="state_array">

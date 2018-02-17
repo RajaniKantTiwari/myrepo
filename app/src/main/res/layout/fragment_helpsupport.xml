@@ -6,10 +6,6 @@
         style="@style/match_match"
         android:background="@color/white"
         android:orientation="vertical">
-        <include
-            android:id="@+id/layoutHeader"
-            layout="@layout/header_layout"
-            />
         <LinearLayout
             style="@style/match_wrap"
             android:layout_height="@dimen/margin_60">

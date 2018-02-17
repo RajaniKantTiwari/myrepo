@@ -24,7 +24,6 @@
             android:layout_alignParentEnd="true"
             android:textColor="@color/color_black"
             android:textSize="@dimen/textSize_description"
-            android:layout_marginEnd="@dimen/margin_25"
-            android:text="525"/>
+            android:layout_marginEnd="@dimen/margin_25"/>
     </RelativeLayout>
 </layout>

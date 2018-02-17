@@ -20,8 +20,10 @@ import com.app.community.ui.SimpleDividerItemDecoration;
 import com.app.community.ui.activity.EditAddressActivity;
 import com.app.community.ui.activity.PaymentAdapter;
 import com.app.community.ui.dashboard.DashboardFragment;
+import com.app.community.ui.dashboard.home.ConfirmOrderFragment;
 import com.app.community.ui.dashboard.home.adapter.CheckoutCartAdapter;
 import com.app.community.ui.dashboard.home.event.UpdateAddress;
+import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
@@ -32,6 +34,7 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.app.community.ui.base.BaseActivity.AnimationType.NONE;
 import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 
 /**
@@ -137,10 +140,24 @@ public class CheckoutFragment extends DashboardFragment {
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
-        if (CommonUtils.isNotNull(response) && response instanceof ProductDetailsData) {
-            ProductDetailsData data = (ProductDetailsData) response;
-
+        if (requestCode == GeneralConstant.VIEW_CART) {
+            if (CommonUtils.isNotNull(response) && response instanceof ProductDetailsData) {
+                ProductDetailsData data = (ProductDetailsData) response;
+                setDtaForCheckout(data);
+            }
+        } else if (requestCode == GeneralConstant.CHECKOUT) {
+            if (CommonUtils.isNotNull(response) && response.getStatus().equalsIgnoreCase(AppConstants.SUCCESS)) {
+                CommonUtils.resetCart(getDashboardActivity());
+                getDashboardActivity().addFragmentInContainer(new ConfirmOrderFragment(), null, true, true, NONE);
+            } else {
+                getDashboardActivity().showToast(getResources().getString(R.string.something_went_wrong));
+            }
         }
+
+    }
+
+    private void setDtaForCheckout(ProductDetailsData data) {
+        mCheckoutAdapter.setCartList(data.getProduct());
     }
 
     @Override

@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import com.app.community.R;
 import com.app.community.databinding.CheckoutRowItemBinding;
 import com.app.community.network.response.dashboard.cart.ProductData;
+import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
+import com.app.community.network.response.dashboard.dashboardinside.ProductResponse;
 import com.app.community.utils.CommonUtils;
 import com.app.community.widget.CustomTextView;
 
@@ -23,7 +25,7 @@ public class CheckoutCartAdapter extends RecyclerView.Adapter<CheckoutCartAdapte
     private final LayoutInflater mInflater;
     private final AppCompatActivity activity;
     private CheckoutRowItemBinding mBinding;
-    private ArrayList<ProductData> cartList;
+    private ArrayList<ProductResponse> cartList;
 
     public CheckoutCartAdapter(AppCompatActivity activity){
         this.activity=activity;
@@ -37,22 +39,71 @@ public class CheckoutCartAdapter extends RecyclerView.Adapter<CheckoutCartAdapte
 
     @Override
     public void onBindViewHolder(CheckoutHolder holder, int position) {
-        if(CommonUtils.isNotNull(cartList)&&cartList.size()==position+1){
-            holder.tvProductName.setText("");
-            holder.tvProductPrice.setTextColor(CommonUtils.getColor(activity,R.color.color_sky_blue));
-        }else{
-            holder.tvProductName.setText("");
+        if(CommonUtils.isNotNull(cartList)){
+            if(position>=cartList.size()){
+                otherCharge(holder,position);
+            }else{
+                ProductResponse data = cartList.get(position);
+                holder.tvProductName.setText(data.getProductname()+"("+data.getQuantity()+")");
+                int total=data.getQuantity()*data.getProduct_mrp();
+                holder.tvProductPrice.setText(String.valueOf(total));
+                holder.tvProductPrice.setTextColor(CommonUtils.getColor(activity,R.color.color_black));
+            }
+        }
+    }
+
+    private void otherCharge(CheckoutHolder holder,int position) {
+        if(position==cartList.size()){
+            int subTotal=0;
+            for(int i=0;i<cartList.size();i++) {
+                ProductResponse data=cartList.get(i);
+                subTotal=subTotal+data.getQuantity()*data.getProduct_mrp();
+            }
+            holder.tvProductName.setText(activity.getResources().getString(R.string.sub_total));
+            holder.tvProductPrice.setText(String.valueOf(subTotal));
             holder.tvProductPrice.setTextColor(CommonUtils.getColor(activity,R.color.color_black));
+        }else if(position==cartList.size()+1){
+            int tax=0;
+            for(int i=0;i<cartList.size();i++) {
+                ProductResponse data = cartList.get(i);
+                tax = tax + data.getTax();
+            }
+            holder.tvProductName.setText(activity.getResources().getString(R.string.tax));
+            holder.tvProductPrice.setText(String.valueOf(tax));
+            holder.tvProductPrice.setTextColor(CommonUtils.getColor(activity,R.color.color_black));
+        }else if(position==cartList.size()+2){
+            int shipingCharge=0;
+            for(int i=0;i<cartList.size();i++){
+                ProductResponse data=cartList.get(i);
+                shipingCharge=shipingCharge+data.getShipping();
+            }
+            holder.tvProductName.setText(activity.getResources().getString(R.string.shipping_charge));
+            holder.tvProductPrice.setText(String.valueOf(shipingCharge));
+            holder.tvProductPrice.setTextColor(CommonUtils.getColor(activity,R.color.color_black));
+        }else if(position==cartList.size()+3){
+            int subTotal=0;
+            int tax=0;
+            int shipingCharge=0;
+            for(int i=0;i<cartList.size();i++){
+                ProductResponse data=cartList.get(i);
+                subTotal=subTotal+data.getQuantity()*data.getProduct_mrp();
+                tax = tax + data.getTax();
+                shipingCharge=shipingCharge+data.getShipping();
+            }
+            int totalAmount=subTotal+tax+shipingCharge;
+            holder.tvProductName.setText(activity.getResources().getString(R.string.total_amount));
+            holder.tvProductPrice.setText(String.valueOf(totalAmount));
+            holder.tvProductPrice.setTextColor(CommonUtils.getColor(activity,R.color.color_sky_blue));
         }
 
     }
 
     @Override
     public int getItemCount() {
-        return CommonUtils.isNotNull(cartList)?cartList.size():0;
+        return CommonUtils.isNotNull(cartList)?cartList.size()+4:0;
     }
 
-    public void setCartList(ArrayList<ProductData> cartList) {
+    public void setCartList(ArrayList<ProductResponse> cartList) {
         this.cartList=cartList;
         notifyDataSetChanged();
     }
