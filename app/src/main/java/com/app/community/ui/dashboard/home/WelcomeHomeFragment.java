@@ -171,7 +171,6 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
         }else{
             mEmergencyPlaceBinding.ivLeft.setVisibility(View.GONE);
         }
-        Log.e("firstVisibleItem","firstVisibleItemPosition "+firstVisibleItemPosition);
     }
 
     /**
