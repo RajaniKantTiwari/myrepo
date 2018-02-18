@@ -127,6 +127,7 @@ public class SearchActivity extends CommonActivity implements
     }
 
     private void showDefault() {
+        mBinding.layoutMain.setVisibility(View.VISIBLE);
         mBinding.defaultSearch.layoutSearch.setVisibility(View.VISIBLE);
         mBinding.rvSearch.setVisibility(View.GONE);
         mBinding.tvNoResult.setVisibility(View.GONE);
@@ -162,6 +163,8 @@ public class SearchActivity extends CommonActivity implements
         mBinding.defaultSearch.layoutSearch.setVisibility(View.GONE);
         mBinding.rvSearch.setVisibility(View.VISIBLE);
         mBinding.tvNoResult.setVisibility(View.GONE);
+        mBinding.layoutMain.setVisibility(View.VISIBLE);
+
         if (CommonUtils.isNotNull(response) && response instanceof SearchResponseData) {
             SearchResponseData responseData = (SearchResponseData) response;
             if (CommonUtils.isNotNull(responseData)) {
