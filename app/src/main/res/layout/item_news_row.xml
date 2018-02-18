@@ -50,6 +50,15 @@
                 android:layout_marginTop="@dimen/margin_10"
                 android:layout_marginBottom="@dimen/margin_15"
                 />
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvDetails"
+                style="@style/textview_description_large_match"
+                android:text="GotoDetails"
+                android:textColor="@color/deep_sky_blue"
+                app:customFont="@string/font_regular"
+                android:layout_marginTop="@dimen/margin_10"
+                android:layout_marginBottom="@dimen/margin_15"
+                />
         </LinearLayout>
         <ImageView
             style="@style/view_layout" />

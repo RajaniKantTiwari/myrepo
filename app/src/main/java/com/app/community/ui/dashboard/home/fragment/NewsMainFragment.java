@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.app.community.R;
 import com.app.community.databinding.FragmentMainNewsBinding;
+import com.app.community.event.NewsEventDetail;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.home.News;
 import com.app.community.ui.dashboard.DashboardFragment;
@@ -20,6 +21,9 @@ import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 import com.emoiluj.doubleviewpager.DoubleViewPagerAdapter;
+import com.emoiluj.doubleviewpager.HorizontalViewPager;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 
@@ -31,11 +35,15 @@ public class NewsMainFragment extends DashboardFragment {
     private FragmentMainNewsBinding mBinding;
     private ArrayList<News> newsList;
     private int position;
+    private FirstPagerAdapter firstPagerAdapter;
+    private SecondPagerAdapter secondPager;
+    private ThirdPagerAdapter thirdPagerAdapter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_main_news, container, false);
+        CommonUtils.register(this);
         return mBinding.getRoot();
     }
 
@@ -50,20 +58,54 @@ public class NewsMainFragment extends DashboardFragment {
         generateVerticalAdapters(verticalAdapters);
         mBinding.viewPager.setAdapter(new DoubleViewPagerAdapter(getContext(), verticalAdapters));
         mBinding.viewPager.setCurrentItem(1);
+
+        mBinding.viewPager.setOnPageChangeListener(new HorizontalViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                if(position==2){
+                    thirdPagerAdapter.setWebUrl("http://oimedia.in/index.php/author/webmaster/");
+                }
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     private void generateVerticalAdapters(ArrayList<PagerAdapter> verticalAdapters) {
         for (int i = 0; i < AppConstants.HORIZONTAL_CHILD; i++) {
             if (i == 0) {
-                verticalAdapters.add(new FirstPagerAdapter(getContext(), i, 1));
+                firstPagerAdapter=new FirstPagerAdapter(getContext(), i, 1);
+                verticalAdapters.add(firstPagerAdapter);
             } else if (i == 1) {
-                verticalAdapters.add(new SecondPagerAdapter(getContext(), newsList));
+                secondPager=new SecondPagerAdapter(getContext(), newsList);
+                mBinding.viewPager.setVerticalScrollbarPosition(2);
+                verticalAdapters.add(secondPager);
             } else if (i == 2) {
-                verticalAdapters.add(new ThirdPagerAdapter(getContext(), i, 1));
+                thirdPagerAdapter=new ThirdPagerAdapter(getContext());
+                verticalAdapters.add(thirdPagerAdapter);
             }
         }
     }
 
+    @Override
+    public void onDestroy() {
+        CommonUtils.unregister(this);
+        super.onDestroy();
+    }
+
+    @Subscribe
+    public void onNewsWebEvent(NewsEventDetail event) {
+        thirdPagerAdapter.setWebUrl(event.getUrl());
+        mBinding.viewPager.setCurrentItem(2);
+    }
     @Override
     public void setListener() {
     }

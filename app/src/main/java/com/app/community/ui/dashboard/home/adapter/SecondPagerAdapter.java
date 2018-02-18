@@ -9,9 +9,13 @@ import android.view.ViewGroup;
 
 import com.app.community.R;
 import com.app.community.databinding.ItemNewsRowBinding;
+import com.app.community.event.NewsEventDetail;
 import com.app.community.network.response.dashboard.home.News;
+import com.app.community.ui.dashboard.home.event.NewsEvent;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GlideUtils;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 
@@ -53,6 +57,12 @@ public class SecondPagerAdapter extends PagerAdapter {
             GlideUtils.loadImage(mContext, newsList.get(position).getDisplay_image(), itemBinding.ivNews, null, R.drawable.background_placeholder);
             itemBinding.setNews(newsList.get(position));
         }
+        itemBinding.tvDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EventBus.getDefault().post(new NewsEventDetail("http://oimedia.in/index.php/author/webmaster/"));
+            }
+        });
         container.addView(itemBinding.getRoot());
         return itemBinding.getRoot();
     }
