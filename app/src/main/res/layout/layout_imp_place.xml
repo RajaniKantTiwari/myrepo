@@ -12,10 +12,29 @@
             android:layout_marginTop="@dimen/margin_10"
             android:layout_marginStart="@dimen/margin_12"
             android:layout_marginEnd="@dimen/margin_12">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_70">
+                <ImageView
+                    android:id="@+id/ivLeft"
+                    style="@style/wrap_wrap"
+                    android:layout_centerVertical="true"
+                    android:visibility="gone"
+                    android:src="@drawable/ic_left"/>
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvImportantPlace"
-                style="@style/match_match"
+                style="@style/match_wrap"
+                android:layout_toStartOf="@+id/ivRight"
+                android:layout_toEndOf="@+id/ivLeft"
                 android:background="@drawable/stroke_grey_bg"/>
+                <ImageView
+                    android:id="@+id/ivRight"
+                    style="@style/wrap_wrap"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:visibility="gone"
+                    android:src="@drawable/ic_right"/>
+            </RelativeLayout>
         </android.support.v7.widget.CardView>
     </LinearLayout>
 

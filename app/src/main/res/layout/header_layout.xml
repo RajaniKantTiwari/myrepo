@@ -37,7 +37,7 @@
 
         <com.app.community.widget.CustomTextView
             android:id="@+id/textView"
-            style="@style/textview_title_wrap"
+            style="@style/textview_description_wrap"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"

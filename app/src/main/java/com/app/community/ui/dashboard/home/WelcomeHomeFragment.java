@@ -12,6 +12,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,6 +83,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
     private ArrayList<Emergency> emergencyList;
     private ArrayList<News> newsList;
     private ArrayList<Offer> offersList;
+    private LinearLayoutManager emergencyPlaceManager;
 
 
     @Nullable
@@ -103,9 +106,9 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
         emergencyList = new ArrayList<>();
         newsList = new ArrayList<>();
         offersList = new ArrayList<>();
-        LinearLayoutManager placeManager = new LinearLayoutManager(getContext());
-        placeManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        mEmergencyPlaceBinding.rvImportantPlace.setLayoutManager(placeManager);
+        emergencyPlaceManager = new LinearLayoutManager(getContext());
+        emergencyPlaceManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        mEmergencyPlaceBinding.rvImportantPlace.setLayoutManager(emergencyPlaceManager);
         mEmergencyAdapter = new EmergencyAdapter(getBaseActivity(), emergencyList, this);
         mEmergencyPlaceBinding.rvImportantPlace.setAdapter(mEmergencyAdapter);
         LinearLayoutManager latestNewsManager = new LinearLayoutManager(getBaseActivity());
@@ -139,7 +142,53 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
         mWelcomeBinding.tvSearch.setOnClickListener(this);
         mLastOrderBinding.layoutLastOrder.setOnClickListener(this);
         mLastOrderBinding.layoutRating.setOnClickListener(this);
+        mEmergencyPlaceBinding.rvImportantPlace.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dx > 0) {
+                    System.out.println("Scrolled Right");
+                    checkIfItsLastItem();
+                    checkIfItsFirstItem();
+                } else if (dx < 0) {
+                    checkIfItsFirstItem();
+                    checkIfItsLastItem();
+                    System.out.println("Scrolled Left");
+                } else {
+                    System.out.println("No Horizontal Scrolled");
+                }
+            }
+        });
     }
+
+    /**
+     * is used to check list has scroll to first position or not
+     */
+    private void checkIfItsFirstItem() {
+        int firstVisibleItemPosition = emergencyPlaceManager.findFirstCompletelyVisibleItemPosition();
+        if(firstVisibleItemPosition>0){
+            mEmergencyPlaceBinding.ivLeft.setVisibility(View.VISIBLE);
+        }else{
+            mEmergencyPlaceBinding.ivLeft.setVisibility(View.GONE);
+        }
+        Log.e("firstVisibleItem","firstVisibleItemPosition "+firstVisibleItemPosition);
+    }
+
+    /**
+     * is used to check list has scroll to last position or not
+     */
+    private void checkIfItsLastItem() {
+        int visibleItemCount = emergencyPlaceManager.getChildCount();
+        int totalItemCount = emergencyPlaceManager.getItemCount();
+        int pastVisibleItems = emergencyPlaceManager.findFirstVisibleItemPosition();
+        if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
+            mEmergencyPlaceBinding.ivRight.setVisibility(View.GONE);
+        }else if(CommonUtils.isNotNull(emergencyList)&&emergencyList.size()>5){
+            mEmergencyPlaceBinding.ivRight.setVisibility(View.VISIBLE);
+        }
+
+    }
+
 
     @Override
     public String getFragmentName() {
@@ -159,7 +208,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
         } else if (view == mWelcomeBinding.tvSearch) {
             ExplicitIntent.getsInstance().navigateTo(getActivity(), SearchActivity.class);
         } else if (view == mLastOrderBinding.layoutRating) {
-            ExplicitIntent.getsInstance().navigateTo(getDashboardActivity(),MyOrderActivity.class);
+            ExplicitIntent.getsInstance().navigateTo(getDashboardActivity(), MyOrderActivity.class);
             //mFragmentNavigation.pushFragment(MyOrderActivity.newInstance(mInt + 1));
         }
     }
@@ -211,6 +260,9 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
             mEmergencyPlaceBinding.getRoot().setVisibility(View.VISIBLE);
             this.emergencyList.clear();
             this.emergencyList.addAll(emergencyList);
+            if(CommonUtils.isNotNull(emergencyList)&&emergencyList.size()>5){
+                mEmergencyPlaceBinding.ivRight.setVisibility(View.VISIBLE);
+            }
             mEmergencyAdapter.notifyDataSetChanged();
         } else {
             mEmergencyPlaceBinding.getRoot().setVisibility(View.GONE);
@@ -265,22 +317,22 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
 
     @Override
     public void newsItemClick(int position) {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Bundle bundle = new Bundle();
-                    bundle.putParcelableArrayList(GeneralConstant.NEWSLIST, newsList);
-                    bundle.putInt(GeneralConstant.POSITION, position);
-                    getDashboardActivity().addFragmentInContainer(new NewsMainFragment(),bundle,true,true,NONE);
-                }
-            }, GeneralConstant.DELAYTIME);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList(GeneralConstant.NEWSLIST, newsList);
+                bundle.putInt(GeneralConstant.POSITION, position);
+                getDashboardActivity().addFragmentInContainer(new NewsMainFragment(), bundle, true, true, NONE);
+            }
+        }, GeneralConstant.DELAYTIME);
 
     }
 
     @Override
     public void onItemClick(int adapterPosition) {
         Bundle bundle = new Bundle();
-        getDashboardActivity().addFragmentInContainer(new NewsMainFragment(),bundle,true,false,NONE);
+        getDashboardActivity().addFragmentInContainer(new NewsMainFragment(), bundle, true, false, NONE);
     }
 
     @Override
@@ -307,7 +359,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
 
     @Override
     public void view(String message) {
-        getDashboardActivity().addFragmentInContainer(new MerchantDetailsFragment(),null,true,true,NONE);
+        getDashboardActivity().addFragmentInContainer(new MerchantDetailsFragment(), null, true, true, NONE);
     }
 
     @Override
@@ -315,10 +367,11 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
         if (requestCode == REQUEST_CALL
                 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             startActivity(callIntent);
-        }else {
+        } else {
             getBaseActivity().showToast(getResources().getString(R.string.permition_denied));
         }
     }
+
     @Override
     public void submit(String submit) {
         getDashboardActivity().showToast("" + submit);
@@ -326,10 +379,10 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
 
     @Override
     public void offersItemClick(int position) {
-        if(CommonUtils.isNotNull(offersList)&&offersList.size()>position){
-            Bundle bundle=new Bundle();
-            bundle.putParcelable(AppConstants.OFFER,offersList.get(position));
-            ExplicitIntent.getsInstance().navigateTo(getDashboardActivity(), OfferDetailsActivity.class,bundle);
+        if (CommonUtils.isNotNull(offersList) && offersList.size() > position) {
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(AppConstants.OFFER, offersList.get(position));
+            ExplicitIntent.getsInstance().navigateTo(getDashboardActivity(), OfferDetailsActivity.class, bundle);
         }
 
     }

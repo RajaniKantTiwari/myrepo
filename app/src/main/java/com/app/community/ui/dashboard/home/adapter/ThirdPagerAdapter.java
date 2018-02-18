@@ -62,9 +62,11 @@ public class ThirdPagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         itemBinding = DataBindingUtil.inflate(mInflator, R.layout.item_news_web_row, container, false);
         itemBinding.webView.getSettings().setJavaScriptEnabled(true);
-        itemBinding.webView.setWebViewClient(new CustomWebView(mContext,itemBinding.progressBar));
+        //itemBinding.webView.getSettings().setUseWideViewPort(true);
         itemBinding.webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
         itemBinding.webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
+        itemBinding.webView.setWebViewClient(new CustomWebView(mContext,itemBinding.progressBar));
+
         //itemBinding.webView .loadUrl("http://www.google.com");
         container.addView(itemBinding.getRoot());
         return itemBinding.getRoot();
