@@ -23,6 +23,7 @@ import com.app.community.ui.dashboard.home.event.MerchantEvent;
 import com.app.community.ui.location.GPSTracker;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
+import com.app.community.utils.PreferenceUtils;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -82,7 +83,8 @@ public class ProductMapFragment extends DashboardFragment implements OnMapReadyC
                     .start(new OnLocationUpdatedListener() {
                         @Override
                         public void onLocationUpdated(Location location) {
-                            moveCamera(new LatLng(location.getLatitude(), location.getLongitude()));
+                            //moveCamera(new LatLng(location.getLatitude(), location.getLongitude()));
+                            moveCamera(new LatLng(PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude()));
                         }
                     });
         }

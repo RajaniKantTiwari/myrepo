@@ -51,6 +51,7 @@ public class DrawerAdapterLeft extends RecyclerView.Adapter<DrawerAdapterLeft.St
             if (position == 2) {
                 holder.tvChange.setVisibility(View.VISIBLE);
                 /*if (PreferenceUtils.getAddress() != null) {*/
+                String address=PreferenceUtils.getAddress();
                     holder.tvChange.setText(PreferenceUtils.getAddress());
                 /*} else {
                     holder.tvChange.setText(PreferenceUtils.getAddress(activity, PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude()));

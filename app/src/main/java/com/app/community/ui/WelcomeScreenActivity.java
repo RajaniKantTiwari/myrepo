@@ -161,11 +161,11 @@ public class WelcomeScreenActivity extends CommonActivity implements CustomDialo
     private void getLatLong() {
         PreferenceUtils.setLatitude(gpsTracker.getLatitude());
         PreferenceUtils.setLongitude(gpsTracker.getLongitude());
+        PreferenceUtils.setAddress(PreferenceUtils.getAddress(this, PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude()));
         if (!isFromHome) {
             ExplicitIntent.getsInstance().navigateTo(this, LoginActivity.class);
             finish();
         } else {
-            PreferenceUtils.setAddress(PreferenceUtils.getAddress(this, PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude()));
             EventBus.getDefault().post(new UpdateAddress());
             presenter.updateLocation(this, new UpdateLocation(gpsTracker.getLatitude(), gpsTracker.getLongitude()));
         }

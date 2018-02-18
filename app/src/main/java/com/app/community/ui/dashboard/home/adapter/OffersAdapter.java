@@ -70,8 +70,12 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.OffersView
         }
 
         public void setOfferData(Offer offer) {
-            mBinding.cvLayout.setCardBackgroundColor(CommonUtils.getColor(offer.getOffer_bg_color()));
-            mBinding.setOffer(offer);
+            try {
+                mBinding.cvLayout.setCardBackgroundColor(CommonUtils.getColor(offer.getOffer_bg_color()));
+                mBinding.setOffer(offer);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }

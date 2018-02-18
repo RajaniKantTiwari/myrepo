@@ -252,7 +252,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
             }
         } else if (requestCode == AppConstants.DEVICE_TOKEN_RESPONSE) {
             LogUtils.LOGE(TAG, response.getMsg());
-        } /*else if (requestCode == AppConstants.LOGOUT||requestCode==AppConstants.CARTADDED) {*/ else if (requestCode == AppConstants.LOGOUT) {
+        }  else if (requestCode == AppConstants.LOGOUT) {
             if (CommonUtils.isNotNull(response)) {
                 showToast(response.getMsg());
                 CommonUtils.logout(this);
