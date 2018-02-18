@@ -13,6 +13,7 @@ import com.app.community.network.request.cart.CheckoutRequest;
 import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.request.dashboard.ProductRequest;
+import com.app.community.network.request.dashboard.ProfileRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.LoginResponse;
 import com.app.community.network.response.VerifyMobileResponse;
@@ -83,4 +84,7 @@ public interface ApiService {
 
     @POST("cart/checkoutcart")
     Observable<BaseResponse> checkout(@Body CheckoutRequest request);
+
+    @POST("register/updateprofile")
+    Observable<BaseResponse> updateProfile(@Body ProfileRequest request);
 }
