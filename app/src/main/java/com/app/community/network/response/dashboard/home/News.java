@@ -20,6 +20,7 @@ public class News implements Parcelable {
     private String longitude;
     private String category_name;
     private String distance;
+    private String newsUrl="http://oimedia.in/index.php/author/webmaster/";
     public News(){
 
     }

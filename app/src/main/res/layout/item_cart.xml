@@ -54,23 +54,20 @@
                 android:id="@+id/tvProductName"
                 style="@style/textview_description_wrap"
                 android:layout_marginEnd="@dimen/margin_20"
-                android:maxLines="2"
-                android:text="Red Chilly" />
+                android:maxLines="2"/>
 
 
             <com.app.community.widget.CustomTextView
                 android:id="@+id/tvProductQty"
                 style="@style/textview_description_smaller_wrap"
                 android:layout_marginEnd="@dimen/margin_20"
-                android:gravity="center_vertical"
-                android:text="500g" />
+                android:gravity="center_vertical"/>
 
             <com.app.community.widget.CustomTextView
                 android:id="@+id/tvProductPrice"
                 style="@style/textview_description_small_wrap"
                 android:layout_marginEnd="@dimen/margin_20"
                 android:layout_marginTop="@dimen/margin_6"
-                android:text="$ 25.00"
                 android:textColor="@color/color_blue" />
 
 

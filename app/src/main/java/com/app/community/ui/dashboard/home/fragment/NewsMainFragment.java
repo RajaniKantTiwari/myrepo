@@ -63,7 +63,7 @@ public class NewsMainFragment extends DashboardFragment {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 if(position==2){
-                    thirdPagerAdapter.setWebUrl("http://oimedia.in/index.php/author/webmaster/");
+                    //thirdPagerAdapter.setWebUrl("http://oimedia.in/index.php/author/webmaster/");
                 }
             }
 
@@ -82,7 +82,7 @@ public class NewsMainFragment extends DashboardFragment {
     private void generateVerticalAdapters(ArrayList<PagerAdapter> verticalAdapters) {
         for (int i = 0; i < AppConstants.HORIZONTAL_CHILD; i++) {
             if (i == 0) {
-                firstPagerAdapter=new FirstPagerAdapter(getContext(), i, 1);
+                firstPagerAdapter=new FirstPagerAdapter(getContext());
                 verticalAdapters.add(firstPagerAdapter);
             } else if (i == 1) {
                 secondPager=new SecondPagerAdapter(getContext(), newsList);

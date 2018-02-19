@@ -1,32 +1,16 @@
 package com.app.community.ui.dashboard.home.adapter;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebResourceError;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.Toast;
 
 import com.app.community.R;
-import com.app.community.databinding.ItemNewsRowBinding;
 import com.app.community.databinding.ItemNewsWebRowBinding;
-import com.app.community.event.NewsEventDetail;
-import com.app.community.network.response.dashboard.home.News;
 import com.app.community.ui.dashboard.CustomWebView;
-import com.app.community.utils.CommonUtils;
-import com.app.community.utils.GlideUtils;
-
-import org.greenrobot.eventbus.EventBus;
-
-import java.util.ArrayList;
 
 public class ThirdPagerAdapter extends PagerAdapter {
 

@@ -10,25 +10,78 @@
         <LinearLayout
             style="@style/match_wrap"
             android:layout_height="@dimen/margin_80"
-            android:padding="@dimen/margin_5">
+            android:padding="@dimen/margin_7">
 
-            <ImageView
-                android:id="@+id/ivPolitics"
-                style="@style/layout_hori_wrap_1"
-                android:padding="@dimen/margin_5"
-                android:src="@drawable/politics" />
+            <RelativeLayout
+                android:id="@+id/layoutPolitics"
+                style="@style/layout_hori_wrap_1">
 
-            <ImageView
-                android:id="@+id/ivHealth"
-                style="@style/layout_hori_wrap_1"
-                android:padding="@dimen/margin_5"
-                android:src="@drawable/ambulance" />
+                <ImageView
+                    android:layout_above="@+id/tvPolitics"
+                    style="@style/match_match"
+                    android:padding="@dimen/margin_5"
+                    android:src="@drawable/politics"
+                    android:background="@drawable/stroke_dark_grey_bg"/>
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvPolitics"
+                    style="@style/textview_description_match"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textAllCaps="true"
+                    android:padding="@dimen/margin_2"
+                    android:maxLines="1"
+                    android:text="@string/politics"
+                    android:background="@drawable/layer"/>
+            </RelativeLayout>
 
-            <ImageView
-                android:id="@+id/ivBusiness"
+
+            <RelativeLayout
+                android:id="@+id/layoutHealth"
                 style="@style/layout_hori_wrap_1"
-                android:padding="@dimen/margin_5"
-                android:src="@drawable/ambulance" />
+                android:layout_marginStart="@dimen/margin_7">
+
+                <ImageView
+                    android:layout_above="@+id/tvHealth"
+                    style="@style/match_match"
+                    android:padding="@dimen/margin_5"
+                    android:src="@drawable/health"
+                    android:background="@drawable/stroke_dark_grey_bg"/>
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvHealth"
+                    style="@style/textview_description_match"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:textAllCaps="true"
+                    android:gravity="center"
+                    android:padding="@dimen/margin_2"
+                    android:maxLines="1"
+                    android:text="@string/health"
+                    android:background="@drawable/layer"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/layoutBusiness"
+                style="@style/layout_hori_wrap_1"
+                android:layout_marginStart="@dimen/margin_7">
+
+                <ImageView
+                    android:layout_above="@+id/tvBusiness"
+                    style="@style/match_match"
+                    android:padding="@dimen/margin_5"
+                    android:src="@drawable/business"
+                    android:background="@drawable/stroke_dark_grey_bg"/>
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvBusiness"
+                    style="@style/textview_description_match"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textAllCaps="true"
+                    android:padding="@dimen/margin_2"
+                    android:maxLines="1"
+                    android:text="@string/business"
+                    android:background="@drawable/layer"/>
+            </RelativeLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -36,23 +89,75 @@
             android:layout_height="@dimen/margin_80"
             android:padding="@dimen/margin_5">
 
-            <ImageView
-                android:id="@+id/ivSports"
+            <RelativeLayout
+                android:id="@+id/layoutSports"
                 style="@style/layout_hori_wrap_1"
-                android:padding="@dimen/margin_5"
-                android:src="@drawable/ambulance" />
+                android:layout_marginStart="@dimen/margin_7">
 
-            <ImageView
-                android:id="@+id/ivTravels"
+                <ImageView
+                    android:layout_above="@+id/tvSports"
+                    style="@style/match_match"
+                    android:padding="@dimen/margin_5"
+                    android:src="@drawable/sports"
+                    android:background="@drawable/stroke_dark_grey_bg"/>
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvSports"
+                    style="@style/textview_description_match"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textAllCaps="true"
+                    android:padding="@dimen/margin_2"
+                    android:maxLines="1"
+                    android:text="@string/sports"
+                    android:background="@drawable/layer"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/layoutTravel"
                 style="@style/layout_hori_wrap_1"
-                android:padding="@dimen/margin_5"
-                android:src="@drawable/ambulance" />
+                android:layout_marginStart="@dimen/margin_7">
 
-            <ImageView
-                android:id="@+id/ivTechnology"
+                <ImageView
+                    android:layout_above="@+id/tvTravel"
+                    style="@style/match_match"
+                    android:padding="@dimen/margin_5"
+                    android:src="@drawable/travels"
+                    android:background="@drawable/stroke_dark_grey_bg"/>
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvTravel"
+                    style="@style/textview_description_match"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:textAllCaps="true"
+                    android:gravity="center"
+                    android:padding="@dimen/margin_2"
+                    android:maxLines="1"
+                    android:text="@string/travel"
+                    android:background="@drawable/layer"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/layoutTechnology"
                 style="@style/layout_hori_wrap_1"
-                android:padding="@dimen/margin_5"
-                android:src="@drawable/ambulance" />
+                android:layout_marginStart="@dimen/margin_7">
+
+                <ImageView
+                    android:layout_above="@+id/tvTechnology"
+                    style="@style/match_match"
+                    android:padding="@dimen/margin_5"
+                    android:src="@drawable/technology"
+                    android:background="@drawable/stroke_dark_grey_bg"/>
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvTechnology"
+                    style="@style/textview_description_match"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:padding="@dimen/margin_2"
+                    android:textAllCaps="true"
+                    android:maxLines="1"
+                    android:text="@string/technology"
+                    android:background="@drawable/layer"/>
+            </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
 </layout>

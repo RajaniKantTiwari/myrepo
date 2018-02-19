@@ -469,6 +469,12 @@
     <string name="if_you_change_merchant_all_previous">If You Change Merchnt Your Previous Data Will Be Lost</string>
     <string name="shipping_charge">Shipping Charge</string>
     <string name="total_amount">Total Amount</string>
+    <string name="politics">Politics</string>
+    <string name="health">Health</string>
+    <string name="business">Business</string>
+    <string name="sports">Sports</string>
+    <string name="travel">Travel</string>
+    <string name="technology">Technology</string>
 
 
     <string-array name="state_array">
