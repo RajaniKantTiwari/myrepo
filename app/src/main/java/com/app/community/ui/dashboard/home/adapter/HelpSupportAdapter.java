@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.CompoundButton;
 
 import com.app.community.R;
-import com.app.community.databinding.CartRowItemBinding;
 import com.app.community.databinding.HelpSupportRowBinding;
 import com.app.community.utils.CommonUtils;
 

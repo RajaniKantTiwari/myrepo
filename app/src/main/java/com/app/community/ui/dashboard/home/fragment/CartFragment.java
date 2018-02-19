@@ -139,6 +139,7 @@ public class CartFragment extends DashboardFragment implements CartAdapter.OnAdd
             setTotalAmount();
         } else {
             mCartList.remove(pos);
+            mAdapter.notifyDataSetChanged();
         }
     }
 

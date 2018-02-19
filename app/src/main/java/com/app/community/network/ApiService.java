@@ -92,4 +92,7 @@ public interface ApiService {
 
     @POST("register/updateprofile")
     Observable<BaseResponse> updateProfile(@Body ProfileRequest request);
+
+    @GET("cart/myorder")
+    Observable<BaseResponse> myOrder(@Body ProfileRequest request);
 }

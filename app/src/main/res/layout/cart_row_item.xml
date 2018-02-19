@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
+        <import type="com.app.community.utils.CommonUtils"/>
         <variable
             name="cartData"
             type="com.app.community.network.response.dashboard.cart.ProductData"/>
@@ -45,7 +46,7 @@
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvProductPrice"
                     style="@style/textview_description_small_wrap"
-                    android:text="@={cartData.product_mrp}"
+                    android:text="@{CommonUtils.twoDecimalPlace(cartData.product_mrp)}"
                     android:textColor="@color/color_blue" />
             </LinearLayout>
         </LinearLayout>

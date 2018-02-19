@@ -287,11 +287,12 @@ public class CommonUtils {
     }
 
     public static String oneDecimalPlace(double number) {
-        return String.format("%.1f", number);
+        return String.format(Locale.getDefault(), "%.1f", number);
     }
 
     public static String twoDecimalPlace(double number) {
-        return String.format("%.2f", number);
+        return String.format(Locale.getDefault(), "%.2f", number);
+        //return String.format("%.2f", number);
     }
 
     public static String getStartEndDate(String startDate, String endDate) {
