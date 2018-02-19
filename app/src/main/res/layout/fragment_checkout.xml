@@ -69,7 +69,18 @@
                     android:textSize="@dimen/textSize_header"
                     app:customFont="@string/font_bold" />
 
+                <com.app.community.widget.CustomTextView
+                    style="@style/textview_description_ex_large_wrap"
+                    android:layout_margin="@dimen/margin_10"
+                    android:gravity="center"
+                    android:text="@string/coupon"
+                    android:textAllCaps="true"
+                    android:textColor="@color/color_sky_blue" />
 
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvCouponCode"
+                    style="@style/match_wrap"
+                    android:layout_marginTop="@dimen/margin_10"/>
                 <com.app.community.widget.CustomTextView
                     style="@style/textview_description_ex_large_wrap"
                     android:layout_margin="@dimen/margin_10"

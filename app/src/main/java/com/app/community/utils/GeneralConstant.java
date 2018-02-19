@@ -79,6 +79,7 @@ public interface GeneralConstant {
     String MESSAGE = "message";
     int VIEW_CART=1;
     int CHECKOUT=2;
+    int COUPON_HEIGHT = 48;
 
 
     @IntDef({MERCHANT_MAP_FRAGMENT, MERCHANT_LIST_FRAGMENT, RECENT_FRAGMENT, CATEGORY_FRAGMENT,

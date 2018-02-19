@@ -13,6 +13,7 @@ import com.app.community.R;
 import com.app.community.databinding.FragmentCheckoutBinding;
 import com.app.community.network.request.PaymentOption;
 import com.app.community.network.request.cart.CheckoutRequest;
+import com.app.community.network.request.dashboard.Coupon;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.cart.ProductData;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
@@ -22,6 +23,7 @@ import com.app.community.ui.activity.PaymentAdapter;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.ConfirmOrderFragment;
 import com.app.community.ui.dashboard.home.adapter.CheckoutCartAdapter;
+import com.app.community.ui.dashboard.home.adapter.CouponAdapter;
 import com.app.community.ui.dashboard.home.event.UpdateAddress;
 import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
@@ -41,14 +43,17 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
  * Created by ashok on 26/12/17.
  */
 
-public class CheckoutFragment extends DashboardFragment {
+public class CheckoutFragment extends DashboardFragment implements CouponAdapter.CouponListener {
     private FragmentCheckoutBinding mBinding;
     private CheckoutCartAdapter mCheckoutAdapter;
     private List<PaymentOption> paymentList = new ArrayList<>();
     private List<PaymentOption> deliveryList = new ArrayList<>();
+    private List<Coupon> couponList = new ArrayList<>();
+
 
     private PaymentAdapter paymentAdapter;
     private PaymentAdapter deliveryAdapter;
+    private CouponAdapter couponAdapter;
 
     @Nullable
     @Override
@@ -68,6 +73,9 @@ public class CheckoutFragment extends DashboardFragment {
         LinearLayoutManager deliveryManager = new LinearLayoutManager(getBaseActivity());
         mBinding.rvDelivery.setLayoutManager(deliveryManager);
         deliveryManager.setAutoMeasureEnabled(true);
+        LinearLayoutManager couponManager = new LinearLayoutManager(getBaseActivity());
+        mBinding.rvCouponCode.setLayoutManager(couponManager);
+        couponManager.setAutoMeasureEnabled(true);
 
     }
 
@@ -84,7 +92,25 @@ public class CheckoutFragment extends DashboardFragment {
         deliveryAdapter = new PaymentAdapter(getBaseActivity(), deliveryList);
         mBinding.rvDelivery.setAdapter(deliveryAdapter);
         CommonUtils.setRecyclerViewHeight(mBinding.rvDelivery, deliveryList, GeneralConstant.PAYMENT_HEIGHT);
+        setCoupon();
+        couponAdapter = new CouponAdapter(getBaseActivity(), couponList, this);
+        mBinding.rvCouponCode.setAdapter(couponAdapter);
+        CommonUtils.setRecyclerViewHeight(mBinding.rvCouponCode, couponList, GeneralConstant.COUPON_HEIGHT);
+    }
 
+    private void setCoupon() {
+        Coupon coupon = new Coupon();
+        coupon.setCouponOffer("10 % off on all products");
+        couponList.add(coupon);
+        Coupon coupon1 = new Coupon();
+        coupon1.setCouponOffer("10 % off on all products has given");
+        couponList.add(coupon1);
+        Coupon coupon2 = new Coupon();
+        coupon2.setCouponOffer("20 % off on bevrage");
+        couponList.add(coupon2);
+        Coupon coupon3 = new Coupon();
+        coupon3.setCouponOffer("20 % off on all bevrage given");
+        couponList.add(coupon3);
     }
 
 
@@ -177,5 +203,21 @@ public class CheckoutFragment extends DashboardFragment {
     @Subscribe
     public void onAddressEvent(UpdateAddress event) {
         mBinding.tvAddress.setText(PreferenceUtils.getAddress());
+    }
+
+    @Override
+    public void onCouponClick(int position) {
+        if (CommonUtils.isNotNull(couponList) && couponList.size() > position) {
+            for (int i = 0; i < couponList.size(); i++) {
+                Coupon coupon = couponList.get(i);
+                if (i == position) {
+                    coupon.setChecked(true);
+                } else {
+                    coupon.setChecked(false);
+                }
+                couponList.set(i, coupon);
+            }
+            couponAdapter.notifyDataSetChanged();
+        }
     }
 }
