@@ -10,6 +10,7 @@ import com.app.community.network.request.cart.CartListRequest;
 import com.app.community.network.request.cart.CartRequest;
 import com.app.community.network.request.cart.CategoryRequest;
 import com.app.community.network.request.cart.CheckoutRequest;
+import com.app.community.network.request.cart.DeleteCartRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.request.dashboard.ProductRequest;
 import com.app.community.network.response.BaseResponse;
@@ -269,6 +270,24 @@ public class DashboardPresenter implements Presenter<MvpView> {
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
                 mView.onError(baseResponse.getMsg(), 2);
+            }
+        });
+    }
+
+    public void deleteFromCart(Activity activity, DeleteCartRequest request, int pos) {
+        //mView.showProgress();
+        mRepository.deleteFromCart(request).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+            @Override
+            public void onResponse(BaseResponse response) {
+                mView.hideProgress();
+                mView.onSuccess(response, pos);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), pos);
             }
         });
     }

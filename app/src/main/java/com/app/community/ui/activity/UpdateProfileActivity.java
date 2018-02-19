@@ -2,10 +2,12 @@ package com.app.community.ui.activity;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialog;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.view.View;
@@ -13,11 +15,16 @@ import android.view.View;
 
 import com.app.community.R;
 import com.app.community.databinding.ActivityUpdateProfileBinding;
+import com.app.community.event.EncodedBitmap;
 import com.app.community.event.UpdateProfileEvent;
+import com.app.community.network.request.LoginRequest;
 import com.app.community.network.request.PaymentOption;
+import com.app.community.network.request.dashboard.ProfileRequest;
 import com.app.community.network.response.BaseResponse;
+import com.app.community.ui.activity.uploadfile.Upload;
 import com.app.community.ui.authentication.CommonActivity;
 import com.app.community.ui.base.MvpView;
+import com.app.community.ui.presenter.CommonPresenter;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.GlideUtils;
@@ -30,10 +37,13 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 import net.alhazmy13.mediapicker.Image.ImagePicker;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import okhttp3.MultipartBody;
 
@@ -49,10 +59,13 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
     private List<PaymentOption> paymentList = new ArrayList<>();
     private String profilePicFilePath;
 
+    @Inject
+    CommonPresenter presenter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_update_profile);
+        CommonUtils.register(this);
         initializeData();
         setHeader();
         setListener();
@@ -109,7 +122,8 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
 
     @Override
     public void attachView() {
-
+        getActivityComponent().inject(this);
+        presenter.attachView(this);
     }
 
     @Override
@@ -241,7 +255,7 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
                 .start(this);
     }
 
-    private void updateProfile() {
+    /*private void updateProfile() {
         try {
             //int age = Integer.parseInt(mBinding.edtAge.getText().toString().trim());
             //String name = mBinding.edtName.getText().toString().trim();
@@ -263,6 +277,25 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
         }
 
 
+    }*/
+
+
+    private void updateProfile() {
+        try {
+            Bitmap bitmap = ((RoundedBitmapDrawable) mBinding.ivProfile.getDrawable()).getBitmap();
+            Upload postImage=new Upload(this,bitmap);
+            postImage.execute();
+        } catch (Exception e) {
+            LogUtils.LOGE("ProfileUpdate", e.toString());
+        }
+
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        CommonUtils.unregister(this);
     }
 
     @Override
@@ -270,5 +303,18 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
         LogUtils.LOGD(TAG, message);
     }
 
-
+    @Subscribe
+    public void onUploadProfile(EncodedBitmap event) {
+        String encodedImage = event.getEncodeImage();
+        ProfileRequest profileRequest=new ProfileRequest();
+        profileRequest.setUserid(PreferenceUtils.getUserId());
+        profileRequest.setName(PreferenceUtils.getUserName());
+        profileRequest.setAddress(PreferenceUtils.getAddress());
+        profileRequest.setCity(PreferenceUtils.getCity());
+        profileRequest.setEmail(PreferenceUtils.getEmail());
+        profileRequest.setImageUrl(encodedImage);
+        if(isNetworkConnected()){
+            presenter.updateProfile(this,profileRequest);
+        }
+    }
 }

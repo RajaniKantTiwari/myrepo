@@ -8,19 +8,19 @@ public class DeleteCartRequest {
     private int merchant_id;
     private int masterproductid;
 
+    public DeleteCartRequest(int merchantId, int masterproductid) {
+        this.merchant_id=merchantId;
+        this.masterproductid=masterproductid;
+    }
+
+
     public int getMerchant_id() {
         return merchant_id;
     }
 
-    public void setMerchant_id(int merchant_id) {
-        this.merchant_id = merchant_id;
-    }
 
     public int getMasterproductid() {
         return masterproductid;
     }
 
-    public void setMasterproductid(int masterproductid) {
-        this.masterproductid = masterproductid;
-    }
 }

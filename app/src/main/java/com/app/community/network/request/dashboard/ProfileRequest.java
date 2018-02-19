@@ -12,6 +12,17 @@ public class ProfileRequest {
     private String pincode;
     private String landmark;
     private String email;
+    private String imageUrl;
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+
 
     public int getUserid() {
         return userid;

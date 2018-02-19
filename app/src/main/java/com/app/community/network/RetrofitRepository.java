@@ -12,6 +12,7 @@ import com.app.community.network.request.cart.DeleteCartRequest;
 import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.request.dashboard.ProductRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
+import com.app.community.network.request.dashboard.ProfileRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.LoginResponse;
 import com.app.community.network.response.VerifyMobileResponse;
@@ -24,6 +25,7 @@ import com.app.community.network.response.dashboard.home.SearchResponseData;
 import com.app.community.network.response.dashboard.home.WelcomeHomeData;
 import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
 
+import io.reactivex.Completable;
 import io.reactivex.Observable;
 import retrofit2.Retrofit;
 
@@ -124,5 +126,15 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<BaseResponse> checkout(CheckoutRequest checkoutRequest) {
         return apiService.checkout(checkoutRequest);
+    }
+
+    @Override
+    public Observable<BaseResponse> updateProfile(ProfileRequest profileRequest) {
+        return apiService.updateProfile(profileRequest);
+    }
+
+    @Override
+    public Observable<BaseResponse> deleteFromCart(DeleteCartRequest request) {
+        return apiService.deleteCart(request);
     }
 }

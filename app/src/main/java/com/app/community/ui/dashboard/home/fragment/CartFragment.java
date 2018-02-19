@@ -16,10 +16,12 @@ import com.app.community.databinding.CartRowItemBinding;
 import com.app.community.databinding.FragmentCartBinding;
 import com.app.community.event.UpdateCartEvent;
 import com.app.community.network.request.cart.CartRequest;
+import com.app.community.network.request.cart.DeleteCartRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.cart.ProductData;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.adapter.CartAdapter;
+import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.PreferenceUtils;
 
@@ -54,6 +56,7 @@ public class CartFragment extends DashboardFragment implements CartAdapter.OnAdd
         mAdapter = new CartAdapter(getBaseActivity(), mCartList, this);
         mBinding.rvCartList.setLayoutManager(layoutManager);
         mBinding.rvCartList.setAdapter(mAdapter);
+        setTotalAmount();
     }
 
     @Override
@@ -86,7 +89,11 @@ public class CartFragment extends DashboardFragment implements CartAdapter.OnAdd
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
-
+        if (CommonUtils.isNotNull(response) && response.getStatus().equalsIgnoreCase(AppConstants.SUCCESS)) {
+            if (CommonUtils.isNotNull(mCartList) && mCartList.size() > requestCode) {
+                mCartList.remove(requestCode);
+            }
+        }
     }
 
     public static Fragment newInstance(int instance) {
@@ -107,6 +114,14 @@ public class CartFragment extends DashboardFragment implements CartAdapter.OnAdd
                 break;
             case R.id.ivSub:
                 removeFromCart(viewBinding.tvQuantity, pos);
+                break;
+            case R.id.ivDeleteCart:
+                if(CommonUtils.isNotNull(mCartList)&&mCartList.size()>pos){
+                    mCartList.remove(pos);
+                }
+                /*if (CommonUtils.isNotNull(mCartList) && mCartList.size() > pos) {
+                    getPresenter().deleteFromCart(getDashboardActivity(), new DeleteCartRequest(mCartList.get(0).getMerchantId(), mCartList.get(pos).getMasterproductid()), pos);
+                }*/
                 break;
         }
     }
@@ -137,9 +152,10 @@ public class CartFragment extends DashboardFragment implements CartAdapter.OnAdd
             mCartList.get(pos).setQty(count);
             setCartData();
             setTotalAmount();
-        } else {
-            mCartList.remove(pos);
-            mAdapter.notifyDataSetChanged();
+            if (count == 0) {
+                mCartList.remove(pos);
+                mAdapter.notifyDataSetChanged();
+            }
         }
     }
 

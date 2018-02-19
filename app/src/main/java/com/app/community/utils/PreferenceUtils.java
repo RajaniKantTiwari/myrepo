@@ -138,7 +138,7 @@ public class PreferenceUtils implements Observable {
             if (addresses != null && addresses.size() >= 0) {
                 if (addresses.get(0).getAddressLine(0) != null)
                     address = addresses.get(0).getAddressLine(0);
-
+                    setCity(addresses.get(0).getAddressLine(0));
                 if (addresses != null && addresses.size() >= 1) {
                     if (addresses.get(0).getAddressLine(1) != null)
                         address += ", " + addresses.get(0).getAddressLine(1);
@@ -155,7 +155,12 @@ public class PreferenceUtils implements Observable {
         }
         return null;
     }
-
+    public static void setCity(String city) {
+        Hawk.put(PreferenceConstants.CITY, city);
+    }
+    public static String getCity() {
+        return Hawk.get(PreferenceConstants.CITY,null);
+    }
     public static void setCartData(ArrayList<ProductData> addCartList) {
         Hawk.put(getUserMono(), addCartList);
     }

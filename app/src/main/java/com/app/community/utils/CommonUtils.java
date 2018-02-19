@@ -2,6 +2,7 @@ package com.app.community.utils;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -20,6 +21,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -68,7 +70,6 @@ import static com.app.community.utils.GeneralConstant.TAG;
 
 public class CommonUtils {
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
-    private DateFormat newDateFormat;
 
     public static int convertDpToPx(int dp, Context context) {
         return Math.round(dp * (context.getResources().getDisplayMetrics().xdpi / DisplayMetrics.DENSITY_DEFAULT));
@@ -508,4 +509,5 @@ public class CommonUtils {
         PreferenceUtils.setCartData(null);
         dashBoardActivity.onUpdateCartEvent(new UpdateCartEvent());
     }
+
 }

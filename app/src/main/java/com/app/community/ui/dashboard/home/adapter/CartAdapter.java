@@ -32,7 +32,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
 
     public CartAdapter(AppCompatActivity activity, ArrayList<ProductData> mCartList, OnAddToCart listener) {
         mInflater = LayoutInflater.from(activity);
-        this.activity=activity;
+        this.activity = activity;
         this.mCartList = mCartList;
         this.listener = listener;
     }
@@ -61,6 +61,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
             itemBinding = itemView;
             itemView.ivAdd.setOnClickListener(this);
             itemView.ivSub.setOnClickListener(this);
+            itemView.ivDeleteCart.setOnClickListener(this);
 
         }
 
@@ -72,14 +73,16 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
                 listener.addToCartClick(getAdapterPosition(), root);
             } else if (view == itemBinding.ivSub) {
                 listener.addToCartClick(getAdapterPosition(), root);
+            } else if (view == itemBinding.ivDeleteCart) {
+                listener.addToCartClick(getAdapterPosition(), root);
             }
         }
 
         public void setData(int position) {
             if (CommonUtils.isNotNull(mCartList) && mCartList.size() > position) {
-               itemBinding.setCartData(mCartList.get(position));
+                itemBinding.setCartData(mCartList.get(position));
                 itemBinding.tvQuantity.setText(String.valueOf(mCartList.get(position).getQty()));
-                    GlideUtils.loadImage(activity, mCartList.get(position).getIcon(), itemBinding.ivProductImage, null, R.drawable.icon_placeholder);
+                GlideUtils.loadImage(activity, mCartList.get(position).getIcon(), itemBinding.ivProductImage, null, R.drawable.icon_placeholder);
 
             }
         }
