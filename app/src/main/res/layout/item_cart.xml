@@ -62,14 +62,17 @@
                 style="@style/textview_description_smaller_wrap"
                 android:layout_marginEnd="@dimen/margin_20"
                 android:gravity="center_vertical"/>
-
-            <com.app.community.widget.CustomTextView
-                android:id="@+id/tvProductPrice"
-                style="@style/textview_description_small_wrap"
-                android:layout_marginEnd="@dimen/margin_20"
-                android:layout_marginTop="@dimen/margin_6"
-                android:textColor="@color/color_blue" />
-
+            <LinearLayout
+                style="@style/wrap_wrap">
+                <ImageView
+                    style="@style/image_13"
+                    android:layout_marginEnd="@dimen/margin_4"
+                    android:src="@drawable/rupee"/>
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvProductPrice"
+                    style="@style/textview_description_small_wrap"
+                    android:textColor="@color/color_blue" />
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -77,6 +80,7 @@
             android:id="@+id/layoutCart"
             style="@style/wrap_wrap"
             android:orientation="vertical"
+            android:layout_marginEnd="@dimen/margin_15"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true">
 

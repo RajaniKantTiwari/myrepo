@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-        <import type="String"/>
         <variable
             name="cartData"
             type="com.app.community.network.response.dashboard.cart.ProductData"/>
@@ -14,8 +13,7 @@
         <ImageView
             android:id="@+id/ivProductImage"
             android:layout_width="@dimen/margin_70"
-            android:layout_height="@dimen/margin_70"
-            android:src="@drawable/green_chilli" />
+            android:layout_height="@dimen/margin_70" />
 
         <LinearLayout
             style="@style/layout_hori_match_2"
@@ -35,17 +33,21 @@
                 android:id="@+id/tvProQuantity"
                 style="@style/textview_description_smaller_wrap"
                 android:maxLines="1"
-                android:text="500 grm"
+                android:text="@={cartData.measure}"
                 android:textColor="@color/light_grey"
                 app:customFont="@string/font_bold" />
-
-            <com.app.community.widget.CustomTextView
-                android:id="@+id/tvProductPrice"
-                style="@style/textview_description_wrap"
-                android:maxLines="1"
-                android:text="Rs 10"
-                android:textColor="@color/color_sky_blue"
-                app:customFont="@string/font_bold" />
+            <LinearLayout
+                style="@style/wrap_wrap">
+                <ImageView
+                    style="@style/image_13"
+                    android:layout_marginEnd="@dimen/margin_4"
+                    android:src="@drawable/rupee"/>
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvProductPrice"
+                    style="@style/textview_description_small_wrap"
+                    android:text="@={cartData.product_mrp}"
+                    android:textColor="@color/color_blue" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -64,7 +66,6 @@
                 android:id="@+id/tvQuantity"
                 style="@style/textview_description_wrap"
                 android:gravity="center_horizontal"
-                android:text="@{String.valueOf(cartData.qty)}"
                 android:textColor="@color/color_black_cart"
                 android:textSize="@dimen/textSize_description"
                 app:customFont="@string/font_bold" />
