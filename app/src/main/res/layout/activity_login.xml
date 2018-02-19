@@ -38,13 +38,14 @@
                 android:paddingTop="@dimen/margin_5"
                 android:singleLine="true"
                 android:imeOptions="actionNext"
-                app:customFont= "@string/font_bold" />
+                app:customFont= "@string/font_bold"
+                />
 
-            <ImageView style="@style/view_layout" />
+            <ImageView style="@style/view_layout"
+                android:layout_marginBottom="@dimen/margin_20" />
 
             <com.app.community.widget.CustomTextView
                 style="@style/textview_description_smaller_match"
-                android:layout_marginTop="@dimen/margin_20"
                 android:text="@string/mobileNumber"
                 android:textColor="@color/grey_color"
                 android:maxLines="1"

@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.app.community.CommonApplication;
 import com.app.community.R;
+import com.app.community.ui.authentication.VerifyAccountActivity;
 import com.app.community.ui.dashboard.DashBoardActivity;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;

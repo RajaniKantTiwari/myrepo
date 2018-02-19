@@ -141,7 +141,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
     public void setListener() {
         mWelcomeBinding.tvSearch.setOnClickListener(this);
         mLastOrderBinding.layoutLastOrder.setOnClickListener(this);
-        mLastOrderBinding.layoutRating.setOnClickListener(this);
+        mLastOrderBinding.rating.setOnClickListener(this);
         mEmergencyPlaceBinding.rvImportantPlace.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -206,7 +206,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
             //mFragmentNavigation.pushFragment(ConfirmOrderFragment.newInstance(mInt+1));
         } else if (view == mWelcomeBinding.tvSearch) {
             ExplicitIntent.getsInstance().navigateTo(getActivity(), SearchActivity.class);
-        } else if (view == mLastOrderBinding.layoutRating) {
+        } else if (view == mLastOrderBinding.rating) {
             ExplicitIntent.getsInstance().navigateTo(getDashboardActivity(), MyOrderActivity.class);
             //mFragmentNavigation.pushFragment(MyOrderActivity.newInstance(mInt + 1));
         }
@@ -322,6 +322,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
                 Bundle bundle = new Bundle();
                 bundle.putParcelableArrayList(GeneralConstant.NEWSLIST, newsList);
                 bundle.putInt(GeneralConstant.POSITION, position);
+                getDashboardActivity().unselectAllTab();
                 getDashboardActivity().addFragmentInContainer(new NewsMainFragment(), bundle, true, true, NONE);
             }
         }, GeneralConstant.DELAYTIME);

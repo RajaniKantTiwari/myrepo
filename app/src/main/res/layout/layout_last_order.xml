@@ -29,9 +29,7 @@
                     android:textAllCaps="true"
                     android:textColor="@color/white" />
 
-                <LinearLayout
-                    style="@style/match_wrap"
-                    android:gravity="center_vertical">
+                <RelativeLayout style="@style/match_wrap">
 
                     <ImageView
                         android:id="@+id/ivLastOrder"
@@ -42,43 +40,40 @@
 
                     <LinearLayout
                         style="@style/wrap_wrap"
-                        android:gravity="center_vertical"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/ivLastOrder"
+                        android:layout_toStartOf="@+id/rating"
                         android:orientation="vertical">
 
                         <com.app.community.widget.CustomTextView
                             android:id="@+id/tvProductName"
                             style="@style/textview_description_wrap"
                             android:textAllCaps="true"
+                            android:maxLines="2"
                             android:textColor="@color/color_black" />
 
                         <com.app.community.widget.CustomTextView
                             android:id="@+id/tvDetails"
                             style="@style/textview_description_small_wrap"
                             android:layout_marginTop="@dimen/margin_5"
+                            android:maxLines="1"
                             android:textColor="@color/color_black"
                             app:customFont="@string/font_bold" />
                     </LinearLayout>
 
-                    <android.support.v4.widget.Space style="@style/layout_hori_wrap_1" />
 
-                    <LinearLayout
-                        android:id="@+id/layoutRating"
-                        style="@style/wrap_wrap"
-                        android:gravity="center_vertical"
-                        android:paddingBottom="@dimen/margin_8"
-                        android:paddingTop="@dimen/margin_8">
-
-                        <RatingBar
-                            android:id="@+id/rating"
-                            style="@style/Widget.AppCompat.RatingBar.Small"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/margin_22"
-                            android:layout_marginStart="@dimen/margin_4"
-                            android:max="5"
-                            android:progressTint="@color/star_text_color" />
-                    </LinearLayout>
-                </LinearLayout>
+                    <RatingBar
+                        android:id="@+id/rating"
+                        style="@style/Widget.AppCompat.RatingBar.Small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/margin_15"
+                        android:layout_marginStart="@dimen/margin_4"
+                        android:max="5"
+                        android:progressTint="@color/star_text_color" />
+                </RelativeLayout>
 
             </LinearLayout>
         </android.support.v7.widget.CardView>

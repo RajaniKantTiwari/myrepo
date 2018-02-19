@@ -96,6 +96,7 @@
                 android:padding="@dimen/margin_8"
                 android:textColor="@color/dark_black_color"
                 />
+
         </RelativeLayout>
     </LinearLayout>
 </ScrollView>

@@ -181,6 +181,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         pushFragment(fragment, bundle, R.id.container, addToBackStack, shouldAdd, animationType);
     }
 
+
     public void changeIcon(int position) {
         for (int i = 0; i < AppConstants.NO_OF_TAB; i++) {
             switch (i) {
@@ -505,7 +506,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
 
     }
 
-    @Subscribe
+   /* @Subscribe
     public void onNewsEvent(NewsEvent event) {
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -513,6 +514,15 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                 pushFragment(new NewsMainFragment(), null, R.id.container, true, true, NONE);
             }
         }, GeneralConstant.DELAYTIME);
+
+    }*/
+
+
+    public void unselectAllTab() {
+        mBinding.bottomLayout.viewBar1.setVisibility(View.INVISIBLE);
+        mBinding.bottomLayout.viewBar2.setVisibility(View.INVISIBLE);
+        mBinding.bottomLayout.viewBar3.setVisibility(View.INVISIBLE);
+        mBinding.bottomLayout.viewBar4.setVisibility(View.INVISIBLE);
 
     }
 
