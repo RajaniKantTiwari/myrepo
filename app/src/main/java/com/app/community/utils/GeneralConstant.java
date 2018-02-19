@@ -70,7 +70,7 @@ public interface GeneralConstant {
     String EMERGENCY = "emergency";
     String NEWSLIST = "newslist";
     String DEVICETYPE="1";
-    int NEWS_HEIGHT = 147;
+    int NEWS_HEIGHT = 148;
     String IS_FROM_HOME ="is_from_home" ;
     int OFFER_HEIGHT = 75;
     String PROFILE_UPDATE_PARAMETER = "profileUrl";

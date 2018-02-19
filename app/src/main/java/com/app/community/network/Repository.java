@@ -8,6 +8,7 @@ import com.app.community.network.request.cart.CartListRequest;
 import com.app.community.network.request.cart.CartRequest;
 import com.app.community.network.request.cart.CategoryRequest;
 import com.app.community.network.request.cart.CheckoutRequest;
+import com.app.community.network.request.cart.DeleteCartRequest;
 import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.request.dashboard.ProductRequest;
@@ -47,7 +48,9 @@ public interface Repository {
 
     Observable<BaseResponse> addToCart(CartRequest cartRequest);
 
-    Observable<BaseResponse> deleteCart();
+    Observable<BaseResponse> deleteCart(DeleteCartRequest request);
+
+    Observable<BaseResponse> deleteAllCart();
 
     Observable<ProductDetailsData> viewCart();
 

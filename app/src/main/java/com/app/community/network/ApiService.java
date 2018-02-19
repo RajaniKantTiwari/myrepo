@@ -10,6 +10,7 @@ import com.app.community.network.request.cart.CartListRequest;
 import com.app.community.network.request.cart.CartRequest;
 import com.app.community.network.request.cart.CategoryRequest;
 import com.app.community.network.request.cart.CheckoutRequest;
+import com.app.community.network.request.cart.DeleteCartRequest;
 import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.request.dashboard.ProductRequest;
@@ -46,8 +47,12 @@ public interface ApiService {
     @POST("cart/addcart")
     Observable<BaseResponse> addToCart(@Body CartRequest request);
 
-    @GET("cart/deletecart")
-    Observable<BaseResponse> deleteCart();
+    @GET("cart/deleteallcart")
+    Observable<BaseResponse> deleteAllCart();
+
+    @POST("cart/deletecart")
+    Observable<BaseResponse> deleteCart(@Body DeleteCartRequest request);
+
 
     @GET("cart/viewcart")
     Observable<ProductDetailsData> viewCart();

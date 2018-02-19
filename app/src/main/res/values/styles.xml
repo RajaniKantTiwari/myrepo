@@ -30,6 +30,23 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
+
+    <style name="category_image" parent="wrap_wrap">
+        <item name="android:padding">@dimen/margin_5</item>
+        <item name="android:background">@drawable/stroke_dark_bg</item>
+    </style>
+
+
+    <style name="category_text" parent="match_wrap">
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:padding">@dimen/margin_2</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <style name="match_wrap" parent="match_match">
         <item name="android:layout_height">wrap_content</item>
     </style>

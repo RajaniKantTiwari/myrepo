@@ -41,14 +41,11 @@ import com.app.community.ui.dashboard.expandrecycleview.draweradapter.DrawerAdap
 import com.app.community.ui.dashboard.home.SearchActivity;
 import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.adapter.DrawerAdapterLeft;
-import com.app.community.ui.dashboard.home.event.NewsEvent;
 import com.app.community.ui.dashboard.home.event.SearchProductEvent;
 import com.app.community.ui.dashboard.home.event.UpdateAddress;
 import com.app.community.ui.dashboard.home.fragment.CartFragment;
-import com.app.community.ui.dashboard.home.fragment.CheckoutFragment;
 import com.app.community.ui.dashboard.home.fragment.MerchantFragment;
 import com.app.community.ui.dashboard.home.fragment.MyOrderActivity;
-import com.app.community.ui.dashboard.home.fragment.NewsMainFragment;
 import com.app.community.ui.dashboard.notification.NotificationFragment;
 import com.app.community.ui.dashboard.offer.OfferFragment;
 import com.app.community.ui.dashboard.user.UserProfileFragment;
@@ -432,7 +429,11 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         mBinding.toolBar.tvAddress.setText(address);
         GlideUtils.loadImage(this, imageUrl, mBinding.toolBar.ivProductImage, null, R.drawable.icon_placeholder);
         if (CommonUtils.isNotNull(bgColor)) {
-            mBinding.toolBar.toolbar.setBackgroundColor(Color.parseColor(bgColor));
+            try {
+                mBinding.toolBar.toolbar.setBackgroundColor(Color.parseColor(bgColor));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -590,7 +591,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
     public void ok(int parentPosition, int childPosition) {
         CommonUtils.resetCart(this);
         openProductSubProduct(parentPosition, childPosition);
-        mPresenter.deleteFromCart(this);
+        mPresenter.deleteAllFromCart(this);
     }
 
     @Override

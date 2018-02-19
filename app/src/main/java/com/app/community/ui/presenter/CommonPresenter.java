@@ -130,9 +130,9 @@ public class CommonPresenter implements Presenter<MvpView> {
             }
         });
     }
-    public void deleteFromCart(Activity activity) {
+    public void deleteAllFromCart(Activity activity) {
         mView.showProgress();
-        mRepository.deleteCart().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+        mRepository.deleteAllCart().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
             @Override
             public void onResponse(BaseResponse response) {
                 mView.hideProgress();

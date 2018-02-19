@@ -9,7 +9,7 @@
 
         <LinearLayout
             style="@style/match_wrap"
-            android:layout_height="@dimen/margin_80"
+            android:layout_height="@dimen/margin_120"
             android:padding="@dimen/margin_7">
 
             <RelativeLayout
@@ -18,19 +18,11 @@
 
                 <ImageView
                     android:layout_above="@+id/tvPolitics"
-                    style="@style/match_match"
-                    android:padding="@dimen/margin_5"
-                    android:src="@drawable/politics"
-                    android:background="@drawable/stroke_dark_grey_bg"/>
+                    style="@style/category_image"
+                    android:src="@drawable/politics" />
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvPolitics"
-                    style="@style/textview_description_match"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:gravity="center"
-                    android:textAllCaps="true"
-                    android:padding="@dimen/margin_2"
-                    android:maxLines="1"
+                    style="@style/category_text"
                     android:text="@string/politics"
                     android:background="@drawable/layer"/>
             </RelativeLayout>
@@ -43,19 +35,11 @@
 
                 <ImageView
                     android:layout_above="@+id/tvHealth"
-                    style="@style/match_match"
-                    android:padding="@dimen/margin_5"
-                    android:src="@drawable/health"
-                    android:background="@drawable/stroke_dark_grey_bg"/>
+                    style="@style/category_image"
+                    android:src="@drawable/health"/>
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvHealth"
-                    style="@style/textview_description_match"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:textAllCaps="true"
-                    android:gravity="center"
-                    android:padding="@dimen/margin_2"
-                    android:maxLines="1"
+                    style="@style/category_text"
                     android:text="@string/health"
                     android:background="@drawable/layer"/>
             </RelativeLayout>
@@ -66,19 +50,11 @@
 
                 <ImageView
                     android:layout_above="@+id/tvBusiness"
-                    style="@style/match_match"
-                    android:padding="@dimen/margin_5"
-                    android:src="@drawable/business"
-                    android:background="@drawable/stroke_dark_grey_bg"/>
+                    style="@style/category_image"
+                    android:src="@drawable/business"/>
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvBusiness"
-                    style="@style/textview_description_match"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:gravity="center"
-                    android:textAllCaps="true"
-                    android:padding="@dimen/margin_2"
-                    android:maxLines="1"
+                    style="@style/category_text"
                     android:text="@string/business"
                     android:background="@drawable/layer"/>
             </RelativeLayout>
@@ -86,29 +62,23 @@
 
         <LinearLayout
             style="@style/match_wrap"
-            android:layout_height="@dimen/margin_80"
-            android:padding="@dimen/margin_5">
+            android:layout_height="@dimen/margin_120"
+            android:layout_marginStart="@dimen/margin_7"
+            android:layout_marginEnd="@dimen/margin_7"
+            >
 
             <RelativeLayout
                 android:id="@+id/layoutSports"
                 style="@style/layout_hori_wrap_1"
-                android:layout_marginStart="@dimen/margin_7">
+                >
 
                 <ImageView
                     android:layout_above="@+id/tvSports"
-                    style="@style/match_match"
-                    android:padding="@dimen/margin_5"
-                    android:src="@drawable/sports"
-                    android:background="@drawable/stroke_dark_grey_bg"/>
+                    style="@style/category_image"
+                    android:src="@drawable/sports"/>
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvSports"
-                    style="@style/textview_description_match"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:gravity="center"
-                    android:textAllCaps="true"
-                    android:padding="@dimen/margin_2"
-                    android:maxLines="1"
+                    style="@style/category_text"
                     android:text="@string/sports"
                     android:background="@drawable/layer"/>
             </RelativeLayout>
@@ -119,19 +89,11 @@
 
                 <ImageView
                     android:layout_above="@+id/tvTravel"
-                    style="@style/match_match"
-                    android:padding="@dimen/margin_5"
-                    android:src="@drawable/travels"
-                    android:background="@drawable/stroke_dark_grey_bg"/>
+                    style="@style/category_image"
+                    android:src="@drawable/travels"/>
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvTravel"
-                    style="@style/textview_description_match"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:textAllCaps="true"
-                    android:gravity="center"
-                    android:padding="@dimen/margin_2"
-                    android:maxLines="1"
+                    style="@style/category_text"
                     android:text="@string/travel"
                     android:background="@drawable/layer"/>
             </RelativeLayout>
@@ -142,19 +104,11 @@
 
                 <ImageView
                     android:layout_above="@+id/tvTechnology"
-                    style="@style/match_match"
-                    android:padding="@dimen/margin_5"
-                    android:src="@drawable/technology"
-                    android:background="@drawable/stroke_dark_grey_bg"/>
+                    style="@style/category_image"
+                    android:src="@drawable/technology"/>
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvTechnology"
-                    style="@style/textview_description_match"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:gravity="center"
-                    android:padding="@dimen/margin_2"
-                    android:textAllCaps="true"
-                    android:maxLines="1"
+                    style="@style/category_text"
                     android:text="@string/technology"
                     android:background="@drawable/layer"/>
             </RelativeLayout>
