@@ -20,7 +20,6 @@ import java.util.ArrayList;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
     private final LayoutInflater mInflater;
-    private final AppCompatActivity activity;
     private final ArrayList<ProductData> mCartList;
     private OnAddToCart listener;
     public interface OnAddToCart {
@@ -28,7 +27,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
     }
     public CartAdapter(AppCompatActivity activity,ArrayList<ProductData> mCartList, OnAddToCart listener){
         mInflater=LayoutInflater.from(activity);
-        this.activity=activity;
         this.mCartList=mCartList;
         this.listener=listener;
     }

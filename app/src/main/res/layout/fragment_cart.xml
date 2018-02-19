@@ -37,14 +37,23 @@
             android:layout_alignParentBottom="true">
             <ImageView style="@style/view_layout" />
 
-            <com.app.community.widget.CustomTextView
-                style="@style/textview_title_match"
-                android:layout_marginBottom="@dimen/margin_15"
-                android:layout_marginTop="@dimen/margin_25"
+            <LinearLayout style="@style/match_wrap"
                 android:gravity="center_horizontal"
-                android:text="@string/subtotal"
-                android:textColor="@color/color_black_cart"
-                app:customFont="@string/font_bold" />
+                android:layout_marginTop="@dimen/margin_25"
+                android:layout_marginBottom="@dimen/margin_15">
+
+                <com.app.community.widget.CustomTextView
+                    style="@style/textview_description_large_wrap"
+                    android:layout_gravity="center"
+                    android:text="@string/sub_total" />
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvTotal"
+                    style="@style/textview_description_large_wrap"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/margin_7"
+                    android:drawablePadding="@dimen/margin_7"
+                    android:drawableStart="@drawable/rupee_black" />
+            </LinearLayout>
 
             <com.app.community.widget.CustomTextView
                 style="@style/textview_description_small_wrap"

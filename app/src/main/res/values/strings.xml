@@ -475,6 +475,7 @@
     <string name="sports">Sports</string>
     <string name="travel">Travel</string>
     <string name="technology">Technology</string>
+    <string name="your_cart_already_empty">Your cart is already empty.</string>
 
 
     <string-array name="state_array">
