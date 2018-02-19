@@ -19,6 +19,8 @@ import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.cart.ProductData;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.adapter.CartAdapter;
+import com.app.community.utils.CommonUtils;
+import com.app.community.utils.PreferenceUtils;
 
 import java.util.ArrayList;
 
@@ -45,7 +47,8 @@ public class CartFragment extends DashboardFragment implements CartAdapter.OnAdd
 
     private void initializeAdapter() {
         LinearLayoutManager layoutManager=new LinearLayoutManager(getBaseActivity());
-        mAdapter=new CartAdapter(getBaseActivity(),this);
+        mCartList= PreferenceUtils.getCartData();
+        mAdapter=new CartAdapter(getBaseActivity(),mCartList,this);
         mBinding.rvCartList.setLayoutManager(layoutManager);
         mBinding.rvCartList.setAdapter(mAdapter);
     }
@@ -64,7 +67,7 @@ public class CartFragment extends DashboardFragment implements CartAdapter.OnAdd
 
     @Override
     public String getFragmentName() {
-        return null;
+        return CartFragment.class.getSimpleName();
     }
 
     @Override

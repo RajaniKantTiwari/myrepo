@@ -9,6 +9,10 @@ import android.view.ViewGroup;
 
 import com.app.community.R;
 import com.app.community.databinding.CartRowItemBinding;
+import com.app.community.network.response.dashboard.cart.ProductData;
+import com.app.community.utils.CommonUtils;
+
+import java.util.ArrayList;
 
 /**
  * Created by ashok on 25/12/17.
@@ -17,13 +21,15 @@ import com.app.community.databinding.CartRowItemBinding;
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
     private final LayoutInflater mInflater;
     private final AppCompatActivity activity;
+    private final ArrayList<ProductData> mCartList;
     private OnAddToCart listener;
     public interface OnAddToCart {
         void addToCartClick(int pos, View view);
     }
-    public CartAdapter(AppCompatActivity activity, OnAddToCart listener){
+    public CartAdapter(AppCompatActivity activity,ArrayList<ProductData> mCartList, OnAddToCart listener){
         mInflater=LayoutInflater.from(activity);
         this.activity=activity;
+        this.mCartList=mCartList;
         this.listener=listener;
     }
     @Override
@@ -39,7 +45,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
 
     @Override
     public int getItemCount() {
-        return 5;
+        return CommonUtils.isNotNull(mCartList)?mCartList.size():0;
     }
     class CartHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private CartRowItemBinding itemBinding;

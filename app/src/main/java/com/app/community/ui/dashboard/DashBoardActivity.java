@@ -44,6 +44,7 @@ import com.app.community.ui.dashboard.home.adapter.DrawerAdapterLeft;
 import com.app.community.ui.dashboard.home.event.NewsEvent;
 import com.app.community.ui.dashboard.home.event.SearchProductEvent;
 import com.app.community.ui.dashboard.home.event.UpdateAddress;
+import com.app.community.ui.dashboard.home.fragment.CartFragment;
 import com.app.community.ui.dashboard.home.fragment.CheckoutFragment;
 import com.app.community.ui.dashboard.home.fragment.MerchantFragment;
 import com.app.community.ui.dashboard.home.fragment.MyOrderActivity;
@@ -334,7 +335,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
             pushFragment(new UserProfileFragment(), null, R.id.container, true, false, NONE);
         } else if (view == mBinding.toolBar.layoutCart) {
             if (CommonUtils.isNotNull(PreferenceUtils.getCartData()) && PreferenceUtils.getCartData().size() > 0) {
-                addFragmentInContainer(new CheckoutFragment(), null, true, true, NONE);
+                addFragmentInContainer(new CartFragment(), null, true, true, NONE);
             } else {
                 showToast(getResources().getString(R.string.please_add_data_in_cart_first));
             }
