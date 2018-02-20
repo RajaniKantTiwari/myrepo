@@ -89,6 +89,8 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
     ArrayList<ProductSubCategory> responseList;
     private ActionBarDrawerToggle mDrawerToggleLeft;
     private DrawerAdapterLeft mDrawerAdapterLeft;
+    private int parentPosition;
+    private int childPosition;
 
     @Override
     public void onLeftDrawerItemClicked(int position) {
@@ -228,7 +230,10 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
-        if (requestCode == AppConstants.RIGHT_DRAWER_RESPONSE) {
+        if(requestCode==AppConstants.DELETE_CART){
+            CommonUtils.resetCart(this);
+            openProductSubProduct(parentPosition, childPosition);
+        } else if (requestCode == AppConstants.RIGHT_DRAWER_RESPONSE) {
             if (CommonUtils.isNotNull(response) && response instanceof ProductTypeData) {
                 this.responseList.clear();
                 this.responseList.addAll(DashBoardHelper.setRightDrawerData((ProductTypeData) response));
@@ -592,8 +597,8 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
 
     @Override
     public void ok(int parentPosition, int childPosition) {
-        CommonUtils.resetCart(this);
-        openProductSubProduct(parentPosition, childPosition);
+        this.parentPosition=parentPosition;
+        this.childPosition=childPosition;
         mPresenter.deleteAllFromCart(this);
     }
 

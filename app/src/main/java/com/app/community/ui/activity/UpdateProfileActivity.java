@@ -305,16 +305,19 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
 
     @Subscribe
     public void onUploadProfile(EncodedBitmap event) {
-        String encodedImage = event.getEncodeImage();
         ProfileRequest profileRequest=new ProfileRequest();
+        if(CommonUtils.isNotNull(profilePicFilePath)&&profilePicFilePath.length()>0){
+            String encodedImage = event.getEncodeImage();
+            profileRequest.setImageUrl(encodedImage);
+        }
         profileRequest.setUserid(PreferenceUtils.getUserId());
         profileRequest.setName(PreferenceUtils.getUserName());
         profileRequest.setAddress(PreferenceUtils.getAddress());
         profileRequest.setCity(PreferenceUtils.getCity());
         profileRequest.setEmail(PreferenceUtils.getEmail());
-        profileRequest.setImageUrl(encodedImage);
         if(isNetworkConnected()){
             presenter.updateProfile(this,profileRequest);
         }
+
     }
 }

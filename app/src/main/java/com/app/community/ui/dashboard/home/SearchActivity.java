@@ -25,6 +25,7 @@ import com.app.community.ui.dashboard.home.adapter.SearchProductServiceAdapter;
 import com.app.community.ui.dashboard.home.event.SearchProductEvent;
 import com.app.community.ui.dialogfragment.CheckoutDialogFragment;
 import com.app.community.ui.presenter.CommonPresenter;
+import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.PreferenceUtils;
@@ -40,7 +41,7 @@ import javax.inject.Inject;
  */
 
 public class SearchActivity extends CommonActivity implements
-        SearchAdapter.SearchListener,CheckoutDialogFragment.CheckoutDialogListener,
+        SearchAdapter.SearchListener, CheckoutDialogFragment.CheckoutDialogListener,
         SearchProductServiceAdapter.SearchProductServiceListener {
     @Inject
     CommonPresenter presenter;
@@ -181,13 +182,18 @@ public class SearchActivity extends CommonActivity implements
         if (CommonUtils.isNull(search) || search.length() == 0) {
             showDefault();
         }
+        if (requestCode == AppConstants.DELETE_CART) {
+            PreferenceUtils.setCartData(null);
+            EventBus.getDefault().post(new UpdateCartEvent());
+            gotoProductDetails();
+        }
     }
 
 
     @Override
     public void itemClicked(int position) {
         if (CommonUtils.isNotNull(merchantList) && merchantList.size() > position) {
-             merchant = merchantList.get(position);
+            merchant = merchantList.get(position);
             if (CommonUtils.isNotNull(merchant)) {
                 if (CommonUtils.isNotNull(PreferenceUtils.getCartData()) &&
                         PreferenceUtils.getCartData().size() > 0
@@ -216,10 +222,8 @@ public class SearchActivity extends CommonActivity implements
 
     @Override
     public void ok(int parentPosition, int childPosition) {
-        PreferenceUtils.setCartData(null);
         presenter.deleteAllFromCart(this);
-        EventBus.getDefault().post(new UpdateCartEvent());
-        gotoProductDetails();
+
     }
 
     @Override

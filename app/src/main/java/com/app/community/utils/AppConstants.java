@@ -33,6 +33,7 @@ public interface AppConstants {
 
     int PAGER_INDICATOR_MARGING = 15;
     int ITEM_START_INDEX = 0;
+    int DELETE_CART = 990011;
 
     @IntDef({CHECKOUT_FRAGMENT})
     @Retention(RetentionPolicy.SOURCE)
