@@ -35,7 +35,8 @@ public class ConfirmOrderFragment extends DashboardFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_confirm_order, container, false);
-        DeliveryTimer deliveryTimer = new DeliveryTimer(30 * 1000, AppConstants.COUNT_INTERVAL);
+        DeliveryTimer deliveryTimer = new DeliveryTimer(1330*60 * 1000, AppConstants.COUNT_INTERVAL);
+        mBinding.tvRemaining.setText(CommonUtils.convertSecondsToHMmSs(30*60));
         deliveryTimer.start();
         return mBinding.getRoot();
     }
@@ -92,7 +93,7 @@ public class ConfirmOrderFragment extends DashboardFragment {
 
         @Override
         public void onTick(long millisUntilFinished) {
-            String time=CommonUtils.convertMilliTime(millisUntilFinished);
+            String time=CommonUtils.convertSecondsToHMmSs(millisUntilFinished/1000);
             mBinding.tvRemaining.setText(time);
         }
 

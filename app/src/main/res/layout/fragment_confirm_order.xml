@@ -54,7 +54,6 @@
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvRemaining"
                     style="@style/textview_header_wrap"
-                    android:text="29:00 sec"
                     app:customFont="@string/font_bold"
                     android:layout_marginStart="@dimen/margin_10"
                     android:textColor="@color/color_sky_blue"

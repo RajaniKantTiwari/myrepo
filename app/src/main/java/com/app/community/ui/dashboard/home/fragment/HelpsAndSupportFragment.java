@@ -32,7 +32,7 @@ public class HelpsAndSupportFragment extends DashboardFragment implements HelpSu
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding=DataBindingUtil.inflate(inflater, R.layout.activity_helpsupport,container,false);
+        mBinding=DataBindingUtil.inflate(inflater, R.layout.fragment_helpsupport,container,false);
         initializeAdapter();
         return mBinding.getRoot();
     }

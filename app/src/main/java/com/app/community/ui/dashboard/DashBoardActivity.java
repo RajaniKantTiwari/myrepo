@@ -117,8 +117,6 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
             case AppConstants.ABOUTUS:
                 addFragmentInContainer(new ConfirmOrderFragment(), null, true, true, NONE);
                 //ExplicitIntent.getsInstance().navigateTo(this, AboutUsActivity.class);
-
-                //onTabSelected(USER_FRAGMENT);
                 break;
             case AppConstants.HELPSUPPORT:
                 ExplicitIntent.getsInstance().navigateTo(this, HelpsAndSupportActivity.class);

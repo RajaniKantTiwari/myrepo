@@ -200,10 +200,13 @@ public class CommonUtils {
         SimpleDateFormat formatter = new SimpleDateFormat("hh:mm aaa");
         return formatter.format(new Date(time));
     }
-    public static String convertMilliTime(long time) {
-        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm:ss");
-        return formatter.format(new Date(time));
-    }
+        public static String convertSecondsToHMmSs(long seconds) {
+            long s = seconds % 60;
+            long m = (seconds / 60) % 60;
+            long h = (seconds / (60 * 60)) % 24;
+            return String.format(Locale.getDefault(), "%02d:%02d:%02d", h,m,s);
+            //return String.format("%d:%02d:%02d", h,m,s);
+        }
     public static int getColor(Context context, int color) {
         return ContextCompat.getColor(context, color);
     }
