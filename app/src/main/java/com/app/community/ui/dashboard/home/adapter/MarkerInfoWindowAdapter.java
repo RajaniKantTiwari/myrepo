@@ -1,3 +1,4 @@
+/*
 package com.app.community.ui.dashboard.home.adapter;
 
 import android.app.Activity;
@@ -47,3 +48,4 @@ public class MarkerInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
         return mBinding.getRoot();
     }
 }
+*/

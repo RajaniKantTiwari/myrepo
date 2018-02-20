@@ -77,7 +77,6 @@ public class ShowWindowFragment extends Fragment implements View.OnClickListener
 
 
     public interface MarkerInfoListener {
-        void call(String mobileNumber);
-        void view(String view);
+        void imageClick(String mobileNumber);
     }
 }

@@ -15,10 +15,12 @@ import android.view.ViewGroup;
 
 import com.app.community.R;
 import com.app.community.databinding.FragmentLocationMapBinding;
+import com.app.community.mapview.InfoWindow;
+import com.app.community.mapview.InfoWindowManager;
+import com.app.community.mapview.ShowWindowFragment;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.home.MerchantResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
-import com.app.community.ui.dashboard.home.adapter.MarkerInfoWindowAdapter;
 import com.app.community.ui.dashboard.home.event.MerchantEvent;
 import com.app.community.ui.location.GPSTracker;
 import com.app.community.utils.CommonUtils;
@@ -47,13 +49,15 @@ import io.nlopez.smartlocation.SmartLocation;
 import static com.app.community.utils.GeneralConstant.PERMISSIONS_REQUEST_LOCATION;
 
 
-public class ProductMapFragment extends DashboardFragment implements OnMapReadyCallback {
+public class ProductMapFragment extends DashboardFragment implements OnMapReadyCallback,ShowWindowFragment.MarkerInfoListener
+        ,GoogleMap.OnMarkerClickListener {
 
     private GoogleMap mMap;
     private FragmentLocationMapBinding mBinder;
-    private GPSTracker gpsTracker;
     private SupportMapFragment mapFragment;
-    private HashMap<Marker, MerchantResponse> mMarkersHashMap;
+    private static final String FORM_VIEW = "FORM_VIEW_MARKER";
+    private InfoWindow infoWindow;
+    private InfoWindowManager infoWindowManager;
 
 
     @Nullable
@@ -64,11 +68,12 @@ public class ProductMapFragment extends DashboardFragment implements OnMapReadyC
         if (CommonUtils.checkService(getBaseActivity())) {
             initMap();
         }
+        infoWindowManager = new InfoWindowManager(getDashboardActivity().getSupportFragmentManager());
+        infoWindowManager.onParentViewCreated(mBinder.mapViewContainer, savedInstanceState);
         return mBinder.getRoot();
     }
 
     private void initMap() {
-        mMarkersHashMap = new HashMap();
         mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         getCurrentLocation();
@@ -92,13 +97,19 @@ public class ProductMapFragment extends DashboardFragment implements OnMapReadyC
 
     @Override
     public void onClick(View view) {
-        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+       /* mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
                 marker.showInfoWindow();
                 return false;
             }
-        });
+        });*/
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        infoWindowManager.toggle(infoWindow, true);
+        return true;
     }
 
     @Subscribe
@@ -123,11 +134,13 @@ public class ProductMapFragment extends DashboardFragment implements OnMapReadyC
     public void onMapReady(GoogleMap googleMap) {
         if (CommonUtils.isNull(googleMap))
             return;
+        infoWindowManager.onMapReady(googleMap);
         mMap = googleMap;
+        mMap.setOnMarkerClickListener(this);
         mMap.getUiSettings().setZoomControlsEnabled(true);
         //Set Custom InfoWindow Adapter
-        MarkerInfoWindowAdapter adapter = new MarkerInfoWindowAdapter(getBaseActivity(), mMarkersHashMap);
-        mMap.setInfoWindowAdapter(adapter);
+       /* MarkerInfoWindowAdapter adapter = new MarkerInfoWindowAdapter(getBaseActivity(), mMarkersHashMap);
+        mMap.setInfoWindowAdapter(adapter);*/
         checkPermition();
     }
 
@@ -158,17 +171,35 @@ public class ProductMapFragment extends DashboardFragment implements OnMapReadyC
         if (CommonUtils.isNotNull(mMap)&&CommonUtils.isNotNull(response)) {
             LatLng latLng = new LatLng(Double.parseDouble(response.getLatitude()), Double.parseDouble(response.getLongitude()));
             Marker marker = mMap.addMarker(new MarkerOptions()
-                    .position(latLng)
+                    .position(latLng).snippet(FORM_VIEW)
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.pushpin)));
-            mMarkersHashMap.put(marker, response);
+            showWindow(marker,response);
+
+            //mMarkersHashMap.put(marker, response);
             if(CommonUtils.isNotNull(response)&&response.getId().equalsIgnoreCase("0")){
-                ShowMarker(marker,response);
+                showMarker(marker,response);
                 marker.showInfoWindow();
             }
         }
     }
 
-    private void ShowMarker(Marker marker, MerchantResponse response) {
+
+private void showWindow(Marker marker, MerchantResponse response) {
+        ShowWindowFragment fragment=new ShowWindowFragment(this);
+        Bundle bundle=new Bundle();
+        bundle.putParcelable(GeneralConstant.MERCHANT_RESPONSE,response);
+        fragment.setArguments(bundle);
+        final int offsetX = (int) getResources().getDimension(R.dimen.marker_offset_x);
+        final int offsetY = (int) getResources().getDimension(R.dimen.marker_offset_y);
+
+        final InfoWindow.MarkerSpecification markerSpec =
+                new InfoWindow.MarkerSpecification(offsetX, offsetY);
+        infoWindow = new InfoWindow(marker, markerSpec, fragment);
+    }
+
+
+
+    private void showMarker(Marker marker, MerchantResponse response) {
         try {
             marker.showInfoWindow();
             Geocoder geocoder = new Geocoder(getBaseActivity(), Locale.getDefault());
@@ -188,6 +219,21 @@ public class ProductMapFragment extends DashboardFragment implements OnMapReadyC
         }
     }
 
+   /* private void moveCamera(LatLng latLng) {
+        if(CommonUtils.isNotNull(mMap)){
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+            CameraPosition cameraPosition = new CameraPosition.Builder()
+                    .target(latLng)
+                    .bearing(GeneralConstant.BEARING)
+                    .tilt(GeneralConstant.TILT)
+                    .zoom(GeneralConstant.MAX_ZOOM)
+                    .build();
+            mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        }
+    }*/
+
+
+
     private void moveCamera(LatLng latLng) {
         if(CommonUtils.isNotNull(mMap)){
             mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
@@ -200,6 +246,7 @@ public class ProductMapFragment extends DashboardFragment implements OnMapReadyC
             mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
         }
     }
+
 
     @Override
     public void initializeData() {
@@ -237,6 +284,7 @@ public class ProductMapFragment extends DashboardFragment implements OnMapReadyC
     @Override
     public void onDestroy() {
         super.onDestroy();
+        infoWindowManager.onDestroy();
 
     }
 
@@ -272,4 +320,8 @@ public class ProductMapFragment extends DashboardFragment implements OnMapReadyC
         }
     }
 
+    @Override
+    public void imageClick(String mobileNumber) {
+
+    }
 }

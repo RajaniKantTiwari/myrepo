@@ -42,7 +42,7 @@ public interface GeneralConstant {
     String TAG = "";
     int ADDRESS_MAX_LENGTH = 100;
     int MAX_LENGTH = 50;
-    float MAX_ZOOM = 17;
+    float MAX_ZOOM = 12;
     float TILT = 90;
     float BEARING = 45;
     int REQUEST_CALL = 1;
