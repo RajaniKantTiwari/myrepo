@@ -53,7 +53,7 @@ public class EditAddressActivity extends CommonActivity implements MvpView, View
         adapter = new EditAddressAdapter(this, editList, this);
         mBinding.rvEditAddress.setLayoutManager(linearLayoutManager);
         mBinding.rvEditAddress.setAdapter(adapter);
-
+        mBinding.edNewAddress.setText(PreferenceUtils.getAddress());
     }
 
     private void setList() {

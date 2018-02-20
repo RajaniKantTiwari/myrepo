@@ -33,11 +33,13 @@ import com.app.community.network.response.dashboard.rightdrawer.Merchant;
 import com.app.community.network.response.dashboard.rightdrawer.ProductSubCategory;
 import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
 import com.app.community.ui.WelcomeScreenActivity;
+import com.app.community.ui.activity.AboutUsActivity;
 import com.app.community.ui.activity.HelpsAndSupportActivity;
 import com.app.community.ui.activity.UpdateProfileActivity;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.cart.ProductSubproductFragment;
 import com.app.community.ui.dashboard.expandrecycleview.draweradapter.DrawerAdapterRight;
+import com.app.community.ui.dashboard.home.ConfirmOrderFragment;
 import com.app.community.ui.dashboard.home.SearchActivity;
 import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.adapter.DrawerAdapterLeft;
@@ -113,6 +115,9 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                 openFragment(new NotificationFragment(), null, false, false, NONE);
                 break;
             case AppConstants.ABOUTUS:
+                addFragmentInContainer(new ConfirmOrderFragment(), null, true, true, NONE);
+                //ExplicitIntent.getsInstance().navigateTo(this, AboutUsActivity.class);
+
                 //onTabSelected(USER_FRAGMENT);
                 break;
             case AppConstants.HELPSUPPORT:

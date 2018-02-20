@@ -50,6 +50,8 @@
         <activity android:name=".ui.activity.HelpsAndSupportActivity" />
         <activity android:name=".ui.dashboard.home.fragment.MyOrderActivity" />
         <activity android:name=".ui.activity.UpdateProfileActivity" />
+        <activity android:name=".ui.activity.AboutUsActivity" />
+
         <!--Crop Activity-->
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"

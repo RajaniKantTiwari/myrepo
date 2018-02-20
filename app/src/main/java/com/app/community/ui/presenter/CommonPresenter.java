@@ -11,6 +11,7 @@ import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.request.dashboard.ProfileRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.LoginResponse;
+import com.app.community.network.response.MyOrderData;
 import com.app.community.network.response.VerifyMobileResponse;
 import com.app.community.network.response.dashboard.home.SearchResponseData;
 import com.app.community.ui.WelcomeScreenActivity;
@@ -169,9 +170,9 @@ public class CommonPresenter implements Presenter<MvpView> {
 
     public void getMyOrder(MyOrderActivity activity) {
         mView.showProgress();
-        mRepository.getMyOrder().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+        mRepository.getMyOrder().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<MyOrderData>(activity) {
             @Override
-            public void onResponse(BaseResponse response) {
+            public void onResponse(MyOrderData response) {
                 mView.hideProgress();
                 mView.onSuccess(response, 1);
             }
