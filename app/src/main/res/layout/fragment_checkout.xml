@@ -137,7 +137,6 @@
                     android:textColor="@color/color_black"
                     android:textAllCaps="true"
                     android:textStyle="bold"
-                    android:text="vasant Vihar Gali No 8"
                     android:textSize="@dimen/textSize_description" />
 
                 <com.app.community.widget.CustomTextView

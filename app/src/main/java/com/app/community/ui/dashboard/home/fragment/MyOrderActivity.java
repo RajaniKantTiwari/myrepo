@@ -11,10 +11,13 @@ import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.authentication.CommonActivity;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.dashboard.home.event.MyOrderEvent;
+import com.app.community.ui.presenter.CommonPresenter;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 
 import org.greenrobot.eventbus.EventBus;
+
+import javax.inject.Inject;
 
 /**
  * Created by rajnikant on 31/12/17.
@@ -23,7 +26,8 @@ import org.greenrobot.eventbus.EventBus;
 public class MyOrderActivity extends CommonActivity {
     private ActivityMyOrderBinding mBinding;
     private MyOrderEvent event;
-
+    @Inject
+    CommonPresenter presenter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,10 +43,10 @@ public class MyOrderActivity extends CommonActivity {
 
         event=new MyOrderEvent();
         event.setLivePastOrder(GeneralConstant.LIVEORDER);
-
         pushFragment( new LiveOrderFragment(),null,R.id.container,false,false,BaseActivity.AnimationType.NONE);
         pushFragment(new PastOrderFragment(),null,R.id.container,false,false,BaseActivity.AnimationType.NONE);
         EventBus.getDefault().post(event);
+        presenter.getMyOrder(this);
     }
 
     
@@ -54,7 +58,8 @@ public class MyOrderActivity extends CommonActivity {
 
     @Override
     public void attachView() {
-
+        getActivityComponent().inject(this);
+        presenter.attachView(this);
     }
 
     @Override

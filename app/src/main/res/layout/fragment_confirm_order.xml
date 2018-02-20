@@ -52,6 +52,7 @@
                     android:textColor="@color/color_dark_grey"
                     />
                 <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvRemaining"
                     style="@style/textview_header_wrap"
                     android:text="29:00 sec"
                     app:customFont="@string/font_bold"

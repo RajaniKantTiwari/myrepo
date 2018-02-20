@@ -9,6 +9,7 @@ import com.app.community.ui.authentication.LoginActivity;
 import com.app.community.ui.activity.UpdateProfileActivity;
 import com.app.community.ui.authentication.VerifyAccountActivity;
 import com.app.community.ui.dashboard.home.SearchActivity;
+import com.app.community.ui.dashboard.home.fragment.MyOrderActivity;
 import com.app.community.ui.fragment.DemoFragment;
 
 import dagger.Component;
@@ -23,6 +24,8 @@ public interface CommonComponent {
     void inject(VerifyAccountActivity activity);
     void inject(SearchActivity activity);
     void inject(WelcomeScreenActivity activity);
+    void inject(MyOrderActivity activity);
+
 
 
 }

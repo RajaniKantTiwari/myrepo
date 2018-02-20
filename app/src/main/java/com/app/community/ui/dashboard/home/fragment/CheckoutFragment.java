@@ -96,6 +96,7 @@ public class CheckoutFragment extends DashboardFragment implements CouponAdapter
         couponAdapter = new CouponAdapter(getBaseActivity(), couponList, this);
         mBinding.rvCouponCode.setAdapter(couponAdapter);
         CommonUtils.setRecyclerViewHeight(mBinding.rvCouponCode, couponList, GeneralConstant.COUPON_HEIGHT);
+        mBinding.tvAddress.setText(PreferenceUtils.getAddress());
     }
 
     private void setCoupon() {

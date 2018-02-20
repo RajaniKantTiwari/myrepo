@@ -15,6 +15,7 @@ import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.request.dashboard.ProfileRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.LoginResponse;
+import com.app.community.network.response.MyOrderData;
 import com.app.community.network.response.VerifyMobileResponse;
 import com.app.community.network.response.dashboard.cart.CategoryResponse;
 import com.app.community.network.response.dashboard.cart.ProductFullInformationData;
@@ -136,5 +137,10 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<BaseResponse> deleteFromCart(DeleteCartRequest request) {
         return apiService.deleteCart(request);
+    }
+
+    @Override
+    public Observable<MyOrderData> getMyOrder() {
+        return apiService.getMyOrder();
     }
 }

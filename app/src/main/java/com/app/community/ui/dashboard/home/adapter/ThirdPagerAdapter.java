@@ -1,5 +1,6 @@
 package com.app.community.ui.dashboard.home.adapter;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.support.v4.view.PagerAdapter;
@@ -51,7 +52,8 @@ public class ThirdPagerAdapter extends PagerAdapter {
         //itemBinding.webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
         itemBinding.webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         itemBinding.webView.setWebViewClient(new CustomWebView(mContext,itemBinding.progressBar));
-
+        ObjectAnimator anim = ObjectAnimator.ofInt(itemBinding.webView, "scrollY", itemBinding.webView.getScrollY(), 0);
+        anim.setDuration(500).start();
         //itemBinding.webView .loadUrl("http://www.google.com");
         container.addView(itemBinding.getRoot());
         return itemBinding.getRoot();

@@ -14,7 +14,9 @@
         <ImageView
             android:id="@+id/ivProductImage"
             android:layout_width="@dimen/margin_70"
-            android:layout_height="@dimen/margin_70" />
+            android:layout_height="@dimen/margin_70"
+            android:background="@drawable/stroke_grey"
+            android:layout_marginEnd="@dimen/margin_8"/>
 
         <LinearLayout
             style="@style/layout_hori_match_2"

@@ -3,7 +3,6 @@ package com.app.community.ui.dashboard.home;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +13,11 @@ import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.fragment.HelpsAndSupportFragment;
+import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
+import com.app.community.utils.CustomCountDownTimer;
 
 import static com.app.community.ui.base.BaseActivity.AnimationType.NONE;
-import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.WELCOME_HOME_FRAGMENT;
 
 
@@ -35,6 +35,8 @@ public class ConfirmOrderFragment extends DashboardFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_confirm_order, container, false);
+        DeliveryTimer deliveryTimer = new DeliveryTimer(30 * 1000, AppConstants.COUNT_INTERVAL);
+        deliveryTimer.start();
         return mBinding.getRoot();
     }
 
@@ -79,11 +81,25 @@ public class ConfirmOrderFragment extends DashboardFragment {
 
     }
 
-    public static Fragment newInstance(int instance) {
-        Bundle args = new Bundle();
-        args.putInt(ARGS_INSTANCE, instance);
-        ConfirmOrderFragment fragment = new ConfirmOrderFragment();
-        fragment.setArguments(args);
-        return fragment;
+    /**
+     * Countdown timer for meditation show time left to finish meditation
+     */
+    private class DeliveryTimer extends CustomCountDownTimer {
+
+        public DeliveryTimer(long millisInFuture, long countDownInterval) {
+            super(getDashboardActivity(), millisInFuture, countDownInterval);
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            String time=CommonUtils.convertMilliTime(millisUntilFinished);
+            mBinding.tvRemaining.setText(time);
+        }
+
+        @Override
+        public void onFinish() {
+
+        }
+
     }
 }

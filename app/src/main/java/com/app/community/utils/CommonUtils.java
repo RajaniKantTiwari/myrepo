@@ -198,10 +198,12 @@ public class CommonUtils {
 
     public static String convertMilliToTime(long time) {
         SimpleDateFormat formatter = new SimpleDateFormat("hh:mm aaa");
-
         return formatter.format(new Date(time));
     }
-
+    public static String convertMilliTime(long time) {
+        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm:ss");
+        return formatter.format(new Date(time));
+    }
     public static int getColor(Context context, int color) {
         return ContextCompat.getColor(context, color);
     }

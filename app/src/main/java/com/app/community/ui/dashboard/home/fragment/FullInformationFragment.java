@@ -118,15 +118,19 @@ public class FullInformationFragment extends DashboardFragment {
     }
 
     private void addInCart() {
-        if (isAddedInCart) {
-            for (int i = 0; i < productList.size(); i++) {
-                ProductData data = productList.get(i);
-                if (data.getMasterproductid() == productData.getMasterproductid()) {
-                    productList.set(i, productData);
+        if(quantity>0){
+            if (isAddedInCart) {
+                for (int i = 0; i < productList.size(); i++) {
+                    ProductData data = productList.get(i);
+                    if (data.getMasterproductid() == productData.getMasterproductid()) {
+                        productList.set(i, productData);
+                    }
                 }
+            } else {
+                productList.add(productData);
             }
-        } else {
-            productList.add(productData);
+        }else{
+            productList.remove(productData);
         }
         PreferenceUtils.setCartData(productList);
         EventBus.getDefault().post(new UpdateCartEvent());

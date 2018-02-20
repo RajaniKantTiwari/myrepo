@@ -15,10 +15,13 @@ import com.app.community.R;
 import com.app.community.databinding.CartRowItemBinding;
 import com.app.community.databinding.FragmentCartBinding;
 import com.app.community.event.UpdateCartEvent;
+import com.app.community.network.request.cart.Cart;
+import com.app.community.network.request.cart.CartListRequest;
 import com.app.community.network.request.cart.CartRequest;
 import com.app.community.network.request.cart.DeleteCartRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.cart.ProductData;
+import com.app.community.ui.SimpleDividerItemDecoration;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.adapter.CartAdapter;
 import com.app.community.utils.AppConstants;
@@ -29,6 +32,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 
+import static com.app.community.ui.base.BaseActivity.AnimationType.NONE;
 import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 
 /**
@@ -55,6 +59,7 @@ public class CartFragment extends DashboardFragment implements CartAdapter.OnAdd
         mCartList = PreferenceUtils.getCartData();
         mAdapter = new CartAdapter(getBaseActivity(), mCartList, this);
         mBinding.rvCartList.setLayoutManager(layoutManager);
+        mBinding.rvCartList.addItemDecoration(new SimpleDividerItemDecoration(getResources()));
         mBinding.rvCartList.setAdapter(mAdapter);
         setTotalAmount();
     }
@@ -68,7 +73,7 @@ public class CartFragment extends DashboardFragment implements CartAdapter.OnAdd
 
     @Override
     public void setListener() {
-
+        mBinding.tvCheckoutNow.setOnClickListener(this);
     }
 
     @Override
@@ -83,15 +88,48 @@ public class CartFragment extends DashboardFragment implements CartAdapter.OnAdd
     }
 
     @Override
-    public void onClick(View v) {
-
+    public void onClick(View view) {
+        if (view == mBinding.tvCheckoutNow) {
+            CommonUtils.clicked(mBinding.tvCheckoutNow);
+            if(CommonUtils.isNotNull(PreferenceUtils.getCartData())&&PreferenceUtils.getCartData().size()>0){
+                addToCartList();
+            }else {
+                getDashboardActivity().showToast(getResources().getString(R.string.please_add_data_in_cart_first));
+            }
+        }
     }
-
+    private void addToCartList() {
+        if (CommonUtils.isNotNull(PreferenceUtils.getCartData()) &&
+                CommonUtils.isNotNull(PreferenceUtils.getCartData().size())
+                && PreferenceUtils.getCartData().size() > 0) {
+            //request for cart
+            CartListRequest request = new CartListRequest();
+            //list of product added in cart
+            ArrayList<Cart> cartList = new ArrayList<>();
+            ArrayList<ProductData> productList = PreferenceUtils.getCartData();
+            request.setMerchant_id(productList.get(0).getMerchantId());
+            //id of merchant
+            for (ProductData product : productList) {
+                if (CommonUtils.isNotNull(product)) {
+                    Cart cart = new Cart();
+                    cart.setMerchantlist_id(product.getMerchantlistid());
+                    cart.setMasterproductid(product.getMasterproductid());
+                    cart.setQty(product.getQty());
+                    cartList.add(cart);
+                }
+            }
+            request.setCart(cartList);
+            getPresenter().addForCartList(getDashboardActivity(), request,this);
+        }
+    }
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
-        if (CommonUtils.isNotNull(response) && response.getStatus().equalsIgnoreCase(AppConstants.SUCCESS)) {
+        if(requestCode==AppConstants.CARTADDED){
+            getDashboardActivity().addFragmentInContainer(new CheckoutFragment(), null, true, true, NONE);
+        } else if (CommonUtils.isNotNull(response) && response.getStatus().equalsIgnoreCase(AppConstants.SUCCESS)) {
             if (CommonUtils.isNotNull(mCartList) && mCartList.size() > requestCode) {
                 mCartList.remove(requestCode);
+                setCartData();
             }
         }
     }
@@ -116,11 +154,12 @@ public class CartFragment extends DashboardFragment implements CartAdapter.OnAdd
                 removeFromCart(viewBinding.tvQuantity, pos);
                 break;
             case R.id.ivDeleteCart:
-                if(CommonUtils.isNotNull(mCartList)&&mCartList.size()>pos){
-                    mCartList.remove(pos);
-                }
-                /*if (CommonUtils.isNotNull(mCartList) && mCartList.size() > pos) {
+                if (CommonUtils.isNotNull(mCartList) && mCartList.size() > pos) {
                     getPresenter().deleteFromCart(getDashboardActivity(), new DeleteCartRequest(mCartList.get(0).getMerchantId(), mCartList.get(pos).getMasterproductid()), pos);
+                }
+               /* if (CommonUtils.isNotNull(mCartList) && mCartList.size() > pos) {
+                    mCartList.remove(pos);
+                    setCartData();
                 }*/
                 break;
         }
@@ -142,6 +181,8 @@ public class CartFragment extends DashboardFragment implements CartAdapter.OnAdd
 
     private void setCartData() {
         PreferenceUtils.setCartData(mCartList);
+        EventBus.getDefault().post(new UpdateCartEvent());
+        mAdapter.notifyDataSetChanged();
     }
 
     private void removeFromCart(TextView textView, int pos) {
@@ -150,12 +191,11 @@ public class CartFragment extends DashboardFragment implements CartAdapter.OnAdd
             count--;
             textView.setText(String.valueOf(count));
             mCartList.get(pos).setQty(count);
-            setCartData();
             setTotalAmount();
             if (count == 0) {
                 mCartList.remove(pos);
-                mAdapter.notifyDataSetChanged();
             }
+            setCartData();
         }
     }
 

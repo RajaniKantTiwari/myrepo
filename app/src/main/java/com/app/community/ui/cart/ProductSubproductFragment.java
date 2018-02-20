@@ -178,9 +178,11 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
 
     private void setCartData() {
         if(addCartList.size()>0){
-            ProductData product = addCartList.get(0);
-            product.setMerchantId(merchantId);
-            addCartList.set(0,product);
+            for(int i=0;i<addCartList.size();i++){
+                ProductData product = addCartList.get(i);
+                product.setMerchantId(merchantId);
+                addCartList.set(i,product);
+            }
         }
         PreferenceUtils.setCartData(addCartList);
     }

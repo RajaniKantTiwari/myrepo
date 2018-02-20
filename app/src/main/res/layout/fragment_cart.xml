@@ -4,7 +4,8 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/layoutList"
         style="@style/match_match"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:clickable="true">
 
         <LinearLayout
             android:id="@+id/layoutTop"
@@ -56,6 +57,7 @@
             </LinearLayout>
 
             <com.app.community.widget.CustomTextView
+                android:id="@+id/tvCheckoutNow"
                 style="@style/textview_description_small_wrap"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/blue_round_btnbg"

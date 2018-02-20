@@ -20,7 +20,7 @@ public interface AppConstants {
     String MERCHANT_ID = "merchant_id";
     String OFFER = "offer";
     int LOGOUT = 3;
-    int CARTADDED = 4;
+    int CARTADDED = 10001;
 
     int NO_OF_TAB = 4;
     int HORIZONTAL_CHILD=3;
@@ -29,6 +29,7 @@ public interface AppConstants {
     String MERCHANT_IMAGE = "merchant_image";
     String MERCHANT_ADDRESS = "merchant_address";
     String MERCHANT_BACKGROUND_COLOR = "merchant_background_color";
+    long COUNT_INTERVAL = 1000;
 
 
     @IntDef({CHECKOUT_FRAGMENT})

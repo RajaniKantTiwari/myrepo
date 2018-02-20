@@ -17,6 +17,7 @@ import com.app.community.network.request.dashboard.ProductRequest;
 import com.app.community.network.request.dashboard.ProfileRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.LoginResponse;
+import com.app.community.network.response.MyOrderData;
 import com.app.community.network.response.VerifyMobileResponse;
 import com.app.community.network.response.dashboard.cart.CategoryResponse;
 import com.app.community.network.response.dashboard.cart.ProductFullInformationData;
@@ -94,5 +95,5 @@ public interface ApiService {
     Observable<BaseResponse> updateProfile(@Body ProfileRequest request);
 
     @GET("cart/myorder")
-    Observable<BaseResponse> myOrder(@Body ProfileRequest request);
+    Observable<MyOrderData> getMyOrder();
 }
