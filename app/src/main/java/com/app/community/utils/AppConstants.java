@@ -23,14 +23,16 @@ public interface AppConstants {
     int CARTADDED = 10001;
 
     int NO_OF_TAB = 4;
-    int HORIZONTAL_CHILD=3;
-    String TIME_ZONE="GMT";
+    int HORIZONTAL_CHILD = 3;
+    String TIME_ZONE = "GMT";
     String PRODUCT_DATA = "product_data";
     String MERCHANT_IMAGE = "merchant_image";
     String MERCHANT_ADDRESS = "merchant_address";
     String MERCHANT_BACKGROUND_COLOR = "merchant_background_color";
     long COUNT_INTERVAL = 1000;
 
+    int PAGER_INDICATOR_MARGING = 15;
+    int ITEM_START_INDEX = 0;
 
     @IntDef({CHECKOUT_FRAGMENT})
     @Retention(RetentionPolicy.SOURCE)

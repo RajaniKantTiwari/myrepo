@@ -107,4 +107,8 @@ public interface GeneralConstant {
         int NOTIFICATION_FRAGMENT=2;
         int USER_FRAGMENT=3;
     }
+    interface FRAGMENT_OFFER {
+        int OFFER_DETAILS = 0;
+        int TERMS_CONDITION = 1;
+    }
 }

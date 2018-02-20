@@ -1,27 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/layoutOrder"
+    <LinearLayout
         style="@style/match_match"
         android:background="@color/white"
+        android:focusable="true"
         android:orientation="vertical">
 
         <include
             android:id="@+id/layoutHeader"
             layout="@layout/header_layout" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rvOffer"
-            style="@style/match_match"
-            android:layout_below="@+id/layoutHeader"
-            android:padding="@dimen/margin_10" />
-        <include
-            android:id="@+id/noDataFound"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/layoutHeader"
-            layout="@layout/layout_no_data_found"
-            android:visibility="gone"/>
-    </RelativeLayout>
+        <FrameLayout style="@style/match_match">
+
+            <LinearLayout
+                android:id="@+id/layoutOrder"
+                style="@style/match_match"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/layoutOffer"
+                    layout="@layout/offers_row" />
+
+                <android.support.v7.widget.CardView
+                    style="@style/match_wrap"
+                    android:layout_marginEnd="@dimen/welcome_margin_end"
+                    android:layout_marginStart="@dimen/welcome_margin_start"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:elevation="@dimen/margin_5"
+                    android:minHeight="@dimen/margin_120"
+                    app:cardCornerRadius="@dimen/margin_2">
+
+                    <LinearLayout
+                        style="@style/match_match"
+                        android:orientation="vertical">
+                        <android.support.design.widget.TabLayout
+                            android:id="@+id/tabLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:elevation="6dp"
+                            android:minHeight="?attr/actionBarSize"
+                            app:tabGravity="fill"
+                            app:tabMode="fixed"
+                            android:layout_marginStart="@dimen/margin_10"
+                            android:layout_marginEnd="@dimen/margin_10"
+                            />
+                        <android.support.v4.view.ViewPager
+                            android:id="@+id/viewPager"
+                            style="@style/match_match"/>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+
+            <include
+                android:id="@+id/noDataFound"
+                layout="@layout/layout_no_data_found"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone" />
+        </FrameLayout>
+    </LinearLayout>
 </layout>

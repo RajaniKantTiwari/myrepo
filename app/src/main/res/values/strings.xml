@@ -476,6 +476,8 @@
     <string name="travel">Travel</string>
     <string name="technology">Technology</string>
     <string name="your_cart_already_empty">Your cart is already empty.</string>
+    <string name="offer_details">Offer Details</string>
+    <string name="term_conditions">Terms and conditions</string>
 
 
     <string-array name="state_array">

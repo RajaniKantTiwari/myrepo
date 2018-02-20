@@ -4,7 +4,8 @@
         <LinearLayout
             style="@style/match_match"
             android:orientation="vertical"
-            android:background="@color/white">
+            android:background="@color/white"
+            android:clickable="true">
             <com.app.community.widget.CustomTextView
                 style="@style/textview_header_match"
                 android:text="@string/your_order_is_is_confirmed"
@@ -45,7 +46,7 @@
                     android:gravity="center"
                     android:layout_marginTop="@dimen/margin_25">
                 <com.app.community.widget.CustomTextView
-                    style="@style/textview_title_wrap"
+                    style="@style/textview_description_wrap"
                     android:text="@string/estimated_delivery_time"
                     android:gravity="center"
                     app:customFont="@string/font_bold"
@@ -53,7 +54,8 @@
                     />
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvRemaining"
-                    style="@style/textview_header_wrap"
+                    style="@style/textview_description_large_wrap"
+                    android:layout_width="@dimen/margin_100"
                     app:customFont="@string/font_bold"
                     android:layout_marginStart="@dimen/margin_10"
                     android:textColor="@color/color_sky_blue"

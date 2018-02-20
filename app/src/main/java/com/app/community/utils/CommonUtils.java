@@ -14,7 +14,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -513,6 +515,24 @@ public class CommonUtils {
     public static void resetCart(DashBoardActivity dashBoardActivity) {
         PreferenceUtils.setCartData(null);
         dashBoardActivity.onUpdateCartEvent(new UpdateCartEvent());
+    }
+
+    public static void changeWidthOfTab(TabLayout tabLayout, FragmentActivity mActivity) {
+        for (int i = 0; i < tabLayout.getTabCount(); i++) {
+            TabLayout.Tab tab =tabLayout.getTabAt(i);
+            if (tab != null) {
+                View customView = tab.getCustomView();
+                if (customView != null) {
+                    View targetViewToApplyMargin = (View) customView.getParent();
+                    ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) targetViewToApplyMargin.getLayoutParams();
+
+                    layoutParams.leftMargin = GlideUtils.convertDpToPx(AppConstants.PAGER_INDICATOR_MARGING,mActivity);
+                    layoutParams.rightMargin = GlideUtils.convertDpToPx(AppConstants.PAGER_INDICATOR_MARGING,mActivity);
+                    targetViewToApplyMargin.setLayoutParams(layoutParams);
+                }
+            }
+        }
+
     }
 
 }
