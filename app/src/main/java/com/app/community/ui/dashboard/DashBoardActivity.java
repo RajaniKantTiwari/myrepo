@@ -117,13 +117,11 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                 openFragment(new NotificationFragment(), null, false, false, NONE);
                 break;
             case AppConstants.ABOUTUS:
-                addFragmentInContainer(new ConfirmOrderFragment(), null, true, true, NONE);
-                //ExplicitIntent.getsInstance().navigateTo(this, AboutUsActivity.class);
+                ExplicitIntent.getsInstance().navigateTo(this, AboutUsActivity.class);
                 break;
             case AppConstants.HELPSUPPORT:
                 ExplicitIntent.getsInstance().navigateTo(this, HelpsAndSupportActivity.class);
                 break;
-
         }
     }
 
