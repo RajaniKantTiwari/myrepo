@@ -145,7 +145,6 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
             PreferenceUtils.setEmail(mBinding.edEmail.getText().toString());
             PreferenceUtils.setCardNumber(mBinding.edCreditDetails.getText().toString());
             updateProfile();
-            EventBus.getDefault().post(new UpdateProfileEvent());
             finish();
         } else if (mBinding.layoutHeader.ivBack == view) {
             finish();
@@ -239,12 +238,12 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
             } else if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
                 LogUtils.LOGD(TAG, "CROP");
                 //handleCropResult(data);
-
                 CropImage.ActivityResult result = CropImage.getActivityResult(data);
                 Uri imageUri = result.getUri();
                 String path = imageUri.getPath();
                 setImageFromLocal(path);
-
+                updateProfilePic();
+                EventBus.getDefault().post(new UpdateProfileEvent());
             }
         }
     }
@@ -264,32 +263,21 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
                 .start(this);
     }
 
-    /*private void updateProfile() {
-        try {
-            //int age = Integer.parseInt(mBinding.edtAge.getText().toString().trim());
-            //String name = mBinding.edtName.getText().toString().trim();
-            //String phoneNumber = mBinding.edtPhone.getText().toString().trim();
-            if (TextUtils.isEmpty(profilePicFilePath)) {
-                // presenter.updateProfile(this, name, phoneNumber, age, currentGender, null);
-            } else {
-                MultipartBody.Part body = CommonUtils.createMultipart(profilePicFilePath, GeneralConstant.PROFILE_UPDATE_PARAMETER);
-                if (body != null) {
-                    // presenter.updateProfile(this, name, phoneNumber, age, currentGender, body);
-                } else {
-                    //presenter.updateProfile(this, name, phoneNumber, age, currentGender, null);
-                }
-
-            }
-
-        } catch (Exception e) {
-            LogUtils.LOGE("ProfileUpdate", e.toString());
-        }
-
-
-    }*/
-
-
     private void updateProfile() {
+        ProfileRequest profileRequest=new ProfileRequest();
+        profileRequest.setUserid(PreferenceUtils.getUserId());
+        profileRequest.setName(PreferenceUtils.getUserName());
+        profileRequest.setAddress(PreferenceUtils.getAddress());
+        profileRequest.setCity(PreferenceUtils.getCity());
+        profileRequest.setEmail(PreferenceUtils.getEmail());
+        if (isNetworkConnected()) {
+            presenter.updateProfile(this,profileRequest);
+        }
+    }
+
+
+
+    private void updateProfilePic() {
         try {
             Bitmap bitmap = ((RoundedBitmapDrawable) mBinding.ivProfile.getDrawable()).getBitmap();
             Upload postImage = new Upload(this, bitmap);
@@ -322,14 +310,7 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
                 presenter.updateProfilePic(this, profilePicRequest);
             }
         }
-       /* profileRequest.setUserid(PreferenceUtils.getUserId());
-        profileRequest.setName(PreferenceUtils.getUserName());
-        profileRequest.setAddress(PreferenceUtils.getAddress());
-        profileRequest.setCity(PreferenceUtils.getCity());
-        profileRequest.setEmail(PreferenceUtils.getEmail());*/
-        if (isNetworkConnected()) {
-            //presenter.updateProfile(this,profileRequest);
-        }
+
 
     }
 }

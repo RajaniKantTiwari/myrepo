@@ -18,6 +18,7 @@ public class DashBoardHelper {
             if (CommonUtils.isNotNull(listResponse)) {
                 for (int i = 0; i < listResponse.size(); i++) {
                     ProductType productType = listResponse.get(i);
+                    //to add type of category such as product and service
                     if (CommonUtils.isNotNull(productType)) {
 
                         ProductSubCategory productSubCategory=new ProductSubCategory();
@@ -27,11 +28,15 @@ public class DashBoardHelper {
                         productSubCategory.setCategory(true);
 
                         subCategory.add(productSubCategory);
-
-
                         ArrayList<ProductSubCategory> subCat = productType.getSubcategory();
+                        //to add type of product name and inside merchant
                         if(CommonUtils.isNotNull(subCat)&&subCat.size()>0){
-                            subCategory.addAll(subCat);
+                            for(int j=0;j<subCat.size();j++){
+                                if(CommonUtils.isNotNull(subCat.get(j))&&CommonUtils.isNotNull(subCat.get(j).
+                                        getMerchantname())&&subCat.get(j).getMerchantname().size()>0){
+                                    subCategory.add(subCat.get(j));
+                                }
+                            }
                         }
                     }
                 }
