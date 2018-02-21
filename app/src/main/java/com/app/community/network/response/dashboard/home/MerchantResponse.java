@@ -41,6 +41,7 @@ public class MerchantResponse implements Parcelable,Observable {
     private String preferred_payment_options;
     private String store_name;
 
+
     public String getStore_name() {
         return store_name;
     }
