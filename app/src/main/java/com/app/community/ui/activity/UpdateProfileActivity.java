@@ -26,6 +26,7 @@ import com.app.community.ui.activity.uploadfile.Upload;
 import com.app.community.ui.authentication.CommonActivity;
 import com.app.community.ui.base.MvpView;
 import com.app.community.ui.presenter.CommonPresenter;
+import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.GlideUtils;
@@ -62,6 +63,7 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
 
     @Inject
     CommonPresenter presenter;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,6 +120,12 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
+        if (CommonUtils.isNotNull(response)) {
+            if (requestCode == GeneralConstant.PROFILE_PIC_RESPONSE && response.getStatus().equalsIgnoreCase(AppConstants.SUCCESS)) {
+                showToast(getResources().getString(R.string.profile_pic_updated_successfully));
+            }
+
+        }
 
     }
 
@@ -129,7 +137,7 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
 
     @Override
     public void onClick(View view) {
-        if (mBinding.ivProfile == view||mBinding.imgEditPic==view) {
+        if (mBinding.ivProfile == view || mBinding.imgEditPic == view) {
             showImageChooserDialog();
         } else if (mBinding.tvUpdate == view) {
             PreferenceUtils.setImage(profilePicFilePath);
@@ -140,7 +148,7 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
             EventBus.getDefault().post(new UpdateProfileEvent());
             finish();
         } else if (mBinding.layoutHeader.ivBack == view) {
-                finish();
+            finish();
         }
     }
 
@@ -284,7 +292,7 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
     private void updateProfile() {
         try {
             Bitmap bitmap = ((RoundedBitmapDrawable) mBinding.ivProfile.getDrawable()).getBitmap();
-            Upload postImage=new Upload(this,bitmap);
+            Upload postImage = new Upload(this, bitmap);
             postImage.execute();
         } catch (Exception e) {
             LogUtils.LOGE("ProfileUpdate", e.toString());
@@ -306,12 +314,12 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
 
     @Subscribe
     public void onUploadProfile(EncodedBitmap event) {
-        ProfilePic profilePicRequest=new ProfilePic();
-        if(CommonUtils.isNotNull(profilePicFilePath)&&profilePicFilePath.length()>0){
+        ProfilePic profilePicRequest = new ProfilePic();
+        if (CommonUtils.isNotNull(profilePicFilePath) && profilePicFilePath.length() > 0) {
             String encodedImage = event.getEncodeImage();
             profilePicRequest.setImage(encodedImage);
-            if(isNetworkConnected()) {
-                presenter.updateProfilePic(this,profilePicRequest);
+            if (isNetworkConnected()) {
+                presenter.updateProfilePic(this, profilePicRequest);
             }
         }
        /* profileRequest.setUserid(PreferenceUtils.getUserId());
@@ -319,7 +327,7 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
         profileRequest.setAddress(PreferenceUtils.getAddress());
         profileRequest.setCity(PreferenceUtils.getCity());
         profileRequest.setEmail(PreferenceUtils.getEmail());*/
-        if(isNetworkConnected()){
+        if (isNetworkConnected()) {
             //presenter.updateProfile(this,profileRequest);
         }
 

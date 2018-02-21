@@ -21,6 +21,7 @@ import com.app.community.ui.base.MvpView;
 import com.app.community.ui.base.Presenter;
 import com.app.community.ui.dashboard.home.fragment.MyOrderActivity;
 import com.app.community.utils.AppConstants;
+import com.app.community.utils.GeneralConstant;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -193,13 +194,13 @@ public class CommonPresenter implements Presenter<MvpView> {
             @Override
             public void onResponse(BaseResponse response) {
                 mView.hideProgress();
-                mView.onSuccess(response, 1);
+                mView.onSuccess(response, GeneralConstant.PROFILE_PIC_RESPONSE);
             }
 
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMsg(), 1);
+                mView.onError(baseResponse.getMsg(), GeneralConstant.PROFILE_PIC_RESPONSE);
             }
         });
     }
