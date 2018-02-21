@@ -14,6 +14,7 @@ import com.app.community.network.request.cart.DeleteCartRequest;
 import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.request.dashboard.ProductRequest;
+import com.app.community.network.request.dashboard.ProfilePic;
 import com.app.community.network.request.dashboard.ProfileRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.LoginResponse;
@@ -96,4 +97,7 @@ public interface ApiService {
 
     @GET("cart/myorder")
     Observable<MyOrderData> getMyOrder();
+
+    @POST("register/profilepic")
+    Observable<BaseResponse> profilePic(@Body ProfilePic request);
 }

@@ -8,6 +8,7 @@ import com.app.community.network.request.LoginRequest;
 import com.app.community.network.request.UpdateLocation;
 import com.app.community.network.request.VerifyMobileRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
+import com.app.community.network.request.dashboard.ProfilePic;
 import com.app.community.network.request.dashboard.ProfileRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.LoginResponse;
@@ -174,6 +175,23 @@ public class CommonPresenter implements Presenter<MvpView> {
         mRepository.getMyOrder().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<MyOrderData>(activity) {
             @Override
             public void onResponse(MyOrderData response) {
+                mView.hideProgress();
+                mView.onSuccess(response, 1);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), 1);
+            }
+        });
+    }
+
+    public void updateProfilePic(Activity activity,ProfilePic profilePicRequest) {
+        mView.showProgress();
+        mRepository.updateProfilePic(profilePicRequest).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+            @Override
+            public void onResponse(BaseResponse response) {
                 mView.hideProgress();
                 mView.onSuccess(response, 1);
             }

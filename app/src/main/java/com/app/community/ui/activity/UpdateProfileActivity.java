@@ -19,6 +19,7 @@ import com.app.community.event.EncodedBitmap;
 import com.app.community.event.UpdateProfileEvent;
 import com.app.community.network.request.LoginRequest;
 import com.app.community.network.request.PaymentOption;
+import com.app.community.network.request.dashboard.ProfilePic;
 import com.app.community.network.request.dashboard.ProfileRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.activity.uploadfile.Upload;
@@ -305,18 +306,21 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
 
     @Subscribe
     public void onUploadProfile(EncodedBitmap event) {
-        ProfileRequest profileRequest=new ProfileRequest();
+        ProfilePic profilePicRequest=new ProfilePic();
         if(CommonUtils.isNotNull(profilePicFilePath)&&profilePicFilePath.length()>0){
             String encodedImage = event.getEncodeImage();
-            profileRequest.setImageUrl(encodedImage);
+            profilePicRequest.setImage(encodedImage);
+            if(isNetworkConnected()) {
+                presenter.updateProfilePic(this,profilePicRequest);
+            }
         }
-        profileRequest.setUserid(PreferenceUtils.getUserId());
+       /* profileRequest.setUserid(PreferenceUtils.getUserId());
         profileRequest.setName(PreferenceUtils.getUserName());
         profileRequest.setAddress(PreferenceUtils.getAddress());
         profileRequest.setCity(PreferenceUtils.getCity());
-        profileRequest.setEmail(PreferenceUtils.getEmail());
+        profileRequest.setEmail(PreferenceUtils.getEmail());*/
         if(isNetworkConnected()){
-            presenter.updateProfile(this,profileRequest);
+            //presenter.updateProfile(this,profileRequest);
         }
 
     }

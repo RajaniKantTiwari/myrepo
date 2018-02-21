@@ -44,10 +44,13 @@ public class Upload extends AsyncTask<Void, Void, String> {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         //compress the image to jpg format
         image.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+
+        String encodeImage =Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT);
+
             /*
             * encode image to base64 so that it can be picked by saveImage.php file
             * */
-        String encodeImage = "data:image/jpg;base64," + Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT);
+        //String encodeImage = "data:image/jpg;base64," + Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT);
       /*  //generate hashMap to store encodedImage and the name
         HashMap<String, String> detail = new HashMap<>();
         detail.put("email", "abcd@yopmail.com");
