@@ -145,7 +145,6 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
             PreferenceUtils.setEmail(mBinding.edEmail.getText().toString());
             PreferenceUtils.setCardNumber(mBinding.edCreditDetails.getText().toString());
             updateProfile();
-            finish();
         } else if (mBinding.layoutHeader.ivBack == view) {
             finish();
         }
@@ -224,6 +223,7 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
         GlideUtils.loadImageProfilePic(this, path, mBinding.ivProfile, null, 0);
         PreferenceUtils.setImage(path);
         EventBus.getDefault().post(new UpdateProfileEvent());
+        finish();
     }
 
     @Override
@@ -269,7 +269,7 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
         profileRequest.setName(PreferenceUtils.getUserName());
         profileRequest.setAddress(PreferenceUtils.getAddress());
         profileRequest.setCity(PreferenceUtils.getCity());
-        profileRequest.setEmail(PreferenceUtils.getEmail());
+        profileRequest.setEmail(mBinding.edEmail.getText().toString());
         if (isNetworkConnected()) {
             presenter.updateProfile(this,profileRequest);
         }

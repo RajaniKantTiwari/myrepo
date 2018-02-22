@@ -171,19 +171,12 @@ public class ProductMapFragment extends DashboardFragment implements OnMapReadyC
                         .position(latLng).snippet(String.valueOf(i))
                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.pushpin)));
                 showWindow(marker, response, i);
-
-                //mMarkersHashMap.put(marker, response);
-                /*if(CommonUtils.isNotNull(response)&&response.getId().equalsIgnoreCase("0")){
-                    showMarker(marker,response);
-                    marker.showInfoWindow();
-                }*/
             }
         }
     }
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-
         InfoWindow infoWindow = null;
         switch (marker.getSnippet()) {
             case "0":
@@ -513,7 +506,7 @@ public class ProductMapFragment extends DashboardFragment implements OnMapReadyC
     }
 
 
-    private void showMarker(Marker marker, MerchantResponse response) {
+    /*private void showMarker(Marker marker, MerchantResponse response) {
         try {
             marker.showInfoWindow();
             Geocoder geocoder = new Geocoder(getBaseActivity(), Locale.getDefault());
@@ -531,7 +524,7 @@ public class ProductMapFragment extends DashboardFragment implements OnMapReadyC
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
    /* private void moveCamera(LatLng latLng) {
         if(CommonUtils.isNotNull(mMap)){

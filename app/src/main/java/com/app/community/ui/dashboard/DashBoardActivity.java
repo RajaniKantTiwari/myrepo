@@ -595,6 +595,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
 
     @Override
     public void ok(int parentPosition, int childPosition) {
+        closeDrawerRight();
         this.parentPosition=parentPosition;
         this.childPosition=childPosition;
         mPresenter.deleteAllFromCart(this);
