@@ -5,4 +5,13 @@ package com.app.community.ui.dashboard.home.event;
  */
 
 public class UpdateAddress {
+   private String address;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }

@@ -80,7 +80,6 @@
                 android:layout_toStartOf="@+id/ivRightDrawer">
 
                 <ImageView
-                    android:id="@+id/ivCart"
                     style="@style/wrap_wrap"
                     android:layout_centerVertical="true"
                     android:contentDescription="@null"

@@ -29,6 +29,7 @@ public class EditAddressActivity extends CommonActivity implements MvpView, View
     private ActivityEditAddressBinding mBinding;
     private ArrayList<EditAddress> editList = new ArrayList<>();
     private EditAddressAdapter adapter;
+    private boolean isAddressSelected;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -101,17 +102,20 @@ public class EditAddressActivity extends CommonActivity implements MvpView, View
         if (view == mBinding.layoutHeader.ivBack) {
             finish();
         } else if (view == mBinding.layoutHeader.textView) {
-            if (CommonUtils.isNotNull(mBinding.edNewAddress.getText().toString()) && mBinding.edNewAddress.getText().toString().length() > 0) {
-                PreferenceUtils.setAddress(mBinding.edNewAddress.getText().toString());
-            } else {
                 for (int i = 0; i < editList.size(); i++) {
                     if (CommonUtils.isNotNull(editList.get(i)) && editList.get(i).isSelected()) {
-                        PreferenceUtils.setAddress(editList.get(i).getAddress());
+                        isAddressSelected=true;
+                        UpdateAddress updateAddress=new UpdateAddress();
+                        updateAddress.setAddress(mBinding.edNewAddress.getText().toString());
+                        EventBus.getDefault().post(updateAddress);
                     }
                 }
+            if (!isAddressSelected&&mBinding.edNewAddress.getText().toString().length() > 0) {
+                isAddressSelected=false;
+                UpdateAddress updateAddress=new UpdateAddress();
+                updateAddress.setAddress(mBinding.edNewAddress.getText().toString());
+                EventBus.getDefault().post(updateAddress);
             }
-            EventBus.getDefault().post(new UpdateAddress());
-            finish();
         }
     }
 

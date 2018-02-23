@@ -3,7 +3,6 @@ package com.app.community.ui.dashboard.home.fragment;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,6 @@ import com.app.community.network.request.PaymentOption;
 import com.app.community.network.request.cart.CheckoutRequest;
 import com.app.community.network.request.dashboard.Coupon;
 import com.app.community.network.response.BaseResponse;
-import com.app.community.network.response.dashboard.cart.ProductData;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
 import com.app.community.ui.SimpleDividerItemDecoration;
 import com.app.community.ui.activity.EditAddressActivity;
@@ -37,7 +35,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.app.community.ui.base.BaseActivity.AnimationType.NONE;
-import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 
 /**
  * Created by ashok on 26/12/17.
@@ -81,6 +78,7 @@ public class CheckoutFragment extends DashboardFragment implements CouponAdapter
 
     @Override
     public void initializeData() {
+        mBinding.tvLocation.setText(PreferenceUtils.getAddress());
         getPresenter().viewCart(getDashboardActivity());
         mCheckoutAdapter = new CheckoutCartAdapter(getBaseActivity());
         mBinding.rvCartItem.setAdapter(mCheckoutAdapter);
@@ -142,6 +140,7 @@ public class CheckoutFragment extends DashboardFragment implements CouponAdapter
     public void setListener() {
         mBinding.tvProceedToPay.setOnClickListener(this);
         mBinding.editAddress.setOnClickListener(this);
+        mBinding.tvPromoCode.setOnClickListener(this);
     }
 
     @Override
@@ -162,7 +161,13 @@ public class CheckoutFragment extends DashboardFragment implements CouponAdapter
 
         } else if (view == mBinding.tvProceedToPay) {
             getPresenter().checkout(getDashboardActivity(), new CheckoutRequest(1));
+        } else if (view == mBinding.tvPromoCode) {
+            openOfferFragment();
         }
+    }
+
+    private void openOfferFragment() {
+
     }
 
     @Override
@@ -193,17 +198,9 @@ public class CheckoutFragment extends DashboardFragment implements CouponAdapter
         CommonUtils.unregister(this);
     }
 
-    public static Fragment newInstance(int instance) {
-        Bundle args = new Bundle();
-        args.putInt(ARGS_INSTANCE, instance);
-        CheckoutFragment fragment = new CheckoutFragment();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Subscribe
     public void onAddressEvent(UpdateAddress event) {
-        mBinding.tvAddress.setText(PreferenceUtils.getAddress());
+        mBinding.tvAddress.setText(event.getAddress());
     }
 
     @Override

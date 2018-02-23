@@ -469,7 +469,7 @@
     <string name="you_can_not_add">You can not add more than 10 item in cart</string>
     <string name="enter_card_number">Enter Card Number</string>
     <string name="update_profile">Update Profile</string>
-    <string name="please_add_data_in_cart_first">Please Add Data In Cart First</string>
+    <string name="please_add_data_in_cart_first">Cart is empty</string>
     <string name="service_is_anavailable_for_this_area">Service is unavailable in your area</string>
     <string name="if_you_change_merchant_all_previous">If You Change Merchnt Your Previous Data Will Be Lost</string>
     <string name="shipping_charge">Shipping Charge</string>
@@ -486,6 +486,8 @@
     <string name="profile_pic_updated_successfully">Profile Pic Updated Successfully</string>
     <string name="New">New</string>
     <string name="old">Old</string>
+    <string name="location">Location</string>
+    <string name="add_promo_code">Add Promo Code</string>
 
 
     <string-array name="state_array">

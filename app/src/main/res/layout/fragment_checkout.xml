@@ -136,9 +136,36 @@
                     android:padding="@dimen/margin_10"
                     android:textColor="@color/color_black"
                     android:textAllCaps="true"
-                    android:textStyle="bold"
                     android:textSize="@dimen/textSize_description" />
-
+                <com.app.community.widget.CustomTextView
+                    style="@style/textview_description_ex_large_wrap"
+                    android:padding="@dimen/margin_5"
+                    android:layout_marginStart="@dimen/margin_5"
+                    android:gravity="center"
+                    android:text="@string/location"
+                    android:textAllCaps="true"
+                    android:textColor="@color/color_sky_blue"/>
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvLocation"
+                    style="@style/textview_description_wrap"
+                    android:padding="@dimen/margin_5"
+                    android:layout_marginStart="@dimen/margin_5"
+                    android:gravity="center"
+                    android:text="@string/location"
+                    android:textAllCaps="true"
+                    />
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvPromoCode"
+                    style="@style/textview_description_match"
+                    android:layout_marginEnd="@dimen/margin_10"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:background="@drawable/grey_corner_bg"
+                    android:padding="@dimen/margin_10"
+                    android:text="@string/add_promo_code"
+                    android:drawableEnd="@drawable/right_arrow"
+                    android:textColor="@color/color_sky_blue"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/textSize_description" />
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvProceedToPay"
                     style="@style/match_wrap"
@@ -158,6 +185,7 @@
                     android:textSize="@dimen/button_medium"
                     app:customFont="@string/font_bold" />
             </LinearLayout>
+
 
         </LinearLayout>
 
