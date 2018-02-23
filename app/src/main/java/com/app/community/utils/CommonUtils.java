@@ -2,7 +2,6 @@ package com.app.community.utils;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -23,7 +22,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -41,7 +39,7 @@ import com.app.community.ui.dialogfragment.CheckoutDialogFragment;
 import com.app.community.ui.dialogfragment.ContactDialogFragment;
 import com.app.community.ui.dialogfragment.EmergencyDialogFragment;
 import com.app.community.ui.dialogfragment.CustomDialogFragment;
-import com.app.community.ui.dialogfragment.OrderDialogFragment;
+import com.app.community.ui.dialogfragment.OrderReviewSubmitDialogFragment;
 import com.app.community.ui.newspaper.Days;
 import com.app.community.widget.CustomEditText;
 import com.google.android.gms.common.ConnectionResult;
@@ -123,9 +121,9 @@ public class CommonUtils {
     }
 
 
-    public static void showOrderDialog(AppCompatActivity activity, Bundle bundle, OrderDialogFragment.OrderDialogListener listener) {
+    public static void showOrderDialog(AppCompatActivity activity, Bundle bundle, OrderReviewSubmitDialogFragment.OrderDialogListener listener) {
         FragmentManager fm = activity.getSupportFragmentManager();
-        OrderDialogFragment alertdFragment = new OrderDialogFragment();
+        OrderReviewSubmitDialogFragment alertdFragment = new OrderReviewSubmitDialogFragment();
         alertdFragment.addListener(listener);
         alertdFragment.setArguments(bundle);
         // Show Alert CustomDialogFragment

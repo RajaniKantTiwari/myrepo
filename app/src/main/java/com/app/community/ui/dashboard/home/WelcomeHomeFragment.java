@@ -13,7 +13,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +25,7 @@ import com.app.community.databinding.LayoutLatestNewsBinding;
 import com.app.community.databinding.LayoutNewsBinding;
 import com.app.community.databinding.LayoutOfferBinding;
 import com.app.community.databinding.LayoutWelcomeSearchBinding;
+import com.app.community.event.RightDrawerEvent;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.home.Banner;
 import com.app.community.network.response.dashboard.home.Emergency;
@@ -43,7 +43,7 @@ import com.app.community.ui.dashboard.home.fragment.MyOrderActivity;
 import com.app.community.ui.dashboard.home.fragment.NewsMainFragment;
 import com.app.community.ui.dashboard.offer.OfferDetailsActivity;
 import com.app.community.ui.dialogfragment.EmergencyDialogFragment;
-import com.app.community.ui.dialogfragment.OrderDialogFragment;
+import com.app.community.ui.dialogfragment.OrderReviewSubmitDialogFragment;
 import com.app.community.utils.AddWelcomeChildView;
 import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
@@ -51,6 +51,7 @@ import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.GlideUtils;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
@@ -66,7 +67,7 @@ import static com.app.community.utils.GeneralConstant.REQUEST_CALL;
  */
 
 public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapter.NewsListener, LatestNewsAdapter.LatestNewsListener, EmergencyAdapter.EmergencyListener,
-        EmergencyDialogFragment.EmergencyDialogListener, OrderDialogFragment.OrderDialogListener, OffersAdapter.OffersListener {
+        EmergencyDialogFragment.EmergencyDialogListener, OrderReviewSubmitDialogFragment.OrderDialogListener, OffersAdapter.OffersListener {
 
     private FragmentWelcomehomeBinding mBinding;
     private EmergencyAdapter mEmergencyAdapter;
@@ -200,6 +201,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
     @Override
     public void initializeData() {
         getPresenter().getWelcomeHomePage(getDashboardActivity());
+        EventBus.getDefault().post(new RightDrawerEvent());
     }
 
     @Override

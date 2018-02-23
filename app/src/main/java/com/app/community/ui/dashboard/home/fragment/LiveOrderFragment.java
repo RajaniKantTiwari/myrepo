@@ -37,9 +37,9 @@ public class LiveOrderFragment extends DashboardFragment {
     }
     private void initializeAdapter() {
         mAdapter = new LiveOrderAdapter(getBaseActivity());
-        /*LinearLayoutManager layoutManager = new LinearLayoutManager(getBaseActivity());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getBaseActivity());
         mBinding.rvOrder.setLayoutManager(layoutManager);
-        mBinding.rvOrder.setAdapter(mAdapter);*/
+        mBinding.rvOrder.setAdapter(mAdapter);
     }
     @Override
     public void initializeData() {
@@ -81,6 +81,7 @@ public class LiveOrderFragment extends DashboardFragment {
     public void onMessageEvent(MyOrderEvent event) {
         if(event.getLivePastOrder()== GeneralConstant.LIVEORDER){
             mBinding.layoutOrder.setVisibility(View.VISIBLE);
+            mAdapter.setList(event.getOrderList());
         }else if(event.getLivePastOrder()== GeneralConstant.PASTORDER){
             mBinding.layoutOrder.setVisibility(View.GONE);
 

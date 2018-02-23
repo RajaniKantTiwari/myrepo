@@ -15,7 +15,7 @@
 
             <com.app.community.widget.CustomTextView
                 style="@style/textview_description_large_wrap"
-                android:text="@string/from"
+                android:text="@string/order_date"
                 android:textAllCaps="true"
                 android:textColor="@color/gr_color"
                 app:customFont="@string/font_regular"/>
@@ -24,7 +24,7 @@
 
             <com.app.community.widget.CustomTextView
                 style="@style/textview_description_large_wrap"
-                android:text="@string/total"
+                android:text="@string/order_number"
                 android:textAllCaps="true"
                 android:textColor="@color/gr_color"
                 app:customFont="@string/font_regular"/>
@@ -37,19 +37,19 @@
             android:layout_marginTop="@dimen/margin_3">
 
             <com.app.community.widget.CustomTextView
-                android:id="@+id/tvStoreName"
+                android:id="@+id/tvOrderDate"
                 style="@style/textview_description_small_wrap"
+                android:text="Mother Diary"
                 android:textAllCaps="true"
                 android:textColor="@color/dark_black_color" />
 
             <android.support.v4.widget.Space style="@style/layout_hori_wrap_1" />
 
             <com.app.community.widget.CustomTextView
-                android:id="@+id/tvTotal"
+                android:id="@+id/tvOrderNumber"
+
                 style="@style/textview_description_small_wrap"
                 android:text="627"
-                android:drawableStart="@drawable/rupee_black"
-                android:drawablePadding="@dimen/margin_5"
                 android:textAllCaps="true"
                 android:textColor="@color/dark_black_color" />
         </LinearLayout>

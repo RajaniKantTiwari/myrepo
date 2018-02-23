@@ -10,13 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.community.R;
-import com.app.community.databinding.ActivityHelpsupportBinding;
 import com.app.community.databinding.FragmentHelpsupportBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.SimpleDividerItemDecoration;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.adapter.HelpSupportAdapter;
-import com.app.community.ui.dialogfragment.OrderDialogFragment;
+import com.app.community.ui.dialogfragment.OrderReviewSubmitDialogFragment;
 import com.app.community.utils.CommonUtils;
 
 import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
@@ -25,7 +24,7 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
  * Created by rajnikant on 31/12/17.
  */
 
-public class HelpsAndSupportFragment extends DashboardFragment implements HelpSupportAdapter.HelpSupportListener,OrderDialogFragment.OrderDialogListener {
+public class HelpsAndSupportFragment extends DashboardFragment implements HelpSupportAdapter.HelpSupportListener,OrderReviewSubmitDialogFragment.OrderDialogListener {
     private FragmentHelpsupportBinding mBinding;
     private HelpSupportAdapter mAdapter;
 

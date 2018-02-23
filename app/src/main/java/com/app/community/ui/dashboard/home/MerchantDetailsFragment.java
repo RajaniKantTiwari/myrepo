@@ -26,7 +26,7 @@ import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.DashboardInsidePresenter;
 import com.app.community.ui.dashboard.home.adapter.ReviewAdapter;
 import com.app.community.ui.dashboard.home.adapter.ImageAdapter;
-import com.app.community.ui.dialogfragment.OrderDialogFragment;
+import com.app.community.ui.dialogfragment.OrderReviewSubmitDialogFragment;
 import com.app.community.ui.activity.ZoomAnimationImageActivity;
 import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
@@ -40,7 +40,7 @@ import javax.inject.Inject;
 
 import static android.content.ContentValues.TAG;
 import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
-public class MerchantDetailsFragment extends DashboardFragment implements OrderDialogFragment.OrderDialogListener,ImageAdapter.ImageListener {
+public class MerchantDetailsFragment extends DashboardFragment implements OrderReviewSubmitDialogFragment.OrderDialogListener,ImageAdapter.ImageListener {
 
     private FragmentProductDetailBinding mBinding;
     private ImageAdapter mImageAdapter;

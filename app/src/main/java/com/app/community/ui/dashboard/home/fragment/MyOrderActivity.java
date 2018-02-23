@@ -8,6 +8,9 @@ import android.view.View;
 import com.app.community.R;
 import com.app.community.databinding.ActivityMyOrderBinding;
 import com.app.community.network.response.BaseResponse;
+import com.app.community.network.response.MyOrder;
+import com.app.community.network.response.MyOrderData;
+import com.app.community.network.response.Order;
 import com.app.community.ui.authentication.CommonActivity;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.dashboard.home.event.MyOrderEvent;
@@ -16,6 +19,8 @@ import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -28,6 +33,11 @@ public class MyOrderActivity extends CommonActivity {
     private MyOrderEvent event;
     @Inject
     CommonPresenter presenter;
+    private ArrayList<Order> recentOrderList;
+    private ArrayList<Order> pastOrderList;
+    private LiveOrderFragment liveOrderFragment;
+    private PastOrderFragment pastOrderFragment;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,11 +50,12 @@ public class MyOrderActivity extends CommonActivity {
         mBinding.layoutHeader.tvHeader.setText(getResources().getString(R.string.my_order));
         mBinding.layoutHeader.headerLayout.setBackgroundColor(CommonUtils.getColor(this,R.color.dark_black));
         mBinding.layoutHeader.ivBack.setImageResource(R.drawable.ic_back_white);
-
         event=new MyOrderEvent();
         event.setLivePastOrder(GeneralConstant.LIVEORDER);
-        pushFragment( new LiveOrderFragment(),null,R.id.container,false,false,BaseActivity.AnimationType.NONE);
-        pushFragment(new PastOrderFragment(),null,R.id.container,false,false,BaseActivity.AnimationType.NONE);
+        liveOrderFragment=new LiveOrderFragment();
+        pastOrderFragment=new PastOrderFragment();
+        pushFragment( liveOrderFragment,null,R.id.container,false,false,BaseActivity.AnimationType.NONE);
+        pushFragment(pastOrderFragment,null,R.id.container,false,false,BaseActivity.AnimationType.NONE);
         EventBus.getDefault().post(event);
         presenter.getMyOrder(this);
     }
@@ -79,6 +90,7 @@ public class MyOrderActivity extends CommonActivity {
         mBinding.ivPastOrder.setBackgroundColor(CommonUtils.getColor(this,R.color.dark_black_color));
         mBinding.ivLiveOrder.setBackgroundColor(CommonUtils.getColor(this,R.color.ver_bg_color));
         event.setLivePastOrder(GeneralConstant.PASTORDER);
+        event.setOrderList(pastOrderList);
         EventBus.getDefault().post(event);
 
     }
@@ -89,11 +101,21 @@ public class MyOrderActivity extends CommonActivity {
         mBinding.ivLiveOrder.setBackgroundColor(CommonUtils.getColor(this,R.color.dark_black_color));
         mBinding.ivPastOrder.setBackgroundColor(CommonUtils.getColor(this,R.color.ver_bg_color));
         event.setLivePastOrder(GeneralConstant.LIVEORDER);
+        event.setOrderList(recentOrderList);
         EventBus.getDefault().post(event);
     }
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
-
+        if(CommonUtils.isNotNull(response)&&response instanceof MyOrderData){
+            MyOrderData data=(MyOrderData)response;
+            MyOrder myOrder = data.getMyorder();
+            if(CommonUtils.isNotNull(myOrder)){
+                recentOrderList=myOrder.getRecent();
+                pastOrderList=myOrder.getPast();
+                event.setOrderList(recentOrderList);
+                EventBus.getDefault().post(event);
+            }
+        }
     }
 }

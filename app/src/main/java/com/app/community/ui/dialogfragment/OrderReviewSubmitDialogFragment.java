@@ -16,12 +16,11 @@ import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 import com.app.community.widget.RatingBar;
 
-public class OrderDialogFragment extends DialogFragment implements View.OnClickListener {
+public class OrderReviewSubmitDialogFragment extends DialogFragment implements View.OnClickListener {
     private Dialog dialog;
     private DialogfragmentOrderBinding mBinding;
     private OrderDialogListener listener;
     private MerchantResponse productInfo;
-    private RatingBar ratingBar;
 
     public interface OrderDialogListener {
         void submit(String submit);
@@ -80,7 +79,7 @@ public class OrderDialogFragment extends DialogFragment implements View.OnClickL
             dialog.cancel();
             if(CommonUtils.isNotNull(listener)){
                 listener.submit(mBinding.edFeedBack.getText().toString());
-                Log.e("GetRating",""+ratingBar.getCount());
+                Log.e("GetRating",""+mBinding.ratingBar.getRating());
 
             }
         }

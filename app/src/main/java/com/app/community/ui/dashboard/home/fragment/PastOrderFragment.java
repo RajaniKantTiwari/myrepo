@@ -74,8 +74,8 @@ public class PastOrderFragment extends DashboardFragment {
         if(event.getLivePastOrder()== GeneralConstant.LIVEORDER){
             mBinding.layoutOrder.setVisibility(View.GONE);
         }else if(event.getLivePastOrder()== GeneralConstant.PASTORDER){
-            mBinding.layoutOrder.setVisibility(View.GONE);
-
+            mBinding.layoutOrder.setVisibility(View.VISIBLE);
+            mAdapter.setList(event.getOrderList());
         }
     }
 }

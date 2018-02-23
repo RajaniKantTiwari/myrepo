@@ -395,7 +395,7 @@
     <string name="cash_on_delivery">Cash On Delivery</string>
     <string name="credit_debit_card">Credit/Debit Card</string>
     <string name="paytm">Paytm</string>
-    <string name="order_number">Order No</string>
+    <string name="order_number">Order No.</string>
     <string name="delivery_address">Delivery Address</string>
     <string name="recent">Recent</string>
     <string name="call_us">Call Us</string>
@@ -488,6 +488,9 @@
     <string name="old">Old</string>
     <string name="location">Location</string>
     <string name="add_promo_code">Add Promo Code</string>
+    <string name="view_details">View Details</string>
+    <string name="help">Help</string>
+    <string name="give_feedback">Give Feedback</string>
 
 
     <string-array name="state_array">

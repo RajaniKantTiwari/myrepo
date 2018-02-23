@@ -17,6 +17,7 @@ import com.app.community.CommonApplication;
 import com.app.community.R;
 import com.app.community.databinding.ActivityDashboardBinding;
 import com.app.community.event.ProductDetailsEvent;
+import com.app.community.event.RightDrawerEvent;
 import com.app.community.event.UpdateCartEvent;
 import com.app.community.event.UpdateProfileEvent;
 import com.app.community.injector.component.DaggerDashboardComponent;
@@ -537,6 +538,11 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
     public void onAddressEvent(UpdateAddress event) {
         mPresenter.getCategorySubCategoryRightDrawer(this);
         mDrawerAdapterLeft.notifyDataSetChanged();
+    }
+
+    @Subscribe
+    public void onRightDrawerEvent(RightDrawerEvent event) {
+        mPresenter.getCategorySubCategoryRightDrawer(this);
     }
 
     @Subscribe

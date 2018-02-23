@@ -27,7 +27,7 @@
 
                 <include
                     android:id="@+id/layoutSecond"
-                    layout="@layout/order_row_layout" />
+                    layout="@layout/order_row_layout_sec" />
 
                 <com.app.community.widget.CustomTextView
 
@@ -37,6 +37,7 @@
                     android:textColor="@color/yelloish" />
 
                 <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvOrderStatus"
                     style="@style/textview_description_match"
                     android:gravity="center_horizontal"
                     android:padding="@dimen/margin_2"
@@ -48,13 +49,13 @@
                 <ImageView style="@style/view_layout" />
 
                 <RelativeLayout
-                    style="@style/match_wrap"
-                    android:padding="@dimen/margin_6">
+                    style="@style/match_wrap">
 
                     <com.app.community.widget.CustomTextView
                         style="@style/textview_description_wrap"
                         android:textColor="@color/doctor_charge_color"
-                        android:text="Mother Diary"
+                        android:text="@string/view_details"
+                        android:padding="@dimen/margin_6"
                         android:textAllCaps="true" />
                     <RatingBar
                         android:id="@+id/ratingBar"
@@ -62,15 +63,30 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/post_time"
+                        android:layout_centerVertical="true"
                         android:max="5"
                         android:layout_centerHorizontal="true"
                         android:progressTint="@color/star_text_color"
-                        android:rating="3.5" />
+                        android:rating="3.5"
+                        />
                     <com.app.community.widget.CustomTextView
+                        android:id="@+id/tvFeedBack"
                         style="@style/textview_description_wrap"
                         android:textColor="@color/doctor_charge_color"
-                        android:text="Mother Diary"
+                        android:text="@string/give_feedback"
+                        android:padding="@dimen/margin_6"
+                        android:layout_centerHorizontal="true"
+                        android:textAllCaps="true" />
+                    <com.app.community.widget.CustomTextView
+                        android:id="@+id/tvHelp"
+                        style="@style/textview_description_wrap"
+                        android:textColor="@color/doctor_charge_color"
+                        android:text="@string/help"
                         android:textAllCaps="true"
+                        android:paddingStart="@dimen/margin_12"
+                        android:paddingEnd="@dimen/margin_12"
+                        android:paddingTop="@dimen/margin_6"
+                        android:paddingBottom="@dimen/margin_6"
                         android:layout_alignParentEnd="true"/>
                 </RelativeLayout>
             </LinearLayout>
