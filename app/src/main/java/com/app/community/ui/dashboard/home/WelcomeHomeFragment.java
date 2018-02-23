@@ -142,6 +142,9 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
         mWelcomeBinding.tvSearch.setOnClickListener(this);
         mLastOrderBinding.layoutLastOrder.setOnClickListener(this);
         mLastOrderBinding.rating.setOnClickListener(this);
+        mEmergencyPlaceBinding.ivLeft.setOnClickListener(this);
+        mEmergencyPlaceBinding.ivRight.setOnClickListener(this);
+
         mEmergencyPlaceBinding.rvImportantPlace.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -166,9 +169,9 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
      */
     private void checkIfItsFirstItem() {
         int firstVisibleItemPosition = emergencyPlaceManager.findFirstCompletelyVisibleItemPosition();
-        if(firstVisibleItemPosition>0){
+        if (firstVisibleItemPosition > 0) {
             mEmergencyPlaceBinding.ivLeft.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             mEmergencyPlaceBinding.ivLeft.setVisibility(View.GONE);
         }
     }
@@ -182,7 +185,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
         int pastVisibleItems = emergencyPlaceManager.findFirstVisibleItemPosition();
         if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
             mEmergencyPlaceBinding.ivRight.setVisibility(View.GONE);
-        }else if(CommonUtils.isNotNull(emergencyList)&&emergencyList.size()>5){
+        } else if (CommonUtils.isNotNull(emergencyList) && emergencyList.size() > 5) {
             mEmergencyPlaceBinding.ivRight.setVisibility(View.VISIBLE);
         }
 
@@ -209,6 +212,22 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
         } else if (view == mLastOrderBinding.rating) {
             ExplicitIntent.getsInstance().navigateTo(getDashboardActivity(), MyOrderActivity.class);
             //mFragmentNavigation.pushFragment(MyOrderActivity.newInstance(mInt + 1));
+        } else if (view == mEmergencyPlaceBinding.ivLeft) {
+            int firstVisibleItemPosition = emergencyPlaceManager.findFirstVisibleItemPosition();
+            if(firstVisibleItemPosition>3){
+                mEmergencyPlaceBinding.rvImportantPlace.smoothScrollToPosition(firstVisibleItemPosition-3);
+            }
+            else{
+                mEmergencyPlaceBinding.rvImportantPlace.smoothScrollToPosition(0);
+            }
+        } else if (view == mEmergencyPlaceBinding.ivRight) {
+            int lastVisibleItemPosition = emergencyPlaceManager.findLastVisibleItemPosition();
+            if(lastVisibleItemPosition+3<emergencyList.size()){
+                mEmergencyPlaceBinding.rvImportantPlace.smoothScrollToPosition(lastVisibleItemPosition+3);
+            }
+            else{
+                mEmergencyPlaceBinding.rvImportantPlace.smoothScrollToPosition(emergencyList.size());
+            }
         }
     }
 
@@ -259,7 +278,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
             mEmergencyPlaceBinding.getRoot().setVisibility(View.VISIBLE);
             this.emergencyList.clear();
             this.emergencyList.addAll(emergencyList);
-            if(CommonUtils.isNotNull(emergencyList)&&emergencyList.size()>5){
+            if (CommonUtils.isNotNull(emergencyList) && emergencyList.size() > 5) {
                 mEmergencyPlaceBinding.ivRight.setVisibility(View.VISIBLE);
             }
             mEmergencyAdapter.notifyDataSetChanged();

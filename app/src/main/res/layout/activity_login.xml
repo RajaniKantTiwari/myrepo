@@ -48,6 +48,28 @@
                 style="@style/textview_description_smaller_match"
                 android:text="@string/mobileNumber"
                 android:textColor="@color/grey_color"
+                app:customFont="@string/font_regular"
+                android:textAllCaps="true"/>
+
+            <com.app.community.widget.CustomEditText
+                android:id="@+id/edMobileNumber"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:paddingBottom="@dimen/margin_5"
+                android:paddingTop="@dimen/margin_5"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
+                app:customFont= "@string/font_bold"
+                android:inputType="number"
+                />
+
+            <ImageView style="@style/view_layout"
+                android:layout_marginBottom="@dimen/margin_20" />
+
+           <!-- <com.app.community.widget.CustomTextView
+                style="@style/textview_description_smaller_match"
+                android:text="@string/mobileNumber"
+                android:textColor="@color/grey_color"
                 android:maxLines="1"
                 app:customFont="@string/font_book_regular"
                 android:textAllCaps="true"/>
@@ -61,7 +83,7 @@
                 android:maxLength="@integer/mono_length"
                 android:inputType="number"/>
 
-            <ImageView style="@style/view_layout" />
+            <ImageView style="@style/view_layout" />-->
 
 
             <com.app.community.widget.CustomTextView

@@ -124,6 +124,11 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">@color/ver_bg_color</item>
     </style>
+    <style name="view_layout_vertical_white_grey">
+        <item name="android:layout_width">@dimen/margin_1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/color_not</item>
+    </style>
     <style name="otp_back">
         <item name="android:layout_width">@dimen/margin_45</item>
         <item name="android:layout_height">@dimen/margin_45</item>

@@ -202,13 +202,15 @@ public class CommonUtils {
         SimpleDateFormat formatter = new SimpleDateFormat("hh:mm aaa");
         return formatter.format(new Date(time));
     }
-        public static String convertSecondsToHMmSs(long seconds) {
-            long s = seconds % 60;
-            long m = (seconds / 60) % 60;
-            long h = (seconds / (60 * 60)) % 24;
-            return String.format(Locale.getDefault(), "%02d:%02d:%02d", h,m,s);
-            //return String.format("%d:%02d:%02d", h,m,s);
-        }
+
+    public static String convertSecondsToHMmSs(long seconds) {
+        long s = seconds % 60;
+        long m = (seconds / 60) % 60;
+        long h = (seconds / (60 * 60)) % 24;
+        return String.format(Locale.getDefault(), "%02d:%02d:%02d", h, m, s);
+        //return String.format("%d:%02d:%02d", h,m,s);
+    }
+
     public static int getColor(Context context, int color) {
         return ContextCompat.getColor(context, color);
     }
@@ -321,7 +323,7 @@ public class CommonUtils {
 
     public static String price(String sellingPrice) {
 
-        return sellingPrice+"/";
+        return sellingPrice + "/";
     }
 
     public static String getDay(String dateTime) {
@@ -438,6 +440,12 @@ public class CommonUtils {
         }
     }
 
+    public static void setRecyclerViewHeight(RecyclerView recyclerView, int height) {
+                ViewGroup.LayoutParams params = recyclerView.getLayoutParams();
+                params.height = height;
+                recyclerView.setLayoutParams(params);
+    }
+
     public static void logout(Activity activity) {
         PreferenceUtils.setDeviceToken(null);
         PreferenceUtils.setUserId(-1);
@@ -498,11 +506,11 @@ public class CommonUtils {
     }
 
     public static String getCreatedDate(String date) {
-        String createdDate=null;
+        String createdDate = null;
         try {
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             dateFormat.setTimeZone(TimeZone.getTimeZone(AppConstants.TIME_ZONE));
-            Date cDate=dateFormat.parse(date);
+            Date cDate = dateFormat.parse(date);
             DateFormat newDateFormat = new SimpleDateFormat("hh:mm aa dd MMM yyyy");
             newDateFormat.setTimeZone(TimeZone.getTimeZone(AppConstants.TIME_ZONE));
             return newDateFormat.format(cDate);
@@ -519,15 +527,15 @@ public class CommonUtils {
 
     public static void changeWidthOfTab(TabLayout tabLayout, FragmentActivity mActivity) {
         for (int i = 0; i < tabLayout.getTabCount(); i++) {
-            TabLayout.Tab tab =tabLayout.getTabAt(i);
+            TabLayout.Tab tab = tabLayout.getTabAt(i);
             if (tab != null) {
                 View customView = tab.getCustomView();
                 if (customView != null) {
                     View targetViewToApplyMargin = (View) customView.getParent();
                     ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) targetViewToApplyMargin.getLayoutParams();
 
-                    layoutParams.leftMargin = GlideUtils.convertDpToPx(AppConstants.PAGER_INDICATOR_MARGING,mActivity);
-                    layoutParams.rightMargin = GlideUtils.convertDpToPx(AppConstants.PAGER_INDICATOR_MARGING,mActivity);
+                    layoutParams.leftMargin = GlideUtils.convertDpToPx(AppConstants.PAGER_INDICATOR_MARGING, mActivity);
+                    layoutParams.rightMargin = GlideUtils.convertDpToPx(AppConstants.PAGER_INDICATOR_MARGING, mActivity);
                     targetViewToApplyMargin.setLayoutParams(layoutParams);
                 }
             }

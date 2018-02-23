@@ -12,7 +12,12 @@
     <string name="server_error">Server Error</string>
     <!-- setting Map Key Here-->
     <!--<string name="google_api_key">AIzaSyARxWYiJxPPGiVAzsO-v4aA_Shfjzckjwg</string>-->
+<!--
     <string name="google_application_key">AIzaSyDWNa4ZMLduib0GGSgYeIv_-FTp6v6bxrI</string>
+-->
+
+    <string name="google_application_key">AIzaSyAyd90_9ihKyCAaum-7TrOKvw_ZRe9u0MU</string>
+
 
 <!-- end -->
 
@@ -479,6 +484,8 @@
     <string name="offer_details">Offer Details</string>
     <string name="term_conditions">Terms and conditions</string>
     <string name="profile_pic_updated_successfully">Profile Pic Updated Successfully</string>
+    <string name="New">New</string>
+    <string name="old">Old</string>
 
 
     <string-array name="state_array">

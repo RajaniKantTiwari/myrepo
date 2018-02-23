@@ -3,6 +3,7 @@ package com.app.community.ui.dashboard.home.adapter;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import com.app.community.R;
 import com.app.community.databinding.LayoutNewsRowBinding;
 import com.app.community.network.response.dashboard.home.News;
+import com.app.community.ui.dashboard.notification.NotificationLiveAdapter;
 import com.app.community.utils.CommonUtils;
 
 import java.util.ArrayList;
@@ -23,7 +25,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.LatestNewsHold
     private final NewsListener newsListener;
     private final AppCompatActivity activity;
     private ArrayList<News> newsList;
+    private int getTotalHeight;
 
+    public int getGetTotalHeight() {
+        return getTotalHeight;
+    }
 
     public interface NewsListener{
 
@@ -38,8 +44,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.LatestNewsHold
     @Override
     public LatestNewsHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutNewsRowBinding mBinding=DataBindingUtil.inflate(mInflater, R.layout.layout_news_row, parent, false);
-        /*mBinding.getRoot().measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-        height = mBinding.getRoot().getMeasuredHeight();*/
         return new LatestNewsHolder(mBinding);
     }
 
@@ -48,12 +52,26 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.LatestNewsHold
         if(CommonUtils.isNotNull(newsList)&&newsList.size()>position){
             holder.setData(newsList.get(position));
         }
-
+        getItemWidthHeight(holder);
     }
+    private void getItemWidthHeight(LatestNewsHolder holder) {
+        holder.mBinding.getRoot().post(new Runnable()
+        {
+            @Override
+            public void run()
+            {
 
+                int cellWidth = holder.mBinding.getRoot().getWidth();// this will give you cell width dynamically
+                int cellHeight = holder.mBinding.getRoot().getHeight();// this will give you cell height dynamically
+                getTotalHeight=getTotalHeight+cellHeight;
+                Log.e("NewsWidthHeight","Width  "+cellWidth+"  Height "+cellHeight);
+
+            }
+        });
+    }
     @Override
     public int getItemCount() {
-        return CommonUtils.isNotNull(newsList)?newsList.size():0;
+        return 10;
     }
     class LatestNewsHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 

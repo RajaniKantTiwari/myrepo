@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        style="@style/match_wrap">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cvTrend"
+            style="@style/match_wrap"
+            android:elevation="@dimen/margin_5"
+            app:cardCornerRadius="@dimen/margin_4"
+            android:layout_height="@dimen/margin_130"
+            android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginStart="@dimen/notification_margin_start"
+            android:layout_marginEnd="@dimen/notification_margin_end"
+            >
+
+            <RelativeLayout
+                style="@style/wrap_wrap"
+                android:padding="@dimen/margin_5">
+
+                <ImageView
+                    android:id="@+id/ivNotification"
+                    style="@style/image_40"
+                    android:src="@drawable/ic_notification" />
+
+                <ImageView
+                    android:id="@+id/ivSep"
+                    style="@style/view_layout_vertical_white_grey"
+                    android:layout_marginEnd="@dimen/margin_7"
+                    android:layout_marginStart="@dimen/margin_7"
+                    android:layout_toEndOf="@+id/ivNotification" />
+
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/reviewer_name"
+                    style="@style/textview_description_wrap"
+                    android:layout_toEndOf="@+id/ivSep"
+                    android:text="App Name" />
+
+                <com.app.community.widget.CustomTextView
+                    style="@style/textview_description_small_wrap"
+                    android:layout_below="@+id/reviewer_name"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:layout_toEndOf="@+id/ivSep"
+                    android:layout_above="@+id/tvTime"
+                    android:text="@string/lorem_ipsum"
+                    app:customFont="@string/font_regular" />
+
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvTime"
+                    style="@style/textview_description_ex_large_wrap"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:paddingBottom="@dimen/margin_8"
+                    android:text="2 min ago"
+                    android:textColor="@color/color_not"
+                    app:customFont="@string/font_regular" />
+            </RelativeLayout>
+
+
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+</layout>
