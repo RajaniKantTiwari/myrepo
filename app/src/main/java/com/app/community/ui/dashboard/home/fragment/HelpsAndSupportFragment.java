@@ -15,7 +15,7 @@ import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.SimpleDividerItemDecoration;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.adapter.HelpSupportAdapter;
-import com.app.community.ui.dialogfragment.OrderReviewSubmitDialogFragment;
+import com.app.community.ui.dialogfragment.OrderFeedbackDialogFragment;
 import com.app.community.utils.CommonUtils;
 
 import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
@@ -24,7 +24,7 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
  * Created by rajnikant on 31/12/17.
  */
 
-public class HelpsAndSupportFragment extends DashboardFragment implements HelpSupportAdapter.HelpSupportListener,OrderReviewSubmitDialogFragment.OrderDialogListener {
+public class HelpsAndSupportFragment extends DashboardFragment implements HelpSupportAdapter.HelpSupportListener,OrderFeedbackDialogFragment.OrderDialogListener {
     private FragmentHelpsupportBinding mBinding;
     private HelpSupportAdapter mAdapter;
 

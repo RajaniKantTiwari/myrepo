@@ -39,7 +39,7 @@ import com.app.community.ui.dialogfragment.CheckoutDialogFragment;
 import com.app.community.ui.dialogfragment.ContactDialogFragment;
 import com.app.community.ui.dialogfragment.EmergencyDialogFragment;
 import com.app.community.ui.dialogfragment.CustomDialogFragment;
-import com.app.community.ui.dialogfragment.OrderReviewSubmitDialogFragment;
+import com.app.community.ui.dialogfragment.OrderFeedbackDialogFragment;
 import com.app.community.ui.newspaper.Days;
 import com.app.community.widget.CustomEditText;
 import com.google.android.gms.common.ConnectionResult;
@@ -121,9 +121,9 @@ public class CommonUtils {
     }
 
 
-    public static void showOrderDialog(AppCompatActivity activity, Bundle bundle, OrderReviewSubmitDialogFragment.OrderDialogListener listener) {
+    public static void showOrderDialog(AppCompatActivity activity, Bundle bundle, OrderFeedbackDialogFragment.OrderDialogListener listener) {
         FragmentManager fm = activity.getSupportFragmentManager();
-        OrderReviewSubmitDialogFragment alertdFragment = new OrderReviewSubmitDialogFragment();
+        OrderFeedbackDialogFragment alertdFragment = new OrderFeedbackDialogFragment();
         alertdFragment.addListener(listener);
         alertdFragment.setArguments(bundle);
         // Show Alert CustomDialogFragment

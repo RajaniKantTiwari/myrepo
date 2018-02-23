@@ -52,6 +52,7 @@
                     style="@style/match_wrap">
 
                     <com.app.community.widget.CustomTextView
+                        android:id="@+id/tvViewDetails"
                         style="@style/textview_description_wrap"
                         android:textColor="@color/doctor_charge_color"
                         android:text="@string/view_details"

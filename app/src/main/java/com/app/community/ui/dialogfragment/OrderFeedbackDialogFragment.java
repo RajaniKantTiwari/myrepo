@@ -10,15 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.community.R;
-import com.app.community.databinding.DialogfragmentOrderBinding;
+import com.app.community.databinding.DialogFeedbackBinding;
 import com.app.community.network.response.dashboard.home.MerchantResponse;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
-import com.app.community.widget.RatingBar;
 
-public class OrderReviewSubmitDialogFragment extends DialogFragment implements View.OnClickListener {
+public class OrderFeedbackDialogFragment extends DialogFragment implements View.OnClickListener {
     private Dialog dialog;
-    private DialogfragmentOrderBinding mBinding;
+    private DialogFeedbackBinding mBinding;
     private OrderDialogListener listener;
     private MerchantResponse productInfo;
 
@@ -32,7 +31,7 @@ public class OrderReviewSubmitDialogFragment extends DialogFragment implements V
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.dialogfragment_order, container, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.dialog_feedback, container, false);
         dialog = getDialog();
         CommonUtils.setDialog(dialog);
         initializeData();

@@ -12,14 +12,14 @@ import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.SimpleDividerItemDecoration;
 import com.app.community.ui.authentication.CommonActivity;
 import com.app.community.ui.dashboard.home.adapter.HelpSupportAdapter;
-import com.app.community.ui.dialogfragment.OrderReviewSubmitDialogFragment;
+import com.app.community.ui.dialogfragment.OrderFeedbackDialogFragment;
 import com.app.community.utils.CommonUtils;
 
 /**
  * Created by rajnikant on 31/12/17.
  */
 
-public class HelpsAndSupportActivity extends CommonActivity implements HelpSupportAdapter.HelpSupportListener, OrderReviewSubmitDialogFragment.OrderDialogListener {
+public class HelpsAndSupportActivity extends CommonActivity implements HelpSupportAdapter.HelpSupportListener, OrderFeedbackDialogFragment.OrderDialogListener {
     private ActivityHelpsupportBinding mBinding;
     private HelpSupportAdapter mAdapter;
 

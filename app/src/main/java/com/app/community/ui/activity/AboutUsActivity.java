@@ -10,14 +10,14 @@ import com.app.community.databinding.ActivityAboutusBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.authentication.CommonActivity;
 import com.app.community.ui.dashboard.home.adapter.HelpSupportAdapter;
-import com.app.community.ui.dialogfragment.OrderReviewSubmitDialogFragment;
+import com.app.community.ui.dialogfragment.OrderFeedbackDialogFragment;
 import com.app.community.utils.CommonUtils;
 
 /**
  * Created by rajnikant on 31/12/17.
  */
 
-public class AboutUsActivity extends CommonActivity implements HelpSupportAdapter.HelpSupportListener, OrderReviewSubmitDialogFragment.OrderDialogListener {
+public class AboutUsActivity extends CommonActivity implements HelpSupportAdapter.HelpSupportListener, OrderFeedbackDialogFragment.OrderDialogListener {
     private ActivityAboutusBinding mBinding;
     private HelpSupportAdapter mAdapter;
 

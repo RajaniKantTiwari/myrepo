@@ -11,27 +11,23 @@ import android.view.ViewGroup;
 import com.app.community.R;
 import com.app.community.databinding.FragmentOrderBinding;
 import com.app.community.network.response.BaseResponse;
+import com.app.community.network.response.Order;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.adapter.LiveOrderAdapter;
-import com.app.community.ui.dashboard.home.event.MyOrderEvent;
-import com.app.community.utils.CommonUtils;
-import com.app.community.utils.GeneralConstant;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
+import java.util.ArrayList;
 
 /**
  * Created by rajnikant on 31/12/17.
  */
 
-public class LiveOrderFragment extends DashboardFragment {
+public class LiveOrderFragment extends DashboardFragment implements LiveOrderAdapter.OrderListener {
     private FragmentOrderBinding mBinding;
     private LiveOrderAdapter mAdapter;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding=DataBindingUtil.inflate(inflater, R.layout.fragment_order,container,false);
-        CommonUtils.register(this);
         initializeAdapter();
         return mBinding.getRoot();
     }
@@ -66,25 +62,31 @@ public class LiveOrderFragment extends DashboardFragment {
 
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);
-
-    }
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
 
     }
-    @Subscribe
-    public void onMessageEvent(MyOrderEvent event) {
-        if(event.getLivePastOrder()== GeneralConstant.LIVEORDER){
-            mBinding.layoutOrder.setVisibility(View.VISIBLE);
-            mAdapter.setList(event.getOrderList());
-        }else if(event.getLivePastOrder()== GeneralConstant.PASTORDER){
-            mBinding.layoutOrder.setVisibility(View.GONE);
+    public void setLiveOrder(ArrayList<Order> recentOrderList) {
+            mAdapter.setList(recentOrderList);
+    }
 
-        }
+    public void setVisibility(int visibility) {
+        mBinding.layoutOrder.setVisibility(visibility);
+    }
+
+    @Override
+    public void viewDetailsClick(int position) {
+
+    }
+
+    @Override
+    public void helpClick(int position) {
+
+    }
+
+    @Override
+    public void feedBackClicked(int position) {
+
     }
 }

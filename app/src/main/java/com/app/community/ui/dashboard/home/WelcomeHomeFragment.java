@@ -43,7 +43,7 @@ import com.app.community.ui.dashboard.home.fragment.MyOrderActivity;
 import com.app.community.ui.dashboard.home.fragment.NewsMainFragment;
 import com.app.community.ui.dashboard.offer.OfferDetailsActivity;
 import com.app.community.ui.dialogfragment.EmergencyDialogFragment;
-import com.app.community.ui.dialogfragment.OrderReviewSubmitDialogFragment;
+import com.app.community.ui.dialogfragment.OrderFeedbackDialogFragment;
 import com.app.community.utils.AddWelcomeChildView;
 import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
@@ -67,7 +67,7 @@ import static com.app.community.utils.GeneralConstant.REQUEST_CALL;
  */
 
 public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapter.NewsListener, LatestNewsAdapter.LatestNewsListener, EmergencyAdapter.EmergencyListener,
-        EmergencyDialogFragment.EmergencyDialogListener, OrderReviewSubmitDialogFragment.OrderDialogListener, OffersAdapter.OffersListener {
+        EmergencyDialogFragment.EmergencyDialogListener, OrderFeedbackDialogFragment.OrderDialogListener, OffersAdapter.OffersListener {
 
     private FragmentWelcomehomeBinding mBinding;
     private EmergencyAdapter mEmergencyAdapter;

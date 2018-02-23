@@ -23,6 +23,16 @@ public class LiveOrderAdapter extends RecyclerView.Adapter<LiveOrderAdapter.Live
     private final LayoutInflater mInflater;
     private OrderRowItemBinding mBinding;
     private ArrayList<Order> orderList;
+    private OrderListener listener;
+
+    public interface OrderListener{
+
+        void viewDetailsClick(int position);
+
+        void helpClick(int position);
+
+        void feedBackClicked(int position);
+    }
 
     public LiveOrderAdapter(AppCompatActivity activity) {
         mInflater = LayoutInflater.from(activity);
@@ -49,12 +59,16 @@ public class LiveOrderAdapter extends RecyclerView.Adapter<LiveOrderAdapter.Live
         notifyDataSetChanged();
     }
 
-    class LiveOrderHolder extends RecyclerView.ViewHolder {
+    class LiveOrderHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         OrderRowItemBinding itemView;
 
         public LiveOrderHolder(OrderRowItemBinding itemView) {
             super(itemView.getRoot());
             this.itemView = itemView;
+            itemView.tvViewDetails.setOnClickListener(this);
+            itemView.tvFeedBack.setOnClickListener(this);
+            itemView.tvHelp.setOnClickListener(this);
+
         }
 
         public void setOrderData(int position) {
@@ -81,6 +95,17 @@ public class LiveOrderAdapter extends RecyclerView.Adapter<LiveOrderAdapter.Live
                     itemView.ratingBar.setVisibility(View.GONE);
                     itemView.tvFeedBack.setVisibility(View.VISIBLE);
                 }
+            }
+        }
+
+        @Override
+        public void onClick(View view) {
+            if(view==mBinding.tvViewDetails){
+                listener.viewDetailsClick(getAdapterPosition());
+            }else if(view==mBinding.tvHelp){
+                listener.helpClick(getAdapterPosition());
+            }else if(view==mBinding.tvFeedBack){
+                listener.feedBackClicked(getAdapterPosition());
             }
         }
     }

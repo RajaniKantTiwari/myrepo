@@ -7,23 +7,25 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.app.community.R;
 import com.app.community.databinding.FragmentOrderBinding;
 import com.app.community.network.response.BaseResponse;
+import com.app.community.network.response.Order;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.adapter.LiveOrderAdapter;
-import com.app.community.ui.dashboard.home.event.MyOrderEvent;
-import com.app.community.ui.dashboard.home.event.NewsEvent;
 import com.app.community.utils.GeneralConstant;
 
 import org.greenrobot.eventbus.Subscribe;
+
+import java.util.ArrayList;
 
 /**
  * Created by rajnikant on 31/12/17.
  */
 
-public class PastOrderFragment extends DashboardFragment {
+public class PastOrderFragment extends DashboardFragment implements LiveOrderAdapter.OrderListener {
     private FragmentOrderBinding mBinding;
     private LiveOrderAdapter mAdapter;
 
@@ -69,13 +71,27 @@ public class PastOrderFragment extends DashboardFragment {
     public void onSuccess(BaseResponse response, int requestCode) {
 
     }
-    @Subscribe
-    public void onMessageEvent(MyOrderEvent event) {
-        if(event.getLivePastOrder()== GeneralConstant.LIVEORDER){
-            mBinding.layoutOrder.setVisibility(View.GONE);
-        }else if(event.getLivePastOrder()== GeneralConstant.PASTORDER){
-            mBinding.layoutOrder.setVisibility(View.VISIBLE);
-            mAdapter.setList(event.getOrderList());
-        }
+
+    public void setPastOrder(ArrayList<Order> recentOrderList) {
+        mAdapter.setList(recentOrderList);
+    }
+
+    public void setVisibility(int visible) {
+        mBinding.layoutOrder.setVisibility(visible);
+    }
+
+    @Override
+    public void viewDetailsClick(int position) {
+
+    }
+
+    @Override
+    public void helpClick(int position) {
+
+    }
+
+    @Override
+    public void feedBackClicked(int position) {
+
     }
 }

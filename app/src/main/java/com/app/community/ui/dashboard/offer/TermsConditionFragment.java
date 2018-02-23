@@ -12,14 +12,7 @@ import com.app.community.R;
 import com.app.community.databinding.FragmentOrderBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.base.BaseFragment;
-import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.adapter.LiveOrderAdapter;
-import com.app.community.ui.dashboard.home.event.MyOrderEvent;
-import com.app.community.utils.CommonUtils;
-import com.app.community.utils.GeneralConstant;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
 /**
  * Created by rajnikant on 31/12/17.

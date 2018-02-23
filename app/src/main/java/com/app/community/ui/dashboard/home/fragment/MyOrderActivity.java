@@ -13,7 +13,6 @@ import com.app.community.network.response.MyOrderData;
 import com.app.community.network.response.Order;
 import com.app.community.ui.authentication.CommonActivity;
 import com.app.community.ui.base.BaseActivity;
-import com.app.community.ui.dashboard.home.event.MyOrderEvent;
 import com.app.community.ui.presenter.CommonPresenter;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
@@ -30,7 +29,6 @@ import javax.inject.Inject;
 
 public class MyOrderActivity extends CommonActivity {
     private ActivityMyOrderBinding mBinding;
-    private MyOrderEvent event;
     @Inject
     CommonPresenter presenter;
     private ArrayList<Order> recentOrderList;
@@ -50,13 +48,10 @@ public class MyOrderActivity extends CommonActivity {
         mBinding.layoutHeader.tvHeader.setText(getResources().getString(R.string.my_order));
         mBinding.layoutHeader.headerLayout.setBackgroundColor(CommonUtils.getColor(this,R.color.dark_black));
         mBinding.layoutHeader.ivBack.setImageResource(R.drawable.ic_back_white);
-        event=new MyOrderEvent();
-        event.setLivePastOrder(GeneralConstant.LIVEORDER);
         liveOrderFragment=new LiveOrderFragment();
         pastOrderFragment=new PastOrderFragment();
-        pushFragment( liveOrderFragment,null,R.id.container,false,false,BaseActivity.AnimationType.NONE);
-        pushFragment(pastOrderFragment,null,R.id.container,false,false,BaseActivity.AnimationType.NONE);
-        EventBus.getDefault().post(event);
+        pushFragment(pastOrderFragment,null,R.id.container,true,true,BaseActivity.AnimationType.NONE);
+        pushFragment( liveOrderFragment,null,R.id.container,true,true,BaseActivity.AnimationType.NONE);
         presenter.getMyOrder(this);
     }
 
@@ -89,9 +84,9 @@ public class MyOrderActivity extends CommonActivity {
         mBinding.tvPastOrder.setTextColor(CommonUtils.getColor(this,R.color.color_dark_grey));
         mBinding.ivPastOrder.setBackgroundColor(CommonUtils.getColor(this,R.color.dark_black_color));
         mBinding.ivLiveOrder.setBackgroundColor(CommonUtils.getColor(this,R.color.ver_bg_color));
-        event.setLivePastOrder(GeneralConstant.PASTORDER);
-        event.setOrderList(pastOrderList);
-        EventBus.getDefault().post(event);
+        pastOrderFragment.setPastOrder(pastOrderList);
+        liveOrderFragment.setVisibility(View.GONE);
+        pastOrderFragment.setVisibility(View.VISIBLE);
 
     }
 
@@ -100,9 +95,9 @@ public class MyOrderActivity extends CommonActivity {
         mBinding.tvPastOrder.setTextColor(CommonUtils.getColor(this,R.color.dark_black));
         mBinding.ivLiveOrder.setBackgroundColor(CommonUtils.getColor(this,R.color.dark_black_color));
         mBinding.ivPastOrder.setBackgroundColor(CommonUtils.getColor(this,R.color.ver_bg_color));
-        event.setLivePastOrder(GeneralConstant.LIVEORDER);
-        event.setOrderList(recentOrderList);
-        EventBus.getDefault().post(event);
+        liveOrderFragment.setLiveOrder(recentOrderList);
+        liveOrderFragment.setVisibility(View.VISIBLE);
+        pastOrderFragment.setVisibility(View.GONE);
     }
 
     @Override
@@ -113,8 +108,9 @@ public class MyOrderActivity extends CommonActivity {
             if(CommonUtils.isNotNull(myOrder)){
                 recentOrderList=myOrder.getRecent();
                 pastOrderList=myOrder.getPast();
-                event.setOrderList(recentOrderList);
-                EventBus.getDefault().post(event);
+                pastOrderFragment.setPastOrder(pastOrderList);
+                liveOrderFragment.setLiveOrder(recentOrderList);
+
             }
         }
     }
