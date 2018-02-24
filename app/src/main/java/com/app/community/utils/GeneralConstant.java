@@ -82,7 +82,7 @@ public interface GeneralConstant {
     int COUPON_HEIGHT = 48;
     String MERCHANT_RESPONSE = "merchant_response";
     int PROFILE_PIC_RESPONSE = 100;
-    int NOTI_HEIGHT = 143;
+    int NOTI_HEIGHT = 142;
 
 
     @IntDef({MERCHANT_MAP_FRAGMENT, MERCHANT_LIST_FRAGMENT, RECENT_FRAGMENT, CATEGORY_FRAGMENT,

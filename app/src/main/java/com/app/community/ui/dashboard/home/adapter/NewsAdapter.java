@@ -27,9 +27,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.LatestNewsHold
     private ArrayList<News> newsList;
     private int getTotalHeight;
 
-    public int getGetTotalHeight() {
-        return getTotalHeight;
-    }
 
     public interface NewsListener{
 

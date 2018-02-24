@@ -8,7 +8,6 @@ import com.app.community.injector.component.CommonComponent;
 import com.app.community.injector.component.DaggerCommonComponent;
 import com.app.community.injector.module.CommonModule;
 import com.app.community.ui.base.BaseActivity;
-import com.app.community.ui.base.BaseFragment;
 import com.app.community.ui.base.MvpView;
 
 

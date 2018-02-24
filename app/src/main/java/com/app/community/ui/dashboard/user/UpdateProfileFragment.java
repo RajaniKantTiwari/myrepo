@@ -1,4 +1,4 @@
-package com.app.community.ui.activity;
+package com.app.community.ui.dashboard.user;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -9,23 +9,21 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v7.widget.LinearLayoutManager;
-import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
-
+import android.view.ViewGroup;
 
 import com.app.community.R;
-import com.app.community.databinding.ActivityUpdateProfileBinding;
+import com.app.community.databinding.FragmentUpdateProfileBinding;
 import com.app.community.event.EncodedBitmap;
 import com.app.community.event.UpdateProfileEvent;
-import com.app.community.network.request.LoginRequest;
-import com.app.community.network.request.PaymentOption;
 import com.app.community.network.request.dashboard.ProfilePic;
 import com.app.community.network.request.dashboard.ProfileRequest;
 import com.app.community.network.response.BaseResponse;
+import com.app.community.network.response.dashboard.user.UserAddress;
 import com.app.community.ui.activity.uploadfile.Upload;
-import com.app.community.ui.authentication.CommonActivity;
 import com.app.community.ui.base.MvpView;
-import com.app.community.ui.presenter.CommonPresenter;
+import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
@@ -45,84 +43,63 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
-import okhttp3.MultipartBody;
+import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by arvind on 06/11/17.
  */
 
-public class UpdateProfileActivity extends CommonActivity implements MvpView, View.OnClickListener, ImagePickerUtils.OnImagePickerListener {
+public class UpdateProfileFragment extends DashboardFragment implements MvpView, View.OnClickListener,
+        ImagePickerUtils.OnImagePickerListener,AddressAdapter.AddressListener {
 
-    ActivityUpdateProfileBinding mBinding;
-    private static String TAG = UpdateProfileActivity.class.getSimpleName();
-    private PaymentAdapter paymentAdapter;
-    private List<PaymentOption> paymentList = new ArrayList<>();
+    FragmentUpdateProfileBinding mBinding;
+    private static String TAG = UpdateProfileFragment.class.getSimpleName();
+    private List<UserAddress> addressList = new ArrayList<>();
     private String profilePicFilePath;
 
-    @Inject
-    CommonPresenter presenter;
+    private AddressAdapter addressAdapter;
 
+    @Nullable
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_update_profile);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_update_profile,container,false);
         CommonUtils.register(this);
-        initializeData();
-        setHeader();
-        setListener();
+        getDashboardActivity().setHeaderTitle(getResources().getString(R.string.your_profile));
+        return mBinding.getRoot();
     }
 
-    private void setHeader() {
-        mBinding.layoutHeader.ivBack.setImageResource(R.drawable.ic_back_white);
-        mBinding.layoutHeader.tvHeader.setVisibility(View.VISIBLE);
-        mBinding.layoutHeader.tvHeader.setText(getResources().getString(R.string.update_profile));
-    }
 
     public void setListener() {
         mBinding.ivProfile.setOnClickListener(this);
         mBinding.imgEditPic.setOnClickListener(this);
         mBinding.tvUpdate.setOnClickListener(this);
-        mBinding.layoutHeader.ivBack.setOnClickListener(this);
     }
 
+    @Override
+    public String getFragmentName() {
+        return UpdateProfileFragment.class.getSimpleName();
+    }
+    @Override
     public void initializeData() {
         mBinding.edName.setText(PreferenceUtils.getUserName());
         mBinding.tvMobile.setText(PreferenceUtils.getUserMono());
         mBinding.edEmail.setText(PreferenceUtils.getUserMono());
-        mBinding.edCreditDetails.setText(PreferenceUtils.getUserMono());
         CommonUtils.showCursorEnd(mBinding.edName);
         CommonUtils.showCursorEnd(mBinding.edEmail);
-        CommonUtils.showCursorEnd(mBinding.edCreditDetails);
         mBinding.edName.setCursorVisible(true);
-        GlideUtils.loadImageProfilePic(this, PreferenceUtils.getImage(), mBinding.ivProfile, null, R.drawable.avatar);
-        setPaymentOption();
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        mBinding.rvPayment.setLayoutManager(layoutManager);
-        paymentAdapter = new PaymentAdapter(this, paymentList);
-        mBinding.rvPayment.setAdapter(paymentAdapter);
-        CommonUtils.setRecyclerViewHeight(mBinding.rvPayment, paymentList, GeneralConstant.PAYMENT_HEIGHT);
+        GlideUtils.loadImageProfilePic(getContext(), PreferenceUtils.getImage(), mBinding.ivProfile, null, R.drawable.avatar);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getDashboardActivity());
+        mBinding.rvAddress.setLayoutManager(layoutManager);
+        addressAdapter = new AddressAdapter(getDashboardActivity(), addressList,this);
+        mBinding.rvAddress.setAdapter(addressAdapter);
     }
 
-    private void setPaymentOption() {
-        PaymentOption option1 = new PaymentOption();
-        option1.setPaymentString(getResources().getString(R.string.cash_on_delivery));
-        PaymentOption option2 = new PaymentOption();
-        option2.setPaymentString(getResources().getString(R.string.credit_debit_card));
-        PaymentOption option3 = new PaymentOption();
-        option3.setPaymentString(getResources().getString(R.string.paytm));
-        paymentList.add(option1);
-        paymentList.add(option2);
-        paymentList.add(option3);
-
-    }
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
         if (CommonUtils.isNotNull(response)) {
             if (requestCode == GeneralConstant.PROFILE_PIC_RESPONSE && response.getStatus().equalsIgnoreCase(AppConstants.SUCCESS)) {
-                showToast(getResources().getString(R.string.profile_pic_updated_successfully));
+                getDashboardActivity().showToast(getResources().getString(R.string.profile_pic_updated_successfully));
             }
 
         }
@@ -131,8 +108,7 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
 
     @Override
     public void attachView() {
-        getActivityComponent().inject(this);
-        presenter.attachView(this);
+        getPresenter().attachView(this);
     }
 
     @Override
@@ -143,10 +119,7 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
             PreferenceUtils.setImage(profilePicFilePath);
             PreferenceUtils.setUserName(mBinding.edName.getText().toString());
             PreferenceUtils.setEmail(mBinding.edEmail.getText().toString());
-            PreferenceUtils.setCardNumber(mBinding.edCreditDetails.getText().toString());
             updateProfile();
-        } else if (mBinding.layoutHeader.ivBack == view) {
-            finish();
         }
     }
 
@@ -154,7 +127,7 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
     private void showImageChooserDialog() {
         //ImagePickerUtils.add(getSupportFragmentManager(), this);
 
-        BottomSheetDialog dialog = new BottomSheetDialog(this);
+        BottomSheetDialog dialog = new BottomSheetDialog(getDashboardActivity());
         dialog.setContentView(R.layout.profile_dialog_layout);
         View layoutCamera = dialog.findViewById(R.id.layoutCamera);
         View layoutGallery = dialog.findViewById(R.id.layoutGallery);
@@ -192,7 +165,7 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
      * Open camera to capture image
      */
     private void openImageCamera() {
-        new ImagePicker.Builder(this)
+        new ImagePicker.Builder(getDashboardActivity())
                 .mode(ImagePicker.Mode.CAMERA)
                 .compressLevel(ImagePicker.ComperesLevel.HARD)
                 .directory(ImagePicker.Directory.DEFAULT)
@@ -207,7 +180,7 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
      * Open camera to capture image
      */
     private void openImageGallery() {
-        new ImagePicker.Builder(this)
+        new ImagePicker.Builder(getDashboardActivity())
                 .mode(ImagePicker.Mode.GALLERY)
                 .compressLevel(ImagePicker.ComperesLevel.HARD)
                 .directory(ImagePicker.Directory.DEFAULT)
@@ -220,14 +193,13 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
 
     @Override
     public void success(String name, String path, int type) {
-        GlideUtils.loadImageProfilePic(this, path, mBinding.ivProfile, null, 0);
+        GlideUtils.loadImageProfilePic(getContext(), path, mBinding.ivProfile, null, 0);
         PreferenceUtils.setImage(path);
         EventBus.getDefault().post(new UpdateProfileEvent());
-        finish();
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             if (requestCode == ImagePicker.IMAGE_PICKER_REQUEST_CODE) {
@@ -252,7 +224,7 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
         profilePicFilePath = filePath;
         File f = new File(filePath);
         if (f.exists()) {
-            GlideUtils.loadImageProfilePic(this, filePath, mBinding.ivProfile, null, R.drawable.avatar);
+            GlideUtils.loadImageProfilePic(getContext(), filePath, mBinding.ivProfile, null, R.drawable.avatar);
         }
     }
 
@@ -260,7 +232,7 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
         CropImage.activity(sourceUri).setAspectRatio(1, 1)
                 .setGuidelines(CropImageView.Guidelines.ON)
                 .setCropShape(CropImageView.CropShape.OVAL)
-                .start(this);
+                .start(getDashboardActivity());
     }
 
     private void updateProfile() {
@@ -271,7 +243,7 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
         profileRequest.setCity(PreferenceUtils.getCity());
         profileRequest.setEmail(mBinding.edEmail.getText().toString());
         if (isNetworkConnected()) {
-            presenter.updateProfile(this,profileRequest);
+            getPresenter().updateProfile(getDashboardActivity(),profileRequest);
         }
     }
 
@@ -280,7 +252,7 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
     private void updateProfilePic() {
         try {
             Bitmap bitmap = ((RoundedBitmapDrawable) mBinding.ivProfile.getDrawable()).getBitmap();
-            Upload postImage = new Upload(this, bitmap);
+            Upload postImage = new Upload(getDashboardActivity(), bitmap);
             postImage.execute();
         } catch (Exception e) {
             LogUtils.LOGE("ProfileUpdate", e.toString());
@@ -290,7 +262,7 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
         CommonUtils.unregister(this);
     }
@@ -307,10 +279,21 @@ public class UpdateProfileActivity extends CommonActivity implements MvpView, Vi
             String encodedImage = event.getEncodeImage();
             profilePicRequest.setImage(encodedImage);
             if (isNetworkConnected()) {
-                presenter.updateProfilePic(this, profilePicRequest);
+                getPresenter().updateProfilePic(getDashboardActivity(), profilePicRequest);
             }
         }
 
 
+    }
+
+    @Override
+    public void onDeleteClick(int position) {
+        addressList.remove(position);
+        addressAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onAddressClick(int position) {
+        addressAdapter.notifyDataSetChanged();
     }
 }

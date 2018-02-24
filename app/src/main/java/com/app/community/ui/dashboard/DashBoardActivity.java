@@ -36,11 +36,9 @@ import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
 import com.app.community.ui.WelcomeScreenActivity;
 import com.app.community.ui.activity.AboutUsActivity;
 import com.app.community.ui.activity.HelpsAndSupportActivity;
-import com.app.community.ui.activity.UpdateProfileActivity;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.cart.ProductSubproductFragment;
 import com.app.community.ui.dashboard.expandrecycleview.draweradapter.DrawerAdapterRight;
-import com.app.community.ui.dashboard.home.ConfirmOrderFragment;
 import com.app.community.ui.dashboard.home.SearchActivity;
 import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.adapter.DrawerAdapterLeft;
@@ -51,7 +49,7 @@ import com.app.community.ui.dashboard.home.fragment.MerchantFragment;
 import com.app.community.ui.dashboard.home.fragment.MyOrderActivity;
 import com.app.community.ui.dashboard.notification.NotificationFragment;
 import com.app.community.ui.dashboard.offer.OfferFragment;
-import com.app.community.ui.dashboard.user.UserProfileFragment;
+import com.app.community.ui.dashboard.user.UpdateProfileFragment;
 import com.app.community.ui.dialogfragment.CheckoutDialogFragment;
 import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
@@ -111,7 +109,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                 break;
             case AppConstants.MYACCOUNT:
                 changeIcon(USER_FRAGMENT);
-                openFragment(new UserProfileFragment(), null, false, false, NONE);
+                openFragment(new UpdateProfileFragment(), null, false, false, NONE);
                 break;
             case AppConstants.NOTIFICATION:
                 changeIcon(NOTIFICATION_FRAGMENT);
@@ -168,7 +166,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                 openFragment(new NotificationFragment(), null, false, false, NONE);
                 break;
             case USER_FRAGMENT:
-                openFragment(new UserProfileFragment(), null, false, false, NONE);
+                openFragment(new UpdateProfileFragment(), null, false, false, NONE);
                 break;
         }
     }
@@ -321,7 +319,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
             onTabSelected(USER_FRAGMENT);
         } else if (mBinding.layoutDrawerLeft.ivUpdate == view) {
             closeDrawerLeft();
-            ExplicitIntent.getsInstance().navigateTo(this, UpdateProfileActivity.class);
+            pushFragment(new UpdateProfileFragment(), null, R.id.container, true, false, NONE);
         } else if (view == mBinding.bottomLayout.linearLayoutBar1) {
             changeIcon(WELCOME_HOME_FRAGMENT);
             clearAllBackStack();
@@ -337,7 +335,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         } else if (view == mBinding.bottomLayout.linearLayoutBar4) {
             changeIcon(USER_FRAGMENT);
             clearAllBackStack();
-            pushFragment(new UserProfileFragment(), null, R.id.container, true, false, NONE);
+            pushFragment(new UpdateProfileFragment(), null, R.id.container, true, false, NONE);
         } else if (view == mBinding.toolBar.layoutCart) {
             if (CommonUtils.isNotNull(PreferenceUtils.getCartData()) && PreferenceUtils.getCartData().size() > 0) {
                 addFragmentInContainer(new CartFragment(), null, true, true, NONE);

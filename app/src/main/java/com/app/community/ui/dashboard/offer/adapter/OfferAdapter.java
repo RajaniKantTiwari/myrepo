@@ -20,7 +20,7 @@ import java.util.ArrayList;
  * Created by ashok on 25/12/17.
  */
 
-public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferViewHolder> {
+public class  OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferViewHolder> {
     private final LayoutInflater mInflater;
     private OfferRowBinding mBinding;
     private OfferListener listener;

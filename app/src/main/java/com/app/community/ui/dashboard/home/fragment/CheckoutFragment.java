@@ -23,6 +23,7 @@ import com.app.community.ui.dashboard.home.ConfirmOrderFragment;
 import com.app.community.ui.dashboard.home.adapter.CheckoutCartAdapter;
 import com.app.community.ui.dashboard.home.adapter.CouponAdapter;
 import com.app.community.ui.dashboard.home.event.UpdateAddress;
+import com.app.community.ui.dashboard.offer.OffersPromoFragment;
 import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
@@ -167,7 +168,9 @@ public class CheckoutFragment extends DashboardFragment implements CouponAdapter
     }
 
     private void openOfferFragment() {
-
+        Bundle bundle = new Bundle();
+       // getDashboardActivity().unselectAllTab();
+        getDashboardActivity().addFragmentInContainer(new OffersPromoFragment(), bundle, true, true, NONE);
     }
 
     @Override

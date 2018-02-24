@@ -16,7 +16,6 @@ import com.app.community.network.response.MyOrderData;
 import com.app.community.network.response.VerifyMobileResponse;
 import com.app.community.network.response.dashboard.home.SearchResponseData;
 import com.app.community.ui.WelcomeScreenActivity;
-import com.app.community.ui.activity.UpdateProfileActivity;
 import com.app.community.ui.base.MvpView;
 import com.app.community.ui.base.Presenter;
 import com.app.community.ui.dashboard.home.fragment.MyOrderActivity;
@@ -154,22 +153,7 @@ public class CommonPresenter implements Presenter<MvpView> {
         });
     }
 
-    public void updateProfile(Activity activity, ProfileRequest profileRequest) {
-        mView.showProgress();
-        mRepository.updateProfile(profileRequest).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
-            @Override
-            public void onResponse(BaseResponse response) {
-                mView.hideProgress();
-                mView.onSuccess(response, 1);
-            }
 
-            @Override
-            public void onError(Throwable call, BaseResponse baseResponse) {
-                mView.hideProgress();
-                mView.onError(baseResponse.getMsg(), 1);
-            }
-        });
-    }
 
     public void getMyOrder(MyOrderActivity activity) {
         mView.showProgress();
@@ -188,20 +172,5 @@ public class CommonPresenter implements Presenter<MvpView> {
         });
     }
 
-    public void updateProfilePic(Activity activity,ProfilePic profilePicRequest) {
-        mView.showProgress();
-        mRepository.updateProfilePic(profilePicRequest).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
-            @Override
-            public void onResponse(BaseResponse response) {
-                mView.hideProgress();
-                mView.onSuccess(response, GeneralConstant.PROFILE_PIC_RESPONSE);
-            }
 
-            @Override
-            public void onError(Throwable call, BaseResponse baseResponse) {
-                mView.hideProgress();
-                mView.onError(baseResponse.getMsg(), GeneralConstant.PROFILE_PIC_RESPONSE);
-            }
-        });
-    }
 }

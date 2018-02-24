@@ -14,14 +14,15 @@ import com.app.community.databinding.FragmentOfferDetailsBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.base.BaseFragment;
 import com.app.community.ui.dashboard.offer.adapter.OfferDetailsAdapter;
+import com.app.community.ui.dashboard.offer.adapter.PromoOfferAdapter;
 
 /**
  * Created by rajnikant on 31/12/17.
  */
 
-public class OffersPromoFragment extends BaseFragment {
+public class OffersPromoFragment extends BaseFragment implements PromoOfferAdapter.PromoListener {
     private FragmentOfferDetailsBinding mBinding;
-    private OfferDetailsAdapter mOfferAdapter;
+    private PromoOfferAdapter mOfferAdapter;
 
     @Nullable
     @Override
@@ -31,7 +32,7 @@ public class OffersPromoFragment extends BaseFragment {
         return mBinding.getRoot();
     }
     private void initializeAdapter() {
-        mOfferAdapter = new OfferDetailsAdapter(getBaseActivity());
+        mOfferAdapter = new PromoOfferAdapter(getBaseActivity(),this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getBaseActivity());
         mBinding.rvOffer.setLayoutManager(layoutManager);
         mBinding.rvOffer.setAdapter(mOfferAdapter);
@@ -48,7 +49,7 @@ public class OffersPromoFragment extends BaseFragment {
 
     @Override
     public String getFragmentName() {
-        return null;
+        return OffersPromoFragment.class.getSimpleName();
     }
 
     @Override
@@ -69,5 +70,10 @@ public class OffersPromoFragment extends BaseFragment {
     public static Fragment newInstance() {
         OffersPromoFragment fragment = new OffersPromoFragment();
         return fragment;
+    }
+
+    @Override
+    public void onApplyClick(int position) {
+
     }
 }

@@ -31,7 +31,7 @@ import com.app.community.ui.dashboard.home.fragment.ProductMapFragment;
 import com.app.community.ui.dashboard.home.fragment.RecentFragment;
 import com.app.community.ui.dashboard.notification.NotificationFragment;
 import com.app.community.ui.dashboard.offer.OfferFragment;
-import com.app.community.ui.dashboard.user.UserProfileFragment;
+import com.app.community.ui.dashboard.user.UpdateProfileFragment;
 import com.app.community.ui.newspaper.SubscriptionDetailsFragment;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.LogUtils;
@@ -284,7 +284,7 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
                 new NotificationFragment();
                 break;
             case USER_FRAGMENT:
-                new UserProfileFragment();
+                new UpdateProfileFragment();
         }
         return fragment;
     }

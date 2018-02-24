@@ -29,6 +29,8 @@
     <color name="color_notification">#e91e54</color>
     <color name="color_notifi">#ea292f</color>
     <color name="color_not">#cecccc</color>
+    <color name="profile_bg">#54a9db</color>
+
 
 
     <color name="light_grey_color">#EFEFEF</color>
@@ -102,6 +104,9 @@
     <color name="colorBackgroundNav">#F8F8F8</color>
     <color name="colorNavAccentSelected">#18A3BF</color>
     <color name="color_blue_order">#36A5E2</color>
+    <color name="color_apply">#1daeeb</color>
+
+
     <color name="radio_unchecked">#cccccc</color>
 
 

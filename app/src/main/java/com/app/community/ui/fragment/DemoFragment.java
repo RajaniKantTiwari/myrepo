@@ -12,8 +12,6 @@ import android.view.ViewGroup;
 import com.app.community.R;
 import com.app.community.network.response.BaseResponse;
 
-import javax.inject.Inject;
-
 /**
  * Created by arvind on 13/11/17.
  */
@@ -25,7 +23,7 @@ public class DemoFragment extends AuthenticationFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding=DataBindingUtil.inflate(inflater, R.layout.activity_update_profile,container,false);
+        mBinding=DataBindingUtil.inflate(inflater, R.layout.fragment_update_profile,container,false);
         return mBinding.getRoot();
     }
 

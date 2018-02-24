@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/match_match"
+        android:background="@color/white"
+        android:clickable="true">
+
+        <RelativeLayout
+            style="@style/match_wrap"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:layout_marginBottom="@dimen/margin_10">
+
+            <LinearLayout
+                android:id="@+id/layoutimage"
+                style="@style/match_wrap"
+                android:background="@color/profile_bg"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/margin_15"
+                android:paddingTop="@dimen/margin_15">
+
+                <RelativeLayout style="@style/wrap_wrap">
+
+                    <ImageView
+                        android:id="@+id/ivProfile"
+                        style="@style/image_80"
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/avatar" />
+
+                    <ImageView
+                        android:id="@+id/imgEditPic"
+                        style="@style/wrap_wrap"
+                        android:layout_marginStart="@dimen/margin_60"
+                        android:layout_marginTop="@dimen/margin_60"
+
+                        android:src="@drawable/ic_edit_profile_pic" />
+                </RelativeLayout>
+
+                <com.app.community.widget.CustomEditText
+                    android:id="@+id/edName"
+                    style="@style/edit_text_style_medium"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:gravity="center_horizontal"
+                    android:hint="@string/name"
+                    android:inputType="textCapWords"
+                    android:paddingBottom="@dimen/margin_5"
+                    android:paddingTop="@dimen/margin_5"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/hint_color_light"
+                    android:textCursorDrawable="@drawable/cursor_white" />
+
+                <ImageView
+                    style="@style/view_layout_dark_white"
+                    android:layout_marginEnd="@dimen/margin_15"
+                    android:layout_marginStart="@dimen/margin_15" />
+
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvMobile"
+                    style="@style/textview_description_large_wrap"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:hint="@string/moblile_number"
+                    android:inputType="number"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/hint_color_light"
+                    android:textCursorDrawable="@drawable/cursor_white" />
+
+                <com.app.community.widget.CustomEditText
+                    android:id="@+id/edEmail"
+                    style="@style/edit_text_style_medium"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:gravity="center_horizontal"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:paddingBottom="@dimen/margin_5"
+                    android:paddingTop="@dimen/margin_5"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/hint_color_light"
+                    android:textCursorDrawable="@drawable/cursor_white" />
+
+                <ImageView
+                    style="@style/view_layout_dark_white"
+                    android:layout_marginEnd="@dimen/margin_15"
+                    android:layout_marginStart="@dimen/margin_15" />
+            </LinearLayout>
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvAddress"
+                style="@style/textview_description_match"
+                android:layout_marginStart="@dimen/margin_10"
+                android:layout_marginTop="@dimen/margin_12"
+                android:text="@string/address"
+                android:layout_below="@+id/layoutimage"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvAddress"
+                android:layout_below="@+id/tvAddress"
+                android:layout_above="@+id/tvUpdate"
+                style="@style/match_match" />
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvUpdate"
+                android:layout_width="@dimen/margin_200"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/margin_10"
+                android:background="@drawable/light_black_bg"
+                android:elevation="@dimen/margin_5"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_horizontal"
+                android:padding="@dimen/margin_12"
+                android:text="@string/update"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/button_large"
+                app:customFont="@string/font_bold"
+                />
+
+        </RelativeLayout>
+
+        <include
+            android:id="@+id/layoutNoData"
+            layout="@layout/layout_no_data_found"
+            android:visibility="gone" />
+    </FrameLayout>
+</layout>
