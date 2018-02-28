@@ -494,6 +494,7 @@
     <string name="delete">Delete</string>
     <string name="your_profile">Your Profile</string>
     <string name="more_offers">More Offers</string>
+    <string name="add_more_address">+ Add More Address</string>
 
 
     <string-array name="state_array">
