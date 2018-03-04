@@ -53,19 +53,6 @@ public class OrderFeedbackDialogFragment extends DialogFragment implements View.
              mBinding.tvName.setText(productInfo.getName());
          }
         }
-
-       /* ratingBar = new RatingBar(getContext());
-        ratingBar.setFillDrawableRes(R.drawable.empty);
-        ratingBar.setEmptyDrawableRes(R.drawable.fill);
-        ratingBar.setSpace(0);
-        ratingBar.setTouchRating(true);
-        ratingBar.setClickRating(true);
-        ratingBar.setOnRatingChangeListener(new RatingBar.OnRatingChangeListener() {
-            @Override
-            public void onChange(RatingBar view, int preCount, int curCount) {
-                Log.i("GetRating", String.format("previous count:%d, current count:%d", preCount, curCount));
-            }
-        });*/
     }
 
     public void setListener() {

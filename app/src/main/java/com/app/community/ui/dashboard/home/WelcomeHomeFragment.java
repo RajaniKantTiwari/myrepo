@@ -85,6 +85,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
     private ArrayList<News> newsList;
     private ArrayList<Offer> offersList;
     private LinearLayoutManager emergencyPlaceManager;
+    private ArrayList<LastOrder> lastOrdersList;
 
 
     @Nullable
@@ -207,7 +208,12 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
     @Override
     public void onClick(View view) {
         if (view == mLastOrderBinding.layoutLastOrder) {
-            CommonUtils.showOrderDialog(getDashboardActivity(), null, this);
+            Bundle bundle=new Bundle();
+            if(CommonUtils.isNotNull(lastOrdersList)&&lastOrdersList.size()>0){
+                bundle.putInt(GeneralConstant.ID,lastOrdersList.get(0).getId());
+                bundle.putString(GeneralConstant.STORE_NAME,lastOrdersList.get(0).getProductname());
+            }
+            CommonUtils.showOrderDialog(getDashboardActivity(), bundle, this);
             //mFragmentNavigation.pushFragment(ConfirmOrderFragment.newInstance(mInt+1));
         } else if (view == mWelcomeBinding.tvSearch) {
             ExplicitIntent.getsInstance().navigateTo(getActivity(), SearchActivity.class);
@@ -250,7 +256,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
         ArrayList<News> newsList = welcomeHomeData.getNews();
         ArrayList<Offer> offersList = welcomeHomeData.getOffer();
         ArrayList<Emergency> emergencyList = welcomeHomeData.getEmergency();
-        ArrayList<LastOrder> lastOrdersList = welcomeHomeData.getOrderreview();
+        lastOrdersList = welcomeHomeData.getOrderreview();
         setBanner(bannerList);
         setNews(newsList);
         setOffer(offersList);

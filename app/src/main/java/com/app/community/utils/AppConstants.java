@@ -4,6 +4,7 @@ import android.support.annotation.IntDef;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.util.regex.Pattern;
 
 import static com.app.community.utils.AppConstants.FRAGMENTS.CHECKOUT_FRAGMENT;
 
@@ -12,6 +13,22 @@ import static com.app.community.utils.AppConstants.FRAGMENTS.CHECKOUT_FRAGMENT;
  */
 
 public interface AppConstants {
+
+    Pattern EMAIL_PATTERN = Pattern
+            .compile("[a-zA-Z0-9+._%-+]{1,100}" + "@"
+                    + "[a-zA-Z0-9][a-zA-Z0-9-]{0,10}" + "(" + "."
+                    + "[a-zA-Z0-9][a-zA-Z0-9-]{0,20}" +
+                    ")+");
+
+    Pattern USERNAME_PATTERN = Pattern
+            .compile("[a-zA-Z0-9]{1,250}");
+    Pattern NAME_PATTERN = Pattern
+            .compile("[a-zA-Z0-9]{1,250}");
+    Pattern LAST_NAME_PATTERN = Pattern
+            .compile("[a-zA-Z0-9]{1,250}");
+    Pattern PASSWORD_PATTERN = Pattern
+            .compile("[a-zA-Z0-9+_.*#@]{8,16}");
+
     String AUTHORIZATION = "Authorization";
     String SUCCESS = "success";
     int DEVICE_TOKEN_RESPONSE = 1;

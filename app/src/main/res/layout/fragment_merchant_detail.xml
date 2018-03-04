@@ -29,7 +29,7 @@
                     <RelativeLayout
                         android:id="@+id/header_lay"
                         style="@style/match_wrap"
-                        android:minHeight="@dimen/margin_200">
+                        android:layout_height="@dimen/margin_200">
 
                         <ImageView
                             android:id="@+id/storeImage"

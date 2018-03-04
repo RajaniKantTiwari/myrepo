@@ -15,6 +15,8 @@ import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.Order;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.adapter.LiveOrderAdapter;
+import com.app.community.ui.dialogfragment.OrderFeedbackDialogFragment;
+import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -25,10 +27,11 @@ import java.util.ArrayList;
  * Created by rajnikant on 31/12/17.
  */
 
-public class PastOrderFragment extends DashboardFragment implements LiveOrderAdapter.OrderListener {
+public class PastOrderFragment extends DashboardFragment implements
+        LiveOrderAdapter.OrderListener,OrderFeedbackDialogFragment.OrderDialogListener {
     private FragmentOrderBinding mBinding;
     private LiveOrderAdapter mAdapter;
-
+    private ArrayList<Order> recentOrderList;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -37,7 +40,8 @@ public class PastOrderFragment extends DashboardFragment implements LiveOrderAda
         return mBinding.getRoot();
     }
     private void initializeAdapter() {
-        mAdapter = new LiveOrderAdapter(getBaseActivity());
+        recentOrderList=new ArrayList<>();
+        mAdapter = new LiveOrderAdapter(getBaseActivity(),recentOrderList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getBaseActivity());
         mBinding.rvOrder.setLayoutManager(layoutManager);
         mBinding.rvOrder.setAdapter(mAdapter);
@@ -73,7 +77,8 @@ public class PastOrderFragment extends DashboardFragment implements LiveOrderAda
     }
 
     public void setPastOrder(ArrayList<Order> recentOrderList) {
-        mAdapter.setList(recentOrderList);
+        this.recentOrderList=recentOrderList;
+        mAdapter.notifyDataSetChanged();
     }
 
     public void setVisibility(int visible) {
@@ -92,6 +97,17 @@ public class PastOrderFragment extends DashboardFragment implements LiveOrderAda
 
     @Override
     public void feedBackClicked(int position) {
+        Bundle bundle=new Bundle();
+        if(CommonUtils.isNotNull(recentOrderList)&&recentOrderList.size()>position){
+            Order order=recentOrderList.get(position);
+            bundle.putInt(GeneralConstant.ID,order.getId());
+            bundle.putString(GeneralConstant.STORE_NAME,order.getStore_name());
+        }
+        CommonUtils.showOrderDialog(getDashboardActivity(), bundle, this);
+    }
+
+    @Override
+    public void submit(String submit) {
 
     }
 }

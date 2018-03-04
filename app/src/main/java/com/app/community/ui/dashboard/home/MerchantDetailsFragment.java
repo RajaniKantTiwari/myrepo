@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.community.R;
-import com.app.community.databinding.FragmentProductDetailBinding;
+import com.app.community.databinding.FragmentMerchantDetailBinding;
 import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.home.MerchantResponse;
@@ -20,14 +20,14 @@ import com.app.community.network.response.dashboard.home.ReviewResponse;
 import com.app.community.network.response.dashboard.home.ReviewResponseData;
 import com.app.community.network.response.dashboard.home.StoreImages;
 import com.app.community.ui.SimpleDividerItemDecoration;
+import com.app.community.ui.activity.ZoomAnimationImageActivity;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.cart.ProductSubproductFragment;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.DashboardInsidePresenter;
-import com.app.community.ui.dashboard.home.adapter.ReviewAdapter;
 import com.app.community.ui.dashboard.home.adapter.ImageAdapter;
+import com.app.community.ui.dashboard.home.adapter.ReviewAdapter;
 import com.app.community.ui.dialogfragment.OrderFeedbackDialogFragment;
-import com.app.community.ui.activity.ZoomAnimationImageActivity;
 import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
@@ -42,7 +42,7 @@ import static android.content.ContentValues.TAG;
 import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 public class MerchantDetailsFragment extends DashboardFragment implements OrderFeedbackDialogFragment.OrderDialogListener,ImageAdapter.ImageListener {
 
-    private FragmentProductDetailBinding mBinding;
+    private FragmentMerchantDetailBinding mBinding;
     private ImageAdapter mImageAdapter;
     private ReviewAdapter mReviewAdapter;
     private ArrayList<ReviewResponse> reviewList;
@@ -55,7 +55,7 @@ public class MerchantDetailsFragment extends DashboardFragment implements OrderF
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_product_detail, container, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_merchant_detail, container, false);
         initializeView();
         return mBinding.getRoot();
     }

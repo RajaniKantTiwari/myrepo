@@ -540,5 +540,14 @@ public class CommonUtils {
         }
 
     }
+    public static boolean checkValidEmail(String email){
+        return AppConstants.EMAIL_PATTERN.matcher(email).matches();
+    }
+    public static boolean checkValidName(String name){
+        return AppConstants.USERNAME_PATTERN.matcher(name).matches();
+    }
+    public static boolean checkValidPassword(String password){
+        return AppConstants.PASSWORD_PATTERN.matcher(password).matches();
+    }
 
 }

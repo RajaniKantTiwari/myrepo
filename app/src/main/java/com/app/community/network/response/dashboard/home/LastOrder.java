@@ -10,6 +10,7 @@ import android.os.Parcelable;
  */
 
 public class LastOrder implements Parcelable,Observable{
+    private int id;
     private String productname;
     private String icon;
     private String measure;
@@ -17,6 +18,7 @@ public class LastOrder implements Parcelable,Observable{
     PropertyChangeRegistry registry=new PropertyChangeRegistry();
 
     protected LastOrder(Parcel in) {
+        id=in.readInt();
         productname = in.readString();
         icon = in.readString();
         measure = in.readString();
@@ -34,6 +36,14 @@ public class LastOrder implements Parcelable,Observable{
             return new LastOrder[size];
         }
     };
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getProductname() {
         return productname;
@@ -74,6 +84,7 @@ public class LastOrder implements Parcelable,Observable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
         dest.writeString(productname);
         dest.writeString(icon);
         dest.writeString(measure);

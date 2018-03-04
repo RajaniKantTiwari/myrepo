@@ -34,8 +34,9 @@ public class LiveOrderAdapter extends RecyclerView.Adapter<LiveOrderAdapter.Live
         void feedBackClicked(int position);
     }
 
-    public LiveOrderAdapter(AppCompatActivity activity) {
+    public LiveOrderAdapter(AppCompatActivity activity,ArrayList<Order> orderList) {
         mInflater = LayoutInflater.from(activity);
+        this.orderList=orderList;
     }
 
     @Override
@@ -52,11 +53,6 @@ public class LiveOrderAdapter extends RecyclerView.Adapter<LiveOrderAdapter.Live
     @Override
     public int getItemCount() {
         return CommonUtils.isNotNull(orderList) ? orderList.size() : 0;
-    }
-
-    public void setList(ArrayList<Order> orderList) {
-        this.orderList = orderList;
-        notifyDataSetChanged();
     }
 
     class LiveOrderHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

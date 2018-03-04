@@ -3,6 +3,7 @@ package com.app.community.network;
 
 
 import com.app.community.network.request.DeviceTokenRequest;
+import com.app.community.network.request.Feedback;
 import com.app.community.network.request.LoginRequest;
 import com.app.community.network.request.UpdateLocation;
 import com.app.community.network.request.VerifyMobileRequest;
@@ -100,4 +101,8 @@ public interface ApiService {
 
     @POST("register/profilepic")
     Observable<BaseResponse> profilePic(@Body ProfilePic request);
+
+    @POST("customer/getfeedback")
+    Observable<BaseResponse> giveFeedback(@Body Feedback request);
+
 }
