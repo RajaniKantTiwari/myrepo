@@ -78,7 +78,7 @@ public class HelpsAndSupportActivity extends CommonActivity implements HelpSuppo
     }
 
     @Override
-    public void submit(String submit) {
+    public void submit(int id, float rating, String submit) {
 
     }
 }

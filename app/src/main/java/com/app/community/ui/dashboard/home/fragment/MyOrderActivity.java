@@ -67,6 +67,9 @@ public class MyOrderActivity extends CommonActivity {
         getActivityComponent().inject(this);
         presenter.attachView(this);
     }
+   public  CommonPresenter getPresenter(){
+        return presenter;
+   }
 
     @Override
     public void onClick(View view) {

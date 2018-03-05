@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.app.community.network.DefaultApiObserver;
 import com.app.community.network.Repository;
+import com.app.community.network.request.Feedback;
 import com.app.community.network.request.LoginRequest;
 import com.app.community.network.request.UpdateLocation;
 import com.app.community.network.request.VerifyMobileRequest;
@@ -156,10 +157,28 @@ public class CommonPresenter implements Presenter<MvpView> {
 
 
     public void getMyOrder(MyOrderActivity activity) {
-        mView.showProgress();
+        activity.showProgress();
         mRepository.getMyOrder().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<MyOrderData>(activity) {
             @Override
             public void onResponse(MyOrderData response) {
+                activity.hideProgress();
+                activity.onSuccess(response, 1);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                activity.hideProgress();
+                activity.onError(baseResponse.getMsg(), 1);
+            }
+        });
+    }
+
+
+    public void submitFeedBack(Activity activity,Feedback feedback) {
+        mView.showProgress();
+        mRepository.submitFeedBack(feedback).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+            @Override
+            public void onResponse(BaseResponse response) {
                 mView.hideProgress();
                 mView.onSuccess(response, 1);
             }
@@ -171,6 +190,4 @@ public class CommonPresenter implements Presenter<MvpView> {
             }
         });
     }
-
-
 }

@@ -85,6 +85,7 @@ public interface GeneralConstant {
     int NOTI_HEIGHT = 142;
     String STORE_NAME = "store_name";
     String ID = "id";
+    int FEEDBACK=1981;
 
 
     @IntDef({MERCHANT_MAP_FRAGMENT, MERCHANT_LIST_FRAGMENT, RECENT_FRAGMENT, CATEGORY_FRAGMENT,

@@ -103,6 +103,5 @@ public interface ApiService {
     Observable<BaseResponse> profilePic(@Body ProfilePic request);
 
     @POST("customer/getfeedback")
-    Observable<BaseResponse> giveFeedback(@Body Feedback request);
-
+    Observable<BaseResponse> submitFeedBack(@Body Feedback request);
 }

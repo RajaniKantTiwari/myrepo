@@ -208,7 +208,7 @@ public class MerchantDetailsFragment extends DashboardFragment implements OrderF
     }
 
     @Override
-    public void submit(String submit) {
+    public void submit(int id, float rating, String submit) {
         getDashboardActivity().showToast("" + submit);
     }
 

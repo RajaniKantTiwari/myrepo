@@ -72,7 +72,7 @@ public class AboutUsActivity extends CommonActivity implements HelpSupportAdapte
     }
 
     @Override
-    public void submit(String submit) {
+    public void submit(int id, float rating, String submit) {
 
     }
 }

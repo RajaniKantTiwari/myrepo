@@ -33,14 +33,13 @@
                     android:layout_gravity="center"
                     android:gravity="center_horizontal"
                     android:padding="@dimen/margin_4"
-                    android:text="Mother Diary" />
+                    />
 
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvAddress"
                     style="@style/textview_title_match"
                     android:layout_gravity="center"
                     android:gravity="center_horizontal"
-                    android:text="jhsdjjhds"
                     android:textColor="@color/color_black"
                     app:customFont="@string/font_regular" />
 

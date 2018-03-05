@@ -1,6 +1,7 @@
 package com.app.community.network;
 
 import com.app.community.network.request.DeviceTokenRequest;
+import com.app.community.network.request.Feedback;
 import com.app.community.network.request.LoginRequest;
 import com.app.community.network.request.UpdateLocation;
 import com.app.community.network.request.VerifyMobileRequest;
@@ -27,6 +28,7 @@ import com.app.community.network.response.dashboard.home.ReviewResponseData;
 import com.app.community.network.response.dashboard.home.SearchResponseData;
 import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
 
+import io.reactivex.Completable;
 import io.reactivex.Observable;
 
 
@@ -77,4 +79,6 @@ public interface Repository {
     Observable<MyOrderData> getMyOrder();
 
     Observable<BaseResponse> updateProfilePic(ProfilePic profilePicRequest);
+
+    Observable<BaseResponse> submitFeedBack(Feedback feedback);
 }

@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 
 import com.app.community.R;
 import com.app.community.databinding.DialogFeedbackBinding;
-import com.app.community.network.response.dashboard.home.MerchantResponse;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 
@@ -19,10 +18,11 @@ public class OrderFeedbackDialogFragment extends DialogFragment implements View.
     private Dialog dialog;
     private DialogFeedbackBinding mBinding;
     private OrderDialogListener listener;
-    private MerchantResponse productInfo;
+    private int id;
+    private int storeName;
 
     public interface OrderDialogListener {
-        void submit(String submit);
+        void submit(int id, float rating, String feedback);
     }
     public void addListener(OrderDialogListener listener) {
         this.listener = listener;
@@ -48,10 +48,9 @@ public class OrderFeedbackDialogFragment extends DialogFragment implements View.
     private void initializeData() {
         Bundle bundle = getArguments();
         if (CommonUtils.isNotNull(bundle)) {
-         productInfo=bundle.getParcelable(GeneralConstant.PRODUCT_INFO);
-         if(CommonUtils.isNotNull(productInfo)){
-             mBinding.tvName.setText(productInfo.getName());
-         }
+            id=bundle.getInt(GeneralConstant.ID);
+            storeName=bundle.getInt(GeneralConstant.STORE_NAME);
+            mBinding.tvName.setText(storeName);
         }
     }
 
@@ -64,9 +63,7 @@ public class OrderFeedbackDialogFragment extends DialogFragment implements View.
         if (view == mBinding.tvSubmit) {
             dialog.cancel();
             if(CommonUtils.isNotNull(listener)){
-                listener.submit(mBinding.edFeedBack.getText().toString());
-                Log.e("GetRating",""+mBinding.ratingBar.getRating());
-
+                listener.submit(id,mBinding.ratingBar.getRating(),mBinding.edFeedBack.getText().toString());
             }
         }
     }

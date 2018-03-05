@@ -26,7 +26,9 @@ import com.app.community.databinding.LayoutNewsBinding;
 import com.app.community.databinding.LayoutOfferBinding;
 import com.app.community.databinding.LayoutWelcomeSearchBinding;
 import com.app.community.event.RightDrawerEvent;
+import com.app.community.network.request.Feedback;
 import com.app.community.network.response.BaseResponse;
+import com.app.community.network.response.Order;
 import com.app.community.network.response.dashboard.home.Banner;
 import com.app.community.network.response.dashboard.home.Emergency;
 import com.app.community.network.response.dashboard.home.LastOrder;
@@ -246,6 +248,10 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
             CommonUtils.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, true);
             WelcomeHomeData welcomeHomeData = (WelcomeHomeData) response;
             setResponseData(welcomeHomeData);
+        } else if(requestCode==GeneralConstant.FEEDBACK){
+            if(CommonUtils.isNotNull(response)){
+                getDashboardActivity().showToast(response.getMsg());
+            }
         } else {
             CommonUtils.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, false);
         }
@@ -400,8 +406,12 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
     }
 
     @Override
-    public void submit(String submit) {
-        getDashboardActivity().showToast("" + submit);
+    public void submit(int id, float rating, String feedbackStr) {
+        Feedback feedback=new Feedback();
+        feedback.setId(id);
+        feedback.setRating(String.valueOf(rating));
+        feedback.setComments(feedbackStr);
+        getPresenter().submitFeedBack(getDashboardActivity(),feedback);
     }
 
     @Override

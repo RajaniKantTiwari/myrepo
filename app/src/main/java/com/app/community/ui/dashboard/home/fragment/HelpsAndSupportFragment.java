@@ -89,7 +89,7 @@ public class HelpsAndSupportFragment extends DashboardFragment implements HelpSu
     }
 
     @Override
-    public void submit(String submit) {
+    public void submit(int id, float rating, String submit) {
 
     }
 }

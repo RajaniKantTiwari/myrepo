@@ -1,6 +1,7 @@
 package com.app.community.network;
 
 import com.app.community.network.request.DeviceTokenRequest;
+import com.app.community.network.request.Feedback;
 import com.app.community.network.request.LoginRequest;
 import com.app.community.network.request.UpdateLocation;
 import com.app.community.network.request.VerifyMobileRequest;
@@ -147,5 +148,10 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<BaseResponse> updateProfilePic(ProfilePic profilePicRequest) {
         return apiService.profilePic(profilePicRequest);
+    }
+
+    @Override
+    public Observable<BaseResponse> submitFeedBack(Feedback feedback) {
+        return apiService.submitFeedBack(feedback);
     }
 }
