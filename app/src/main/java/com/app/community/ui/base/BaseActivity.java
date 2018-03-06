@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
@@ -62,13 +63,14 @@ import static com.app.community.utils.GeneralConstant.FRAGMENTS.SUBSCRIPTION_DET
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.SUBSCRIPTION_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.USER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.WELCOME_HOME_FRAGMENT;
+
 /**
  * Created by ashok on 01/11/17.
  */
 /*
 Parent Activity to give functionality to all Activity
 */
-public abstract class BaseActivity extends AppCompatActivity implements MvpView,View.OnClickListener {
+public abstract class BaseActivity extends AppCompatActivity implements MvpView, View.OnClickListener {
     //private ActivityComponent mActivityComponent;
     private static String TAG = BaseActivity.class.getSimpleName();
     private Snackbar mSnackbar;
@@ -365,5 +367,14 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
         int ZOOM = 4;
     }
 
+    @Override
+    public void onBackPressed() {
+        FragmentManager fm = getSupportFragmentManager();
+        Log.e("Count", "" + fm.getBackStackEntryCount());
+        if (fm.getBackStackEntryCount() == 1) {
+            finish();
+        }
+        super.onBackPressed();
+    }
 
 }

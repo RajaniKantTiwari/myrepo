@@ -76,12 +76,12 @@
                                     android:elevation="@dimen/margin_8"/>
 
                                 <com.app.community.widget.CustomTextView
+                                    android:id="@+id/tvDistance"
                                     style="@style/textview_description_wrap"
                                     android:layout_marginStart="@dimen/margin_5"
                                     android:drawablePadding="@dimen/margin_5"
                                     android:drawableStart="@drawable/location_pin"
                                     android:gravity="center_vertical"
-                                    android:text="@{CommonUtils.twoDecimalPlaceString(merchantResponse.distance)+@string/km}"
                                     android:textColor="@color/white"
                                     app:customFont="@string/font_bold" />
                             </LinearLayout>

@@ -159,6 +159,10 @@ public class MerchantDetailsFragment extends DashboardFragment implements OrderF
                         CommonUtils.setVisibility(mBinding.layoutMain,mBinding.layoutNoData.layoutNoData,true);
                         if (CommonUtils.isNotNull(merchantResponse)) {
                             mBinding.setMerchantResponse(merchantResponse);
+                            if(CommonUtils.twoDecimalPlaceString(merchantResponse.getDistance())!=null){
+                                mBinding.tvDistance.setText(CommonUtils.twoDecimalPlaceString(merchantResponse.getDistance())
+                                        +" "+getResources().getString(R.string.km));
+                            }
                             setImage(merchantResponse);
                         }else{
                             CommonUtils.setVisibility(mBinding.layoutMain,mBinding.layoutNoData.layoutNoData,false);

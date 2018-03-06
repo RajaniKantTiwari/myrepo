@@ -282,6 +282,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         token.setDeviceType(GeneralConstant.DEVICETYPE);
         request.setInfo(token);
         mPresenter.setDeviceToken(this, request);
+        clearAllBackStack();
         pushFragment(new WelcomeHomeFragment(), null, R.id.container, true, false, NONE);
     }
 
