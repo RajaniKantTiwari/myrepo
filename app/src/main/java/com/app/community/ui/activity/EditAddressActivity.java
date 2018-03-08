@@ -102,11 +102,12 @@ public class EditAddressActivity extends CommonActivity implements MvpView, View
         if (view == mBinding.layoutHeader.ivBack) {
             finish();
         } else if (view == mBinding.layoutHeader.textView) {
+            CommonUtils.clicked(mBinding.layoutHeader.textView);
                 for (int i = 0; i < editList.size(); i++) {
                     if (CommonUtils.isNotNull(editList.get(i)) && editList.get(i).isSelected()) {
                         isAddressSelected=true;
                         UpdateAddress updateAddress=new UpdateAddress();
-                        updateAddress.setAddress(mBinding.edNewAddress.getText().toString());
+                        updateAddress.setAddress(editList.get(i).getAddress());
                         EventBus.getDefault().post(updateAddress);
                     }
                 }
@@ -116,6 +117,7 @@ public class EditAddressActivity extends CommonActivity implements MvpView, View
                 updateAddress.setAddress(mBinding.edNewAddress.getText().toString());
                 EventBus.getDefault().post(updateAddress);
             }
+            finish();
         }
     }
 

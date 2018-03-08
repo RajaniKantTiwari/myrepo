@@ -72,7 +72,7 @@ public class UpdateProfileFragment extends DashboardFragment implements MvpView,
     public void setListener() {
         mBinding.ivProfile.setOnClickListener(this);
         mBinding.imgEditPic.setOnClickListener(this);
-        mBinding.tvUpdate.setOnClickListener(this);
+        //mBinding.tvUpdate.setOnClickListener(this);
     }
 
     @Override
@@ -115,12 +115,12 @@ public class UpdateProfileFragment extends DashboardFragment implements MvpView,
     public void onClick(View view) {
         if (mBinding.ivProfile == view || mBinding.imgEditPic == view) {
             showImageChooserDialog();
-        } else if (mBinding.tvUpdate == view) {
+        } /*else if (mBinding.tvUpdate == view) {
             PreferenceUtils.setImage(profilePicFilePath);
             PreferenceUtils.setUserName(mBinding.edName.getText().toString());
             PreferenceUtils.setEmail(mBinding.edEmail.getText().toString());
             updateProfile();
-        }
+        }*/
     }
 
 

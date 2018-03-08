@@ -71,9 +71,9 @@ public class CheckoutFragment extends DashboardFragment implements CouponAdapter
         LinearLayoutManager deliveryManager = new LinearLayoutManager(getBaseActivity());
         mBinding.rvDelivery.setLayoutManager(deliveryManager);
         deliveryManager.setAutoMeasureEnabled(true);
-        LinearLayoutManager couponManager = new LinearLayoutManager(getBaseActivity());
+        /*LinearLayoutManager couponManager = new LinearLayoutManager(getBaseActivity());
         mBinding.rvCouponCode.setLayoutManager(couponManager);
-        couponManager.setAutoMeasureEnabled(true);
+        couponManager.setAutoMeasureEnabled(true);*/
 
     }
 
@@ -91,10 +91,10 @@ public class CheckoutFragment extends DashboardFragment implements CouponAdapter
         deliveryAdapter = new PaymentAdapter(getBaseActivity(), deliveryList);
         mBinding.rvDelivery.setAdapter(deliveryAdapter);
         CommonUtils.setRecyclerViewHeight(mBinding.rvDelivery, deliveryList, GeneralConstant.PAYMENT_HEIGHT);
-        setCoupon();
-        couponAdapter = new CouponAdapter(getBaseActivity(), couponList, this);
+        //setCoupon();
+        /*couponAdapter = new CouponAdapter(getBaseActivity(), couponList, this);
         mBinding.rvCouponCode.setAdapter(couponAdapter);
-        CommonUtils.setRecyclerViewHeight(mBinding.rvCouponCode, couponList, GeneralConstant.COUPON_HEIGHT);
+        CommonUtils.setRecyclerViewHeight(mBinding.rvCouponCode, couponList, GeneralConstant.COUPON_HEIGHT);*/
         mBinding.tvAddress.setText(PreferenceUtils.getAddress());
     }
 

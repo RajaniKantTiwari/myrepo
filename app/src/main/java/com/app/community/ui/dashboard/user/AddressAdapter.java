@@ -68,8 +68,8 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
 
         @Override
         public void onClick(View view) {
-            listener.onDeleteClick(getAdapterPosition());
-            listener.onAddressClick(getAdapterPosition());
+            //listener.onDeleteClick(getAdapterPosition());
+            //listener.onAddressClick(getAdapterPosition());
 
         }
     }

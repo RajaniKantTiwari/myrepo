@@ -14,12 +14,14 @@
             android:layout_toStartOf="@+id/tvApply"
             android:layout_marginEnd="@dimen/margin_5"
             android:maxLines="1"
+            android:text="Locasto Fashion Store"
             style="@style/textview_description_large_match"/>
         <com.app.community.widget.CustomTextView
             android:id="@+id/tvAddress"
             android:layout_below="@+id/tvStoreName"
             android:layout_toStartOf="@+id/tvApply"
             android:maxLines="2"
+            android:text="sector 49 gurgaon"
             android:layout_marginEnd="@dimen/margin_5"
             style="@style/textview_description_small_match" />
         <com.app.community.widget.CustomTextView
@@ -27,6 +29,8 @@
             android:maxLines="1"
             android:layout_below="@+id/tvAddress"
             android:layout_marginEnd="@dimen/margin_5"
+            android:text="terms and condition"
+            android:textColor="@color/old_noti"
             android:layout_toStartOf="@+id/tvApply"
             style="@style/textview_description_match" />
         <com.app.community.widget.CustomTextView

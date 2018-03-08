@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.app.community.R;
 import com.app.community.databinding.FragmentOfferDetailsBinding;
+import com.app.community.databinding.FragmentOfferPromoBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.base.BaseFragment;
 import com.app.community.ui.dashboard.offer.adapter.OfferDetailsAdapter;
@@ -21,7 +22,7 @@ import com.app.community.ui.dashboard.offer.adapter.PromoOfferAdapter;
  */
 
 public class OffersPromoFragment extends BaseFragment implements PromoOfferAdapter.PromoListener {
-    private FragmentOfferDetailsBinding mBinding;
+    private FragmentOfferPromoBinding mBinding;
     private PromoOfferAdapter mOfferAdapter;
 
     @Nullable
@@ -34,8 +35,8 @@ public class OffersPromoFragment extends BaseFragment implements PromoOfferAdapt
     private void initializeAdapter() {
         mOfferAdapter = new PromoOfferAdapter(getBaseActivity(),this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getBaseActivity());
-        mBinding.rvOffer.setLayoutManager(layoutManager);
-        mBinding.rvOffer.setAdapter(mOfferAdapter);
+        mBinding.rvPromo.setLayoutManager(layoutManager);
+        mBinding.rvPromo.setAdapter(mOfferAdapter);
     }
     @Override
     public void initializeData() {
@@ -44,7 +45,7 @@ public class OffersPromoFragment extends BaseFragment implements PromoOfferAdapt
 
     @Override
     public void setListener() {
-
+     mBinding.tvApply.setOnClickListener(this);
     }
 
     @Override
@@ -58,8 +59,10 @@ public class OffersPromoFragment extends BaseFragment implements PromoOfferAdapt
     }
 
     @Override
-    public void onClick(View v) {
-
+    public void onClick(View view) {
+       if(view==mBinding.tvApply){
+          getBaseActivity().onBackPressed();
+       }
     }
 
 
@@ -74,6 +77,6 @@ public class OffersPromoFragment extends BaseFragment implements PromoOfferAdapt
 
     @Override
     public void onApplyClick(int position) {
-
+        getBaseActivity().onBackPressed();
     }
 }

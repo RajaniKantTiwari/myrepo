@@ -240,7 +240,7 @@
     <string name="thank_you"> Thank You </string>
     <string name="add_coupon"> Add Coupon? </string>
     <string name="your_message"> Your Message </string>
-    <string name="empty_cart"> Your Cart is Empty </string>
+    <string name="empty_cart"> Your Cart is Empty!</string>
     <string name="record_not_found"> No Record Found </string>
     <string name="item_added_to_cart"> Item Added to Cart </string>
     <string name="item_removed_from_cart"> Removed from Cart </string>
@@ -471,7 +471,7 @@
     <string name="update_profile">Update Profile</string>
     <string name="please_add_data_in_cart_first">Cart is empty</string>
     <string name="service_is_anavailable_for_this_area">Service is unavailable in your area</string>
-    <string name="if_you_change_merchant_all_previous">If You Change Merchnt Your Previous Data Will Be Lost</string>
+    <string name="if_you_change_merchant_all_previous">If You Change Merchant Your Previous Cart Items will be lost!</string>
     <string name="shipping_charge">Shipping Charge</string>
     <string name="total_amount">Total Amount</string>
     <string name="politics">Politics</string>
@@ -497,6 +497,7 @@
     <string name="add_more_address">+ Add More Address</string>
     <string name="please_enter_valid_name">Please Enter Valid Name</string>
     <string name="please_enter_valid_mobile_number">Please Enter Valid Mobile Number</string>
+    <string name="tap_once_more_to_exit">Tap once more to exit</string>
 
 
     <string-array name="state_array">

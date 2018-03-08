@@ -3,6 +3,7 @@ package com.app.community.ui.base;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.IntDef;
 import android.support.annotation.LayoutRes;
 import android.support.design.widget.Snackbar;
@@ -76,6 +77,7 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
     private Snackbar mSnackbar;
     private boolean mAlive;
     private Dialog mLoadingDialog;
+    private int count;
 
     //to attach View
     public abstract void attachView();
@@ -372,9 +374,21 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
         FragmentManager fm = getSupportFragmentManager();
         Log.e("Count", "" + fm.getBackStackEntryCount());
         if (fm.getBackStackEntryCount() == 1) {
-            finish();
+            if(count==1){
+                finish();
+            }else{
+                count=1;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        count=0;
+                    }
+                },1500);
+                showToast(getResources().getString(R.string.tap_once_more_to_exit));
+            }
+        }else{
+            super.onBackPressed();
         }
-        super.onBackPressed();
     }
 
 }

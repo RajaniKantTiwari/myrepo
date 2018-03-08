@@ -111,6 +111,7 @@ dependencies {
     compile "com.google.firebase:firebase-crash:${project.playServiceVersion}"
     compile "com.google.firebase:firebase-messaging:${project.playServiceVersion}"
     compile "com.google.firebase:firebase-auth:${project.playServiceVersion}"
+    compile 'com.firebase:firebase-client-android:2.5.2+'
 //end
 
     //google play service

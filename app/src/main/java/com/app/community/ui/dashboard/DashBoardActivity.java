@@ -1,5 +1,6 @@
 package com.app.community.ui.dashboard;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -609,5 +610,12 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
     @Override
     public void cancel() {
 
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+            fragment.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }
