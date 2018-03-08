@@ -44,7 +44,7 @@ public class UsersActivity extends AppCompatActivity implements UserAdapter.User
     private void initializeUserView() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mBinding.rvUsersList.setLayoutManager(layoutManager);
-        mAdapter = new UserAdapter(this, this);
+        mAdapter = new UserAdapter(this,userList, this);
 
     }
 
@@ -107,9 +107,8 @@ public class UsersActivity extends AppCompatActivity implements UserAdapter.User
         } else {
             mBinding.layoutNoData.layoutNoData.setVisibility(View.GONE);
             mBinding.rvUsersList.setVisibility(View.VISIBLE);
-            mAdapter.notifyDataSetChanged();
         }
-
+        mAdapter.notifyDataSetChanged();
         progressDialog.dismiss();
     }
 

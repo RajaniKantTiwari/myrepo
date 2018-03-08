@@ -55,6 +55,7 @@
                 android:id="@+id/edMobileNumber"
                 style="@style/edit_text_style_medium"
                 android:layout_marginTop="@dimen/margin_10"
+                android:maxLength="@integer/mono_length"
                 android:paddingBottom="@dimen/margin_5"
                 android:paddingTop="@dimen/margin_5"
                 android:singleLine="true"

@@ -10,6 +10,9 @@ import android.widget.ImageView;
 
 import com.app.community.R;
 import com.app.community.databinding.UserItemRowBinding;
+import com.app.community.utils.CommonUtils;
+
+import java.util.ArrayList;
 
 
 /**
@@ -19,13 +22,15 @@ import com.app.community.databinding.UserItemRowBinding;
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
     private final LayoutInflater mInflater;
     private final AppCompatActivity activity;
+    private final ArrayList<String> userList;
     private UsersListener listener;
     public interface UsersListener {
         void onUsersClick(int position);
     }
-    public UserAdapter(AppCompatActivity activity, UsersListener listener) {
+    public UserAdapter(AppCompatActivity activity, ArrayList<String> userList, UsersListener listener) {
         mInflater = LayoutInflater.from(activity);
         this.activity = activity;
+        this.userList=userList;
         this.listener=listener;
     }
 
@@ -43,7 +48,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     @Override
     public int getItemCount() {
-        return 10;
+        return CommonUtils.isNotNull(userList)?userList.size():0;
     }
 
     class UserViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

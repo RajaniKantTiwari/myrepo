@@ -13,7 +13,7 @@ import static com.app.community.utils.AppConstants.FRAGMENTS.CHECKOUT_FRAGMENT;
  */
 
 public interface AppConstants {
-    String FIREBASE_BASE_URL = "https://hamaradost-196011.firebaseio.com/\n";
+    String FIREBASE_BASE_URL = "https://hamaradost-196011.firebaseio.com/";
     String FIREBASE_USER = "/users.json";
     String FIREBASE_MESSAGE = "/messages/";
 
