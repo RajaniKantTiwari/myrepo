@@ -8,7 +8,7 @@
         android:gravity="center">
 
         <com.app.community.widget.CustomTextView
-            android:id="@+id/tvSubProductName"
+            android:id="@+id/tvNoData"
             style="@style/textview_title_wrap"
             android:text="@string/no_data_found"
             android:textColor="@color/dashboardTitleColor"/>

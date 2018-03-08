@@ -498,6 +498,7 @@
     <string name="please_enter_valid_name">Please Enter Valid Name</string>
     <string name="please_enter_valid_mobile_number">Please Enter Valid Mobile Number</string>
     <string name="tap_once_more_to_exit">Tap once more to exit</string>
+    <string name="no_user_found">No Users Found</string>
 
 
     <string-array name="state_array">

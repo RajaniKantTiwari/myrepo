@@ -39,6 +39,7 @@ import com.app.community.ui.activity.AboutUsActivity;
 import com.app.community.ui.activity.HelpsAndSupportActivity;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.cart.ProductSubproductFragment;
+import com.app.community.ui.chat.UsersActivity;
 import com.app.community.ui.dashboard.expandrecycleview.draweradapter.DrawerAdapterRight;
 import com.app.community.ui.dashboard.home.SearchActivity;
 import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
@@ -117,7 +118,9 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                 openFragment(new NotificationFragment(), null, false, false, NONE);
                 break;
             case AppConstants.ABOUTUS:
-                ExplicitIntent.getsInstance().navigateTo(this, AboutUsActivity.class);
+                ExplicitIntent.getsInstance().navigateTo(this, UsersActivity.class);
+
+                //ExplicitIntent.getsInstance().navigateTo(this, AboutUsActivity.class);
                 break;
             case AppConstants.HELPSUPPORT:
                 ExplicitIntent.getsInstance().navigateTo(this, HelpsAndSupportActivity.class);
@@ -246,14 +249,14 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                     CommonUtils.setVisibility(mBinding.layoutDrawerRight.layoutMain,
                             mBinding.layoutDrawerRight.layoutNoData.layoutNoData, false);
                     mBinding.layoutDrawerRight.layoutNoData.layoutNoData.setBackgroundColor(CommonUtils.getColor(this, R.color.dark_black_color));
-                    mBinding.layoutDrawerRight.layoutNoData.tvSubProductName.setText(getResources().getString(R.string.service_is_anavailable_for_this_area));
+                    mBinding.layoutDrawerRight.layoutNoData.tvNoData.setText(getResources().getString(R.string.service_is_anavailable_for_this_area));
                 }
 
             } else {
                 CommonUtils.setVisibility(mBinding.layoutDrawerRight.layoutMain,
                         mBinding.layoutDrawerRight.layoutNoData.layoutNoData, false);
                 mBinding.layoutDrawerRight.layoutNoData.layoutNoData.setBackgroundColor(CommonUtils.getColor(this, R.color.dark_black_color));
-                mBinding.layoutDrawerRight.layoutNoData.tvSubProductName.setText(getResources().getString(R.string.service_is_anavailable_for_this_area));
+                mBinding.layoutDrawerRight.layoutNoData.tvNoData.setText(getResources().getString(R.string.service_is_anavailable_for_this_area));
             }
         } else if (requestCode == AppConstants.DEVICE_TOKEN_RESPONSE) {
             LogUtils.LOGE(TAG, response.getMsg());

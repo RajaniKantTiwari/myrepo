@@ -13,6 +13,9 @@ import static com.app.community.utils.AppConstants.FRAGMENTS.CHECKOUT_FRAGMENT;
  */
 
 public interface AppConstants {
+    String FIREBASE_BASE_URL = "https://hamaradost-196011.firebaseio.com/\n";
+    String FIREBASE_USER = "/users.json";
+    String FIREBASE_MESSAGE = "/messages/";
 
     Pattern EMAIL_PATTERN = Pattern
             .compile("[a-zA-Z0-9+._%-+]{1,100}" + "@"
@@ -21,7 +24,7 @@ public interface AppConstants {
                     ")+");
 
     Pattern USERNAME_PATTERN = Pattern
-            .compile("[a-zA-Z0-9]{1,250}");
+            .compile("[a-zA-Z0-9 ]{1,250}");
     Pattern NAME_PATTERN = Pattern
             .compile("[a-zA-Z0-9]{1,250}");
     Pattern LAST_NAME_PATTERN = Pattern

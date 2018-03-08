@@ -130,6 +130,8 @@ dependencies {
     //end
     compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
     compile 'org.greenrobot:eventbus:3.1.1'
+    compile 'com.android.volley:volley:1.0.0'
+
     //to get exact location
     compile 'io.nlopez.smartlocation:library:3.3.3'
     compile 'com.roughike:bottom-bar:2.3.1'
