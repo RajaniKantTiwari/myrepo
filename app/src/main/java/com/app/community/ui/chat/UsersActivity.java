@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
-import android.widget.ArrayAdapter;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -17,7 +16,14 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.app.community.R;
 import com.app.community.databinding.ActivityUsersBinding;
+import com.app.community.network.request.UsersData;
+import com.app.community.network.response.BaseResponse;
+import com.app.community.ui.base.BaseActivity;
 import com.app.community.utils.AppConstants;
+import com.app.community.utils.CommonUtils;
+import com.app.community.utils.ExplicitIntent;
+import com.app.community.utils.GeneralConstant;
+import com.app.community.utils.PreferenceUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,12 +31,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class UsersActivity extends AppCompatActivity implements UserAdapter.UsersListener {
+public class UsersActivity extends BaseActivity implements UserAdapter.UsersListener {
 
     private ActivityUsersBinding mBinding;
-    ArrayList<String> userList = new ArrayList<>();
+    ArrayList<UsersData> userList = new ArrayList<>();
     int totalUsers = 0;
-    ProgressDialog progressDialog;
     private UserAdapter mAdapter;
 
     @Override
@@ -38,21 +43,27 @@ public class UsersActivity extends AppCompatActivity implements UserAdapter.User
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_users);
         initializeUserView();
+        setListener();
         callApi();
     }
 
+    private void setListener() {
+        mBinding.layoutHeader.ivBack.setOnClickListener(this);
+    }
+
     private void initializeUserView() {
+        mBinding.layoutHeader.tvHeader.setVisibility(View.VISIBLE);
+        mBinding.layoutHeader.tvHeader.setText(getResources().getString(R.string.user));
+        mBinding.layoutHeader.headerLayout.setBackgroundColor(CommonUtils.getColor(this, R.color.dark_black));
+        mBinding.layoutHeader.ivBack.setImageResource(R.drawable.ic_back_white);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mBinding.rvUsersList.setLayoutManager(layoutManager);
-        mAdapter = new UserAdapter(this,userList, this);
-
+        mAdapter = new UserAdapter(this, userList, this);
+        mBinding.rvUsersList.setAdapter(mAdapter);
     }
 
     private void callApi() {
-        progressDialog = new ProgressDialog(UsersActivity.this);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
-
+        showProgress();
         String url = AppConstants.FIREBASE_BASE_URL + AppConstants.FIREBASE_USER;
 
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -69,14 +80,6 @@ public class UsersActivity extends AppCompatActivity implements UserAdapter.User
 
         RequestQueue rQueue = Volley.newRequestQueue(UsersActivity.this);
         rQueue.add(request);
-
-       /* usersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                UserDetails.chatWith = userList.get(position);
-                startActivity(new Intent(UsersActivity.this, ChatActivity.class));
-            }
-        });*/
     }
 
     public void doOnSuccess(String userJson) {
@@ -85,12 +88,18 @@ public class UsersActivity extends AppCompatActivity implements UserAdapter.User
             JSONObject obj = new JSONObject(userJson);
             Iterator i = obj.keys();
             String key = "";
-
+            String userName = "";
             while (i.hasNext()) {
                 key = i.next().toString();
-
-                if (!key.equals(UserDetails.username)) {
-                    userList.add(key);
+                JSONObject object = obj.getJSONObject(key);
+                if (CommonUtils.isNotNull(object)) {
+                    userName = object.getString("password");
+                }
+                if (!key.equals(PreferenceUtils.getUserMono())) {
+                    UsersData usersData = new UsersData();
+                    usersData.setMobileNumber(key);
+                    usersData.setUserName(userName);
+                    userList.add(usersData);
                 }
 
                 totalUsers++;
@@ -109,12 +118,31 @@ public class UsersActivity extends AppCompatActivity implements UserAdapter.User
             mBinding.rvUsersList.setVisibility(View.VISIBLE);
         }
         mAdapter.notifyDataSetChanged();
-        progressDialog.dismiss();
+        hideProgress();
     }
 
     @Override
     public void onUsersClick(int position) {
-        UserDetails.chatWith = userList.get(position);
-        startActivity(new Intent(UsersActivity.this, ChatActivity.class));
+        Bundle bundle = new Bundle();
+        bundle.putString(GeneralConstant.CHAT_WITH, userList.get(position).getMobileNumber());
+        bundle.putString(GeneralConstant.CHAT_USER_NAME, userList.get(position).getUserName());
+        ExplicitIntent.getsInstance().navigateTo(this, ChatActivity.class, bundle);
+    }
+
+    @Override
+    public void attachView() {
+
+    }
+
+    @Override
+    public void onClick(View view) {
+       if(view==mBinding.layoutHeader.ivBack){
+           finish();
+       }
+    }
+
+    @Override
+    public void onSuccess(BaseResponse response, int requestCode) {
+
     }
 }

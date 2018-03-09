@@ -10,7 +10,9 @@ import android.widget.ImageView;
 
 import com.app.community.R;
 import com.app.community.databinding.UserItemRowBinding;
+import com.app.community.network.request.UsersData;
 import com.app.community.utils.CommonUtils;
+import com.app.community.widget.CustomTextView;
 
 import java.util.ArrayList;
 
@@ -22,16 +24,18 @@ import java.util.ArrayList;
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
     private final LayoutInflater mInflater;
     private final AppCompatActivity activity;
-    private final ArrayList<String> userList;
+    private final ArrayList<UsersData> userList;
     private UsersListener listener;
+
     public interface UsersListener {
         void onUsersClick(int position);
     }
-    public UserAdapter(AppCompatActivity activity, ArrayList<String> userList, UsersListener listener) {
+
+    public UserAdapter(AppCompatActivity activity, ArrayList<UsersData> userList, UsersListener listener) {
         mInflater = LayoutInflater.from(activity);
         this.activity = activity;
-        this.userList=userList;
-        this.listener=listener;
+        this.userList = userList;
+        this.listener = listener;
     }
 
     @Override
@@ -42,18 +46,17 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     @Override
     public void onBindViewHolder(UserViewHolder holder, int position) {
-
+        holder.setData(position);
 
     }
 
     @Override
     public int getItemCount() {
-        return CommonUtils.isNotNull(userList)?userList.size():0;
+        return CommonUtils.isNotNull(userList) ? userList.size() : 0;
     }
 
     class UserViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final UserItemRowBinding mBinding;
-        private ImageView productImage;
 
         public UserViewHolder(UserItemRowBinding itemView) {
             super(itemView.getRoot());
@@ -62,10 +65,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         }
 
 
-
         @Override
         public void onClick(View view) {
             listener.onUsersClick(getAdapterPosition());
+        }
+
+        public void setData(int position) {
+            if (CommonUtils.isNotNull(userList) && userList.size() > position) {
+                mBinding.setUser(userList.get(position));
+            }
         }
     }
 }

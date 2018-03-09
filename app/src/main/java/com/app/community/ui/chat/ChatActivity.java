@@ -1,85 +1,84 @@
 package com.app.community.ui.chat;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
 
 import com.app.community.R;
 import com.app.community.databinding.ActivityChatBinding;
+import com.app.community.network.request.ChatMessage;
+import com.app.community.network.response.BaseResponse;
+import com.app.community.ui.base.BaseActivity;
 import com.app.community.utils.AppConstants;
+import com.app.community.utils.CommonUtils;
+import com.app.community.utils.GeneralConstant;
+import com.app.community.utils.PreferenceUtils;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
-public class ChatActivity extends AppCompatActivity {
-    //private ActivityChatBinding mBinding;
-
-    LinearLayout layout;
-    RelativeLayout layout_2;
-    ImageView sendButton;
-    EditText messageArea;
-    ScrollView scrollView;
+public class ChatActivity extends BaseActivity implements View.OnClickListener {
+    private ActivityChatBinding mBinding;
+    private List<ChatMessage> messageList;
     Firebase reference1, reference2;
+    private MessageAdapter mAdapter;
+    private LinearLayoutManager layoutManager;
+    private String otherUserMobileNumber;
+    private String otherUserName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // mBinding = DataBindingUtil.setContentView(this, R.layout.activity_users);
-        setContentView(R.layout.activity_chat);
-
-        layout = (LinearLayout) findViewById(R.id.layout1);
-        layout_2 = (RelativeLayout)findViewById(R.id.layout2);
-        sendButton = (ImageView)findViewById(R.id.sendButton);
-        messageArea = (EditText)findViewById(R.id.messageArea);
-        scrollView = (ScrollView)findViewById(R.id.scrollView);
-
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_chat);
         Firebase.setAndroidContext(this);
-        reference1 = new Firebase(AppConstants.FIREBASE_BASE_URL+"/messages/" + UserDetails.username + "_" + UserDetails.chatWith);
-        reference2 = new Firebase(AppConstants.FIREBASE_BASE_URL+"/messages/" + UserDetails.chatWith + "_" + UserDetails.username);
+        messageList = new ArrayList<>();
+        initializeData();
+        getChat();
+        setListener();
+    }
 
-        sendButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String messageText = messageArea.getText().toString();
+    private void initializeData() {
+        Intent intent = getIntent();
+        if (CommonUtils.isNotNull(intent)) {
+            Bundle bundle = intent.getExtras();
+            if (CommonUtils.isNotNull(bundle)) {
+                otherUserMobileNumber =bundle.getString(GeneralConstant.CHAT_WITH);
+                otherUserName =bundle.getString(GeneralConstant.CHAT_USER_NAME);
 
-                if(!messageText.equals("")){
-                    Map<String, String> map = new HashMap<String, String>();
-                    map.put("message", messageText);
-                    map.put("user", UserDetails.username);
-                    reference1.push().setValue(map);
-                    reference2.push().setValue(map);
-                    messageArea.setText("");
-                }
             }
-        });
+        }
+        mBinding.layoutHeader.tvHeader.setVisibility(View.VISIBLE);
+        mBinding.layoutHeader.tvHeader.setText(otherUserName);
+        mBinding.layoutHeader.headerLayout.setBackgroundColor(CommonUtils.getColor(this, R.color.dark_black));
+        mBinding.layoutHeader.ivBack.setImageResource(R.drawable.ic_back_white);
+        layoutManager = new LinearLayoutManager(this);
+        mBinding.rvChat.setLayoutManager(layoutManager);
+        mAdapter = new MessageAdapter(this, messageList);
+        mBinding.rvChat.setAdapter(mAdapter);
+    }
 
+    private void getChat() {
+        reference1 = new Firebase(AppConstants.FIREBASE_BASE_URL + AppConstants.FIREBASE_MESSAGE + PreferenceUtils.getUserMono() + "_" + otherUserMobileNumber);
+        reference2 = new Firebase(AppConstants.FIREBASE_BASE_URL + AppConstants.FIREBASE_MESSAGE + otherUserMobileNumber + "_" + PreferenceUtils.getUserMono());
+    }
+
+    private void setListener() {
+        mBinding.ivSend.setOnClickListener(this);
+        mBinding.layoutHeader.ivBack.setOnClickListener(this);
         reference1.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Map map = dataSnapshot.getValue(Map.class);
-                String message = map.get("message").toString();
-                String userName = map.get("user").toString();
-
-                if(userName.equals(UserDetails.username)){
-                    addMessageBox("You:-\n" + message, 1);
-                }
-                else{
-                    addMessageBox(UserDetails.chatWith + ":-\n" + message, 2);
-                }
+                addMessageInList(dataSnapshot);
             }
 
             @Override
@@ -104,23 +103,51 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
-    public void addMessageBox(String message, int type){
-        TextView textView = new TextView(ChatActivity.this);
-        textView.setText(message);
-
-        LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        lp2.weight = 1.0f;
-
-        if(type == 1) {
-            lp2.gravity = Gravity.LEFT;
-            textView.setBackgroundResource(R.drawable.bubble_in);
+    private void addMessageInList(DataSnapshot dataSnapshot) {
+        Map map = dataSnapshot.getValue(Map.class);
+        String userName = map.get("user").toString();
+        ChatMessage chatMessage = new ChatMessage();
+        chatMessage.setUserName(userName);
+        chatMessage.setMessage(map.get("message").toString());
+        if (userName.equals(PreferenceUtils.getUserMono())) {
+            chatMessage.setMessageType(AppConstants.VIEW_TYPE_USER_MESSAGE);
+        } else {
+            chatMessage.setMessageType(AppConstants.VIEW_TYPE_OTHERS_MESSAGE);
+            //addMessageBox(UserDetails.chatWith + ":-\n" + message, 2);
         }
-        else{
-            lp2.gravity = Gravity.RIGHT;
-            textView.setBackgroundResource(R.drawable.bubble_out);
+        messageList.add(chatMessage);
+        mAdapter.notifyDataSetChanged();
+        layoutManager.scrollToPosition(messageList.size() - 1);
+
+    }
+    @Override
+    public void onClick(View view) {
+        if (view == mBinding.ivSend) {
+            sendMessage();
+        }else if(view==mBinding.layoutHeader.ivBack){
+            finish();
         }
-        textView.setLayoutParams(lp2);
-        layout.addView(textView);
-        scrollView.fullScroll(View.FOCUS_DOWN);
+    }
+
+    private void sendMessage() {
+        String messageText = mBinding.editWriteMessage.getText().toString();
+        if (!messageText.equals("")) {
+            Map<String, String> map = new HashMap<>();
+            map.put("message", messageText);
+            map.put("user", PreferenceUtils.getUserMono());
+            reference1.push().setValue(map);
+            reference2.push().setValue(map);
+            mBinding.editWriteMessage.setText("");
+        }
+    }
+
+    @Override
+    public void onSuccess(BaseResponse response, int requestCode) {
+
+    }
+
+    @Override
+    public void attachView() {
+
     }
 }

@@ -49,6 +49,7 @@ public class EditAddressActivity extends CommonActivity implements MvpView, View
         mBinding.layoutHeader.tvHeader.setText(getResources().getString(R.string.edit_address));
         mBinding.layoutHeader.textView.setVisibility(View.VISIBLE);
         mBinding.layoutHeader.textView.setText(getResources().getString(R.string.update));
+        mBinding.layoutHeader.headerLayout.setBackgroundColor(CommonUtils.getColor(this, R.color.dark_black));
         setList();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         adapter = new EditAddressAdapter(this, editList, this);

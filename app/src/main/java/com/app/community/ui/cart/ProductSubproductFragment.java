@@ -313,7 +313,7 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
                 mSubCatList.get(0).setSelected(true);
                 mCartList.clear();
                 mCartList.addAll(mSubCatList.get(0).getSubproduct());
-                mBinding.tvTitle.setText(mSubCatList.get(pos).getName());
+                mBinding.tvTitle.setText(mSubCatList.get(0).getName());
                 mSubCategoryAdapter.notifyDataSetChanged();
                 mCategoryAdapter.notifyDataSetChanged();
                 mCartAdapter.notifyDataSetChanged();

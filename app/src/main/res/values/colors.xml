@@ -160,7 +160,6 @@
     <color name="progresscolor">#c0c0c0</color>
 
     <color name="background_tranparent">#55000000</color>
-
-
-
+    <color name="grey_200">#EEEEEE</color>
+    <color name="hint_color_text">#aeafaf</color>
 </resources>

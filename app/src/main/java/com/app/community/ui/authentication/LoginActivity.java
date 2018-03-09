@@ -1,7 +1,5 @@
 package com.app.community.ui.authentication;
 
-import android.app.ProgressDialog;
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.View;
@@ -19,7 +17,6 @@ import com.app.community.network.request.LoginRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.LoginResponse;
 import com.app.community.ui.base.MvpView;
-import com.app.community.ui.chat.UserDetails;
 import com.app.community.ui.presenter.CommonPresenter;
 import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;

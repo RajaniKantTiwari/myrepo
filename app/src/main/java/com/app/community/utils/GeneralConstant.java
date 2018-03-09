@@ -86,6 +86,8 @@ public interface GeneralConstant {
     String STORE_NAME = "store_name";
     String ID = "id";
     int FEEDBACK=1981;
+    String CHAT_WITH = "chat_with";
+    String CHAT_USER_NAME = "chat_user_name";
 
 
     @IntDef({MERCHANT_MAP_FRAGMENT, MERCHANT_LIST_FRAGMENT, RECENT_FRAGMENT, CATEGORY_FRAGMENT,
