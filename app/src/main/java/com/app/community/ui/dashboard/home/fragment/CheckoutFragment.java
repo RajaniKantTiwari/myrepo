@@ -41,7 +41,7 @@ import static com.app.community.ui.base.BaseActivity.AnimationType.NONE;
  * Created by ashok on 26/12/17.
  */
 
-public class CheckoutFragment extends DashboardFragment implements CouponAdapter.CouponListener {
+public class CheckoutFragment extends DashboardFragment /*implements CouponAdapter.CouponListener*/ {
     private FragmentCheckoutBinding mBinding;
     private CheckoutCartAdapter mCheckoutAdapter;
     private List<PaymentOption> paymentList = new ArrayList<>();
@@ -206,7 +206,7 @@ public class CheckoutFragment extends DashboardFragment implements CouponAdapter
         mBinding.tvAddress.setText(event.getAddress());
     }
 
-    @Override
+  /*  @Override
     public void onCouponClick(int position) {
         if (CommonUtils.isNotNull(couponList) && couponList.size() > position) {
             for (int i = 0; i < couponList.size(); i++) {
@@ -220,5 +220,5 @@ public class CheckoutFragment extends DashboardFragment implements CouponAdapter
             }
             couponAdapter.notifyDataSetChanged();
         }
-    }
+    }*/
 }

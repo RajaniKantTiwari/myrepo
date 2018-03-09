@@ -12,7 +12,6 @@
             android:id="@+id/tvName"
             style="@style/textview_description_smaller_match"
             android:layout_height="match_parent"
-            android:layout_toEndOf="@+id/ivIcon"
             android:gravity="center"
             android:text="@string/name"
             android:ellipsize="marquee"
