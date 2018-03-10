@@ -257,8 +257,6 @@ public class UpdateProfileFragment extends DashboardFragment implements MvpView,
         } catch (Exception e) {
             LogUtils.LOGE("ProfileUpdate", e.toString());
         }
-
-
     }
 
     @Override
@@ -282,8 +280,6 @@ public class UpdateProfileFragment extends DashboardFragment implements MvpView,
                 getPresenter().updateProfilePic(getDashboardActivity(), profilePicRequest);
             }
         }
-
-
     }
 
     @Override
