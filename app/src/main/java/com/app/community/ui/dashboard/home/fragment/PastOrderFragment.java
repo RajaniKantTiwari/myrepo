@@ -81,8 +81,8 @@ public class PastOrderFragment extends BaseFragment implements
 
     public void setPastOrder(ArrayList<Order> pastOrderList) {
         this.pastOrderList.clear();
-        this.pastOrderList.addAll(pastOrderList);
         if(CommonUtils.isNotNull(pastOrderList)&&pastOrderList.size()>0){
+            this.pastOrderList.addAll(pastOrderList);
             mBinding.rvOrder.setVisibility(View.VISIBLE);
             mBinding.layoutNoData.layoutNoData.setVisibility(View.GONE);
         }else{
