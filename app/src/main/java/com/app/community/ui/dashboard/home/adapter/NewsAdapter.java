@@ -68,7 +68,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.LatestNewsHold
     }
     @Override
     public int getItemCount() {
-        return 10;
+        return CommonUtils.isNotNull(newsList)?newsList.size():0;
     }
     class LatestNewsHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 

@@ -32,6 +32,7 @@ public interface AppConstants {
             .compile("[a-zA-Z0-9]{1,250}");
     Pattern PASSWORD_PATTERN = Pattern
             .compile("[a-zA-Z0-9+_.*#@]{8,16}");
+    Pattern VALID_ADDRESS=Pattern.compile("[A-Za-z0-9'\\.\\-\\s\\,]");
 
     String AUTHORIZATION = "Authorization";
     String SUCCESS = "success";
