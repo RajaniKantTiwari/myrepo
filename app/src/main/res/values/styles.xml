@@ -404,7 +404,21 @@
         <item name="android:textSize">@dimen/textSize_description_smaller</item>
         <item name="android:textColor">@color/black</item>
     </style>
-
+    <style name="edit_text_name_larger" parent="edit_text_style_larger">
+        <item name="android:digits">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz</item>
+    </style>
+    <style name="edit_text_name_large" parent="edit_text_style_large">
+        <item name="android:digits">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz</item>
+    </style>
+    <style name="edit_text_name_medium" parent="edit_text_style_medium">
+        <item name="android:digits">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz</item>
+    </style>
+    <style name="edit_text_name_small" parent="edit_text_style_small">
+        <item name="android:digits">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz</item>
+    </style>
+    <style name="edit_text_name_smaller" parent="edit_text_style_smaller">
+        <item name="android:digits">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz</item>
+    </style>
     <style name="layout_hori_wrap_1">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
@@ -475,7 +489,6 @@
         <item name="android:maxLines">1</item>
         <item name="android:background">@null</item>
         <item name="android:textSize">@dimen/textSize_header</item>
-
     </style>
 
     <style name="edit_text_style_title" parent="match_wrap">

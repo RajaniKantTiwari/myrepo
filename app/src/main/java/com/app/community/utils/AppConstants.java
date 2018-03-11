@@ -18,11 +18,8 @@ public interface AppConstants {
     String FIREBASE_MESSAGE = "/messages/";
     int VIEW_TYPE_USER_MESSAGE = 0;
     int VIEW_TYPE_OTHERS_MESSAGE = 1;
-    Pattern EMAIL_PATTERN = Pattern
-            .compile("[a-zA-Z0-9+._%-+]{1,100}" + "@"
-                    + "[a-zA-Z0-9][a-zA-Z0-9-]{0,10}" + "(" + "."
-                    + "[a-zA-Z0-9][a-zA-Z0-9-]{0,20}" +
-                    ")+");
+        Pattern EMAIL_PATTERN = Pattern
+            .compile("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$");
 
     Pattern USERNAME_PATTERN = Pattern
             .compile("[a-zA-Z0-9 ]{1,250}");
