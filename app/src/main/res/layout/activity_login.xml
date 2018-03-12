@@ -12,9 +12,10 @@
             android:padding="@dimen/margin_15">
 
             <ImageView
-                style="@style/wrap_wrap"
+                style="@style/image_150"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/app_icon" />
+                android:src="@drawable/app_icon"
+                android:padding="@dimen/margin_10"/>
 
             <com.app.community.widget.CustomTextView
                 style="@style/textview_title_match"

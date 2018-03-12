@@ -9,10 +9,13 @@
         style="@style/match_wrap"
         android:orientation="vertical"
         android:padding="@dimen/margin_10">
-
+        <ImageView
+            style="@style/image_150"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/app_icon"
+            android:padding="@dimen/margin_10"/>
         <com.app.community.widget.CustomTextView
             style="@style/textview_description_large_match"
-            android:drawableTop="@drawable/app_icon"
             android:gravity="center_horizontal"
             android:text="@string/verify_account"
             android:textColor="@color/dark_black_color"

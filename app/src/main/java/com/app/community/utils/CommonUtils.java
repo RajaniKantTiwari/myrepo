@@ -450,6 +450,7 @@ public class CommonUtils {
         PreferenceUtils.setAuthToken(null);
         PreferenceUtils.setLogin(false);
         ExplicitIntent.getsInstance().navigateTo(activity, LoginActivity.class);
+        activity.finish();
     }
 
     public static void setVisibility(View layoutMain, View layoutNoData, boolean shouldMainVisible) {

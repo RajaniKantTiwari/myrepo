@@ -15,7 +15,6 @@ import com.app.community.databinding.FragmentProductSubproductBinding;
 import com.app.community.databinding.ItemCartBinding;
 import com.app.community.event.ProductUpdateEvent;
 import com.app.community.event.UpdateCartEvent;
-import com.app.community.event.UpdateProfileEvent;
 import com.app.community.network.request.cart.Cart;
 import com.app.community.network.request.cart.CartListRequest;
 import com.app.community.network.request.cart.CategoryRequest;
@@ -30,8 +29,6 @@ import com.app.community.ui.dashboard.home.fragment.FullInformationFragment;
 import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
-import com.app.community.utils.GlideUtils;
-import com.app.community.utils.LogUtils;
 import com.app.community.utils.PreferenceUtils;
 
 import org.greenrobot.eventbus.EventBus;
