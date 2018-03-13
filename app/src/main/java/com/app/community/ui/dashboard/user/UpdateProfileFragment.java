@@ -83,7 +83,7 @@ public class UpdateProfileFragment extends DashboardFragment implements MvpView,
     public void initializeData() {
         mBinding.edName.setText(PreferenceUtils.getUserName());
         mBinding.tvMobile.setText(PreferenceUtils.getUserMono());
-        mBinding.edEmail.setText(PreferenceUtils.getUserMono());
+        mBinding.edEmail.setText(PreferenceUtils.getEmail());
         CommonUtils.showCursorEnd(mBinding.edName);
         CommonUtils.showCursorEnd(mBinding.edEmail);
         mBinding.edName.setCursorVisible(true);

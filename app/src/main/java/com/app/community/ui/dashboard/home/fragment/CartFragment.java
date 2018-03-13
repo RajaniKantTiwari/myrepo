@@ -23,7 +23,7 @@ import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.cart.ProductData;
 import com.app.community.ui.SimpleDividerItemDecoration;
 import com.app.community.ui.dashboard.DashboardFragment;
-import com.app.community.ui.dashboard.home.adapter.CartAdapter;
+import com.app.community.ui.dashboard.home.adapter.CartRowAdapter;
 import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.PreferenceUtils;
@@ -39,9 +39,9 @@ import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
  * Created by rajnikant on 31/12/17.
  */
 
-public class CartFragment extends DashboardFragment implements CartAdapter.OnAddToCart {
+public class CartFragment extends DashboardFragment implements CartRowAdapter.OnAddToCart {
     private FragmentCartBinding mBinding;
-    private CartAdapter mAdapter;
+    private CartRowAdapter mAdapter;
     private int MAX_LIMIT = 10, MIN_LIMIT = 0;
     private ArrayList<ProductData> mCartList;
     private CartRequest cartRequest;
@@ -57,7 +57,7 @@ public class CartFragment extends DashboardFragment implements CartAdapter.OnAdd
     private void initializeAdapter() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getBaseActivity());
         mCartList = PreferenceUtils.getCartData();
-        mAdapter = new CartAdapter(getBaseActivity(), mCartList, this);
+        mAdapter = new CartRowAdapter(getBaseActivity(), mCartList, this);
         mBinding.rvCartList.setLayoutManager(layoutManager);
         mBinding.rvCartList.addItemDecoration(new SimpleDividerItemDecoration(getResources()));
         mBinding.rvCartList.setAdapter(mAdapter);

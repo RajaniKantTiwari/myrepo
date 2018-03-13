@@ -80,8 +80,9 @@
 
         <ImageView
             android:id="@+id/ivDeleteCart"
-            style="@style/wrap_match"
-            android:padding="@dimen/margin_5"
+            style="@style/image_50"
+            android:layout_gravity="center_vertical"
+            android:padding="@dimen/margin_10"
             android:src="@drawable/cross" />
     </LinearLayout>
 </layout>

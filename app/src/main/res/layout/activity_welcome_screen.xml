@@ -68,7 +68,6 @@
                 android:paddingTop="@dimen/margin_12">
 
                 <com.app.community.widget.CustomTextView
-                    android:id="@+id/tvCurrentLocation"
                     style="@style/textview_description_wrap"
                     android:drawablePadding="@dimen/margin_10"
                     android:drawableStart="@drawable/ic_location_white"

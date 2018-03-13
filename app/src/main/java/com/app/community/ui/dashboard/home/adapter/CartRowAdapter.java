@@ -3,7 +3,6 @@ package com.app.community.ui.dashboard.home.adapter;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,7 @@ import java.util.ArrayList;
  * Created by ashok on 25/12/17.
  */
 
-public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
+public class CartRowAdapter extends RecyclerView.Adapter<CartRowAdapter.CartHolder> {
     private final LayoutInflater mInflater;
     private final ArrayList<ProductData> mCartList;
     private final AppCompatActivity activity;
@@ -30,7 +29,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
         void addToCartClick(int pos, View view);
     }
 
-    public CartAdapter(AppCompatActivity activity, ArrayList<ProductData> mCartList, OnAddToCart listener) {
+    public CartRowAdapter(AppCompatActivity activity, ArrayList<ProductData> mCartList, OnAddToCart listener) {
         mInflater = LayoutInflater.from(activity);
         this.activity = activity;
         this.mCartList = mCartList;
