@@ -10,6 +10,7 @@ import com.app.community.network.request.cart.CartRequest;
 import com.app.community.network.request.cart.CategoryRequest;
 import com.app.community.network.request.cart.CheckoutRequest;
 import com.app.community.network.request.cart.DeleteCartRequest;
+import com.app.community.network.request.dashboard.MerchantCouponRequest;
 import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.request.dashboard.ProductRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
@@ -153,5 +154,10 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<BaseResponse> submitFeedBack(Feedback feedback) {
         return apiService.submitFeedBack(feedback);
+    }
+
+    @Override
+    public Observable<MerchantResponseData> viewMerchantCoupon(MerchantCouponRequest request) {
+        return apiService.viewMerchantCoupon(request);
     }
 }

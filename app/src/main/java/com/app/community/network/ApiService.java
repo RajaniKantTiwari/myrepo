@@ -12,8 +12,12 @@ import com.app.community.network.request.cart.CartRequest;
 import com.app.community.network.request.cart.CategoryRequest;
 import com.app.community.network.request.cart.CheckoutRequest;
 import com.app.community.network.request.cart.DeleteCartRequest;
+import com.app.community.network.request.dashboard.CheckCouponRequest;
+import com.app.community.network.request.dashboard.IssueRequest;
+import com.app.community.network.request.dashboard.MerchantCouponRequest;
 import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
+import com.app.community.network.request.dashboard.OrderDetailsRequest;
 import com.app.community.network.request.dashboard.ProductRequest;
 import com.app.community.network.request.dashboard.ProfilePic;
 import com.app.community.network.request.dashboard.ProfileRequest;
@@ -104,4 +108,32 @@ public interface ApiService {
 
     @POST("customer/getfeedback")
     Observable<BaseResponse> submitFeedBack(@Body Feedback request);
+
+    @POST("cartorder/orderdetails")
+    Observable<BaseResponse> orderDetails(@Body OrderDetailsRequest request);
+
+    @GET("custom/detailhelp")
+    Observable<BaseResponse> detailHelp();
+
+    @POST("custom/getissue")
+    Observable<BaseResponse> orderDetails(@Body IssueRequest request);
+
+    @POST("offer/checkcoupon")
+    Observable<BaseResponse> checkCoupon(@Body CheckCouponRequest request);
+
+    @GET("offer/viewallcoupon")
+    Observable<BaseResponse> viewAllCoupon();
+
+    @POST("offer/getcoupondescription")
+    Observable<BaseResponse> getCouponDescription(@Body CheckCouponRequest request);
+
+    @POST("offer/viewmerchantcoupon")
+    Observable<MerchantResponseData> viewMerchantCoupon(@Body MerchantCouponRequest request);
+
+    @POST("offer/getmerchantcoupondescription")
+    Observable<BaseResponse> merchantCouponDescription(@Body MerchantCouponRequest request);
+
+
+
+
 }

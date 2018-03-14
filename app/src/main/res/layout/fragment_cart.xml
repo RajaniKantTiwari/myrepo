@@ -1,77 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/layoutList"
-        style="@style/match_match"
-        android:background="@color/white"
-        android:clickable="true">
+    <FrameLayout style="@style/match_match">
 
-        <LinearLayout
-            android:id="@+id/layoutTop"
-            style="@style/match_wrap"
-            android:orientation="vertical">
-
-            <com.app.community.widget.CustomTextView
-                style="@style/textview_header_small_match"
-                android:layout_marginBottom="@dimen/margin_25"
-                android:layout_marginTop="@dimen/margin_15"
-                android:gravity="center_horizontal"
-                android:text="@string/cart"
-                android:textAllCaps="true"
-                android:textColor="@color/color_black"
-                app:customFont="@string/font_book_regular" />
-
-            <ImageView style="@style/view_layout" />
-        </LinearLayout>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rvCartList"
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/mainLayout"
             style="@style/match_match"
-            android:layout_below="@+id/layoutTop"
-            android:layout_above="@+id/layoutFooter"/>
+            android:background="@color/white"
+            android:clickable="true">
 
-        <LinearLayout
-            android:id="@+id/layoutFooter"
-            style="@style/match_wrap"
-            android:orientation="vertical"
-            android:layout_alignParentBottom="true">
-            <ImageView style="@style/view_layout" />
-
-            <LinearLayout style="@style/match_wrap"
-                android:gravity="center_horizontal"
-                android:layout_marginTop="@dimen/margin_25"
-                android:layout_marginBottom="@dimen/margin_15">
+            <LinearLayout
+                android:id="@+id/layoutTop"
+                style="@style/match_wrap"
+                android:orientation="vertical">
 
                 <com.app.community.widget.CustomTextView
-                    style="@style/textview_description_large_wrap"
-                    android:layout_gravity="center"
-                    android:text="@string/sub_total" />
-                <com.app.community.widget.CustomTextView
-                    android:id="@+id/tvTotal"
-                    style="@style/textview_description_large_wrap"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/margin_7"
-                    android:drawablePadding="@dimen/margin_7"
-                    android:drawableStart="@drawable/rupee_black" />
+                    style="@style/textview_header_small_match"
+                    android:layout_marginBottom="@dimen/margin_25"
+                    android:layout_marginTop="@dimen/margin_15"
+                    android:gravity="center_horizontal"
+                    android:text="@string/cart"
+                    android:textAllCaps="true"
+                    android:textColor="@color/color_black"
+                    app:customFont="@string/font_book_regular" />
+
+                <ImageView style="@style/view_layout" />
             </LinearLayout>
 
-            <com.app.community.widget.CustomTextView
-                android:id="@+id/tvCheckoutNow"
-                style="@style/textview_description_small_wrap"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/blue_round_btnbg"
-                android:elevation="@dimen/margin_5"
-                android:gravity="center_horizontal"
-                android:paddingBottom="@dimen/margin_5"
-                android:paddingEnd="@dimen/margin_30"
-                android:paddingStart="@dimen/margin_30"
-                android:layout_marginBottom="@dimen/margin_20"
-                android:paddingTop="@dimen/margin_5"
-                android:text="@string/checkout_now"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                app:customFont="@string/font_bold" />
-        </LinearLayout>
-    </RelativeLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvCartList"
+                style="@style/match_match"
+                android:layout_above="@+id/layoutFooter"
+                android:layout_below="@+id/layoutTop" />
+
+            <LinearLayout
+                android:id="@+id/layoutFooter"
+                style="@style/match_wrap"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical">
+
+                <ImageView style="@style/view_layout" />
+
+                <LinearLayout
+                    style="@style/match_wrap"
+                    android:layout_marginBottom="@dimen/margin_15"
+                    android:layout_marginTop="@dimen/margin_25"
+                    android:gravity="center_horizontal">
+
+                    <com.app.community.widget.CustomTextView
+                        style="@style/textview_description_large_wrap"
+                        android:layout_gravity="center"
+                        android:text="@string/sub_total" />
+
+                    <com.app.community.widget.CustomTextView
+                        android:id="@+id/tvTotal"
+                        style="@style/textview_description_large_wrap"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/margin_7"
+                        android:drawablePadding="@dimen/margin_7"
+                        android:drawableStart="@drawable/rupee_black" />
+                </LinearLayout>
+
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvCheckoutNow"
+                    style="@style/textview_description_small_wrap"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/margin_20"
+                    android:background="@drawable/blue_round_btnbg"
+                    android:elevation="@dimen/margin_5"
+                    android:gravity="center_horizontal"
+                    android:paddingBottom="@dimen/margin_5"
+                    android:paddingEnd="@dimen/margin_30"
+                    android:paddingStart="@dimen/margin_30"
+                    android:paddingTop="@dimen/margin_5"
+                    android:text="@string/checkout_now"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    app:customFont="@string/font_bold" />
+            </LinearLayout>
+        </RelativeLayout>
+        <include
+            android:id="@+id/layoutNoData"
+            layout="@layout/layout_no_data_found"
+            android:visibility="gone"/>
+    </FrameLayout>
 </layout>

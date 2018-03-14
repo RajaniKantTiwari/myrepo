@@ -22,6 +22,7 @@ import com.app.community.network.request.cart.DeleteCartRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.cart.ProductData;
 import com.app.community.ui.SimpleDividerItemDecoration;
+import com.app.community.ui.cart.ProductSubproductFragment;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.adapter.CartRowAdapter;
 import com.app.community.utils.AppConstants;
@@ -45,6 +46,7 @@ public class CartFragment extends DashboardFragment implements CartRowAdapter.On
     private int MAX_LIMIT = 10, MIN_LIMIT = 0;
     private ArrayList<ProductData> mCartList;
     private CartRequest cartRequest;
+    private int merchantId;
 
     @Nullable
     @Override
@@ -57,6 +59,9 @@ public class CartFragment extends DashboardFragment implements CartRowAdapter.On
     private void initializeAdapter() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getBaseActivity());
         mCartList = PreferenceUtils.getCartData();
+        if(CommonUtils.isNotNull(mCartList)&&mCartList.size()>0){
+            merchantId=mCartList.get(0).getMerchantId();
+        }
         mAdapter = new CartRowAdapter(getBaseActivity(), mCartList, this);
         mBinding.rvCartList.setLayoutManager(layoutManager);
         mBinding.rvCartList.addItemDecoration(new SimpleDividerItemDecoration(getResources()));
@@ -66,14 +71,15 @@ public class CartFragment extends DashboardFragment implements CartRowAdapter.On
 
     @Override
     public void initializeData() {
-        cartRequest = new CartRequest();
-        getPresenter().addToCart(getDashboardActivity(), cartRequest);
+        //cartRequest = new CartRequest();
+        //getPresenter().addToCart(getDashboardActivity(), cartRequest);
 
     }
 
     @Override
     public void setListener() {
         mBinding.tvCheckoutNow.setOnClickListener(this);
+        mBinding.layoutNoData.tvStartShopping.setOnClickListener(this);
     }
 
     @Override
@@ -91,13 +97,18 @@ public class CartFragment extends DashboardFragment implements CartRowAdapter.On
     public void onClick(View view) {
         if (view == mBinding.tvCheckoutNow) {
             CommonUtils.clicked(mBinding.tvCheckoutNow);
-            if(CommonUtils.isNotNull(PreferenceUtils.getCartData())&&PreferenceUtils.getCartData().size()>0){
+            if (CommonUtils.isNotNull(PreferenceUtils.getCartData()) && PreferenceUtils.getCartData().size() > 0) {
                 addToCartList();
-            }else {
+            } else {
                 getDashboardActivity().showToast(getResources().getString(R.string.please_add_data_in_cart_first));
             }
+        }else if(view ==mBinding.layoutNoData.tvStartShopping){
+            Bundle bundle=new Bundle();
+            bundle.putString(AppConstants.MERCHANT_ID,String .valueOf(merchantId));
+            getDashboardActivity().pushFragment(new ProductSubproductFragment(), bundle, R.id.container, true, true, NONE);
         }
     }
+
     private void addToCartList() {
         if (CommonUtils.isNotNull(PreferenceUtils.getCartData()) &&
                 CommonUtils.isNotNull(PreferenceUtils.getCartData().size())
@@ -119,12 +130,13 @@ public class CartFragment extends DashboardFragment implements CartRowAdapter.On
                 }
             }
             request.setCart(cartList);
-            getPresenter().addForCartList(getDashboardActivity(), request,this);
+            getPresenter().addForCartList(getDashboardActivity(), request, this);
         }
     }
+
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
-        if(requestCode==AppConstants.CARTADDED){
+        if (requestCode == AppConstants.CARTADDED) {
             getDashboardActivity().addFragmentInContainer(new CheckoutFragment(), null, true, true, NONE);
         } else if (CommonUtils.isNotNull(response) && response.getStatus().equalsIgnoreCase(AppConstants.SUCCESS)) {
             if (CommonUtils.isNotNull(mCartList) && mCartList.size() > requestCode) {
@@ -182,6 +194,16 @@ public class CartFragment extends DashboardFragment implements CartRowAdapter.On
     private void setCartData() {
         PreferenceUtils.setCartData(mCartList);
         EventBus.getDefault().post(new UpdateCartEvent());
+        if (CommonUtils.isNull(mCartList) || mCartList.size() == 0) {
+            mBinding.layoutNoData.layoutNoData.setVisibility(View.VISIBLE);
+            mBinding.layoutNoData.tvStartShopping.setVisibility(View.VISIBLE);
+            mBinding.layoutNoData.tvNoData.setText(getResources().getString(R.string.your_cart_is_empty));
+            mBinding.mainLayout.setVisibility(View.GONE);
+        } else {
+            mBinding.layoutNoData.layoutNoData.setVisibility(View.GONE);
+            mBinding.mainLayout.setVisibility(View.VISIBLE);
+
+        }
         mAdapter.notifyDataSetChanged();
     }
 

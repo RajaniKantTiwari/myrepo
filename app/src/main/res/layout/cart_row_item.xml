@@ -58,10 +58,9 @@
             android:gravity="center_vertical">
             <android.support.v4.widget.Space style="@style/layout_hori_match_1" />
             <ImageView
-                android:id="@+id/ivAdd"
+                android:id="@+id/ivSub"
                 style="@style/add_sub_view"
-                android:src="@drawable/add_black"
-                />
+                android:src="@drawable/sub_black" />
             <com.app.community.widget.CustomTextView
                 android:id="@+id/tvQuantity"
                 style="@style/textview_description_wrap"
@@ -73,9 +72,10 @@
                 app:customFont="@string/font_bold" />
 
             <ImageView
-                android:id="@+id/ivSub"
+                android:id="@+id/ivAdd"
                 style="@style/add_sub_view"
-                android:src="@drawable/sub_black" />
+                android:src="@drawable/add_black"
+                />
         </LinearLayout>
 
         <ImageView

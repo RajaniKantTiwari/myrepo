@@ -10,6 +10,7 @@ import com.app.community.network.request.cart.CartRequest;
 import com.app.community.network.request.cart.CategoryRequest;
 import com.app.community.network.request.cart.CheckoutRequest;
 import com.app.community.network.request.cart.DeleteCartRequest;
+import com.app.community.network.request.dashboard.MerchantCouponRequest;
 import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.request.dashboard.ProductRequest;
@@ -81,4 +82,6 @@ public interface Repository {
     Observable<BaseResponse> updateProfilePic(ProfilePic profilePicRequest);
 
     Observable<BaseResponse> submitFeedBack(Feedback feedback);
+
+    Observable<MerchantResponseData> viewMerchantCoupon(MerchantCouponRequest request);
 }

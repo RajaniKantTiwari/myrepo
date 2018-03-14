@@ -12,40 +12,51 @@ import android.view.ViewGroup;
 import com.app.community.R;
 import com.app.community.databinding.FragmentOfferDetailsBinding;
 import com.app.community.databinding.FragmentOfferPromoBinding;
+import com.app.community.network.request.dashboard.MerchantCouponRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.base.BaseFragment;
+import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.offer.adapter.OfferDetailsAdapter;
 import com.app.community.ui.dashboard.offer.adapter.PromoOfferAdapter;
+import com.app.community.utils.CommonUtils;
+import com.app.community.utils.GeneralConstant;
 
 /**
  * Created by rajnikant on 31/12/17.
  */
 
-public class OffersPromoFragment extends BaseFragment implements PromoOfferAdapter.PromoListener {
+public class OffersPromoFragment extends DashboardFragment implements PromoOfferAdapter.PromoListener {
     private FragmentOfferPromoBinding mBinding;
     private PromoOfferAdapter mOfferAdapter;
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding=DataBindingUtil.inflate(inflater, R.layout.fragment_offer_promo,container,false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_offer_promo, container, false);
         initializeAdapter();
         return mBinding.getRoot();
     }
+
     private void initializeAdapter() {
-        mOfferAdapter = new PromoOfferAdapter(getBaseActivity(),this);
+        mOfferAdapter = new PromoOfferAdapter(getBaseActivity(), this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getBaseActivity());
         mBinding.rvPromo.setLayoutManager(layoutManager);
         mBinding.rvPromo.setAdapter(mOfferAdapter);
     }
+
     @Override
     public void initializeData() {
-
+        Bundle bundle = getArguments();
+        if (CommonUtils.isNotNull(bundle)) {
+            int merchantId = bundle.getInt(GeneralConstant.MERCHANT_ID);
+            getPresenter().viewMerchantCoupon(getDashboardActivity(),new MerchantCouponRequest(merchantId));
+        }
     }
 
     @Override
     public void setListener() {
-     mBinding.tvApply.setOnClickListener(this);
+        mBinding.tvApply.setOnClickListener(this);
     }
 
     @Override
@@ -55,14 +66,14 @@ public class OffersPromoFragment extends BaseFragment implements PromoOfferAdapt
 
     @Override
     public void attachView() {
-
+       getPresenter().attachView(this);
     }
 
     @Override
     public void onClick(View view) {
-       if(view==mBinding.tvApply){
-          getBaseActivity().onBackPressed();
-       }
+        if (view == mBinding.tvApply) {
+            getBaseActivity().onBackPressed();
+        }
     }
 
 
@@ -70,6 +81,7 @@ public class OffersPromoFragment extends BaseFragment implements PromoOfferAdapt
     public void onSuccess(BaseResponse response, int requestCode) {
 
     }
+
     public static Fragment newInstance() {
         OffersPromoFragment fragment = new OffersPromoFragment();
         return fragment;
