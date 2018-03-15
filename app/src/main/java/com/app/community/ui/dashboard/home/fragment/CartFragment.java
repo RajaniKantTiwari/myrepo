@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.app.community.R;
 import com.app.community.databinding.CartRowItemBinding;
 import com.app.community.databinding.FragmentCartBinding;
+import com.app.community.event.StartShoppingEvent;
 import com.app.community.event.UpdateCartEvent;
 import com.app.community.network.request.cart.Cart;
 import com.app.community.network.request.cart.CartListRequest;
@@ -103,9 +104,8 @@ public class CartFragment extends DashboardFragment implements CartRowAdapter.On
                 getDashboardActivity().showToast(getResources().getString(R.string.please_add_data_in_cart_first));
             }
         }else if(view ==mBinding.layoutNoData.tvStartShopping){
-            Bundle bundle=new Bundle();
-            bundle.putString(AppConstants.MERCHANT_ID,String .valueOf(merchantId));
-            getDashboardActivity().pushFragment(new ProductSubproductFragment(), bundle, R.id.container, true, true, NONE);
+            CommonUtils.clicked(mBinding.layoutNoData.tvStartShopping);
+            EventBus.getDefault().post(new StartShoppingEvent(String .valueOf(merchantId)));
         }
     }
 

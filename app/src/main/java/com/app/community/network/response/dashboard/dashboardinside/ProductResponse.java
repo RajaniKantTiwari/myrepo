@@ -14,20 +14,20 @@ public class ProductResponse implements Parcelable{
     private int selling_price;
     private int product_mrp;
     private int tax;
-    private int avg_time_to_deliver;
+    private String avg_time_to_deliver;
     private int shipping;
     private String tax_status;
     private int masterproductid;
     private int merchantlistid;
     private int merchantid;
-    private int measure;
+    private String measure;
     private String icon;
-    private int pricewithtax;
-    private int pricewithouttax;
+    private String pricewithtax;
+    private String pricewithouttax;
+
     public ProductResponse(){
 
     }
-
 
     protected ProductResponse(Parcel in) {
         productname = in.readString();
@@ -36,16 +36,16 @@ public class ProductResponse implements Parcelable{
         selling_price = in.readInt();
         product_mrp = in.readInt();
         tax = in.readInt();
-        avg_time_to_deliver = in.readInt();
+        avg_time_to_deliver = in.readString();
         shipping = in.readInt();
         tax_status = in.readString();
         masterproductid = in.readInt();
         merchantlistid = in.readInt();
         merchantid = in.readInt();
-        measure = in.readInt();
+        measure = in.readString();
         icon = in.readString();
-        pricewithtax = in.readInt();
-        pricewithouttax = in.readInt();
+        pricewithtax = in.readString();
+        pricewithouttax = in.readString();
     }
 
     public static final Creator<ProductResponse> CREATOR = new Creator<ProductResponse>() {
@@ -59,6 +59,26 @@ public class ProductResponse implements Parcelable{
             return new ProductResponse[size];
         }
     };
+
+    public String getAvg_time_to_deliver() {
+        return avg_time_to_deliver;
+    }
+
+    public void setAvg_time_to_deliver(String avg_time_to_deliver) {
+        this.avg_time_to_deliver = avg_time_to_deliver;
+    }
+
+    public void setPricewithtax(String pricewithtax) {
+        this.pricewithtax = pricewithtax;
+    }
+
+    public String getPricewithouttax() {
+        return pricewithouttax;
+    }
+
+    public void setPricewithouttax(String pricewithouttax) {
+        this.pricewithouttax = pricewithouttax;
+    }
 
     public String getTax_status() {
         return tax_status;
@@ -92,11 +112,11 @@ public class ProductResponse implements Parcelable{
         this.merchantid = merchantid;
     }
 
-    public int getMeasure() {
+    public String getMeasure() {
         return measure;
     }
 
-    public void setMeasure(int measure) {
+    public void setMeasure(String measure) {
         this.measure = measure;
     }
 
@@ -108,21 +128,11 @@ public class ProductResponse implements Parcelable{
         this.icon = icon;
     }
 
-    public int getPricewithtax() {
+    public String getPricewithtax() {
         return pricewithtax;
     }
 
-    public void setPricewithtax(int pricewithtax) {
-        this.pricewithtax = pricewithtax;
-    }
 
-    public int getPricewithouttax() {
-        return pricewithouttax;
-    }
-
-    public void setPricewithouttax(int pricewithouttax) {
-        this.pricewithouttax = pricewithouttax;
-    }
 
     public int getSelling_price() {
         return selling_price;
@@ -148,13 +158,7 @@ public class ProductResponse implements Parcelable{
         this.tax = tax;
     }
 
-    public int getAvg_time_to_deliver() {
-        return avg_time_to_deliver;
-    }
 
-    public void setAvg_time_to_deliver(int avg_time_to_deliver) {
-        this.avg_time_to_deliver = avg_time_to_deliver;
-    }
 
     public int getShipping() {
         return shipping;
@@ -202,15 +206,15 @@ public class ProductResponse implements Parcelable{
         parcel.writeInt(selling_price);
         parcel.writeInt(product_mrp);
         parcel.writeInt(tax);
-        parcel.writeInt(avg_time_to_deliver);
+        parcel.writeString(avg_time_to_deliver);
         parcel.writeInt(shipping);
         parcel.writeString(tax_status);
         parcel.writeInt(masterproductid);
         parcel.writeInt(merchantlistid);
         parcel.writeInt(merchantid);
-        parcel.writeInt(measure);
+        parcel.writeString(measure);
         parcel.writeString(icon);
-        parcel.writeInt(pricewithtax);
-        parcel.writeInt(pricewithouttax);
+        parcel.writeString(pricewithtax);
+        parcel.writeString(pricewithouttax);
     }
 }

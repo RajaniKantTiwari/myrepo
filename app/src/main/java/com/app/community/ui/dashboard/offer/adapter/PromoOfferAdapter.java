@@ -9,7 +9,11 @@ import android.view.ViewGroup;
 
 import com.app.community.R;
 import com.app.community.databinding.PromoOfferRowItemBinding;
+import com.app.community.network.response.dashboard.home.Offer;
+import com.app.community.utils.CommonUtils;
 import com.app.community.widget.CustomTextView;
+
+import java.util.ArrayList;
 
 
 /**
@@ -19,13 +23,15 @@ import com.app.community.widget.CustomTextView;
 public class PromoOfferAdapter extends RecyclerView.Adapter<PromoOfferAdapter.PromoOfferViewHolder> {
     private final LayoutInflater mInflater;
     private final AppCompatActivity activity;
+    private final ArrayList<Offer> couponList;
     private PromoListener listener;
     public interface PromoListener {
         void onApplyClick(int position);
     }
-    public PromoOfferAdapter(AppCompatActivity activity, PromoListener listener) {
+    public PromoOfferAdapter(AppCompatActivity activity, ArrayList<Offer> couponList, PromoListener listener) {
         mInflater = LayoutInflater.from(activity);
         this.activity = activity;
+        this.couponList=couponList;
         this.listener=listener;
     }
 
@@ -43,7 +49,7 @@ public class PromoOfferAdapter extends RecyclerView.Adapter<PromoOfferAdapter.Pr
 
     @Override
     public int getItemCount() {
-        return 10;
+        return CommonUtils.isNotNull(couponList)?couponList.size():0;
     }
 
     class PromoOfferViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

@@ -15,8 +15,10 @@ import android.widget.TextView;
 import com.app.community.R;
 import com.app.community.databinding.ActivityOfferDetailsBinding;
 import com.app.community.databinding.ItemTabViewBinding;
+import com.app.community.event.StartShoppingEvent;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.home.Offer;
+import com.app.community.ui.cart.ProductSubproductFragment;
 import com.app.community.ui.dashboard.DashboardInsideActivity;
 import com.app.community.ui.dashboard.offer.adapter.OfferDetailsAdapter;
 import com.app.community.ui.dashboard.offer.adapter.OfferPagerAdapter;
@@ -24,7 +26,11 @@ import com.app.community.ui.presenter.CommonPresenter;
 import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
 
+import org.greenrobot.eventbus.EventBus;
+
 import javax.inject.Inject;
+
+import static com.app.community.ui.base.BaseActivity.AnimationType.NONE;
 
 /**
  * Created by ashok on 13/11/17.
@@ -35,7 +41,6 @@ public class OfferDetailsActivity extends DashboardInsideActivity implements Vie
     @Inject
     CommonPresenter presenter;
     private ActivityOfferDetailsBinding mBinding;
-    private OfferDetailsAdapter mOfferAdapter;
     private Offer offer;
     private OfferPagerAdapter mPagerAdapter;
 
@@ -48,8 +53,9 @@ public class OfferDetailsActivity extends DashboardInsideActivity implements Vie
         initializeData();
         setListener();
     }
+
     private void setUpPagerView() {
-        CommonUtils.changeWidthOfTab(mBinding.tabLayout,this);
+        CommonUtils.changeWidthOfTab(mBinding.tabLayout, this);
         mPagerAdapter = new OfferPagerAdapter(getSupportFragmentManager());
         mBinding.viewPager.setAdapter(mPagerAdapter);
         mBinding.tabLayout.setupWithViewPager(mBinding.viewPager);
@@ -81,6 +87,7 @@ public class OfferDetailsActivity extends DashboardInsideActivity implements Vie
         mBinding.layoutHeader.headerLayout.setBackgroundColor(CommonUtils.getColor(this, R.color.dark_black));
         mBinding.layoutHeader.ivBack.setImageResource(R.drawable.ic_back_white);
         mBinding.layoutHeader.ivBack.setOnClickListener(this);
+        mBinding.tvStartShopping.setOnClickListener(this);
     }
 
 
@@ -118,6 +125,10 @@ public class OfferDetailsActivity extends DashboardInsideActivity implements Vie
     @Override
     public void onClick(View view) {
         if (mBinding.layoutHeader.ivBack == view) {
+            finish();
+        } else if (view == mBinding.tvStartShopping) {
+            CommonUtils.clicked(mBinding.tvStartShopping);
+            EventBus.getDefault().post(new StartShoppingEvent(offer.getMerchant_id()));
             finish();
         }
     }

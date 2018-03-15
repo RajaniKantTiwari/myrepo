@@ -3,7 +3,6 @@ package com.app.community.ui.dashboard.offer;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +12,7 @@ import android.view.ViewGroup;
 import com.app.community.R;
 import com.app.community.databinding.FragmentOfferBinding;
 import com.app.community.network.response.BaseResponse;
+import com.app.community.network.response.coupon.ViewAllCouponResponseData;
 import com.app.community.network.response.dashboard.home.Offer;
 import com.app.community.network.response.dashboard.offer.OfferType;
 import com.app.community.ui.dashboard.DashboardFragment;
@@ -26,8 +26,6 @@ import com.app.community.utils.ExplicitIntent;
 import java.util.ArrayList;
 
 import javax.inject.Inject;
-
-import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 
 /**
  * Created by ashok on 13/11/17.
@@ -44,13 +42,7 @@ public class OfferFragment extends DashboardFragment implements
     private ArrayList<OfferType> offerTypeList;
     private ArrayList<Offer> offersList;
 
-    public static Fragment newInstance(int instance) {
-        Bundle args = new Bundle();
-        args.putInt(ARGS_INSTANCE, instance);
-        OfferFragment fragment = new OfferFragment();
-        fragment.setArguments(args);
-        return fragment;
-    }
+
 
     @Nullable
     @Override
@@ -62,14 +54,11 @@ public class OfferFragment extends DashboardFragment implements
 
     @Override
     public void initializeData() {
-        mOfferAdapter = new OfferAdapter(getDashboardActivity(), this);
+        offersList = new ArrayList<>();
+        mOfferAdapter = new OfferAdapter(getDashboardActivity(),offersList, this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getDashboardActivity());
         mBinding.rvOffer.setLayoutManager(layoutManager);
         mBinding.rvOffer.setAdapter(mOfferAdapter);
-        offersList = new ArrayList<>();
-        setOffers();
-
-
         offerTypeList = new ArrayList<>();
         setOfferList(offerTypeList);
         mOfferTypeAdapter = new OfferTypesAdapter(getDashboardActivity(), offerTypeList, this);
@@ -77,23 +66,10 @@ public class OfferFragment extends DashboardFragment implements
         offerTypeManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mBinding.rvOfferType.setLayoutManager(offerTypeManager);
         mBinding.rvOfferType.setAdapter(mOfferTypeAdapter);
+        getPresenter().viewAllCoupon(getDashboardActivity());
     }
 
-    private void setOffers() {
-        Offer offer1 = new Offer();
-        offersList.add(offer1);
-        Offer offer2 = new Offer();
-        offersList.add(offer2);
-        Offer offer3 = new Offer();
-        offersList.add(offer3);
-        Offer offer4 = new Offer();
-        offersList.add(offer4);
-        Offer offer5 = new Offer();
-        offersList.add(offer5);
-        Offer offer6 = new Offer();
-        offersList.add(offer6);
-        mOfferAdapter.setOffersList(offersList);
-    }
+
 
     private void setOfferList(ArrayList<OfferType> offerTypeList) {
         OfferType type1 = new OfferType();
@@ -132,12 +108,18 @@ public class OfferFragment extends DashboardFragment implements
 
     @Override
     public void attachView() {
-
+      getPresenter().attachView(this);
     }
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
         if (CommonUtils.isNotNull(response)) {
+            ViewAllCouponResponseData responseData=(ViewAllCouponResponseData)response;
+            if(CommonUtils.isNotNull(responseData)&&CommonUtils.isNotNull(responseData.getInfo())&&responseData.getInfo().size()>0){
+                offersList.clear();
+                offersList.addAll(responseData.getInfo());
+                mOfferAdapter.notifyDataSetChanged();
+            }
             CommonUtils.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, true);
         } else {
             CommonUtils.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, false);

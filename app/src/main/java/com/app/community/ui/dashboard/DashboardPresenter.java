@@ -18,6 +18,8 @@ import com.app.community.network.request.dashboard.ProductRequest;
 import com.app.community.network.request.dashboard.ProfilePic;
 import com.app.community.network.request.dashboard.ProfileRequest;
 import com.app.community.network.response.BaseResponse;
+import com.app.community.network.response.coupon.MerchantCouponResponseData;
+import com.app.community.network.response.coupon.ViewAllCouponResponseData;
 import com.app.community.network.response.dashboard.cart.CategoryResponse;
 import com.app.community.network.response.dashboard.cart.ProductFullInformationData;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
@@ -350,9 +352,9 @@ public class DashboardPresenter implements Presenter<MvpView> {
 
     public void viewMerchantCoupon(DashBoardActivity activity, MerchantCouponRequest request) {
         mView.showProgress();
-        mRepository.viewMerchantCoupon(request).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<MerchantResponseData>(activity) {
+        mRepository.viewMerchantCoupon(request).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<MerchantCouponResponseData>(activity) {
             @Override
-            public void onResponse(MerchantResponseData response) {
+            public void onResponse(MerchantCouponResponseData response) {
                 mView.hideProgress();
                 mView.onSuccess(response, 1);
             }
@@ -361,6 +363,23 @@ public class DashboardPresenter implements Presenter<MvpView> {
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
                 mView.onError(baseResponse.getMsg(), 1);
+            }
+        });
+    }
+
+    public void viewAllCoupon(DashBoardActivity activity) {
+        mView.showProgress();
+        mRepository.viewAllCoupon().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<ViewAllCouponResponseData>(activity) {
+            @Override
+            public void onResponse(ViewAllCouponResponseData response) {
+                mView.hideProgress();
+                mView.onSuccess(response, AppConstants.VIEW_COUPON);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), AppConstants.VIEW_COUPON);
             }
         });
     }

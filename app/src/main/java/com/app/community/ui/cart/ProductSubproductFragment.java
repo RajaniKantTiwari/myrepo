@@ -251,8 +251,12 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
         if (CommonUtils.isNotNull(bundle)) {
             String productResponse = bundle.getString(AppConstants.MERCHANT_ID);
             merchantId = Integer.parseInt(productResponse);
-            getDashboardActivity().setHeader(bundle.getString(AppConstants.MERCHANT_ADDRESS),
-                    bundle.getString(AppConstants.MERCHANT_IMAGE), bundle.getString(AppConstants.MERCHANT_BACKGROUND_COLOR));
+            try {
+                getDashboardActivity().setHeader(bundle.getString(AppConstants.MERCHANT_ADDRESS),
+                        bundle.getString(AppConstants.MERCHANT_IMAGE), bundle.getString(AppConstants.MERCHANT_BACKGROUND_COLOR));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         setViews();
         callApi();

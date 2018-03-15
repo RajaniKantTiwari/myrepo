@@ -26,7 +26,6 @@ public class OfferPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-
         switch (position) {
             case GeneralConstant.FRAGMENT_OFFER.OFFER_DETAILS:
                 return OffersFragment.newInstance();

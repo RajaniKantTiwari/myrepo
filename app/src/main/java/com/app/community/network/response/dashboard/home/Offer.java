@@ -29,6 +29,9 @@ public class Offer implements Parcelable,Observable {
     private String updated_at;
     private String isactive;
     private String distance;
+
+
+
     private PropertyChangeRegistry registry=new PropertyChangeRegistry();
     public Offer(){
 

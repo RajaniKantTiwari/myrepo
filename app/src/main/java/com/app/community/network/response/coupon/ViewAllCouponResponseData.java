@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * Created by rajnikant on 14/03/18.
  */
 
-public class MerchantCouponResponseData extends BaseResponse {
+public class ViewAllCouponResponseData extends BaseResponse {
     private ArrayList<Offer> info;
 
     public ArrayList<Offer> getInfo() {

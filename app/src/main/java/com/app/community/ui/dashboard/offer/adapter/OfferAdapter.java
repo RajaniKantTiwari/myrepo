@@ -9,10 +9,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.app.community.R;
-import com.app.community.databinding.CartRowItemBinding;
 import com.app.community.databinding.OfferRowBinding;
 import com.app.community.network.response.dashboard.home.Offer;
 import com.app.community.utils.CommonUtils;
+import com.app.community.widget.CustomTextView;
 
 import java.util.ArrayList;
 
@@ -25,17 +25,14 @@ public class  OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferViewHo
     private OfferRowBinding mBinding;
     private OfferListener listener;
     private ArrayList<Offer> offersList;
-    public void setOffersList(ArrayList<Offer> offersList) {
-       this.offersList=offersList;
-       notifyDataSetChanged();
-    }
 
     public interface OfferListener {
         void onOfferClicked(int position);
     }
 
-    public OfferAdapter(AppCompatActivity activity, OfferListener listener) {
+    public OfferAdapter(AppCompatActivity activity, ArrayList<Offer> offersList, OfferListener listener) {
         mInflater = LayoutInflater.from(activity);
+        this.offersList=offersList;
         this.listener = listener;
     }
 
@@ -47,10 +44,8 @@ public class  OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferViewHo
 
     @Override
     public void onBindViewHolder(OfferViewHolder holder, int position) {
-        if (position % 2 == 0) {
-            holder.layoutProduct.setVisibility(View.VISIBLE);
-        } else {
-            holder.layoutProduct.setVisibility(View.GONE);
+        if (CommonUtils.isNotNull(offersList)&&offersList.size()>position ) {
+            holder.tvOffer.setText(offersList.get(position).getOffer_descr());
         }
     }
 
@@ -61,10 +56,12 @@ public class  OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferViewHo
 
     class OfferViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final LinearLayout layoutProduct;
+        private final CustomTextView tvOffer;
 
         public OfferViewHolder(OfferRowBinding itemView) {
             super(itemView.getRoot());
             layoutProduct = itemView.layoutProduct;
+            tvOffer=itemView.tvOffer;
             itemView.layoutOffer.setOnClickListener(this);
         }
 

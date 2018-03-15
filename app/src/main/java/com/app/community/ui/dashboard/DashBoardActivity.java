@@ -19,6 +19,7 @@ import com.app.community.R;
 import com.app.community.databinding.ActivityDashboardBinding;
 import com.app.community.event.ProductDetailsEvent;
 import com.app.community.event.RightDrawerEvent;
+import com.app.community.event.StartShoppingEvent;
 import com.app.community.event.UpdateCartEvent;
 import com.app.community.event.UpdateProfileEvent;
 import com.app.community.injector.component.DaggerDashboardComponent;
@@ -514,6 +515,20 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                 addFragmentInContainer(new MerchantFragment(), bundle, false, false, NONE);
             }
         }, GeneralConstant.DELAYTIME);
+
+    }
+
+
+    @Subscribe
+    public void onStartShopping(StartShoppingEvent event) {
+        clearAllBackStack();
+        changeIcon(WELCOME_HOME_FRAGMENT);
+        Bundle bundle=new Bundle();
+        bundle.putString(AppConstants.MERCHANT_ID, event.getMerchant_id());
+        //bundle.putString(AppConstants.MERCHANT_ADDRESS, merchantData.getAddress());
+        //bundle.putString(AppConstants.MERCHANT_IMAGE, merchantData.getImage());
+        //bundle.putString(AppConstants.MERCHANT_BACKGROUND_COLOR, merchantData.getBackground_color());
+        pushFragment(new ProductSubproductFragment(), bundle, R.id.container, true, true, NONE);
 
     }
 

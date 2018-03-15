@@ -25,6 +25,8 @@ import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.LoginResponse;
 import com.app.community.network.response.MyOrderData;
 import com.app.community.network.response.VerifyMobileResponse;
+import com.app.community.network.response.coupon.MerchantCouponResponseData;
+import com.app.community.network.response.coupon.ViewAllCouponResponseData;
 import com.app.community.network.response.dashboard.cart.CategoryResponse;
 import com.app.community.network.response.dashboard.cart.ProductFullInformationData;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
@@ -122,13 +124,13 @@ public interface ApiService {
     Observable<BaseResponse> checkCoupon(@Body CheckCouponRequest request);
 
     @GET("offer/viewallcoupon")
-    Observable<BaseResponse> viewAllCoupon();
+    Observable<ViewAllCouponResponseData> viewAllCoupon();
 
     @POST("offer/getcoupondescription")
     Observable<BaseResponse> getCouponDescription(@Body CheckCouponRequest request);
 
     @POST("offer/viewmerchantcoupon")
-    Observable<MerchantResponseData> viewMerchantCoupon(@Body MerchantCouponRequest request);
+    Observable<MerchantCouponResponseData> viewMerchantCoupon(@Body MerchantCouponRequest request);
 
     @POST("offer/getmerchantcoupondescription")
     Observable<BaseResponse> merchantCouponDescription(@Body MerchantCouponRequest request);

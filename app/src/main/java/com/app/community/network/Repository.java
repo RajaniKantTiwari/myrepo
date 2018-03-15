@@ -20,6 +20,8 @@ import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.LoginResponse;
 import com.app.community.network.response.MyOrderData;
 import com.app.community.network.response.VerifyMobileResponse;
+import com.app.community.network.response.coupon.MerchantCouponResponseData;
+import com.app.community.network.response.coupon.ViewAllCouponResponseData;
 import com.app.community.network.response.dashboard.cart.CategoryResponse;
 import com.app.community.network.response.dashboard.cart.ProductFullInformationData;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
@@ -83,5 +85,7 @@ public interface Repository {
 
     Observable<BaseResponse> submitFeedBack(Feedback feedback);
 
-    Observable<MerchantResponseData> viewMerchantCoupon(MerchantCouponRequest request);
+    Observable<MerchantCouponResponseData> viewMerchantCoupon(MerchantCouponRequest request);
+
+    Observable<ViewAllCouponResponseData> viewAllCoupon();
 }

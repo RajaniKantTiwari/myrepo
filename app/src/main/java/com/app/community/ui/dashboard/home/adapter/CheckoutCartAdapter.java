@@ -63,22 +63,26 @@ public class CheckoutCartAdapter extends RecyclerView.Adapter<CheckoutCartAdapte
             holder.tvProductPrice.setText(String.valueOf(subTotal));
             holder.tvProductPrice.setTextColor(CommonUtils.getColor(activity,R.color.color_black));
         }else if(position==cartList.size()+1){
-            int tax=0;
+            /*int tax=0;
             for(int i=0;i<cartList.size();i++) {
                 ProductResponse data = cartList.get(i);
                 tax = tax + data.getTax();
-            }
+            }*/
             holder.tvProductName.setText(activity.getResources().getString(R.string.tax));
+/*
             holder.tvProductPrice.setText(String.valueOf(tax));
+*/            holder.tvProductPrice.setText(String.valueOf(cartList.get(0).getTax()));
+
             holder.tvProductPrice.setTextColor(CommonUtils.getColor(activity,R.color.color_black));
         }else if(position==cartList.size()+2){
-            int shipingCharge=0;
+            /*int shipingCharge=0;
             for(int i=0;i<cartList.size();i++){
                 ProductResponse data=cartList.get(i);
                 shipingCharge=shipingCharge+data.getShipping();
-            }
+            }*/
             holder.tvProductName.setText(activity.getResources().getString(R.string.shipping_charge));
-            holder.tvProductPrice.setText(String.valueOf(shipingCharge));
+            //holder.tvProductPrice.setText(String.valueOf(shipingCharge));
+            holder.tvProductPrice.setText(String.valueOf(cartList.get(0).getShipping()));
             holder.tvProductPrice.setTextColor(CommonUtils.getColor(activity,R.color.color_black));
         }else if(position==cartList.size()+3){
             int subTotal=0;
