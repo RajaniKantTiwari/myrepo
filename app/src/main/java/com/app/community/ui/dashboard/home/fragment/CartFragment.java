@@ -2,6 +2,7 @@ package com.app.community.ui.dashboard.home.fragment;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -28,9 +29,11 @@ import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.adapter.CartRowAdapter;
 import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
+import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.PreferenceUtils;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 
@@ -46,22 +49,23 @@ public class CartFragment extends DashboardFragment implements CartRowAdapter.On
     private CartRowAdapter mAdapter;
     private int MAX_LIMIT = 10, MIN_LIMIT = 0;
     private ArrayList<ProductData> mCartList;
-    private CartRequest cartRequest;
     private int merchantId;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_cart, container, false);
+        //CommonUtils.register(this);
         initializeAdapter();
         return mBinding.getRoot();
     }
 
     private void initializeAdapter() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getBaseActivity());
-        mCartList = PreferenceUtils.getCartData();
-        if(CommonUtils.isNotNull(mCartList)&&mCartList.size()>0){
-            merchantId=mCartList.get(0).getMerchantId();
+        mCartList = new ArrayList<>();
+        mCartList.addAll(PreferenceUtils.getCartData());
+        if (CommonUtils.isNotNull(mCartList) && mCartList.size() > 0) {
+            merchantId = mCartList.get(0).getMerchantId();
         }
         mAdapter = new CartRowAdapter(getBaseActivity(), mCartList, this);
         mBinding.rvCartList.setLayoutManager(layoutManager);
@@ -103,9 +107,9 @@ public class CartFragment extends DashboardFragment implements CartRowAdapter.On
             } else {
                 getDashboardActivity().showToast(getResources().getString(R.string.please_add_data_in_cart_first));
             }
-        }else if(view ==mBinding.layoutNoData.tvStartShopping){
+        } else if (view == mBinding.layoutNoData.tvStartShopping) {
             CommonUtils.clicked(mBinding.layoutNoData.tvStartShopping);
-            EventBus.getDefault().post(new StartShoppingEvent(String .valueOf(merchantId)));
+            EventBus.getDefault().post(new StartShoppingEvent(String.valueOf(merchantId)));
         }
     }
 
@@ -174,6 +178,15 @@ public class CartFragment extends DashboardFragment implements CartRowAdapter.On
                     setCartData();
                 }*/
                 break;
+            case R.id.ivProductImage:
+                if (CommonUtils.isNotNull(mCartList) && mCartList.size() > pos) {
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable(AppConstants.PRODUCT_DATA, mCartList.get(pos));
+                    bundle.putInt(AppConstants.MERCHANT_ID, merchantId);
+                    bundle.putInt(GeneralConstant.POSITION, pos);
+                    getDashboardActivity().addFragmentInContainer(new FullInformationFragment(), bundle, true, true, NONE);
+                }
+                break;
         }
     }
 
@@ -221,6 +234,11 @@ public class CartFragment extends DashboardFragment implements CartRowAdapter.On
         }
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        //CommonUtils.unregister(this);
+    }
 
     private void setTotalAmount() {
         float total = 0.0f;
@@ -230,4 +248,17 @@ public class CartFragment extends DashboardFragment implements CartRowAdapter.On
         }
         mBinding.tvTotal.setText(String.valueOf(total));
     }
+
+  /*  @Subscribe
+    public void onUpdateCartEvent(UpdateCartEvent event) {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mCartList.clear();
+                mCartList.addAll(PreferenceUtils.getCartData());
+                mAdapter.notifyDataSetChanged();
+                setTotalAmount();
+            }
+        }, 100);*/
+    /*}*/
 }

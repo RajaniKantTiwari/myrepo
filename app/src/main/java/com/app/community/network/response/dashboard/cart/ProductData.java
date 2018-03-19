@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by virender on 10/01/18.
  */
 
-public class ProductData implements Parcelable{
+public class ProductData implements Parcelable {
     private int id;
     private String productname;
     private String manufacture;
@@ -24,6 +24,24 @@ public class ProductData implements Parcelable{
     private String imagepath;
     private String productdescription;
     private String mrp;
+    private String avg_price;
+    private String image_path;
+
+    public String getAvg_price() {
+        return avg_price;
+    }
+
+    public void setAvg_price(String avg_price) {
+        this.avg_price = avg_price;
+    }
+
+    public String getImage_path() {
+        return image_path;
+    }
+
+    public void setImage_path(String image_path) {
+        this.image_path = image_path;
+    }
 
     public String getImagepath() {
         return imagepath;
@@ -87,10 +105,12 @@ public class ProductData implements Parcelable{
         measure = in.readString();
         colorcode = in.readString();
         icon = in.readString();
-        merchantId=in.readInt();
-        imagepath=in.readString();
-        productdescription=in.readString();
-        mrp=in.readString();
+        merchantId = in.readInt();
+        imagepath = in.readString();
+        productdescription = in.readString();
+        mrp = in.readString();
+        avg_price = in.readString();
+        image_path = in.readString();
     }
 
     public static final Creator<ProductData> CREATOR = new Creator<ProductData>() {
@@ -207,6 +227,8 @@ public class ProductData implements Parcelable{
         dest.writeString(imagepath);
         dest.writeString(productdescription);
         dest.writeString(mrp);
+        dest.writeString(image_path);
+        dest.writeString(avg_price);
     }
 
 

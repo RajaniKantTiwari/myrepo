@@ -61,6 +61,7 @@ public class CartRowAdapter extends RecyclerView.Adapter<CartRowAdapter.CartHold
             itemView.ivAdd.setOnClickListener(this);
             itemView.ivSub.setOnClickListener(this);
             itemView.ivDeleteCart.setOnClickListener(this);
+            itemView.ivProductImage.setOnClickListener(this);
 
         }
 
@@ -74,7 +75,10 @@ public class CartRowAdapter extends RecyclerView.Adapter<CartRowAdapter.CartHold
                 listener.addToCartClick(getAdapterPosition(), root);
             } else if (view == itemBinding.ivDeleteCart) {
                 listener.addToCartClick(getAdapterPosition(), root);
+            } else if (view == itemBinding.ivProductImage) {
+                listener.addToCartClick(getAdapterPosition(),root);
             }
+
         }
 
         public void setData(int position) {

@@ -148,7 +148,7 @@ public class FullInformationFragment extends DashboardFragment {
             ProductFullInformationData data = (ProductFullInformationData) response;
             if (CommonUtils.isNotNull(data.getInfo()) && data.getInfo().size() > 0) {
                 ProductData productData = data.getInfo().get(0);
-                GlideUtils.loadImage(getDashboardActivity(), productData.getImagepath()
+                GlideUtils.loadImage(getDashboardActivity(), productData.getImage_path()
                         , mBinding.ivProductImage, null, R.drawable.background_placeholder);
                 mBinding.setProduct(productData);
             }
