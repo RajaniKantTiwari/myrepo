@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.InsetDrawable;
@@ -440,9 +442,9 @@ public class CommonUtils {
     }
 
     public static void setRecyclerViewHeight(RecyclerView recyclerView, int height) {
-                ViewGroup.LayoutParams params = recyclerView.getLayoutParams();
-                params.height = height;
-                recyclerView.setLayoutParams(params);
+        ViewGroup.LayoutParams params = recyclerView.getLayoutParams();
+        params.height = height;
+        recyclerView.setLayoutParams(params);
     }
 
     public static void logout(Activity activity) {
@@ -542,15 +544,19 @@ public class CommonUtils {
         }
 
     }
-    public static boolean checkValidEmail(String email){
+
+    public static boolean checkValidEmail(String email) {
         return AppConstants.EMAIL_PATTERN.matcher(email).matches();
     }
-    public static boolean checkValidName(String name){
+
+    public static boolean checkValidName(String name) {
         return AppConstants.USERNAME_PATTERN.matcher(name).matches();
     }
-    public static boolean checkValidPassword(String password){
+
+    public static boolean checkValidPassword(String password) {
         return AppConstants.PASSWORD_PATTERN.matcher(password).matches();
     }
+
     /**
      * Get date in GMT time
      *
@@ -569,4 +575,7 @@ public class CommonUtils {
         return gmt;
     }
 
+    public static Bitmap getBitmap(String filePath) {
+        return BitmapFactory.decodeFile(filePath);
+    }
 }

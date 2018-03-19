@@ -81,7 +81,7 @@ public interface GeneralConstant {
     int CHECKOUT=2;
     int COUPON_HEIGHT = 48;
     String MERCHANT_RESPONSE = "merchant_response";
-    int PROFILE_PIC_RESPONSE = 100;
+    int PROFILE_PIC_RESPONSE = 1;
     int NOTI_HEIGHT = 142;
     String STORE_NAME = "store_name";
     String ID = "id";

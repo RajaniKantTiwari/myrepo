@@ -12,7 +12,6 @@ import com.app.community.R;
 import com.app.community.databinding.AddressRowBinding;
 import com.app.community.network.response.dashboard.user.UserAddress;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -25,15 +24,18 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
     private final AppCompatActivity activity;
     private AddressListener listener;
     private List<UserAddress> addressList;
+
     public interface AddressListener {
         void onDeleteClick(int position);
-        void onAddressClick(int position);
+
+        void onSetDefaultClick(int position);
     }
+
     public AddressAdapter(AppCompatActivity activity, List<UserAddress> addressList, AddressListener listener) {
         mInflater = LayoutInflater.from(activity);
         this.activity = activity;
-        this.listener=listener;
-        this.addressList=addressList;
+        this.listener = listener;
+        this.addressList = addressList;
     }
 
     @Override
@@ -55,7 +57,6 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
 
     class AddressViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final AddressRowBinding mBinding;
-        private ImageView productImage;
 
         public AddressViewHolder(AddressRowBinding itemView) {
             super(itemView.getRoot());
@@ -65,12 +66,13 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
         }
 
 
-
         @Override
         public void onClick(View view) {
-            //listener.onDeleteClick(getAdapterPosition());
-            //listener.onAddressClick(getAdapterPosition());
-
+            if (view == mBinding.tvDelete) {
+                listener.onDeleteClick(getAdapterPosition());
+            } else if (view == mBinding.tvSetAddress) {
+                listener.onSetDefaultClick(getAdapterPosition());
+            }
         }
     }
 }

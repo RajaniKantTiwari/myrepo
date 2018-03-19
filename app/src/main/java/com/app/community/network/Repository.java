@@ -27,6 +27,8 @@ import com.app.community.network.response.coupon.ViewAllCouponResponseData;
 import com.app.community.network.response.dashboard.cart.CategoryResponse;
 import com.app.community.network.response.dashboard.cart.ProductFullInformationData;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
+import com.app.community.network.response.dashboard.home.AddressData;
+import com.app.community.network.response.dashboard.home.ProfilePicResponse;
 import com.app.community.network.response.dashboard.home.WelcomeHomeData;
 import com.app.community.network.response.dashboard.home.MerchantResponseData;
 import com.app.community.network.response.dashboard.home.ReviewResponseData;
@@ -37,8 +39,6 @@ import com.app.community.network.response.dashboard.user.UserProfileData;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
-
-
 
 
 public interface Repository {
@@ -104,4 +104,8 @@ public interface Repository {
     Observable<BaseResponse> checkCoupon(CheckCouponRequest request);
 
     Observable<UserProfileData> viewUserProfile();
+
+    Observable<AddressData> viewAllAddress();
+
+    Observable<ProfilePicResponse> getProfilePic();
 }

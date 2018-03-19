@@ -25,8 +25,6 @@
                 android:layout_margin="@dimen/margin_5"
                 style="@style/textview_description_match"
                 android:maxLines="3"
-                android:text="No. 6/50G, Shanti Path, Chanakyapuri,Shanti Path,
-                 Chanakyapuri,Shanti Path, Chanakyapuri,Shanti Path, Chanakyapuri · 011 4419 9"
                 android:layout_above="@+id/tvSetAddress"
                 android:layout_toStartOf="@+id/tvDelete"/>
                 <com.app.community.widget.CustomTextView
@@ -40,7 +38,7 @@
                 android:id="@+id/tvSetAddress"
                 style="@style/textview_description_wrap"
                 android:padding="@dimen/margin_7"
-                android:text="Set Default"
+                android:text="@string/set_default"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 app:customFont="@string/font_regular" />

@@ -14,6 +14,8 @@ public class UserProfile {
     private String landmark;
     private String pincode;
 
+
+
     public int getId() {
         return id;
     }

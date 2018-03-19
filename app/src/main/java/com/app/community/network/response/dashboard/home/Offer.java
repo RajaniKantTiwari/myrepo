@@ -31,6 +31,7 @@ public class Offer implements Parcelable,Observable {
     private String updated_at;
     private String isactive;
     private String distance;
+    private String offerimage;
 
     private PropertyChangeRegistry registry=new PropertyChangeRegistry();
     public Offer(){
@@ -58,6 +59,7 @@ public class Offer implements Parcelable,Observable {
         updated_at = in.readString();
         isactive = in.readString();
         distance = in.readString();
+        offerimage=in.readString();
     }
 
     public static final Creator<Offer> CREATOR = new Creator<Offer>() {
@@ -71,6 +73,14 @@ public class Offer implements Parcelable,Observable {
             return new Offer[size];
         }
     };
+
+    public String getOfferimage() {
+        return offerimage;
+    }
+
+    public void setOfferimage(String offerimage) {
+        this.offerimage = offerimage;
+    }
 
     public String getId() {
         return id;
@@ -268,6 +278,7 @@ public class Offer implements Parcelable,Observable {
         dest.writeString(distance);
         dest.writeString(store_name);
         dest.writeString(address);
+        dest.writeString(offerimage);
     }
 
     @Override

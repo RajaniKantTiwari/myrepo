@@ -24,6 +24,8 @@ import com.app.community.network.response.coupon.ViewAllCouponResponseData;
 import com.app.community.network.response.dashboard.cart.CategoryResponse;
 import com.app.community.network.response.dashboard.cart.ProductFullInformationData;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
+import com.app.community.network.response.dashboard.home.AddressData;
+import com.app.community.network.response.dashboard.home.ProfilePicResponse;
 import com.app.community.network.response.dashboard.home.SearchResponseData;
 import com.app.community.network.response.dashboard.home.WelcomeHomeData;
 import com.app.community.network.response.dashboard.notification.NotificationResponseData;
@@ -40,6 +42,8 @@ import javax.inject.Inject;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
+import static com.app.community.utils.AppConstants.ADDRESSES;
+import static com.app.community.utils.AppConstants.PROFILEPIC;
 import static com.app.community.utils.GeneralConstant.VIEW_CART;
 
 
@@ -492,6 +496,42 @@ public class DashboardPresenter implements Presenter<MvpView> {
                     public void onError(Throwable call, BaseResponse baseResponse) {
                         mView.hideProgress();
                         mView.onError(baseResponse.getMsg(), AppConstants.VIEW_PROFILE);
+                    }
+                });
+    }
+
+    public void viewAllAddress(DashBoardActivity activity) {
+        mView.showProgress();
+        mRepository.viewAllAddress().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).
+                subscribeWith(new DefaultApiObserver<AddressData>(activity) {
+                    @Override
+                    public void onResponse(AddressData response) {
+                        mView.hideProgress();
+                        mView.onSuccess(response, ADDRESSES);
+                    }
+
+                    @Override
+                    public void onError(Throwable call, BaseResponse baseResponse) {
+                        mView.hideProgress();
+                        mView.onError(baseResponse.getMsg(), ADDRESSES);
+                    }
+                });
+    }
+
+    public void getProfilePic(DashBoardActivity activity) {
+        mView.showProgress();
+        mRepository.getProfilePic().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).
+                subscribeWith(new DefaultApiObserver<ProfilePicResponse>(activity) {
+                    @Override
+                    public void onResponse(ProfilePicResponse response) {
+                        mView.hideProgress();
+                        mView.onSuccess(response, PROFILEPIC);
+                    }
+
+                    @Override
+                    public void onError(Throwable call, BaseResponse baseResponse) {
+                        mView.hideProgress();
+                        mView.onError(baseResponse.getMsg(), PROFILEPIC);
                     }
                 });
     }

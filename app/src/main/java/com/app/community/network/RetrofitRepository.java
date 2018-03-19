@@ -27,7 +27,9 @@ import com.app.community.network.response.coupon.ViewAllCouponResponseData;
 import com.app.community.network.response.dashboard.cart.CategoryResponse;
 import com.app.community.network.response.dashboard.cart.ProductFullInformationData;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
+import com.app.community.network.response.dashboard.home.AddressData;
 import com.app.community.network.response.dashboard.home.MerchantResponseData;
+import com.app.community.network.response.dashboard.home.ProfilePicResponse;
 import com.app.community.network.response.dashboard.home.ReviewResponseData;
 import com.app.community.network.response.dashboard.home.SearchResponseData;
 import com.app.community.network.response.dashboard.home.WelcomeHomeData;
@@ -200,5 +202,15 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<UserProfileData> viewUserProfile() {
         return apiService.viewUserProfile();
+    }
+
+    @Override
+    public Observable<AddressData> viewAllAddress() {
+        return apiService.viewAllAddress();
+    }
+
+    @Override
+    public Observable<ProfilePicResponse> getProfilePic() {
+        return apiService.getProfilePic();
     }
 }

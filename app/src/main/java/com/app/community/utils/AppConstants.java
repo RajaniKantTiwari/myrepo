@@ -54,7 +54,9 @@ public interface AppConstants {
     int ITEM_START_INDEX = 0;
     int DELETE_CART = 990011;
     int VIEW_COUPON = 1;
-    int VIEW_PROFILE=5;
+    int VIEW_PROFILE=2;
+    int ADDRESSES=3;
+    int PROFILEPIC=4;
 
     @IntDef({CHECKOUT_FRAGMENT})
     @Retention(RetentionPolicy.SOURCE)

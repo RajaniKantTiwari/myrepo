@@ -6,13 +6,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.app.community.R;
 import com.app.community.databinding.OfferRowBinding;
 import com.app.community.network.response.dashboard.home.Offer;
 import com.app.community.utils.CommonUtils;
+import com.app.community.utils.GlideUtils;
 import com.app.community.widget.CustomTextView;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -22,6 +25,7 @@ import java.util.ArrayList;
 
 public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferViewHolder> {
     private final LayoutInflater mInflater;
+    private final AppCompatActivity activity;
     private OfferRowBinding mBinding;
     private OfferListener listener;
     private ArrayList<Offer> offersList;
@@ -31,6 +35,7 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferViewHol
     }
 
     public OfferAdapter(AppCompatActivity activity, ArrayList<Offer> offersList, OfferListener listener) {
+        this.activity=activity;
         mInflater = LayoutInflater.from(activity);
         this.offersList = offersList;
         this.listener = listener;
@@ -48,7 +53,9 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferViewHol
             Offer offer = offersList.get(position);
             if (CommonUtils.isNotNull(offer)) {
                 holder.tvStoreName.setText(offer.getStore_name());
-                holder.tvOffer.setText(offersList.get(position).getOffer_descr());
+                holder.tvOffer.setText(offer.getOffer_descr());
+                GlideUtils.loadImageTwoRoundedCorner(activity,offer.getOfferimage(),holder.ivOffer,
+                        null,0,15,0,0,15);
             }
         }
     }
@@ -62,12 +69,14 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferViewHol
         private final LinearLayout layoutProduct;
         private final CustomTextView tvOffer;
         private final CustomTextView tvStoreName;
+        private final ImageView ivOffer;
 
         public OfferViewHolder(OfferRowBinding itemView) {
             super(itemView.getRoot());
             layoutProduct = itemView.layoutProduct;
             tvOffer = itemView.tvOffer;
             tvStoreName = itemView.tvStoreName;
+            ivOffer=itemView.ivOffer;
             itemView.layoutOffer.setOnClickListener(this);
         }
 
