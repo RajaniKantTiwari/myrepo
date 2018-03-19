@@ -28,6 +28,7 @@ import com.app.community.network.response.dashboard.home.SearchResponseData;
 import com.app.community.network.response.dashboard.home.WelcomeHomeData;
 import com.app.community.network.response.dashboard.notification.NotificationResponseData;
 import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
+import com.app.community.network.response.dashboard.user.UserProfileData;
 import com.app.community.ui.base.MvpView;
 import com.app.community.ui.base.Presenter;
 import com.app.community.utils.AppConstants;
@@ -473,6 +474,24 @@ public class DashboardPresenter implements Presenter<MvpView> {
                     public void onError(Throwable call, BaseResponse baseResponse) {
                         mView.hideProgress();
                         mView.onError(baseResponse.getMsg(), 2);
+                    }
+                });
+    }
+
+    public void viewUserProfile(DashBoardActivity activity) {
+        mView.showProgress();
+        mRepository.viewUserProfile().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).
+                subscribeWith(new DefaultApiObserver<UserProfileData>(activity) {
+                    @Override
+                    public void onResponse(UserProfileData response) {
+                        mView.hideProgress();
+                        mView.onSuccess(response, AppConstants.VIEW_PROFILE);
+                    }
+
+                    @Override
+                    public void onError(Throwable call, BaseResponse baseResponse) {
+                        mView.hideProgress();
+                        mView.onError(baseResponse.getMsg(), AppConstants.VIEW_PROFILE);
                     }
                 });
     }

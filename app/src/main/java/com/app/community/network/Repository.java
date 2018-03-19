@@ -33,6 +33,7 @@ import com.app.community.network.response.dashboard.home.ReviewResponseData;
 import com.app.community.network.response.dashboard.home.SearchResponseData;
 import com.app.community.network.response.dashboard.notification.NotificationResponseData;
 import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
+import com.app.community.network.response.dashboard.user.UserProfileData;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
@@ -101,4 +102,6 @@ public interface Repository {
     Observable<BaseResponse> readNotification(NotificationRequest request);
 
     Observable<BaseResponse> checkCoupon(CheckCouponRequest request);
+
+    Observable<UserProfileData> viewUserProfile();
 }

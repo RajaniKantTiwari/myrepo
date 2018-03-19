@@ -35,7 +35,6 @@
                         style="@style/wrap_wrap"
                         android:layout_marginStart="@dimen/margin_60"
                         android:layout_marginTop="@dimen/margin_60"
-
                         android:src="@drawable/ic_edit_profile_pic" />
                 </RelativeLayout>
 
@@ -117,7 +116,13 @@
                 android:textSize="@dimen/button_large"
                 app:customFont="@string/font_bold"
                 />-->
-
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvUpdate"
+                style="@style/textview_header_small_wrap"
+                android:text="@string/update"
+                android:padding="@dimen/margin_10"
+                android:textColor="@color/white"
+                android:layout_alignParentEnd="true"/>
         </RelativeLayout>
 
         <include

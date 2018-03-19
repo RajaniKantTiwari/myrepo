@@ -33,6 +33,7 @@ import com.app.community.network.response.dashboard.home.SearchResponseData;
 import com.app.community.network.response.dashboard.home.WelcomeHomeData;
 import com.app.community.network.response.dashboard.notification.NotificationResponseData;
 import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
+import com.app.community.network.response.dashboard.user.UserProfileData;
 
 import io.reactivex.Observable;
 import retrofit2.Retrofit;
@@ -194,5 +195,10 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<BaseResponse> checkCoupon(CheckCouponRequest request) {
         return apiService.checkCoupon(request);
+    }
+
+    @Override
+    public Observable<UserProfileData> viewUserProfile() {
+        return apiService.viewUserProfile();
     }
 }

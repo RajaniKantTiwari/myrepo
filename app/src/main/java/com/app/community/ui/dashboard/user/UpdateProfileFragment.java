@@ -3,6 +3,7 @@ package com.app.community.ui.dashboard.user;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -50,7 +51,7 @@ import static android.app.Activity.RESULT_OK;
  */
 
 public class UpdateProfileFragment extends DashboardFragment implements MvpView, View.OnClickListener,
-        ImagePickerUtils.OnImagePickerListener,AddressAdapter.AddressListener {
+        ImagePickerUtils.OnImagePickerListener, AddressAdapter.AddressListener {
 
     FragmentUpdateProfileBinding mBinding;
     private static String TAG = UpdateProfileFragment.class.getSimpleName();
@@ -62,7 +63,7 @@ public class UpdateProfileFragment extends DashboardFragment implements MvpView,
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_update_profile,container,false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_update_profile, container, false);
         CommonUtils.register(this);
         getDashboardActivity().setHeaderTitle(getResources().getString(R.string.your_profile));
         return mBinding.getRoot();
@@ -72,6 +73,7 @@ public class UpdateProfileFragment extends DashboardFragment implements MvpView,
     public void setListener() {
         mBinding.ivProfile.setOnClickListener(this);
         mBinding.imgEditPic.setOnClickListener(this);
+        mBinding.tvUpdate.setOnClickListener(this);
         //mBinding.tvUpdate.setOnClickListener(this);
     }
 
@@ -79,6 +81,7 @@ public class UpdateProfileFragment extends DashboardFragment implements MvpView,
     public String getFragmentName() {
         return UpdateProfileFragment.class.getSimpleName();
     }
+
     @Override
     public void initializeData() {
         mBinding.edName.setText(PreferenceUtils.getUserName());
@@ -90,8 +93,9 @@ public class UpdateProfileFragment extends DashboardFragment implements MvpView,
         GlideUtils.loadImageProfilePic(getContext(), PreferenceUtils.getImage(), mBinding.ivProfile, null, R.drawable.avatar);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getDashboardActivity());
         mBinding.rvAddress.setLayoutManager(layoutManager);
-        addressAdapter = new AddressAdapter(getDashboardActivity(), addressList,this);
+        addressAdapter = new AddressAdapter(getDashboardActivity(), addressList, this);
         mBinding.rvAddress.setAdapter(addressAdapter);
+        getPresenter().viewUserProfile(getDashboardActivity());
     }
 
 
@@ -100,6 +104,8 @@ public class UpdateProfileFragment extends DashboardFragment implements MvpView,
         if (CommonUtils.isNotNull(response)) {
             if (requestCode == GeneralConstant.PROFILE_PIC_RESPONSE && response.getStatus().equalsIgnoreCase(AppConstants.SUCCESS)) {
                 getDashboardActivity().showToast(getResources().getString(R.string.profile_pic_updated_successfully));
+            } else if (requestCode == AppConstants.VIEW_PROFILE) {
+
             }
 
         }
@@ -115,12 +121,12 @@ public class UpdateProfileFragment extends DashboardFragment implements MvpView,
     public void onClick(View view) {
         if (mBinding.ivProfile == view || mBinding.imgEditPic == view) {
             showImageChooserDialog();
-        } /*else if (mBinding.tvUpdate == view) {
+        } else if (mBinding.tvUpdate == view) {
             PreferenceUtils.setImage(profilePicFilePath);
             PreferenceUtils.setUserName(mBinding.edName.getText().toString());
             PreferenceUtils.setEmail(mBinding.edEmail.getText().toString());
             updateProfile();
-        }*/
+        }
     }
 
 
@@ -236,22 +242,21 @@ public class UpdateProfileFragment extends DashboardFragment implements MvpView,
     }
 
     private void updateProfile() {
-        ProfileRequest profileRequest=new ProfileRequest();
+        ProfileRequest profileRequest = new ProfileRequest();
         profileRequest.setUserid(PreferenceUtils.getUserId());
         profileRequest.setName(PreferenceUtils.getUserName());
         profileRequest.setAddress(PreferenceUtils.getAddress());
         profileRequest.setCity(PreferenceUtils.getCity());
         profileRequest.setEmail(mBinding.edEmail.getText().toString());
         if (isNetworkConnected()) {
-            getPresenter().updateProfile(getDashboardActivity(),profileRequest);
+            getPresenter().updateProfile(getDashboardActivity(), profileRequest);
         }
     }
 
 
-
     private void updateProfilePic() {
         try {
-            Bitmap bitmap = ((RoundedBitmapDrawable) mBinding.ivProfile.getDrawable()).getBitmap();
+            Bitmap bitmap = ((BitmapDrawable) mBinding.ivProfile.getDrawable()).getBitmap();
             Upload postImage = new Upload(getDashboardActivity(), bitmap);
             postImage.execute();
         } catch (Exception e) {

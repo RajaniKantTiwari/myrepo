@@ -1,7 +1,6 @@
 package com.app.community.network;
 
 
-
 import com.app.community.network.request.DeviceTokenRequest;
 import com.app.community.network.request.Feedback;
 import com.app.community.network.request.LoginRequest;
@@ -37,12 +36,12 @@ import com.app.community.network.response.dashboard.home.SearchResponseData;
 import com.app.community.network.response.dashboard.home.WelcomeHomeData;
 import com.app.community.network.response.dashboard.notification.NotificationResponseData;
 import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
+import com.app.community.network.response.dashboard.user.UserProfileData;
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-
 
 
 public interface ApiService {
@@ -148,5 +147,9 @@ public interface ApiService {
 
     @POST("notification/readnotification")
     Observable<BaseResponse> readNotification(@Body NotificationRequest request);
+
+    @GET("register/viewprofile")
+    Observable<UserProfileData> viewUserProfile();
+
 
 }
