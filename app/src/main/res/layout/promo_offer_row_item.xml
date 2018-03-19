@@ -3,7 +3,7 @@
 <data>
     <variable
         name="coupon"
-        type="com.app.community.network.request.dashboard.Coupon"/>
+        type="com.app.community.network.response.dashboard.home.Offer"/>
 </data>
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/layoutCoupon"
@@ -14,14 +14,14 @@
             android:layout_toStartOf="@+id/tvApply"
             android:layout_marginEnd="@dimen/margin_5"
             android:maxLines="1"
-            android:text="Locasto Fashion Store"
+            android:text="@={coupon.store_name}"
             style="@style/textview_description_large_match"/>
         <com.app.community.widget.CustomTextView
             android:id="@+id/tvAddress"
             android:layout_below="@+id/tvStoreName"
             android:layout_toStartOf="@+id/tvApply"
             android:maxLines="2"
-            android:text="sector 49 gurgaon"
+            android:text="@={coupon.address}"
             android:layout_marginEnd="@dimen/margin_5"
             style="@style/textview_description_small_match" />
         <com.app.community.widget.CustomTextView

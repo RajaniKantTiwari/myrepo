@@ -102,10 +102,11 @@ public class NotificationFragment extends DashboardFragment implements Notificat
 
     private void setData(NotificationResponseData data) {
         if (CommonUtils.isNotNull(data)) {
+            CommonUtils.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, true);
             newNotificationList.clear();
             oldNotificationList.clear();
             ArrayList<NotificationResponse> responseArrayList = data.getMessage();
-            if (CommonUtils.isNotNull(responseArrayList)) {
+            if (CommonUtils.isNotNull(responseArrayList) && responseArrayList.size() > 0) {
                 for (NotificationResponse response : responseArrayList) {
                     if (response.getMsgstatus() == 0) {
                         newNotificationList.add(response);
@@ -113,7 +114,11 @@ public class NotificationFragment extends DashboardFragment implements Notificat
                         oldNotificationList.add(response);
                     }
                 }
+            } else {
+                CommonUtils.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, false);
             }
+        } else {
+            CommonUtils.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, false);
         }
         mNotificationAdapter.notifyDataSetChanged();
     }

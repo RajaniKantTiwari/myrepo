@@ -12,6 +12,8 @@ import android.os.Parcelable;
 public class Offer implements Parcelable,Observable {
     private String id;
     private String merchant_id;
+    private String store_name;
+    private String address;
     private String offer_descr;
     private String offer_from;
     private String offer_to;
@@ -30,8 +32,6 @@ public class Offer implements Parcelable,Observable {
     private String isactive;
     private String distance;
 
-
-
     private PropertyChangeRegistry registry=new PropertyChangeRegistry();
     public Offer(){
 
@@ -39,6 +39,8 @@ public class Offer implements Parcelable,Observable {
     protected Offer(Parcel in) {
         id = in.readString();
         merchant_id = in.readString();
+        store_name = in.readString();
+        address = in.readString();
         offer_descr = in.readString();
         offer_from = in.readString();
         offer_to = in.readString();
@@ -84,6 +86,22 @@ public class Offer implements Parcelable,Observable {
 
     public void setMerchant_id(String merchant_id) {
         this.merchant_id = merchant_id;
+    }
+
+    public String getStore_name() {
+        return store_name;
+    }
+
+    public void setStore_name(String store_name) {
+        this.store_name = store_name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getOffer_descr() {
@@ -248,6 +266,8 @@ public class Offer implements Parcelable,Observable {
         dest.writeString(updated_at);
         dest.writeString(isactive);
         dest.writeString(distance);
+        dest.writeString(store_name);
+        dest.writeString(address);
     }
 
     @Override

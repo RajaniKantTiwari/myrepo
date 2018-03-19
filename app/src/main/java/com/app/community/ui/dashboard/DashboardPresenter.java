@@ -2,7 +2,6 @@ package com.app.community.ui.dashboard;
 
 import android.app.Activity;
 
-
 import com.app.community.network.DefaultApiObserver;
 import com.app.community.network.Repository;
 import com.app.community.network.request.DeviceTokenRequest;
@@ -12,6 +11,7 @@ import com.app.community.network.request.cart.CartRequest;
 import com.app.community.network.request.cart.CategoryRequest;
 import com.app.community.network.request.cart.CheckoutRequest;
 import com.app.community.network.request.cart.DeleteCartRequest;
+import com.app.community.network.request.dashboard.CheckCouponRequest;
 import com.app.community.network.request.dashboard.MerchantCouponRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.request.dashboard.NotificationRequest;
@@ -24,14 +24,12 @@ import com.app.community.network.response.coupon.ViewAllCouponResponseData;
 import com.app.community.network.response.dashboard.cart.CategoryResponse;
 import com.app.community.network.response.dashboard.cart.ProductFullInformationData;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
-import com.app.community.network.response.dashboard.home.MerchantResponseData;
 import com.app.community.network.response.dashboard.home.SearchResponseData;
 import com.app.community.network.response.dashboard.home.WelcomeHomeData;
 import com.app.community.network.response.dashboard.notification.NotificationResponseData;
 import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
 import com.app.community.ui.base.MvpView;
 import com.app.community.ui.base.Presenter;
-import com.app.community.ui.cart.ProductSubproductFragment;
 import com.app.community.utils.AppConstants;
 import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.LogUtils;
@@ -139,6 +137,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
                 mView.hideProgress();
                 mView.onSuccess(response, VIEW_CART);
             }
+
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
@@ -301,7 +300,8 @@ public class DashboardPresenter implements Presenter<MvpView> {
             }
         });
     }
-    public void updateProfilePic(Activity activity,ProfilePic profilePicRequest) {
+
+    public void updateProfilePic(Activity activity, ProfilePic profilePicRequest) {
         mView.showProgress();
         mRepository.updateProfilePic(profilePicRequest).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
             @Override
@@ -317,6 +317,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
             }
         });
     }
+
     public void updateProfile(Activity activity, ProfileRequest profileRequest) {
         mView.showProgress();
         mRepository.updateProfile(profileRequest).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
@@ -334,7 +335,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
         });
     }
 
-    public void submitFeedBack(Activity activity,Feedback feedback) {
+    public void submitFeedBack(Activity activity, Feedback feedback) {
         mView.showProgress();
         mRepository.submitFeedBack(feedback).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
             @Override
@@ -390,18 +391,18 @@ public class DashboardPresenter implements Presenter<MvpView> {
         mView.showProgress();
         mRepository.getNotificationListPerUser().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).
                 subscribeWith(new DefaultApiObserver<NotificationResponseData>(activity) {
-            @Override
-            public void onResponse(NotificationResponseData response) {
-                mView.hideProgress();
-                mView.onSuccess(response, 1);
-            }
+                    @Override
+                    public void onResponse(NotificationResponseData response) {
+                        mView.hideProgress();
+                        mView.onSuccess(response, 1);
+                    }
 
-            @Override
-            public void onError(Throwable call, BaseResponse baseResponse) {
-                mView.hideProgress();
-                mView.onError(baseResponse.getMsg(), 1);
-            }
-        });
+                    @Override
+                    public void onError(Throwable call, BaseResponse baseResponse) {
+                        mView.hideProgress();
+                        mView.onError(baseResponse.getMsg(), 1);
+                    }
+                });
     }
 
     public void clearAllNotification(DashBoardActivity activity) {
@@ -454,6 +455,24 @@ public class DashboardPresenter implements Presenter<MvpView> {
                     public void onError(Throwable call, BaseResponse baseResponse) {
                         mView.hideProgress();
                         mView.onError(baseResponse.getMsg(), 4);
+                    }
+                });
+    }
+
+    public void checkCoupon(DashBoardActivity activity, CheckCouponRequest request) {
+        mView.showProgress();
+        mRepository.checkCoupon(request).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).
+                subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+                    @Override
+                    public void onResponse(BaseResponse response) {
+                        mView.hideProgress();
+                        mView.onSuccess(response, 2);
+                    }
+
+                    @Override
+                    public void onError(Throwable call, BaseResponse baseResponse) {
+                        mView.hideProgress();
+                        mView.onError(baseResponse.getMsg(), 2);
                     }
                 });
     }

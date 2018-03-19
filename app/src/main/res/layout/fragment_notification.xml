@@ -5,12 +5,8 @@
         style="@style/match_match"
         android:background="@color/white">
 
-        <ScrollView
-            android:id="@+id/scrollView"
-            style="@style/match_match"
-            android:fillViewport="true">
-
             <LinearLayout
+                android:id="@+id/layoutMain"
                 style="@style/match_match"
                 android:orientation="vertical"
                 android:padding="@dimen/margin_8">
@@ -19,7 +15,6 @@
                     android:id="@+id/rvNotification"
                     style="@style/match_match" />
             </LinearLayout>
-        </ScrollView>
 
         <include
             android:id="@+id/layoutNoData"

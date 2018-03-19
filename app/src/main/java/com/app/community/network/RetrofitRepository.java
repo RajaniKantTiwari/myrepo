@@ -10,6 +10,7 @@ import com.app.community.network.request.cart.CartRequest;
 import com.app.community.network.request.cart.CategoryRequest;
 import com.app.community.network.request.cart.CheckoutRequest;
 import com.app.community.network.request.cart.DeleteCartRequest;
+import com.app.community.network.request.dashboard.CheckCouponRequest;
 import com.app.community.network.request.dashboard.MerchantCouponRequest;
 import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.request.dashboard.NotificationRequest;
@@ -188,5 +189,10 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<BaseResponse> readNotification(NotificationRequest request) {
         return apiService.readNotification(request);
+    }
+
+    @Override
+    public Observable<BaseResponse> checkCoupon(CheckCouponRequest request) {
+        return apiService.checkCoupon(request);
     }
 }

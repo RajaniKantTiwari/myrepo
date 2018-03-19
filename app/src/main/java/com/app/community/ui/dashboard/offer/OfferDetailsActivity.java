@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -18,9 +17,7 @@ import com.app.community.databinding.ItemTabViewBinding;
 import com.app.community.event.StartShoppingEvent;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.home.Offer;
-import com.app.community.ui.cart.ProductSubproductFragment;
 import com.app.community.ui.dashboard.DashboardInsideActivity;
-import com.app.community.ui.dashboard.offer.adapter.OfferDetailsAdapter;
 import com.app.community.ui.dashboard.offer.adapter.OfferPagerAdapter;
 import com.app.community.ui.presenter.CommonPresenter;
 import com.app.community.utils.AppConstants;
@@ -29,8 +26,6 @@ import com.app.community.utils.CommonUtils;
 import org.greenrobot.eventbus.EventBus;
 
 import javax.inject.Inject;
-
-import static com.app.community.ui.base.BaseActivity.AnimationType.NONE;
 
 /**
  * Created by ashok on 13/11/17.

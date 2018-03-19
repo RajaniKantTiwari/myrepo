@@ -25,14 +25,17 @@ public class PromoOfferAdapter extends RecyclerView.Adapter<PromoOfferAdapter.Pr
     private final AppCompatActivity activity;
     private final ArrayList<Offer> couponList;
     private PromoListener listener;
+
     public interface PromoListener {
         void onApplyClick(int position);
+        void onCouponDetailClick(int position);
     }
+
     public PromoOfferAdapter(AppCompatActivity activity, ArrayList<Offer> couponList, PromoListener listener) {
         mInflater = LayoutInflater.from(activity);
         this.activity = activity;
-        this.couponList=couponList;
-        this.listener=listener;
+        this.couponList = couponList;
+        this.listener = listener;
     }
 
     @Override
@@ -43,30 +46,43 @@ public class PromoOfferAdapter extends RecyclerView.Adapter<PromoOfferAdapter.Pr
 
     @Override
     public void onBindViewHolder(PromoOfferViewHolder holder, int position) {
-
+        if (CommonUtils.isNotNull(couponList) && couponList.size() > position) {
+            holder.setData(position);
+        }
 
     }
 
     @Override
     public int getItemCount() {
-        return CommonUtils.isNotNull(couponList)?couponList.size():0;
+        return CommonUtils.isNotNull(couponList) ? couponList.size() : 0;
     }
 
     class PromoOfferViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final PromoOfferRowItemBinding mBinding;
-        private CustomTextView tvApply;
 
         public PromoOfferViewHolder(PromoOfferRowItemBinding itemView) {
             super(itemView.getRoot());
             mBinding = itemView;
             mBinding.tvApply.setOnClickListener(this);
+            mBinding.layoutCoupon.setOnClickListener(this);
         }
-
 
 
         @Override
         public void onClick(View view) {
-            listener.onApplyClick(getAdapterPosition());
+            if (CommonUtils.isNotNull(listener)) {
+                if (view == mBinding.tvApply) {
+                    listener.onApplyClick(getAdapterPosition());
+                } else if (view == mBinding.layoutCoupon) {
+                    listener.onCouponDetailClick(getAdapterPosition());
+                }
+
+            }
+
+        }
+
+        public void setData(int position) {
+            mBinding.setCoupon(couponList.get(position));
         }
     }
 }

@@ -10,6 +10,7 @@ import com.app.community.network.request.cart.CartRequest;
 import com.app.community.network.request.cart.CategoryRequest;
 import com.app.community.network.request.cart.CheckoutRequest;
 import com.app.community.network.request.cart.DeleteCartRequest;
+import com.app.community.network.request.dashboard.CheckCouponRequest;
 import com.app.community.network.request.dashboard.MerchantCouponRequest;
 import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
@@ -98,4 +99,6 @@ public interface Repository {
     Observable<BaseResponse> deleteNotification(NotificationRequest request);
 
     Observable<BaseResponse> readNotification(NotificationRequest request);
+
+    Observable<BaseResponse> checkCoupon(CheckCouponRequest request);
 }

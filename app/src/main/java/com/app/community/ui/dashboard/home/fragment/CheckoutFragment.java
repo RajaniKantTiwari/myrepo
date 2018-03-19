@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.app.community.R;
 import com.app.community.databinding.FragmentCheckoutBinding;
+import com.app.community.event.CouponEvent;
 import com.app.community.network.request.PaymentOption;
 import com.app.community.network.request.cart.CheckoutRequest;
 import com.app.community.network.request.dashboard.Coupon;
@@ -187,6 +188,11 @@ public class CheckoutFragment extends DashboardFragment {
     @Subscribe
     public void onAddressEvent(UpdateAddress event) {
         mBinding.tvAddress.setText(event.getAddress());
+    }
+
+    @Subscribe
+    public void onCouponEvent(CouponEvent event) {
+
     }
 
 }
