@@ -5,4 +5,32 @@ package com.app.community.network.response.dashboard.notification;
  */
 
 public class NotificationResponse {
+    //msgstatus 0 for unread notification  1 for read
+    private int id;
+    private String message;
+    private int msgstatus;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public int getMsgstatus() {
+        return msgstatus;
+    }
+
+    public void setMsgstatus(int msgstatus) {
+        this.msgstatus = msgstatus;
+    }
 }

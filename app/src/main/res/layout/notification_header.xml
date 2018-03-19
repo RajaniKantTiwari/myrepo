@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/match_wrap">
+
+        <com.app.community.widget.CustomTextView
+            android:id="@+id/tvNotification"
+            style="@style/textview_description_wrap"
+            android:layout_marginEnd="@dimen/notification_margin_end"
+            android:layout_marginStart="@dimen/margin_5"
+            android:padding="@dimen/margin_5"
+            android:text="@string/New"
+            android:textColor="@color/color_notification" />
+
+        <com.app.community.widget.CustomTextView
+            android:id="@+id/tvClear"
+            style="@style/textview_description_wrap"
+            android:layout_alignParentEnd="true"
+            android:padding="@dimen/margin_5"
+            android:text="@string/clear"
+            android:textColor="@color/color_notification" />
+    </RelativeLayout>
+</layout>

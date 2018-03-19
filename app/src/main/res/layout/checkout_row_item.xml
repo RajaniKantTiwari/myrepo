@@ -8,8 +8,9 @@
 
         <com.app.community.widget.CustomTextView
             android:id="@+id/tvProductName"
-            style="@style/textview_title_wrap"
+            style="@style/textview_title_match"
             android:textColor="@color/color_black"
+            android:layout_toStartOf="@+id/tvProductPrice"
             android:textSize="@dimen/textSize_description"
             android:layout_marginStart="@dimen/margin_10"
             android:maxLines="1"
@@ -17,10 +18,9 @@
         <com.app.community.widget.CustomTextView
             android:id="@+id/tvProductPrice"
             style="@style/textview_title_wrap"
-            android:layout_toEndOf="@+id/tvProductName"
             android:gravity="end"
             android:maxLines="1"
-            android:minWidth="@dimen/margin_100"
+            android:layout_width="@dimen/margin_80"
             android:layout_alignParentEnd="true"
             android:textColor="@color/color_black"
             android:textSize="@dimen/textSize_description"

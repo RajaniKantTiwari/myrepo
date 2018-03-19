@@ -29,7 +29,7 @@ import com.app.community.ui.dashboard.home.fragment.LiveOrderFragment;
 import com.app.community.ui.dashboard.home.fragment.NewsTabFragment;
 import com.app.community.ui.dashboard.home.fragment.PastOrderFragment;
 import com.app.community.ui.dashboard.home.fragment.MerchantListFragment;
-import com.app.community.ui.dashboard.home.fragment.ProductMapFragment;
+import com.app.community.ui.dashboard.home.fragment.MerchantMapFragment;
 import com.app.community.ui.dashboard.home.fragment.RecentFragment;
 import com.app.community.ui.dashboard.notification.NotificationFragment;
 import com.app.community.ui.dashboard.offer.OfferFragment;
@@ -240,7 +240,7 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
         Fragment fragment = null;
         switch (fragmentId) {
             case MERCHANT_MAP_FRAGMENT:
-                fragment = new ProductMapFragment();
+                fragment = new MerchantMapFragment();
                 break;
             case MERCHANT_LIST_FRAGMENT:
                 fragment = new MerchantListFragment();

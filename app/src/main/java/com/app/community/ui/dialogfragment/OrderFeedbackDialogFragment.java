@@ -19,7 +19,7 @@ public class OrderFeedbackDialogFragment extends DialogFragment implements View.
     private DialogFeedbackBinding mBinding;
     private OrderDialogListener listener;
     private int id;
-    private int storeName;
+    private String storeName;
 
     public interface OrderDialogListener {
         void submit(int id, float rating, String feedback);
@@ -49,7 +49,7 @@ public class OrderFeedbackDialogFragment extends DialogFragment implements View.
         Bundle bundle = getArguments();
         if (CommonUtils.isNotNull(bundle)) {
             id=bundle.getInt(GeneralConstant.ID);
-            storeName=bundle.getInt(GeneralConstant.STORE_NAME);
+            storeName=bundle.getString(GeneralConstant.STORE_NAME);
             mBinding.tvName.setText(storeName);
         }
     }

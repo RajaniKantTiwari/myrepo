@@ -13,6 +13,7 @@ import com.app.community.network.request.cart.DeleteCartRequest;
 import com.app.community.network.request.dashboard.MerchantCouponRequest;
 import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
+import com.app.community.network.request.dashboard.NotificationRequest;
 import com.app.community.network.request.dashboard.ProductRequest;
 import com.app.community.network.request.dashboard.ProfilePic;
 import com.app.community.network.request.dashboard.ProfileRequest;
@@ -29,6 +30,7 @@ import com.app.community.network.response.dashboard.home.WelcomeHomeData;
 import com.app.community.network.response.dashboard.home.MerchantResponseData;
 import com.app.community.network.response.dashboard.home.ReviewResponseData;
 import com.app.community.network.response.dashboard.home.SearchResponseData;
+import com.app.community.network.response.dashboard.notification.NotificationResponseData;
 import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
 
 import io.reactivex.Completable;
@@ -88,4 +90,12 @@ public interface Repository {
     Observable<MerchantCouponResponseData> viewMerchantCoupon(MerchantCouponRequest request);
 
     Observable<ViewAllCouponResponseData> viewAllCoupon();
+
+    Observable<NotificationResponseData> getNotificationListPerUser();
+
+    Observable<BaseResponse> clearAllNotification();
+
+    Observable<BaseResponse> deleteNotification(NotificationRequest request);
+
+    Observable<BaseResponse> readNotification(NotificationRequest request);
 }

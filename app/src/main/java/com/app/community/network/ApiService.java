@@ -17,6 +17,7 @@ import com.app.community.network.request.dashboard.IssueRequest;
 import com.app.community.network.request.dashboard.MerchantCouponRequest;
 import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
+import com.app.community.network.request.dashboard.NotificationRequest;
 import com.app.community.network.request.dashboard.OrderDetailsRequest;
 import com.app.community.network.request.dashboard.ProductRequest;
 import com.app.community.network.request.dashboard.ProfilePic;
@@ -34,6 +35,7 @@ import com.app.community.network.response.dashboard.home.MerchantResponseData;
 import com.app.community.network.response.dashboard.home.ReviewResponseData;
 import com.app.community.network.response.dashboard.home.SearchResponseData;
 import com.app.community.network.response.dashboard.home.WelcomeHomeData;
+import com.app.community.network.response.dashboard.notification.NotificationResponseData;
 import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
 
 import io.reactivex.Observable;
@@ -135,7 +137,16 @@ public interface ApiService {
     @POST("offer/getmerchantcoupondescription")
     Observable<BaseResponse> merchantCouponDescription(@Body MerchantCouponRequest request);
 
+    @GET("notification/getnotificationlistperuser")
+    Observable<NotificationResponseData> getNotificationListPerUser();
 
+    @GET("notification/clearallnotification")
+    Observable<BaseResponse> clearAllNotification();
 
+    @POST("notification/deletenotification")
+    Observable<BaseResponse> deleteNotification(@Body NotificationRequest request);
+
+    @POST("notification/readnotification")
+    Observable<BaseResponse> readNotification(@Body NotificationRequest request);
 
 }

@@ -106,7 +106,7 @@
                     style="@style/image_25"
                     android:layout_centerInParent="true"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/hamberg_right" />
+                    android:src="@drawable/right_icon" />
             </RelativeLayout>
         </LinearLayout>
     </android.support.v7.widget.Toolbar>

@@ -14,6 +14,7 @@ import com.app.community.network.request.cart.CheckoutRequest;
 import com.app.community.network.request.cart.DeleteCartRequest;
 import com.app.community.network.request.dashboard.MerchantCouponRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
+import com.app.community.network.request.dashboard.NotificationRequest;
 import com.app.community.network.request.dashboard.ProductRequest;
 import com.app.community.network.request.dashboard.ProfilePic;
 import com.app.community.network.request.dashboard.ProfileRequest;
@@ -26,6 +27,7 @@ import com.app.community.network.response.dashboard.dashboardinside.ProductDetai
 import com.app.community.network.response.dashboard.home.MerchantResponseData;
 import com.app.community.network.response.dashboard.home.SearchResponseData;
 import com.app.community.network.response.dashboard.home.WelcomeHomeData;
+import com.app.community.network.response.dashboard.notification.NotificationResponseData;
 import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
 import com.app.community.ui.base.MvpView;
 import com.app.community.ui.base.Presenter;
@@ -382,5 +384,77 @@ public class DashboardPresenter implements Presenter<MvpView> {
                 mView.onError(baseResponse.getMsg(), AppConstants.VIEW_COUPON);
             }
         });
+    }
+
+    public void getNotificationListPerUser(DashBoardActivity activity) {
+        mView.showProgress();
+        mRepository.getNotificationListPerUser().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).
+                subscribeWith(new DefaultApiObserver<NotificationResponseData>(activity) {
+            @Override
+            public void onResponse(NotificationResponseData response) {
+                mView.hideProgress();
+                mView.onSuccess(response, 1);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), 1);
+            }
+        });
+    }
+
+    public void clearAllNotification(DashBoardActivity activity) {
+        mView.showProgress();
+        mRepository.clearAllNotification().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).
+                subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+                    @Override
+                    public void onResponse(BaseResponse response) {
+                        mView.hideProgress();
+                        mView.onSuccess(response, 2);
+                    }
+
+                    @Override
+                    public void onError(Throwable call, BaseResponse baseResponse) {
+                        mView.hideProgress();
+                        mView.onError(baseResponse.getMsg(), 2);
+                    }
+                });
+    }
+
+    public void deleteNotification(DashBoardActivity activity, NotificationRequest request) {
+        mView.showProgress();
+        mRepository.deleteNotification(request).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).
+                subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+                    @Override
+                    public void onResponse(BaseResponse response) {
+                        mView.hideProgress();
+                        mView.onSuccess(response, 3);
+                    }
+
+                    @Override
+                    public void onError(Throwable call, BaseResponse baseResponse) {
+                        mView.hideProgress();
+                        mView.onError(baseResponse.getMsg(), 3);
+                    }
+                });
+    }
+
+    public void readNotification(DashBoardActivity activity, NotificationRequest request) {
+        mView.showProgress();
+        mRepository.readNotification(request).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).
+                subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+                    @Override
+                    public void onResponse(BaseResponse response) {
+                        mView.hideProgress();
+                        mView.onSuccess(response, 4);
+                    }
+
+                    @Override
+                    public void onError(Throwable call, BaseResponse baseResponse) {
+                        mView.hideProgress();
+                        mView.onError(baseResponse.getMsg(), 4);
+                    }
+                });
     }
 }

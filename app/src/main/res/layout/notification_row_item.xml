@@ -31,21 +31,35 @@
                    android:layout_toEndOf="@+id/ivNotification"
                    android:layout_marginStart="@dimen/margin_7"
                    android:layout_marginEnd="@dimen/margin_7"/>
+
                 <com.app.community.widget.CustomTextView
-                    android:id="@+id/reviewer_name"
-                    style="@style/textview_description_wrap"
+                    android:id="@+id/tvHeading"
+                    style="@style/textview_description_match"
                     android:layout_toEndOf="@+id/ivSep"
+                    android:layout_toStartOf="@+id/tvDelete"
+                    android:padding="@dimen/margin_7"
                     android:text="App Name"
                     android:textColor="@color/color_notifi"
                     />
-
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvDelete"
+                style="@style/textview_description_wrap"
+                android:paddingStart="@dimen/margin_12"
+                android:paddingEnd="@dimen/margin_12"
+                android:paddingTop="@dimen/margin_7"
+                android:paddingBottom="@dimen/margin_7"
+                android:text="@string/delete"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/color_blue"
+                />
                 <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvMessage"
                     android:layout_marginTop="@dimen/margin_10"
-                    style="@style/textview_description_smaller_wrap"
+                    style="@style/textview_description_smaller_match"
+                    android:layout_height="match_parent"
                     android:layout_toEndOf="@+id/ivSep"
-                    android:layout_below="@+id/reviewer_name"
+                    android:layout_below="@+id/tvHeading"
                     android:layout_above="@+id/tvTime"
-                    android:text="@string/lorem_ipsum"
                     app:customFont="@string/font_regular"/>
             <com.app.community.widget.CustomTextView
                 android:id="@+id/tvTime"

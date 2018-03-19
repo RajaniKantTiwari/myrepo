@@ -3,8 +3,6 @@ package com.app.community.ui.dashboard.home.fragment;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -22,7 +20,6 @@ import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.home.MerchantResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.event.MerchantEvent;
-import com.app.community.ui.location.GPSTracker;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.PreferenceUtils;
@@ -39,9 +36,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
 
 import io.nlopez.smartlocation.OnLocationUpdatedListener;
 import io.nlopez.smartlocation.SmartLocation;
@@ -49,7 +43,7 @@ import io.nlopez.smartlocation.SmartLocation;
 import static com.app.community.utils.GeneralConstant.PERMISSIONS_REQUEST_LOCATION;
 
 
-public class ProductMapFragment extends DashboardFragment implements OnMapReadyCallback, ShowWindowFragment.MarkerInfoListener
+public class MerchantMapFragment extends DashboardFragment implements OnMapReadyCallback, ShowWindowFragment.MarkerInfoListener
         , GoogleMap.OnMarkerClickListener {
 
     private GoogleMap mMap;
@@ -566,7 +560,7 @@ public class ProductMapFragment extends DashboardFragment implements OnMapReadyC
 
     @Override
     public String getFragmentName() {
-        return ProductMapFragment.class.getSimpleName();
+        return MerchantMapFragment.class.getSimpleName();
     }
 
     @Override

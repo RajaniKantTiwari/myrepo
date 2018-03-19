@@ -104,6 +104,12 @@ public class MyOrderActivity extends CommonActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
+    @Override
     public void onSuccess(BaseResponse response, int requestCode) {
         if(CommonUtils.isNotNull(response)&&response instanceof MyOrderData){
             MyOrderData data=(MyOrderData)response;
