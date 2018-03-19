@@ -20,7 +20,7 @@ import java.util.ArrayList;
  * Created by ashok on 25/12/17.
  */
 
-public class  OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferViewHolder> {
+public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferViewHolder> {
     private final LayoutInflater mInflater;
     private OfferRowBinding mBinding;
     private OfferListener listener;
@@ -32,7 +32,7 @@ public class  OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferViewHo
 
     public OfferAdapter(AppCompatActivity activity, ArrayList<Offer> offersList, OfferListener listener) {
         mInflater = LayoutInflater.from(activity);
-        this.offersList=offersList;
+        this.offersList = offersList;
         this.listener = listener;
     }
 
@@ -44,24 +44,30 @@ public class  OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferViewHo
 
     @Override
     public void onBindViewHolder(OfferViewHolder holder, int position) {
-        if (CommonUtils.isNotNull(offersList)&&offersList.size()>position ) {
-            holder.tvOffer.setText(offersList.get(position).getOffer_descr());
+        if (CommonUtils.isNotNull(offersList) && offersList.size() > position) {
+            Offer offer = offersList.get(position);
+            if (CommonUtils.isNotNull(offer)) {
+                holder.tvStoreName.setText(offer.getStore_name());
+                holder.tvOffer.setText(offersList.get(position).getOffer_descr());
+            }
         }
     }
 
     @Override
     public int getItemCount() {
-        return CommonUtils.isNotNull(offersList)?offersList.size():0;
+        return CommonUtils.isNotNull(offersList) ? offersList.size() : 0;
     }
 
     class OfferViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final LinearLayout layoutProduct;
         private final CustomTextView tvOffer;
+        private final CustomTextView tvStoreName;
 
         public OfferViewHolder(OfferRowBinding itemView) {
             super(itemView.getRoot());
             layoutProduct = itemView.layoutProduct;
-            tvOffer=itemView.tvOffer;
+            tvOffer = itemView.tvOffer;
+            tvStoreName = itemView.tvStoreName;
             itemView.layoutOffer.setOnClickListener(this);
         }
 

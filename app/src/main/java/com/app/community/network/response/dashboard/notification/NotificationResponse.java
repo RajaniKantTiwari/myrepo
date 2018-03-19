@@ -9,6 +9,15 @@ public class NotificationResponse {
     private int id;
     private String message;
     private int msgstatus;
+    private String senttime;
+
+    public String getSenttime() {
+        return senttime;
+    }
+
+    public void setSenttime(String senttime) {
+        this.senttime = senttime;
+    }
 
     public int getId() {
         return id;

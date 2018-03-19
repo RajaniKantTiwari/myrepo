@@ -50,6 +50,7 @@ import org.greenrobot.eventbus.EventBus;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -549,6 +550,23 @@ public class CommonUtils {
     }
     public static boolean checkValidPassword(String password){
         return AppConstants.PASSWORD_PATTERN.matcher(password).matches();
+    }
+    /**
+     * Get date in GMT time
+     *
+     * @return
+     */
+    public static Date localToGMT() {
+        Date date = new Date();
+        Date gmt = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat();
+        sdf.setTimeZone(TimeZone.getTimeZone(GeneralConstant.TIME_ZONE_UTC));
+        try {
+            gmt = sdf.parse(sdf.format(date));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return gmt;
     }
 
 }

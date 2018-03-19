@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.app.community.R;
 import com.app.community.network.response.dashboard.notification.NotificationResponse;
 import com.app.community.utils.CommonUtils;
+import com.app.community.utils.TimeAgo;
 import com.app.community.widget.CustomTextView;
 
 import java.util.ArrayList;
@@ -88,18 +89,21 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     private void setData(NotificationHolder notificationHolder, int position) {
+        NotificationResponse response=null;
         if (newNotificationList.size() >= position) {
-            NotificationResponse response = newNotificationList.get(position-1);
+             response = newNotificationList.get(position-1);
             if (CommonUtils.isNotNull(response)) {
                 notificationHolder.tvHeading.setTextColor(CommonUtils.getColor(activity, R.color.color_notifi));
-                notificationHolder.tvMessage.setText(response.getMessage());
             }
         } else {
-            NotificationResponse response = oldNotificationList.get(position - (newNotificationList.size() + 2));
+             response = oldNotificationList.get(position - (newNotificationList.size() + 2));
             if (CommonUtils.isNotNull(response)) {
-                notificationHolder.tvMessage.setText(response.getMessage());
                 notificationHolder.tvHeading.setTextColor(CommonUtils.getColor(activity, R.color.black));
             }
+        }
+        if(CommonUtils.isNotNull(response)){
+            notificationHolder.tvMessage.setText(response.getMessage());
+            notificationHolder.tvTime.setText(TimeAgo.getAgoTime(activity, response.getSenttime()));
         }
     }
 
@@ -139,12 +143,15 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         private final CustomTextView tvMessage;
         private final CustomTextView tvHeading;
         private final CustomTextView tvDelete;
+        private final CustomTextView tvTime;
 
         public NotificationHolder(View itemView) {
             super(itemView);
             tvMessage = itemView.findViewById(R.id.tvMessage);
             tvHeading = itemView.findViewById(R.id.tvHeading);
             tvDelete = itemView.findViewById(R.id.tvDelete);
+            tvTime=itemView.findViewById(R.id.tvTime);
+
             itemView.findViewById(R.id.layoutRow).setOnClickListener(this);
             tvDelete.setOnClickListener(this);
         }

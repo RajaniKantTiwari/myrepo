@@ -24,12 +24,13 @@
             style="@style/textview_description_ex_large_match"
             android:layout_alignParentEnd="true"
             android:gravity="right"
+            android:maxLines="2"
+            android:ellipsize="end"
             android:textColor="@color/deal_color"
             android:textAllCaps="true"
-            android:text="Chinese President Xi finping"
             />
         <com.app.community.widget.CustomTextView
-            android:id="@+id/tvProduct"
+            android:id="@+id/tvStoreName"
             android:layout_marginTop="@dimen/margin_3"
             android:layout_marginEnd="@dimen/margin_7"
             style="@style/textview_description_ex_large_match"
@@ -37,7 +38,6 @@
             android:layout_alignParentEnd="true"
             android:layout_below="@+id/tvOffer"
             android:textColor="@color/deal_color"
-            android:text="Chinese President Xi finping"
             />
     </RelativeLayout>
         <LinearLayout
