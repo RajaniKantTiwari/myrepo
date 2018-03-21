@@ -156,7 +156,7 @@ public interface ApiService {
     @GET("register/viewprofile")
     Observable<UserProfileData> viewUserProfile();
 
-    @GET("custom/viewalternateaddress")
+    @POST("custom/viewalternateaddress")
     Observable<AddressData> viewAllAddress();
 
     @GET("custom/deletealternateaddress")

@@ -213,4 +213,9 @@ public class RetrofitRepository implements Repository {
     public Observable<ProfilePicResponse> getProfilePic() {
         return apiService.getProfilePic();
     }
+
+    @Override
+    public Observable<AddressData> deleteAddress() {
+        return apiService.deleteAddress();
+    }
 }

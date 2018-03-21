@@ -108,4 +108,6 @@ public interface Repository {
     Observable<AddressData> viewAllAddress();
 
     Observable<ProfilePicResponse> getProfilePic();
+
+    Observable<AddressData> deleteAddress();
 }

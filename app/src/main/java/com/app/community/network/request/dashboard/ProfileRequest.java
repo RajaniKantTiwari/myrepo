@@ -12,6 +12,7 @@ public class ProfileRequest {
     private String pincode;
     private String landmark;
     private String email;
+
     public int getUserid() {
         return userid;
     }

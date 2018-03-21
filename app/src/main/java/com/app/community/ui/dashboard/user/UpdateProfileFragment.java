@@ -79,7 +79,6 @@ public class UpdateProfileFragment extends DashboardFragment implements MvpView,
         mBinding.ivProfile.setOnClickListener(this);
         mBinding.imgEditPic.setOnClickListener(this);
         mBinding.tvUpdate.setOnClickListener(this);
-        //mBinding.tvUpdate.setOnClickListener(this);
     }
 
     @Override
@@ -111,7 +110,7 @@ public class UpdateProfileFragment extends DashboardFragment implements MvpView,
     public void onSuccess(BaseResponse response, int requestCode) {
         if (CommonUtils.isNotNull(response)) {
             if (requestCode == GeneralConstant.PROFILE_PIC_RESPONSE && response.getStatus().equalsIgnoreCase(AppConstants.SUCCESS)) {
-                getDashboardActivity().showToast(getResources().getString(R.string.profile_pic_updated_successfully));
+                getDashboardActivity().showToast(getResources().getString(R.string.profile_updated_successfully));
             } else if (requestCode == AppConstants.VIEW_PROFILE) {
                 setProfileData((UserProfileData) response);
             } else if (requestCode == AppConstants.ADDRESSES) {
@@ -331,6 +330,7 @@ public class UpdateProfileFragment extends DashboardFragment implements MvpView,
 
     @Override
     public void onDeleteClick(int position) {
+        getPresenter().deleteAddress(getDashboardActivity());
         addressList.remove(position);
         addressAdapter.notifyDataSetChanged();
     }

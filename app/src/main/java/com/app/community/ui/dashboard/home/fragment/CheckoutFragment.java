@@ -13,7 +13,6 @@ import com.app.community.databinding.FragmentCheckoutBinding;
 import com.app.community.event.CouponEvent;
 import com.app.community.network.request.PaymentOption;
 import com.app.community.network.request.cart.CheckoutRequest;
-import com.app.community.network.request.dashboard.Coupon;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
 import com.app.community.ui.SimpleDividerItemDecoration;
@@ -22,7 +21,6 @@ import com.app.community.ui.activity.PaymentAdapter;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.ConfirmOrderFragment;
 import com.app.community.ui.dashboard.home.adapter.CheckoutCartAdapter;
-import com.app.community.ui.dashboard.home.adapter.CouponAdapter;
 import com.app.community.ui.dashboard.home.event.UpdateAddress;
 import com.app.community.ui.dashboard.offer.OffersPromoFragment;
 import com.app.community.utils.AppConstants;
@@ -137,9 +135,17 @@ public class CheckoutFragment extends DashboardFragment {
         if (view == mBinding.editAddress) {
             CommonUtils.clicked(mBinding.editAddress);
             ExplicitIntent.getsInstance().navigateTo(getDashboardActivity(), EditAddressActivity.class);
-
         } else if (view == mBinding.tvProceedToPay) {
-            getPresenter().checkout(getDashboardActivity(), new CheckoutRequest(1));
+            CheckoutRequest request = new CheckoutRequest();
+            if (CommonUtils.isNotNull(deliveryList)) {
+                if (deliveryList.get(0).isChecked()) {
+                    request.setDeliverytype("pickonway");
+                } else {
+                    request.setDeliverytype("homedelivery");
+                }
+            }
+            request.setResponse(1);
+            getPresenter().checkout(getDashboardActivity(), request);
         } else if (view == mBinding.tvPromoCode) {
             openOfferFragment();
         }
@@ -147,8 +153,8 @@ public class CheckoutFragment extends DashboardFragment {
 
     private void openOfferFragment() {
         Bundle bundle = new Bundle();
-       // getDashboardActivity().unselectAllTab();
-        bundle.putInt(GeneralConstant.MERCHANT_ID,merchantId);
+        // getDashboardActivity().unselectAllTab();
+        bundle.putInt(GeneralConstant.MERCHANT_ID, merchantId);
         getDashboardActivity().addFragmentInContainer(new OffersPromoFragment(), bundle, true, true, NONE);
     }
 
@@ -157,10 +163,10 @@ public class CheckoutFragment extends DashboardFragment {
         if (requestCode == GeneralConstant.VIEW_CART) {
             if (CommonUtils.isNotNull(response) && response instanceof ProductDetailsData) {
                 ProductDetailsData data = (ProductDetailsData) response;
-                if(CommonUtils.isNotNull(data)){
+                if (CommonUtils.isNotNull(data)) {
                     setDtaForCheckout(data);
-                    if(CommonUtils.isNotNull(data.getProduct())&&data.getProduct().size()>0){
-                        merchantId=data.getProduct().get(0).getMerchantid();
+                    if (CommonUtils.isNotNull(data.getProduct()) && data.getProduct().size() > 0) {
+                        merchantId = data.getProduct().get(0).getMerchantid();
                     }
                 }
             }

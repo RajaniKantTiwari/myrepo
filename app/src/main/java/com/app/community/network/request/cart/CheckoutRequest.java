@@ -6,9 +6,18 @@ package com.app.community.network.request.cart;
 
 public class CheckoutRequest {
 private int response;
+private String deliverytype;
 
-    public CheckoutRequest(int response) {
-      this.response=response;
+    public void setResponse(int response) {
+        this.response = response;
+    }
+
+    public String getDeliverytype() {
+        return deliverytype;
+    }
+
+    public void setDeliverytype(String deliverytype) {
+        this.deliverytype = deliverytype;
     }
 
     public int getResponse() {

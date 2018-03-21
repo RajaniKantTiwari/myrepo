@@ -535,4 +535,22 @@ public class DashboardPresenter implements Presenter<MvpView> {
                     }
                 });
     }
+
+    public void deleteAddress(DashBoardActivity activity) {
+        mView.showProgress();
+        mRepository.deleteAddress().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).
+                subscribeWith(new DefaultApiObserver<AddressData>(activity) {
+                    @Override
+                    public void onResponse(AddressData response) {
+                        mView.hideProgress();
+                        mView.onSuccess(response, 5);
+                    }
+
+                    @Override
+                    public void onError(Throwable call, BaseResponse baseResponse) {
+                        mView.hideProgress();
+                        mView.onError(baseResponse.getMsg(), 5);
+                    }
+                });
+    }
 }
