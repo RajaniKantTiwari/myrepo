@@ -24,6 +24,15 @@ public class Merchant {
     private String image;
     private String banner_image;
     private String background_color;
+    private String categoryType;
+
+    public String getCategoryType() {
+        return categoryType;
+    }
+
+    public void setCategoryType(String categoryType) {
+        this.categoryType = categoryType;
+    }
 
     public String getBackground_color() {
         return background_color;

@@ -521,6 +521,7 @@
     <string name="please_enter_valid_email">Please Enter Valid Email Address</string>
     <string name="please_enter_user_name">Please Enter User Name</string>
     <string name="set_default">Set Default</string>
+    <string name="shopping">Shopping</string>
 
 
     <string-array name="state_array">

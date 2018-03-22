@@ -54,6 +54,7 @@ import com.app.community.ui.dashboard.notification.NotificationFragment;
 import com.app.community.ui.dashboard.offer.OfferFragment;
 import com.app.community.ui.dashboard.user.UpdateProfileFragment;
 import com.app.community.ui.dialogfragment.CheckoutDialogFragment;
+import com.app.community.ui.newspaper.NewsPaperFragment;
 import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.DashBoardHelper;
@@ -450,19 +451,28 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
 
     @Override
     public void onSubItemClicked(int parentPosition, int childPosition, Merchant merchant) {
-        if (CommonUtils.isNotNull(PreferenceUtils.getCartData()) &&
-                PreferenceUtils.getCartData().size() > 0
-                && Integer.parseInt(merchant.getId()) != PreferenceUtils.getCartData().get(0).getMerchantId()) {
-            Bundle bundle = new Bundle();
-            bundle.putString(GeneralConstant.MESSAGE, getResources().getString(R.string.if_you_change_merchant_all_previous));
-            bundle.putInt(GeneralConstant.PARENT_POSITION, parentPosition);
-            bundle.putInt(GeneralConstant.CHILD_POSITION, childPosition);
-            CommonUtils.showCheckoutDialog(this, bundle, this);
-        } else {
-            openProductSubProduct(parentPosition, childPosition);
+        if(merchant.getCategoryType().equalsIgnoreCase(getResources().getString(R.string.shopping))){
+            if (CommonUtils.isNotNull(PreferenceUtils.getCartData()) &&
+                    PreferenceUtils.getCartData().size() > 0
+                    && Integer.parseInt(merchant.getId())
+                    != PreferenceUtils.getCartData().get(0).getMerchantId()) {
+                Bundle bundle = new Bundle();
+                bundle.putString(GeneralConstant.MESSAGE, getResources().getString(R.string.if_you_change_merchant_all_previous));
+                bundle.putInt(GeneralConstant.PARENT_POSITION, parentPosition);
+                bundle.putInt(GeneralConstant.CHILD_POSITION, childPosition);
+                CommonUtils.showCheckoutDialog(this, bundle, this);
+            } else {
+                openProductSubProduct(parentPosition, childPosition);
+            }
+        }else if(merchant.getCategoryType().equalsIgnoreCase(getResources().getString(R.string.service))){
+            openServiceProduct(parentPosition,childPosition);
         }
 
+
     }
+
+
+
 
     private void openProductSubProduct(int parentPosition, int childPosition) {
         Bundle bundle = new Bundle();
@@ -484,6 +494,29 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         }
         closeDrawerRight();
         pushFragment(new ProductSubproductFragment(), bundle, R.id.container, true, true, NONE);
+    }
+
+
+    private void openServiceProduct(int parentPosition, int childPosition) {
+        Bundle bundle = new Bundle();
+        if (CommonUtils.isNotNull(responseList) && responseList.size() > parentPosition) {
+            ProductSubCategory subCategory = responseList.get(parentPosition);
+            if (CommonUtils.isNotNull(subCategory)) {
+                ArrayList<Merchant> merchantList = subCategory.getMerchantname();
+                if (CommonUtils.isNotNull(merchantList) && merchantList.size() > childPosition) {
+                    Merchant merchantData = merchantList.get(childPosition);
+                    if (CommonUtils.isNotNull(merchantData)) {
+                        bundle.putString(AppConstants.MERCHANT_ID, merchantData.getId());
+                        bundle.putString(AppConstants.MERCHANT_ADDRESS, merchantData.getAddress());
+                        bundle.putString(AppConstants.MERCHANT_IMAGE, merchantData.getImage());
+                        bundle.putString(AppConstants.MERCHANT_BACKGROUND_COLOR, merchantData.getBackground_color());
+
+                    }
+                }
+            }
+        }
+        closeDrawerRight();
+        pushFragment(new NewsPaperFragment(), bundle, R.id.container, true, true, NONE);
     }
 
     @Override
