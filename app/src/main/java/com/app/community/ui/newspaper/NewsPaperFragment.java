@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.app.community.R;
 import com.app.community.databinding.FragmentNewsPaperBinding;
+import com.app.community.network.request.cart.CategoryRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.cart.CategoryData;
 import com.app.community.network.response.dashboard.cart.SubCategory;
@@ -20,6 +21,8 @@ import com.app.community.ui.newspaper.adapter.NewsCategoryAdapter;
 import com.app.community.ui.newspaper.adapter.NewsSubCatAdapter;
 import com.app.community.ui.newspaper.adapter.SelectedDaysAdapter;
 import com.app.community.ui.newspaper.event.SubscriptionEvent;
+import com.app.community.utils.AppConstants;
+import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 
 import java.util.ArrayList;
@@ -41,6 +44,7 @@ public class NewsPaperFragment extends DashboardFragment implements NewsCategory
     private ArrayList<SubCategory> mSubCatList = new ArrayList<>();
     private LinearLayoutManager mLayoutManagerNewsCat;
     private LinearLayoutManager mLayoutMangerNewsSubcat;
+    private int merchantId;
 
 
     @Nullable
@@ -60,11 +64,23 @@ public class NewsPaperFragment extends DashboardFragment implements NewsCategory
 
     @Override
     public void initializeData() {
+        Bundle bundle = getArguments();
+        if (CommonUtils.isNotNull(bundle)) {
+            String productResponse = bundle.getString(AppConstants.MERCHANT_ID);
+            merchantId = Integer.parseInt(productResponse);
+            try {
+                getDashboardActivity().setHeader(bundle.getString(AppConstants.MERCHANT_ADDRESS),
+                        bundle.getString(AppConstants.MERCHANT_IMAGE), bundle.getString(AppConstants.MERCHANT_BACKGROUND_COLOR));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         setViews();
         List<String> daysArrayList = new ArrayList<>();
         daysArrayList.addAll(Arrays.asList(getResources().getStringArray(R.array.selected_type)));
         SelectedDaysAdapter adapter = new SelectedDaysAdapter(getDashboardActivity(), daysArrayList);
         adapter.setDropDownViewResource(R.layout.spinner_row);
+        callApi();
     }
 
     private void setViews() {
@@ -77,7 +93,9 @@ public class NewsPaperFragment extends DashboardFragment implements NewsCategory
         mBinding.rvCat.setAdapter(mNewsCategoryAdapter);
         mBinding.rvSubCat.setAdapter(mNewsSubCategoryAdapter);
     }
+    private void callApi() {
 
+    }
     @Override
     public void setListener() {
 
@@ -90,7 +108,7 @@ public class NewsPaperFragment extends DashboardFragment implements NewsCategory
 
     @Override
     public void attachView() {
-
+        getPresenter().attachView(this);
     }
 
     @Override
