@@ -522,6 +522,7 @@
     <string name="please_enter_user_name">Please Enter User Name</string>
     <string name="set_default">Set Default</string>
     <string name="shopping">Shopping</string>
+    <string name="please_enter_address">Please EnterAddress</string>
 
 
     <string-array name="state_array">

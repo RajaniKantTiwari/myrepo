@@ -144,6 +144,11 @@ public class CheckoutFragment extends DashboardFragment {
                     request.setDeliverytype("homedelivery");
                 }
             }
+            if(CommonUtils.isNull(mBinding.tvAddress.getText().toString())||mBinding.tvAddress.getText().toString().trim().length()==0){
+                getDashboardActivity().showToast(getResources().getString(R.string.please_enter_address));
+                return;
+            }
+            request.setDeliveryaddress(mBinding.tvAddress.getText().toString().trim());
             request.setResponse(1);
             getPresenter().checkout(getDashboardActivity(), request);
         } else if (view == mBinding.tvPromoCode) {

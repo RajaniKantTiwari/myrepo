@@ -5,8 +5,10 @@ package com.app.community.network.request.cart;
  */
 
 public class CheckoutRequest {
-private int response;
-private String deliverytype;
+    private int response;
+    private String deliverytype;
+    private String deliveryaddress;
+
 
     public void setResponse(int response) {
         this.response = response;
@@ -22,5 +24,13 @@ private String deliverytype;
 
     public int getResponse() {
         return response;
+    }
+
+    public String getDeliveryaddress() {
+        return deliveryaddress;
+    }
+
+    public void setDeliveryaddress(String deliveryaddress) {
+        this.deliveryaddress = deliveryaddress;
     }
 }
