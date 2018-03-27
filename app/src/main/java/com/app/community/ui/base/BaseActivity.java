@@ -84,9 +84,9 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
 
 
     @Override
-    public void onError(String message, int requestCode) {
-        if (message != null) {
-            showSnackBar(message);
+    public void onError(Throwable call, int requestCode) {
+        if (call != null) {
+            showSnackBar(call.getMessage());
         } else {
             showSnackBar(getString(R.string.something_went_wrong));
         }

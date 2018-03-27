@@ -76,7 +76,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMsg(), 0);
+                mView.onError(call, 0);
             }
         });
     }
@@ -95,7 +95,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMsg(), 1);
+                mView.onError(call, 1);
             }
         });
     }
@@ -112,7 +112,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMsg(), 1);
+                mView.onError(call, 1);
             }
         });
     }
@@ -129,7 +129,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMsg(), AppConstants.DELETE_CART);
+                mView.onError(call, AppConstants.DELETE_CART);
             }
         });
     }
@@ -146,7 +146,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMsg(), VIEW_CART);
+                mView.onError(call, VIEW_CART);
             }
         });
     }
@@ -163,7 +163,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMsg(), 1);
+                mView.onError(call, 1);
             }
         });
     }
@@ -181,7 +181,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 //mView.hideProgress();
-                activity.onError(baseResponse.getMsg(), AppConstants.RIGHT_DRAWER_RESPONSE);
+                activity.onError(call, AppConstants.RIGHT_DRAWER_RESPONSE);
             }
         });
     }
@@ -195,7 +195,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
 
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
-                activity.onError(baseResponse.getMsg(), AppConstants.DEVICE_TOKEN_RESPONSE);
+                activity.onError(call, AppConstants.DEVICE_TOKEN_RESPONSE);
             }
         });
     }
@@ -212,7 +212,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMsg(), 2);
+                mView.onError(call, 2);
             }
         });
     }
@@ -229,7 +229,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 activity.hideProgress();
-                activity.onError(baseResponse.getMsg(), AppConstants.LOGOUT);
+                activity.onError(call, AppConstants.LOGOUT);
             }
         });
     }
@@ -260,10 +260,10 @@ public class DashboardPresenter implements Presenter<MvpView> {
 
                 if (mView == null) {
                     activity.hideProgress();
-                    activity.onError(baseResponse.getMsg(), AppConstants.CARTADDED);
+                    activity.onError(call, AppConstants.CARTADDED);
                 } else {
                     mView.hideProgress();
-                    mView.onError(baseResponse.getMsg(), AppConstants.CARTADDED);
+                    mView.onError(call, AppConstants.CARTADDED);
                 }
 
             }
@@ -283,7 +283,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMsg(), 2);
+                mView.onError(call, 2);
             }
         });
     }
@@ -301,7 +301,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMsg(), pos);
+                mView.onError(call, pos);
             }
         });
     }
@@ -318,7 +318,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMsg(), GeneralConstant.PROFILE_PIC_RESPONSE);
+                mView.onError(call, GeneralConstant.PROFILE_PIC_RESPONSE);
             }
         });
     }
@@ -335,7 +335,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMsg(), 1);
+                mView.onError(call, 1);
             }
         });
     }
@@ -352,7 +352,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMsg(), GeneralConstant.FEEDBACK);
+                mView.onError(call, GeneralConstant.FEEDBACK);
             }
         });
     }
@@ -370,7 +370,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMsg(), 1);
+                mView.onError(call, 1);
             }
         });
     }
@@ -387,7 +387,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMsg(), AppConstants.VIEW_COUPON);
+                mView.onError(call, AppConstants.VIEW_COUPON);
             }
         });
     }
@@ -405,7 +405,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
                     @Override
                     public void onError(Throwable call, BaseResponse baseResponse) {
                         mView.hideProgress();
-                        mView.onError(baseResponse.getMsg(), 1);
+                        mView.onError(call, 1);
                     }
                 });
     }
@@ -423,7 +423,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
                     @Override
                     public void onError(Throwable call, BaseResponse baseResponse) {
                         mView.hideProgress();
-                        mView.onError(baseResponse.getMsg(), 2);
+                        mView.onError(call, 2);
                     }
                 });
     }
@@ -441,7 +441,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
                     @Override
                     public void onError(Throwable call, BaseResponse baseResponse) {
                         mView.hideProgress();
-                        mView.onError(baseResponse.getMsg(), 3);
+                        mView.onError(call, 3);
                     }
                 });
     }
@@ -459,7 +459,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
                     @Override
                     public void onError(Throwable call, BaseResponse baseResponse) {
                         mView.hideProgress();
-                        mView.onError(baseResponse.getMsg(), 4);
+                        mView.onError(call, 4);
                     }
                 });
     }
@@ -477,7 +477,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
                     @Override
                     public void onError(Throwable call, BaseResponse baseResponse) {
                         mView.hideProgress();
-                        mView.onError(baseResponse.getMsg(), 2);
+                        mView.onError(call, 2);
                     }
                 });
     }
@@ -495,7 +495,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
                     @Override
                     public void onError(Throwable call, BaseResponse baseResponse) {
                         mView.hideProgress();
-                        mView.onError(baseResponse.getMsg(), AppConstants.VIEW_PROFILE);
+                        mView.onError(call, AppConstants.VIEW_PROFILE);
                     }
                 });
     }
@@ -513,7 +513,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
                     @Override
                     public void onError(Throwable call, BaseResponse baseResponse) {
                         mView.hideProgress();
-                        mView.onError(baseResponse.getMsg(), ADDRESSES);
+                        mView.onError(call, ADDRESSES);
                     }
                 });
     }
@@ -531,7 +531,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
                     @Override
                     public void onError(Throwable call, BaseResponse baseResponse) {
                         mView.hideProgress();
-                        mView.onError(baseResponse.getMsg(), PROFILEPIC);
+                        mView.onError(call, PROFILEPIC);
                     }
                 });
     }
@@ -549,7 +549,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
                     @Override
                     public void onError(Throwable call, BaseResponse baseResponse) {
                         mView.hideProgress();
-                        mView.onError(baseResponse.getMsg(), 5);
+                        mView.onError(call, 5);
                     }
                 });
     }

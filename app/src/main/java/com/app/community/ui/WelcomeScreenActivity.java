@@ -92,7 +92,7 @@ public class WelcomeScreenActivity extends CommonActivity implements CustomDialo
     }
 
     @Override
-    public void onError(String message, int requestCode) {
+    public void onError(Throwable message, int requestCode) {
         super.onError(message, requestCode);
         finish();
 
