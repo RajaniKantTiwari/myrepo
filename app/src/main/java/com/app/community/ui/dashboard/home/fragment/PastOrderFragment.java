@@ -46,7 +46,7 @@ public class PastOrderFragment extends BaseFragment implements
 
     private void initializeAdapter() {
         pastOrderList = new ArrayList<>();
-        mAdapter = new LiveOrderAdapter(getBaseActivity(), pastOrderList);
+        mAdapter = new LiveOrderAdapter(getBaseActivity(),this, pastOrderList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getBaseActivity());
         mBinding.rvOrder.setLayoutManager(layoutManager);
         mBinding.rvOrder.setAdapter(mAdapter);

@@ -17,6 +17,7 @@ import com.app.community.network.response.Order;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.base.BaseFragment;
 import com.app.community.ui.dashboard.DashboardFragment;
+import com.app.community.ui.dashboard.home.OrderDetailsFragment;
 import com.app.community.ui.dashboard.home.adapter.LiveOrderAdapter;
 import com.app.community.ui.dialogfragment.OrderFeedbackDialogFragment;
 import com.app.community.utils.CommonUtils;
@@ -48,7 +49,7 @@ public class LiveOrderFragment extends BaseFragment implements
 
     private void initializeAdapter() {
         recentOrderList = new ArrayList<>();
-        mAdapter = new LiveOrderAdapter(getBaseActivity(), recentOrderList);
+        mAdapter = new LiveOrderAdapter(getBaseActivity(),this, recentOrderList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getBaseActivity());
         mBinding.rvOrder.setLayoutManager(layoutManager);
         mBinding.rvOrder.setAdapter(mAdapter);
@@ -104,7 +105,10 @@ public class LiveOrderFragment extends BaseFragment implements
 
     @Override
     public void viewDetailsClick(int position) {
-        getBaseActivity().pushChildFragment(getChildFragmentManager(),ORDER_DETAILS_FRAGMENT,null,R.id.container,true,true, BaseActivity.AnimationType.NONE);
+        Bundle bundle = new Bundle();
+        bundle.putString(GeneralConstant.ORDER_ID,String.valueOf(recentOrderList.get(position).getId()));
+        ((MyOrderActivity)getBaseActivity()).addFragmentInContainer(new OrderDetailsFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
+
     }
 
     @Override

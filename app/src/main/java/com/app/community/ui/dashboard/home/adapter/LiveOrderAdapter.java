@@ -34,9 +34,10 @@ public class LiveOrderAdapter extends RecyclerView.Adapter<LiveOrderAdapter.Live
         void feedBackClicked(int position);
     }
 
-    public LiveOrderAdapter(AppCompatActivity activity,ArrayList<Order> orderList) {
+    public LiveOrderAdapter(AppCompatActivity activity,OrderListener listener,ArrayList<Order> orderList) {
         mInflater = LayoutInflater.from(activity);
         this.orderList=orderList;
+        this.listener=listener;
     }
 
     @Override
@@ -96,12 +97,14 @@ public class LiveOrderAdapter extends RecyclerView.Adapter<LiveOrderAdapter.Live
 
         @Override
         public void onClick(View view) {
-            if(view==mBinding.tvViewDetails){
-                listener.viewDetailsClick(getAdapterPosition());
-            }else if(view==mBinding.tvHelp){
-                listener.helpClick(getAdapterPosition());
-            }else if(view==mBinding.tvFeedBack){
-                listener.feedBackClicked(getAdapterPosition());
+            if(CommonUtils.isNotNull(listener)){
+                if(view==mBinding.tvViewDetails){
+                    listener.viewDetailsClick(getAdapterPosition());
+                }else if(view==mBinding.tvHelp){
+                    listener.helpClick(getAdapterPosition());
+                }else if(view==mBinding.tvFeedBack){
+                    listener.feedBackClicked(getAdapterPosition());
+                }
             }
         }
     }

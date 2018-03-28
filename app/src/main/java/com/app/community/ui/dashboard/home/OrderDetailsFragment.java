@@ -38,7 +38,7 @@ public class OrderDetailsFragment extends DashboardFragment implements OrderList
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_details, container, false);
-        getDashboardActivity().setHeaderTitle(getString(R.string.order_details));
+        //getDashboardActivity().setHeaderTitle(getString(R.string.order_details));
         return mBinding.getRoot();
     }
 
@@ -51,7 +51,7 @@ public class OrderDetailsFragment extends DashboardFragment implements OrderList
         productList = new ArrayList<>();
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         mBinding.rvOrderItems.setLayoutManager(layoutManager);
-        mAdapter = new OrderListAdapter(getDashboardActivity(), productList, this);
+        mAdapter = new OrderListAdapter(getBaseActivity(), productList, this);
         mBinding.rvOrderItems.setAdapter(mAdapter);
         //getPresenter().getPartialOrderDetail(getDashboardActivity(), new OrderRequest(orderId));
 
@@ -70,7 +70,7 @@ public class OrderDetailsFragment extends DashboardFragment implements OrderList
 
     @Override
     public void attachView() {
-        getPresenter().attachView(this);
+        //getPresenter().attachView(this);
     }
 
     @Override
