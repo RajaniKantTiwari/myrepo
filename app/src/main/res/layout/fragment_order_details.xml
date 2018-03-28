@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        style="@style/match_match"
+        android:background="@android:color/white">
+
+        <LinearLayout
+            style="@style/match_wrap"
+            android:layout_marginBottom="@dimen/margin_7"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_15">
+            <com.app.community.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:layout_marginTop="@dimen/margin_35"
+                android:text="@string/customer_name" />
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvCustomerName"
+                style="@style/textview_description_match"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginTop="@dimen/margin_5" />
+
+            <com.app.community.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/customer_address" />
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvCustomerAddress"
+                style="@style/textview_description_match"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginTop="@dimen/margin_5" />
+
+
+            <com.app.community.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/order_value" />
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvOrderValue"
+                style="@style/textview_description_match"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginTop="@dimen/margin_5" />
+
+            <com.app.community.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/order_no" />
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvOrderNumber"
+                style="@style/textview_description_match"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginTop="@dimen/margin_5" />
+
+
+            <com.app.community.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/order_date" />
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvOrderDate"
+                style="@style/textview_description_match"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginTop="@dimen/margin_5" />
+            <com.app.community.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/order_status" />
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvOrderStatus"
+                style="@style/textview_description_match"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginTop="@dimen/margin_5" />
+
+            <com.app.community.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/payment_status" />
+
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvPaymentStatus"
+                style="@style/textview_description_match"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginTop="@dimen/margin_5" />
+
+            <com.app.community.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:layout_marginBottom="@dimen/margin_15"
+                android:layout_marginTop="@dimen/margin_7"
+                android:text="@string/order_items" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvOrderItems"
+                style="@style/match_wrap"
+                android:paddingStart="@dimen/margin_4" />
+
+            <com.app.community.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:layout_marginTop="@dimen/margin_7"
+                android:text="@string/select_delivery_boy" />
+            <com.app.community.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:layout_marginBottom="@dimen/margin_15"
+                android:layout_marginTop="@dimen/margin_7"
+                android:text="@string/order_items" />
+            <LinearLayout
+                style="@style/match_wrap"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginTop="@dimen/margin_5">
+
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvCancel"
+                    style="@style/textview_window_btn"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:background="@drawable/not_confirm_bg"
+                    android:text="@string/cancel_request"
+                    android:textAllCaps="true"
+                    android:textColor="@color/not_con_color" />
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvConfirmOrder"
+                    style="@style/textview_window_btn"
+                    android:layout_marginEnd="@dimen/margin_10"
+                    android:layout_marginStart="@dimen/margin_5"
+                    android:background="@drawable/confirm_bg"
+                    android:text="@string/confirm_order"
+                    android:textAllCaps="true"
+                    android:textColor="@color/confirm_color"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</layout>

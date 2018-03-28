@@ -516,6 +516,16 @@
     <string name="minutes_ago"> minutes ago</string>
     <string name="second_ago"> second ago</string>
     <string name="seconds_ago"> seconds ago</string>
+    <string name="selling_price">S.Price</string>
+    <string name="qty">Qty</string>
+    <string name="customer_name">Customer Name</string>
+    <string name="customer_address">Customer Address</string>
+    <string name="order_value">Order Value</string>
+    <string name="order_no">Order No.</string>
+    <string name="payment_status">Payment Status</string>
+    <string name="order_items">Order Items</string>
+    <string name="select_delivery_boy">Select Delivery Boy</string>
+    <string name="cancel_request">Cancel Request</string>
 
     <string name="please_enter_email_address">Please Enter Email Address</string>
     <string name="please_enter_valid_email">Please Enter Valid Email Address</string>
@@ -523,6 +533,8 @@
     <string name="set_default">Set Default</string>
     <string name="shopping">Shopping</string>
     <string name="please_enter_address">Please EnterAddress</string>
+    <string name="mrp">mrp</string>
+    <string name="confirm_order">Confirm Order</string>
 
 
     <string-array name="state_array">

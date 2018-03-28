@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.app.community.R;
 import com.app.community.ui.cart.ProductSubproductFragment;
 import com.app.community.ui.dashboard.home.ConfirmOrderFragment;
+import com.app.community.ui.dashboard.home.OrderDetailsFragment;
 import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.fragment.CategoryFragment;
 import com.app.community.ui.dashboard.home.fragment.MerchantFragment;
@@ -55,6 +56,7 @@ import static com.app.community.utils.GeneralConstant.FRAGMENTS.NEWS_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.NEWS_TAB_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.NOTIFICATION_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.OFFER_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.ORDER_DETAILS_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.PASTORDER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.MERCHANT_LIST_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.MERCHANT_MAP_FRAGMENT;
@@ -289,6 +291,8 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
                 break;
             case USER_FRAGMENT:
                 new UpdateProfileFragment();
+            case ORDER_DETAILS_FRAGMENT:
+                new OrderDetailsFragment();
         }
         return fragment;
     }
@@ -374,19 +378,19 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
         FragmentManager fm = getSupportFragmentManager();
         Log.e("Count", "" + fm.getBackStackEntryCount());
         if (fm.getBackStackEntryCount() == 1) {
-            if(count==1){
+            if (count == 1) {
                 finish();
-            }else{
-                count=1;
+            } else {
+                count = 1;
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        count=0;
+                        count = 0;
                     }
-                },1500);
+                }, 1500);
                 showToast(getResources().getString(R.string.tap_once_more_to_exit));
             }
-        }else{
+        } else {
             super.onBackPressed();
         }
     }

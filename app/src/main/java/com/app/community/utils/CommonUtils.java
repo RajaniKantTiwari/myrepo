@@ -29,6 +29,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.app.community.BuildConfig;
@@ -577,5 +578,15 @@ public class CommonUtils {
 
     public static Bitmap getBitmap(String filePath) {
         return BitmapFactory.decodeFile(filePath);
+    }
+    public static void setRating(RatingBar ratingBar){
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+
+            @Override public void onRatingChanged(RatingBar ratingBar, float rating,
+                                                  boolean fromUser) {
+                if(rating<1.0f)
+                    ratingBar.setRating(1.0f);
+            }
+        });
     }
 }

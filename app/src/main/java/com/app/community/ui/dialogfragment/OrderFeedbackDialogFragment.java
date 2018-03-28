@@ -36,6 +36,7 @@ public class OrderFeedbackDialogFragment extends DialogFragment implements View.
         CommonUtils.setDialog(dialog);
         initializeData();
         setListener();
+        CommonUtils.setRating(mBinding.ratingBar);
         return mBinding.getRoot();
     }
 

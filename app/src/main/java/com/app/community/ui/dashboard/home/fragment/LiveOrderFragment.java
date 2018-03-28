@@ -14,6 +14,7 @@ import com.app.community.databinding.FragmentOrderBinding;
 import com.app.community.network.request.Feedback;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.Order;
+import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.base.BaseFragment;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.adapter.LiveOrderAdapter;
@@ -22,6 +23,8 @@ import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 
 import java.util.ArrayList;
+
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.ORDER_DETAILS_FRAGMENT;
 
 /**
  * Created by rajnikant on 31/12/17.
@@ -101,7 +104,7 @@ public class LiveOrderFragment extends BaseFragment implements
 
     @Override
     public void viewDetailsClick(int position) {
-
+        getBaseActivity().pushChildFragment(getChildFragmentManager(),ORDER_DETAILS_FRAGMENT,null,R.id.container,true,true, BaseActivity.AnimationType.NONE);
     }
 
     @Override

@@ -39,7 +39,8 @@
     <color name="background">#999999</color>
     <color name="back_circle">#CDCDCD</color>
     <color name="old_noti">#96989A</color>
-
+    <color name="confirm_color">#0A6535</color>
+    <color name="not_con_color">#fc0d1b</color>
 
     <color name="selected_background">#676767</color>
 

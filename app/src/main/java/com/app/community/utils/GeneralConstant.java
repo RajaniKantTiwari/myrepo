@@ -89,6 +89,7 @@ public interface GeneralConstant {
     String CHAT_WITH = "chat_with";
     String CHAT_USER_NAME = "chat_user_name";
     String MERCHANT_ID = "merchantid";
+    java.lang.String ORDER_ID = "order_id";
 
 
     @IntDef({MERCHANT_MAP_FRAGMENT, MERCHANT_LIST_FRAGMENT, RECENT_FRAGMENT, CATEGORY_FRAGMENT,
@@ -115,6 +116,7 @@ public interface GeneralConstant {
         int OFFER_FRAGMENT=1;
         int NOTIFICATION_FRAGMENT=2;
         int USER_FRAGMENT=3;
+        int ORDER_DETAILS_FRAGMENT=25;
     }
     interface FRAGMENT_OFFER {
         int OFFER_DETAILS = 0;
