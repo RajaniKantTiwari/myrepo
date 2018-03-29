@@ -12,6 +12,7 @@ import com.app.community.network.request.cart.CheckoutRequest;
 import com.app.community.network.request.cart.DeleteCartRequest;
 import com.app.community.network.request.dashboard.CheckCouponRequest;
 import com.app.community.network.request.dashboard.MerchantCouponRequest;
+import com.app.community.network.request.dashboard.MerchantOfferRequest;
 import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.request.dashboard.NotificationRequest;
 import com.app.community.network.request.dashboard.ProductRequest;
@@ -28,6 +29,7 @@ import com.app.community.network.response.dashboard.cart.CategoryResponse;
 import com.app.community.network.response.dashboard.cart.ProductFullInformationData;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
 import com.app.community.network.response.dashboard.home.AddressData;
+import com.app.community.network.response.dashboard.home.MerchantCategoryData;
 import com.app.community.network.response.dashboard.home.MerchantResponseData;
 import com.app.community.network.response.dashboard.home.ProfilePicResponse;
 import com.app.community.network.response.dashboard.home.ReviewResponseData;
@@ -217,5 +219,15 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<AddressData> deleteAddress() {
         return apiService.deleteAddress();
+    }
+
+    @Override
+    public Observable<MerchantCategoryData> getMerchantCategory() {
+        return apiService.getMerchantCategory();
+    }
+
+    @Override
+    public Observable<BaseResponse> getMerchantOffer(MerchantOfferRequest request) {
+        return apiService.getMerchantOffer(request);
     }
 }

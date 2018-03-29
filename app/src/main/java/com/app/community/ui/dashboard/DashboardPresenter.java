@@ -13,6 +13,7 @@ import com.app.community.network.request.cart.CheckoutRequest;
 import com.app.community.network.request.cart.DeleteCartRequest;
 import com.app.community.network.request.dashboard.CheckCouponRequest;
 import com.app.community.network.request.dashboard.MerchantCouponRequest;
+import com.app.community.network.request.dashboard.MerchantOfferRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.request.dashboard.NotificationRequest;
 import com.app.community.network.request.dashboard.ProductRequest;
@@ -25,6 +26,7 @@ import com.app.community.network.response.dashboard.cart.CategoryResponse;
 import com.app.community.network.response.dashboard.cart.ProductFullInformationData;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
 import com.app.community.network.response.dashboard.home.AddressData;
+import com.app.community.network.response.dashboard.home.MerchantCategoryData;
 import com.app.community.network.response.dashboard.home.ProfilePicResponse;
 import com.app.community.network.response.dashboard.home.SearchResponseData;
 import com.app.community.network.response.dashboard.home.WelcomeHomeData;
@@ -550,6 +552,42 @@ public class DashboardPresenter implements Presenter<MvpView> {
                     public void onError(Throwable call, BaseResponse baseResponse) {
                         mView.hideProgress();
                         mView.onError(call, 5);
+                    }
+                });
+    }
+
+    public void getMerchantCategory(DashBoardActivity activity) {
+        mView.showProgress();
+        mRepository.getMerchantCategory().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).
+                subscribeWith(new DefaultApiObserver<MerchantCategoryData>(activity) {
+                    @Override
+                    public void onResponse(MerchantCategoryData response) {
+                        mView.hideProgress();
+                        mView.onSuccess(response, 2);
+                    }
+
+                    @Override
+                    public void onError(Throwable call, BaseResponse baseResponse) {
+                        mView.hideProgress();
+                        mView.onError(call, 2);
+                    }
+                });
+    }
+
+    public void getMerchantOffer(DashBoardActivity activity, MerchantOfferRequest request) {
+        mView.showProgress();
+        mRepository.getMerchantOffer(request).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).
+                subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+                    @Override
+                    public void onResponse(BaseResponse response) {
+                        mView.hideProgress();
+                        mView.onSuccess(response, 3);
+                    }
+
+                    @Override
+                    public void onError(Throwable call, BaseResponse baseResponse) {
+                        mView.hideProgress();
+                        mView.onError(call, 3);
                     }
                 });
     }

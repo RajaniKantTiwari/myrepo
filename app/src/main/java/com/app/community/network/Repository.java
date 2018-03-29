@@ -12,6 +12,7 @@ import com.app.community.network.request.cart.CheckoutRequest;
 import com.app.community.network.request.cart.DeleteCartRequest;
 import com.app.community.network.request.dashboard.CheckCouponRequest;
 import com.app.community.network.request.dashboard.MerchantCouponRequest;
+import com.app.community.network.request.dashboard.MerchantOfferRequest;
 import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.request.dashboard.NotificationRequest;
@@ -28,6 +29,7 @@ import com.app.community.network.response.dashboard.cart.CategoryResponse;
 import com.app.community.network.response.dashboard.cart.ProductFullInformationData;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
 import com.app.community.network.response.dashboard.home.AddressData;
+import com.app.community.network.response.dashboard.home.MerchantCategoryData;
 import com.app.community.network.response.dashboard.home.ProfilePicResponse;
 import com.app.community.network.response.dashboard.home.WelcomeHomeData;
 import com.app.community.network.response.dashboard.home.MerchantResponseData;
@@ -110,4 +112,8 @@ public interface Repository {
     Observable<ProfilePicResponse> getProfilePic();
 
     Observable<AddressData> deleteAddress();
+
+    Observable<MerchantCategoryData> getMerchantCategory();
+
+    Observable<BaseResponse> getMerchantOffer(MerchantOfferRequest request);
 }

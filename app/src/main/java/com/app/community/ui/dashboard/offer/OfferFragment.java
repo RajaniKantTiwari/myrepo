@@ -11,8 +11,11 @@ import android.view.ViewGroup;
 
 import com.app.community.R;
 import com.app.community.databinding.FragmentOfferBinding;
+import com.app.community.network.request.dashboard.MerchantOfferRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.coupon.ViewAllCouponResponseData;
+import com.app.community.network.response.dashboard.home.MerchantCategory;
+import com.app.community.network.response.dashboard.home.MerchantCategoryData;
 import com.app.community.network.response.dashboard.home.Offer;
 import com.app.community.network.response.dashboard.offer.OfferType;
 import com.app.community.ui.dashboard.DashboardFragment;
@@ -39,9 +42,9 @@ public class OfferFragment extends DashboardFragment implements
     private FragmentOfferBinding mBinding;
     private OfferAdapter mOfferAdapter;
     private OfferTypesAdapter mOfferTypeAdapter;
-    private ArrayList<OfferType> offerTypeList;
+    private ArrayList<MerchantCategory> offerTypeList;
     private ArrayList<Offer> offersList;
-
+    private int selectedPosition;
 
 
     @Nullable
@@ -55,46 +58,20 @@ public class OfferFragment extends DashboardFragment implements
     @Override
     public void initializeData() {
         offersList = new ArrayList<>();
-        mOfferAdapter = new OfferAdapter(getDashboardActivity(),offersList, this);
+        mOfferAdapter = new OfferAdapter(getDashboardActivity(), offersList, this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getDashboardActivity());
         mBinding.rvOffer.setLayoutManager(layoutManager);
         mBinding.rvOffer.setAdapter(mOfferAdapter);
         offerTypeList = new ArrayList<>();
-        setOfferList(offerTypeList);
         mOfferTypeAdapter = new OfferTypesAdapter(getDashboardActivity(), offerTypeList, this);
         LinearLayoutManager offerTypeManager = new LinearLayoutManager(getDashboardActivity());
         offerTypeManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mBinding.rvOfferType.setLayoutManager(offerTypeManager);
         mBinding.rvOfferType.setAdapter(mOfferTypeAdapter);
         getPresenter().viewAllCoupon(getDashboardActivity());
+        getPresenter().getMerchantCategory(getDashboardActivity());
     }
 
-
-
-    private void setOfferList(ArrayList<OfferType> offerTypeList) {
-        OfferType type1 = new OfferType();
-        type1.setSelected(true);
-        type1.setOfferType(getString(R.string.fab_deal));
-        OfferType type2 = new OfferType();
-        type2.setOfferType(getString(R.string.food_drinks));
-        OfferType type3 = new OfferType();
-        type3.setOfferType(getString(R.string.spas));
-        OfferType type4 = new OfferType();
-        type4.setOfferType(getString(R.string.saloons));
-        OfferType type5 = new OfferType();
-        type5.setOfferType(getString(R.string.jewellery));
-        OfferType type6 = new OfferType();
-        type6.setOfferType(getString(R.string.fab_deal));
-        OfferType type7 = new OfferType();
-        type7.setOfferType(getString(R.string.food_drinks));
-        offerTypeList.add(type1);
-        offerTypeList.add(type2);
-        offerTypeList.add(type3);
-        offerTypeList.add(type4);
-        offerTypeList.add(type5);
-        offerTypeList.add(type6);
-        offerTypeList.add(type7);
-    }
 
     @Override
     public void setListener() {
@@ -108,22 +85,54 @@ public class OfferFragment extends DashboardFragment implements
 
     @Override
     public void attachView() {
-      getPresenter().attachView(this);
+        getPresenter().attachView(this);
     }
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
         if (CommonUtils.isNotNull(response)) {
-            ViewAllCouponResponseData responseData=(ViewAllCouponResponseData)response;
-            if(CommonUtils.isNotNull(responseData)&&CommonUtils.isNotNull(responseData.getInfo())&&responseData.getInfo().size()>0){
-                offersList.clear();
-                offersList.addAll(responseData.getInfo());
-                mOfferAdapter.notifyDataSetChanged();
+            if (requestCode == 1) {
+                ViewAllCouponResponseData responseData = (ViewAllCouponResponseData) response;
+                if (CommonUtils.isNotNull(responseData) && CommonUtils.isNotNull(responseData.getInfo()) && responseData.getInfo().size() > 0) {
+                    CommonUtils.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, true);
+                    offersList.clear();
+                    offersList.addAll(responseData.getInfo());
+                    mOfferAdapter.notifyDataSetChanged();
+                } else {
+                    CommonUtils.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, false);
+                }
+            } else if (requestCode == 2) {
+                showOfferCategory(response);
+            } else if (requestCode == 3) {
+                showOffer(response);
             }
-            CommonUtils.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, true);
-        } else {
-            CommonUtils.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, false);
+
         }
+    }
+
+    private void showOffer(BaseResponse response) {
+
+    }
+
+    private void showOfferCategory(BaseResponse response) {
+        MerchantCategoryData data = (MerchantCategoryData) response;
+        if (CommonUtils.isNotNull(data.getInfo()) && data.getInfo().size() > 0) {
+            offerTypeList.clear();
+            offerTypeList.addAll(data.getInfo());
+            MerchantCategory category = offerTypeList.get(0);
+            selectedPosition = 0;
+            callOfferData(category);
+            category.setSelected(true);
+            offerTypeList.set(0, category);
+            mOfferTypeAdapter.notifyDataSetChanged();
+        }
+    }
+
+    private void callOfferData(MerchantCategory category) {
+        MerchantOfferRequest request = new MerchantOfferRequest();
+        request.setCategory_id(category.getCategory_id());
+        request.setCategory_name(category.getCategory_name());
+        getPresenter().getMerchantOffer(getDashboardActivity(), request);
     }
 
     @Override
@@ -133,16 +142,20 @@ public class OfferFragment extends DashboardFragment implements
 
     @Override
     public void onOfferTypeItemClicked(int position) {
-        for (int i = 0; i < offerTypeList.size(); i++) {
-            OfferType type = offerTypeList.get(i);
-            if (i == position) {
-                type.setSelected(true);
-            } else {
-                type.setSelected(false);
+        if (selectedPosition != position) {
+            callOfferData(offerTypeList.get(position));
+            for (int i = 0; i < offerTypeList.size(); i++) {
+                MerchantCategory type = offerTypeList.get(i);
+                if (i == position) {
+                    type.setSelected(true);
+                } else {
+                    type.setSelected(false);
+                }
+                offerTypeList.set(i, type);
             }
-            offerTypeList.set(i, type);
+            mOfferTypeAdapter.notifyDataSetChanged();
         }
-        mOfferTypeAdapter.notifyDataSetChanged();
+
     }
 
     @Override

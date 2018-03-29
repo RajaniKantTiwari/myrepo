@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.app.community.R;
 import com.app.community.databinding.OfferItemsRowBinding;
 import com.app.community.databinding.OfferRowBinding;
+import com.app.community.network.response.dashboard.home.MerchantCategory;
 import com.app.community.network.response.dashboard.offer.OfferType;
 import com.app.community.utils.CommonUtils;
 
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 
 public class OfferTypesAdapter extends RecyclerView.Adapter<OfferTypesAdapter.OfferTypeViewHolder> {
     private final LayoutInflater mInflater;
-    private final ArrayList<OfferType> offerTypeList;
+    private final ArrayList<MerchantCategory> offerTypeList;
     private final AppCompatActivity activity;
     private OfferItemsRowBinding mBinding;
     private OfferTypeListener listener;
@@ -32,7 +33,7 @@ public class OfferTypesAdapter extends RecyclerView.Adapter<OfferTypesAdapter.Of
         void onOfferTypeItemClicked(int adapterPosition);
     }
 
-    public OfferTypesAdapter(AppCompatActivity activity, ArrayList<OfferType> offerTypeList, OfferTypeListener listener) {
+    public OfferTypesAdapter(AppCompatActivity activity, ArrayList<MerchantCategory> offerTypeList, OfferTypeListener listener) {
         mInflater = LayoutInflater.from(activity);
         this.activity = activity;
         this.listener = listener;
@@ -48,13 +49,13 @@ public class OfferTypesAdapter extends RecyclerView.Adapter<OfferTypesAdapter.Of
     @Override
     public void onBindViewHolder(OfferTypeViewHolder holder, int position) {
         if (CommonUtils.isNotNull(offerTypeList) && offerTypeList.size() > position) {
-            OfferType type = offerTypeList.get(position);
-            if (type.isSelected()) {
+            MerchantCategory category = offerTypeList.get(position);
+            if (category.isSelected()) {
                 holder.tvOfferType.setTextColor(CommonUtils.getColor(activity, R.color.deal_color));
             } else {
                 holder.tvOfferType.setTextColor(CommonUtils.getColor(activity, R.color.search_bg_color));
             }
-            holder.tvOfferType.setText(type.getOfferType());
+            holder.tvOfferType.setText(category.getCategory_name());
         }
     }
 
