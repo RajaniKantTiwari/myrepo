@@ -57,6 +57,7 @@ public interface AppConstants {
     int VIEW_PROFILE=2;
     int ADDRESSES=3;
     int PROFILEPIC=4;
+    int CHAT = 7;
 
     @IntDef({CHECKOUT_FRAGMENT})
     @Retention(RetentionPolicy.SOURCE)

@@ -36,7 +36,6 @@ import com.app.community.network.response.dashboard.rightdrawer.Merchant;
 import com.app.community.network.response.dashboard.rightdrawer.ProductSubCategory;
 import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
 import com.app.community.ui.WelcomeScreenActivity;
-import com.app.community.ui.activity.AboutUsActivity;
 import com.app.community.ui.activity.HelpsAndSupportActivity;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.cart.ProductSubproductFragment;
@@ -121,11 +120,13 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                 break;
             case AppConstants.ABOUTUS:
                 ExplicitIntent.getsInstance().navigateTo(this, UsersActivity.class);
-
                 //ExplicitIntent.getsInstance().navigateTo(this, AboutUsActivity.class);
                 break;
             case AppConstants.HELPSUPPORT:
                 ExplicitIntent.getsInstance().navigateTo(this, HelpsAndSupportActivity.class);
+                break;
+            case AppConstants.CHAT:
+                ExplicitIntent.getsInstance().navigateTo(this, UsersActivity.class);
                 break;
         }
     }

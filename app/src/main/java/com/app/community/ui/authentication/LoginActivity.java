@@ -107,7 +107,7 @@ public class LoginActivity extends CommonActivity implements MvpView, View.OnCli
 
                 if(s.equals("null")) {
                     reference.child(mobileNumber).child("password").setValue(userName);
-                    Toast.makeText(LoginActivity.this, "registration successful", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(LoginActivity.this, "registration successful", Toast.LENGTH_LONG).show();
 
                 }
                 else {
@@ -116,9 +116,9 @@ public class LoginActivity extends CommonActivity implements MvpView, View.OnCli
 
                         if (!obj.has(mobileNumber)) {
                             reference.child(mobileNumber).child("password").setValue(userName);
-                            Toast.makeText(LoginActivity.this, "registration successful", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(LoginActivity.this, "registration successful", Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(LoginActivity.this, "username already exists", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(LoginActivity.this, "username already exists", Toast.LENGTH_LONG).show();
                         }
 
                     } catch (JSONException e) {

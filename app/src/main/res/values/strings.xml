@@ -535,6 +535,7 @@
     <string name="please_enter_address">Please EnterAddress</string>
     <string name="mrp">mrp</string>
     <string name="confirm_order">Confirm Order</string>
+    <string name="chat">Chat</string>
 
 
     <string-array name="state_array">
@@ -575,6 +576,7 @@
         <item>@string/notification</item>
         <item>@string/about_us</item>
         <item>@string/help_support</item>
+        <item>@string/chat</item>
     </string-array>
 
 

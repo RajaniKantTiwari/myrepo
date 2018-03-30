@@ -143,6 +143,7 @@ public class OfferFragment extends DashboardFragment implements
     @Override
     public void onOfferTypeItemClicked(int position) {
         if (selectedPosition != position) {
+            selectedPosition=position;
             callOfferData(offerTypeList.get(position));
             for (int i = 0; i < offerTypeList.size(); i++) {
                 MerchantCategory type = offerTypeList.get(i);
