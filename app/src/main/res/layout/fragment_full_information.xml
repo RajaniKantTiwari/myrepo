@@ -93,11 +93,10 @@
                 style="@style/wrap_wrap"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/margin_10">
-
                 <ImageView
-                    android:id="@+id/ivAdd"
+                    android:id="@+id/ivSub"
                     style="@style/add_sub_view_medium"
-                    android:src="@drawable/add_blue" />
+                    android:src="@drawable/sub_blue" />
 
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvCart"
@@ -106,11 +105,11 @@
                     android:layout_marginEnd="@dimen/margin_10"
                     android:layout_marginStart="@dimen/margin_10"
                     android:textColor="@color/color_sky_blue" />
-
                 <ImageView
-                    android:id="@+id/ivSub"
+                    android:id="@+id/ivAdd"
                     style="@style/add_sub_view_medium"
-                    android:src="@drawable/sub_blue" />
+                    android:src="@drawable/add_blue" />
+
             </LinearLayout>
 
             <com.app.community.widget.CustomTextView

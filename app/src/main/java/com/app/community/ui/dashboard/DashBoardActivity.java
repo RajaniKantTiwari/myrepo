@@ -561,7 +561,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         bundle.putString(AppConstants.MERCHANT_ID, event.getMerchant_id());
         bundle.putString(AppConstants.MERCHANT_ADDRESS, event.getAddress());
         bundle.putString(AppConstants.MERCHANT_IMAGE, event.getImage());
-        bundle.putString(AppConstants.MERCHANT_BACKGROUND_COLOR, event.getColor());
+        //bundle.putString(AppConstants.MERCHANT_BACKGROUND_COLOR, event.getColor());
         pushFragment(new ProductSubproductFragment(), bundle, R.id.container, true, true, NONE);
 
     }

@@ -123,7 +123,7 @@ public class OfferDetailsActivity extends DashboardInsideActivity implements Vie
             finish();
         } else if (view == mBinding.tvStartShopping) {
             CommonUtils.clicked(mBinding.tvStartShopping);
-            EventBus.getDefault().post(new StartShoppingEvent(offer.getMerchant_id()));
+            EventBus.getDefault().post(new StartShoppingEvent(offer.getMerchant_id(),offer.getAddress(),offer.getOfferimage(),offer.getOffer_bg_color()));
             finish();
         }
     }

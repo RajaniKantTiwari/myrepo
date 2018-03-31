@@ -136,7 +136,20 @@
                         android:id="@+id/layout_review_shopping"
                         style="@style/match_wrap"
                         android:layout_below="@+id/header_lay">
-
+                        <com.app.community.widget.CustomTextView
+                            android:id="@+id/tvContact"
+                            style="@style/button_medium_wrap"
+                            android:layout_marginEnd="@dimen/margin_5"
+                            android:layout_toStartOf="@+id/tvStartShopping"
+                            android:background="@drawable/blue_round_btn_bg"
+                            android:gravity="center"
+                            android:paddingBottom="@dimen/margin_3"
+                            android:paddingEnd="@dimen/margin_10"
+                            android:paddingStart="@dimen/margin_10"
+                            android:paddingTop="@dimen/margin_3"
+                            android:text="@string/contact"
+                            android:textColor="@color/white"
+                            />
                         <com.app.community.widget.CustomTextView
                             android:id="@+id/tvStartShopping"
                             style="@style/button_medium_wrap"

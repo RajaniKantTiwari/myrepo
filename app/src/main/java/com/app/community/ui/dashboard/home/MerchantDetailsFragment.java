@@ -1,8 +1,14 @@
 package com.app.community.ui.dashboard.home;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
@@ -27,6 +33,7 @@ import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.DashboardInsidePresenter;
 import com.app.community.ui.dashboard.home.adapter.ImageAdapter;
 import com.app.community.ui.dashboard.home.adapter.ReviewAdapter;
+import com.app.community.ui.dialogfragment.ContactDialogFragment;
 import com.app.community.ui.dialogfragment.OrderFeedbackDialogFragment;
 import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
@@ -40,17 +47,21 @@ import javax.inject.Inject;
 
 import static android.content.ContentValues.TAG;
 import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
-public class MerchantDetailsFragment extends DashboardFragment implements OrderFeedbackDialogFragment.OrderDialogListener,ImageAdapter.ImageListener {
+import static com.app.community.utils.GeneralConstant.REQUEST_CALL;
+
+public class MerchantDetailsFragment extends DashboardFragment implements
+        OrderFeedbackDialogFragment.OrderDialogListener,
+        ImageAdapter.ImageListener,ContactDialogFragment.ContactDialogListener {
 
     private FragmentMerchantDetailBinding mBinding;
     private ImageAdapter mImageAdapter;
     private ReviewAdapter mReviewAdapter;
     private ArrayList<ReviewResponse> reviewList;
-
     private MerchantResponse merchantResponse;
     @Inject
     DashboardInsidePresenter presenter;
     private ArrayList<StoreImages> imageList;
+    private Intent callIntent;
 
     @Nullable
     @Override
@@ -78,6 +89,7 @@ public class MerchantDetailsFragment extends DashboardFragment implements OrderF
     public void setListener() {
         mBinding.tvStartShopping.setOnClickListener(this);
         mBinding.tvShareReview.setOnClickListener(this);
+        mBinding.tvContact.setOnClickListener(this);
     }
 
     @Override
@@ -91,9 +103,8 @@ public class MerchantDetailsFragment extends DashboardFragment implements OrderF
             merchantResponse = bundle.getParcelable(GeneralConstant.RESPONSE);
         }
         reviewList = new ArrayList<>();
-        imageList=new ArrayList<>();
-        setList();
-        mImageAdapter = new ImageAdapter(getDashboardActivity(),imageList,this);
+        imageList = new ArrayList<>();
+        mImageAdapter = new ImageAdapter(getDashboardActivity(), imageList, this);
         mBinding.photoRecycler.setAdapter(mImageAdapter);
         mReviewAdapter = new ReviewAdapter(getDashboardActivity(), reviewList);
         mBinding.rvReview.setAdapter(mReviewAdapter);
@@ -104,49 +115,30 @@ public class MerchantDetailsFragment extends DashboardFragment implements OrderF
 
     }
 
-    private void setList() {
-        try {
-            StoreImages image = new StoreImages();
-            image.setPath("https://api.androidhive.info/images/glide/small/deadpool.jpg");
-            imageList.add(image);
 
-            StoreImages image1 = new StoreImages();
-            image1.setPath("https://api.androidhive.info/images/glide/large/bvs.jpg");
-            imageList.add(image1);
-
-            StoreImages image2 = new StoreImages();
-            image2.setPath("https://api.androidhive.info/images/glide/large/cacw.jpg");
-            imageList.add(image2);
-
-            StoreImages image3 = new StoreImages();
-            image3.setPath("https://api.androidhive.info/images/glide/large/bourne.jpg");
-            imageList.add(image3);
-
-            StoreImages image4 = new StoreImages();
-            image4.setPath("https://api.androidhive.info/images/glide/large/squad.jpg");
-            imageList.add(image4);
-
-        } catch (Exception e) {
-            Log.e(TAG, "Json parsing error: " + e.getMessage());
-        }
-    }
 
     @Override
     public void onClick(View view) {
         if (view == mBinding.tvStartShopping) {
             CommonUtils.clicked(mBinding.tvStartShopping);
-            Bundle bundle=new Bundle();
+            Bundle bundle = new Bundle();
             bundle.putString(AppConstants.MERCHANT_ID, merchantResponse.getId());
-            bundle.putString(AppConstants.MERCHANT_ADDRESS,merchantResponse.getAddress());
-            bundle.putString(AppConstants.MERCHANT_IMAGE,merchantResponse.getImage());
-            bundle.putString(AppConstants.MERCHANT_BACKGROUND_COLOR,merchantResponse.getBackground_color());
-            getDashboardActivity().addFragmentInContainer(new ProductSubproductFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
+            bundle.putString(AppConstants.MERCHANT_ADDRESS, merchantResponse.getAddress());
+            bundle.putString(AppConstants.MERCHANT_IMAGE, merchantResponse.getImage());
+            bundle.putString(AppConstants.MERCHANT_BACKGROUND_COLOR, merchantResponse.getBackground_color());
+            getDashboardActivity().addFragmentInContainer(new ProductSubproductFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
         } else if (view == mBinding.tvShareReview) {
             CommonUtils.clicked(mBinding.tvStartShopping);
             CommonUtils.showOrderDialog(getDashboardActivity(), null, this);
+        } else if (view == mBinding.tvContact) {
+            openDialog();
         }
     }
-
+    private void openDialog() {
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(GeneralConstant.PRODUCT_INFO,merchantResponse);
+            CommonUtils.showContactDialog(getBaseActivity(), bundle, this);
+    }
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
         if (requestCode == 1) {
@@ -156,24 +148,23 @@ public class MerchantDetailsFragment extends DashboardFragment implements OrderF
                     ArrayList<MerchantResponse> infoList = data.getInfo();
                     if (CommonUtils.isNotNull(infoList) && infoList.size() > 0) {
                         com.app.community.network.response.dashboard.home.MerchantResponse merchantResponse = infoList.get(0);
-                        CommonUtils.setVisibility(mBinding.layoutMain,mBinding.layoutNoData.layoutNoData,true);
+                        CommonUtils.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, true);
                         if (CommonUtils.isNotNull(merchantResponse)) {
                             mBinding.setMerchantResponse(merchantResponse);
-                            if(CommonUtils.twoDecimalPlaceString(merchantResponse.getDistance())!=null){
+                            if (CommonUtils.twoDecimalPlaceString(merchantResponse.getDistance()) != null) {
                                 mBinding.tvDistance.setText(CommonUtils.twoDecimalPlaceString(merchantResponse.getDistance())
-                                        +" "+getResources().getString(R.string.km));
+                                        + " " + getResources().getString(R.string.km));
                             }
                             setImage(merchantResponse);
-                        }else{
-                            CommonUtils.setVisibility(mBinding.layoutMain,mBinding.layoutNoData.layoutNoData,false);
+                        } else {
+                            CommonUtils.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, false);
                         }
                     }
+                } else {
+                    CommonUtils.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, false);
                 }
-                else{
-                    CommonUtils.setVisibility(mBinding.layoutMain,mBinding.layoutNoData.layoutNoData,false);
-                }
-            }else{
-                CommonUtils.setVisibility(mBinding.layoutMain,mBinding.layoutNoData.layoutNoData,false);
+            } else {
+                CommonUtils.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, false);
             }
         } else if (requestCode == 2) {
             reviewList.clear();
@@ -196,7 +187,7 @@ public class MerchantDetailsFragment extends DashboardFragment implements OrderF
         }
         GlideUtils.loadImage(getDashboardActivity(), merchantResponse.getImage(), mBinding.imageLogo, null, 0);
         GlideUtils.loadImage(getDashboardActivity(), merchantResponse.getBanner_image(), mBinding.storeImage, null, 0);
-        if (CommonUtils.isNotNull(imageList)&&CommonUtils.isNotNull(merchantResponse.getStoreimages())) {
+        if (CommonUtils.isNotNull(imageList) && CommonUtils.isNotNull(merchantResponse.getStoreimages())) {
             imageList.addAll(merchantResponse.getStoreimages());
             mImageAdapter.notifyDataSetChanged();
         }
@@ -219,10 +210,49 @@ public class MerchantDetailsFragment extends DashboardFragment implements OrderF
     @Override
     public void onItemClick(int position) {
         Bundle bundle = new Bundle();
-        bundle.putInt(GeneralConstant.POSITION,position);
-        bundle.putParcelableArrayList(GeneralConstant.IMAGE_LIST,imageList);
-        ExplicitIntent.getsInstance().navigateToZoom(getDashboardActivity(), ZoomAnimationImageActivity.class,bundle);
+        bundle.putInt(GeneralConstant.POSITION, position);
+        bundle.putParcelableArrayList(GeneralConstant.IMAGE_LIST, imageList);
+        ExplicitIntent.getsInstance().navigateToZoom(getDashboardActivity(), ZoomAnimationImageActivity.class, bundle);
         /*getDashboardActivity().pushFragment(ZOOMIMAGE_FRAGMENT,bundle,android.R.id.content,
                 true,true, BaseActivity.AnimationType.ZOOM);*/
+    }
+
+    @Override
+    public void contact(String phoneNumber) {
+        callIntent = new Intent(Intent.ACTION_CALL);
+        callIntent.setData(Uri.parse("tel:"+phoneNumber));
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getBaseActivity(),new String[]{Manifest.permission.CALL_PHONE},REQUEST_CALL);
+            return;
+        } else
+            startActivity(callIntent);
+    }
+
+
+    @Override
+    public void message(String message) {
+        try {
+            Uri uri = Uri.parse("smsto:"+message);
+            // No permisison needed
+            Intent smsIntent = new Intent(Intent.ACTION_SENDTO, uri);
+            // Set the message to be sent
+            startActivity(smsIntent);
+        } catch (Exception e) {
+            getBaseActivity().showToast(getResources().getString(R.string.message_failed));
+            e.printStackTrace();
+        }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case REQUEST_CALL: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    startActivity(callIntent);
+                } else {
+                    getBaseActivity().showToast(getResources().getString(R.string.permition_denied));
+                }
+            }
+        }
     }
 }

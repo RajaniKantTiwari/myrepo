@@ -3,12 +3,10 @@ package com.app.community.ui.dashboard.user;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialog;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -120,7 +118,6 @@ public class UpdateProfileFragment extends DashboardFragment implements MvpView,
                 PreferenceUtils.setImage(picResponse.getDetails());
                 GlideUtils.loadImageProfilePic(getContext(), PreferenceUtils.getImage(), mBinding.ivProfile, null, R.drawable.avatar);
             }
-
         }
     }
 
