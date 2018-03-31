@@ -142,8 +142,8 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
                             finish();
                         } else {
                             hideKeyboard();
-                            showToast(getResources().getString(R.string.server_error));
                         }
+                        showToast(response.getMsg());
                     }
                 }
             }

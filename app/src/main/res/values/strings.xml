@@ -534,6 +534,7 @@
     <string name="shopping">Shopping</string>
     <string name="please_enter_address">Please EnterAddress</string>
     <string name="mrp">mrp</string>
+    <string name="mrp_rs">MRP: Rs&#160;</string>
     <string name="confirm_order">Confirm Order</string>
     <string name="chat">Chat</string>
 

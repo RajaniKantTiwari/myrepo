@@ -36,6 +36,7 @@ import com.app.community.network.response.dashboard.home.MerchantResponseData;
 import com.app.community.network.response.dashboard.home.ReviewResponseData;
 import com.app.community.network.response.dashboard.home.SearchResponseData;
 import com.app.community.network.response.dashboard.notification.NotificationResponseData;
+import com.app.community.network.response.dashboard.offer.MerchantOfferData;
 import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
 import com.app.community.network.response.dashboard.user.UserProfileData;
 
@@ -115,5 +116,5 @@ public interface Repository {
 
     Observable<MerchantCategoryData> getMerchantCategory();
 
-    Observable<BaseResponse> getMerchantOffer(MerchantOfferRequest request);
+    Observable<MerchantOfferData> getMerchantOffer(MerchantOfferRequest request);
 }

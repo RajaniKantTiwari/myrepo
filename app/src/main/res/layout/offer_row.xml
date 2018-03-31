@@ -1,70 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/layoutOffer"
         style="@style/match_wrap"
-        android:background="@drawable/offer_bg"
         android:layout_marginBottom="@dimen/margin_20">
 
         <ImageView
             android:id="@+id/ivOffer"
-            style="@style/image_100_70"
+            style="@style/image_70"
+            android:layout_centerVertical="true"
             android:background="@drawable/order_detail"/>
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/layoutRelative"
-        style="@style/match_wrap"
-        android:minHeight="@dimen/margin_70"
-        android:layout_toEndOf="@+id/ivOffer"
-        android:gravity="center_vertical"
-        android:layout_marginStart="@dimen/margin_10">
+        style="@style/layout_hori_match_1"
+
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/margin_10"
+        android:orientation="vertical">
         <com.app.community.widget.CustomTextView
-            android:id="@+id/tvOffer"
+            android:id="@+id/tvProductName"
             android:layout_marginEnd="@dimen/margin_7"
-            style="@style/textview_description_ex_large_match"
-            android:layout_alignParentEnd="true"
+            style="@style/textview_description_ex_large_wrap"
             android:gravity="right"
-            android:maxLines="2"
+            android:maxLines="1"
             android:ellipsize="end"
             android:textColor="@color/deal_color"
             android:textAllCaps="true"
             />
         <com.app.community.widget.CustomTextView
-            android:id="@+id/tvStoreName"
+            android:id="@+id/tvMrp"
+            android:layout_marginTop="@dimen/margin_3"
+            android:layout_marginEnd="@dimen/margin_7"
+            style="@style/textview_description_ex_large_wrap"
+            />
+        <com.app.community.widget.CustomTextView
+            android:id="@+id/tvPrice"
             android:layout_marginTop="@dimen/margin_3"
             android:layout_marginEnd="@dimen/margin_7"
             style="@style/textview_description_ex_large_match"
-            android:gravity="right"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/tvOffer"
-            android:textColor="@color/deal_color"
             />
-    </RelativeLayout>
+        <com.app.community.widget.CustomTextView
+            android:id="@+id/tvOff"
+            android:layout_marginTop="@dimen/margin_3"
+            android:layout_marginEnd="@dimen/margin_7"
+            style="@style/textview_description_ex_large_match"
+            android:textColor="@color/blue"
+            />
+    </LinearLayout>
+
+
+
         <LinearLayout
-            android:id="@+id/layoutProduct"
-            style="@style/match_wrap"
-            android:orientation="vertical"
-            android:layout_below="@+id/layoutRelative"
-            android:paddingBottom="@dimen/margin_14">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_1_5"
-                android:background="@color/greyish_color"/>
-        <com.app.community.widget.CustomTextView
-            style="@style/textview_title_wrap"
-            android:textColor="@color/deal_color_product"
-            android:text="Mother Dairy"
-            android:textAllCaps="true"
-            android:layout_margin="@dimen/margin_7"
-            />
-        <com.app.community.widget.CustomTextView
-            android:layout_marginStart="@dimen/margin_7"
-            style="@style/textview_description_small_wrap"
-            android:textColor="@color/color_black"
-            android:text="3 freshly drink product"
-            />
+            android:id="@+id/layoutMerchant"
+            style="@style/layout_hori_match_1"
+            android:layout_marginStart="@dimen/margin_10"
+            android:orientation="vertical">
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvMerchantName"
+                android:layout_marginEnd="@dimen/margin_7"
+                style="@style/textview_description_ex_large_match"
+                android:gravity="right"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/deal_color"
+                android:textAllCaps="true"
+                />
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvView"
+                style="@style/button_medium_wrap"
+                android:background="@drawable/dark_round_btnbg"
+                android:gravity="center"
+                android:layout_gravity="right"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingEnd="@dimen/margin_10"
+                android:paddingStart="@dimen/margin_10"
+                android:paddingTop="@dimen/margin_3"
+                android:text="@string/view"
+                android:textColor="@color/white"
+                />
+            <com.app.community.widget.CustomTextView
+                android:id="@+id/tvStartShopping"
+                style="@style/button_medium_wrap"
+                android:background="@drawable/blue_round_btn_bg"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/margin_5"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingEnd="@dimen/margin_10"
+                android:paddingStart="@dimen/margin_10"
+                android:paddingTop="@dimen/margin_3"
+                android:text="@string/start_shopping"
+                android:textColor="@color/white"
+                android:layout_gravity="right"/>
         </LinearLayout>
-    </RelativeLayout>
+
+    </LinearLayout>
 
 
 </layout>

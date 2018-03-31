@@ -31,6 +31,7 @@ import com.app.community.network.response.dashboard.home.ProfilePicResponse;
 import com.app.community.network.response.dashboard.home.SearchResponseData;
 import com.app.community.network.response.dashboard.home.WelcomeHomeData;
 import com.app.community.network.response.dashboard.notification.NotificationResponseData;
+import com.app.community.network.response.dashboard.offer.MerchantOfferData;
 import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
 import com.app.community.network.response.dashboard.user.UserProfileData;
 import com.app.community.ui.base.MvpView;
@@ -577,9 +578,9 @@ public class DashboardPresenter implements Presenter<MvpView> {
     public void getMerchantOffer(DashBoardActivity activity, MerchantOfferRequest request) {
         mView.showProgress();
         mRepository.getMerchantOffer(request).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).
-                subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+                subscribeWith(new DefaultApiObserver<MerchantOfferData>(activity) {
                     @Override
-                    public void onResponse(BaseResponse response) {
+                    public void onResponse(MerchantOfferData response) {
                         mView.hideProgress();
                         mView.onSuccess(response, 3);
                     }

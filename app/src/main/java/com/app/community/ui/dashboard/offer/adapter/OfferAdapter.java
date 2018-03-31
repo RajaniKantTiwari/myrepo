@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import com.app.community.R;
 import com.app.community.databinding.OfferRowBinding;
 import com.app.community.network.response.dashboard.home.Offer;
+import com.app.community.network.response.dashboard.offer.MerchantOffer;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GlideUtils;
 import com.app.community.widget.CustomTextView;
@@ -28,13 +29,13 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferViewHol
     private final AppCompatActivity activity;
     private OfferRowBinding mBinding;
     private OfferListener listener;
-    private ArrayList<Offer> offersList;
+    private ArrayList<MerchantOffer> offersList;
 
     public interface OfferListener {
         void onOfferClicked(int position);
     }
 
-    public OfferAdapter(AppCompatActivity activity, ArrayList<Offer> offersList, OfferListener listener) {
+    public OfferAdapter(AppCompatActivity activity, ArrayList<MerchantOffer> offersList, OfferListener listener) {
         this.activity=activity;
         mInflater = LayoutInflater.from(activity);
         this.offersList = offersList;
@@ -50,11 +51,14 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferViewHol
     @Override
     public void onBindViewHolder(OfferViewHolder holder, int position) {
         if (CommonUtils.isNotNull(offersList) && offersList.size() > position) {
-            Offer offer = offersList.get(position);
+            MerchantOffer offer = offersList.get(position);
             if (CommonUtils.isNotNull(offer)) {
-                holder.tvStoreName.setText(offer.getStore_name());
-                holder.tvOffer.setText(offer.getOffer_descr());
-                GlideUtils.loadImageTwoRoundedCorner(activity,offer.getOfferimage(),holder.ivOffer,
+                holder.tvProductName.setText(offer.getProduct_name());
+                holder.tvMrp.setText(activity.getResources().getString(R.string.mrp_rs)+offer.getProduct_mrp());
+                holder.tvPrice.setText(activity.getResources().getString(R.string.mrp_rs)+offer.getSelling_price());
+                holder.tvMerchantName.setText(offer.getStore_name());
+                holder.tvOff.setText(offer.getOffer_percent()+"% OFF");
+                GlideUtils.loadImageTwoRoundedCorner(activity,offer.getLogo(),holder.ivOffer,
                         null,0,15,0,0,15);
             }
         }
@@ -66,17 +70,23 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferViewHol
     }
 
     class OfferViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private final LinearLayout layoutProduct;
-        private final CustomTextView tvOffer;
-        private final CustomTextView tvStoreName;
+        private final LinearLayout layoutOffer;
+        private final CustomTextView tvProductName;
+        private final CustomTextView tvMrp;
         private final ImageView ivOffer;
+        private final CustomTextView tvPrice;
+        private final CustomTextView tvMerchantName;
+        private final CustomTextView tvOff;
 
         public OfferViewHolder(OfferRowBinding itemView) {
             super(itemView.getRoot());
-            layoutProduct = itemView.layoutProduct;
-            tvOffer = itemView.tvOffer;
-            tvStoreName = itemView.tvStoreName;
+            layoutOffer = itemView.layoutOffer;
+            tvProductName = itemView.tvProductName;
+            tvMrp = itemView.tvMrp;
             ivOffer=itemView.ivOffer;
+            tvPrice=itemView.tvPrice;
+            tvOff=itemView.tvOff;
+            tvMerchantName=itemView.tvMerchantName;
             itemView.layoutOffer.setOnClickListener(this);
         }
 

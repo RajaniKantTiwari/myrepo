@@ -39,6 +39,7 @@ import com.app.community.network.response.dashboard.home.ReviewResponseData;
 import com.app.community.network.response.dashboard.home.SearchResponseData;
 import com.app.community.network.response.dashboard.home.WelcomeHomeData;
 import com.app.community.network.response.dashboard.notification.NotificationResponseData;
+import com.app.community.network.response.dashboard.offer.MerchantOfferData;
 import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
 import com.app.community.network.response.dashboard.user.UserProfileData;
 
@@ -168,6 +169,6 @@ public interface ApiService {
     Observable<MerchantCategoryData> getMerchantCategory();
 
     @POST("product/get_merchant_offers")
-    Observable<BaseResponse> getMerchantOffer(@Body MerchantOfferRequest request);
+    Observable<MerchantOfferData> getMerchantOffer(@Body MerchantOfferRequest request);
 
 }

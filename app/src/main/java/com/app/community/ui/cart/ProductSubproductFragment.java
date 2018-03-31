@@ -24,6 +24,7 @@ import com.app.community.network.response.dashboard.cart.CategoryResponse;
 import com.app.community.network.response.dashboard.cart.ProductData;
 import com.app.community.network.response.dashboard.cart.SubCategory;
 import com.app.community.ui.dashboard.DashboardFragment;
+import com.app.community.ui.dashboard.home.fragment.CartFragment;
 import com.app.community.ui.dashboard.home.fragment.CheckoutFragment;
 import com.app.community.ui.dashboard.home.fragment.FullInformationFragment;
 import com.app.community.utils.AppConstants;
@@ -90,9 +91,16 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
         switch (view.getId()) {
             case R.id.tvCheckout:
                 CommonUtils.clicked(mBinding.tvCheckout);
-                if(CommonUtils.isNotNull(PreferenceUtils.getCartData())&&PreferenceUtils.getCartData().size()>0){
+               /* if(CommonUtils.isNotNull(PreferenceUtils.getCartData())&&PreferenceUtils.getCartData().size()>0){
                     addToCartList();
                 }else {
+                    getDashboardActivity().showToast(getResources().getString(R.string.please_add_data_in_cart_first));
+                }*/
+
+
+                if (CommonUtils.isNotNull(PreferenceUtils.getCartData()) && PreferenceUtils.getCartData().size() > 0) {
+                    getDashboardActivity().addFragmentInContainer(new CartFragment(), null, true, true, NONE);
+                } else {
                     getDashboardActivity().showToast(getResources().getString(R.string.please_add_data_in_cart_first));
                 }
 

@@ -36,6 +36,7 @@ import com.app.community.network.response.dashboard.home.ReviewResponseData;
 import com.app.community.network.response.dashboard.home.SearchResponseData;
 import com.app.community.network.response.dashboard.home.WelcomeHomeData;
 import com.app.community.network.response.dashboard.notification.NotificationResponseData;
+import com.app.community.network.response.dashboard.offer.MerchantOfferData;
 import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
 import com.app.community.network.response.dashboard.user.UserProfileData;
 
@@ -227,7 +228,7 @@ public class RetrofitRepository implements Repository {
     }
 
     @Override
-    public Observable<BaseResponse> getMerchantOffer(MerchantOfferRequest request) {
+    public Observable<MerchantOfferData> getMerchantOffer(MerchantOfferRequest request) {
         return apiService.getMerchantOffer(request);
     }
 }

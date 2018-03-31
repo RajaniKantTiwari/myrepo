@@ -17,6 +17,8 @@ import com.app.community.network.response.coupon.ViewAllCouponResponseData;
 import com.app.community.network.response.dashboard.home.MerchantCategory;
 import com.app.community.network.response.dashboard.home.MerchantCategoryData;
 import com.app.community.network.response.dashboard.home.Offer;
+import com.app.community.network.response.dashboard.offer.MerchantOffer;
+import com.app.community.network.response.dashboard.offer.MerchantOfferData;
 import com.app.community.network.response.dashboard.offer.OfferType;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.offer.adapter.OfferAdapter;
@@ -43,7 +45,7 @@ public class OfferFragment extends DashboardFragment implements
     private OfferAdapter mOfferAdapter;
     private OfferTypesAdapter mOfferTypeAdapter;
     private ArrayList<MerchantCategory> offerTypeList;
-    private ArrayList<Offer> offersList;
+    private ArrayList<MerchantOffer> offersList;
     private int selectedPosition;
 
 
@@ -91,7 +93,7 @@ public class OfferFragment extends DashboardFragment implements
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
         if (CommonUtils.isNotNull(response)) {
-            if (requestCode == 1) {
+            /*if (requestCode == 1) {
                 ViewAllCouponResponseData responseData = (ViewAllCouponResponseData) response;
                 if (CommonUtils.isNotNull(responseData) && CommonUtils.isNotNull(responseData.getInfo()) && responseData.getInfo().size() > 0) {
                     CommonUtils.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, true);
@@ -101,7 +103,7 @@ public class OfferFragment extends DashboardFragment implements
                 } else {
                     CommonUtils.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, false);
                 }
-            } else if (requestCode == 2) {
+            } else*/ if (requestCode == 2) {
                 showOfferCategory(response);
             } else if (requestCode == 3) {
                 showOffer(response);
@@ -111,7 +113,13 @@ public class OfferFragment extends DashboardFragment implements
     }
 
     private void showOffer(BaseResponse response) {
-
+        MerchantOfferData offerData=(MerchantOfferData)response;
+        if(CommonUtils.isNotNull(offerData.getData())&&offerData.getData().size()>0){
+            CommonUtils.setVisibility(mBinding.rvOffer, mBinding.layoutNoData.layoutNoData, true);
+            offersList.addAll(offerData.getData());
+        }else {
+            CommonUtils.setVisibility(mBinding.rvOffer, mBinding.layoutNoData.layoutNoData, false);
+        }
     }
 
     private void showOfferCategory(BaseResponse response) {
