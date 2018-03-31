@@ -50,6 +50,8 @@ public class CartFragment extends DashboardFragment implements CartRowAdapter.On
     private int MAX_LIMIT = 10, MIN_LIMIT = 0;
     private ArrayList<ProductData> mCartList;
     private int merchantId;
+    private String icon;
+    private String color;
 
     @Nullable
     @Override
@@ -66,6 +68,8 @@ public class CartFragment extends DashboardFragment implements CartRowAdapter.On
         mCartList.addAll(PreferenceUtils.getCartData());
         if (CommonUtils.isNotNull(mCartList) && mCartList.size() > 0) {
             merchantId = mCartList.get(0).getMerchantId();
+            color = mCartList.get(0).getColorcode();
+            icon = mCartList.get(0).getImage_path();
         }
         mAdapter = new CartRowAdapter(getBaseActivity(), mCartList, this);
         mBinding.rvCartList.setLayoutManager(layoutManager);
@@ -109,7 +113,7 @@ public class CartFragment extends DashboardFragment implements CartRowAdapter.On
             }
         } else if (view == mBinding.layoutNoData.tvStartShopping) {
             CommonUtils.clicked(mBinding.layoutNoData.tvStartShopping);
-            EventBus.getDefault().post(new StartShoppingEvent(String.valueOf(merchantId)));
+            EventBus.getDefault().post(new StartShoppingEvent(String.valueOf(merchantId), null, icon, color));
         }
     }
 

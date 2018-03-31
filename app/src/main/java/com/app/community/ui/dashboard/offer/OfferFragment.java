@@ -11,16 +11,19 @@ import android.view.ViewGroup;
 
 import com.app.community.R;
 import com.app.community.databinding.FragmentOfferBinding;
+import com.app.community.event.StartShoppingEvent;
 import com.app.community.network.request.dashboard.MerchantOfferRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.coupon.ViewAllCouponResponseData;
 import com.app.community.network.response.dashboard.home.MerchantCategory;
 import com.app.community.network.response.dashboard.home.MerchantCategoryData;
+import com.app.community.network.response.dashboard.home.MerchantResponse;
 import com.app.community.network.response.dashboard.home.Offer;
 import com.app.community.network.response.dashboard.offer.MerchantOffer;
 import com.app.community.network.response.dashboard.offer.MerchantOfferData;
 import com.app.community.network.response.dashboard.offer.OfferType;
 import com.app.community.ui.dashboard.DashboardFragment;
+import com.app.community.ui.dashboard.home.MerchantDetailsFragment;
 import com.app.community.ui.dashboard.offer.adapter.OfferAdapter;
 import com.app.community.ui.dashboard.offer.adapter.OfferTypesAdapter;
 import com.app.community.ui.presenter.CommonPresenter;
@@ -28,9 +31,13 @@ import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 
 import javax.inject.Inject;
+
+import static com.app.community.ui.base.BaseActivity.AnimationType.NONE;
 
 /**
  * Created by ashok on 13/11/17.
@@ -168,11 +175,25 @@ public class OfferFragment extends DashboardFragment implements
     }
 
     @Override
-    public void onOfferClicked(int position) {
+    public void onViewClicked(int position) {
         if (CommonUtils.isNotNull(offersList) && offersList.size() > position) {
             Bundle bundle = new Bundle();
-            bundle.putParcelable(AppConstants.OFFER, offersList.get(position));
-            ExplicitIntent.getsInstance().navigateTo(getDashboardActivity(), OfferDetailsActivity.class, bundle);
+            MerchantResponse response=new MerchantResponse();
+            response.setId(offersList.get(position).getId());
+            response.setAddress(offersList.get(position).getAddress());
+            response.setImage(offersList.get(position).getImage());
+            response.setBackground_color(offersList.get(position).getProduct_color_code());
+            bundle.putParcelable(AppConstants.OFFER, response);
+            getDashboardActivity().addFragmentInContainer(new MerchantDetailsFragment(),bundle,true,true,NONE);
+        }
+    }
+
+    @Override
+    public void onStartShopping(int position) {
+        if (CommonUtils.isNotNull(offersList) && offersList.size() > position) {
+            MerchantOffer offer = offersList.get(position);
+            EventBus.getDefault().post(new StartShoppingEvent(offer.getId(),offer.getAddress(),offer.getImage(),offer.getProduct_color_code()));
+            getDashboardActivity().onBackPressed();
         }
     }
 }

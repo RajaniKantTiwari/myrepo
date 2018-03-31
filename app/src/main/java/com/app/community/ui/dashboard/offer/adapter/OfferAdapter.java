@@ -7,16 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.app.community.R;
 import com.app.community.databinding.OfferRowBinding;
-import com.app.community.network.response.dashboard.home.Offer;
 import com.app.community.network.response.dashboard.offer.MerchantOffer;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GlideUtils;
 import com.app.community.widget.CustomTextView;
-import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -27,12 +24,13 @@ import java.util.ArrayList;
 public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferViewHolder> {
     private final LayoutInflater mInflater;
     private final AppCompatActivity activity;
-    private OfferRowBinding mBinding;
+
     private OfferListener listener;
     private ArrayList<MerchantOffer> offersList;
 
     public interface OfferListener {
-        void onOfferClicked(int position);
+        void onViewClicked(int position);
+        void onStartShopping(int position);
     }
 
     public OfferAdapter(AppCompatActivity activity, ArrayList<MerchantOffer> offersList, OfferListener listener) {
@@ -44,7 +42,7 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferViewHol
 
     @Override
     public OfferViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        mBinding = DataBindingUtil.inflate(mInflater, R.layout.offer_row, parent, false);
+        OfferRowBinding mBinding = DataBindingUtil.inflate(mInflater, R.layout.offer_row, parent, false);
         return new OfferViewHolder(mBinding);
     }
 
@@ -70,30 +68,38 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferViewHol
     }
 
     class OfferViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private final LinearLayout layoutOffer;
         private final CustomTextView tvProductName;
         private final CustomTextView tvMrp;
         private final ImageView ivOffer;
         private final CustomTextView tvPrice;
         private final CustomTextView tvMerchantName;
         private final CustomTextView tvOff;
+        private final OfferRowBinding mBinding;
 
         public OfferViewHolder(OfferRowBinding itemView) {
             super(itemView.getRoot());
-            layoutOffer = itemView.layoutOffer;
+            mBinding=itemView;
             tvProductName = itemView.tvProductName;
             tvMrp = itemView.tvMrp;
             ivOffer=itemView.ivOffer;
             tvPrice=itemView.tvPrice;
             tvOff=itemView.tvOff;
             tvMerchantName=itemView.tvMerchantName;
-            itemView.layoutOffer.setOnClickListener(this);
+            itemView.tvView.setOnClickListener(this);
+            itemView.tvStartShopping.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
+
             if (CommonUtils.isNotNull(listener)) {
-                listener.onOfferClicked(getAdapterPosition());
+                if(view==mBinding.tvView){
+                    CommonUtils.clicked(mBinding.tvView);
+                    listener.onViewClicked(getAdapterPosition());
+                }else if(view==mBinding.tvStartShopping){
+                    CommonUtils.clicked(mBinding.tvStartShopping);
+                    listener.onStartShopping(getAdapterPosition());
+                }
             }
         }
     }

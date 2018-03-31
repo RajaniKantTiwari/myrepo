@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
-    <ScrollView style="@style/match_match"
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        style="@style/match_match"
         android:background="@android:color/white">
 
         <LinearLayout
@@ -14,86 +14,96 @@
             <ImageView
                 style="@style/image_150"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/app_icon"
-                android:padding="@dimen/margin_10"/>
+                android:padding="@dimen/margin_10"
+                android:src="@drawable/app_icon" />
 
             <com.app.community.widget.CustomTextView
                 style="@style/textview_title_match"
                 android:layout_marginBottom="@dimen/margin_70"
-                android:text="@string/login"
                 android:gravity="center"
-                android:textColor="@color/dark_black_color"
-                android:textAllCaps="true"/>
+                android:text="@string/login"
+                android:textAllCaps="true"
+                android:textColor="@color/dark_black_color" />
+
             <com.app.community.widget.CustomTextView
                 style="@style/textview_description_smaller_match"
                 android:text="@string/name"
+                android:textAllCaps="true"
                 android:textColor="@color/grey_color"
-                app:customFont="@string/font_regular"
-                android:textAllCaps="true"/>
+                app:customFont="@string/font_regular" />
 
             <com.app.community.widget.CustomEditText
                 android:id="@+id/edName"
                 style="@style/edit_text_name_medium"
                 android:layout_marginTop="@dimen/margin_10"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLines="1"
                 android:paddingBottom="@dimen/margin_5"
                 android:paddingTop="@dimen/margin_5"
                 android:singleLine="true"
-                android:imeOptions="actionNext"
-                android:maxLines="1"
-                android:inputType="text"
-                app:customFont= "@string/font_bold"
-                />
+                app:customFont="@string/font_bold" />
 
-            <ImageView style="@style/view_layout"
+            <ImageView
+                style="@style/view_layout"
                 android:layout_marginBottom="@dimen/margin_20" />
 
             <com.app.community.widget.CustomTextView
                 style="@style/textview_description_smaller_match"
                 android:text="@string/mobileNumber"
+                android:textAllCaps="true"
                 android:textColor="@color/grey_color"
-                app:customFont="@string/font_regular"
-                android:textAllCaps="true"/>
+                app:customFont="@string/font_regular" />
 
-            <com.app.community.widget.CustomEditText
-                android:id="@+id/edMobileNumber"
-                style="@style/edit_text_style_medium"
-                android:layout_marginTop="@dimen/margin_10"
-                android:maxLength="@integer/mono_length"
-                android:paddingBottom="@dimen/margin_5"
-                android:paddingTop="@dimen/margin_5"
-                android:singleLine="true"
-                android:imeOptions="actionNext"
-                app:customFont= "@string/font_bold"
-                android:inputType="number"
-                />
+            <LinearLayout style="@style/match_wrap">
+                <com.app.community.widget.CustomTextView
+                    style="@style/textview_description_wrap"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:text="+91"
+                    android:layout_marginEnd="@dimen/margin_10"
+                    app:customFont="@string/font_regular" />
+                <com.app.community.widget.CustomEditText
+                    android:id="@+id/edMobileNumber"
+                    style="@style/edit_text_style_medium"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="@integer/mono_length"
+                    android:paddingBottom="@dimen/margin_5"
+                    android:paddingTop="@dimen/margin_5"
+                    android:singleLine="true"
+                    app:customFont="@string/font_bold" />
+            </LinearLayout>
 
-            <ImageView style="@style/view_layout"
+            <ImageView
+                style="@style/view_layout"
                 android:layout_marginBottom="@dimen/margin_20" />
 
-           <!-- <com.app.community.widget.CustomTextView
-                style="@style/textview_description_smaller_match"
-                android:text="@string/mobileNumber"
-                android:textColor="@color/grey_color"
-                android:maxLines="1"
-                app:customFont="@string/font_book_regular"
-                android:textAllCaps="true"/>
+            <!-- <com.app.community.widget.CustomTextView
+                 style="@style/textview_description_smaller_match"
+                 android:text="@string/mobileNumber"
+                 android:textColor="@color/grey_color"
+                 android:maxLines="1"
+                 app:customFont="@string/font_book_regular"
+                 android:textAllCaps="true"/>
 
-            <com.app.community.widget.CustomEditText
-                android:id="@+id/edMobileNumber"
-                style="@style/edit_text_style_medium"
-                android:layout_marginTop="@dimen/margin_10"
-                android:paddingBottom="@dimen/margin_5"
-                android:paddingTop="@dimen/margin_5"
-                android:maxLength="@integer/mono_length"
-                android:inputType="number"/>
+             <com.app.community.widget.CustomEditText
+                 android:id="@+id/edMobileNumber"
+                 style="@style/edit_text_style_medium"
+                 android:layout_marginTop="@dimen/margin_10"
+                 android:paddingBottom="@dimen/margin_5"
+                 android:paddingTop="@dimen/margin_5"
+                 android:maxLength="@integer/mono_length"
+                 android:inputType="number"/>
 
-            <ImageView style="@style/view_layout" />-->
+             <ImageView style="@style/view_layout" />-->
 
 
             <com.app.community.widget.CustomTextView
                 android:id="@+id/tvGetOtp"
                 android:layout_width="@dimen/margin_200"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/margin_40"
                 android:background="@drawable/light_black_bg"
                 android:elevation="@dimen/margin_5"
@@ -101,22 +111,21 @@
                 android:padding="@dimen/margin_12"
                 android:text="@string/get_otp"
                 android:textAllCaps="true"
-                android:layout_gravity="center_horizontal"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/button_large"
                 app:customFont="@string/font_bold" />
+
             <com.app.community.widget.CustomTextView
                 android:id="@+id/tvSignupForAccount"
                 style="@style/textview_description_large_match"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="@dimen/margin_20"
-                android:textAllCaps="true"
-                android:gravity="center"
                 android:layout_marginTop="@dimen/margin_15"
+                android:gravity="center"
                 android:padding="@dimen/margin_15"
                 android:text="@string/signup_for_account"
-                android:textColor="@color/grey_color"
-                />
+                android:textAllCaps="true"
+                android:textColor="@color/grey_color" />
         </LinearLayout>
     </ScrollView>
 </layout>

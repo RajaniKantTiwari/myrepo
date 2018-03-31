@@ -32,19 +32,19 @@
             android:id="@+id/tvMrp"
             android:layout_marginTop="@dimen/margin_3"
             android:layout_marginEnd="@dimen/margin_7"
-            style="@style/textview_description_ex_large_wrap"
+            style="@style/textview_description_wrap"
             />
         <com.app.community.widget.CustomTextView
             android:id="@+id/tvPrice"
             android:layout_marginTop="@dimen/margin_3"
             android:layout_marginEnd="@dimen/margin_7"
-            style="@style/textview_description_ex_large_match"
+            style="@style/textview_description_match"
             />
         <com.app.community.widget.CustomTextView
             android:id="@+id/tvOff"
             android:layout_marginTop="@dimen/margin_3"
             android:layout_marginEnd="@dimen/margin_7"
-            style="@style/textview_description_ex_large_match"
+            style="@style/textview_description_match"
             android:textColor="@color/blue"
             />
     </LinearLayout>
@@ -59,7 +59,7 @@
             <com.app.community.widget.CustomTextView
                 android:id="@+id/tvMerchantName"
                 android:layout_marginEnd="@dimen/margin_7"
-                style="@style/textview_description_ex_large_match"
+                style="@style/textview_description_large_match"
                 android:gravity="right"
                 android:maxLines="1"
                 android:ellipsize="end"

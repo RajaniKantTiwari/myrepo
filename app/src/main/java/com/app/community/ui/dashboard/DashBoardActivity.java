@@ -559,9 +559,9 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         changeIcon(WELCOME_HOME_FRAGMENT);
         Bundle bundle=new Bundle();
         bundle.putString(AppConstants.MERCHANT_ID, event.getMerchant_id());
-        //bundle.putString(AppConstants.MERCHANT_ADDRESS, merchantData.getAddress());
-        //bundle.putString(AppConstants.MERCHANT_IMAGE, merchantData.getImage());
-        //bundle.putString(AppConstants.MERCHANT_BACKGROUND_COLOR, merchantData.getBackground_color());
+        bundle.putString(AppConstants.MERCHANT_ADDRESS, event.getAddress());
+        bundle.putString(AppConstants.MERCHANT_IMAGE, event.getImage());
+        bundle.putString(AppConstants.MERCHANT_BACKGROUND_COLOR, event.getColor());
         pushFragment(new ProductSubproductFragment(), bundle, R.id.container, true, true, NONE);
 
     }

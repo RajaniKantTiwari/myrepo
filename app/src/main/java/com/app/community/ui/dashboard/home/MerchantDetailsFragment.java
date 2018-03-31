@@ -99,7 +99,7 @@ public class MerchantDetailsFragment extends DashboardFragment implements OrderF
         mBinding.rvReview.setAdapter(mReviewAdapter);
         if (CommonUtils.isNotNull(merchantResponse)) {
             presenter.getMerchantDetails(getDashboardActivity(), new MerchantRequest(Integer.parseInt(merchantResponse.getId())));
-            presenter.getMerchantReviews(getDashboardActivity(), new MerchantRequest(Integer.parseInt("8")));
+            presenter.getMerchantReviews(getDashboardActivity(), new MerchantRequest(Integer.parseInt(merchantResponse.getId())));
         }
 
     }
