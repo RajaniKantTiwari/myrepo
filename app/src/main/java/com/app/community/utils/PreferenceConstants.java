@@ -20,4 +20,5 @@ public interface PreferenceConstants {
     String ADDRESS="address";
     String CART_DETAILS = "cart_details";
     String CITY = "city";
+    String CART_LIST = "cart_list";
 }

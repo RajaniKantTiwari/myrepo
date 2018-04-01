@@ -162,11 +162,11 @@ public class PreferenceUtils implements Observable {
         return Hawk.get(PreferenceConstants.CITY,null);
     }
     public static void setCartData(ArrayList<ProductData> addCartList) {
-        Hawk.put(getUserMono(), addCartList);
+        Hawk.put(PreferenceConstants.CART_LIST, addCartList);
     }
 
     public static ArrayList<ProductData> getCartData() {
-        return Hawk.get(getUserMono(),null);
+        return Hawk.get(PreferenceConstants.CART_LIST,null);
     }
 
     @Override
