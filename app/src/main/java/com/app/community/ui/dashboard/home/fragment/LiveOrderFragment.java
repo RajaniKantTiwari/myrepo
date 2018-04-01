@@ -3,7 +3,6 @@ package com.app.community.ui.dashboard.home.fragment;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +15,6 @@ import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.Order;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.base.BaseFragment;
-import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.OrderDetailsFragment;
 import com.app.community.ui.dashboard.home.adapter.LiveOrderAdapter;
 import com.app.community.ui.dialogfragment.OrderFeedbackDialogFragment;
@@ -49,7 +47,7 @@ public class LiveOrderFragment extends BaseFragment implements
 
     private void initializeAdapter() {
         recentOrderList = new ArrayList<>();
-        mAdapter = new LiveOrderAdapter(getBaseActivity(),this, recentOrderList);
+        mAdapter = new LiveOrderAdapter(getBaseActivity(), this, recentOrderList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getBaseActivity());
         mBinding.rvOrder.setLayoutManager(layoutManager);
         mBinding.rvOrder.setAdapter(mAdapter);
@@ -88,11 +86,13 @@ public class LiveOrderFragment extends BaseFragment implements
 
     public void setLiveOrder(ArrayList<Order> recentOrderList) {
         this.recentOrderList.clear();
-        this.recentOrderList.addAll(recentOrderList);
-        if(CommonUtils.isNotNull(recentOrderList)&&recentOrderList.size()>0){
+        if (CommonUtils.isNotNull(recentOrderList) && recentOrderList.size() > 0) {
+            this.recentOrderList.addAll(recentOrderList);
+        }
+        if (CommonUtils.isNotNull(recentOrderList) && recentOrderList.size() > 0) {
             mBinding.rvOrder.setVisibility(View.VISIBLE);
             mBinding.layoutNoData.layoutNoData.setVisibility(View.GONE);
-        }else{
+        } else {
             mBinding.rvOrder.setVisibility(View.GONE);
             mBinding.layoutNoData.layoutNoData.setVisibility(View.VISIBLE);
         }
@@ -108,7 +108,6 @@ public class LiveOrderFragment extends BaseFragment implements
         Bundle bundle = new Bundle();
         bundle.putString(GeneralConstant.ORDER_ID,String.valueOf(recentOrderList.get(position).getId()));
         ((MyOrderActivity)getBaseActivity()).addFragmentInContainer(new OrderDetailsFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
-
     }
 
     @Override

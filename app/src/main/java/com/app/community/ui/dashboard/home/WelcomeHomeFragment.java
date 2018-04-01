@@ -68,8 +68,11 @@ import static com.app.community.utils.GeneralConstant.REQUEST_CALL;
  * To inject activity reference.
  */
 
-public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapter.NewsListener, LatestNewsAdapter.LatestNewsListener, EmergencyAdapter.EmergencyListener,
-        EmergencyDialogFragment.EmergencyDialogListener, OrderFeedbackDialogFragment.OrderDialogListener, OffersAdapter.OffersListener {
+public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapter.NewsListener,
+        LatestNewsAdapter.LatestNewsListener, EmergencyAdapter.EmergencyListener,
+        EmergencyDialogFragment.EmergencyDialogListener,
+        OrderFeedbackDialogFragment.OrderDialogListener,
+        OffersAdapter.OffersListener {
 
     private FragmentWelcomehomeBinding mBinding;
     private EmergencyAdapter mEmergencyAdapter;

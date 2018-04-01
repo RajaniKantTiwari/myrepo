@@ -57,8 +57,9 @@
                                 android:textColor="@color/white" />
 
                             <com.app.community.widget.CustomTextView
-                                style="@style/textview_description_wrap"
+                                style="@style/textview_description_match"
                                 android:layout_marginBottom="@dimen/margin_5"
+                                android:layout_marginEnd="@dimen/margin_40"
                                 android:layout_marginTop="@dimen/margin_5"
                                 android:text="@={merchantResponse.address}"
                                 android:textColor="@color/white" />

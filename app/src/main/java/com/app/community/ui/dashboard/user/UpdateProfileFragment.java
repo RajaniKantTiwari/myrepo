@@ -109,15 +109,20 @@ public class UpdateProfileFragment extends DashboardFragment implements MvpView,
         if (CommonUtils.isNotNull(response)) {
             if (requestCode == GeneralConstant.PROFILE_PIC_RESPONSE && response.getStatus().equalsIgnoreCase(AppConstants.SUCCESS)) {
                 getDashboardActivity().showToast(getResources().getString(R.string.profile_updated_successfully));
+                EventBus.getDefault().post(new UpdateProfileEvent());
             } else if (requestCode == AppConstants.VIEW_PROFILE) {
                 setProfileData((UserProfileData) response);
+                EventBus.getDefault().post(new UpdateProfileEvent());
             } else if (requestCode == AppConstants.ADDRESSES) {
 
             } else if (requestCode == AppConstants.PROFILEPIC) {
                 ProfilePicResponse picResponse = (ProfilePicResponse) response;
                 PreferenceUtils.setImage(picResponse.getDetails());
                 GlideUtils.loadImageProfilePic(getContext(), PreferenceUtils.getImage(), mBinding.ivProfile, null, R.drawable.avatar);
+                EventBus.getDefault().post(new UpdateProfileEvent());
             }
+
+
         }
     }
 

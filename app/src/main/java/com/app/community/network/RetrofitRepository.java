@@ -15,6 +15,7 @@ import com.app.community.network.request.dashboard.MerchantCouponRequest;
 import com.app.community.network.request.dashboard.MerchantOfferRequest;
 import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.request.dashboard.NotificationRequest;
+import com.app.community.network.request.dashboard.OrderDetailsRequest;
 import com.app.community.network.request.dashboard.ProductRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.request.dashboard.ProfilePic;
@@ -230,5 +231,10 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<MerchantOfferData> getMerchantOffer(MerchantOfferRequest request) {
         return apiService.getMerchantOffer(request);
+    }
+
+    @Override
+    public Observable<BaseResponse> orderDetails(OrderDetailsRequest request) {
+        return apiService.orderDetails(request);
     }
 }

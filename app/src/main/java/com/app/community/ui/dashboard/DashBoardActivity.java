@@ -41,6 +41,7 @@ import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.cart.ProductSubproductFragment;
 import com.app.community.ui.chat.UsersActivity;
 import com.app.community.ui.dashboard.expandrecycleview.draweradapter.DrawerAdapterRight;
+import com.app.community.ui.dashboard.home.MerchantDetailsFragment;
 import com.app.community.ui.dashboard.home.SearchActivity;
 import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.adapter.DrawerAdapterLeft;
@@ -93,6 +94,10 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
     private DrawerAdapterLeft mDrawerAdapterLeft;
     private int parentPosition;
     private int childPosition;
+    private String merchantId;
+    private String merchantAddress;
+    private String merchantImage;
+    private String merchantBgColor;
 
     @Override
     public void onLeftDrawerItemClicked(int position) {
@@ -234,7 +239,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
-        if(requestCode==AppConstants.DELETE_CART){
+        if (requestCode == AppConstants.DELETE_CART) {
             CommonUtils.resetCart(this);
             openProductSubProduct(parentPosition, childPosition);
         } else if (requestCode == AppConstants.RIGHT_DRAWER_RESPONSE) {
@@ -263,7 +268,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
             }
         } else if (requestCode == AppConstants.DEVICE_TOKEN_RESPONSE) {
             LogUtils.LOGE(TAG, response.getMsg());
-        }  else if (requestCode == AppConstants.LOGOUT) {
+        } else if (requestCode == AppConstants.LOGOUT) {
             if (CommonUtils.isNotNull(response)) {
                 showToast(response.getMsg());
                 CommonUtils.logout(this);
@@ -306,7 +311,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         mBinding.bottomLayout.linearLayoutBar3.setOnClickListener(this);
         mBinding.bottomLayout.linearLayoutBar4.setOnClickListener(this);
         mBinding.toolBar.layoutCart.setOnClickListener(this);
-
+        mBinding.toolBar.ivProductImage.setOnClickListener(this);
     }
 
 
@@ -350,6 +355,15 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
             } else {
                 showToast(getResources().getString(R.string.please_add_data_in_cart_first));
             }
+        } else if (view == mBinding.toolBar.ivProductImage) {
+            Bundle bundle=new Bundle();
+            MerchantResponse merchantResponse=new MerchantResponse();
+            merchantResponse.setId(merchantId);
+            merchantResponse.setAddress(merchantAddress);
+            merchantResponse.setBackground_color(merchantBgColor);
+            merchantResponse.setImage(merchantImage);
+            bundle.putParcelable(GeneralConstant.RESPONSE,merchantResponse);
+            addFragmentInContainer(new MerchantDetailsFragment(), bundle, true, true, NONE);
         }
     }
 
@@ -452,7 +466,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
 
     @Override
     public void onSubItemClicked(int parentPosition, int childPosition, Merchant merchant) {
-        if(merchant.getCategoryType().equalsIgnoreCase(getResources().getString(R.string.shopping))){
+        if (merchant.getCategoryType().equalsIgnoreCase(getResources().getString(R.string.shopping))) {
             if (CommonUtils.isNotNull(PreferenceUtils.getCartData()) &&
                     PreferenceUtils.getCartData().size() > 0
                     && Integer.parseInt(merchant.getId())
@@ -465,14 +479,12 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
             } else {
                 openProductSubProduct(parentPosition, childPosition);
             }
-        }else if(merchant.getCategoryType().equalsIgnoreCase(getResources().getString(R.string.service))){
-            openServiceProduct(parentPosition,childPosition);
+        } else if (merchant.getCategoryType().equalsIgnoreCase(getResources().getString(R.string.service))) {
+            openServiceProduct(parentPosition, childPosition);
         }
 
 
     }
-
-
 
 
     private void openProductSubProduct(int parentPosition, int childPosition) {
@@ -484,10 +496,14 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                 if (CommonUtils.isNotNull(merchantList) && merchantList.size() > childPosition) {
                     Merchant merchantData = merchantList.get(childPosition);
                     if (CommonUtils.isNotNull(merchantData)) {
-                        bundle.putString(AppConstants.MERCHANT_ID, merchantData.getId());
-                        bundle.putString(AppConstants.MERCHANT_ADDRESS, merchantData.getAddress());
-                        bundle.putString(AppConstants.MERCHANT_IMAGE, merchantData.getImage());
-                        bundle.putString(AppConstants.MERCHANT_BACKGROUND_COLOR, merchantData.getBackground_color());
+                        merchantId = merchantData.getId();
+                        merchantAddress = merchantData.getAddress();
+                        merchantImage = merchantData.getImage();
+                        merchantBgColor = merchantData.getBackground_color();
+                        bundle.putString(AppConstants.MERCHANT_ID, merchantId);
+                        bundle.putString(AppConstants.MERCHANT_ADDRESS, merchantAddress);
+                        bundle.putString(AppConstants.MERCHANT_IMAGE, merchantImage);
+                        bundle.putString(AppConstants.MERCHANT_BACKGROUND_COLOR, merchantBgColor);
 
                     }
                 }
@@ -557,7 +573,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
     public void onStartShopping(StartShoppingEvent event) {
         clearAllBackStack();
         changeIcon(WELCOME_HOME_FRAGMENT);
-        Bundle bundle=new Bundle();
+        Bundle bundle = new Bundle();
         bundle.putString(AppConstants.MERCHANT_ID, event.getMerchant_id());
         bundle.putString(AppConstants.MERCHANT_ADDRESS, event.getAddress());
         bundle.putString(AppConstants.MERCHANT_IMAGE, event.getImage());
@@ -654,8 +670,8 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
     @Override
     public void ok(int parentPosition, int childPosition) {
         closeDrawerRight();
-        this.parentPosition=parentPosition;
-        this.childPosition=childPosition;
+        this.parentPosition = parentPosition;
+        this.childPosition = childPosition;
         mPresenter.deleteAllFromCart(this);
     }
 
@@ -663,6 +679,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
     public void cancel() {
 
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

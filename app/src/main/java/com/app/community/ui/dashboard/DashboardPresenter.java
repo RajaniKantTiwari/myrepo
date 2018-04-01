@@ -1,6 +1,7 @@
 package com.app.community.ui.dashboard;
 
 import android.app.Activity;
+import android.support.v4.app.FragmentActivity;
 
 import com.app.community.network.DefaultApiObserver;
 import com.app.community.network.Repository;
@@ -16,6 +17,7 @@ import com.app.community.network.request.dashboard.MerchantCouponRequest;
 import com.app.community.network.request.dashboard.MerchantOfferRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.request.dashboard.NotificationRequest;
+import com.app.community.network.request.dashboard.OrderDetailsRequest;
 import com.app.community.network.request.dashboard.ProductRequest;
 import com.app.community.network.request.dashboard.ProfilePic;
 import com.app.community.network.request.dashboard.ProfileRequest;
@@ -589,6 +591,24 @@ public class DashboardPresenter implements Presenter<MvpView> {
                     public void onError(Throwable call, BaseResponse baseResponse) {
                         mView.hideProgress();
                         mView.onError(call, 3);
+                    }
+                });
+    }
+
+    public void orderDetails(FragmentActivity activity, OrderDetailsRequest request) {
+        mView.showProgress();
+        mRepository.orderDetails(request).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).
+                subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+                    @Override
+                    public void onResponse(BaseResponse response) {
+                        mView.hideProgress();
+                        mView.onSuccess(response, 1);
+                    }
+
+                    @Override
+                    public void onError(Throwable call, BaseResponse baseResponse) {
+                        mView.hideProgress();
+                        mView.onError(call, 1);
                     }
                 });
     }

@@ -99,10 +99,13 @@ public class LiveOrderAdapter extends RecyclerView.Adapter<LiveOrderAdapter.Live
         public void onClick(View view) {
             if(CommonUtils.isNotNull(listener)){
                 if(view==mBinding.tvViewDetails){
+                    CommonUtils.clicked(mBinding.tvViewDetails);
                     listener.viewDetailsClick(getAdapterPosition());
                 }else if(view==mBinding.tvHelp){
+                    CommonUtils.clicked(mBinding.tvHelp);
                     listener.helpClick(getAdapterPosition());
                 }else if(view==mBinding.tvFeedBack){
+                    CommonUtils.clicked(mBinding.tvFeedBack);
                     listener.feedBackClicked(getAdapterPosition());
                 }
             }

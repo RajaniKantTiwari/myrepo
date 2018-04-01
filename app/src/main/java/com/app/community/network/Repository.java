@@ -16,6 +16,7 @@ import com.app.community.network.request.dashboard.MerchantOfferRequest;
 import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.request.dashboard.NotificationRequest;
+import com.app.community.network.request.dashboard.OrderDetailsRequest;
 import com.app.community.network.request.dashboard.ProductRequest;
 import com.app.community.network.request.dashboard.ProfilePic;
 import com.app.community.network.request.dashboard.ProfileRequest;
@@ -117,4 +118,6 @@ public interface Repository {
     Observable<MerchantCategoryData> getMerchantCategory();
 
     Observable<MerchantOfferData> getMerchantOffer(MerchantOfferRequest request);
+
+    Observable<BaseResponse> orderDetails(OrderDetailsRequest request);
 }

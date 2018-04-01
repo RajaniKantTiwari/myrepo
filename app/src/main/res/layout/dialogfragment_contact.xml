@@ -53,7 +53,7 @@
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvMessage"
                     style="@style/textview_description_smaller_wrap"
-                    android:text="@string/message"
+                    android:text="@string/chat"
                     android:gravity="center"
                     android:textAllCaps="true"
                     android:drawableStart="@drawable/message"
