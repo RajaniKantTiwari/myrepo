@@ -22,10 +22,11 @@
                 android:layout_height="@dimen/margin_80"
                 android:background="@drawable/stroke_dark_grey_bg">
             <com.app.community.widget.CustomTextView
+                android:id="@+id/tvAddress"
                 android:layout_margin="@dimen/margin_5"
                 style="@style/textview_description_match"
                 android:maxLines="3"
-                android:layout_above="@+id/tvSetAddress"
+                android:layout_above="@+id/tvDefault"
                 android:layout_toStartOf="@+id/tvDelete"/>
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvDelete"
@@ -35,7 +36,7 @@
                     app:customFont="@string/font_regular"
                     android:text="@string/delete"/>
             <com.app.community.widget.CustomTextView
-                android:id="@+id/tvSetAddress"
+                android:id="@+id/tvDefault"
                 style="@style/textview_description_wrap"
                 android:padding="@dimen/margin_7"
                 android:text="@string/set_default"

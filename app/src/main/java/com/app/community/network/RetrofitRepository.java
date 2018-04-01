@@ -39,6 +39,8 @@ import com.app.community.network.response.dashboard.home.WelcomeHomeData;
 import com.app.community.network.response.dashboard.notification.NotificationResponseData;
 import com.app.community.network.response.dashboard.offer.MerchantOfferData;
 import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
+import com.app.community.network.response.dashboard.user.UserAddressData;
+import com.app.community.network.response.dashboard.user.UserDefaultAddressData;
 import com.app.community.network.response.dashboard.user.UserProfileData;
 
 import io.reactivex.Observable;
@@ -236,5 +238,15 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<BaseResponse> orderDetails(OrderDetailsRequest request) {
         return apiService.orderDetails(request);
+    }
+
+    @Override
+    public Observable<UserDefaultAddressData> getUserDefaultAddress() {
+        return apiService.getUserDefaultAddress();
+    }
+
+    @Override
+    public Observable<UserAddressData> getUserAddress() {
+        return apiService.getUserAddress();
     }
 }

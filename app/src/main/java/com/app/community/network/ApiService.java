@@ -41,6 +41,8 @@ import com.app.community.network.response.dashboard.home.WelcomeHomeData;
 import com.app.community.network.response.dashboard.notification.NotificationResponseData;
 import com.app.community.network.response.dashboard.offer.MerchantOfferData;
 import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
+import com.app.community.network.response.dashboard.user.UserAddressData;
+import com.app.community.network.response.dashboard.user.UserDefaultAddressData;
 import com.app.community.network.response.dashboard.user.UserProfileData;
 
 import io.reactivex.Observable;
@@ -170,5 +172,11 @@ public interface ApiService {
 
     @POST("product/get_merchant_offers")
     Observable<MerchantOfferData> getMerchantOffer(@Body MerchantOfferRequest request);
+
+    @POST("register/get_user_default_address")
+    Observable<UserDefaultAddressData> getUserDefaultAddress();
+
+    @POST("register/get_user_addresses")
+    Observable<UserAddressData> getUserAddress();
 
 }

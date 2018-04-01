@@ -21,6 +21,8 @@ import com.app.community.network.request.dashboard.ProfileRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.home.ProfilePicResponse;
 import com.app.community.network.response.dashboard.user.UserAddress;
+import com.app.community.network.response.dashboard.user.UserAddressData;
+import com.app.community.network.response.dashboard.user.UserDefaultAddressData;
 import com.app.community.network.response.dashboard.user.UserProfile;
 import com.app.community.network.response.dashboard.user.UserProfileData;
 import com.app.community.ui.activity.uploadfile.Upload;
@@ -99,10 +101,10 @@ public class UpdateProfileFragment extends DashboardFragment implements MvpView,
         mBinding.rvAddress.setAdapter(addressAdapter);
         getPresenter().getProfilePic(getDashboardActivity());
         getPresenter().viewUserProfile(getDashboardActivity());
-        getPresenter().viewAllAddress(getDashboardActivity());
-
+        //getPresenter().viewAllAddress(getDashboardActivity());
+        getPresenter().getUserDefaultAddress(getDashboardActivity());
+        getPresenter().getUserAddress(getDashboardActivity());
     }
-
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
@@ -113,18 +115,41 @@ public class UpdateProfileFragment extends DashboardFragment implements MvpView,
             } else if (requestCode == AppConstants.VIEW_PROFILE) {
                 setProfileData((UserProfileData) response);
                 EventBus.getDefault().post(new UpdateProfileEvent());
-            } else if (requestCode == AppConstants.ADDRESSES) {
-
             } else if (requestCode == AppConstants.PROFILEPIC) {
                 ProfilePicResponse picResponse = (ProfilePicResponse) response;
                 PreferenceUtils.setImage(picResponse.getDetails());
                 GlideUtils.loadImageProfilePic(getContext(), PreferenceUtils.getImage(), mBinding.ivProfile, null, R.drawable.avatar);
                 EventBus.getDefault().post(new UpdateProfileEvent());
+            } else if (requestCode == 8) {
+                addressList.clear();
+                getDefaultAddress(response);
+            } else if (requestCode == 9) {
+                getAddress(response);
             }
-
-
         }
     }
+
+    private void getDefaultAddress(BaseResponse response) {
+        UserDefaultAddressData data = (UserDefaultAddressData) response;
+        UserAddress address = data.getDefault_address();
+        if(CommonUtils.isNotNull(address)&&!address.getAddress().equalsIgnoreCase("")){
+            address.setDefault(true);
+            addressList.add(address);
+            addressAdapter.notifyDataSetChanged();
+        }
+
+    }
+
+    private void getAddress(BaseResponse response) {
+        UserAddressData addressData = (UserAddressData) response;
+        ArrayList<UserAddress> useraddresses = addressData.getUser_addresses();
+        if (CommonUtils.isNotNull(useraddresses)
+                && useraddresses.size() > 0) {
+            addressList.addAll(useraddresses);
+            addressAdapter.notifyDataSetChanged();
+        }
+    }
+
 
     private void setProfileData(UserProfileData response) {
         ArrayList<UserProfile> prifiledata = response.getPrifiledata();
@@ -154,21 +179,22 @@ public class UpdateProfileFragment extends DashboardFragment implements MvpView,
             PreferenceUtils.setImage(profilePicFilePath);
             PreferenceUtils.setUserName(mBinding.edName.getText().toString());
             PreferenceUtils.setEmail(mBinding.edEmail.getText().toString());
-            if(isValid()){
+            if (isValid()) {
                 updateProfile();
             }
         }
     }
+
     private boolean isValid() {
         emailId = mBinding.edEmail.getText().toString();
-        userName=mBinding.edName.getText().toString();
+        userName = mBinding.edName.getText().toString();
         if (isNull(emailId) || emailId.trim().length() == 0) {
             getDashboardActivity().showToast(getResources().getString(R.string.please_enter_email_address));
             return false;
         } else if (!CommonUtils.checkValidEmail(emailId)) {
             getDashboardActivity().showToast(getResources().getString(R.string.please_enter_valid_email));
             return false;
-        }else if(userName==null||userName.trim().length()==0){
+        } else if (userName == null || userName.trim().length() == 0) {
             getDashboardActivity().showToast(getResources().getString(R.string.please_enter_user_name));
 
         }
@@ -275,6 +301,7 @@ public class UpdateProfileFragment extends DashboardFragment implements MvpView,
         File f = new File(filePath);
         if (f.exists()) {
             GlideUtils.loadImageProfilePic(getContext(), filePath, mBinding.ivProfile, null, R.drawable.avatar);
+            PreferenceUtils.setImage(profilePicFilePath);
             Bitmap bitmap = CommonUtils.getBitmap(filePath);
             updateProfilePic(bitmap);
         }
@@ -292,6 +319,8 @@ public class UpdateProfileFragment extends DashboardFragment implements MvpView,
         profileRequest.setUserid(PreferenceUtils.getUserId());
         profileRequest.setName(userName);
         profileRequest.setEmail(emailId);
+        PreferenceUtils.setUserName(userName);
+        PreferenceUtils.setEmail(emailId);
         if (isNetworkConnected()) {
             getPresenter().updateProfile(getDashboardActivity(), profileRequest);
         }

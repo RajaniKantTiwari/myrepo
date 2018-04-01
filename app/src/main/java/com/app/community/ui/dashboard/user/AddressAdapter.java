@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import com.app.community.R;
 import com.app.community.databinding.AddressRowBinding;
 import com.app.community.network.response.dashboard.user.UserAddress;
+import com.app.community.utils.CommonUtils;
+import com.app.community.widget.CustomTextView;
 
 import java.util.List;
 
@@ -46,23 +48,41 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
 
     @Override
     public void onBindViewHolder(AddressViewHolder holder, int position) {
-
+        if (CommonUtils.isNotNull(addressList) && addressList.size() > 0) {
+            UserAddress address = addressList.get(position);
+            if (CommonUtils.isNotNull(address)) {
+                holder.tvAddress.setText(address.getAddress());
+                if (address.isDefault()) {
+                    holder.tvDelete.setVisibility(View.GONE);
+                    holder.tvDefault.setVisibility(View.GONE);
+                } else {
+                    holder.tvDelete.setVisibility(View.VISIBLE);
+                    holder.tvDefault.setVisibility(View.VISIBLE);
+                }
+            }
+        }
 
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return CommonUtils.isNotNull(addressList) ? addressList.size() : 0;
     }
 
     class AddressViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final AddressRowBinding mBinding;
+        private final CustomTextView tvAddress;
+        private final CustomTextView tvDelete;
+        private final CustomTextView tvDefault;
 
         public AddressViewHolder(AddressRowBinding itemView) {
             super(itemView.getRoot());
             mBinding = itemView;
+            tvAddress = itemView.tvAddress;
+            tvDelete = itemView.tvDelete;
+            tvDefault = itemView.tvDefault;
             mBinding.tvDelete.setOnClickListener(this);
-            mBinding.tvSetAddress.setOnClickListener(this);
+            mBinding.tvDefault.setOnClickListener(this);
         }
 
 
@@ -70,7 +90,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
         public void onClick(View view) {
             if (view == mBinding.tvDelete) {
                 listener.onDeleteClick(getAdapterPosition());
-            } else if (view == mBinding.tvSetAddress) {
+            } else if (view == mBinding.tvDefault) {
                 listener.onSetDefaultClick(getAdapterPosition());
             }
         }

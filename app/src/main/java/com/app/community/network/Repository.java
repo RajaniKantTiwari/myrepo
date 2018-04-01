@@ -39,6 +39,8 @@ import com.app.community.network.response.dashboard.home.SearchResponseData;
 import com.app.community.network.response.dashboard.notification.NotificationResponseData;
 import com.app.community.network.response.dashboard.offer.MerchantOfferData;
 import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
+import com.app.community.network.response.dashboard.user.UserAddressData;
+import com.app.community.network.response.dashboard.user.UserDefaultAddressData;
 import com.app.community.network.response.dashboard.user.UserProfileData;
 
 import io.reactivex.Completable;
@@ -120,4 +122,8 @@ public interface Repository {
     Observable<MerchantOfferData> getMerchantOffer(MerchantOfferRequest request);
 
     Observable<BaseResponse> orderDetails(OrderDetailsRequest request);
+
+    Observable<UserDefaultAddressData> getUserDefaultAddress();
+
+    Observable<UserAddressData> getUserAddress();
 }

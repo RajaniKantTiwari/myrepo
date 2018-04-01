@@ -5,4 +5,22 @@ package com.app.community.network.response.dashboard.user;
  */
 
 public class UserAddress {
+    private boolean isDefault;
+    private String address;
+
+    public boolean isDefault() {
+        return isDefault;
+    }
+
+    public void setDefault(boolean aDefault) {
+        isDefault = aDefault;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }

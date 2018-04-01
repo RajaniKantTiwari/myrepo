@@ -35,6 +35,8 @@ import com.app.community.network.response.dashboard.home.WelcomeHomeData;
 import com.app.community.network.response.dashboard.notification.NotificationResponseData;
 import com.app.community.network.response.dashboard.offer.MerchantOfferData;
 import com.app.community.network.response.dashboard.rightdrawer.ProductTypeData;
+import com.app.community.network.response.dashboard.user.UserAddressData;
+import com.app.community.network.response.dashboard.user.UserDefaultAddressData;
 import com.app.community.network.response.dashboard.user.UserProfileData;
 import com.app.community.ui.base.MvpView;
 import com.app.community.ui.base.Presenter;
@@ -609,6 +611,42 @@ public class DashboardPresenter implements Presenter<MvpView> {
                     public void onError(Throwable call, BaseResponse baseResponse) {
                         mView.hideProgress();
                         mView.onError(call, 1);
+                    }
+                });
+    }
+
+    public void getUserDefaultAddress(DashBoardActivity activity) {
+        mView.showProgress();
+        mRepository.getUserDefaultAddress().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).
+                subscribeWith(new DefaultApiObserver<UserDefaultAddressData>(activity) {
+                    @Override
+                    public void onResponse(UserDefaultAddressData response) {
+                        mView.hideProgress();
+                        mView.onSuccess(response, 8);
+                    }
+
+                    @Override
+                    public void onError(Throwable call, BaseResponse baseResponse) {
+                        mView.hideProgress();
+                        mView.onError(call, 8);
+                    }
+                });
+    }
+
+    public void getUserAddress(DashBoardActivity activity) {
+        mView.showProgress();
+        mRepository.getUserAddress().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).
+                subscribeWith(new DefaultApiObserver<UserAddressData>(activity) {
+                    @Override
+                    public void onResponse(UserAddressData response) {
+                        mView.hideProgress();
+                        mView.onSuccess(response, 9);
+                    }
+
+                    @Override
+                    public void onError(Throwable call, BaseResponse baseResponse) {
+                        mView.hideProgress();
+                        mView.onError(call, 9);
                     }
                 });
     }
