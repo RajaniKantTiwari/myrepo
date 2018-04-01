@@ -144,12 +144,15 @@ public class CartFragment extends DashboardFragment implements CartRowAdapter.On
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
-        if (requestCode == AppConstants.CARTADDED) {
-            getDashboardActivity().addFragmentInContainer(new CheckoutFragment(), null, true, true, NONE);
-        } else if (CommonUtils.isNotNull(response) && response.getStatus().equalsIgnoreCase(AppConstants.SUCCESS)) {
-            if (CommonUtils.isNotNull(mCartList) && mCartList.size() > requestCode) {
-                mCartList.remove(requestCode);
-                setCartData();
+        if(CommonUtils.isNotNull(response)){
+            getDashboardActivity().showToast(response.getMsg());
+            if (requestCode == AppConstants.CARTADDED) {
+                getDashboardActivity().addFragmentInContainer(new CheckoutFragment(), null, true, true, NONE);
+            } else if (CommonUtils.isNotNull(response) && response.getStatus().equalsIgnoreCase(AppConstants.SUCCESS)) {
+                if (CommonUtils.isNotNull(mCartList) && mCartList.size() > requestCode) {
+                    mCartList.remove(requestCode);
+                    setCartData();
+                }
             }
         }
     }
@@ -175,7 +178,7 @@ public class CartFragment extends DashboardFragment implements CartRowAdapter.On
                 break;
             case R.id.ivDeleteCart:
                 if (CommonUtils.isNotNull(mCartList) && mCartList.size() > pos) {
-                    getPresenter().deleteFromCart(getDashboardActivity(), new DeleteCartRequest(mCartList.get(0).getMerchantId(), mCartList.get(pos).getMasterproductid()), pos);
+                    getPresenter().deleteFromCart(getDashboardActivity(), new DeleteCartRequest(merchantId, mCartList.get(pos).getMasterproductid()), pos);
                 }
                /* if (CommonUtils.isNotNull(mCartList) && mCartList.size() > pos) {
                     mCartList.remove(pos);

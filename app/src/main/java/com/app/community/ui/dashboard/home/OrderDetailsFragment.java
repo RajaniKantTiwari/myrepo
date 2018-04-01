@@ -17,9 +17,11 @@ import com.app.community.network.response.dashboard.OrderDetail;
 import com.app.community.network.response.dashboard.OrderDetailsData;
 import com.app.community.network.response.dashboard.cart.ProductData;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
+import com.app.community.ui.base.BaseFragment;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.adapter.CheckoutCartAdapter;
 import com.app.community.ui.dashboard.home.adapter.OrderListAdapter;
+import com.app.community.ui.dashboard.home.fragment.MyOrderActivity;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 
@@ -29,7 +31,7 @@ import java.util.ArrayList;
  * Created by ashok on 13/11/17.
  */
 
-public class OrderDetailsFragment extends DashboardFragment implements OrderListAdapter.OrderListener {
+public class OrderDetailsFragment extends BaseFragment implements OrderListAdapter.OrderListener {
 
     private FragmentOrderDetailsBinding mBinding;
     private CheckoutCartAdapter mCheckoutAdapter;
@@ -49,11 +51,11 @@ public class OrderDetailsFragment extends DashboardFragment implements OrderList
         mCheckoutAdapter = new CheckoutCartAdapter(getBaseActivity());
         mBinding.rvCartItem.setAdapter(mCheckoutAdapter);
         Bundle bundle = getArguments();
-        if(CommonUtils.isNotNull(bundle)){
-            int orderId=bundle.getInt(GeneralConstant.ORDER_ID);
-            OrderDetailsRequest request=new OrderDetailsRequest();
-            request.setOrderid(String.valueOf(orderId));
-            getPresenter().orderDetails(getActivity(),request);
+        if (CommonUtils.isNotNull(bundle)) {
+            String orderId = bundle.getString(GeneralConstant.ORDER_ID);
+            OrderDetailsRequest request = new OrderDetailsRequest();
+            request.setOrderid(orderId);
+            ((MyOrderActivity) getBaseActivity()).getOrderPresenter().orderDetails(getActivity(), request);
         }
     }
 
@@ -68,7 +70,7 @@ public class OrderDetailsFragment extends DashboardFragment implements OrderList
 
     @Override
     public void attachView() {
-        //getPresenter().attachView(this);
+        ((MyOrderActivity) getBaseActivity()).getOrderPresenter().attachView(this);
     }
 
     @Override

@@ -47,8 +47,10 @@ public class EditAddressActivity extends CommonActivity implements MvpView, View
     public void initializeData() {
         mBinding.layoutHeader.tvHeader.setVisibility(View.VISIBLE);
         mBinding.layoutHeader.tvHeader.setText(getResources().getString(R.string.edit_address));
+        mBinding.layoutHeader.textView.setTextColor(CommonUtils.getColor(this,R.color.white));
         mBinding.layoutHeader.textView.setVisibility(View.VISIBLE);
         mBinding.layoutHeader.textView.setText(getResources().getString(R.string.update));
+        mBinding.layoutHeader.ivBack.setImageResource(R.drawable.ic_back_white);
         mBinding.layoutHeader.headerLayout.setBackgroundColor(CommonUtils.getColor(this, R.color.dark_black));
         setList();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -125,7 +127,7 @@ public class EditAddressActivity extends CommonActivity implements MvpView, View
 
     @Override
     public void onItemClick(int position) {
-        for (int i = 0; i < editList.size(); i++) {
+       /* for (int i = 0; i < editList.size(); i++) {
             if (i == position) {
                 EditAddress address = editList.get(i);
                 address.setSelected(true);
@@ -136,7 +138,12 @@ public class EditAddressActivity extends CommonActivity implements MvpView, View
                 editList.set(i, address);
             }
         }
-        adapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();*/
+        EditAddress address = editList.get(position);
+        UpdateAddress updateAddress=new UpdateAddress();
+        updateAddress.setAddress(address.getAddress());
+        EventBus.getDefault().post(updateAddress);
+        finish();
 
     }
 }

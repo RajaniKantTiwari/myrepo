@@ -1,6 +1,7 @@
 package com.app.community.ui.presenter;
 
 import android.app.Activity;
+import android.support.v4.app.FragmentActivity;
 
 import com.app.community.network.DefaultApiObserver;
 import com.app.community.network.Repository;
@@ -9,6 +10,7 @@ import com.app.community.network.request.LoginRequest;
 import com.app.community.network.request.UpdateLocation;
 import com.app.community.network.request.VerifyMobileRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
+import com.app.community.network.request.dashboard.OrderDetailsRequest;
 import com.app.community.network.request.dashboard.ProfilePic;
 import com.app.community.network.request.dashboard.ProfileRequest;
 import com.app.community.network.response.BaseResponse;
@@ -189,5 +191,22 @@ public class CommonPresenter implements Presenter<MvpView> {
                 mView.onError(call, 1);
             }
         });
+    }
+    public void orderDetails(FragmentActivity activity, OrderDetailsRequest request) {
+        mView.showProgress();
+        mRepository.orderDetails(request).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).
+                subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+                    @Override
+                    public void onResponse(BaseResponse response) {
+                        mView.hideProgress();
+                        mView.onSuccess(response, 1);
+                    }
+
+                    @Override
+                    public void onError(Throwable call, BaseResponse baseResponse) {
+                        mView.hideProgress();
+                        mView.onError(call, 1);
+                    }
+                });
     }
 }

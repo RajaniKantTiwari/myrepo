@@ -296,7 +296,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
     }
 
     public void deleteFromCart(Activity activity, DeleteCartRequest request, int pos) {
-        //mView.showProgress();
+        mView.showProgress();
         mRepository.deleteFromCart(request).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
             @Override
@@ -597,23 +597,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
                 });
     }
 
-    public void orderDetails(FragmentActivity activity, OrderDetailsRequest request) {
-        mView.showProgress();
-        mRepository.orderDetails(request).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).
-                subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
-                    @Override
-                    public void onResponse(BaseResponse response) {
-                        mView.hideProgress();
-                        mView.onSuccess(response, 1);
-                    }
 
-                    @Override
-                    public void onError(Throwable call, BaseResponse baseResponse) {
-                        mView.hideProgress();
-                        mView.onError(call, 1);
-                    }
-                });
-    }
 
     public void getUserDefaultAddress(DashBoardActivity activity) {
         mView.showProgress();
