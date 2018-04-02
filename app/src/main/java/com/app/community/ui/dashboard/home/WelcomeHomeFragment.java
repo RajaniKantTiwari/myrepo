@@ -91,6 +91,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
     private ArrayList<Offer> offersList;
     private LinearLayoutManager emergencyPlaceManager;
     private ArrayList<LastOrder> lastOrdersList;
+    private float rating;
 
 
     @Nullable
@@ -253,6 +254,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
             setResponseData(welcomeHomeData);
         } else if(requestCode==GeneralConstant.FEEDBACK){
             if(CommonUtils.isNotNull(response)){
+                mLastOrderBinding.rating.setRating(Float.parseFloat(CommonUtils.oneDecimalPlaceString(String.valueOf(rating))));
                 getDashboardActivity().showToast(response.getMsg());
             }
         } else {
@@ -413,6 +415,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
         Feedback feedback=new Feedback();
         feedback.setId(id);
         feedback.setRating(String.valueOf(rating));
+        this.rating=rating;
         feedback.setComments(feedbackStr);
         getPresenter().submitFeedBack(getDashboardActivity(),feedback);
     }

@@ -3,29 +3,21 @@ package com.app.community.ui.dashboard.home;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.community.R;
 import com.app.community.databinding.FragmentOrderDetailsBinding;
-import com.app.community.network.request.cart.CancelOrderRequest;
 import com.app.community.network.request.dashboard.OrderDetailsRequest;
 import com.app.community.network.response.BaseResponse;
-import com.app.community.network.response.dashboard.OrderDetail;
-import com.app.community.network.response.dashboard.OrderDetailsData;
-import com.app.community.network.response.dashboard.cart.ProductData;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
 import com.app.community.ui.base.BaseFragment;
-import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.adapter.CheckoutCartAdapter;
 import com.app.community.ui.dashboard.home.adapter.OrderListAdapter;
 import com.app.community.ui.dashboard.home.fragment.MyOrderActivity;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
-
-import java.util.ArrayList;
 
 /**
  * Created by ashok on 13/11/17.

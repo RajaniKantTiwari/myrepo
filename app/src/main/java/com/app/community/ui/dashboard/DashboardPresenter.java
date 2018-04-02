@@ -1,7 +1,6 @@
 package com.app.community.ui.dashboard;
 
 import android.app.Activity;
-import android.support.v4.app.FragmentActivity;
 
 import com.app.community.network.DefaultApiObserver;
 import com.app.community.network.Repository;
@@ -17,7 +16,6 @@ import com.app.community.network.request.dashboard.MerchantCouponRequest;
 import com.app.community.network.request.dashboard.MerchantOfferRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.request.dashboard.NotificationRequest;
-import com.app.community.network.request.dashboard.OrderDetailsRequest;
 import com.app.community.network.request.dashboard.ProductRequest;
 import com.app.community.network.request.dashboard.ProfilePic;
 import com.app.community.network.request.dashboard.ProfileRequest;

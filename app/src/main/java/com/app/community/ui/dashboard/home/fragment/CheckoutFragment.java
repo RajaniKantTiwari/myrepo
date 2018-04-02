@@ -165,25 +165,26 @@ public class CheckoutFragment extends DashboardFragment {
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
-        if (requestCode == GeneralConstant.VIEW_CART) {
-            if (CommonUtils.isNotNull(response) && response instanceof ProductDetailsData) {
-                ProductDetailsData data = (ProductDetailsData) response;
-                if (CommonUtils.isNotNull(data)) {
-                    setDtaForCheckout(data);
-                    if (CommonUtils.isNotNull(data.getProduct()) && data.getProduct().size() > 0) {
-                        merchantId = data.getProduct().get(0).getMerchantid();
+        if(CommonUtils.isNotNull(response)){
+            if (requestCode == GeneralConstant.VIEW_CART) {
+                if (CommonUtils.isNotNull(response) && response instanceof ProductDetailsData) {
+                    ProductDetailsData data = (ProductDetailsData) response;
+                    if (CommonUtils.isNotNull(data)) {
+                        setDtaForCheckout(data);
+                        if (CommonUtils.isNotNull(data.getProduct()) && data.getProduct().size() > 0) {
+                            merchantId = data.getProduct().get(0).getMerchantid();
+                        }
                     }
                 }
-            }
-        } else if (requestCode == GeneralConstant.CHECKOUT) {
-            if (CommonUtils.isNotNull(response) && response.getStatus().equalsIgnoreCase(AppConstants.SUCCESS)) {
-                CommonUtils.resetCart(getDashboardActivity());
-                getDashboardActivity().addFragmentInContainer(new ConfirmOrderFragment(), null, true, true, NONE);
-            } else {
-                getDashboardActivity().showToast(getResources().getString(R.string.something_went_wrong));
+            } else if (requestCode == GeneralConstant.CHECKOUT) {
+                if (CommonUtils.isNotNull(response) && response.getStatus().equalsIgnoreCase(AppConstants.SUCCESS)) {
+                    CommonUtils.resetCart(getDashboardActivity());
+                    getDashboardActivity().addFragmentInContainer(new ConfirmOrderFragment(), null, true, true, NONE);
+                } else {
+                    getDashboardActivity().showToast(getResources().getString(R.string.something_went_wrong));
+                }
             }
         }
-
     }
 
     private void setDtaForCheckout(ProductDetailsData data) {
