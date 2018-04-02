@@ -177,7 +177,7 @@ public class CheckoutFragment extends DashboardFragment {
                     }
                 }
             } else if (requestCode == GeneralConstant.CHECKOUT) {
-                if (CommonUtils.isNotNull(response) && response.getStatus().equalsIgnoreCase(AppConstants.SUCCESS)) {
+                if (CommonUtils.isNotNull(response) && AppConstants.SUCCESS.equalsIgnoreCase(response.getStatus())) {
                     CommonUtils.resetCart(getDashboardActivity());
                     getDashboardActivity().addFragmentInContainer(new ConfirmOrderFragment(), null, true, true, NONE);
                 } else {

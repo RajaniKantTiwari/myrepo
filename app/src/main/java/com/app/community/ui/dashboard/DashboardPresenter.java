@@ -122,19 +122,19 @@ public class DashboardPresenter implements Presenter<MvpView> {
         });
     }
 
-    public void deleteAllFromCart(Activity activity) {
-        mView.showProgress();
+    public void deleteAllFromCart(DashBoardActivity activity) {
+        activity.showProgress();
         mRepository.deleteAllCart().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
             @Override
             public void onResponse(BaseResponse response) {
-                mView.hideProgress();
-                mView.onSuccess(response, AppConstants.DELETE_CART);
+                activity.hideProgress();
+                activity.onSuccess(response, AppConstants.DELETE_CART);
             }
 
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
-                mView.hideProgress();
-                mView.onError(call, AppConstants.DELETE_CART);
+                activity.hideProgress();
+                activity.onError(call, AppConstants.DELETE_CART);
             }
         });
     }

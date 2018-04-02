@@ -239,39 +239,41 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
-        if (requestCode == AppConstants.DELETE_CART) {
-            CommonUtils.resetCart(this);
-            openProductSubProduct(parentPosition, childPosition);
-        } else if (requestCode == AppConstants.RIGHT_DRAWER_RESPONSE) {
-            if (CommonUtils.isNotNull(response) && response instanceof ProductTypeData) {
-                this.responseList.clear();
-                this.responseList.addAll(DashBoardHelper.setRightDrawerData((ProductTypeData) response));
-                if (responseList.size() > 0) {
-                    CommonUtils.setVisibility(mBinding.layoutDrawerRight.layoutMain,
-                            mBinding.layoutDrawerRight.layoutNoData.layoutNoData, true);
-                    LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-                    mBinding.layoutDrawerRight.rvDrawer.setLayoutManager(layoutManager);
-                    mDrawerAdapterRight = new DrawerAdapterRight(this, responseList, this);
-                    mBinding.layoutDrawerRight.rvDrawer.setAdapter(mDrawerAdapterRight);
+        if(CommonUtils.isNotNull(response)){
+            if (requestCode == AppConstants.DELETE_CART) {
+                CommonUtils.resetCart(this);
+                openProductSubProduct(parentPosition, childPosition);
+            } else if (requestCode == AppConstants.RIGHT_DRAWER_RESPONSE) {
+                if (CommonUtils.isNotNull(response) && response instanceof ProductTypeData) {
+                    this.responseList.clear();
+                    this.responseList.addAll(DashBoardHelper.setRightDrawerData((ProductTypeData) response));
+                    if (responseList.size() > 0) {
+                        CommonUtils.setVisibility(mBinding.layoutDrawerRight.layoutMain,
+                                mBinding.layoutDrawerRight.layoutNoData.layoutNoData, true);
+                        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+                        mBinding.layoutDrawerRight.rvDrawer.setLayoutManager(layoutManager);
+                        mDrawerAdapterRight = new DrawerAdapterRight(this, responseList, this);
+                        mBinding.layoutDrawerRight.rvDrawer.setAdapter(mDrawerAdapterRight);
+                    } else {
+                        CommonUtils.setVisibility(mBinding.layoutDrawerRight.layoutMain,
+                                mBinding.layoutDrawerRight.layoutNoData.layoutNoData, false);
+                        mBinding.layoutDrawerRight.layoutNoData.layoutNoData.setBackgroundColor(CommonUtils.getColor(this, R.color.dark_black_color));
+                        mBinding.layoutDrawerRight.layoutNoData.tvNoData.setText(getResources().getString(R.string.service_is_anavailable_for_this_area));
+                    }
+
                 } else {
                     CommonUtils.setVisibility(mBinding.layoutDrawerRight.layoutMain,
                             mBinding.layoutDrawerRight.layoutNoData.layoutNoData, false);
                     mBinding.layoutDrawerRight.layoutNoData.layoutNoData.setBackgroundColor(CommonUtils.getColor(this, R.color.dark_black_color));
                     mBinding.layoutDrawerRight.layoutNoData.tvNoData.setText(getResources().getString(R.string.service_is_anavailable_for_this_area));
                 }
-
-            } else {
-                CommonUtils.setVisibility(mBinding.layoutDrawerRight.layoutMain,
-                        mBinding.layoutDrawerRight.layoutNoData.layoutNoData, false);
-                mBinding.layoutDrawerRight.layoutNoData.layoutNoData.setBackgroundColor(CommonUtils.getColor(this, R.color.dark_black_color));
-                mBinding.layoutDrawerRight.layoutNoData.tvNoData.setText(getResources().getString(R.string.service_is_anavailable_for_this_area));
-            }
-        } else if (requestCode == AppConstants.DEVICE_TOKEN_RESPONSE) {
-            LogUtils.LOGE(TAG, response.getMsg());
-        } else if (requestCode == AppConstants.LOGOUT) {
-            if (CommonUtils.isNotNull(response)) {
-                showToast(response.getMsg());
-                CommonUtils.logout(this);
+            } else if (requestCode == AppConstants.DEVICE_TOKEN_RESPONSE) {
+                LogUtils.LOGE(TAG, response.getMsg());
+            } else if (requestCode == AppConstants.LOGOUT) {
+                if (CommonUtils.isNotNull(response)) {
+                    showToast(response.getMsg());
+                    CommonUtils.logout(this);
+                }
             }
         }
     }
