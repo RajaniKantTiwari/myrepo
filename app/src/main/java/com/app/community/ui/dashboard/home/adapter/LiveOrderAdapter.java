@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.app.community.R;
 import com.app.community.databinding.OrderRowItemBinding;
@@ -21,7 +22,7 @@ import java.util.Locale;
 
 public class LiveOrderAdapter extends RecyclerView.Adapter<LiveOrderAdapter.LiveOrderHolder> {
     private final LayoutInflater mInflater;
-    private OrderRowItemBinding mBinding;
+    private final AppCompatActivity activity;
     private ArrayList<Order> orderList;
     private OrderListener listener;
 
@@ -35,6 +36,7 @@ public class LiveOrderAdapter extends RecyclerView.Adapter<LiveOrderAdapter.Live
     }
 
     public LiveOrderAdapter(AppCompatActivity activity,OrderListener listener,ArrayList<Order> orderList) {
+        this.activity=activity;
         mInflater = LayoutInflater.from(activity);
         this.orderList=orderList;
         this.listener=listener;
@@ -42,7 +44,7 @@ public class LiveOrderAdapter extends RecyclerView.Adapter<LiveOrderAdapter.Live
 
     @Override
     public LiveOrderHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        mBinding = DataBindingUtil.inflate(mInflater, R.layout.order_row_item, parent, false);
+        OrderRowItemBinding mBinding= DataBindingUtil.inflate(mInflater, R.layout.order_row_item, parent, false);
         return new LiveOrderHolder(mBinding);
     }
 
@@ -80,7 +82,7 @@ public class LiveOrderAdapter extends RecyclerView.Adapter<LiveOrderAdapter.Live
                 } else {
                     itemView.tvOrderStatus.setText(order.getAvg_time_to_deliver());
                 }
-                if (CommonUtils.isNotNull(order.getRating())) {
+                if (CommonUtils.isNotNull(order.getRating())&&!order.getRating().equalsIgnoreCase("0")) {
                     itemView.ratingBar.setVisibility(View.VISIBLE);
                     try {
                         itemView.ratingBar.setRating(Float.parseFloat(order.getRating()));
@@ -98,14 +100,14 @@ public class LiveOrderAdapter extends RecyclerView.Adapter<LiveOrderAdapter.Live
         @Override
         public void onClick(View view) {
             if(CommonUtils.isNotNull(listener)){
-                if(view==mBinding.tvViewDetails){
-                    CommonUtils.clicked(mBinding.tvViewDetails);
+                if(view==itemView.tvViewDetails){
+                    CommonUtils.clicked(itemView.tvViewDetails);
                     listener.viewDetailsClick(getAdapterPosition());
-                }else if(view==mBinding.tvHelp){
-                    CommonUtils.clicked(mBinding.tvHelp);
+                }else if(view==itemView.tvHelp){
+                    CommonUtils.clicked(itemView.tvHelp);
                     listener.helpClick(getAdapterPosition());
-                }else if(view==mBinding.tvFeedBack){
-                    CommonUtils.clicked(mBinding.tvFeedBack);
+                }else if(view==itemView.tvFeedBack){
+                    CommonUtils.clicked(itemView.tvFeedBack);
                     listener.feedBackClicked(getAdapterPosition());
                 }
             }

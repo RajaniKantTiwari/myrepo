@@ -35,6 +35,8 @@ public class LiveOrderFragment extends BaseFragment implements
     private LiveOrderAdapter mAdapter;
     private ArrayList<Order> recentOrderList;
     private MyOrderActivity mActivity;
+    private String rating;
+    private int position;
 
     @Nullable
     @Override
@@ -81,7 +83,14 @@ public class LiveOrderFragment extends BaseFragment implements
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
-
+        if (CommonUtils.isNotNull(response)) {
+            if (requestCode == 1) {
+                Order order = recentOrderList.get(position);
+                order.setRating(rating);
+                recentOrderList.set(position,order);
+                mAdapter.notifyDataSetChanged();
+            }
+        }
     }
 
     public void setLiveOrder(ArrayList<Order> recentOrderList) {
@@ -106,8 +115,8 @@ public class LiveOrderFragment extends BaseFragment implements
     @Override
     public void viewDetailsClick(int position) {
         Bundle bundle = new Bundle();
-        bundle.putString(GeneralConstant.ORDER_ID,String.valueOf(recentOrderList.get(position).getId()));
-        ((MyOrderActivity)getBaseActivity()).addFragmentInContainer(new OrderDetailsFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
+        bundle.putString(GeneralConstant.ORDER_ID, String.valueOf(recentOrderList.get(position).getId()));
+        ((MyOrderActivity) getBaseActivity()).addFragmentInContainer(new OrderDetailsFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
     }
 
     @Override
@@ -117,6 +126,7 @@ public class LiveOrderFragment extends BaseFragment implements
 
     @Override
     public void feedBackClicked(int position) {
+        this.position=position;
         Bundle bundle = new Bundle();
         if (CommonUtils.isNotNull(recentOrderList) && recentOrderList.size() > position) {
             Order order = recentOrderList.get(position);
@@ -131,6 +141,7 @@ public class LiveOrderFragment extends BaseFragment implements
         Feedback feedback = new Feedback();
         feedback.setId(id);
         feedback.setRating(String.valueOf(rating));
+        this.rating=String.valueOf(rating);
         feedback.setComments(feedbackStr);
         mActivity.getPresenter().submitFeedBack(mActivity, feedback);
     }

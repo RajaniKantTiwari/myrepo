@@ -4,6 +4,8 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.View;
 
 import com.app.community.R;
@@ -16,9 +18,6 @@ import com.app.community.ui.authentication.CommonActivity;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.presenter.CommonPresenter;
 import com.app.community.utils.CommonUtils;
-import com.app.community.utils.GeneralConstant;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 
@@ -36,6 +35,7 @@ public class MyOrderActivity extends CommonActivity {
     private ArrayList<Order> pastOrderList;
     private LiveOrderFragment liveOrderFragment;
     private PastOrderFragment pastOrderFragment;
+    private int frNumber;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -108,7 +108,12 @@ public class MyOrderActivity extends CommonActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        finish();
+        if(frNumber==1){
+            super.onBackPressed();
+            frNumber=0;
+        }else{
+            finish();
+        }
     }
 
     @Override
@@ -127,6 +132,7 @@ public class MyOrderActivity extends CommonActivity {
     }
 
     public void addFragmentInContainer(Fragment fragment, Bundle bundle, boolean addToBackStack, boolean shouldAdd, @AnimationType int animationType) {
+        frNumber=1;
         pushFragment(fragment, bundle, android.R.id.content, addToBackStack, shouldAdd, animationType);
     }
 

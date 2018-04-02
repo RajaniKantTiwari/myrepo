@@ -3,6 +3,7 @@ package com.app.community.ui.dashboard.home;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,18 +28,25 @@ public class OrderDetailsFragment extends BaseFragment implements OrderListAdapt
 
     private FragmentOrderDetailsBinding mBinding;
     private CheckoutCartAdapter mCheckoutAdapter;
+    private FragmentActivity activity;
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_details, container, false);
+        activity=getActivity();
         //getDashboardActivity().setHeaderTitle(getString(R.string.order_details));
         return mBinding.getRoot();
     }
 
     @Override
     public void initializeData() {
+
+        mBinding.layoutHeader.tvHeader.setVisibility(View.VISIBLE);
+        mBinding.layoutHeader.tvHeader.setText(getResources().getString(R.string.order_details));
+        mBinding.layoutHeader.headerLayout.setBackgroundColor(CommonUtils.getColor(getContext(), R.color.dark_black));
+        mBinding.layoutHeader.ivBack.setImageResource(R.drawable.ic_back_white);
 
         mCheckoutAdapter = new CheckoutCartAdapter(getBaseActivity());
         mBinding.rvCartItem.setAdapter(mCheckoutAdapter);
@@ -53,6 +61,7 @@ public class OrderDetailsFragment extends BaseFragment implements OrderListAdapt
 
     @Override
     public void setListener() {
+        mBinding.layoutHeader.ivBack.setOnClickListener(this);
     }
 
     @Override
@@ -79,7 +88,9 @@ public class OrderDetailsFragment extends BaseFragment implements OrderListAdapt
 
     @Override
     public void onClick(View view) {
-
+        if (view == mBinding.layoutHeader.ivBack){
+            activity.onBackPressed();
+        }
     }
 
 

@@ -9,7 +9,9 @@
         <LinearLayout
             style="@style/match_wrap"
             android:orientation="vertical">
-
+            <include
+                android:id="@+id/layoutHeader"
+                layout="@layout/header_layout"/>
             <RelativeLayout
                 android:id="@+id/header_lay"
                 style="@style/match_wrap"

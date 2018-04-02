@@ -23,4 +23,6 @@ public class DeviceTokenRequest {
     public void setInfo(DeviceToken info) {
         this.info = info;
     }
+
+
 }
