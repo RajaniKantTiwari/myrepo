@@ -9,6 +9,7 @@ import com.app.community.network.request.Feedback;
 import com.app.community.network.request.LoginRequest;
 import com.app.community.network.request.UpdateLocation;
 import com.app.community.network.request.VerifyMobileRequest;
+import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.request.dashboard.MerchantSearchRequest;
 import com.app.community.network.request.dashboard.OrderDetailsRequest;
 import com.app.community.network.request.dashboard.ProfilePic;
@@ -17,6 +18,8 @@ import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.LoginResponse;
 import com.app.community.network.response.MyOrderData;
 import com.app.community.network.response.VerifyMobileResponse;
+import com.app.community.network.response.dashboard.OrderDetailData;
+import com.app.community.network.response.dashboard.home.MerchantResponseData;
 import com.app.community.network.response.dashboard.home.SearchResponseData;
 import com.app.community.ui.WelcomeScreenActivity;
 import com.app.community.ui.base.MvpView;
@@ -195,9 +198,9 @@ public class CommonPresenter implements Presenter<MvpView> {
     public void orderDetails(FragmentActivity activity, OrderDetailsRequest request) {
         mView.showProgress();
         mRepository.orderDetails(request).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).
-                subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+                subscribeWith(new DefaultApiObserver<OrderDetailData>(activity) {
                     @Override
-                    public void onResponse(BaseResponse response) {
+                    public void onResponse(OrderDetailData response) {
                         mView.hideProgress();
                         mView.onSuccess(response, 1);
                     }
@@ -208,5 +211,21 @@ public class CommonPresenter implements Presenter<MvpView> {
                         mView.onError(call, 1);
                     }
                 });
+    }
+    public void getMerchantDetails(Activity activity, MerchantRequest merchantRequest) {
+        mView.showProgress();
+        mRepository.getMerchantDetail(merchantRequest).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<MerchantResponseData>(activity) {
+            @Override
+            public void onResponse(MerchantResponseData response) {
+                mView.hideProgress();
+                mView.onSuccess(response, 2);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(call, 2);
+            }
+        });
     }
 }

@@ -14,6 +14,7 @@ public class BaseResponse implements Parcelable {
     private String msg;
     private String status;
 
+
     public String getStatus() {
         return status;
     }

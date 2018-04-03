@@ -28,6 +28,7 @@ import com.app.community.network.response.MyOrderData;
 import com.app.community.network.response.VerifyMobileResponse;
 import com.app.community.network.response.coupon.MerchantCouponResponseData;
 import com.app.community.network.response.coupon.ViewAllCouponResponseData;
+import com.app.community.network.response.dashboard.OrderDetailData;
 import com.app.community.network.response.dashboard.cart.CategoryResponse;
 import com.app.community.network.response.dashboard.cart.ProductFullInformationData;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
@@ -120,7 +121,7 @@ public interface ApiService {
     Observable<BaseResponse> submitFeedBack(@Body Feedback request);
 
     @POST("cartorder/orderdetails")
-    Observable<BaseResponse> orderDetails(@Body OrderDetailsRequest request);
+    Observable<OrderDetailData> orderDetails(@Body OrderDetailsRequest request);
 
     @GET("custom/detailhelp")
     Observable<BaseResponse> detailHelp();

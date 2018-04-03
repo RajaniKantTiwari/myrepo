@@ -200,7 +200,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
 
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
-                activity.onError(call, AppConstants.DEVICE_TOKEN_RESPONSE);
+                //activity.onError(call, AppConstants.DEVICE_TOKEN_RESPONSE);
             }
         });
     }

@@ -77,10 +77,8 @@ public class LiveOrderAdapter extends RecyclerView.Adapter<LiveOrderAdapter.Live
                 itemView.layoutFirst.tvTotal.setText(order.getGrandtotal());
                 itemView.layoutSecond.tvOrderDate.setText(order.getInvoiceDate());
                 itemView.layoutSecond.tvOrderNumber.setText(order.getInvoiceNumber());
-                if (CommonUtils.isNotNull(order.getAvg_time_to_deliver()) && order.getAvg_time_to_deliver().length() > 0) {
-                    itemView.tvOrderStatus.setText(String.format(Locale.getDefault(), "%s:%s", order.getAvg_time_to_deliver(), order.getAvg_time_to_deliver()));
-                } else {
-                    itemView.tvOrderStatus.setText(order.getAvg_time_to_deliver());
+                if (CommonUtils.isNotNull(order.getOrder_status()) && order.getOrder_status().length() > 0) {
+                    itemView.tvOrderStatus.setText(order.getOrder_status());
                 }
                 if (CommonUtils.isNotNull(order.getRating())&&!order.getRating().equalsIgnoreCase("0")) {
                     itemView.ratingBar.setVisibility(View.VISIBLE);

@@ -115,7 +115,7 @@ public class LiveOrderFragment extends BaseFragment implements
     @Override
     public void viewDetailsClick(int position) {
         Bundle bundle = new Bundle();
-        bundle.putString(GeneralConstant.ORDER_ID, String.valueOf(recentOrderList.get(position).getId()));
+        bundle.putParcelable(GeneralConstant.ORDER_DETAILS, recentOrderList.get(position));
         ((MyOrderActivity) getBaseActivity()).addFragmentInContainer(new OrderDetailsFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
     }
 

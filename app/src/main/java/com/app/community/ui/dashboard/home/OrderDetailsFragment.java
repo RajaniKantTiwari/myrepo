@@ -10,15 +10,21 @@ import android.view.ViewGroup;
 
 import com.app.community.R;
 import com.app.community.databinding.FragmentOrderDetailsBinding;
+import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.request.dashboard.OrderDetailsRequest;
 import com.app.community.network.response.BaseResponse;
+import com.app.community.network.response.Order;
+import com.app.community.network.response.OrderResponse;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
 import com.app.community.ui.base.BaseFragment;
 import com.app.community.ui.dashboard.home.adapter.CheckoutCartAdapter;
+import com.app.community.ui.dashboard.home.adapter.OrderDetailsAdapter;
 import com.app.community.ui.dashboard.home.adapter.OrderListAdapter;
 import com.app.community.ui.dashboard.home.fragment.MyOrderActivity;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
+
+import java.util.ArrayList;
 
 /**
  * Created by ashok on 13/11/17.
@@ -27,15 +33,16 @@ import com.app.community.utils.GeneralConstant;
 public class OrderDetailsFragment extends BaseFragment implements OrderListAdapter.OrderListener {
 
     private FragmentOrderDetailsBinding mBinding;
-    private CheckoutCartAdapter mCheckoutAdapter;
+    private OrderDetailsAdapter mOrderAdapter;
     private FragmentActivity activity;
-
+    private Order order;
+    private ArrayList<OrderResponse> orderList=new ArrayList<>();
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_details, container, false);
-        activity=getActivity();
+        activity = getActivity();
         //getDashboardActivity().setHeaderTitle(getString(R.string.order_details));
         return mBinding.getRoot();
     }
@@ -48,14 +55,16 @@ public class OrderDetailsFragment extends BaseFragment implements OrderListAdapt
         mBinding.layoutHeader.headerLayout.setBackgroundColor(CommonUtils.getColor(getContext(), R.color.dark_black));
         mBinding.layoutHeader.ivBack.setImageResource(R.drawable.ic_back_white);
 
-        mCheckoutAdapter = new CheckoutCartAdapter(getBaseActivity());
-        mBinding.rvCartItem.setAdapter(mCheckoutAdapter);
+        mOrderAdapter = new OrderDetailsAdapter(getBaseActivity());
+        mBinding.rvCartItem.setAdapter(mOrderAdapter);
         Bundle bundle = getArguments();
         if (CommonUtils.isNotNull(bundle)) {
-            String orderId = bundle.getString(GeneralConstant.ORDER_ID);
+            order = bundle.getParcelable(GeneralConstant.ORDER_DETAILS);
             OrderDetailsRequest request = new OrderDetailsRequest();
-            request.setOrderid(orderId);
+            request.setOrderid(order.getInvoiceNumber());
             ((MyOrderActivity) getBaseActivity()).getOrderPresenter().orderDetails(getActivity(), request);
+            MerchantRequest merchantRequest = new MerchantRequest(order.getMerchant_id());
+            ((MyOrderActivity) getBaseActivity()).getOrderPresenter().getMerchantDetails(getActivity(), merchantRequest);
         }
     }
 
@@ -77,18 +86,30 @@ public class OrderDetailsFragment extends BaseFragment implements OrderListAdapt
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
         if (CommonUtils.isNotNull(response)) {
-
+            if (requestCode == 1) {
+                orderDetails(response);
+            } else if (requestCode == 2) {
+                merchantDetails(response);
+            }
         }
     }
 
+    private void merchantDetails(BaseResponse response) {
+
+    }
+
+    private void orderDetails(BaseResponse response) {
+
+    }
+
     private void setDtaForCheckout(ProductDetailsData data) {
-        mCheckoutAdapter.setCartList(data.getProduct());
+        mOrderAdapter.setCartList(data.getProduct());
     }
 
 
     @Override
     public void onClick(View view) {
-        if (view == mBinding.layoutHeader.ivBack){
+        if (view == mBinding.layoutHeader.ivBack) {
             activity.onBackPressed();
         }
     }

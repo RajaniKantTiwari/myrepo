@@ -44,6 +44,7 @@ public class NetworkModule {
                 .setDateFormat(API_DATE_FORMAT)
                 .addSerializationExclusionStrategy(new JsonExclusionStrategy())
                 .addDeserializationExclusionStrategy(new JsonExclusionStrategy())
+                .setLenient()
                 .create();
         GsonConverterFactory gsonConverterFactory = GsonConverterFactory.create(gson);
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();

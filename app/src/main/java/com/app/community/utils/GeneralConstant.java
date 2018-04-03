@@ -90,6 +90,7 @@ public interface GeneralConstant {
     String CHAT_USER_NAME = "chat_user_name";
     String MERCHANT_ID = "merchantid";
     java.lang.String ORDER_ID = "order_id";
+    String ORDER_DETAILS = "order_details";
 
 
     @IntDef({MERCHANT_MAP_FRAGMENT, MERCHANT_LIST_FRAGMENT, RECENT_FRAGMENT, CATEGORY_FRAGMENT,
