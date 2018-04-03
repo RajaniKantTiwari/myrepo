@@ -4,9 +4,11 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.app.community.R;
 import com.app.community.databinding.FragmentOrderDetailsBinding;
@@ -55,7 +57,8 @@ public class OrderDetailsFragment extends BaseFragment implements OrderListAdapt
         mBinding.layoutHeader.tvHeader.setText(getResources().getString(R.string.order_details));
         mBinding.layoutHeader.headerLayout.setBackgroundColor(CommonUtils.getColor(getContext(), R.color.dark_black));
         mBinding.layoutHeader.ivBack.setImageResource(R.drawable.ic_back_white);
-
+        LinearLayoutManager manager = new LinearLayoutManager(getContext());
+        mBinding.rvCartItem.setLayoutManager(manager);
         mOrderAdapter = new OrderDetailsAdapter(getBaseActivity());
         mBinding.rvCartItem.setAdapter(mOrderAdapter);
         Bundle bundle = getArguments();
@@ -98,23 +101,24 @@ public class OrderDetailsFragment extends BaseFragment implements OrderListAdapt
     }
 
     private void merchantDetails(BaseResponse response) {
-        MerchantResponseData data=(MerchantResponseData)response;
+        MerchantResponseData data = (MerchantResponseData) response;
         ArrayList<MerchantResponse> merchantResponse = data.getInfo();
-        if(CommonUtils.isNotNull(merchantResponse)&&merchantResponse.size()>0){
+        if (CommonUtils.isNotNull(merchantResponse) && merchantResponse.size() > 0) {
             MerchantResponse merchant = merchantResponse.get(0);
-            GlideUtils.loadImage(getBaseActivity(),merchant.getImage(),mBinding.storeImage,null,R.drawable.icon_placeholder);
+            GlideUtils.loadImage(getBaseActivity(), merchant.getImage(), mBinding.storeImage, null, R.drawable.icon_placeholder);
             mBinding.tvStoreName.setText(merchant.getName());
             mBinding.tvAddress.setText(merchant.getAddress());
         }
     }
 
     private void orderDetails(BaseResponse response) {
-        OrderDetailData orderDetailData=(OrderDetailData)response;
-        if(CommonUtils.isNotNull(orderDetailData.getOrderdetails())&&orderDetailData.getOrderdetails().size()>0){
+        OrderDetailData orderDetailData = (OrderDetailData) response;
+        if (CommonUtils.isNotNull(orderDetailData.getOrderdetails()) && orderDetailData.getOrderdetails().size() > 0) {
             mOrderAdapter.setCartList(orderDetailData.getOrderdetails());
 
         }
     }
+
     @Override
     public void onClick(View view) {
         if (view == mBinding.layoutHeader.ivBack) {

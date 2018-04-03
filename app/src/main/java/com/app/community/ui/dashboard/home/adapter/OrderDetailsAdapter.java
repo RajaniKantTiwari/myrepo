@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import com.app.community.R;
 import com.app.community.databinding.CheckoutRowItemBinding;
 import com.app.community.network.response.dashboard.OrderData;
-import com.app.community.network.response.dashboard.dashboardinside.ProductResponse;
 import com.app.community.utils.CommonUtils;
 import com.app.community.widget.CustomTextView;
 
@@ -43,7 +42,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
             }else{
                 OrderData data = orderList.get(position);
                 holder.tvProductName.setText(data.getProductname()+"("+data.getQuantity()+")");
-                int total= (int) (data.getQuantity()*data.getProduct_mrp());
+                int total= (int) (data.getQuantity()*data.getSelling_price());
                 holder.tvProductPrice.setText(String.valueOf(total));
                 holder.tvProductPrice.setTextColor(CommonUtils.getColor(activity,R.color.color_black));
             }
@@ -55,7 +54,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
             int subTotal=0;
             for(int i=0;i<orderList.size();i++) {
                 OrderData data=orderList.get(i);
-                subTotal= (int) (subTotal+data.getQuantity()*data.getProduct_mrp());
+                subTotal= (int) (subTotal+data.getQuantity()*data.getSelling_price());
             }
             holder.tvProductName.setText(activity.getResources().getString(R.string.sub_total));
             holder.tvProductPrice.setText(String.valueOf(subTotal));
@@ -84,15 +83,11 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
             holder.tvProductPrice.setTextColor(CommonUtils.getColor(activity,R.color.color_black));
         }else if(position==orderList.size()+3){
             int subTotal=0;
-            int tax=0;
-            int shipingCharge=0;
             for(int i=0;i<orderList.size();i++){
                 OrderData data=orderList.get(i);
                 subTotal= (int) (subTotal+data.getQuantity()*data.getProduct_mrp());
-                tax = (int) (tax + data.getTax());
-                shipingCharge= (int) (shipingCharge+data.getShipping());
             }
-            int totalAmount=subTotal+tax+shipingCharge;
+            int totalAmount= (int) (subTotal+orderList.get(0).getTax()+orderList.get(0).getShipping());
             holder.tvProductName.setText(activity.getResources().getString(R.string.total_amount));
             holder.tvProductPrice.setText(String.valueOf(totalAmount));
             holder.tvProductPrice.setTextColor(CommonUtils.getColor(activity,R.color.color_sky_blue));
