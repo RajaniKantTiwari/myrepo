@@ -14,15 +14,17 @@ import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.request.dashboard.OrderDetailsRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.Order;
-import com.app.community.network.response.OrderResponse;
-import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
+import com.app.community.network.response.dashboard.OrderData;
+import com.app.community.network.response.dashboard.OrderDetailData;
+import com.app.community.network.response.dashboard.home.MerchantResponse;
+import com.app.community.network.response.dashboard.home.MerchantResponseData;
 import com.app.community.ui.base.BaseFragment;
-import com.app.community.ui.dashboard.home.adapter.CheckoutCartAdapter;
 import com.app.community.ui.dashboard.home.adapter.OrderDetailsAdapter;
 import com.app.community.ui.dashboard.home.adapter.OrderListAdapter;
 import com.app.community.ui.dashboard.home.fragment.MyOrderActivity;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
+import com.app.community.utils.GlideUtils;
 
 import java.util.ArrayList;
 
@@ -36,7 +38,6 @@ public class OrderDetailsFragment extends BaseFragment implements OrderListAdapt
     private OrderDetailsAdapter mOrderAdapter;
     private FragmentActivity activity;
     private Order order;
-    private ArrayList<OrderResponse> orderList=new ArrayList<>();
 
     @Nullable
     @Override
@@ -60,6 +61,8 @@ public class OrderDetailsFragment extends BaseFragment implements OrderListAdapt
         Bundle bundle = getArguments();
         if (CommonUtils.isNotNull(bundle)) {
             order = bundle.getParcelable(GeneralConstant.ORDER_DETAILS);
+            mBinding.tvOrderDate.setText(order.getInvoiceDate());
+            mBinding.tvInvoice.setText(order.getInvoiceNumber());
             OrderDetailsRequest request = new OrderDetailsRequest();
             request.setOrderid(order.getInvoiceNumber());
             ((MyOrderActivity) getBaseActivity()).getOrderPresenter().orderDetails(getActivity(), request);
@@ -95,18 +98,23 @@ public class OrderDetailsFragment extends BaseFragment implements OrderListAdapt
     }
 
     private void merchantDetails(BaseResponse response) {
-
+        MerchantResponseData data=(MerchantResponseData)response;
+        ArrayList<MerchantResponse> merchantResponse = data.getInfo();
+        if(CommonUtils.isNotNull(merchantResponse)&&merchantResponse.size()>0){
+            MerchantResponse merchant = merchantResponse.get(0);
+            GlideUtils.loadImage(getBaseActivity(),merchant.getImage(),mBinding.storeImage,null,R.drawable.icon_placeholder);
+            mBinding.tvStoreName.setText(merchant.getName());
+            mBinding.tvAddress.setText(merchant.getAddress());
+        }
     }
 
     private void orderDetails(BaseResponse response) {
+        OrderDetailData orderDetailData=(OrderDetailData)response;
+        if(CommonUtils.isNotNull(orderDetailData.getOrderdetails())&&orderDetailData.getOrderdetails().size()>0){
+            mOrderAdapter.setCartList(orderDetailData.getOrderdetails());
 
+        }
     }
-
-    private void setDtaForCheckout(ProductDetailsData data) {
-        mOrderAdapter.setCartList(data.getProduct());
-    }
-
-
     @Override
     public void onClick(View view) {
         if (view == mBinding.layoutHeader.ivBack) {

@@ -60,6 +60,7 @@
                     android:text="@string/order_date" />
 
                 <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvInvoice"
                     style="@style/textview_description_wrap"
                     android:layout_alignParentEnd="true"
                     android:layout_below="@+id/tvOrder"
@@ -101,12 +102,11 @@
                     android:textColor="@color/greyish_color" />
 
                 <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvAddress"
                     style="@style/textview_description_wrap"
                     android:layout_marginTop="@dimen/margin_10"
                     android:layout_marginEnd="@dimen/margin_10"
-                    android:layout_below="@+id/tvDeli"
-                    android:text="kdfhhjdfgjkhhjgdkjhdjhjkhdfgkjhjhjhhdfgkjhjhjhdfkjhk
-                    jhkjhfdgjhjkhdfgjhjhjhfdgjkjkhdfjgkjhfdgjhjkhdfgkjhkjhgfdhjkjh"/>
+                    android:layout_below="@+id/tvDeli" />
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>

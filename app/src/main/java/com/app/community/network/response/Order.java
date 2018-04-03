@@ -22,6 +22,9 @@ public class Order implements Parcelable{
     private boolean isFeedbacksubmit;
     private String rating;
 
+    public Order() {
+    }
+
     protected Order(Parcel in) {
         id = in.readInt();
         merchant_id = in.readInt();

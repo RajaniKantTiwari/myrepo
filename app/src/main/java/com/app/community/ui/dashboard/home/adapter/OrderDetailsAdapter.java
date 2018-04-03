@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.app.community.R;
 import com.app.community.databinding.CheckoutRowItemBinding;
+import com.app.community.network.response.dashboard.OrderData;
 import com.app.community.network.response.dashboard.dashboardinside.ProductResponse;
 import com.app.community.utils.CommonUtils;
 import com.app.community.widget.CustomTextView;
@@ -22,7 +23,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
     private final LayoutInflater mInflater;
     private final AppCompatActivity activity;
     private CheckoutRowItemBinding mBinding;
-    private ArrayList<ProductResponse> cartList;
+    private ArrayList<OrderData> orderList;
 
     public OrderDetailsAdapter(AppCompatActivity activity){
         this.activity=activity;
@@ -36,13 +37,13 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
 
     @Override
     public void onBindViewHolder(CheckoutHolder holder, int position) {
-        if(CommonUtils.isNotNull(cartList)){
-            if(position>=cartList.size()){
+        if(CommonUtils.isNotNull(orderList)){
+            if(position>=orderList.size()){
                 otherCharge(holder,position);
             }else{
-                ProductResponse data = cartList.get(position);
+                OrderData data = orderList.get(position);
                 holder.tvProductName.setText(data.getProductname()+"("+data.getQuantity()+")");
-                int total=data.getQuantity()*data.getProduct_mrp();
+                int total= (int) (data.getQuantity()*data.getProduct_mrp());
                 holder.tvProductPrice.setText(String.valueOf(total));
                 holder.tvProductPrice.setTextColor(CommonUtils.getColor(activity,R.color.color_black));
             }
@@ -50,16 +51,16 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
     }
 
     private void otherCharge(CheckoutHolder holder,int position) {
-        if(position==cartList.size()){
+        if(position==orderList.size()){
             int subTotal=0;
-            for(int i=0;i<cartList.size();i++) {
-                ProductResponse data=cartList.get(i);
-                subTotal=subTotal+data.getQuantity()*data.getProduct_mrp();
+            for(int i=0;i<orderList.size();i++) {
+                OrderData data=orderList.get(i);
+                subTotal= (int) (subTotal+data.getQuantity()*data.getProduct_mrp());
             }
             holder.tvProductName.setText(activity.getResources().getString(R.string.sub_total));
             holder.tvProductPrice.setText(String.valueOf(subTotal));
             holder.tvProductPrice.setTextColor(CommonUtils.getColor(activity,R.color.color_black));
-        }else if(position==cartList.size()+1){
+        }else if(position==orderList.size()+1){
             /*int tax=0;
             for(int i=0;i<cartList.size();i++) {
                 ProductResponse data = cartList.get(i);
@@ -68,10 +69,10 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
             holder.tvProductName.setText(activity.getResources().getString(R.string.tax));
 /*
             holder.tvProductPrice.setText(String.valueOf(tax));
-*/            holder.tvProductPrice.setText(String.valueOf(cartList.get(0).getTax()));
+*/            holder.tvProductPrice.setText(String.valueOf(orderList.get(0).getTax()));
 
             holder.tvProductPrice.setTextColor(CommonUtils.getColor(activity,R.color.color_black));
-        }else if(position==cartList.size()+2){
+        }else if(position==orderList.size()+2){
             /*int shipingCharge=0;
             for(int i=0;i<cartList.size();i++){
                 ProductResponse data=cartList.get(i);
@@ -79,17 +80,17 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
             }*/
             holder.tvProductName.setText(activity.getResources().getString(R.string.shipping_charge));
             //holder.tvProductPrice.setText(String.valueOf(shipingCharge));
-            holder.tvProductPrice.setText(String.valueOf(cartList.get(0).getShipping()));
+            holder.tvProductPrice.setText(String.valueOf(orderList.get(0).getShipping()));
             holder.tvProductPrice.setTextColor(CommonUtils.getColor(activity,R.color.color_black));
-        }else if(position==cartList.size()+3){
+        }else if(position==orderList.size()+3){
             int subTotal=0;
             int tax=0;
             int shipingCharge=0;
-            for(int i=0;i<cartList.size();i++){
-                ProductResponse data=cartList.get(i);
-                subTotal=subTotal+data.getQuantity()*data.getProduct_mrp();
-                tax = tax + data.getTax();
-                shipingCharge=shipingCharge+data.getShipping();
+            for(int i=0;i<orderList.size();i++){
+                OrderData data=orderList.get(i);
+                subTotal= (int) (subTotal+data.getQuantity()*data.getProduct_mrp());
+                tax = (int) (tax + data.getTax());
+                shipingCharge= (int) (shipingCharge+data.getShipping());
             }
             int totalAmount=subTotal+tax+shipingCharge;
             holder.tvProductName.setText(activity.getResources().getString(R.string.total_amount));
@@ -101,11 +102,11 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
 
     @Override
     public int getItemCount() {
-        return CommonUtils.isNotNull(cartList)?cartList.size()+4:0;
+        return CommonUtils.isNotNull(orderList)?orderList.size()+4:0;
     }
 
-    public void setCartList(ArrayList<ProductResponse> cartList) {
-        this.cartList=cartList;
+    public void setCartList(ArrayList<OrderData> orderList) {
+        this.orderList=orderList;
         notifyDataSetChanged();
     }
 

@@ -6,15 +6,15 @@ package com.app.community.network.response.dashboard;
 
 public class OrderData {
     private String productname;
-    private String quantity;
+    private int quantity;
     private String tax_status;
     private String pricewithtax;
     private String pricewithouttax;
-    private String selling_price;
-    private String product_mrp;
-    private String tax;
+    private float selling_price;
+    private float product_mrp;
+    private float tax;
     private String avg_time_to_deliver;
-    private String shipping;
+    private float shipping;
 
     public String getProductname() {
         return productname;
@@ -24,11 +24,11 @@ public class OrderData {
         this.productname = productname;
     }
 
-    public String getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
@@ -56,27 +56,27 @@ public class OrderData {
         this.pricewithouttax = pricewithouttax;
     }
 
-    public String getSelling_price() {
+    public float getSelling_price() {
         return selling_price;
     }
 
-    public void setSelling_price(String selling_price) {
+    public void setSelling_price(float selling_price) {
         this.selling_price = selling_price;
     }
 
-    public String getProduct_mrp() {
+    public float getProduct_mrp() {
         return product_mrp;
     }
 
-    public void setProduct_mrp(String product_mrp) {
+    public void setProduct_mrp(float product_mrp) {
         this.product_mrp = product_mrp;
     }
 
-    public String getTax() {
+    public float getTax() {
         return tax;
     }
 
-    public void setTax(String tax) {
+    public void setTax(float tax) {
         this.tax = tax;
     }
 
@@ -88,11 +88,11 @@ public class OrderData {
         this.avg_time_to_deliver = avg_time_to_deliver;
     }
 
-    public String getShipping() {
+    public float getShipping() {
         return shipping;
     }
 
-    public void setShipping(String shipping) {
+    public void setShipping(float shipping) {
         this.shipping = shipping;
     }
 }
