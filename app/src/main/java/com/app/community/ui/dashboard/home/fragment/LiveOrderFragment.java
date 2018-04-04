@@ -13,7 +13,6 @@ import com.app.community.databinding.FragmentLiveOrderBinding;
 import com.app.community.network.request.Feedback;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.Order;
-import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.base.BaseFragment;
 import com.app.community.ui.dashboard.home.OrderDetailsActivity;
 import com.app.community.ui.dashboard.home.adapter.LiveOrderAdapter;
