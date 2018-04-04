@@ -49,8 +49,8 @@ public class LiveOrderFragment extends BaseFragment implements
 
     private void initializeAdapter() {
         recentOrderList = new ArrayList<>();
-        mAdapter = new LiveOrderAdapter(getBaseActivity(), this, recentOrderList);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getBaseActivity());
+        mAdapter = new LiveOrderAdapter(getContext(), this, recentOrderList);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         mBinding.rvOrder.setLayoutManager(layoutManager);
         mBinding.rvOrder.setAdapter(mAdapter);
     }
@@ -98,7 +98,7 @@ public class LiveOrderFragment extends BaseFragment implements
         if (CommonUtils.isNotNull(recentOrderList) && recentOrderList.size() > 0) {
             this.recentOrderList.addAll(recentOrderList);
         }
-        if (CommonUtils.isNotNull(recentOrderList) && recentOrderList.size() > 0) {
+        if (CommonUtils.isNotNull(this.recentOrderList) && this.recentOrderList.size() > 0) {
             mBinding.rvOrder.setVisibility(View.VISIBLE);
             mBinding.layoutNoData.layoutNoData.setVisibility(View.GONE);
         } else {

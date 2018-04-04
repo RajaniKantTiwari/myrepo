@@ -1,5 +1,6 @@
 package com.app.community.ui.dashboard.home.adapter;
 
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -22,7 +23,7 @@ import java.util.Locale;
 
 public class LiveOrderAdapter extends RecyclerView.Adapter<LiveOrderAdapter.LiveOrderHolder> {
     private final LayoutInflater mInflater;
-    private final AppCompatActivity activity;
+    private final Context activity;
     private ArrayList<Order> orderList;
     private OrderListener listener;
 
@@ -35,7 +36,7 @@ public class LiveOrderAdapter extends RecyclerView.Adapter<LiveOrderAdapter.Live
         void feedBackClicked(int position);
     }
 
-    public LiveOrderAdapter(AppCompatActivity activity,OrderListener listener,ArrayList<Order> orderList) {
+    public LiveOrderAdapter(Context activity, OrderListener listener, ArrayList<Order> orderList) {
         this.activity=activity;
         mInflater = LayoutInflater.from(activity);
         this.orderList=orderList;
