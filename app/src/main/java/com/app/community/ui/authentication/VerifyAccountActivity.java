@@ -101,7 +101,6 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
         if (requestCode == 1) {
-            hideSoftKeyboard(mBinding.getRoot());
             gotoNext(response);
         } else if (requestCode == 2) {
             getOtp(response);
@@ -133,7 +132,7 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
                     if (isNotNull(verifyMobileResponse)) {
                         String status = verifyMobileResponse.getStatus();
                         if (status.equals(AppConstants.SUCCESS)) {
-                            hideKeyboard();
+                            hideSoftKeyboard();
                             PreferenceUtils.setUserId(verifyMobileResponse.getId());
                             PreferenceUtils.setAuthToken(verifyMobileResponse.getAuthkey());
                             PreferenceUtils.setLogin(true);
@@ -141,7 +140,7 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
                             ExplicitIntent.getsInstance().clearPreviousNavigateTo(this, DashBoardActivity.class);
                             finish();
                         } else {
-                            hideKeyboard();
+                            //hideSoftKeyboard();
                         }
                         showToast(response.getMsg());
                     }

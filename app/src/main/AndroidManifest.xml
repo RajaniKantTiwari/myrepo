@@ -31,8 +31,7 @@
         <activity android:name=".ui.authentication.VerifyAccountActivity" />
         <activity
             android:name=".ui.dashboard.DashBoardActivity"
-            android:theme="@style/dashboard"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+            android:theme="@style/dashboard"/>
         <activity android:name=".ui.dashboard.home.DoctorDetailsActivity" />
 
         <activity android:name=".ui.dashboard.home.DoctorCheckoutActivity" />
