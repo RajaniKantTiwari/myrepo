@@ -9,21 +9,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.community.R;
-import com.app.community.databinding.FragmentOrderBinding;
+import com.app.community.databinding.FragmentPastOrderBinding;
 import com.app.community.network.request.Feedback;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.Order;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.base.BaseFragment;
-import com.app.community.ui.dashboard.home.OrderDetailsFragment;
+import com.app.community.ui.dashboard.home.OrderDetailsActivity;
 import com.app.community.ui.dashboard.home.adapter.LiveOrderAdapter;
 import com.app.community.ui.dialogfragment.OrderFeedbackDialogFragment;
 import com.app.community.utils.CommonUtils;
+import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
 
 import java.util.ArrayList;
-
-import static com.app.community.utils.GeneralConstant.FRAGMENTS.ORDER_DETAILS_FRAGMENT;
 
 /**
  * Created by rajnikant on 31/12/17.
@@ -31,7 +30,7 @@ import static com.app.community.utils.GeneralConstant.FRAGMENTS.ORDER_DETAILS_FR
 
 public class PastOrderFragment extends BaseFragment implements
         LiveOrderAdapter.OrderListener, OrderFeedbackDialogFragment.OrderDialogListener {
-    private FragmentOrderBinding mBinding;
+    private FragmentPastOrderBinding mBinding;
     private LiveOrderAdapter mAdapter;
     private ArrayList<Order> pastOrderList;
     private MyOrderActivity mActivity;
@@ -39,7 +38,7 @@ public class PastOrderFragment extends BaseFragment implements
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order, container, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_past_order, container, false);
         mActivity = (MyOrderActivity) getActivity();
         initializeAdapter();
         return mBinding.getRoot();
@@ -104,7 +103,7 @@ public class PastOrderFragment extends BaseFragment implements
     public void viewDetailsClick(int position) {
         Bundle bundle = new Bundle();
         bundle.putParcelable(GeneralConstant.ORDER_DETAILS, pastOrderList.get(position));
-        ((MyOrderActivity)getBaseActivity()).addFragmentInContainer(new OrderDetailsFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
+        ExplicitIntent.getsInstance().navigateTo(getActivity(),OrderDetailsActivity.class,bundle);
     }
 
     @Override

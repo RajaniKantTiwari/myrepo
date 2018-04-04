@@ -1,92 +1,94 @@
 package com.app.community.ui.dashboard.home;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.app.community.R;
-import com.app.community.databinding.FragmentOrderDetailsBinding;
+import com.app.community.databinding.ActivityOrderDetailsBinding;
 import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.request.dashboard.OrderDetailsRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.Order;
-import com.app.community.network.response.dashboard.OrderData;
 import com.app.community.network.response.dashboard.OrderDetailData;
 import com.app.community.network.response.dashboard.home.MerchantResponse;
 import com.app.community.network.response.dashboard.home.MerchantResponseData;
-import com.app.community.ui.base.BaseFragment;
+import com.app.community.ui.authentication.CommonActivity;
 import com.app.community.ui.dashboard.home.adapter.OrderDetailsAdapter;
 import com.app.community.ui.dashboard.home.adapter.OrderListAdapter;
-import com.app.community.ui.dashboard.home.fragment.MyOrderActivity;
+import com.app.community.ui.presenter.CommonPresenter;
 import com.app.community.utils.CommonUtils;
 import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.GlideUtils;
 
 import java.util.ArrayList;
 
+import javax.inject.Inject;
+
 /**
  * Created by ashok on 13/11/17.
  */
 
-public class OrderDetailsFragment extends BaseFragment implements OrderListAdapter.OrderListener {
+public class OrderDetailsActivity extends CommonActivity implements OrderListAdapter.OrderListener {
 
-    private FragmentOrderDetailsBinding mBinding;
+    private ActivityOrderDetailsBinding mBinding;
     private OrderDetailsAdapter mOrderAdapter;
-    private FragmentActivity activity;
     private Order order;
+    @Inject
+    CommonPresenter presenter;
 
-    @Nullable
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_details, container, false);
-        activity = getActivity();
-        //getDashboardActivity().setHeaderTitle(getString(R.string.order_details));
-        return mBinding.getRoot();
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_order_details);
+        initializeData();
+        setListener();
     }
 
-    @Override
+
+
+
     public void initializeData() {
 
         mBinding.layoutHeader.tvHeader.setVisibility(View.VISIBLE);
         mBinding.layoutHeader.tvHeader.setText(getResources().getString(R.string.order_details));
-        mBinding.layoutHeader.headerLayout.setBackgroundColor(CommonUtils.getColor(getContext(), R.color.dark_black));
+        mBinding.layoutHeader.headerLayout.setBackgroundColor(CommonUtils.getColor(this, R.color.dark_black));
         mBinding.layoutHeader.ivBack.setImageResource(R.drawable.ic_back_white);
-        LinearLayoutManager manager = new LinearLayoutManager(getContext());
+        LinearLayoutManager manager = new LinearLayoutManager(this);
         mBinding.rvCartItem.setLayoutManager(manager);
-        mOrderAdapter = new OrderDetailsAdapter(getBaseActivity());
+        mOrderAdapter = new OrderDetailsAdapter(this);
         mBinding.rvCartItem.setAdapter(mOrderAdapter);
-        Bundle bundle = getArguments();
-        if (CommonUtils.isNotNull(bundle)) {
-            order = bundle.getParcelable(GeneralConstant.ORDER_DETAILS);
-            mBinding.tvOrderDate.setText(order.getInvoiceDate());
-            mBinding.tvInvoice.setText(order.getInvoiceNumber());
-            OrderDetailsRequest request = new OrderDetailsRequest();
-            request.setOrderid(order.getInvoiceNumber());
-            ((MyOrderActivity) getBaseActivity()).getOrderPresenter().orderDetails(getActivity(), request);
-            MerchantRequest merchantRequest = new MerchantRequest(order.getMerchant_id());
-            ((MyOrderActivity) getBaseActivity()).getOrderPresenter().getMerchantDetails(getActivity(), merchantRequest);
+        Intent intent=getIntent();
+        if(CommonUtils.isNotNull(intent)){
+            Bundle bundle = intent.getExtras();
+            if (CommonUtils.isNotNull(bundle)) {
+                order = bundle.getParcelable(GeneralConstant.ORDER_DETAILS);
+                mBinding.tvOrderDate.setText(order.getInvoiceDate());
+                mBinding.tvInvoice.setText(order.getInvoiceNumber());
+                OrderDetailsRequest request = new OrderDetailsRequest();
+                request.setOrderid(order.getInvoiceNumber());
+                presenter.orderDetails(this, request);
+                MerchantRequest merchantRequest = new MerchantRequest(order.getMerchant_id());
+                presenter.getMerchantDetails(this, merchantRequest);
+            }
         }
+
     }
 
-    @Override
     public void setListener() {
         mBinding.layoutHeader.ivBack.setOnClickListener(this);
     }
 
-    @Override
-    public String getFragmentName() {
-        return OrderDetailsFragment.class.getSimpleName();
-    }
+
 
     @Override
     public void attachView() {
-        ((MyOrderActivity) getBaseActivity()).getOrderPresenter().attachView(this);
+        getActivityComponent().inject(this);
+        presenter.attachView(this);
     }
 
     @Override
@@ -105,7 +107,7 @@ public class OrderDetailsFragment extends BaseFragment implements OrderListAdapt
         ArrayList<MerchantResponse> merchantResponse = data.getInfo();
         if (CommonUtils.isNotNull(merchantResponse) && merchantResponse.size() > 0) {
             MerchantResponse merchant = merchantResponse.get(0);
-            GlideUtils.loadImage(getBaseActivity(), merchant.getImage(), mBinding.storeImage, null, R.drawable.icon_placeholder);
+            GlideUtils.loadImage(this, merchant.getImage(), mBinding.storeImage, null, R.drawable.icon_placeholder);
             mBinding.tvStoreName.setText(merchant.getName());
             mBinding.tvAddress.setText(merchant.getAddress());
         }
@@ -122,7 +124,7 @@ public class OrderDetailsFragment extends BaseFragment implements OrderListAdapt
     @Override
     public void onClick(View view) {
         if (view == mBinding.layoutHeader.ivBack) {
-            activity.onBackPressed();
+            finish();
         }
     }
 

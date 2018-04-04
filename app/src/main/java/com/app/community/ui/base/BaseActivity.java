@@ -20,7 +20,7 @@ import android.widget.TextView;
 import com.app.community.R;
 import com.app.community.ui.cart.ProductSubproductFragment;
 import com.app.community.ui.dashboard.home.ConfirmOrderFragment;
-import com.app.community.ui.dashboard.home.OrderDetailsFragment;
+import com.app.community.ui.dashboard.home.OrderDetailsActivity;
 import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.fragment.CategoryFragment;
 import com.app.community.ui.dashboard.home.fragment.MerchantFragment;
@@ -292,7 +292,7 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
             case USER_FRAGMENT:
                 new UpdateProfileFragment();
             case ORDER_DETAILS_FRAGMENT:
-                new OrderDetailsFragment();
+                new OrderDetailsActivity();
         }
         return fragment;
     }

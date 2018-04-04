@@ -50,6 +50,7 @@
         <activity android:name=".ui.chat.UsersActivity" />
         <activity android:name=".ui.chat.ChatActivity"/>
         <activity android:name=".ui.activity.AboutUsActivity" />
+        <activity android:name=".ui.dashboard.home.OrderDetailsActivity" />
 
         <!--Crop Activity-->
         <activity

@@ -133,6 +133,7 @@ public class MyOrderActivity extends CommonActivity {
 
     public void addFragmentInContainer(Fragment fragment, Bundle bundle, boolean addToBackStack, boolean shouldAdd, @AnimationType int animationType) {
         frNumber=1;
+        //pushFragment(fragment, bundle, R.id.container, addToBackStack, shouldAdd, animationType);
         pushFragment(fragment, bundle, android.R.id.content, addToBackStack, shouldAdd, animationType);
     }
 

@@ -7,6 +7,7 @@ import com.app.community.injector.scope.PerActivity;
 import com.app.community.ui.WelcomeScreenActivity;
 import com.app.community.ui.authentication.LoginActivity;
 import com.app.community.ui.authentication.VerifyAccountActivity;
+import com.app.community.ui.dashboard.home.OrderDetailsActivity;
 import com.app.community.ui.dashboard.home.SearchActivity;
 import com.app.community.ui.dashboard.home.fragment.MyOrderActivity;
 import com.app.community.ui.fragment.DemoFragment;
@@ -23,7 +24,6 @@ public interface CommonComponent {
     void inject(SearchActivity activity);
     void inject(WelcomeScreenActivity activity);
     void inject(MyOrderActivity activity);
-
-
+    void inject(OrderDetailsActivity activity);
 
 }

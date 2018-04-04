@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.community.R;
-import com.app.community.databinding.FragmentOrderBinding;
+import com.app.community.databinding.FragmentPastOrderBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.ui.base.BaseFragment;
 import com.app.community.ui.dashboard.home.adapter.LiveOrderAdapter;
@@ -19,12 +19,12 @@ import com.app.community.ui.dashboard.home.adapter.LiveOrderAdapter;
  */
 
 public class TermsConditionFragment extends BaseFragment {
-    private FragmentOrderBinding mBinding;
+    private FragmentPastOrderBinding mBinding;
     private LiveOrderAdapter mAdapter;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding=DataBindingUtil.inflate(inflater, R.layout.fragment_order,container,false);
+        mBinding=DataBindingUtil.inflate(inflater, R.layout.fragment_past_order,container,false);
         initializeAdapter();
         return mBinding.getRoot();
     }
