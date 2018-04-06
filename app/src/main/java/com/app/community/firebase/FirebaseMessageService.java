@@ -45,7 +45,7 @@ public class FirebaseMessageService extends FirebaseMessagingService {
                     if(badge!=null){
                         ShortcutBadger.with(getApplicationContext()).count(Integer.parseInt(badge));
                     }
-                    String message=dataMsg.get(Constants.MESSAGE);
+                    String messageChat=dataMsg.get(Constants.MESSAGE);
                     String notificationType=dataMsg.get(Constants.NOTIFICATION_TYPE);
                     PreferenceUtil.setPrefBadgeCount(badge);
 
@@ -73,7 +73,7 @@ public class FirebaseMessageService extends FirebaseMessagingService {
                     NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                             .setSmallIcon(R.mipmap.ic_launcher)
                             .setContentTitle(getApplication().getString(R.string.app_name))
-                            .setContentText(message)
+                            .setContentText(messageChat)
                             .setAutoCancel(true)
                             .setContentIntent(pendingIntent);
 

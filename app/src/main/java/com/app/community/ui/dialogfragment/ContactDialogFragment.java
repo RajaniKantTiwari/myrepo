@@ -24,7 +24,8 @@ public class ContactDialogFragment extends DialogFragment implements View.OnClic
 
     public interface ContactDialogListener {
         void contact(String phoneNumber);
-        void message(String message);
+        void messageChat(String name, String mobileNumber);
+
     }
     public void addListener(ContactDialogListener listener) {
         this.listener = listener;
@@ -74,7 +75,7 @@ public class ContactDialogFragment extends DialogFragment implements View.OnClic
             listener.contact(mobileNumber);
         } else if (view == mBinding.tvMessage) {
             dialog.cancel();
-            listener.message(mobileNumber);
+            listener.messageChat(productInfo.getName(),productInfo.getMobileNumber());
         }
     }
 }

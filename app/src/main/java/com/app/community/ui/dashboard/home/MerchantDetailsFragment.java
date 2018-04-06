@@ -10,14 +10,15 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.community.R;
 import com.app.community.databinding.FragmentMerchantDetailBinding;
+import com.app.community.network.request.Feedback;
 import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.home.MerchantResponse;
@@ -29,6 +30,7 @@ import com.app.community.ui.SimpleDividerItemDecoration;
 import com.app.community.ui.activity.ZoomAnimationImageActivity;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.cart.ProductSubproductFragment;
+import com.app.community.ui.chat.ChatActivity;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.DashboardInsidePresenter;
 import com.app.community.ui.dashboard.home.adapter.ImageAdapter;
@@ -45,7 +47,6 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
-import static android.content.ContentValues.TAG;
 import static com.app.community.utils.GeneralConstant.ARGS_INSTANCE;
 import static com.app.community.utils.GeneralConstant.REQUEST_CALL;
 
@@ -62,11 +63,13 @@ public class MerchantDetailsFragment extends DashboardFragment implements
     DashboardInsidePresenter presenter;
     private ArrayList<StoreImages> imageList;
     private Intent callIntent;
+    private FragmentActivity mActivity;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_merchant_detail, container, false);
+        mActivity=getActivity();
         initializeView();
         return mBinding.getRoot();
     }
@@ -128,8 +131,10 @@ public class MerchantDetailsFragment extends DashboardFragment implements
             bundle.putString(AppConstants.MERCHANT_BACKGROUND_COLOR, merchantResponse.getBackground_color());
             getDashboardActivity().addFragmentInContainer(new ProductSubproductFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
         } else if (view == mBinding.tvShareReview) {
-            CommonUtils.clicked(mBinding.tvStartShopping);
-            CommonUtils.showOrderDialog(getDashboardActivity(), null, this);
+            CommonUtils.clicked(mBinding.tvShareReview);
+            Bundle bundle=new Bundle();
+            //bundle.putInt();
+            CommonUtils.showOrderDialog(getDashboardActivity(), bundle, this);
         } else if (view == mBinding.tvContact) {
             openDialog();
         }
@@ -176,6 +181,8 @@ public class MerchantDetailsFragment extends DashboardFragment implements
                     mReviewAdapter.notifyDataSetChanged();
                 }
             }
+        }else if(requestCode==3){
+            presenter.getMerchantReviews(getDashboardActivity(), new MerchantRequest(Integer.parseInt(merchantResponse.getId())));
         }
 
 
@@ -204,7 +211,11 @@ public class MerchantDetailsFragment extends DashboardFragment implements
 
     @Override
     public void submit(int id, float rating, String submit) {
-        getDashboardActivity().showToast("" + submit);
+        Feedback feedback = new Feedback();
+        feedback.setId(id);
+        feedback.setRating(String.valueOf(rating));
+        feedback.setComments(submit);
+        presenter.submitFeedBack(getDashboardActivity(), feedback);
     }
 
     @Override
@@ -230,17 +241,11 @@ public class MerchantDetailsFragment extends DashboardFragment implements
 
 
     @Override
-    public void message(String message) {
-        try {
-            Uri uri = Uri.parse("smsto:"+message);
-            // No permisison needed
-            Intent smsIntent = new Intent(Intent.ACTION_SENDTO, uri);
-            // Set the message to be sent
-            startActivity(smsIntent);
-        } catch (Exception e) {
-            getBaseActivity().showToast(getResources().getString(R.string.message_failed));
-            e.printStackTrace();
-        }
+    public void messageChat(String name, String mobileNumber) {
+        Bundle bundle = new Bundle();
+        bundle.putString(GeneralConstant.CHAT_WITH, mobileNumber);
+        bundle.putString(GeneralConstant.CHAT_USER_NAME, name);
+        ExplicitIntent.getsInstance().navigateTo(mActivity, ChatActivity.class, bundle);
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

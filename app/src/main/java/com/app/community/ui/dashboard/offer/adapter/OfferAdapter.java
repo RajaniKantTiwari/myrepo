@@ -55,7 +55,9 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferViewHol
                 holder.tvMrp.setText(activity.getResources().getString(R.string.mrp_rs)+offer.getProduct_mrp());
                 holder.tvPrice.setText(activity.getResources().getString(R.string.mrp_rs)+offer.getSelling_price());
                 holder.tvMerchantName.setText(offer.getStore_name());
-                holder.tvOff.setText(offer.getOffer_percent()+"% OFF");
+                if(CommonUtils.isNotNull(offer.getOffer_percent())){
+                    holder.tvOff.setText(CommonUtils.twoDecimalPlace(Double.parseDouble(offer.getOffer_percent()))+"% OFF");
+                }
                 GlideUtils.loadImageTwoRoundedCorner(activity,offer.getLogo(),holder.ivOffer,
                         null,0,15,0,0,15);
             }

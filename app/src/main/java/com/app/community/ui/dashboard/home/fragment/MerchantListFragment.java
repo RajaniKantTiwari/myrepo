@@ -157,12 +157,12 @@ public class MerchantListFragment extends DashboardFragment implements ContactDi
 
 
     @Override
-    public void message(String message) {
+    public void messageChat(String name, String mobileNumber) {
             try {
-                Uri uri = Uri.parse("smsto:"+message);
+                Uri uri = Uri.parse("smsto:"+ mobileNumber);
                 // No permisison needed
                 Intent smsIntent = new Intent(Intent.ACTION_SENDTO, uri);
-                // Set the message to be sent
+                // Set the messageChat to be sent
                 startActivity(smsIntent);
             } catch (Exception e) {
                 getBaseActivity().showToast(getResources().getString(R.string.message_failed));

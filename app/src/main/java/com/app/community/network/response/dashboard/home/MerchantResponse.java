@@ -40,7 +40,15 @@ public class MerchantResponse implements Parcelable,Observable {
     private String max_percentage;
     private String preferred_payment_options;
     private String store_name;
+    private String mobileNumber;
 
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
 
     public String getStore_name() {
         return store_name;
@@ -281,6 +289,7 @@ public class MerchantResponse implements Parcelable,Observable {
         to=in.readString();
         background_color=in.readString();
         max_percentage=in.readString();
+        mobileNumber=in.readString();
         storeimages = in.createTypedArrayList(StoreImages.CREATOR);
     }
 
@@ -311,6 +320,7 @@ public class MerchantResponse implements Parcelable,Observable {
         dest.writeString(minorder);
         dest.writeString(averagetime);
         dest.writeTypedList(storeimages);
+        dest.writeString(mobileNumber);
     }
 
     @Override

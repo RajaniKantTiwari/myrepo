@@ -81,7 +81,7 @@ public class CommonUtils {
     }
 
     /**
-     * Show toast message for long time
+     * Show toast messageChat for long time
      *
      * @param context
      * @param msg

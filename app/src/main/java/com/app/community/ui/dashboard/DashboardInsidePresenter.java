@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.app.community.network.DefaultApiObserver;
 import com.app.community.network.Repository;
+import com.app.community.network.request.Feedback;
 import com.app.community.network.request.dashboard.MerchantRequest;
 import com.app.community.network.request.dashboard.ProductRequest;
 import com.app.community.network.response.BaseResponse;
@@ -63,6 +64,22 @@ public class DashboardInsidePresenter implements Presenter<MvpView> {
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
                 mView.onError(call, 2);
+            }
+        });
+    }
+    public void submitFeedBack(DashBoardActivity activity,Feedback feedback) {
+        mView.showProgress();
+        mRepository.submitFeedBack(feedback).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+            @Override
+            public void onResponse(BaseResponse response) {
+                mView.hideProgress();
+                mView.onSuccess(response, 3);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(call, 3);
             }
         });
     }

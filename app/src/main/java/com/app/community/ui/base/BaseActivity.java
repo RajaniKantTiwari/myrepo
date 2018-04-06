@@ -151,7 +151,7 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
 
 
     /**
-     * Shows progress dialog with custom view, title and message.
+     * Shows progress dialog with custom view, title and messageChat.
      */
     @Override
     public void showProgress() {

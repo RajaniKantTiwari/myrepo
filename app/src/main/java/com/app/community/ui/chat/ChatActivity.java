@@ -108,12 +108,12 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
         String userName = map.get("user").toString();
         ChatMessage chatMessage = new ChatMessage();
         chatMessage.setUserName(userName);
-        chatMessage.setMessage(map.get("message").toString());
+        chatMessage.setMessage(map.get("messageChat").toString());
         if (userName.equals(PreferenceUtils.getUserMono())) {
             chatMessage.setMessageType(AppConstants.VIEW_TYPE_USER_MESSAGE);
         } else {
             chatMessage.setMessageType(AppConstants.VIEW_TYPE_OTHERS_MESSAGE);
-            //addMessageBox(UserDetails.chatWith + ":-\n" + message, 2);
+            //addMessageBox(UserDetails.chatWith + ":-\n" + messageChat, 2);
         }
         messageList.add(chatMessage);
         mAdapter.notifyDataSetChanged();
@@ -133,7 +133,7 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
         String messageText = mBinding.editWriteMessage.getText().toString();
         if (!messageText.equals("")) {
             Map<String, String> map = new HashMap<>();
-            map.put("message", messageText);
+            map.put("messageChat", messageText);
             map.put("user", PreferenceUtils.getUserMono());
             reference1.push().setValue(map);
             reference2.push().setValue(map);

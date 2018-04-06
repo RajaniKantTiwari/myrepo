@@ -53,7 +53,7 @@
                             <com.app.community.widget.CustomTextView
                                 android:id="@+id/tvShopName"
                                 style="@style/textview_header_wrap"
-                                android:text="@={merchantResponse.name}"
+                                android:text="@={merchantResponse.store_name}"
                                 android:textColor="@color/white" />
 
                             <com.app.community.widget.CustomTextView

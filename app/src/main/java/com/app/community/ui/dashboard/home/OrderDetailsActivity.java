@@ -53,7 +53,6 @@ public class OrderDetailsActivity extends CommonActivity implements OrderListAda
 
 
     public void initializeData() {
-
         mBinding.layoutHeader.tvHeader.setVisibility(View.VISIBLE);
         mBinding.layoutHeader.tvHeader.setText(getResources().getString(R.string.order_details));
         mBinding.layoutHeader.headerLayout.setBackgroundColor(CommonUtils.getColor(this, R.color.dark_black));
@@ -69,6 +68,7 @@ public class OrderDetailsActivity extends CommonActivity implements OrderListAda
                 order = bundle.getParcelable(GeneralConstant.ORDER_DETAILS);
                 mBinding.tvOrderDate.setText(order.getInvoiceDate());
                 mBinding.tvInvoice.setText(order.getInvoiceNumber());
+                mBinding.tvOrderStatus.setText(order.getOrder_status());
                 OrderDetailsRequest request = new OrderDetailsRequest();
                 request.setOrderid(order.getInvoiceNumber());
                 presenter.orderDetails(this, request);

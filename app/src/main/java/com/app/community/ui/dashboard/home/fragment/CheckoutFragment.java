@@ -85,7 +85,7 @@ public class CheckoutFragment extends DashboardFragment {
         deliveryAdapter = new PaymentAdapter(getBaseActivity(), deliveryList);
         mBinding.rvDelivery.setAdapter(deliveryAdapter);
         CommonUtils.setRecyclerViewHeight(mBinding.rvDelivery, deliveryList, GeneralConstant.PAYMENT_HEIGHT);
-        mBinding.tvAddress.setText(PreferenceUtils.getAddress());
+        //mBinding.tvAddress.setText(PreferenceUtils.getAddress());
     }
 
     private void setDelivery() {

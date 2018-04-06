@@ -76,7 +76,7 @@ public interface GeneralConstant {
     String PROFILE_UPDATE_PARAMETER = "profileUrl";
     String PARENT_POSITION = "parent_position";
     String CHILD_POSITION = "child_position";
-    String MESSAGE = "message";
+    String MESSAGE = "messageChat";
     int VIEW_CART=1;
     int CHECKOUT=2;
     int COUPON_HEIGHT = 48;
