@@ -39,6 +39,7 @@ import com.app.community.ui.WelcomeScreenActivity;
 import com.app.community.ui.activity.HelpsAndSupportActivity;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.cart.ProductSubproductFragment;
+import com.app.community.ui.cart.ServiceFragment;
 import com.app.community.ui.chat.UsersActivity;
 import com.app.community.ui.dashboard.expandrecycleview.draweradapter.DrawerAdapterRight;
 import com.app.community.ui.dashboard.home.MerchantDetailsFragment;
@@ -534,7 +535,8 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
             }
         }
         closeDrawerRight();
-        pushFragment(new NewsPaperFragment(), bundle, R.id.container, true, true, NONE);
+        //pushFragment(new NewsPaperFragment(), bundle, R.id.container, true, true, NONE);
+        pushFragment(new ServiceFragment(), bundle, R.id.container, true, true, NONE);
     }
 
     @Override

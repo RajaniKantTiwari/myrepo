@@ -4,16 +4,20 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.app.community.R;
-import com.app.community.databinding.ActivityDoctorDetailBinding;
+import com.app.community.databinding.FragmentDoctorDetailBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.dashboardinside.AppointMentResponse;
-import com.app.community.ui.dashboard.DashboardInsideActivity;
+import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.adapter.AppointmentAdapter;
 
 import java.util.ArrayList;
+
+import static com.app.community.ui.base.BaseActivity.AnimationType.NONE;
 
 
 /**
@@ -21,29 +25,46 @@ import java.util.ArrayList;
  * To inject activity reference.
  */
 
-public class DoctorDetailsActivity extends DashboardInsideActivity {
+public class DoctorDetailsFragment extends DashboardFragment {
 
-    private ActivityDoctorDetailBinding mBinding;
+    private FragmentDoctorDetailBinding mBinding;
     private AppointmentAdapter mAdapter;
     private ArrayList<AppointMentResponse> appointmentList;
 
+    @Nullable
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_doctor_detail);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        mBinding= DataBindingUtil.inflate(inflater, R.layout.fragment_doctor_detail,container,false);
         appointmentList=new ArrayList<>();
         initializeAdapter();
+        return mBinding.getRoot();
     }
 
+
     private void initializeAdapter() {
-        mAdapter=new AppointmentAdapter(this);
+        mAdapter=new AppointmentAdapter(getDashboardActivity());
         setList();
         mAdapter.setList(appointmentList);
-        GridLayoutManager layoutManager=new GridLayoutManager(this,3);
+        GridLayoutManager layoutManager=new GridLayoutManager(getDashboardActivity(),3);
         mBinding.rvAppointmentTime.setLayoutManager(layoutManager);
         mBinding.rvAppointmentTime.setAdapter(mAdapter);
     }
 
+
+    @Override
+    public void initializeData() {
+
+    }
+
+    @Override
+    public void setListener() {
+      mBinding.tvAppointment.setOnClickListener(this);
+    }
+
+    @Override
+    public String getFragmentName() {
+        return null;
+    }
 
     @Override
     public void attachView() {
@@ -60,6 +81,10 @@ public class DoctorDetailsActivity extends DashboardInsideActivity {
 
     @Override
     public void onClick(View view) {
+        if(view==mBinding.tvAppointment){
+            Bundle bundle=new Bundle();
+            getDashboardActivity().addFragmentInContainer(new DoctorCheckoutFragment(), bundle, true, true, NONE);
+        }
 
     }
 

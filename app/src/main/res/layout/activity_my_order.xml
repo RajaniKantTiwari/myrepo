@@ -59,8 +59,7 @@
 
         <FrameLayout
             android:id="@+id/container"
-            style="@style/match_match"
-            android:background="@color/blue"/>
+            style="@style/match_match"/>
 
     </LinearLayout>
 </layout>

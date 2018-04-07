@@ -45,6 +45,7 @@ public class SubscriptionDetailsFragment extends DashboardFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_subscription_details, container, false);
         CommonUtils.register(this);
+        getDashboardActivity().showToast("SubscriptionDetailsFragment called");
         return mBinding.getRoot();
     }
 

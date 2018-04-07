@@ -149,7 +149,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
     public void setListener() {
         mWelcomeBinding.tvSearch.setOnClickListener(this);
         mLastOrderBinding.layoutLastOrder.setOnClickListener(this);
-        mLastOrderBinding.rating.setOnClickListener(this);
+        mLastOrderBinding.tvFeedBack.setOnClickListener(this);
         mEmergencyPlaceBinding.ivLeft.setOnClickListener(this);
         mEmergencyPlaceBinding.ivRight.setOnClickListener(this);
 
@@ -213,7 +213,7 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
 
     @Override
     public void onClick(View view) {
-        if (view == mLastOrderBinding.layoutLastOrder) {
+        if (view == mLastOrderBinding.tvFeedBack) {
             Bundle bundle=new Bundle();
             if(CommonUtils.isNotNull(lastOrdersList)&&lastOrdersList.size()>0){
                 bundle.putInt(GeneralConstant.ID,lastOrdersList.get(0).getId());
@@ -283,8 +283,13 @@ public class WelcomeHomeFragment extends DashboardFragment implements NewsAdapte
                 mLastOrderBinding.tvProductName.setText(order.getProductname());
                 mLastOrderBinding.tvDetails.setText(order.getMeasure());
                 GlideUtils.loadImage(getDashboardActivity(), order.getIcon(), mLastOrderBinding.ivLastOrder, null, R.drawable.stroke_grey);
-                if (CommonUtils.isNotNull(order.getRating())) {
+                if (CommonUtils.isNotNull(order.getRating())&&!order.getRating().equalsIgnoreCase("0")) {
+                    mLastOrderBinding.rating.setVisibility(View.VISIBLE);
+                    mLastOrderBinding.tvFeedBack.setVisibility(View.GONE);
                     mLastOrderBinding.rating.setRating(Float.parseFloat(CommonUtils.oneDecimalPlaceString(order.getRating())));
+                }else{
+                    mLastOrderBinding.rating.setVisibility(View.GONE);
+                    mLastOrderBinding.tvFeedBack.setVisibility(View.VISIBLE);
                 }
             }
         } else {

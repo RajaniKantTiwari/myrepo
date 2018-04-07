@@ -32,9 +32,9 @@
         <activity
             android:name=".ui.dashboard.DashBoardActivity"
             android:theme="@style/dashboard"/>
-        <activity android:name=".ui.dashboard.home.DoctorDetailsActivity" />
+        <activity android:name=".ui.dashboard.home.DoctorDetailsFragment" />
 
-        <activity android:name=".ui.dashboard.home.DoctorCheckoutActivity" />
+        <activity android:name=".ui.dashboard.home.DoctorCheckoutFragment" />
 
         <activity
             android:name=".ui.activity.ZoomAnimationImageActivity"

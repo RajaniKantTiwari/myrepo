@@ -24,66 +24,68 @@ import java.util.ArrayList;
 public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.LocationViewHolder> {
     private final LayoutInflater mInflator;
     private final AppCompatActivity activity;
-    private ArrayList<MerchantResponse> productList;
     private DoctorClickListener itemClickListener;
 
     public void setOnItemClick(DoctorClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
     }
+
     public interface DoctorClickListener {
-        void onItemClick(int adapterPosition);
+        void onView(int position);
+
+        void onBook(int position);
     }
 
-    public DoctorAdapter(AppCompatActivity activity){
-        this.activity=activity;
-        mInflator=LayoutInflater.from(activity);
+    public DoctorAdapter(AppCompatActivity activity) {
+        this.activity = activity;
+        mInflator = LayoutInflater.from(activity);
     }
 
     @Override
     public LocationViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-       ItemDoctorRowBinding mBinding= DataBindingUtil.inflate(mInflator, R.layout.item_doctor_row,parent,false);
+        ItemDoctorRowBinding mBinding = DataBindingUtil.inflate(mInflator, R.layout.item_doctor_row, parent, false);
         return new LocationViewHolder(mBinding);
     }
 
     @Override
     public void onBindViewHolder(LocationViewHolder holder, int position) {
-       if(CommonUtils.isNotNull(productList)&&productList.size()>position){
-           MerchantResponse response=productList.get(position);
-           GlideUtils.loadImage(activity,response.getLogo(),holder.imageView,null,0);
-           holder.tvProductName.setText(response.getName());
-           holder.tvLocation.setText(response.getAddress());
-
-       }
 
     }
 
     @Override
     public int getItemCount() {
-        return productList !=null?productList.size():5;
+        return  5;
     }
 
-    public void setLocationList(ArrayList<MerchantResponse> productList) {
-        this.productList =productList;
-        notifyDataSetChanged();
-    }
 
-    class LocationViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
+    class LocationViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final ImageView imageView;
         private final CustomTextView tvProductName;
         private final CustomTextView tvLocation;
+        private final CustomTextView tvBook;
+        private final CustomTextView tvView;
+        private final ItemDoctorRowBinding mBinding;
 
         public LocationViewHolder(ItemDoctorRowBinding itemView) {
             super(itemView.getRoot());
-            imageView=itemView.ivProductImage;
-            tvProductName=itemView.tvProductName;
-            tvLocation=itemView.tvLocation;
-            imageView.setOnClickListener(this);
+            mBinding = itemView;
+            imageView = itemView.ivProductImage;
+            tvProductName = itemView.tvProductName;
+            tvLocation = itemView.tvLocation;
+            tvBook = itemView.tvBook;
+            tvView = itemView.tvView;
+            tvBook.setOnClickListener(this);
+            tvView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            if (CommonUtils.isNotNull(itemClickListener) && CommonUtils.isNotNull(productList) && productList.size() > getAdapterPosition()) {
-                itemClickListener.onItemClick(getAdapterPosition());
+
+            if (view == mBinding.tvView) {
+                itemClickListener.onView(getAdapterPosition());
+            } else if (view == mBinding.tvBook) {
+                  itemClickListener.onBook(getAdapterPosition());
             }
         }
     }

@@ -81,6 +81,7 @@
 
 
                     <com.app.community.widget.CustomTextView
+                        android:id="@+id/tvBook"
                         style="@style/textview_title_wrap"
                         android:layout_marginTop="@dimen/margin_13"
                         android:layout_below="@+id/tvStar"

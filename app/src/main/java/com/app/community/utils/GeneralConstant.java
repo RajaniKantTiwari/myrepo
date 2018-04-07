@@ -7,6 +7,7 @@ import java.lang.annotation.RetentionPolicy;
 
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.CATEGORY_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.CONFIRM_ORDER_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.DOCTOR_LIST_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.HOME_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.LIVEORDER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.NEWS_FRAGMENT;
@@ -96,7 +97,7 @@ public interface GeneralConstant {
     @IntDef({MERCHANT_MAP_FRAGMENT, MERCHANT_LIST_FRAGMENT, RECENT_FRAGMENT, CATEGORY_FRAGMENT,
             LIVEORDER_FRAGMENT, PASTORDER_FRAGMENT, WELCOME_HOME_FRAGMENT, NEWS_TAB_FRAGMENT
             , HOME_FRAGMENT, NEWS_FRAGMENT, CONFIRM_ORDER_FRAGMENT, PRODUCT_SUBPRODUCT, SUBSCRIPTION_DETAIL_FRAGMENT
-            , SUBSCRIPTION_FRAGMENT,ZOOMIMAGE_FRAGMENT,OFFER_FRAGMENT,NOTIFICATION_FRAGMENT,USER_FRAGMENT})
+            , SUBSCRIPTION_FRAGMENT,ZOOMIMAGE_FRAGMENT,OFFER_FRAGMENT,NOTIFICATION_FRAGMENT,USER_FRAGMENT,DOCTOR_LIST_FRAGMENT})
     @Retention(RetentionPolicy.SOURCE)
     @interface FRAGMENTS {
         int MERCHANT_MAP_FRAGMENT = 16;
@@ -118,6 +119,7 @@ public interface GeneralConstant {
         int NOTIFICATION_FRAGMENT=2;
         int USER_FRAGMENT=3;
         int ORDER_DETAILS_FRAGMENT=25;
+        int DOCTOR_LIST_FRAGMENT=99;
     }
     interface FRAGMENT_OFFER {
         int OFFER_DETAILS = 0;
