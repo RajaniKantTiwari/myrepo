@@ -2,7 +2,8 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
         <ScrollView
-            style="@style/match_match">
+            style="@style/match_match"
+            android:background="@color/white">
 
             <LinearLayout
                 style="@style/match_wrap"
@@ -110,6 +111,7 @@
                     app:customFont="@string/font_bold" />
 
                 <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvHome"
                     style="@style/textview_description_large_match"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginEnd="@dimen/margin_50"
@@ -124,6 +126,7 @@
                     android:textAllCaps="true"
                     android:textColor="@color/white"/>
                 <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvRaiseAnIssue"
                     style="@style/textview_description_large_wrap"
                     android:padding="@dimen/margin_10"
                     android:text="@string/raise_an_issue"

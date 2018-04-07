@@ -479,6 +479,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                 bundle.putInt(GeneralConstant.CHILD_POSITION, childPosition);
                 CommonUtils.showCheckoutDialog(this, bundle, this);
             } else {
+                clearAllBackStack();
                 openProductSubProduct(parentPosition, childPosition);
             }
         } else if (merchant.getCategoryType().equalsIgnoreCase(getResources().getString(R.string.service))) {
@@ -535,6 +536,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
             }
         }
         closeDrawerRight();
+        clearAllBackStack();
         //pushFragment(new NewsPaperFragment(), bundle, R.id.container, true, true, NONE);
         pushFragment(new ServiceFragment(), bundle, R.id.container, true, true, NONE);
     }

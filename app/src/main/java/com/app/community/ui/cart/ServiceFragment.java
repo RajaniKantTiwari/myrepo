@@ -11,13 +11,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.community.R;
-import com.app.community.databinding.FragmentProductSubproductBinding;
 import com.app.community.databinding.FragmentServiceBinding;
 import com.app.community.databinding.ItemCartBinding;
-import com.app.community.event.ProductUpdateEvent;
 import com.app.community.event.UpdateCartEvent;
-import com.app.community.network.request.cart.Cart;
-import com.app.community.network.request.cart.CartListRequest;
 import com.app.community.network.request.cart.CategoryRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.cart.CategoryData;
@@ -26,8 +22,8 @@ import com.app.community.network.response.dashboard.cart.ProductData;
 import com.app.community.network.response.dashboard.cart.SubCategory;
 import com.app.community.ui.base.BaseActivity;
 import com.app.community.ui.dashboard.DashboardFragment;
-import com.app.community.ui.dashboard.home.fragment.CartFragment;
 import com.app.community.ui.dashboard.home.fragment.CheckoutFragment;
+import com.app.community.ui.dashboard.home.fragment.DoctorListFragment;
 import com.app.community.ui.dashboard.home.fragment.FullInformationFragment;
 import com.app.community.utils.AppConstants;
 import com.app.community.utils.CommonUtils;
@@ -35,7 +31,6 @@ import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.PreferenceUtils;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 
@@ -47,7 +42,7 @@ public class ServiceFragment extends DashboardFragment implements CartAdapter.On
     private CategoryAdapter mCategoryAdapter;
     private SubCatAdapter mSubCategoryAdapter;
     private LinearLayoutManager mLayoutManager, mLayoutMangerSubcat, mLayoutManagerCart;
-    //private CartAdapter mCartAdapter;
+    private CartAdapter mCartAdapter;
     private int oldCatPos, oldSubCatPos;
     private int MAX_LIMIT = 10, MIN_LIMIT = 0;
     private int merchantId;
@@ -65,7 +60,7 @@ public class ServiceFragment extends DashboardFragment implements CartAdapter.On
         }else{
             addCartList= new ArrayList<>();
         }
-        getDashboardActivity().pushChildFragment(getChildFragmentManager(), GeneralConstant.FRAGMENTS.DOCTOR_LIST_FRAGMENT,
+        getDashboardActivity().pushChildFragment(getChildFragmentManager(), new DoctorListFragment(),
                 null, R.id.container, true, false, BaseActivity.AnimationType.NONE);
        /* getDashboardActivity().pushChildFragment(getChildFragmentManager(), GeneralConstant.FRAGMENTS.SUBSCRIPTION_DETAIL_FRAGMENT,
                 null, R.id.container, true, false, BaseActivity.AnimationType.NONE);*/
@@ -82,7 +77,7 @@ public class ServiceFragment extends DashboardFragment implements CartAdapter.On
         //mBinding.tvCheckout.setOnClickListener(this);
         mCategoryAdapter = new CategoryAdapter(mCatList, this);
         mSubCategoryAdapter = new SubCatAdapter(mSubCatList, this);
-        //mCartAdapter = new CartAdapter(mCartList, this);
+        mCartAdapter = new CartAdapter(mCartList, this);
         mBinding.rvCat.setAdapter(mCategoryAdapter);
         mBinding.rvSubCat.setAdapter(mSubCategoryAdapter);
         //mBinding.rvDetail.setAdapter(mCartAdapter);
@@ -201,7 +196,7 @@ public class ServiceFragment extends DashboardFragment implements CartAdapter.On
         if (response != null) {
             if (response instanceof CategoryResponse) {
                 CategoryResponse categoryResponse = (CategoryResponse) response;
-                //CommonUtils.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, true);
+                CommonUtils.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, true);
                 ArrayList<CategoryData> categoryList = categoryResponse.getInfo();
                 if (CommonUtils.isNotNull(categoryList) && categoryList.size() > 0) {
                     mCatList.clear();

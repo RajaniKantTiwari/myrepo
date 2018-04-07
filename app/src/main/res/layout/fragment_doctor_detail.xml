@@ -12,7 +12,8 @@
 
             <LinearLayout
                 style="@style/match_wrap"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginBottom="@dimen/margin_20">
 
                 <LinearLayout style="@style/match_wrap">
 

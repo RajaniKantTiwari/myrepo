@@ -26,9 +26,6 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.LocationVi
     private final AppCompatActivity activity;
     private DoctorClickListener itemClickListener;
 
-    public void setOnItemClick(DoctorClickListener itemClickListener) {
-        this.itemClickListener = itemClickListener;
-    }
 
     public interface DoctorClickListener {
         void onView(int position);
@@ -36,7 +33,8 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.LocationVi
         void onBook(int position);
     }
 
-    public DoctorAdapter(AppCompatActivity activity) {
+    public DoctorAdapter(AppCompatActivity activity,DoctorClickListener itemClickListener) {
+        this.itemClickListener=itemClickListener;
         this.activity = activity;
         mInflator = LayoutInflater.from(activity);
     }

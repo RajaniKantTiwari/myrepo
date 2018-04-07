@@ -37,20 +37,17 @@ import static com.app.community.ui.base.BaseActivity.AnimationType.NONE;
 public class DoctorListFragment extends DashboardFragment implements DoctorAdapter.DoctorClickListener {
     private FragmentDoctorListBinding mBinding;
     private DoctorAdapter mAdapter;
-    private ArrayList<MerchantResponse> doctorsList;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        CommonUtils.register(this);
-        getDashboardActivity().showToast("DoctorListFragment called");
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_doctor_list, container, false);
         initializeAdapter();
         return mBinding.getRoot();
     }
 
     private void initializeAdapter() {
-        mAdapter = new DoctorAdapter(getBaseActivity());
+        mAdapter = new DoctorAdapter(getBaseActivity(),this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getBaseActivity());
         mBinding.rvDoctor.setLayoutManager(layoutManager);
         mBinding.rvDoctor.setAdapter(mAdapter);
@@ -86,22 +83,7 @@ public class DoctorListFragment extends DashboardFragment implements DoctorAdapt
 
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);
-    }
 
-    @Subscribe
-    public void onMessageEvent(MerchantEvent event) {
-        if (event.getListMap() == GeneralConstant.LIST_PRODUCT) {
-            mBinding.layoutList.setVisibility(View.VISIBLE);
-            doctorsList = event.getProductList();
-        } else if (event.getListMap() == GeneralConstant.MAP_PRODUCT) {
-            mBinding.layoutList.setVisibility(View.GONE);
-
-        }
-    }
 
     public static Fragment newInstance() {
         return new DoctorListFragment();

@@ -52,7 +52,7 @@ import static com.app.community.ui.base.BaseActivity.AnimationType.SLIDE;
 import static com.app.community.ui.base.BaseActivity.AnimationType.ZOOM;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.CATEGORY_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.CONFIRM_ORDER_FRAGMENT;
-import static com.app.community.utils.GeneralConstant.FRAGMENTS.DOCTOR_LIST_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.DOCTORS_LIST_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.HOME_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.LIVEORDER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.NEWS_FRAGMENT;
@@ -307,11 +307,27 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
             case ORDER_DETAILS_FRAGMENT:
                 new OrderDetailsActivity();
                 break;
-            case DOCTOR_LIST_FRAGMENT:
-                new DoctorListFragment();
-                break;
+
         }
         return fragment;
+    }
+
+
+    public Fragment pushChildFragment(FragmentManager manager,Fragment fragment, Bundle args, int containerViewId, boolean shouldAdd, boolean addToBackStack, @AnimationType int animationType) {
+        try {
+            if (fragment == null) return null;
+            if (args != null)
+                fragment.setArguments(args);
+
+            FragmentTransaction transaction = manager.beginTransaction();
+            setAnimation(containerViewId, shouldAdd, addToBackStack, animationType, fragment, transaction);
+            return fragment;
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+
     }
 
     public Fragment pushChildFragment(FragmentManager manager, int fragmentId, Bundle args, int containerViewId, boolean shouldAdd, boolean addToBackStack, @AnimationType int animationType) {
