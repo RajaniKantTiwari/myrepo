@@ -4,9 +4,9 @@
 
     <LinearLayout
         style="@style/match_wrap"
+        android:layout_marginBottom="@dimen/margin_14"
         android:layout_marginEnd="@dimen/margin_5"
         android:layout_marginStart="@dimen/margin_5"
-        android:layout_marginBottom="@dimen/margin_14"
         android:background="@drawable/stroke_grey_bg"
         android:padding="@dimen/margin_2">
 
@@ -20,6 +20,17 @@
                 android:layout_marginBottom="@dimen/margin_5"
                 android:layout_marginTop="@dimen/margin_5"
                 android:orientation="vertical">
+                <RelativeLayout style="@style/match_wrap"
+                    android:visibility="gone">
+                    <com.app.community.widget.CustomTextView
+                        android:id="@+id/tvMercantName"
+                        style="@style/textview_description_match"
+                        android:gravity="center_horizontal"
+                        android:padding="@dimen/margin_2"
+                        android:textAllCaps="true"
+                        android:textColor="@color/dark_black_color"
+                        app:customFont="@string/font_regular" />
+                </RelativeLayout>
 
                 <include
                     android:id="@+id/layoutFirst"
@@ -36,59 +47,61 @@
                     android:background="@color/star_text_color"
                     android:textColor="@color/yelloish" />
 
+
+
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvOrderStatus"
                     style="@style/textview_description_match"
                     android:gravity="center_horizontal"
                     android:padding="@dimen/margin_2"
-                    android:textColor="@color/dark_black_color"
-                    android:text="Mother Diary"
                     android:textAllCaps="true"
+                    android:textColor="@color/dark_black_color"
                     app:customFont="@string/font_regular" />
 
                 <ImageView style="@style/view_layout" />
 
-                <RelativeLayout
-                    style="@style/match_wrap">
+                <RelativeLayout style="@style/match_wrap">
 
                     <com.app.community.widget.CustomTextView
                         android:id="@+id/tvViewDetails"
                         style="@style/textview_description_wrap"
-                        android:textColor="@color/doctor_charge_color"
-                        android:text="@string/view_details"
                         android:padding="@dimen/margin_6"
-                        android:textAllCaps="true" />
+                        android:text="@string/view_details"
+                        android:textAllCaps="true"
+                        android:textColor="@color/doctor_charge_color" />
+
                     <RatingBar
                         android:id="@+id/ratingBar"
                         style="@style/Widget.AppCompat.RatingBar.Small"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/post_time"
+                        android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
                         android:max="5"
-                        android:layout_centerHorizontal="true"
                         android:progressTint="@color/star_text_color"
-                        android:rating="3.5"
-                        />
+                        android:rating="3.5" />
+
                     <com.app.community.widget.CustomTextView
                         android:id="@+id/tvFeedBack"
                         style="@style/textview_description_wrap"
-                        android:textColor="@color/doctor_charge_color"
-                        android:text="@string/give_feedback"
-                        android:padding="@dimen/margin_6"
                         android:layout_centerHorizontal="true"
-                        android:textAllCaps="true" />
+                        android:padding="@dimen/margin_6"
+                        android:text="@string/give_feedback"
+                        android:textAllCaps="true"
+                        android:textColor="@color/doctor_charge_color" />
+
                     <com.app.community.widget.CustomTextView
                         android:id="@+id/tvHelp"
                         style="@style/textview_description_wrap"
-                        android:textColor="@color/doctor_charge_color"
+                        android:layout_alignParentEnd="true"
+                        android:paddingBottom="@dimen/margin_6"
+                        android:paddingEnd="@dimen/margin_12"
+                        android:paddingStart="@dimen/margin_12"
+                        android:paddingTop="@dimen/margin_6"
                         android:text="@string/help"
                         android:textAllCaps="true"
-                        android:paddingStart="@dimen/margin_12"
-                        android:paddingEnd="@dimen/margin_12"
-                        android:paddingTop="@dimen/margin_6"
-                        android:paddingBottom="@dimen/margin_6"
-                        android:layout_alignParentEnd="true"/>
+                        android:textColor="@color/doctor_charge_color" />
                 </RelativeLayout>
             </LinearLayout>
         </android.support.v7.widget.CardView>
