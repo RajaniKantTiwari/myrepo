@@ -8,12 +8,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.app.community.R;
 import com.app.community.databinding.FragmentDoctorListBinding;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.home.MerchantResponse;
 import com.app.community.ui.dashboard.DashboardFragment;
+import com.app.community.ui.dashboard.home.DoctorDetailsFragment;
 import com.app.community.ui.dashboard.home.MerchantDetailsFragment;
 import com.app.community.ui.dashboard.home.adapter.DoctorAdapter;
 import com.app.community.ui.dashboard.home.event.MerchantEvent;
@@ -26,11 +28,13 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 
+import static com.app.community.ui.base.BaseActivity.AnimationType.NONE;
+
 /**
  * Created by Amul on 27/12/17.
  */
 
-public class DoctorListFragment extends DashboardFragment {
+public class DoctorListFragment extends DashboardFragment implements DoctorAdapter.DoctorClickListener {
     private FragmentDoctorListBinding mBinding;
     private DoctorAdapter mAdapter;
     private ArrayList<MerchantResponse> doctorsList;
@@ -39,14 +43,15 @@ public class DoctorListFragment extends DashboardFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         CommonUtils.register(this);
-        mBinding= DataBindingUtil.inflate(inflater, R.layout.fragment_doctor_list,container,false);
+        getDashboardActivity().showToast("DoctorListFragment called");
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_doctor_list, container, false);
         initializeAdapter();
         return mBinding.getRoot();
     }
 
     private void initializeAdapter() {
-        mAdapter=new DoctorAdapter(getBaseActivity());
-        LinearLayoutManager layoutManager=new LinearLayoutManager(getBaseActivity());
+        mAdapter = new DoctorAdapter(getBaseActivity());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getBaseActivity());
         mBinding.rvDoctor.setLayoutManager(layoutManager);
         mBinding.rvDoctor.setAdapter(mAdapter);
     }
@@ -58,14 +63,7 @@ public class DoctorListFragment extends DashboardFragment {
 
     @Override
     public void setListener() {
-        mAdapter.setOnItemClick(new DoctorAdapter.DoctorClickListener() {
-            @Override
-            public void onItemClick(int adapterPosition) {
-                if (CommonUtils.isNotNull(doctorsList) && doctorsList.size() > adapterPosition) {
-                    ExplicitIntent.getsInstance().navigateTo(getBaseActivity(), MerchantDetailsFragment.class);
-                }
-            }
-        });
+
     }
 
     @Override
@@ -96,11 +94,10 @@ public class DoctorListFragment extends DashboardFragment {
 
     @Subscribe
     public void onMessageEvent(MerchantEvent event) {
-        if(event.getListMap()== GeneralConstant.LIST_PRODUCT){
-          mBinding.layoutList.setVisibility(View.VISIBLE);
-            doctorsList =event.getProductList();
-          mAdapter.setLocationList(event.getProductList());
-        }else if(event.getListMap()== GeneralConstant.MAP_PRODUCT){
+        if (event.getListMap() == GeneralConstant.LIST_PRODUCT) {
+            mBinding.layoutList.setVisibility(View.VISIBLE);
+            doctorsList = event.getProductList();
+        } else if (event.getListMap() == GeneralConstant.MAP_PRODUCT) {
             mBinding.layoutList.setVisibility(View.GONE);
 
         }
@@ -108,5 +105,17 @@ public class DoctorListFragment extends DashboardFragment {
 
     public static Fragment newInstance() {
         return new DoctorListFragment();
+    }
+
+    @Override
+    public void onView(int position) {
+
+    }
+
+    @Override
+    public void onBook(int position) {
+        Bundle bundle=new Bundle();
+        getDashboardActivity().addFragmentInContainer(new DoctorDetailsFragment(), bundle, true, true, NONE);
+
     }
 }

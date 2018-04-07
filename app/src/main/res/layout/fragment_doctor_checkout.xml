@@ -181,6 +181,7 @@
                 </LinearLayout>
 
                 <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvProceedToPay"
                     style="@style/match_wrap"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="@dimen/margin_60"

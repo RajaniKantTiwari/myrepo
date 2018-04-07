@@ -24,6 +24,7 @@ import com.app.community.ui.dashboard.home.ConfirmOrderFragment;
 import com.app.community.ui.dashboard.home.OrderDetailsActivity;
 import com.app.community.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.community.ui.dashboard.home.fragment.CategoryFragment;
+import com.app.community.ui.dashboard.home.fragment.DoctorListFragment;
 import com.app.community.ui.dashboard.home.fragment.MerchantFragment;
 import com.app.community.ui.dashboard.home.fragment.NewsMainFragment;
 import com.app.community.ui.dashboard.home.fragment.SubscribeFragment;
@@ -51,6 +52,7 @@ import static com.app.community.ui.base.BaseActivity.AnimationType.SLIDE;
 import static com.app.community.ui.base.BaseActivity.AnimationType.ZOOM;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.CATEGORY_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.CONFIRM_ORDER_FRAGMENT;
+import static com.app.community.utils.GeneralConstant.FRAGMENTS.DOCTOR_LIST_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.HOME_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.LIVEORDER_FRAGMENT;
 import static com.app.community.utils.GeneralConstant.FRAGMENTS.NEWS_FRAGMENT;
@@ -118,8 +120,8 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
             inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         }*/
         InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
-        if(CommonUtils.isNotNull(imm))
-        imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+        if (CommonUtils.isNotNull(imm))
+            imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
     }
 
     @Override
@@ -301,8 +303,13 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
                 break;
             case USER_FRAGMENT:
                 new UpdateProfileFragment();
+                break;
             case ORDER_DETAILS_FRAGMENT:
                 new OrderDetailsActivity();
+                break;
+            case DOCTOR_LIST_FRAGMENT:
+                new DoctorListFragment();
+                break;
         }
         return fragment;
     }

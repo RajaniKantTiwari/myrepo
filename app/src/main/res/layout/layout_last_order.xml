@@ -69,10 +69,20 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
+                        android:visibility="gone"
                         android:layout_marginEnd="@dimen/margin_15"
                         android:layout_marginStart="@dimen/margin_4"
                         android:max="5"
                         android:progressTint="@color/star_text_color" />
+                    <com.app.community.widget.CustomTextView
+                        android:id="@+id/tvFeedBack"
+                        style="@style/textview_description_wrap"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:padding="@dimen/margin_15"
+                        android:text="@string/give_feedback"
+                        android:textAllCaps="true"
+                        android:textColor="@color/doctor_charge_color" />
                 </RelativeLayout>
 
             </LinearLayout>
