@@ -193,7 +193,7 @@ public class OfferFragment extends DashboardFragment implements
         if (CommonUtils.isNotNull(offersList) && offersList.size() > position) {
             MerchantOffer offer = offersList.get(position);
             EventBus.getDefault().post(new StartShoppingEvent(offer.getId(),offer.getAddress(),offer.getImage(),offer.getProduct_color_code()));
-            getDashboardActivity().onBackPressed();
+            //getDashboardActivity().onBackPressed();
         }
     }
 }
