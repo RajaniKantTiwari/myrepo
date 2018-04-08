@@ -26,6 +26,7 @@ import com.app.community.network.response.MyOrderData;
 import com.app.community.network.response.VerifyMobileResponse;
 import com.app.community.network.response.coupon.MerchantCouponResponseData;
 import com.app.community.network.response.coupon.ViewAllCouponResponseData;
+import com.app.community.network.response.dashboard.DeliveryData;
 import com.app.community.network.response.dashboard.OrderDetailData;
 import com.app.community.network.response.dashboard.cart.CategoryResponse;
 import com.app.community.network.response.dashboard.cart.ProductFullInformationData;
@@ -249,5 +250,10 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<UserAddressData> getUserAddress() {
         return apiService.getUserAddress();
+    }
+
+    @Override
+    public Observable<DeliveryData> estimatedDelivery(MerchantRequest request) {
+        return apiService.estimatedDelivery(request);
     }
 }

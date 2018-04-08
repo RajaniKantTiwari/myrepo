@@ -28,6 +28,7 @@ import com.app.community.network.response.MyOrderData;
 import com.app.community.network.response.VerifyMobileResponse;
 import com.app.community.network.response.coupon.MerchantCouponResponseData;
 import com.app.community.network.response.coupon.ViewAllCouponResponseData;
+import com.app.community.network.response.dashboard.DeliveryData;
 import com.app.community.network.response.dashboard.OrderDetailData;
 import com.app.community.network.response.dashboard.cart.CategoryResponse;
 import com.app.community.network.response.dashboard.cart.ProductFullInformationData;
@@ -179,5 +180,8 @@ public interface ApiService {
 
     @POST("register/get_user_addresses")
     Observable<UserAddressData> getUserAddress();
+
+    @POST("common/estimateddelivery")
+    Observable<DeliveryData> estimatedDelivery(@Body MerchantRequest request);
 
 }

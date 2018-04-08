@@ -26,6 +26,7 @@ import com.app.community.network.response.MyOrderData;
 import com.app.community.network.response.VerifyMobileResponse;
 import com.app.community.network.response.coupon.MerchantCouponResponseData;
 import com.app.community.network.response.coupon.ViewAllCouponResponseData;
+import com.app.community.network.response.dashboard.DeliveryData;
 import com.app.community.network.response.dashboard.OrderDetailData;
 import com.app.community.network.response.dashboard.cart.CategoryResponse;
 import com.app.community.network.response.dashboard.cart.ProductFullInformationData;
@@ -127,4 +128,6 @@ public interface Repository {
     Observable<UserDefaultAddressData> getUserDefaultAddress();
 
     Observable<UserAddressData> getUserAddress();
+
+    Observable<DeliveryData> estimatedDelivery(MerchantRequest request);
 }

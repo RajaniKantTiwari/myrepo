@@ -179,7 +179,9 @@ public class CheckoutFragment extends DashboardFragment {
             } else if (requestCode == GeneralConstant.CHECKOUT) {
                 if (CommonUtils.isNotNull(response) && AppConstants.SUCCESS.equalsIgnoreCase(response.getStatus())) {
                     CommonUtils.resetCart(getDashboardActivity());
-                    getDashboardActivity().addFragmentInContainer(new ConfirmOrderFragment(), null, true, true, NONE);
+                    Bundle bundle=new Bundle();
+                    bundle.putInt(GeneralConstant.ID,merchantId);
+                    getDashboardActivity().addFragmentInContainer(new ConfirmOrderFragment(), bundle, true, true, NONE);
                 } else {
                     getDashboardActivity().showToast(getResources().getString(R.string.something_went_wrong));
                 }
