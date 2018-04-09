@@ -190,7 +190,7 @@ public class CheckoutFragment extends DashboardFragment {
     }
 
     private void setDtaForCheckout(ProductDetailsData data) {
-        mCheckoutAdapter.setCartList(data.getProduct());
+        mCheckoutAdapter.setCartList(data.getProduct(),data.getTotal());
     }
 
     @Override

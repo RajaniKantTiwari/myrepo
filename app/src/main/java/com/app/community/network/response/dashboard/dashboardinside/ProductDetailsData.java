@@ -11,7 +11,16 @@ import java.util.ArrayList;
  */
 
 public class ProductDetailsData extends BaseResponse {
-private ArrayList<ProductResponse> product;
+    private ArrayList<ProductResponse> product;
+    private TotalTax total;
+
+    public TotalTax getTotal() {
+        return total;
+    }
+
+    public void setTotal(TotalTax total) {
+        this.total = total;
+    }
 
     public ArrayList<ProductResponse> getProduct() {
         return product;
