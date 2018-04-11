@@ -100,11 +100,11 @@
 
 
                             <com.app.community.widget.CustomTextView
+                                android:id="@+id/tvTotalReviews"
                                 style="@style/textview_description_wrap"
                                 android:layout_marginBottom="@dimen/margin_5"
                                 android:layout_marginTop="@dimen/margin_5"
                                 android:gravity="start"
-                                android:text="54 Reviews"
                                 android:textColor="@color/white"
                                 app:customFont="@string/font_bold" />
 

@@ -156,6 +156,9 @@ public class MerchantDetailsFragment extends DashboardFragment implements
                         CommonUtils.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, true);
                         if (CommonUtils.isNotNull(merchantResponse)) {
                             mBinding.setMerchantResponse(merchantResponse);
+                            if(CommonUtils.isNotNull(merchantResponse.getNet_total_reviews())&&merchantResponse.getNet_total_reviews().trim().length()>0){
+                                mBinding.tvTotalReviews.setText(merchantResponse.getNet_total_reviews().trim());
+                            }
                             if (CommonUtils.twoDecimalPlaceString(merchantResponse.getDistance()) != null) {
                                 mBinding.tvDistance.setText(CommonUtils.twoDecimalPlaceString(merchantResponse.getDistance())
                                         + " " + getResources().getString(R.string.km));
