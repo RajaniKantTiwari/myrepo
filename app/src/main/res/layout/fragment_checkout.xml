@@ -115,16 +115,6 @@
                         android:textAllCaps="true"
                         android:textColor="@color/color_sky_blue"/>
 
-                    <com.app.community.widget.CustomTextView
-                        android:id="@+id/editAddress"
-                        style="@style/textview_description_ex_large_wrap"
-                        android:padding="@dimen/margin_5"
-                        android:layout_marginEnd="@dimen/margin_8"
-                        android:layout_alignParentEnd="true"
-                        android:gravity="center"
-                        android:text="@string/edit_address"
-                        android:textAllCaps="true"
-                        android:textColor="@color/redish_color"/>
                 </RelativeLayout>
 
                 <com.app.community.widget.CustomTextView
@@ -132,6 +122,7 @@
                     style="@style/textview_description_match"
                     android:layout_marginEnd="@dimen/margin_10"
                     android:layout_marginStart="@dimen/margin_10"
+                    android:hint="@string/select_your_delivery_address"
                     android:background="@drawable/grey_corner_bg"
                     android:padding="@dimen/margin_10"
                     android:textColor="@color/color_black"
@@ -142,17 +133,19 @@
                     android:padding="@dimen/margin_5"
                     android:layout_marginStart="@dimen/margin_5"
                     android:gravity="center"
-                    android:text="@string/location"
+                    android:text="@string/delivery_location"
                     android:textAllCaps="true"
                     android:textColor="@color/color_sky_blue"/>
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvLocation"
-                    style="@style/textview_description_wrap"
-                    android:padding="@dimen/margin_5"
-                    android:layout_marginStart="@dimen/margin_5"
-                    android:gravity="center"
-                    android:text="@string/location"
+                    style="@style/textview_description_match"
+                    android:padding="@dimen/margin_8"
+                    android:layout_marginEnd="@dimen/margin_10"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:layout_marginBottom="@dimen/margin_10"
+                    android:hint="@string/select_your_delivery_location"
                     android:textAllCaps="true"
+                    android:background="@drawable/grey_corner_bg"
                     />
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvPromoCode"

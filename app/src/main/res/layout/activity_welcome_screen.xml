@@ -52,7 +52,7 @@
             <com.app.community.widget.CustomTextView
                 style="@style/textview_title_match"
                 android:gravity="center"
-                android:text="@string/choose_your_location"
+                android:text="@string/choose_your_shopping_location"
                 android:textAllCaps="true"
                 android:textColor="@color/darker_blackish" />
 

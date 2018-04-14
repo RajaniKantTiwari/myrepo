@@ -1,9 +1,11 @@
 package com.app.community.ui.dashboard.home.fragment;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +14,14 @@ import com.app.community.R;
 import com.app.community.databinding.FragmentCheckoutBinding;
 import com.app.community.event.CouponEvent;
 import com.app.community.network.request.PaymentOption;
+import com.app.community.network.request.UpdateLocation;
 import com.app.community.network.request.cart.CheckoutRequest;
 import com.app.community.network.response.BaseResponse;
 import com.app.community.network.response.dashboard.dashboardinside.ProductDetailsData;
 import com.app.community.ui.SimpleDividerItemDecoration;
 import com.app.community.ui.activity.EditAddressActivity;
 import com.app.community.ui.activity.PaymentAdapter;
+import com.app.community.ui.authentication.LoginActivity;
 import com.app.community.ui.dashboard.DashboardFragment;
 import com.app.community.ui.dashboard.home.ConfirmOrderFragment;
 import com.app.community.ui.dashboard.home.adapter.CheckoutCartAdapter;
@@ -28,12 +32,21 @@ import com.app.community.utils.CommonUtils;
 import com.app.community.utils.ExplicitIntent;
 import com.app.community.utils.GeneralConstant;
 import com.app.community.utils.PreferenceUtils;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocomplete;
+import com.google.android.gms.maps.model.LatLng;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.app.Activity.RESULT_CANCELED;
+import static android.app.Activity.RESULT_OK;
 import static com.app.community.ui.base.BaseActivity.AnimationType.NONE;
 
 /**
@@ -48,6 +61,10 @@ public class CheckoutFragment extends DashboardFragment {
     private PaymentAdapter paymentAdapter;
     private PaymentAdapter deliveryAdapter;
     private int merchantId;
+    private double latitude;
+    private double longitude;
+    private String address;
+    private String location;
 
     @Nullable
     @Override
@@ -73,7 +90,7 @@ public class CheckoutFragment extends DashboardFragment {
 
     @Override
     public void initializeData() {
-        mBinding.tvLocation.setText(PreferenceUtils.getAddress());
+        //mBinding.tvLocation.setText(PreferenceUtils.getAddress());
         getPresenter().viewCart(getDashboardActivity());
         mCheckoutAdapter = new CheckoutCartAdapter(getBaseActivity());
         mBinding.rvCartItem.setAdapter(mCheckoutAdapter);
@@ -116,8 +133,9 @@ public class CheckoutFragment extends DashboardFragment {
     @Override
     public void setListener() {
         mBinding.tvProceedToPay.setOnClickListener(this);
-        mBinding.editAddress.setOnClickListener(this);
+        mBinding.tvAddress.setOnClickListener(this);
         mBinding.tvPromoCode.setOnClickListener(this);
+        mBinding.tvLocation.setOnClickListener(this);
     }
 
     @Override
@@ -132,27 +150,59 @@ public class CheckoutFragment extends DashboardFragment {
 
     @Override
     public void onClick(View view) {
-        if (view == mBinding.editAddress) {
-            CommonUtils.clicked(mBinding.editAddress);
+        if (view == mBinding.tvAddress) {
+            CommonUtils.clicked(mBinding.tvAddress);
             ExplicitIntent.getsInstance().navigateTo(getDashboardActivity(), EditAddressActivity.class);
         } else if (view == mBinding.tvProceedToPay) {
-            CheckoutRequest request = new CheckoutRequest();
-            if (CommonUtils.isNotNull(deliveryList)) {
-                if (deliveryList.get(0).isChecked()) {
-                    request.setDeliverytype("pickonway");
-                } else {
-                    request.setDeliverytype("homedelivery");
+            if (valid()) {
+                CheckoutRequest request = new CheckoutRequest();
+                if (CommonUtils.isNotNull(deliveryList)) {
+                    if (deliveryList.get(0).isChecked()) {
+                        request.setDeliverytype("pickonway");
+                    } else {
+                        request.setDeliverytype("homedelivery");
+                    }
                 }
+                if (CommonUtils.isNull(mBinding.tvAddress.getText().toString()) || mBinding.tvAddress.getText().toString().trim().length() == 0) {
+                    getDashboardActivity().showToast(getResources().getString(R.string.please_enter_address));
+                    return;
+                }
+                request.setDeliveryaddress(mBinding.tvAddress.getText().toString().trim());
+                request.setResponse(1);
+                getPresenter().checkout(getDashboardActivity(), request);
             }
-            if(CommonUtils.isNull(mBinding.tvAddress.getText().toString())||mBinding.tvAddress.getText().toString().trim().length()==0){
-                getDashboardActivity().showToast(getResources().getString(R.string.please_enter_address));
-                return;
-            }
-            request.setDeliveryaddress(mBinding.tvAddress.getText().toString().trim());
-            request.setResponse(1);
-            getPresenter().checkout(getDashboardActivity(), request);
         } else if (view == mBinding.tvPromoCode) {
             openOfferFragment();
+        } else if (view == mBinding.tvLocation) {
+            CommonUtils.clicked(mBinding.tvLocation);
+            if (isNetworkConnected()) {
+                address();
+            }
+        }
+    }
+
+    private boolean valid() {
+        address = mBinding.tvAddress.getText().toString();
+        location = mBinding.tvLocation.getText().toString();
+        if (address == null || address.trim().length() == 0) {
+            getDashboardActivity().showToast(getResources().getString(R.string.please_select_your_address));
+            return false;
+        } else if (location == null || location.trim().length() == 0) {
+            getDashboardActivity().showToast(getResources().getString(R.string.please_select_your_location));
+            return false;
+        }
+        return true;
+    }
+
+    private void address() {
+        try {
+            Intent intent =
+                    new PlaceAutocomplete
+                            .IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
+                            .build(getDashboardActivity());
+            startActivityForResult(intent, 1);
+        } catch (GooglePlayServicesRepairableException e) {
+        } catch (GooglePlayServicesNotAvailableException e) {
         }
     }
 
@@ -165,7 +215,7 @@ public class CheckoutFragment extends DashboardFragment {
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
-        if(CommonUtils.isNotNull(response)){
+        if (CommonUtils.isNotNull(response)) {
             if (requestCode == GeneralConstant.VIEW_CART) {
                 if (CommonUtils.isNotNull(response) && response instanceof ProductDetailsData) {
                     ProductDetailsData data = (ProductDetailsData) response;
@@ -179,8 +229,8 @@ public class CheckoutFragment extends DashboardFragment {
             } else if (requestCode == GeneralConstant.CHECKOUT) {
                 if (CommonUtils.isNotNull(response) && AppConstants.SUCCESS.equalsIgnoreCase(response.getStatus())) {
                     CommonUtils.resetCart(getDashboardActivity());
-                    Bundle bundle=new Bundle();
-                    bundle.putInt(GeneralConstant.ID,merchantId);
+                    Bundle bundle = new Bundle();
+                    bundle.putInt(GeneralConstant.ID, merchantId);
                     getDashboardActivity().addFragmentInContainer(new ConfirmOrderFragment(), bundle, true, true, NONE);
                 } else {
                     getDashboardActivity().showToast(getResources().getString(R.string.something_went_wrong));
@@ -190,7 +240,7 @@ public class CheckoutFragment extends DashboardFragment {
     }
 
     private void setDtaForCheckout(ProductDetailsData data) {
-        mCheckoutAdapter.setCartList(data.getProduct(),data.getTotal());
+        mCheckoutAdapter.setCartList(data.getProduct(), data.getTotal());
     }
 
     @Override
@@ -207,6 +257,39 @@ public class CheckoutFragment extends DashboardFragment {
     @Subscribe
     public void onCouponEvent(CouponEvent event) {
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                try {
+                    if (CommonUtils.isNotNull(data)) {
+                        // retrive the data by using getPlace() method.
+                        Place place = PlaceAutocomplete.getPlace(getContext(), data);
+                        if (CommonUtils.isNotNull(place)) {
+                            LatLng latLng = place.getLatLng();
+                            latitude = latLng.latitude;
+                            longitude = latLng.longitude;
+                            mBinding.tvLocation.setText(place.getAddress().toString());
+                        }
+
+                    }
+                } catch (Exception ex) {
+                    getDashboardActivity().showToast(getResources().getString(R.string.something_went_wrong));
+
+                }
+
+            } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
+                Status status = PlaceAutocomplete.getStatus(getContext(), data);
+                // TODO: Handle the error.
+                Log.e("Tag", status.getStatusMessage());
+
+            } else if (resultCode == RESULT_CANCELED) {
+                // The user canceled the operation.
+            }
+        }
     }
 
 }
