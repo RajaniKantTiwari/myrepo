@@ -1,6 +1,7 @@
 package com.app.community.ui.dashboard.home.adapter;
 
 import android.databinding.DataBindingUtil;
+import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -84,6 +85,7 @@ public class CartRowAdapter extends RecyclerView.Adapter<CartRowAdapter.CartHold
         public void setData(int position) {
             if (CommonUtils.isNotNull(mCartList) && mCartList.size() > position) {
                 itemBinding.setCartData(mCartList.get(position));
+                itemBinding.tvProductMrp.setPaintFlags(itemBinding.tvProductMrp.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                 itemBinding.tvQuantity.setText(String.valueOf(mCartList.get(position).getQty()));
                 GlideUtils.loadImage(activity, mCartList.get(position).getIcon(), itemBinding.ivProductImage, null, R.drawable.icon_placeholder);
 

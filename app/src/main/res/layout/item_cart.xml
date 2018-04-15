@@ -69,6 +69,17 @@
                     android:layout_marginEnd="@dimen/margin_4"
                     android:src="@drawable/rupee"/>
                 <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvProductMrp"
+                    style="@style/textview_description_small_wrap"
+                    android:textColor="@color/color_blue" />
+            </LinearLayout>
+            <LinearLayout
+                style="@style/wrap_wrap">
+                <ImageView
+                    style="@style/image_13"
+                    android:layout_marginEnd="@dimen/margin_4"
+                    android:src="@drawable/rupee"/>
+                <com.app.community.widget.CustomTextView
                     android:id="@+id/tvProductPrice"
                     style="@style/textview_description_small_wrap"
                     android:textColor="@color/color_blue" />

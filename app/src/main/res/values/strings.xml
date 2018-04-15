@@ -516,7 +516,7 @@
     <string name="minutes_ago"> minutes ago</string>
     <string name="second_ago"> second ago</string>
     <string name="seconds_ago"> seconds ago</string>
-    <string name="selling_price">S.Price</string>
+    <string name="selling_price">S.Price &#160;</string>
     <string name="qty">Qty</string>
     <string name="customer_name">Customer Name</string>
     <string name="customer_address">Customer Address</string>
@@ -533,7 +533,7 @@
     <string name="set_default">Set Default</string>
     <string name="shopping">Shopping</string>
     <string name="please_enter_address">Please EnterAddress</string>
-    <string name="mrp">mrp</string>
+    <string name="mrp">mrp &#160;</string>
     <string name="mrp_rs">MRP: Rs&#160;</string>
     <string name="confirm_order">Confirm Order</string>
     <string name="chat">Chat</string>
