@@ -31,6 +31,21 @@
                     android:layout_marginBottom="@dimen/margin_10"
                     android:layout_marginStart="@dimen/margin_10"
                     android:textColor="@color/white" />
+                <com.app.community.widget.CustomTextView
+                    android:id="@+id/tvContact"
+                    style="@style/button_medium_wrap"
+                    android:layout_toEndOf="@+id/tvStoreName"
+                    android:layout_marginStart="@dimen/margin_6"
+                    android:background="@drawable/blue_round_btn_bg"
+                    android:gravity="center"
+                    android:layout_alignParentBottom="true"
+                    android:paddingBottom="@dimen/margin_6"
+                    android:paddingEnd="@dimen/margin_10"
+                    android:paddingStart="@dimen/margin_10"
+                    android:paddingTop="@dimen/margin_3"
+                    android:text="@string/contact"
+                    android:textColor="@color/white"
+                    />
             </RelativeLayout>
 
             <RelativeLayout
@@ -141,20 +156,6 @@
                 style="@style/textview_description_wrap"
                 android:layout_marginEnd="@dimen/margin_10"
                 android:layout_marginTop="@dimen/margin_10" />
-            <com.app.community.widget.CustomTextView
-                android:id="@+id/tvContact"
-                style="@style/button_medium_wrap"
-                android:layout_marginEnd="@dimen/margin_20"
-                android:background="@drawable/blue_round_btn_bg"
-                android:layout_gravity="end"
-                android:gravity="center"
-                android:paddingBottom="@dimen/margin_3"
-                android:paddingEnd="@dimen/margin_10"
-                android:paddingStart="@dimen/margin_10"
-                android:paddingTop="@dimen/margin_3"
-                android:text="@string/contact"
-                android:textColor="@color/white"
-                />
 
         </LinearLayout>
     </ScrollView>
