@@ -48,7 +48,6 @@
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvProductMrp"
                     style="@style/textview_description_small_wrap"
-                    android:text="@{CommonUtils.twoDecimalPlace(cartData.product_mrp)}"
                     android:textColor="@color/color_blue" />
             </LinearLayout>
             <LinearLayout
@@ -60,7 +59,6 @@
                 <com.app.community.widget.CustomTextView
                     android:id="@+id/tvProductPrice"
                     style="@style/textview_description_small_wrap"
-                    android:text="@{CommonUtils.twoDecimalPlace(cartData.selling_price)}"
                     android:textColor="@color/color_blue" />
             </LinearLayout>
         </LinearLayout>

@@ -85,7 +85,9 @@ public class CartRowAdapter extends RecyclerView.Adapter<CartRowAdapter.CartHold
         public void setData(int position) {
             if (CommonUtils.isNotNull(mCartList) && mCartList.size() > position) {
                 itemBinding.setCartData(mCartList.get(position));
+                itemBinding.tvProductMrp.setText(activity.getResources().getString(R.string.mrp)+String.valueOf(mCartList.get(position).getProduct_mrp()));
                 itemBinding.tvProductMrp.setPaintFlags(itemBinding.tvProductMrp.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                itemBinding.tvProductPrice.setText(activity.getResources().getString(R.string.selling_price)+String.valueOf(mCartList.get(position).getSelling_price()));
                 itemBinding.tvQuantity.setText(String.valueOf(mCartList.get(position).getQty()));
                 GlideUtils.loadImage(activity, mCartList.get(position).getIcon(), itemBinding.ivProductImage, null, R.drawable.icon_placeholder);
 
